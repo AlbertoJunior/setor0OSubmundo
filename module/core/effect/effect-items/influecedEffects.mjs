@@ -3,9 +3,14 @@ import { CharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { influenceEnhancement } from "../../enhancement/enhancement-items/influence.mjs";
 import { ActiveEffectsUtils } from "../active-effects.mjs";
 
+const addictedId = 'viciado';
+const mesmerizedId = 'mesmerizado';
+const racionalizeId = 'racionalizando';
+const fascinatedId = 'fascinado';
+
 const addicted = ActiveEffectsUtils.createEffectData({
-    id: 'CustomActiveEffect.Viciado',
-    name: "Viciado",
+    id: addictedId,
+    name: "S0.Efeito_Ativo.Viciado",
     origin: `Aprimoramento: ${influenceEnhancement.name}`,
     img: `${influenceEnhancement.icon}`,
     tint: "#FFDC00",
@@ -17,15 +22,15 @@ const addicted = ActiveEffectsUtils.createEffectData({
         },
     ],
     flags: {
-        [ActiveEffectsFlags.ORIGIN_ID]: 'CustomActiveEffect.Viciado',
+        [ActiveEffectsFlags.ORIGIN_ID]: addictedId,
         [ActiveEffectsFlags.ORIGIN_TYPE]: ActiveEffectsOriginTypes.AFFECTED_ENHANCEMENT,
         [ActiveEffectsFlags.TYPE]: ActiveEffectsTypes.DEBUFF,
     }
 });
 
 const mesmerized = ActiveEffectsUtils.createEffectData({
-    id: 'CustomActiveEffect.Mesmerizado',
-    name: "Mesmerizado",
+    id: mesmerizedId,
+    name: "S0.Efeito_Ativo.Racionalizando",
     origin: `Aprimoramento: ${influenceEnhancement.name}`,
     img: `${influenceEnhancement.icon}`,
     duration: { rounds: 99, startTime: 0 },
@@ -38,30 +43,30 @@ const mesmerized = ActiveEffectsUtils.createEffectData({
         },
     ],
     flags: {
-        [ActiveEffectsFlags.ORIGIN_ID]: 'CustomActiveEffect.Mesmerizado',
+        [ActiveEffectsFlags.ORIGIN_ID]: mesmerizedId,
         [ActiveEffectsFlags.ORIGIN_TYPE]: ActiveEffectsOriginTypes.AFFECTED_ENHANCEMENT,
         [ActiveEffectsFlags.TYPE]: ActiveEffectsTypes.DEBUFF,
     }
 });
 
 const racionalize = ActiveEffectsUtils.createEffectData({
-    id: 'CustomActiveEffect.Racionalizando',
-    name: "Racionalizando",
+    id: racionalizeId,
+    name: "S0.Efeito_Ativo.Racionalizando",
     origin: `Aprimoramento: ${influenceEnhancement.name}`,
     img: `${influenceEnhancement.icon}`,
     duration: { rounds: 99, startTime: 0 },
     tint: "#FFDC00",
     changes: [],
     flags: {
-        [ActiveEffectsFlags.ORIGIN_ID]: 'CustomActiveEffect.Racionalizando',
+        [ActiveEffectsFlags.ORIGIN_ID]: racionalizeId,
         [ActiveEffectsFlags.ORIGIN_TYPE]: ActiveEffectsOriginTypes.AFFECTED_ENHANCEMENT,
         [ActiveEffectsFlags.TYPE]: ActiveEffectsTypes.DEBUFF,
     }
 });
 
 const fascinated = ActiveEffectsUtils.createEffectData({
-    id: 'CustomActiveEffect.Fascinado',
-    name: "Fascinado",
+    id: fascinatedId,
+    name: "S0.Efeito_Ativo.Fascinado",
     origin: `Aprimoramento: ${influenceEnhancement.name}`,
     img: `${influenceEnhancement.icon}`,
     duration: { rounds: 99, startTime: 0 },
@@ -74,7 +79,7 @@ const fascinated = ActiveEffectsUtils.createEffectData({
         },
     ],
     flags: {
-        [ActiveEffectsFlags.ORIGIN_ID]: 'CustomActiveEffect.Fascinado',
+        [ActiveEffectsFlags.ORIGIN_ID]: fascinatedId,
         [ActiveEffectsFlags.ORIGIN_TYPE]: ActiveEffectsOriginTypes.AFFECTED_ENHANCEMENT,
         [ActiveEffectsFlags.TYPE]: ActiveEffectsTypes.DEBUFF,
     }

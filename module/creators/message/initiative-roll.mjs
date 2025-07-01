@@ -1,4 +1,5 @@
 import { TEMPLATES_PATH } from "../../constants.mjs";
+import { FoundryApi } from "../../utils/foundry-api.mjs";
 
 export class RollInitiativeMessageCreator {
     static async mountContent(params) {
@@ -9,6 +10,6 @@ export class RollInitiativeMessageCreator {
             total: total,
             diceValues: values,
         };
-        return await renderTemplate(`${TEMPLATES_PATH}/messages/roll/initiative.hbs`, data);
+        return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/messages/roll/initiative.hbs`, data);
     }
 }

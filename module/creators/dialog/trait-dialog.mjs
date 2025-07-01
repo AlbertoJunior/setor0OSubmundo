@@ -4,6 +4,7 @@ import { localize } from "../../../scripts/utils/utils.mjs";
 import { DialogUtils } from "../../utils/dialog-utils.mjs";
 import { TraitMessageCreator } from "../message/trait-message.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
+import { FoundryApi } from "../../utils/foundry-api.mjs";
 
 export class TraitDialog {
   static async open(type, callback) {
@@ -45,7 +46,7 @@ export class TraitDialog {
             const fetchedTrait = traits.find(t => t.id == trait.id);
             if (fetchedTrait) {
               const messageContent = await TraitMessageCreator.mountContent(fetchedTrait);
-              ChatCreator._sendToChat(actor, messageContent);
+              ChatCreator.sendToChat(actor, messageContent);
             }
           }
         }
@@ -94,7 +95,7 @@ export class TraitDialog {
       description: selectedTrait?.description
     };
 
-    return await renderTemplate(`${TEMPLATES_PATH}/traits/trait-dialog.hbs`, data);
+    return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/traits/trait-dialog.hbs`, data);
   }
 
   static #mapOptions(traits, selectedTrait) {

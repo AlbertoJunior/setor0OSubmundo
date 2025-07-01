@@ -7,6 +7,7 @@ import { SystemFlags } from "../../enums/flags-enums.mjs";
 import { OnEventType } from "../../enums/on-event-type.mjs";
 import { DialogUtils } from "../../utils/dialog-utils.mjs";
 import { FlagsUtils } from "../../utils/flags-utils.mjs";
+import { FoundryApi } from "../../utils/foundry-api.mjs";
 import { createLi } from "../element/element-creator-jscript.mjs";
 
 export class NpcDialog {
@@ -43,7 +44,7 @@ export class NpcDialog {
     }
 
     static async #mountContent(npcActor) {
-        return await renderTemplate(`${TEMPLATES_PATH}/npc/npc-sheet.hbs`, npcActor);
+        return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/npc/npc-sheet.hbs`, npcActor);
     }
 
     static #render(html, npcActor) {

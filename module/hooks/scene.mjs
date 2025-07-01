@@ -1,3 +1,4 @@
+import { TODO } from "../../scripts/utils/utils.mjs";
 import { configureSetor0SceneControl } from "../core/scene/scene-control.mjs";
 import { NotificationsUtils } from "../creators/message/notifications.mjs";
 import { SystemFlags } from "../enums/flags-enums.mjs";
@@ -5,11 +6,12 @@ import { FlagsUtils } from "../utils/flags-utils.mjs";
 
 export class SceneHookHandle {
     static async register() {
-        Hooks.on("getSceneControlButtons", (controls) => {
-            SceneHookHandle.getSceneControlButtons(controls);
-        });
+        TODO('VOLTAR AQUI E RESOLVER ESSES COMENTÁRIOS')
+        // Hooks.on("getSceneControlButtons", (controls) => {
+        //     SceneHookHandle.getSceneControlButtons(controls);
+        // });
 
-        configureSetor0SceneControl()
+        // configureSetor0SceneControl()
     }
 
     static getSceneControlButtons(controls) {

@@ -5,7 +5,7 @@ import { EffectChangeValueType } from "../../../enums/enhancement-enums.mjs";
 import { assimilationEnhancement } from "../../enhancement/enhancement-items/assimilation.mjs";
 import { ActiveEffectsUtils } from "../active-effects.mjs";
 
-const id = 'CustomActiveEffect.CenaSimulada';
+const id = 'cena_simulada';
 const simulated = ActiveEffectsUtils.createEffectData({
     id: id,
     name: "Cena Simulada",

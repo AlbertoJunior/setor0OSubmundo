@@ -3,7 +3,7 @@ import { ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from
 import { CharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { ActiveEffectsUtils } from "../active-effects.mjs";
 
-const id = 'CustomActiveEffect.Surpreendido';
+const id = 'surpreendido';
 const surprised = ActiveEffectsUtils.createEffectData({
     id: id,
     name: "Surpreendido",

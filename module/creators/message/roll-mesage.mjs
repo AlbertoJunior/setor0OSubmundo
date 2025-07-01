@@ -1,6 +1,7 @@
 import { CoreRollMethods } from "../../core/rolls/core-roll-methods.mjs";
 import { keyJsonToKeyLang, localize, toTitleCase } from "../../../scripts/utils/utils.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
+import { FoundryApi } from "../../utils/foundry-api.mjs";
 
 export class RollMessageCreator {
     static async mountContentDefaultRoll(params) {
@@ -27,7 +28,7 @@ export class RollMessageCreator {
             ...coreContentData,
         };
 
-        return await renderTemplate(`${TEMPLATES_PATH}/messages/roll/default.hbs`, data);
+        return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/messages/roll/default.hbs`, data);
     }
 
     static async mountContentCustomRoll(params) {
@@ -56,7 +57,7 @@ export class RollMessageCreator {
             ...coreContentData
         };
 
-        return await renderTemplate(`${TEMPLATES_PATH}/messages/roll/custom.hbs`, data);
+        return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/messages/roll/custom.hbs`, data);
     }
 
     static async mountContentSimplifiedRoll(params) {
@@ -78,7 +79,7 @@ export class RollMessageCreator {
             haveResult: result.result > 0,
             ...coreContentData,
         };
-        return await renderTemplate(`${TEMPLATES_PATH}/messages/roll/simplified.hbs`, data);
+        return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/messages/roll/simplified.hbs`, data);
     }
 
     static async mountContentByAmountRoll(params) {
@@ -100,7 +101,7 @@ export class RollMessageCreator {
             haveResult: result.result > 0,
             ...coreContentData,
         };
-        return await renderTemplate(`${TEMPLATES_PATH}/messages/roll/simplified.hbs`, data);
+        return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/messages/roll/simplified.hbs`, data);
     }
 
     static #verifyResultRoll(dicesOverload = [], dicesDefault = [], specialist = false, difficulty = 6, critic = 10, automatic = 0) {

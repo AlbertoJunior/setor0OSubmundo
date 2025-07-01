@@ -1,6 +1,7 @@
 import { DialogUtils } from "../../utils/dialog-utils.mjs";
 import { localize } from "../../../scripts/utils/utils.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
+import { FoundryApi } from "../../utils/foundry-api.mjs";
 
 export class UpdateEquipmentQuantityDialog {
     static async updateQuantityDialog(quantity, onConfirm = () => { }) {
@@ -35,7 +36,7 @@ export class UpdateEquipmentQuantityDialog {
         const data = {
             quantity
         }
-        return await renderTemplate(`${TEMPLATES_PATH}/items/dialog/quantity-dialog.hbs`, data);
+        return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/items/dialog/quantity-dialog.hbs`, data);
     }
 
     static #getValue(html) {

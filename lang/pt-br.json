@@ -354,6 +354,16 @@
                 "Ja_Possui_Aprimoramento": "O Personagem já possui esse Aprimoramento: <u>{aprimoramento}</u>",
                 "Ja_Possui_Efeito": "O Personagem já possui esse Efeito: <u>{efeito}</u>"
             }
+        },
+
+        "Efeito_Ativo": {
+            "Viciado": "Viciado",
+            "Mesmerizado": "Mesmerizado",
+            "Racionalizando": "Racionalizando",
+            "Fascinado": "Fascinado",
+            "Destrocado1": "Destroçado 1",
+            "Destrocado2": "Destroçado 2",
+            "Destrocado3": "Destroçado 3"
         }
     },
     "TYPES": {

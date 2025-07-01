@@ -1,5 +1,6 @@
 import { localize } from "../../../scripts/utils/utils.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
+import { FoundryApi } from "../../utils/foundry-api.mjs";
 
 export class RollOverloadMessageCreator {
     static async mountContent(params) {
@@ -12,6 +13,6 @@ export class RollOverloadMessageCreator {
             resultValue: success,
             resultMessageClasses: isSuccess ? `S0-success` : 'S0-failure'
         };
-        return await renderTemplate(`${TEMPLATES_PATH}/messages/roll/overload.hbs`, data);
+        return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/messages/roll/overload.hbs`, data);
     }
 }

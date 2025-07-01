@@ -1,6 +1,7 @@
 import { SYSTEM_ID, REGISTERED_TEMPLATES, TEMPLATES_PATH } from "../../../constants.mjs";
 import { OnEventTypeClickableEvents } from "../../../enums/on-event-type.mjs";
 import { FlagsUtils } from "../../../utils/flags-utils.mjs";
+import { FoundryApi } from "../../../utils/foundry-api.mjs";
 import { HtmlJsUtils } from "../../../utils/html-js-utils.mjs";
 import { loadAndRegisterTemplates } from "../../../utils/templates.mjs";
 import { menuHandleMethods } from "../../menu-default-methods.mjs";
@@ -9,7 +10,7 @@ import { handlerEquipmentItemRollEvents } from "./methods/equipment-item-roll-me
 import { handlerEquipmentMenuRollEvents } from "./methods/equipment-menu-roll-methods.mjs";
 import { handlerSuperEquipmentEvents } from "./methods/superequipment-methods.mjs";
 
-export class EquipmentSheet extends ItemSheet {
+export class EquipmentSheet extends FoundryApi.ItemSheet {
     #mapEvents = {
         menu: menuHandleMethods,
         item_roll: handlerEquipmentItemRollEvents,
@@ -135,8 +136,8 @@ export async function equipmentTemplatesRegister() {
 }
 
 export async function registerEquipment() {
-    await Items.unregisterSheet("core", ItemSheet);
-    await Items.registerSheet(SYSTEM_ID, EquipmentSheet, {
+    await FoundryApi.Items.unregisterSheet("core", FoundryApi.ItemSheet);
+    await FoundryApi.Items.registerSheet(SYSTEM_ID, EquipmentSheet, {
         types: ["Melee", "Projectile", "Armor", "Vehicle", "Substance", "Acessory"],
         makeDefault: true
     });

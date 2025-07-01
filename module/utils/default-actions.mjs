@@ -14,25 +14,25 @@ export class DefaultActions {
     static async processInitiativeRoll(actor) {
         const resultRoll = await RollInitiative.roll(actor);
         const contentMessage = await RollInitiativeMessageCreator.mountContent(resultRoll);
-        await ChatCreator._sendToChatTypeRoll(actor, contentMessage, [resultRoll.roll]);
+        await ChatCreator.sendToChatTypeRoll(actor, contentMessage, [resultRoll.roll]);
         await CombatUtils.addOrUpdateActorOnCombat(actor, resultRoll.total);
     }
 
     static async processOverloadRoll(actor) {
         const resultRoll = await RollOverload.roll(actor);
         const contentMessage = await RollOverloadMessageCreator.mountContent(resultRoll);
-        await ChatCreator._sendToChatTypeRoll(actor, contentMessage, [resultRoll.roll]);
+        await ChatCreator.sendToChatTypeRoll(actor, contentMessage, [resultRoll.roll]);
     }
 
     static async processLifeRoll(actor) {
         const resultRoll = await RollLife.roll(actor);
         const contentMessage = await RollLifeMessageCreator.mountContent(resultRoll);
-        await ChatCreator._sendToChatTypeRoll(actor, contentMessage, [resultRoll.roll]);
+        await ChatCreator.sendToChatTypeRoll(actor, contentMessage, [resultRoll.roll]);
     }
 
     static async processVirtueRoll(actor, resultRoll, difficulty, mode) {
         const contentMessage = await RollVirtueMessageCreator.mountContent({ resultRoll, difficulty });
-        await ChatCreator._sendToChatTypeRoll(actor, contentMessage, [resultRoll.roll.roll], mode);
+        await ChatCreator.sendToChatTypeRoll(actor, contentMessage, [resultRoll.roll.roll], mode);
     }
 
     static async processSimplefiedRoll(actor, rollInformation) {
@@ -52,7 +52,7 @@ export class DefaultActions {
 
         const rolls = this.#prepareRolls(params.rolls, params, { isSimplified: true });
         const message = await RollMessageCreator.mountContentSimplifiedRoll(params);
-        await ChatCreator._sendToChatTypeRoll(actor, message, rolls, mode);
+        await ChatCreator.sendToChatTypeRoll(actor, message, rolls, mode);
     }
 
     static async processRollByAmount(actor, rollInformation) {
@@ -72,7 +72,7 @@ export class DefaultActions {
 
         const rolls = this.#prepareRolls(params.rolls, params, { isAmountRoll: true });
         const message = await RollMessageCreator.mountContentByAmountRoll(params);
-        await ChatCreator._sendToChatTypeRoll(actor, message, rolls, rollInformation.rollMode);
+        await ChatCreator.sendToChatTypeRoll(actor, message, rolls, rollInformation.rollMode);
     }
 
     static async processCustomRoll(actor, resultRoll, inputParams, rollMessage, mode) {
@@ -92,7 +92,7 @@ export class DefaultActions {
 
         const rolls = this.#prepareRolls(params.rolls, params, { isCustom: true });
         const message = await RollMessageCreator.mountContentCustomRoll(params);
-        await ChatCreator._sendToChatTypeRoll(actor, message, rolls, mode);
+        await ChatCreator.sendToChatTypeRoll(actor, message, rolls, mode);
     }
 
     static async processAttributeRoll(actor, resultRoll, difficulty, critic, rollMessage, mode) {
@@ -109,7 +109,7 @@ export class DefaultActions {
 
         const rolls = this.#prepareRolls(params.rolls, params);
         const message = await RollMessageCreator.mountContentDefaultRoll(params);
-        await ChatCreator._sendToChatTypeRoll(actor, message, rolls, mode);
+        await ChatCreator.sendToChatTypeRoll(actor, message, rolls, mode);
     }
 
     static #prepareRolls(rollsObject, params, extraFlags = {}) {

@@ -23,7 +23,7 @@ export class RollPerseverance {
         const messageContent = await RollPerseveranceMessageCreator.mountContent(newValues);
         const actorOnMessage = game.actors.get(message.speaker.actor);
 
-        await ChatCreator._sendToChatTypeRoll(actorOnMessage, messageContent, [newValues.roll]);
+        await ChatCreator.sendToChatTypeRoll(actorOnMessage, messageContent, [newValues.roll]);
 
         return newValues;
     }

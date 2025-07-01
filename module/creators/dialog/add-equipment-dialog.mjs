@@ -2,6 +2,7 @@ import { localize, localizeType } from "../../../scripts/utils/utils.mjs"
 import { TEMPLATES_PATH } from "../../constants.mjs";
 import { OnEventType } from "../../enums/on-event-type.mjs";
 import { DialogUtils } from "../../utils/dialog-utils.mjs";
+import { FoundryApi } from "../../utils/foundry-api.mjs";
 
 export class AddEquipmentDialog {
     static async showItemSelectorDialog(items, onSelect = () => { }) {
@@ -146,6 +147,6 @@ export class AddEquipmentDialog {
     static async #mountContent() {
         const data = {
         }
-        return await renderTemplate(`${TEMPLATES_PATH}/items/dialog/add-equipment-dialog.hbs`, data);
+        return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/items/dialog/add-equipment-dialog.hbs`, data);
     }
 }

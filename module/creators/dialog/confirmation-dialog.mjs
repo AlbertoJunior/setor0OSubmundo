@@ -1,6 +1,7 @@
 import { localize } from "../../../scripts/utils/utils.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
 import { DialogUtils } from "../../utils/dialog-utils.mjs";
+import { FoundryApi } from "../../utils/foundry-api.mjs";
 
 export class ConfirmationDialog {
     static async open(params = { onConfirm: () => { }, onCancel: () => { } }) {
@@ -42,6 +43,6 @@ export class ConfirmationDialog {
             title: title || localize("Pergunta.Realizar_Acao"),
             message
         }
-        return await renderTemplate(`${TEMPLATES_PATH}/others/confirmation-dialog.hbs`, data);
+        return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/others/confirmation-dialog.hbs`, data);
     }
 }

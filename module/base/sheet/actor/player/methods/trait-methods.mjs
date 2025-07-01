@@ -92,7 +92,7 @@ export const traitMethods = {
 
         const fetchedTrait = TraitRepository.getItemByTypeAndId(traitType, traitId);
         const messageContent = await TraitMessageCreator.mountContent(fetchedTrait);
-        ChatCreator._sendToChat(actor, messageContent);
+        ChatCreator.sendToChat(actor, messageContent);
     },
     [OnEventType.VIEW]: async (actor, event) => {
         const target = event.currentTarget;

@@ -45,7 +45,7 @@ export class DOMUtils {
         let hooks = 0;
         while (hooks < 5 && tooltip) {
             if (tooltip.classList.contains('S0-container-contract')) {
-                HtmlJsUtils.expandOrContractMessageElement(tooltip, { minHeight: 300, maxHeight: 600, marginBottom: 0 })
+                HtmlJsUtils.expandOrContractMessageElement(tooltip, { minHeight: 0, maxHeight: 600, marginBottom: 0 })
                 return;
             } else {
                 tooltip = tooltip.previousElementSibling;

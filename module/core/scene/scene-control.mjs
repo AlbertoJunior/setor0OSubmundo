@@ -1,4 +1,6 @@
-class MySceneControls extends SceneControls {
+import { FoundryApi } from "../../utils/foundry-api.mjs";
+
+class MySceneControls extends FoundryApi.SceneControls {
     _onClickLayer(event) {
         const layerName = event.currentTarget.dataset.canvasLayer;
         if (!layerName) {

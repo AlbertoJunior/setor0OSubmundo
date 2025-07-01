@@ -1,4 +1,5 @@
 import { getObject, selectCharacteristic } from "../../../../scripts/utils/utils.mjs";
+import { SYSTEM_CLASS_CSS } from "../../../constants.mjs";
 import { ActorEquipmentUtils } from "../../../core/actor/actor-equipment.mjs";
 import { createLi } from "../../../creators/element/element-creator-jscript.mjs";
 import { BaseActorCharacteristicType } from "../../../enums/characteristic-enums.mjs";
@@ -8,9 +9,25 @@ import { OnEventType, OnMethod, verifyAndParseOnEventType } from "../../../enums
 import { FlagsUtils } from "../../../utils/flags-utils.mjs";
 import { HtmlJsUtils } from "../../../utils/html-js-utils.mjs";
 
-export class Setor0BaseActorSheet extends ActorSheet {
+import { FoundryApi } from "../../../utils/foundry-api.mjs";
+
+export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
+    static DEFAULT_OPTIONS = {
+        ...super.DEFAULT_OPTIONS,
+        classes: [SYSTEM_CLASS_CSS, 'actor'],
+        window: {
+            subtitle: ""
+        }
+    };
+
+    static PARTS = {}
+
     get mapEvents() {
         throw new Error("Getter 'mapEvents' must be implemented in the subclass.");
+    }
+
+    configureSheet(html) {
+        console.warn("configureSheet(html) must be implemented in the subclass")
     }
 
     getMapEvents() {
@@ -20,6 +37,20 @@ export class Setor0BaseActorSheet extends ActorSheet {
     constructor(...args) {
         super(...args);
         this.currentPage = 1;
+    }
+
+    async _renderHTML(context, options) {
+        const updatedContext = {
+            ...context,
+            ...this.getData(),
+            actor: context.document
+        };
+        return await super._renderHTML(updatedContext, options);
+    }
+
+    _postRender(context, options) {
+        super._postRender(context, options);
+        this.configureSheet($(this.element));
     }
 
     get isEditable() {
@@ -48,12 +79,9 @@ export class Setor0BaseActorSheet extends ActorSheet {
 
     activateListeners(html) {
         super.activateListeners(html);
-        this.setupContentAndHeader(html);
-    }
-
-    setupContentAndHeader(html) {
         HtmlJsUtils.setupContent(html);
         HtmlJsUtils.setupHeader(html);
+        this.configureSheet(html);
     }
 
     async onActionClick(html, event) {

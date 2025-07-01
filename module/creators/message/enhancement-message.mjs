@@ -1,6 +1,7 @@
 import { TEMPLATES_PATH } from "../../constants.mjs";
 import { EnhancementInfoParser } from "../../core/enhancement/enhancement-info.mjs";
 import { EnhancementRepository } from "../../repository/enhancement-repository.mjs";
+import { FoundryApi } from "../../utils/foundry-api.mjs";
 
 export class EnhancementMessageCreator {
     static #pathTemplates = `${TEMPLATES_PATH}/messages/enhancement`;
@@ -20,7 +21,7 @@ export class EnhancementMessageCreator {
             duration: EnhancementInfoParser.durationValueToString(effect.duration),
             description: effect.description,
         };
-        return await renderTemplate(`${this.#pathTemplates}/enhancement-information.hbs`, data);
+        return await FoundryApi.renderTemplate(`${this.#pathTemplates}/enhancement-information.hbs`, data);
     }
 
     static async mountContentActiveDeactive(effect, status) {
@@ -31,6 +32,6 @@ export class EnhancementMessageCreator {
             name: effect.name,
             status: status,
         };
-        return await renderTemplate(`${this.#pathTemplates}/enhancement-active-deactive.hbs`, data);
+        return await FoundryApi.renderTemplate(`${this.#pathTemplates}/enhancement-active-deactive.hbs`, data);
     }
 }

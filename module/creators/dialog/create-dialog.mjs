@@ -1,6 +1,7 @@
 import { localize, randomId, snakeToCamel } from "../../../scripts/utils/utils.mjs"
 import { TEMPLATES_PATH } from "../../constants.mjs";
 import { DialogUtils } from "../../utils/dialog-utils.mjs";
+import { FoundryApi } from "../../utils/foundry-api.mjs";
 
 export class CreateFormDialog {
     static optionsTemplate = {
@@ -84,8 +85,8 @@ export class CreateFormDialog {
         };
 
         const [formHtml, buttonsHtml] = await Promise.all([
-            renderTemplate(`${TEMPLATES_PATH}/${fileHtml}.hbs`, dataForm),
-            renderTemplate(`${TEMPLATES_PATH}/others/buttons-dialog.hbs`, dataButtons),
+            FoundryApi.renderTemplate(`${TEMPLATES_PATH}/${fileHtml}.hbs`, dataForm),
+            FoundryApi.renderTemplate(`${TEMPLATES_PATH}/others/buttons-dialog.hbs`, dataButtons),
         ]);
 
         return `

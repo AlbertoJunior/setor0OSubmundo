@@ -8,15 +8,15 @@
             {{/each}}
         </ol>
 
-        <label style="display: block; margin-block: 6px;">{{localize 'S0.Removidos'}}</label>
-        <ol class="dice-rolls">
+        <label style="display: block; margin-top: 6px;">{{localize 'S0.Removidos'}}</label>
+        <ol style="margin-top: 0px;" class="dice-rolls">
             {{#each removedDiceValues}}
             <li class="S0-d10-small roll d10">{{ this }}</li>
             {{/each}}
         </ol>
     </div>
 
-    <button class="S0-roll-result {{ resultClassess }}" data-action="toggle-tooltip" data-handle-on-dom="true">
+    <button class="S0-roll-result {{ resultMessageClasses }}" data-action="toggle-tooltip" data-handle-on-dom="true">
         {{ resultMessage }} ( {{ resultValue }} )
     </button>
 </div>

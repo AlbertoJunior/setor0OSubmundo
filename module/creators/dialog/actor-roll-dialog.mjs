@@ -1,5 +1,4 @@
 import { localize, randomId, snakeToCamel } from "../../../scripts/utils/utils.mjs";
-import { DialogUtils } from "../../utils/dialog-utils.mjs";
 import { AttributeRepository } from "../../repository/attribute-repository.mjs";
 import { AbilityRepository } from "../../repository/ability-repository.mjs";
 import { VirtuesRepository } from "../../repository/virtues-repository.mjs";
@@ -9,6 +8,7 @@ import { ActorUtils } from "../../core/actor/actor-utils.mjs";
 import { RepertoryRepository } from "../../repository/repertory-repository.mjs";
 import { playerRollHandle } from "../../base/sheet/actor/player/methods/player-roll-methods.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
+import { FoundryApi } from "../../utils/foundry-api.mjs";
 
 export class ActorRollDialog {
     static #mapedPagesMethods = {
@@ -26,46 +26,51 @@ export class ActorRollDialog {
         let currentPageDialog = 0;
         let pages = [];
 
-        new Dialog({
-            title: localize("Realizar_Teste"),
-            content,
-            buttons: {
-                cancel: {
-                    label: localize("Cancelar")
-                },
-                confirm: {
-                    label: localize("Rolar"),
-                    callback: async (html) => {
-                        const page = pages[currentPageDialog];
-                        if (!page) {
-                            return;
-                        }
-
-                        const form = $(page).closest("form")[0];
-                        const data = snakeToCamel(new FormData(form).entries());
-                        const rollMode = html.parent().find(`#chat_select`).val();
-                        if (!data) {
-                            return
-                        }
-
-                        ActorRollDialog.#mapedPagesMethods[currentPageDialog]?.(actor, data, rollMode);
+        const buttons = [
+            {
+                label: localize('Cancelar'),
+            },
+            {
+                label: localize('Rolar'),
+                default: true,
+                onClick: async (html) => {
+                    const page = pages[currentPageDialog];
+                    if (!page) {
+                        return;
                     }
+
+                    const rollMode = html.parent().find(`#chat_select`).val();
+
+                    const form = $(page).closest("form")[0];
+                    const data = snakeToCamel(new FormData(form).entries());
+                    if (!data) {
+                        return
+                    }
+
+                    ActorRollDialog.#mapedPagesMethods[currentPageDialog]?.(actor, data, rollMode);
+                }
+            }
+        ];
+
+        FoundryApi.createDialog(
+            {
+                title: localize("Realizar_Teste"),
+                content: content,
+                buttons: buttons,
+                render: (html) => {
+                    const renderedButtons = html.find(`[data-action="${OnEventType.CHECK}"]`);
+                    pages = html.find(`[data-characteristic="page"]`);
+                    this.#changePage(currentPageDialog, pages, renderedButtons);
+
+                    renderedButtons.on("click", (event) => {
+                        event.preventDefault();
+                        currentPageDialog = Number(event.currentTarget.dataset.item);
+                        this.#changePage(currentPageDialog, pages, renderedButtons);
+                    });
                 }
             },
-            render: (html) => {
-                const windowApp = DialogUtils.presetDialogRender(html);
-                const buttons = html.find(`[data-action="${OnEventType.CHECK}"]`);
-                pages = html.find(`[data-characteristic="page"]`);
-                this.#changePage(currentPageDialog, pages, buttons);
-
-                buttons.on("click", (event) => {
-                    currentPageDialog = Number(event.currentTarget.dataset.item);
-                    this.#changePage(currentPageDialog, pages, buttons);
-                    windowApp.style.height = 'auto';
-                });
-            },
-            default: 'confirm',
-        }, { width: 430 }).render(true);
+            { width: 430 }
+        );
     }
 
     static #mountDataOptions(actor) {
@@ -180,7 +185,7 @@ export class ActorRollDialog {
             uuid: uuid,
             ...dataOptions
         }
-        return await renderTemplate(`${TEMPLATES_PATH}/rolls/default-roll-dialog.hbs`, data);
+        return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/rolls/default-roll-dialog.hbs`, data);
     }
 
     static #changePage(page, pages, buttons) {

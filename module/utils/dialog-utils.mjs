@@ -10,6 +10,7 @@ export class DialogUtils {
         }
 
         div.classList.add('S0-content');
+        div.parentElement.style.height = 'auto';
 
         const paramsContent = params.content;
         if (paramsContent && typeof paramsContent === 'object') {

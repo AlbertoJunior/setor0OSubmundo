@@ -1,5 +1,6 @@
 import { keyJsonToKeyLang, localize } from "../../../scripts/utils/utils.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
+import { FoundryApi } from "../../utils/foundry-api.mjs";
 
 export class RollVirtueMessageCreator {
     static async mountContent(params) {
@@ -29,7 +30,7 @@ export class RollVirtueMessageCreator {
             resultValue: successes,
             resultMessageClasses: classResult
         };
-        return await renderTemplate(`${TEMPLATES_PATH}/messages/roll/virtue.hbs`, data);
+        return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/messages/roll/virtue.hbs`, data);
     }
 
     static #calculateSuccess(values, difficulty, automatic) {

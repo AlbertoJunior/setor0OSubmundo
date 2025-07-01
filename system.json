@@ -2,10 +2,10 @@
     "id": "setor0OSubmundo",
     "title": "Setor 0 - O Submundo",
     "description": "Jogue Setor 0 - O Submundo no Foundry VTT",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "compatibility": {
         "minimum": 12,
-        "verified": 12
+        "verified": 13
     },
     "authors": [
         {
@@ -100,6 +100,11 @@
             "lang": "pt-br",
             "name": "Portugês Brasil",
             "path": "lang/pt-br.json"
+        },
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "lang/en.json"
         }
     ],
     "documentTypes": {

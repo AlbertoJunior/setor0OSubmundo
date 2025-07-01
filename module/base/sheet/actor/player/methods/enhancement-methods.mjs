@@ -151,14 +151,14 @@ async function verifyIsGmAndDefineShowChat(message, actor) {
             titleDialog: "Ocultar Ação?",
             message: localize("Pergunta.Ocultar_Acao"),
             onCancel: async () => {
-                await ChatCreator._sendToChat(actor, message);
+                await ChatCreator.sendToChat(actor, message);
             },
             onConfirm: async () => {
-                await ChatCreator._sendToChat(actor, message, CONST.DICE_ROLL_MODES.PRIVATE);
+                await ChatCreator.sendToChat(actor, message, CONST.DICE_ROLL_MODES.PRIVATE);
             }
         });
     } else {
-        await ChatCreator._sendToChat(actor, message);
+        await ChatCreator.sendToChat(actor, message);
     }
 }
 

@@ -3,13 +3,13 @@ import { CharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { brutalityEnhancement } from "../../enhancement/enhancement-items/brutality.mjs";
 import { ActiveEffectsUtils } from "../active-effects.mjs";
 
-const shattered1Id = 'CustomActiveEffect.Destroçado1';
-const shattered2Id = 'CustomActiveEffect.Destroçado2';
-const shattered3Id = 'CustomActiveEffect.Destroçado3';
+const shattered1Id = 'destrocado1';
+const shattered2Id = 'destrocado2';
+const shattered3Id = 'destrocado3';
 
 const shattered1 = ActiveEffectsUtils.createEffectData({
     id: shattered1Id,
-    name: "Destroçado 1",
+    name: "S0.Efeito_Ativo.Destrocado1",
     origin: `Aprimoramento: ${brutalityEnhancement.name}`,
     img: `${brutalityEnhancement.icon}`,
     duration: { startRound: 0, rounds: 99 },
@@ -32,7 +32,7 @@ const shattered1 = ActiveEffectsUtils.createEffectData({
 
 const shattered2 = ActiveEffectsUtils.createEffectData({
     id: shattered2Id,
-    name: "Destroçado 2",
+    name: "S0.Efeito_Ativo.Destrocado2",
     origin: `Aprimoramento: ${brutalityEnhancement.name}`,
     img: `${brutalityEnhancement.icon}`,
     duration: { startRound: 0, rounds: 99 },
@@ -55,7 +55,7 @@ const shattered2 = ActiveEffectsUtils.createEffectData({
 
 const shattered3 = ActiveEffectsUtils.createEffectData({
     id: shattered3Id,
-    name: "Destroçado 3",
+    name: "S0.Efeito_Ativo.Destrocado3",
     origin: `Aprimoramento: ${brutalityEnhancement.name}`,
     img: `${brutalityEnhancement.icon}`,
     duration: { startRound: 0, rounds: 99 },

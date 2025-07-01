@@ -3,6 +3,7 @@ import { actorTemplatesRegister } from "../base/sheet/actor/player/actor-sheet.m
 import { equipmentTemplatesRegister } from "../base/sheet/equipment/equipment-sheet.mjs";
 import { npcTemplatesRegister } from "../base/sheet/actor/npc/npc-sheet.mjs";
 import { REGISTERED_TEMPLATES, TEMPLATES_PATH } from "../constants.mjs";
+import { FoundryApi } from "./foundry-api.mjs";
 
 export async function registerTemplates() {
     const loadedAuxiliaryTemplates = await loadAuxiliaryTemplates();
@@ -49,7 +50,7 @@ async function loadSheetTemplates() {
     }));
 
     logTable('Templates das Fichas Registrados', results)
-    
+
     const errors = results.filter(result => result.status == "Falha");
     logTemplateErrors("Erros ao carregar os registers", errors);
 
@@ -67,7 +68,7 @@ export async function loadAndRegisterTemplates(inputTemplates = []) {
 
     const templatesToLoad = fullTemplates.filter(template => !Handlebars.partials[template.fullPath]);
 
-    await loadTemplates(templatesToLoad.map(template => template.fullPath));
+    await FoundryApi.loadTemplates(templatesToLoad.map(template => template.fullPath));
 
     const results = await Promise.all(fullTemplates.map(async ({ call, path, fullPath }) => {
         if (!call) {

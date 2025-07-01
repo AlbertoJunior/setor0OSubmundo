@@ -5,6 +5,7 @@ import { DialogUtils } from "../../utils/dialog-utils.mjs";
 import { ConfirmationDialog } from "./confirmation-dialog.mjs";
 import { RollTestUtils } from "../../core/rolls/roll-test-utils.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
+import { FoundryApi } from "../../utils/foundry-api.mjs";
 
 export class CreateRollableTestDialog {
     static async view(rollTestData) {
@@ -114,7 +115,7 @@ export class CreateRollableTestDialog {
             ...rollableData
         };
 
-        return await renderTemplate(`${TEMPLATES_PATH}/rolls/create-roll-test-dialog.hbs`, data);
+        return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/rolls/create-roll-test-dialog.hbs`, data);
     }
 
     static #getDialogMode(isCreate, needConfirmation) {

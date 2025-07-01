@@ -11,6 +11,7 @@ import { ActiveEffectsUtils } from "../../core/effect/active-effects.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
 import { ActorUtils } from "../../core/actor/actor-utils.mjs";
 import { playerRollHandle } from "../../base/sheet/actor/player/methods/player-roll-methods.mjs";
+import { FoundryApi } from "../../utils/foundry-api.mjs";
 
 export class EnhancementDialog {
     static async open(enhancementEffect, actor, onConfirm) {
@@ -70,7 +71,7 @@ export class EnhancementDialog {
             family: enhancementFamily.name,
             familyId: enhancementFamily.id,
         };
-        return await renderTemplate(`${TEMPLATES_PATH}/enhancement/enhancement-dialog.hbs`, data);
+        return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/enhancement/enhancement-dialog.hbs`, data);
     }
 
     static async #onRollEvent(actor, enhancementEffect, event) {
@@ -137,6 +138,6 @@ export class EnhancementDialog {
 
     static async #sendEffectToChat(effect, actor) {
         const message = await EnhancementMessageCreator.mountContentInfo(effect);
-        ChatCreator._sendToChat(actor, message);
+        ChatCreator.sendToChat(actor, message);
     }
 }
