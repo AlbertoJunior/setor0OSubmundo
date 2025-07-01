@@ -3,15 +3,14 @@
         {{> "buttons-float-menu" canEdit=canEdit editable=editable canRoll=canRoll}}
     </ul>
 
-    <header class="S0-container" {{#unless editable}}
-        style="display: flex; min-height: 82px; align-items: center; justify-content: center;" {{/unless}}>
+    <header class="S0-container">
         {{#if editable}}
-        <h2 class="charname" style="display: flex; align-items: center;">
+        <h2 style="display: flex; align-items: center;">
             <label for="name" style="flex: 1">{{ localize 'S0.Nome' }}:</label>
             <input id="name" name="name" style="margin-left: 6px;" type="text" value="{{actor.name}}"
                 placeholder="{{ localize 'S0.Nome' }}" />
         </h2>
-        <ul style="columns: 2; padding: 0px; margin: 0px; margin-top: 6px">
+        <ul style="columns: 2; padding: 0px; margin: 0px;">
             <li style="display: flex; align-items: center;">
                 <label for="morfologia" style="flex: 1;">{{ localize 'S0.Morfologia' }}:</label>
                 <select class="S0-select" id="morfologia" name="system.morfologia" style="flex: 2;">
@@ -39,18 +38,11 @@
             </li>
         </ul>
         {{else}}
-        <div style="text-align: center; margin-top: 6px">
-            <h1>
-                {{actor.name}}
-            </h1>
-            <div>
-                <h3 style="display: inline; padding-right: 6px; border-right: 1px solid var(--secondary-color);">
-                    {{actorValues actor 'morphology'}}
-                </h3>
-                <h3 style="display: inline; padding-left: 6px; border-left: 1px solid var(--secondary-color);">
-                    {{actorValues actor 'district'}}
-                </h3>
-            </div>
+        <h1 style="text-align: center;">{{actor.name}}</h1>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 4px;">
+            <h3>{{actorValues actor 'morphology'}}</h3>
+            <div class="S0-vertical-divider "></div>
+            <h3>{{actorValues actor 'district'}}</h3>
         </div>
         {{/if}}
     </header>

@@ -7,13 +7,32 @@ import { EquipmentType } from "../../../../enums/equipment-enums.mjs";
 import { CharacteristicType } from "../../../../enums/characteristic-enums.mjs";
 import { HtmlJsUtils } from "../../../../utils/html-js-utils.mjs";
 import { loadAndRegisterTemplates } from "../../../../utils/templates.mjs";
-import { SYSTEM_ID, TEMPLATES_PATH } from "../../../../constants.mjs";
+import { SYSTEM_ID, TEMPLATES_PATH, SYSTEM_CLASS_CSS } from "../../../../constants.mjs";
 import { SheetActorDragabbleMethods } from "./methods/dragabble-methods.mjs";
 import { ActorUtils } from "../../../../core/actor/actor-utils.mjs";
 import { characteristicOnClick } from "./methods/characteristics-methods.mjs";
 import { ActiveEffectsUtils } from "../../../../core/effect/active-effects.mjs";
+import { FoundryApi } from "../../../../utils/foundry-api.mjs";
 
 class Setor0ActorSheet extends Setor0BaseActorSheet {
+
+    static DEFAULT_OPTIONS = {
+        ...super.DEFAULT_OPTIONS,
+        position: {
+            ...super.DEFAULT_OPTIONS.position,
+            width: 600,
+        },
+        window: {
+            ...super.DEFAULT_OPTIONS.window,
+            resizable: false,
+        }
+    };
+
+    static PARTS = {
+        sheet: {
+            template: `${TEMPLATES_PATH}/actors/actor-sheet.hbs`,
+        },
+    };
 
     get mapEvents() {
         return {
@@ -30,6 +49,16 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
         };
     }
 
+    static get options() {
+        return {
+            classes: this.DEFAULT_OPTIONS.classes,
+            template: this.PARTS.sheet.template,
+            width: this.DEFAULT_OPTIONS.position.width,
+            height: 880,
+            resizable: this.DEFAULT_OPTIONS.window.resizable,
+        };
+    }
+
     constructor(...args) {
         super(...args);
         this.filterBag = EquipmentType.UNKNOWM;
@@ -39,22 +68,20 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
     }
 
     static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            classes: [SYSTEM_ID, "sheet", "actor"],
-            template: `${TEMPLATES_PATH}/actors/actor-sheet.hbs`,
-            width: 600,
-            height: 880,
-            resizable: false,
-        });
+        return FoundryApi.mergeObject(super.defaultOptions, Setor0ActorSheet.options);
     }
 
-    activateListeners(html) {
-        super.activateListeners(html);
+    configureSheet(html) {
         this.#presetSheet(html);
         this.#setupListeners(html);
         super.addPageButtonsOnFloatingMenu(html);
         SheetActorDragabbleMethods.setup(html, this.actor);
     }
+
+    // activateListeners(html) {
+    //     super.activateListeners(html);
+    //     this.configureSheet(html);
+    // }
 
     #setupListeners(html) {
         const actionsClick = [
@@ -232,12 +259,12 @@ export async function actorTemplatesRegister() {
         { path: "actors/network-partial", call: 'networkPartial' },
     ];
 
-    return await loadAndRegisterTemplates(templates);;
+    return await loadAndRegisterTemplates(templates);
 }
 
 export async function registerActor() {
-    await Actors.unregisterSheet("core", ActorSheet);
-    await Actors.registerSheet(SYSTEM_ID, Setor0ActorSheet, {
+    await FoundryApi.Actors.unregisterSheet("core", FoundryApi.ActorSheet);
+    await FoundryApi.Actors.registerSheet(SYSTEM_ID, Setor0ActorSheet, {
         types: ["Player"],
         makeDefault: true
     });

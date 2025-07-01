@@ -1,6 +1,6 @@
 import { Setor0BaseActorSheet } from "../BaseActorSheet.mjs";
 import { selectCharacteristic } from "../../../../../scripts/utils/utils.mjs";
-import { SYSTEM_ID, TEMPLATES_PATH } from "../../../../constants.mjs";
+import { SYSTEM_ID, TEMPLATES_PATH, SYSTEM_CLASS_CSS } from "../../../../constants.mjs";
 import { BaseActorCharacteristicType } from "../../../../enums/characteristic-enums.mjs";
 import { OnEventType, OnEventTypeClickableEvents, OnEventTypeContextualEvents } from "../../../../enums/on-event-type.mjs";
 import { DialogUtils } from "../../../../utils/dialog-utils.mjs";
@@ -11,6 +11,7 @@ import { handlerEquipmentEvents } from "../player/methods/equipment-methods.mjs"
 import { npcRollHandle } from "./methods/npc-roll-methods.mjs";
 import { SheetActorDragabbleMethods } from "../player/methods/dragabble-methods.mjs";
 import { handleStatusMethods } from "../player/methods/status-methods.mjs";
+import { FoundryApi } from "../../../../utils/foundry-api.mjs";
 
 export async function npcTemplatesRegister() {
     const templates = [
@@ -24,7 +25,7 @@ export async function npcTemplatesRegister() {
 }
 
 export async function registerNpc() {
-    await Actors.registerSheet(SYSTEM_ID, Setor0NpcSheet, {
+    await FoundryApi.Actors.registerSheet(SYSTEM_ID, Setor0NpcSheet, {
         types: ["NPC"],
         makeDefault: true
     });
@@ -77,7 +78,7 @@ class Setor0NpcSheet extends Setor0BaseActorSheet {
 
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
-            classes: [SYSTEM_ID, "sheet", "actor"],
+            classes: [SYSTEM_CLASS_CSS, "sheet", "actor"],
             template: `${TEMPLATES_PATH}/npc/npc-sheet.hbs`,
             width: NpcSheetSize.width,
             height: NpcSheetSize.height,
@@ -85,13 +86,16 @@ class Setor0NpcSheet extends Setor0BaseActorSheet {
         });
     }
 
-    activateListeners(html) {
-        super.activateListeners(html);
+    configureSheet(html) {
         this.#setupListeners(html);
-        super.addPageButtonsOnFloatingMenu(html);
         Setor0BaseActorSheet.presetStatusVitality(html, this.actor);
         Setor0BaseActorSheet.presetStatusProtect(html, this.actor);
         SheetActorDragabbleMethods.setup(html, this.actor);
+    }
+
+    activateListeners(html) {
+        this.configureSheet(html);
+        super.activateListeners(html);
     }
 
     #setupListeners(html) {
