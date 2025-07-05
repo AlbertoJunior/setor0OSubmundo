@@ -1,28 +1,24 @@
 import { localize, localizeType } from "../../../scripts/utils/utils.mjs"
 import { TEMPLATES_PATH } from "../../constants.mjs";
 import { OnEventType } from "../../enums/on-event-type.mjs";
-import { DialogUtils } from "../../utils/dialog-utils.mjs";
 import { FoundryApi } from "../../utils/foundry-api.mjs";
 
 export class AddEquipmentDialog {
     static async showItemSelectorDialog(items, onSelect = () => { }) {
         const content = await this.#mountContent();
-        const dialog = new Dialog(
+
+        FoundryApi.createDialog(
             {
                 title: localize('Selecionar_Item'),
                 content: content,
-                buttons: {},
-                render: (html) => {
-                    DialogUtils.presetDialogRender(html);
+                render: (html, dialog) => {
                     this.#initRender(html, items, dialog, onSelect);
                 },
-                close: () => { }
             },
             {
                 width: 540,
             }
         );
-        dialog.render(true);
     }
 
     static #initRender(html, items, dialog, onSelect = () => { }) {

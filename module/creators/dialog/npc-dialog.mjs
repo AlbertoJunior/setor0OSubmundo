@@ -28,19 +28,17 @@ export class NpcDialog {
 
         const content = await this.#mountContent(npcInformations);
         const actor = npcInformations.actor;
-
-        new Dialog(
+        FoundryApi.createDialog(
             {
                 title: actor.name,
                 content: content,
-                buttons: {},
-                render: (html) => this.#render(html, actor),
+                render: (html) => this.#render(html, actor)
             },
             {
-                height: NpcSheetSize.height,
+                height: NpcSheetSize.height + 20,
                 width: NpcSheetSize.width,
             }
-        ).render(true);
+        );
     }
 
     static async #mountContent(npcActor) {
@@ -48,15 +46,6 @@ export class NpcDialog {
     }
 
     static #render(html, npcActor) {
-        const presetParams = {
-            content: {
-                background: 'none',
-                padding: '0px'
-            }
-        };
-
-        DialogUtils.presetDialogRender(html, presetParams);
-
         this.#configureListeners(html, npcActor);
 
         this.#addPageButtonsOnFloatingMenu(html, npcActor);
@@ -163,7 +152,7 @@ export class NpcDialog {
             };
 
             const button = createLi(textContent, options);
-            button.addEventListener('click', () => {                
+            button.addEventListener('click', () => {
                 game.actors.get(npcActor.id)?.sheet?.render(true);
             });
 

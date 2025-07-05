@@ -1,5 +1,5 @@
 import { Setor0BaseActorSheet } from "../BaseActorSheet.mjs";
-import { selectCharacteristic } from "../../../../../scripts/utils/utils.mjs";
+import { selectCharacteristic, TODO } from "../../../../../scripts/utils/utils.mjs";
 import { SYSTEM_ID, TEMPLATES_PATH, SYSTEM_CLASS_CSS } from "../../../../constants.mjs";
 import { BaseActorCharacteristicType } from "../../../../enums/characteristic-enums.mjs";
 import { OnEventType, OnEventTypeClickableEvents, OnEventTypeContextualEvents } from "../../../../enums/on-event-type.mjs";
@@ -91,11 +91,7 @@ class Setor0NpcSheet extends Setor0BaseActorSheet {
         Setor0BaseActorSheet.presetStatusVitality(html, this.actor);
         Setor0BaseActorSheet.presetStatusProtect(html, this.actor);
         SheetActorDragabbleMethods.setup(html, this.actor);
-    }
-
-    activateListeners(html) {
-        this.configureSheet(html);
-        super.activateListeners(html);
+        super.addPageButtonsOnFloatingMenu(html);
     }
 
     #setupListeners(html) {

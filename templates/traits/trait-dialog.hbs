@@ -16,7 +16,6 @@
         </div>
 
         <div id="divParticularity">
-            <hr>
             <div class="form-group">
                 <label for="particularity" style="max-width: 110px; font-weight: bold;">{{ particularity }}:</label>
                 <input id="particularity" type="text" {{ isEnabledChangeParticularity }}
@@ -26,20 +25,17 @@
 
         {{#unless (operators 'isNull' morph)}}
         <div class="form-group" id="divMorph">
-            <hr>
             <label style="max-width: 110px; font-weight: bold;">{{ morph }}:</label>
             <label id="morph" style="margin-inline: 5px;">{{ morphValue }}</label>
         </div>
         {{/unless}}
 
         <div class="form-group" id="divRequirement">
-            <hr>
             <label style="max-width: 110px; font-weight: bold;">{{ requirement }}:</label>
             <label id="requirement" style="margin-inline: 5px;">{{ requirementValue }}</label>
         </div>
 
         <div class="form-group">
-            <hr>
             <label style="max-width: 110px; font-weight: bold;">{{ cost }}:</label>
             <label id="cost" style="margin-inline: 5px;"></label>
         </div>

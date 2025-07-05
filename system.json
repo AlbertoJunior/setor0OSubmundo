@@ -2,11 +2,12 @@
     "id": "setor0OSubmundo",
     "title": "Setor 0 - O Submundo",
     "description": "Jogue Setor 0 - O Submundo no Foundry VTT",
+    "url": "https://www.set0rpg.com.br",
     "version": "0.0.2",
-    "compatibility": {
-        "minimum": 12,
-        "verified": 13
-    },
+    "background": "https://github.com/AlbertoJunior/RPG-fvtt-sector-0/blob/dev/imgs/banner.png?raw=true",
+    "manifest": "https://raw.githubusercontent.com/AlbertoJunior/RPG-fvtt-sector-0/master/system.json",
+    "download": "https://github.com/AlbertoJunior/RPG-fvtt-sector-0/download/archive.zip",
+    "bugs": "https://github.com/AlbertoJunior/RPG-fvtt-sector-0/issues",
     "authors": [
         {
             "name": "Alberto Junior",
@@ -14,6 +15,12 @@
             "discord": "Alberto Junior#8050"
         }
     ],
+    "license": "LICENSE",
+    "readme": "README.md",
+    "compatibility": {
+        "minimum": 12,
+        "verified": 13
+    },
     "esmodules": [
         "setor0OSubmundo.mjs"
     ],
@@ -23,7 +30,6 @@
     "styles": [
         "styles/system-styles.css"
     ],
-    "background": "https://github.com/AlbertoJunior/RPG-fvtt-sector-0/blob/dev/imgs/banner.png?raw=true",
     "packs": [
         {
             "name": "inimigos",
@@ -130,8 +136,5 @@
         "units": "PM"
     },
     "primaryTokenAttribute": "vitalidade.total",
-    "secondaryTokenAttribute": "sobrecarga",
-    "url": "https://www.set0rpg.com.br",
-    "manifest": "https://github.com/AlbertoJunior/setor0OSubmundo/system.json",
-    "download": "https://github.com/AlbertoJunior/setor0OSubmundo/download/archive.zip"
+    "secondaryTokenAttribute": "sobrecarga"
 }

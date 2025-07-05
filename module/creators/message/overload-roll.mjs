@@ -11,7 +11,7 @@ export class RollOverloadMessageCreator {
             diceValues: values,
             resultMessage: isSuccess ? localize('Sucesso') : localize('Falha'),
             resultValue: success,
-            resultMessageClasses: isSuccess ? `S0-success` : 'S0-failure'
+            resultMessageClasses: isSuccess ? `S0-success` : 'S0-critical-failure'
         };
         return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/messages/roll/overload.hbs`, data);
     }

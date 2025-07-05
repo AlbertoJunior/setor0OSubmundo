@@ -1,7 +1,6 @@
 import { EnhancementDuration } from "../../enums/enhancement-enums.mjs";
 import { EnhancementRepository } from "../../repository/enhancement-repository.mjs";
 import { EnhancementInfoParser } from "../../core/enhancement/enhancement-info.mjs";
-import { DialogUtils } from "../../utils/dialog-utils.mjs";
 import { localize } from "../../../scripts/utils/utils.mjs";
 import { OnEventType } from "../../enums/on-event-type.mjs";
 import { CreateFormDialog } from "./create-dialog.mjs";
@@ -20,12 +19,10 @@ export class EnhancementDialog {
         const enhancementFamily = EnhancementRepository.getEnhancementFamilyByEffectId(enhancementEffect.id);
         const content = await this.#mountContent(enhancementEffect, enhancementFamily);
 
-        const buttons = {
-            cancel: {
-                label: localize("Chat"),
-                callback: () => this.#sendEffectToChat(enhancementEffect, actor)
-            }
-        };
+        const buttons = [{
+            label: localize("Chat"),
+            onClick: () => this.#sendEffectToChat(enhancementEffect, actor)
+        }];
 
         const canActive = haveActor && typeof onConfirm === 'function';
         if (canActive) {
@@ -36,20 +33,18 @@ export class EnhancementDialog {
             const isUsableType = enhancementEffect.duration === EnhancementDuration.USE;
             const useOrActiveText = isUsableType ? "Usar" : "Ativar";
 
-            buttons.confirm = {
+            buttons.push({
                 label: localize(hasActivated ? "Desativar" : useOrActiveText),
-                callback: onConfirm
-            }
+                onClick: onConfirm
+            });
         }
 
-        new Dialog(
+        FoundryApi.createDialog(
             {
                 title: enhancementEffect.name,
                 content: content,
                 buttons: buttons,
                 render: (html) => {
-                    DialogUtils.presetDialogRender(html);
-
                     if (haveActor) {
                         $(html)
                             .find(`[data-action="${OnEventType.ROLL}"]`)
@@ -57,10 +52,8 @@ export class EnhancementDialog {
                     }
                 }
             },
-            {
-                width: 480,
-            }
-        ).render(true);
+            { width: 480 }
+        );
     }
 
     static async #mountContent(enhancementEffect, enhancementFamily) {

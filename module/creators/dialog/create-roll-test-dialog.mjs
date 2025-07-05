@@ -1,7 +1,6 @@
 import { AttributeRepository } from "../../repository/attribute-repository.mjs";
 import { AbilityRepository } from "../../repository/ability-repository.mjs";
 import { localize, randomId } from "../../../scripts/utils/utils.mjs"
-import { DialogUtils } from "../../utils/dialog-utils.mjs";
 import { ConfirmationDialog } from "./confirmation-dialog.mjs";
 import { RollTestUtils } from "../../core/rolls/roll-test-utils.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
@@ -20,20 +19,15 @@ export class CreateRollableTestDialog {
         const content = await this.#mountContent(rollTestData, needConfirmation, buttons);
         const mode = this.#getDialogMode(isCreate, needConfirmation);
 
-        const dialog = new Dialog({
+        FoundryApi.createDialog({
             title: `${mode}: Teste`,
             content,
-            buttons: {},
-            render: (html) => {
+            render: (html, dialog) => {
                 const params = {}
                 this.#setupParamsHeader(isCreate, rollTestData, params);
-
-                DialogUtils.presetDialogRender(html, params);
-
                 this.#setupButtons(buttons, html, dialog);
             },
         });
-        dialog.render(true);
     }
 
     static #createButtons(rollableData, eventButtons) {
@@ -70,7 +64,7 @@ export class CreateRollableTestDialog {
 
             buttons['confirm'] = {
                 label: inCreate ? localize("Criar") : localize("Editar"),
-                classes: 'S0-button-confirm default',
+                classes: 'S0-button-confirm',
                 icon: inCreate ? 'fa-square-plus' : 'fa-edit',
                 callback: (html, dialog) => {
                     const form = html[0].querySelector("form");

@@ -1,4 +1,4 @@
-import { SYSTEM_ID, REGISTERED_TEMPLATES, TEMPLATES_PATH } from "../../../constants.mjs";
+import { SYSTEM_ID, REGISTERED_TEMPLATES, TEMPLATES_PATH, SYSTEM_CLASS_CSS } from "../../../constants.mjs";
 import { OnEventTypeClickableEvents } from "../../../enums/on-event-type.mjs";
 import { FlagsUtils } from "../../../utils/flags-utils.mjs";
 import { FoundryApi } from "../../../utils/foundry-api.mjs";
@@ -28,7 +28,7 @@ export class EquipmentSheet extends FoundryApi.ItemSheet {
 
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
-            classes: [SYSTEM_ID, "sheet", "item"],
+            classes: [SYSTEM_ID, SYSTEM_CLASS_CSS, "sheet", "item"],
             template: `${TEMPLATES_PATH}/items/default.hbs`,
             width: 320,
             height: 640

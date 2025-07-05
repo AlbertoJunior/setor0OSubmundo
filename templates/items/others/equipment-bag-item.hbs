@@ -11,7 +11,7 @@
             {{name}}
         </span>
 
-        {{#if system.haveQuantity}}
+        {{#if (itemValues this 'haveQuantity')}}
         <div class="S0-badge">
             <span class="S0-hide-long-text">{{parse 'item_quantity' this}}</span>
         </div>
@@ -26,7 +26,7 @@
         </a>
 
         {{#if (itemValues this 'canEquip')}}
-        <a {{#if system.equipped}}class="hidden" {{else}}class="S0-icon-swaper" {{/if}} data-action="add"
+        <a {{#if (itemValues this 'equipped')}}class="hidden" {{else}}class="S0-icon-swaper" {{/if}} data-action="add"
             data-characteristic="equipment" data-sub-characteristic="bag" data-type="{{type}}" data-item-id="{{id}}"
             title="{{localize 'S0.Equipar'}}">
             <i class="fas fa-arrow-up-from-square S0-icon-idle"></i>

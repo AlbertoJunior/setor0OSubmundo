@@ -1,7 +1,6 @@
 import { TraitRepository } from "../../repository/trait-repository.mjs";
 import { ChatCreator } from "../../utils/chat-creator.mjs";
 import { localize } from "../../../scripts/utils/utils.mjs";
-import { DialogUtils } from "../../utils/dialog-utils.mjs";
 import { TraitMessageCreator } from "../message/trait-message.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
 import { FoundryApi } from "../../utils/foundry-api.mjs";
@@ -11,70 +10,66 @@ export class TraitDialog {
     const traits = TraitRepository.getItemsByType(type);
     const content = await this.#mountContent(traits, true, true);
 
-    new Dialog({
-      title: localize("Adicionar_Traco"),
-      content: content,
-      buttons: {
-        cancel: {
-          label: localize("Cancelar"),
-          callback: (html) => { }
-        },
-        confirm: {
-          label: localize("Adicionar"),
-          callback: (html) => {
-            const objectTrait = this.#mountTraitObject(html, traits);
-            callback(objectTrait);
+    FoundryApi.createDialog(
+      {
+        title: localize("Adicionar_Traco"),
+        content: content,
+        buttons: [
+          { label: localize("Cancelar") },
+          {
+            label: localize("Adicionar"),
+            default: true,
+            onClick: (html) => {
+              const objectTrait = this.#mountTraitObject(html, traits);
+              callback(objectTrait);
+            }
           }
-        }
+        ],
+        render: (html) => { this.#myRender(html, traits); }
       },
-      default: 'confirm',
-      render: (html) => { this.#myRender(html, traits); }
-    }).render(true);
+      { width: 400 }
+    );
   }
 
   static async openByTrait(trait, type, actor, callback) {
     const traits = TraitRepository.getItemsByType(type);
     const content = await this.#mountContent(traits, false, callback != undefined, trait);
+    const title = `${callback ? `${localize('Editar')} ` : ''}${localize('Traco')}`;
 
-    const dialog = new Dialog({
-      title: `${callback ? `${localize('Editar')} ` : ''}${localize('Traco')}`,
-      content: content,
-      buttons: {
-        confirm: {
-          label: localize("Chat"),
-          callback: async (html) => {
-            const fetchedTrait = traits.find(t => t.id == trait.id);
-            if (fetchedTrait) {
-              const messageContent = await TraitMessageCreator.mountContent(fetchedTrait);
-              ChatCreator.sendToChat(actor, messageContent);
-            }
-          }
-        }
-      },
-      default: 'confirm',
-      render: (html) => { this.#myRender(html, traits); }
-    });
-
+    const buttons = [];
     if (callback != undefined) {
-      dialog.data.buttons = {
-        cancel: {
-          label: localize("Cancelar"),
-          callback: (html) => {
-            callback(undefined);
-          }
-        },
-        confirm: {
-          label: localize("Salvar"),
-          callback: (html) => {
-            const objectTrait = this.#mountTraitObject(html, traits);
-            callback(objectTrait);
+      buttons.push({ label: localize("Cancelar") });
+      buttons.push({
+        label: localize("Salvar"),
+        default: true,
+        onClick: (html) => {
+          const objectTrait = this.#mountTraitObject(html, traits);
+          callback(objectTrait);
+        }
+      });
+    } else {
+      buttons.push({
+        label: localize("Chat"),
+        default: true,
+        onClick: async (html) => {
+          const fetchedTrait = traits.find(t => t.id == trait.id);
+          if (fetchedTrait) {
+            const messageContent = await TraitMessageCreator.mountContent(fetchedTrait);
+            ChatCreator.sendToChat(actor, messageContent);
           }
         }
-      }
-      dialog.data.default = 'confirm';
+      });
     }
 
-    dialog.render(true);
+    FoundryApi.createDialog(
+      {
+        title: title,
+        content: content,
+        buttons: buttons,
+        render: (html) => { this.#myRender(html, traits); }
+      },
+      { width: 400 }
+    );
   }
 
   static async #mountContent(traits, enableChangeTrait, enableChangeParticularity, trait) {
@@ -157,7 +152,6 @@ export class TraitDialog {
   }
 
   static #myRender(html, traits) {
-    DialogUtils.presetDialogRender(html);
     html.find('#trait').on('change', (event) => {
       this.#updateValues(html, traits)
     });

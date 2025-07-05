@@ -15,8 +15,10 @@ export const seeArtWorkMacroData = {
   command: `
 ${verifyAndReturnSelectedToken}
 ${verifyAndReturnActor}
-new ImagePopout(actor.img, {
-  title: "Arte de ${actor.name}",
+
+new foundry.applications.apps.ImagePopout({
+  src:actor.img,
+  window: { title: "Arte de ${actor.name}" },
   shareable: true,
   uuid: actor.uuid
 }).render(true);

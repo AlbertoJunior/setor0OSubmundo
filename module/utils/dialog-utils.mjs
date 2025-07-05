@@ -1,5 +1,7 @@
 import { onArrayRemove } from "../../scripts/utils/utils.mjs";
+import { SYSTEM_CLASS_CSS } from "../constants.mjs";
 import { createA } from "../creators/element/element-creator-jscript.mjs";
+import { FoundryApi } from "./foundry-api.mjs";
 import { HtmlJsUtils } from "./html-js-utils.mjs";
 
 export class DialogUtils {
@@ -70,8 +72,12 @@ export class DialogUtils {
     }
 
     static showArtWork(title, imgPath, shareable, uuid) {
-        new ImagePopout(imgPath, {
-            title: title || "Título da Imagem",
+        new FoundryApi.ImagePopout({
+            src: imgPath,
+            window: {
+                title: title || "Título da Imagem"
+            },
+            classes: [SYSTEM_CLASS_CSS, 'S0-no-padding'],
             shareable: shareable || false,
             uuid: uuid,
         }).render(true);

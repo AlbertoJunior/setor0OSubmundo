@@ -337,6 +337,11 @@ h4.divider {
 
 /* #region MY STYLES */
 /* #region PAGES */
+
+.S0-content img {
+    border-width: 0px;
+}
+
 .S0-page {
     margin-inline: 0;
     border: none;
@@ -985,6 +990,10 @@ h4.divider {
 
 .S0-dialog label {
     margin-block: 0.3em;
+}
+
+.S0-content.S0-no-padding.application.image-popout figure {
+    padding: 0px;
 }
 
 /* #region DIALOG BUTTONS*/

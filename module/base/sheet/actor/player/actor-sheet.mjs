@@ -7,7 +7,7 @@ import { EquipmentType } from "../../../../enums/equipment-enums.mjs";
 import { CharacteristicType } from "../../../../enums/characteristic-enums.mjs";
 import { HtmlJsUtils } from "../../../../utils/html-js-utils.mjs";
 import { loadAndRegisterTemplates } from "../../../../utils/templates.mjs";
-import { SYSTEM_ID, TEMPLATES_PATH, SYSTEM_CLASS_CSS } from "../../../../constants.mjs";
+import { SYSTEM_ID, TEMPLATES_PATH } from "../../../../constants.mjs";
 import { SheetActorDragabbleMethods } from "./methods/dragabble-methods.mjs";
 import { ActorUtils } from "../../../../core/actor/actor-utils.mjs";
 import { characteristicOnClick } from "./methods/characteristics-methods.mjs";
@@ -77,11 +77,6 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
         super.addPageButtonsOnFloatingMenu(html);
         SheetActorDragabbleMethods.setup(html, this.actor);
     }
-
-    // activateListeners(html) {
-    //     super.activateListeners(html);
-    //     this.configureSheet(html);
-    // }
 
     #setupListeners(html) {
         const actionsClick = [
