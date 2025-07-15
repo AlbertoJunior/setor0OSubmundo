@@ -239,6 +239,8 @@ export class EquipmentUtils {
     static #getWeaponRollInformation(item, base) {
         return {
             ...base,
+            damage: getObject(item, EquipmentCharacteristicType.DAMAGE),
+            true_damage: getObject(item, EquipmentCharacteristicType.TRUE_DAMAGE),
             changes: [
                 ...base.changes,
                 `${localize('Dano')}: ${getObject(item, EquipmentCharacteristicType.DAMAGE)}`,

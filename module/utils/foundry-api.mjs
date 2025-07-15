@@ -3,7 +3,7 @@ import { SYSTEM_CLASS_CSS } from "../constants.mjs";
 import { DialogUtils } from "./dialog-utils.mjs";
 
 // base config for applications
-const baseApplicationConfig = {
+const baseApplicationConfig = Object.freeze({
     Version: foundry.applications,
     Api: foundry.applications.api,
     Handlebars: foundry.applications.handlebars,
@@ -12,7 +12,7 @@ const baseApplicationConfig = {
     Utils: foundry.utils,
     Ui: foundry.applications.ui,
     Apps: foundry.applications.apps
-};
+});
 
 // versions
 const v1Overrides = {
@@ -203,6 +203,6 @@ export class FoundryApi {
         { title, content, buttons = [], minimizable = true, render = (html, renderedDialog) => { } } = data,
         options,
     ) {
-        return ApplicationV2.createDialog({ title, content, buttons, minimizable, render }, options);
+        return ApplicationV1.createDialog({ title, content, buttons, minimizable, render }, options);
     }
 }

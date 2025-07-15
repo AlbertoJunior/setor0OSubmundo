@@ -16,7 +16,7 @@ const operators = {
         return a !== undefined && a !== null ? a : b;
     },
     ternary: (values) => {
-        return values[0] ? values[1] : values[2];
+        return values[0] ? values[0] : values[1];
     },
 };
 

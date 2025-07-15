@@ -3,7 +3,7 @@
 
     <select class="S0-select" style="flex: 2;" name="system.habilidades.{{system}}.nome" {{#unless
         editable}}disabled{{/unless}}>
-        {{#with (actorValues actor 'npc_actual_skill_name' system) as |skill|}}
+        {{#with (operators 'ternary' (actorValues actor 'npc_actual_skill_name' system) 'default') as |skill|}}
         {{#each (fetchRepository 'ability')}}
         <option value="{{id}}" {{selectIfEq skill id }}>{{localize label}}</option>
         {{/each}}

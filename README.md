@@ -19,7 +19,11 @@ Este é o sistema oficial de RPG **Setor 0**, totalmente integrado ao **Foundry 
 
 1. Baixe ou clone este repositório.
 2. Mova a pasta para o diretório `Data/systems` do seu Foundry VTT.
-3. Reinicie o Foundry e ative o sistema ao criar um novo mundo.
+3. A pasta deve ter o nome `setor0OSubmundo`, exatamente dessa forma.
+```
+setor0OSubmundo
+```
+4. Reinicie o Foundry e ative o sistema ao criar um novo mundo.
 > 🚧 Ainda será disponibilizado um manifesto para instalação direta via URL.
 
 ### Compartilhando com seus jogadores

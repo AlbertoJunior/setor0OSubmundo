@@ -177,6 +177,12 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
                 selectLevelOnOptions(enhancement, levelSelects, activeEffects);
             }
         });
+
+        function select(id, characteristic) {
+            const value = getObject(actor, characteristic) || 0;
+            selectCharacteristic(html.find(`#enhancementPage #${id} .S0-characteristic`)[value - 1]);
+        }
+        select('sobrecarga', CharacteristicType.OVERLOAD);
     }
 
     #presetStatus(html) {
