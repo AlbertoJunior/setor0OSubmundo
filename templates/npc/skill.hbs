@@ -3,11 +3,11 @@
 
     <select class="S0-select" style="flex: 2;" name="system.habilidades.{{system}}.nome" {{#unless
         editable}}disabled{{/unless}}>
-        {{#with (operators 'ternary' (actorValues actor 'npc_actual_skill_name' system) 'default') as |skill|}}
+        {{#lett skill=(actorValues actor 'npc_actual_skill_name' system)}}
         {{#each (fetchRepository 'ability')}}
-        <option value="{{id}}" {{selectIfEq skill id }}>{{localize label}}</option>
+        <option value="{{id}}" {{selectIfEq ../skill id }}>{{localize label}}</option>
         {{/each}}
-        {{/with}}
+        {{/lett}}
     </select>
 
     {{#if canRoll}}
