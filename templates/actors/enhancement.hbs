@@ -1,5 +1,5 @@
-<section data-label="{{localize 'S0.Aprimoramento.Nome_Plural'}}" class="S0-page" id="enhancementPage"
-    data-icon="fas fa-lungs">
+<section class="S0-page tab" data-group="menu-tabs" data-tab="enhancement"
+    data-label="{{localize 'S0.Aprimoramento.Nome_Plural'}}" id="enhancementPage" data-icon="fas fa-lungs">
     {{#if (operators 'gt' (actorValues actor 'core') 0)}}
     <div class="S0-container">
         <h3>
@@ -27,7 +27,7 @@
         </div>
     </div>
     {{/if}}
-    
+
     <div class="S0-container">
         <h2> {{localize 'S0.Aprimoramento.Nome_Plural'}}
             <a class="S0-icon-rotate" style="font-size: small;" data-action="remove" data-characteristic="enhancement"

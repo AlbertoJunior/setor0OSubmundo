@@ -11,6 +11,7 @@ const baseApplicationConfig = Object.freeze({
     ChatMessage: ChatMessage,
     Utils: foundry.utils,
     Ui: foundry.applications.ui,
+    Ux: foundry.applications.ux,
     Apps: foundry.applications.apps
 });
 
@@ -18,7 +19,9 @@ const baseApplicationConfig = Object.freeze({
 const v1Overrides = {
     Sheets: foundry.appv1.sheets,
     makeClass: (Base) => class extends Base { },
-    createDialog: async ({ title, content, buttons = [], minimizable = true, render = (html, renderedDialog) => { }, close = () => { } } = data, options) => {
+    createDialog: async (data, options) => {
+        const { title, content, buttons = [], minimizable = true, render = (html, renderedDialog) => { }, close = () => { } } = data;
+
         let defaultButton = null;
         const parsedButtons = {};
         for (const bt of buttons) {
@@ -34,7 +37,15 @@ const v1Overrides = {
             }
         }
 
-        const dialog = await new Dialog(
+        class S0DialogV1 extends Dialog {
+            static get defaultOptions() {
+                const superOptions = super.defaultOptions;
+                superOptions.classes?.push(SYSTEM_CLASS_CSS);
+                return superOptions;
+            }
+        }
+
+        const dialog = await new S0DialogV1(
             {
                 title,
                 content,
@@ -63,7 +74,9 @@ const v2Overrides = {
             }
         };
     },
-    createDialog: async ({ title, content, buttons = [], minimizable = true, render = (html, renderedDialog) => { }, close = () => { } } = data, options) => {
+    createDialog: async (data, options) => {
+        const { title, content, buttons = [], minimizable = true, render = (html, renderedDialog) => { }, close = () => { } } = data;
+
         let $html;
 
         const parsedButtons = buttons.map(button => {
@@ -156,6 +169,7 @@ function createApplication(versionKey, fallbackChain = []) {
             console.warn(`-> [Fallback] Usando versão '${key}' no lugar de '${versionKey}'`);
         }
 
+        merged.name = versionKey
         return Object.freeze(merged);
     }
 
@@ -165,14 +179,19 @@ function createApplication(versionKey, fallbackChain = []) {
 const ApplicationV1 = createApplication("v1");
 const ApplicationV2 = createApplication("v2", ["v1"]);
 
+function convertToClass(Classz) {
+    return Object.freeze(class extends Classz { });
+}
+
 export class FoundryApi {
     //#region UPDATED 
-    // static ActorSheet = ApplicationV2.makeClass(ApplicationV2.Sheets.ActorSheet);
+    static ActorSheet = convertToClass(ApplicationV2.makeClass(ApplicationV2.Sheets.ActorSheet));
+    // static ItemSheet = convertToClass(ApplicationV2.makeClass(ApplicationV1.Sheets.ItemSheet));
     //#endregion
 
     //#region NEED UPDATE to V2
-    static ActorSheet = ApplicationV1.makeClass(ApplicationV1.Sheets.ActorSheet);
-    static ItemSheet = ApplicationV1.makeClass(ApplicationV1.Sheets.ItemSheet);
+    // static ActorSheet = convertToClass(ApplicationV1.makeClass(ApplicationV1.Sheets.ActorSheet));
+    static ItemSheet = convertToClass(ApplicationV1.makeClass(ApplicationV1.Sheets.ItemSheet));
     //#endregion
 
     static Actors = Object.freeze(ApplicationV2.Collections.Actors);
@@ -180,6 +199,7 @@ export class FoundryApi {
 
     static SceneControls = Object.freeze(ApplicationV2.Ui.SceneControls);
     static ImagePopout = Object.freeze(ApplicationV2.Apps.ImagePopout);
+    static Tabs = Object.freeze(ApplicationV2.Ux.Tabs);
 
     static ChatMessage = Object.freeze({
         getWhisperRecipients: (recipient) => ApplicationV2.ChatMessage.getWhisperRecipients(recipient),
@@ -203,6 +223,12 @@ export class FoundryApi {
         { title, content, buttons = [], minimizable = true, render = (html, renderedDialog) => { } } = data,
         options,
     ) {
-        return ApplicationV1.createDialog({ title, content, buttons, minimizable, render }, options);
+        let application = ApplicationV2;
+        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        if (isSafari) {
+            application = ApplicationV1;
+        }
+
+        return application.createDialog({ title, content, buttons, minimizable, render }, options);
     }
 }

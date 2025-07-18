@@ -1,4 +1,5 @@
-<section data-label="{{localize 'S0.Equipamentos'}}" class="S0-page" data-icon="fas fa-backpack">
+<section class="S0-page tab" data-group="menu-tabs" data-tab="equipment" data-label="{{localize 'S0.Equipamentos'}}"
+    data-icon="fas fa-backpack">
     <div class="S0-container">
         <h3> {{localize 'S0.Equipados'}} </h3>
 
@@ -74,11 +75,9 @@
         <ul class="S0-infinity-horizontal-menu">
             {{#each (fetchRepository 'equipment-types')}}
             <li class="S0-simulate-button {{#if (operators 'eq' @root/document.sheet.filterBag id)}}S0-marked{{/if}}"
-                style="width: auto; padding-inline: 16px" data-action="check" data-characteristic="equipment"
-                data-sub-characteristic="filter" data-type="{{type}}">
-                <h4 style="font-size: var(--font-size-13);">
-                    {{label}}
-                </h4>
+                data-action="check" data-characteristic="equipment" data-sub-characteristic="filter"
+                data-type="{{type}}">
+                <h4>{{label}}</h4>
             </li>
             {{/each}}
         </ul>

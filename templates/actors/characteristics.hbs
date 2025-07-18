@@ -1,4 +1,5 @@
-<section data-label="{{ localize 'S0.Caracteristicas' }}" class="S0-page" data-icon="fas fa-person-dots-from-line">
+<section class="S0-page tab" data-group="menu-tabs" data-tab="characteristics"
+    data-label="{{ localize 'S0.Caracteristicas' }}" data-icon="fas fa-person-dots-from-line">
     <ul>
         <li class="S0-container">
             <h2> {{localize 'S0.Virtudes'}} </h2>
@@ -80,7 +81,7 @@
                 {{localize 'S0.Habilidades'}}
             </h2>
             <div id="skillsContainer" class="S0-container-2-column">
-                {{#lett clickableClass=(operators 'ternary' editable 'S0-clickable' '')}}
+                {{!-- {{#lett clickableClass=(operators 'ternary' editable 'S0-clickable' '')}}
                 {{#each (fetchRepository 'ability')}}
                 <div class="S0-characteristic-container" id="{{id}}">
                     <label>
@@ -98,7 +99,7 @@
                     </div>
                 </div>
                 {{/each}}
-                {{/lett}}
+                {{/lett}} --}}
             </div>
         </li>
 
@@ -115,8 +116,8 @@
                     </label>
 
                     {{#forLoop 0 5}}
-                    <div class="S0-characteristic {{../../clickableClass}}"
-                        data-action="characteristic" data-characteristic="repertorio">
+                    <div class="S0-characteristic {{../../clickableClass}}" data-action="characteristic"
+                        data-characteristic="repertorio">
                     </div>
                     {{/forLoop}}
                 </div>

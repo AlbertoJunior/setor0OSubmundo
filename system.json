@@ -28,7 +28,10 @@
         "scripts/libs/Sortable.min.js"
     ],
     "styles": [
-        "styles/system-styles.css"
+        "styles/edit-foundry-styles.css",
+        "styles/system-styles.css",
+        "styles/system-styles-v2.css",
+        "styles/system-styles-dark.css"
     ],
     "packs": [
         {

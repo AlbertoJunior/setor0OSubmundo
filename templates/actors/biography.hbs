@@ -1,4 +1,5 @@
-<section data-label="{{ localize 'S0.Biografia' }}" class="S0-page" data-icon="fas fa-address-book">
+<section class="S0-page tab" data-group="menu-tabs" data-tab="biography" data-label="{{ localize 'S0.Biografia' }}"
+    data-icon="fas fa-address-book">
     <div class="S0-container" style="position: relative;">
         <h2>{{localize 'S0.Descricao'}}</h2>
         <div style="display: flex; justify-content: center; align-items: center;">
@@ -40,7 +41,7 @@
         </h2>
         <div id="linguasContainer" class="S0-container-4-column">
             {{#each (fetchRepository 'language')}}
-            <div class="S0-characteristic-container" id="{{id}}">
+            <div class="S0-characteristic-container" id="{{id}}" style="height: auto; border-bottom: 1px solid;">
                 <label title="{{district}}">
                     {{label}}
                 </label>

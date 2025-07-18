@@ -1,4 +1,5 @@
-<section data-label="{{ localize 'S0.Status' }}" class="S0-page" id="statusPage" data-icon="fas fa-heart-pulse">
+<section class="S0-page tab" data-group="menu-tabs" data-tab="status" data-label="{{ localize 'S0.Status' }}"
+    id="statusPage" data-icon="fas fa-heart-pulse">
 
     {{#if (operators 'isNotNull' (actorValues actor 'experience'))}}
     <div class="S0-container">
@@ -272,8 +273,7 @@
 
                     {{#forLoop 0 (actorValues actor 'vitality')}}
                     <div class="S0-characteristic S0-characteristic-temp {{../selectedClass}}"
-                        data-action="{{../action}}" data-characteristic="temporary"
-                        data-type="health">
+                        data-action="{{../action}}" data-characteristic="temporary" data-type="health">
                     </div>
                     {{/forLoop}}
                     {{/lett}}

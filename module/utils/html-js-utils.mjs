@@ -56,7 +56,7 @@ export class HtmlJsUtils {
     }
 
     static getActualHeight(element) {
-        const windowElem = element.closest(".window-app");
+        const windowElem = element.closest(".S0-content");
         if (!windowElem)
             return undefined;
 
@@ -64,7 +64,7 @@ export class HtmlJsUtils {
     }
 
     static expandOrContractElement(element, params) {
-        const windowElem = element.closest(".window-app");
+        const windowElem = element.closest(".S0-content");
         if (!windowElem)
             return;
 

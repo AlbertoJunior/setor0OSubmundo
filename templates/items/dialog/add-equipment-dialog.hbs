@@ -3,14 +3,14 @@
         <input style="margin-bottom: 4px; font-family: var(--font-monospace);" type="text" id="filter-input"
             placeholder="{{localize 'S0.Filtrar_Por_Nome'}}">
 
-        <ul class="S0-infinity-horizontal-menu" style="list-style: none; margin: 0; padding: 0;">
-            <li class="S0-simulate-button" style="width: auto; padding-inline: 16px" data-action="check"
-                data-characteristic="equipment" data-sub-characteristic="filter" data-type="selected">
+        <ul class="S0-infinity-horizontal-menu">
+            <li class="S0-simulate-button" data-action="check" data-characteristic="equipment"
+                data-sub-characteristic="filter" data-type="selected">
                 <h4>{{localize 'S0.Selecionados'}}</h4>
             </li>
             {{#each (fetchRepository 'equipment-types')}}
-            <li class="S0-simulate-button" style="width: auto; padding-inline: 16px" data-action="check"
-                data-characteristic="equipment" data-sub-characteristic="filter" data-type="{{type}}">
+            <li class="S0-simulate-button" data-action="check" data-characteristic="equipment"
+                data-sub-characteristic="filter" data-type="{{type}}">
                 <h4>{{label}}</h4>
             </li>
             {{/each}}

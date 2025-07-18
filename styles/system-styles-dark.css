@@ -1,0 +1,124 @@
+/* #region DARK MODE */
+.window-content.S0-page-transparent {
+    color: var(--primary-color);
+    background: url(/ui/denim075.png) repeat;
+    margin: 0;
+}
+
+.S0-page-transparent .S0-container {
+    border-color: var(--tertiary-color-alpha-50);
+}
+
+.S0-page-transparent .S0-container :is(select:not(.S0-inner-select), input, textarea):is(:disabled, *) {
+    border-color: var(--primary-color-alpha-50);
+}
+
+:is(.S0-page-transparent, .S0-dialog, .S0-message-content) hr {
+    margin-block: 4px;
+    border-top: 1px solid var(--tertiary-color-alpha-50);
+    border-bottom: 1px solid var(--tertiary-color-alpha);
+    box-shadow: 0px 0px 3px var(--tertiary-color-alpha-50);
+}
+
+.S0-page-transparent :is(select, input, textarea) {
+    color: var(--primary-color);
+}
+
+.S0-page-transparent .S0-inner-select {
+    border-color: var(--secondary-color-alpha-50);
+}
+
+:is(.S0-page-transparent, .S0-dialog) :is(strong, .S0-container label, .S0-page :is(label, span, a)) {
+    text-shadow: 0 0 6px var(--primary-color-alpha);
+}
+
+:is(.S0-page-transparent .S0-page, .S0-dialog) :is(h1, h2, h3, h4) {
+    text-shadow: 0 0 6px var(--primary-color-alpha);
+}
+
+.S0-page-transparent .S0-selected {
+    color: var(--on-primary-color);
+    background-color: var(--primary-color-alpha);
+    border-color: var(--primary-color);
+    box-shadow: 0px 0px 6px var(--primary-color-alpha-50);
+}
+
+.S0-page-transparent .S0-clickable.S0-characteristic:hover {
+    background-color: var(--primary-color-alpha);
+}
+
+.S0-page-transparent .S0-clickable.S0-characteristic.S0-selected {
+    background-color: var(--primary-color-alpha);
+}
+
+.S0-page-transparent .S0-characteristic {
+    border-color: var(--primary-color-alpha);
+}
+
+.S0-page-transparent .S0-characteristic.S0-letal,
+.S0-page-transparent .S0-clickable.S0-characteristic.S0-letal,
+.S0-page-transparent .S0-clickable.S0-characteristic.S0-superficial:hover {
+    background-color: var(--primary-color-alpha);
+    box-shadow: 0px 0px 3px var(--primary-color);
+}
+
+.S0-page-transparent .S0-characteristic.S0-superficial,
+.S0-page-transparent .S0-clickable.S0-characteristic.S0-superficial {
+    background-color: var(--tertiary-color-alpha);
+    box-shadow: 0px 0px 3px var(--tertiary-color);
+}
+
+.S0-page-transparent .S0-clickable.S0-characteristic {
+    background-color: var(--secondary-color);
+}
+
+.S0-page-transparent .S0-clickable:is(.S0-letal, .S0-selected):hover {
+    background-color: var(--color-red-alpha);
+    box-shadow: 0px 0px 6px var(--color-red-alpha);
+}
+
+.S0-page-transparent .S0-badge span {
+    color: var(--secondary-color);
+}
+
+.S0-page-transparent .S0-item-type {
+    background-color: rgba(130, 0, 255, 0.7);
+}
+
+.S0-page-transparent .S0-item-bag {
+    border-color: var(--tertiary-color);
+}
+
+.S0-page-transparent .S0-actor-images-container {
+    border-color: var(--primary-color-alpha-50);
+}
+
+.S0-page-transparent .S0-actor-images-container:hover {
+    border-color: var(--primary-color-alpha);
+    box-shadow: 0px 0px 6px var(--primary-color-alpha);
+}
+
+.S0-page-transparent .S0-actor-images-name {
+    background-color: var(--primary-color-alpha);
+    color: var(--on-primary-color);
+}
+
+.S0-page-transparent .S0-actor-images-morph {
+    background-color: var(--primary-color-alpha);
+    color: var(--on-primary-color);
+}
+
+.S0-page-transparent .S0-actor-button {
+    background-color: var(--primary-color-alpha);
+    color: var(--on-primary-color);
+}
+
+.S0-page-transparent .S0-h-marked {
+    background-color: var(--tertiary-color-alpha);
+}
+
+.S0-page-transparent .S0-image-npc {
+    border-color: var(--tertiary-color-alpha-50);
+}
+
+/* #endregion */

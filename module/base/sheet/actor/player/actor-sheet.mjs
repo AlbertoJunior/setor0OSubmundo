@@ -74,7 +74,6 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
     configureSheet(html) {
         this.#presetSheet(html);
         this.#setupListeners(html);
-        super.addPageButtonsOnFloatingMenu(html);
         SheetActorDragabbleMethods.setup(html, this.actor);
     }
 
@@ -219,7 +218,7 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
         if (!this.defaultHeight || isExpandedEffects === undefined || isExpandedShortcuts == undefined) {
             requestAnimationFrame(() => {
                 const content = html.parent().parent()[0];
-                const windowElem = content.closest(".window-app");
+                const windowElem = content.closest(".S0-content");
                 this.defaultHeight = windowElem?.offsetHeight;
 
                 this.isExpandedEffects = effectsContainer[0].classList.contains('S0-expanded');

@@ -17,7 +17,7 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
         classes: [SYSTEM_CLASS_CSS, 'actor'],
         window: {
             subtitle: ""
-        }
+        },
     };
 
     static PARTS = {}
@@ -50,7 +50,12 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
 
     _postRender(context, options) {
         super._postRender(context, options);
-        this.configureSheet($(this.element));
+        this._postRenderConfiguration($(this.element));
+    }
+
+    _postRenderConfiguration(html) {
+        this.configureSheet(html);
+        this._setupAutoTabs(html);
     }
 
     get isEditable() {
@@ -81,7 +86,7 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
         super.activateListeners(html);
         HtmlJsUtils.setupContent(html);
         HtmlJsUtils.setupHeader(html);
-        this.configureSheet(html);
+        this._postRenderConfiguration(html);
     }
 
     async onActionClick(html, event) {
@@ -138,7 +143,58 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
         selectCharacteristic(html.find(`#protect .S0-characteristic`)[value - 1]);
     }
 
-    addPageButtonsOnFloatingMenu(html) {
+    _setupAutoTabs(html) {
+        const group = "menu-tabs";
+        const classTabs = "S0-sheet-tabs";
+        const navSelector = `nav.${classTabs}[data-group="${group}"]`;
+        const contentSelector = `.S0-nav-content`;
+
+        const nav = html.find(navSelector);
+        if (!nav.length) {
+            console.warn(`Tabs: nav[data-group="${group}"] não encontrado.`);
+            return;
+        }
+
+        const isCompacted = FlagsUtils.getItemFlag(game.user, SystemFlags.MODE.COMPACT);
+        const classes = `S0-simulate-button ${isCompacted ? 'S0-compact' : ''}`
+
+        const tabs = html.find(`.tab[data-group="${group}"][data-tab]`);
+        tabs.each((_, element) => {
+            const tab = $(element);
+            const tabName = tab.data("tab");
+            const label = tab.data("label");
+            const icon = tab.data("icon") || "fa-circle";
+
+            if (!tabName || !label) {
+                const identifier = element.outerHTML.split("\n")[0]?.trim();
+                console.warn(`Tab ignorada: falta 'data-tab' ou 'data-label' em ${identifier}`);
+                return;
+            }
+
+            const button = $(`<a class="${classes}" data-tab="${tabName}" title="${label}"><i class="fas ${icon}"></i>${isCompacted ? '' : label}</a>`);
+            nav.append(button);
+        });
+
+        const initial = tabs[Math.max(this.currentPage - 1, 0)]?.dataset?.tab ?? ""
+
+        const tabsInstance = new FoundryApi.Tabs({
+            navSelector: navSelector,
+            contentSelector: contentSelector,
+            initial: initial,
+        });
+        tabsInstance.bind(html[0]);
+
+        html.find(`${navSelector} a[data-tab]`).on("click", event => {
+            const selectedTab = $(event.currentTarget).data("tab");
+
+            const index = Object.values(tabs).findIndex(el => el.dataset.tab === selectedTab);
+            if (index !== -1) {
+                this.currentPage = index + 1;
+            }
+        });
+    }
+
+    #addPageButtonsOnFloatingMenu(html) {
         const buttonContainer = html.find("#floating-menu")[0];
         const pages = [];
         const buttons = [];
@@ -170,12 +226,13 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
             if (index + 1 != this.currentPage) {
                 page.classList.add('hidden');
             } else {
+                page.classList.add('active');
                 button.classList.add('S0-selected');
             }
         });
     }
 
-    async #changePage(pageIndex, pages, buttons, event) {
+    #changePage(pageIndex, pages, buttons, event) {
         if (pageIndex == this.currentPage) {
             return;
         }
@@ -183,7 +240,9 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
         const normalizedCurrentIndex = Math.max(this.currentPage - 1, 0);
         const normalizedIndex = Math.max(pageIndex - 1, 0);
         pages[normalizedCurrentIndex].classList.toggle('hidden');
+        pages[normalizedCurrentIndex].classList.toggle('active');
         pages[normalizedIndex].classList.toggle('hidden');
+        pages[normalizedIndex].classList.toggle('active');
 
         buttons[normalizedCurrentIndex].classList.toggle('S0-selected');
         buttons[normalizedIndex].classList.toggle('S0-selected');

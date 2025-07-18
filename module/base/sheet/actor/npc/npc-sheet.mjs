@@ -91,7 +91,6 @@ class Setor0NpcSheet extends Setor0BaseActorSheet {
         Setor0BaseActorSheet.presetStatusVitality(html, this.actor);
         Setor0BaseActorSheet.presetStatusProtect(html, this.actor);
         SheetActorDragabbleMethods.setup(html, this.actor);
-        super.addPageButtonsOnFloatingMenu(html);
     }
 
     #setupListeners(html) {

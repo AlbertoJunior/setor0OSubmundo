@@ -31,7 +31,7 @@ export class DialogUtils {
 
         HtmlJsUtils.setupHeader(html);
 
-        return div.closest('.window-app');
+        return div.closest('.S0-content');
     }
 
     static #setupHeaderParams(div, params) {
