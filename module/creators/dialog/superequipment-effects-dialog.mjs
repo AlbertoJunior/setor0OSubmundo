@@ -1,4 +1,4 @@
-import { localize, randomId } from "../../../scripts/utils/utils.mjs";
+import { gameLocalize, localize, randomId } from "../../../scripts/utils/utils.mjs";
 import { EquipmentInfoParser } from "../../core/equipment/equipment-info.mjs";
 import { CharacteristicType } from "../../enums/characteristic-enums.mjs";
 import { EquipmentCharacteristicType, SuperEquipmentParticularityType } from "../../enums/equipment-enums.mjs";
@@ -40,7 +40,7 @@ export class SuperEquipmentEffectsDialog {
                     characteristic: listCharacteristics,
                     uuid: uuid,
                 },
-                render: (html, windowApp) => this.#render(windowApp, html, listTraits, listCharacteristics),
+                render: (html, renderedDialog, windowApp) => this.#render(windowApp, html, listTraits, listCharacteristics),
                 onConfirm: (data) => {
                     const { selectedTrait, particularity, selectedParticularity } = data;
                     const trait = this.#findTrait(listTraits, selectedTrait);
@@ -71,7 +71,10 @@ export class SuperEquipmentEffectsDialog {
 
                         onConfirm(copyObject, characteristic);
                     }
-                }
+                },
+                windowOptions: {
+                    width: 400
+                },
             }
         );
     }
@@ -88,7 +91,7 @@ export class SuperEquipmentEffectsDialog {
                 label,
                 options: options.map(opt => ({
                     ...opt,
-                    name: game.i18n.localize(opt.label),
+                    name: gameLocalize(opt.label),
                 })),
             }));
     }

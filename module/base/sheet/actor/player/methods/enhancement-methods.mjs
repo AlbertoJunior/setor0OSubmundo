@@ -1,4 +1,4 @@
-import { getObject, localize, localizeFormat } from "../../../../../../scripts/utils/utils.mjs";
+import { gameLocalize, getObject, localize, localizeFormat } from "../../../../../../scripts/utils/utils.mjs";
 import { ChatCreator } from "../../../../../utils/chat-creator.mjs";
 import { ActorEnhancementField } from "../../../../../field/actor-fields.mjs";
 import { EnhancementRepository } from "../../../../../repository/enhancement-repository.mjs";
@@ -149,7 +149,12 @@ async function verifyIsGmAndDefineShowChat(message, actor) {
     if (game.user.isGM) {
         ConfirmationDialog.open({
             titleDialog: "Ocultar Ação?",
+            cancelButtonText: gameLocalize('No'),
+            confirmButtonText: gameLocalize('Yes'),
             message: localize("Pergunta.Ocultar_Acao"),
+            onClose: async () => {
+                await ChatCreator.sendToChat(actor, message, CONST.DICE_ROLL_MODES.PRIVATE);
+            },
             onCancel: async () => {
                 await ChatCreator.sendToChat(actor, message);
             },

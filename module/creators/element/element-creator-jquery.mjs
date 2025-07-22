@@ -1,3 +1,4 @@
+import { gameLocalize } from "../../../scripts/utils/utils.mjs";
 import { OnEventType } from "../../enums/on-event-type.mjs";
 
 export class ElementCreatorJQuery {
@@ -18,7 +19,7 @@ export class ElementCreatorJQuery {
         });
 
         const label = $('<label>', {
-            text: game.i18n.localize(characteristic.label)
+            text: gameLocalize(characteristic.label)
         });
 
         divContainer.append(label);

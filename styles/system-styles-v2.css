@@ -1,21 +1,21 @@
 /* #region DIALOG*/
-.S0-dialogV2 :is(h1, h2, h3, h4, label, strong) {
+.S0-V2 .S0-dialog :is(h1, h2, h3, h4, label, strong) {
     color: var(--primary-color);
 }
 
-.S0-dialogV2 .S0-simulate-button>* {
+.S0-V2 .S0-dialog .S0-simulate-button>* {
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-.S0-dialogV2 .S0-simulate-button:hover>* {
+.S0-V2 .S0-dialog .S0-simulate-button:hover>* {
     color: var(--on-primary-color);
 }
 
-.S0-dialogV2 .S0-marked :is(h1, h2, h3, h4) {
+.S0-V2 .S0-dialog .S0-marked :is(h1, h2, h3, h4) {
     color: var(--on-primary-color);
 }
 
-.S0-dialogV2 .S0-infinity-horizontal-menu .S0-simulate-button h4 {
+.S0-V2 .S0-dialog .S0-infinity-horizontal-menu .S0-simulate-button h4 {
     font-size: var(--font-size-12);
 }
 

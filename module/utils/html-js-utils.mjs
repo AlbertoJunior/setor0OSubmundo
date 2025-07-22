@@ -1,16 +1,20 @@
 import { normalizeString } from "../../scripts/utils/utils.mjs";
+import { SYSTEM_CLASS_CSS } from "../constants.mjs";
 import { SystemFlags } from "../enums/flags-enums.mjs";
 import { FlagsUtils } from "./flags-utils.mjs";
 
 export class HtmlJsUtils {
-    static setupContent(html) {
+    static setupContent(html, styles) {
         const inDarkMode = FlagsUtils.getItemFlag(game.user, SystemFlags.MODE.DARK, false);
 
         const parent = html.parent()[0];
         parent.classList.toggle('S0-page-transparent', inDarkMode);
-        parent.style.margin = '0px';
-        parent.style.padding = '0px 2px 0px 12px';
-        parent.style.overflowY = 'scroll';
+
+        if (styles) {
+            Object.keys(styles).forEach((key) => {
+                parent.style[key] = styles[key];
+            });
+        }
     }
 
     static setupHeader(html) {
@@ -56,7 +60,7 @@ export class HtmlJsUtils {
     }
 
     static getActualHeight(element) {
-        const windowElem = element.closest(".S0-content");
+        const windowElem = element.closest(`.${SYSTEM_CLASS_CSS}`);
         if (!windowElem)
             return undefined;
 
@@ -64,7 +68,7 @@ export class HtmlJsUtils {
     }
 
     static expandOrContractElement(element, params) {
-        const windowElem = element.closest(".S0-content");
+        const windowElem = element.closest(`.${SYSTEM_CLASS_CSS}`);
         if (!windowElem)
             return;
 
@@ -103,7 +107,6 @@ export class HtmlJsUtils {
             newHeight: newHeight
         };
     }
-
 
     static presetAllDragEvents(containerTarget, actor, onDrop = (actor, event) => { }) {
         if (!containerTarget) {

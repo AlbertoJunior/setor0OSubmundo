@@ -7,7 +7,7 @@ import { EquipmentType } from "../../../../enums/equipment-enums.mjs";
 import { CharacteristicType } from "../../../../enums/characteristic-enums.mjs";
 import { HtmlJsUtils } from "../../../../utils/html-js-utils.mjs";
 import { loadAndRegisterTemplates } from "../../../../utils/templates.mjs";
-import { SYSTEM_ID, TEMPLATES_PATH } from "../../../../constants.mjs";
+import { SYSTEM_CLASS_CSS, SYSTEM_ID, TEMPLATES_PATH } from "../../../../constants.mjs";
 import { SheetActorDragabbleMethods } from "./methods/dragabble-methods.mjs";
 import { ActorUtils } from "../../../../core/actor/actor-utils.mjs";
 import { characteristicOnClick } from "./methods/characteristics-methods.mjs";
@@ -218,7 +218,7 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
         if (!this.defaultHeight || isExpandedEffects === undefined || isExpandedShortcuts == undefined) {
             requestAnimationFrame(() => {
                 const content = html.parent().parent()[0];
-                const windowElem = content.closest(".S0-content");
+                const windowElem = content.closest(`.${SYSTEM_CLASS_CSS}`);
                 this.defaultHeight = windowElem?.offsetHeight;
 
                 this.isExpandedEffects = effectsContainer[0].classList.contains('S0-expanded');

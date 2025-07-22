@@ -28,7 +28,10 @@
     border-color: var(--secondary-color-alpha-50);
 }
 
-:is(.S0-page-transparent, .S0-dialog) :is(strong, .S0-container label, .S0-page :is(label, span, a)) {
+:is(.S0-page-transparent, .S0-dialog) :is(strong,
+    .S0-container label,
+    .S0-page :is(label, span, a)) {
+    color: var(--primary-color);
     text-shadow: 0 0 6px var(--primary-color-alpha);
 }
 
@@ -69,7 +72,7 @@
 }
 
 .S0-page-transparent .S0-clickable.S0-characteristic {
-    background-color: var(--secondary-color);
+    background-color: var(--alternate-black-color);
 }
 
 .S0-page-transparent .S0-clickable:is(.S0-letal, .S0-selected):hover {
@@ -119,6 +122,40 @@
 
 .S0-page-transparent .S0-image-npc {
     border-color: var(--tertiary-color-alpha-50);
+}
+
+.S0-page-transparent .S0-content :is(h1, h2, h3, h4, label) {
+    color: var(--primary-color);
+}
+
+.S0-page-transparent .S0-container .S0-container {
+    color: var(--on-secondary-alternate-color);
+}
+
+.S0-page-transparent .S0-biography-container-button>* {
+    background: var(--tertiary-color-alpha-50);
+}
+
+.S0-page-transparent .S0-language-container {
+    height: auto;
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.S0-page-transparent :is(input[type=text],
+    input[type=number],
+    input[type=password],
+    input[type=date],
+    input[type=time],
+    input[type=datetime-local],
+    input[type=search],
+    input[type=file],
+    select,
+    textarea) {
+    background: var(--alternate-black-color);
+}
+
+.S0-page-transparent :is(textarea[readonly]) {
+    background: none;
 }
 
 /* #endregion */

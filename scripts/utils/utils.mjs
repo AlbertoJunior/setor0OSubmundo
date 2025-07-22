@@ -65,8 +65,16 @@ export function keyJsonToKeyLang(key) {
     return `S0.${langKey}`;
 }
 
+export function gameLocalize(key) {
+    return game.i18n.localize(key);
+}
+
 export function localize(key) {
     return game.i18n.localize(`S0.${key}`);
+}
+
+export function localizeType(key) {
+    return game.i18n.localize(`TYPES.${key}`);
 }
 
 export function localizeFormat(key, data, prefix = 'S0') {
@@ -84,10 +92,6 @@ export function onArrayRemove(array, item) {
         return true;
     }
     return false;
-}
-
-export function localizeType(key) {
-    return game.i18n.localize(`TYPES.${key}`);
 }
 
 export function TODO(message, notify) {

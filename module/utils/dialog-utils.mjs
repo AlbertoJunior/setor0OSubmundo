@@ -1,4 +1,4 @@
-import { onArrayRemove } from "../../scripts/utils/utils.mjs";
+import { onArrayRemove, snakeToCamel } from "../../scripts/utils/utils.mjs";
 import { SYSTEM_CLASS_CSS } from "../constants.mjs";
 import { createA } from "../creators/element/element-creator-jscript.mjs";
 import { FoundryApi } from "./foundry-api.mjs";
@@ -11,7 +11,7 @@ export class DialogUtils {
             return null;
         }
 
-        div.classList.add('S0-content');
+        div.classList.add(SYSTEM_CLASS_CSS);
         div.parentElement.style.height = 'auto';
 
         const paramsContent = params.content;
@@ -31,7 +31,7 @@ export class DialogUtils {
 
         HtmlJsUtils.setupHeader(html);
 
-        return div.closest('.S0-content');
+        return div.closest(`.${SYSTEM_CLASS_CSS}`);
     }
 
     static #setupHeaderParams(div, params) {
@@ -67,7 +67,7 @@ export class DialogUtils {
     static #setupDialogButtons(div) {
         const buttons = div.querySelectorAll('.dialog-button').length || 0;
         if (buttons == 0) {
-            div.querySelector('.dialog-buttons').remove();
+            div.querySelector('.dialog-buttons')?.remove();
         }
     }
 
@@ -81,5 +81,18 @@ export class DialogUtils {
             shareable: shareable || false,
             uuid: uuid,
         }).render(true);
+    }
+
+    static getDialogFormData(html) {
+        try {
+            const forms = html[0].querySelectorAll('form');
+            const form = forms[forms.length - 1];
+            const formData = new FormData(form);
+            const data = snakeToCamel(formData.entries());
+            return data;
+        } catch (error) {
+            console.error(error);
+            return {};
+        }
     }
 }

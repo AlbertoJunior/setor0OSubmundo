@@ -31,7 +31,8 @@
         "styles/edit-foundry-styles.css",
         "styles/system-styles.css",
         "styles/system-styles-v2.css",
-        "styles/system-styles-dark.css"
+        "styles/system-styles-dark.css",
+        "styles/system-styles-id.css"
     ],
     "packs": [
         {

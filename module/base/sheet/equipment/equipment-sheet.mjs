@@ -103,7 +103,7 @@ export class EquipmentSheet extends FoundryApi.ItemSheet {
         requestAnimationFrame(() => {
             const content = html.parent().parent()[0];
             if (!this.defaultHeight) {
-                const windowElem = content.closest(".S0-content");
+                const windowElem = content.closest(`.${SYSTEM_CLASS_CSS}`);
                 this.defaultHeight = windowElem?.offsetHeight;
             }
 

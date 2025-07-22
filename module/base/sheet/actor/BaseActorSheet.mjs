@@ -14,7 +14,7 @@ import { FoundryApi } from "../../../utils/foundry-api.mjs";
 export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
     static DEFAULT_OPTIONS = {
         ...super.DEFAULT_OPTIONS,
-        classes: [SYSTEM_CLASS_CSS, 'actor'],
+        classes: [SYSTEM_CLASS_CSS, FoundryApi.ActorSheet.VERSION, 'actor'],
         window: {
             subtitle: ""
         },
@@ -54,6 +54,7 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
     }
 
     _postRenderConfiguration(html) {
+        HtmlJsUtils.setupContent(html);
         this.configureSheet(html);
         this._setupAutoTabs(html);
     }
@@ -82,9 +83,14 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
         console.log('-> On Drop Item');
     }
 
+    /* Only run on Application V1 */
     activateListeners(html) {
         super.activateListeners(html);
-        HtmlJsUtils.setupContent(html);
+        HtmlJsUtils.setupContent(html, {
+            margin: '0px',
+            padding: '0px 2px 0px 12px',
+            overflowY: 'scroll'
+        });
         HtmlJsUtils.setupHeader(html);
         this._postRenderConfiguration(html);
     }

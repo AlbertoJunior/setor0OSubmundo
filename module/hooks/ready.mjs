@@ -8,6 +8,7 @@ import { MacroUtils } from "../core/macro/macro-utils.mjs";
 import { registerEquipment } from "../base/sheet/equipment/equipment-sheet.mjs";
 import { registerActor } from "../base/sheet/actor/player/actor-sheet.mjs";
 import { registerNpc } from "../base/sheet/actor/npc/npc-sheet.mjs";
+import { FoundryApi } from "../utils/foundry-api.mjs";
 
 export class ReadyHookHandle {
     static async handle() {
@@ -56,6 +57,7 @@ export class ReadyHookHandle {
         await MacroInstaller.installDefaultMacrosOnGm();
 
         OscillatingTintManager.verifyOscilatingTokens();
+        window.FoundryApi = FoundryApi;
         console.log('-> Setor 0 - O Submundo | Sistema Pronto');
     }
 }

@@ -1,4 +1,4 @@
-import { getObject, labelError, localize } from "../../../scripts/utils/utils.mjs";
+import { gameLocalize, getObject, labelError, localize } from "../../../scripts/utils/utils.mjs";
 import { ActiveEffectsTypes } from "../../enums/active-effects-enums.mjs";
 import { DamageType, EquipmentCharacteristicType, EquipmentHand, EquipmentHidding, EquipmentType, MeleeSize, SubstanceType, VehicleType } from "../../enums/equipment-enums.mjs";
 
@@ -18,7 +18,7 @@ export class EquipmentInfoParser {
 
     static parseEquipmentType(value) {
         const map = this.equipmentTypeIdToTypeString(value);
-        return map ? game.i18n.localize(`TYPES.Item.${map}`) : labelError();
+        return map ? gameLocalize(`TYPES.Item.${map}`) : labelError();
     }
 
     static parseHidding(value) {

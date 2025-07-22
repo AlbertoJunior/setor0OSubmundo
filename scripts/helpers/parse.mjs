@@ -1,7 +1,7 @@
 import { EquipmentInfoParser } from "../../module/core/equipment/equipment-info.mjs";
 import { CharacteristicType } from "../../module/enums/characteristic-enums.mjs";
 import { EnhancementRepository } from "../../module/repository/enhancement-repository.mjs";
-import { keyJsonToKeyLang } from "../utils/utils.mjs";
+import { gameLocalize, keyJsonToKeyLang } from "../utils/utils.mjs";
 
 const parseables = {
     'roll_enhancement_formule': (values) => {
@@ -13,7 +13,7 @@ const parseables = {
             if (val == CharacteristicType.ENHANCEMENT.id) {
                 return enhancement.name;
             } else if (val) {
-                return game.i18n.localize(keyJsonToKeyLang(val));
+                return gameLocalize(keyJsonToKeyLang(val));
             } else {
                 return '';
             }
