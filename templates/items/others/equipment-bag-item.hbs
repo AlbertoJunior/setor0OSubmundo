@@ -1,4 +1,4 @@
-<div class="S0-item-bag S0-clickable" {{#if flags.setor0OSubmundo.editable}} style="background-color: #00ffd0;" {{/if}}>
+<div class="S0-item-bag S0-clickable {{#if flags.setor0OSubmundo.editable}}S0-marked{{/if}}">
     <div class="S0-item-container" data-action="view" data-characteristic="equipment" data-sub-characteristic="bag"
         data-type="{{type}}" data-item-id="{{id}}">
         <img src="{{img}}" />
@@ -26,7 +26,7 @@
         </a>
 
         {{#if (itemValues this 'canEquip')}}
-        <a {{#if (itemValues this 'equipped')}}class="hidden" {{else}}class="S0-icon-swaper" {{/if}} data-action="add"
+        <a {{#if (itemValues this 'equipped' )}}class="hidden" {{else}}class="S0-icon-swaper" {{/if}} data-action="add"
             data-characteristic="equipment" data-sub-characteristic="bag" data-type="{{type}}" data-item-id="{{id}}"
             title="{{localize 'S0.Equipar'}}">
             <i class="fas fa-arrow-up-from-square S0-icon-idle"></i>

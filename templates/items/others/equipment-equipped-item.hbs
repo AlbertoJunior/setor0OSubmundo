@@ -1,4 +1,4 @@
-<div class="S0-item-bag S0-clickable" {{#if flags.setor0OSubmundo.editable}} style="background-color: #00ffd0;" {{/if}}>
+<div class="S0-item-bag S0-clickable {{#if flags.setor0OSubmundo.editable}}S0-marked{{/if}}">
     <div class="S0-item-container" data-action="view" data-characteristic="equipment" data-sub-characteristic="equipped"
         data-type="{{type}}" data-item-id="{{id}}">
         <img src="{{img}}" />
@@ -12,7 +12,7 @@
         </span>
     </div>
 
-    <div class="S0-item-legend" style="text-shadow: 0 0 3px var(--primary-color);">
+    <div class="S0-item-legend">
         <a class="S0-icon-swaper" data-action="chat" data-characteristic="equipment" data-type="{{type}}"
             data-sub-characteristic="equipped" data-item-id="{{id}}" title="{{localize 'S0.Enviar_No_Chat'}}">
             <i class="fas fa-message S0-icon-idle"></i>

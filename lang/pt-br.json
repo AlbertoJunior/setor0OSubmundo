@@ -366,6 +366,10 @@
             "Destrocado1": "Destroçado 1",
             "Destrocado2": "Destroçado 2",
             "Destrocado3": "Destroçado 3"
+        },
+
+        "Placeholder": {
+            "Atalho_Nome": "Ataque preciso"
         }
     },
     "TYPES": {

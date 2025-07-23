@@ -2,6 +2,9 @@
     <ul id="floating-menu" class="S0-float-right-sheet">
         {{> "buttons-float-menu" canEdit=canEdit editable=editable canRoll=false hideDarkModeButton=hideDarkModeButton
         hideCompactButton=hideCompactButton}}
+        <li>
+            <nav class="S0-sheet-tabs" data-group="menu-tabs"></nav>
+        </li>
     </ul>
 
     <div class="S0-container" style="display: flex; align-items: flex-start; column-gap: 6px;">
@@ -53,10 +56,11 @@
                 </div>
             </header>
 
-            {{> npcInformations this}}
-            {{> npcStatus this}}
-            {{> npcBag this}}
-
+            <div class="S0-nav-content">
+                {{> npcInformations this}}
+                {{> npcStatus this}}
+                {{> npcBag this}}
+            </div>
         </div>
     </div>
 </form>

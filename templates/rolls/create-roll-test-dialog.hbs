@@ -1,11 +1,9 @@
 <div class="S0-dialog">
     <form class="S0-container">
+        <h3>{{localize 'S0.Nome'}}</h3>
         <div class="form-group">
-            <label>
-                {{localize 'S0.Nome'}}
-            </label>
-            <textarea rows="2" style="resize: none;" maxlength="45" name="name" placeholder="{{localize 'S0.Nome'}}"
-                {{#unless canEdit}}disabled{{/unless}}>{{name}}</textarea>
+            <input type="text" style="resize: none;" maxlength="45" name="name" value="{{name}}"
+                placeholder="{{localize 'S0.Placeholder.Atalho_Nome'}}" {{#unless canEdit}}disabled{{/unless}}>
         </div>
 
         <h3>{{localize 'S0.Atributos'}}</h3>
@@ -33,8 +31,8 @@
             </select>
 
             <label for="{{uuid}}.specialist">{{localize 'S0.Especialista'}}</label>
-            <input id="{{uuid}}.specialist" type="checkbox" name="specialist" value="true" {{#if specialist}}checked{{/if}}
-                {{#unless canEdit}}disabled{{/unless}} />
+            <input id="{{uuid}}.specialist" type="checkbox" name="specialist" value="true" {{#if
+                specialist}}checked{{/if}} {{#unless canEdit}}disabled{{/unless}} />
         </div>
 
         <h3>{{localize 'S0.Outros'}}</h3>

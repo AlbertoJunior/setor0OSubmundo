@@ -126,12 +126,12 @@ h4.divider {
     border-color: var(--primary-color-alpha);
 }
 
+/* #region MESSAGES CHAT */
 #chat-message {
     border: 2px solid var(--primary-color-alpha);
     --input-placeholder-color: var(--primary-color);
 }
 
-/* #region MESSAGES CHAT */
 #chat-message:focus {
     outline-color: var(--primary-color-alpha);
 }

@@ -19,4 +19,21 @@
     font-size: var(--font-size-12);
 }
 
+.S0-V2.S0-content .form-group input[type="checkbox"] {
+    background-color: var(--alternate-black-color);
+    border-color: var(--primary-color-alpha);
+}
+
+.S0-V2.S0-content .form-group input[type="checkbox"]:hover {
+    background-color: var(--primary-color-alpha);
+    border-color: var(--primary-color-alpha);
+    box-shadow: 0 0 6px var(--primary-color-alpha);
+}
+
+.S0-V2.S0-content .form-group input[type="checkbox"]:checked {
+    background-color: var(--primary-color-alpha);
+    border-color: var(--primary-color-alpha);
+    box-shadow: 0 0 6px var(--primary-color-alpha);
+}
+
 /* #endregion */
