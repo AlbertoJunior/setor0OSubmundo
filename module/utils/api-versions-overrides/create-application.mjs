@@ -1,6 +1,6 @@
-import { randomId } from "../../scripts/utils/utils.mjs";
-import { v1Overrides } from "./api-versions-overrides/v1.mjs";
-import { v2Overrides } from "./api-versions-overrides/v2.mjs";
+import { randomId } from "../../../scripts/utils/utils.mjs";
+import { v1Overrides } from "./v1.mjs";
+import { v2Overrides } from "./v2.mjs";
 
 // base config for applications
 const baseApplicationConfig = Object.freeze({
@@ -9,6 +9,7 @@ const baseApplicationConfig = Object.freeze({
     Handlebars: foundry.applications.handlebars,
     Collections: foundry.documents.collections,
     ChatMessage: ChatMessage,
+    CombatTracker: foundry.applications.sidebar.tabs.CombatTracker,
     Utils: foundry.utils,
     Ui: foundry.applications.ui,
     Ux: foundry.applications.ux,

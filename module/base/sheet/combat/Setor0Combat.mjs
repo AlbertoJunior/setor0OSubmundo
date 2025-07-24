@@ -13,7 +13,8 @@ class Setor0Combat extends Combat {
             for (const combatantId of combatantIdArray) {
                 const combatant = this.combatants.get(combatantId);
                 const actor = combatant.actor;
-                await DefaultActions.processInitiativeRoll(actor);
+                const combatantInformations = { combatantId: combatantId, combatantTokenId: combatant.tokenId, hidden: combatant.hidden };
+                await DefaultActions.processInitiativeRoll(actor, combatantInformations);
             }
         } else {
             super.rollInitiative(combatantIdArray);
@@ -28,6 +29,10 @@ class Setor0Combat extends Combat {
         }
 
         return formula + ActorUtils.calculateInitiative(actor);
+    }
+
+    updateResource() {
+        debugger
     }
 
     async startCombat() {

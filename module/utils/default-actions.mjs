@@ -11,11 +11,16 @@ import { RollMessageCreator } from "../creators/message/roll-mesage.mjs";
 import { RollVirtueMessageCreator } from "../creators/message/virtue-roll.mjs";
 
 export class DefaultActions {
-    static async processInitiativeRoll(actor) {
+    static async processInitiativeRoll(actor, combatantInformations) {
         const resultRoll = await RollInitiative.roll(actor);
         const contentMessage = await RollInitiativeMessageCreator.mountContent(resultRoll);
-        await ChatCreator.sendToChatTypeRoll(actor, contentMessage, [resultRoll.roll]);
-        await CombatUtils.addOrUpdateActorOnCombat(actor, resultRoll.total);
+
+        if (combatantInformations.hidden === true) {
+            await ChatCreator.sendToChatTypeRoll(actor, contentMessage, [], ChatCreator.MODE_PRIVATE_TO_GM);
+        } else {
+            await ChatCreator.sendToChatTypeRoll(actor, contentMessage, [resultRoll.roll], ChatCreator.MODE_PUBLIC);
+        }
+        await CombatUtils.addOrUpdateActorOnCombat(actor, resultRoll.total, combatantInformations);
     }
 
     static async processOverloadRoll(actor) {

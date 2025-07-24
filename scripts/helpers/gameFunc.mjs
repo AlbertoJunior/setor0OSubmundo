@@ -1,4 +1,5 @@
 import { SystemFlags } from "../../module/enums/flags-enums.mjs";
+import { ChatCreator } from "../../module/utils/chat-creator.mjs";
 import { FlagsUtils } from "../../module/utils/flags-utils.mjs";
 import { localize } from "../utils/utils.mjs";
 
@@ -10,10 +11,10 @@ function rollModes() {
     }
 
     const mappedLabel = {
-        [CONST.DICE_ROLL_MODES.BLIND]: localize('Rolagem_GM_Oculta'),
-        [CONST.DICE_ROLL_MODES.PRIVATE]: localize('Rolagem_Privada_GM'),
-        [CONST.DICE_ROLL_MODES.PUBLIC]: localize('Rolagem_Publica'),
-        [CONST.DICE_ROLL_MODES.SELF]: localize('Rolagem_Pessoal'),
+        [ChatCreator.MODE_BLIND]: localize('Rolagem_GM_Oculta'),
+        [ChatCreator.MODE_PRIVATE_TO_GM]: localize('Rolagem_Privada_GM'),
+        [ChatCreator.MODE_PUBLIC]: localize('Rolagem_Publica'),
+        [ChatCreator.MODE_SELF]: localize('Rolagem_Pessoal'),
     }
 
     const mappedModes = Object.values(CONST.DICE_ROLL_MODES).map(roll => {
@@ -34,10 +35,10 @@ export default function gameFunc(func) {
         inDarkMode: () => FlagsUtils.getItemFlag(game.user, SystemFlags.MODE.DARK),
         isCompactedSheet: () => FlagsUtils.getItemFlag(game.user, SystemFlags.MODE.COMPACT),
         'players-roll-mode': () => {
-            return rollModes().filter(mode => mode.value != CONST.DICE_ROLL_MODES.SELF);
+            return rollModes().filter(mode => mode.value != ChatCreator.MODE_SELF);
         },
         'gm-roll-mode': () => {
-            return rollModes().filter(mode => mode.value == CONST.DICE_ROLL_MODES.SELF);
+            return rollModes().filter(mode => mode.value == ChatCreator.MODE_SELF);
         }
     };
 

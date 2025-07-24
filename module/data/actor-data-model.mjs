@@ -1,5 +1,5 @@
 import { ActorEquipmentUtils } from "../core/actor/actor-equipment.mjs";
-import { Setor0TokenDocument } from "../core/token/setor0-token.mjs";
+import { Setor0TokenDocument } from "../core/token/Setor0TokenDocument.mjs";
 import { ActorCharacteristicField, ActorEnhancementField, ActorAttributes, ActorAbilities, ActorVirtues } from "../field/actor-fields.mjs";
 import { ActorTraitField } from "../field/actor-trait-field.mjs";
 import { ActorUtils } from "../core/actor/actor-utils.mjs";
@@ -37,7 +37,7 @@ class BaseActorDataModel extends foundry.abstract.TypeDataModel {
         return this.parent;
     }
 
-    get actualVitality() {
+    get actualVitalityBar() {
         const total = getObject(this.actor, BaseActorCharacteristicType.VITALITY.TOTAL) || 0;
         return {
             max: total,
@@ -45,8 +45,24 @@ class BaseActorDataModel extends foundry.abstract.TypeDataModel {
         };
     }
 
-    get actualProtection() {
+    get actualVitality() {
+        return this.actualVitalityBar.value;
+    }
+
+    get totalVitality() {
+        return this.actualVitalityBar.max;
+    }
+
+    get actualProtectionBar() {
         return ActorEquipmentUtils.getArmorEquippedValues(this.actor);
+    }
+
+    get actualProtection() {
+        return this.actualProtectionBar.value;
+    }
+
+    get totalProtection() {
+        return this.actualProtectionBar.max;
     }
 }
 
@@ -162,21 +178,27 @@ class NPCDataModel extends BaseActorDataModel {
 
 export async function createActorDataModels() {
     Setor0TokenDocument.setValuesOnMapped([
+        { id: 'actualVitalityBar', label: 'Vitalidade' },
         { id: 'actualVitality', label: 'Vitalidade_Atual' },
+        { id: 'totalVitality', label: 'Vitalidade_Total' },
+        { id: 'actualProtectionBar', label: 'Protecao' },
         { id: 'actualProtection', label: 'Protecao_Atual' },
-        { id: 'vitalidade.total', label: 'Vitalidade_Total' },
+        { id: 'totalProtection', label: 'Protecao_Total' },
         { id: 'sobrecarga', label: 'Sobrecarga' },
         { id: 'actualPM', label: 'Pontos_De_Movimento_Atuais' },
     ]);
 
+    const commonBars = ["actualVitalityBar", "actualProtectionBar"];
+    const commonValues = ["influencia", "actualVitality", "totalVitality", "actualProtection", "totalProtection", "actualPM"];
+
     CONFIG.Actor.trackableAttributes = {
         Player: {
-            bar: ["actualVitality", "actualProtection"],
-            value: ["vitalidade.total", "sobrecarga", "actualPM"]
+            bar: commonBars,
+            value: [...commonValues, "sobrecarga"]
         },
         NPC: {
-            bar: ["actualVitality", "actualProtection"],
-            value: ["vitalidade.total", "actualPM"]
+            bar: commonBars,
+            value: commonValues
         }
     };
 

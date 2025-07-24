@@ -1,4 +1,4 @@
-import { createApplication } from "./create-application.mjs";
+import { createApplication } from "./api-versions-overrides/create-application.mjs";
 
 const ApplicationV1 = createApplication("v1");
 const ApplicationV2 = createApplication("v2", ["v1"]);
@@ -30,6 +30,8 @@ export class FoundryApi {
 
     static Actors = convertToClass(ApplicationV2.Collections.Actors, ApplicationV2);
     static Items = convertToClass(ApplicationV2.Collections.Items, ApplicationV2);
+
+    static CombatTracker = convertToClass(ApplicationV2.CombatTracker, ApplicationV2);
 
     static SceneControls = Object.freeze(ApplicationV2.Ui.SceneControls);
     static ImagePopout = Object.freeze(ApplicationV2.Apps.ImagePopout);

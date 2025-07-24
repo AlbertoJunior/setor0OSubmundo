@@ -248,6 +248,7 @@
         "Vitalidade_Atual": "Vitalidade atual",
         "Vitalidade_Total": "Vitalidade total",
         "Protecao_Atual": "Proteção atual",
+        "Protecao_Total": "Proteção total",
         "Pontos_De_Movimento_Atuais": "Pontos de Movimento atuais",
         
         "Criar_Macro": "Criar Macro",
@@ -515,7 +516,9 @@
         },
         "CannotLinkToScene": "Você não pode vincular o Combate a uma Cena que não contenha todos os seus Combatentes.",
         "CombatantStatus": "Status",
-        "CombatantScene": "Cena do Combatente"
+        "CombatantScene": "Cena do Combatente",
+        "CombatantClearMovementHistory": "Limpar histórico de movimentação",
+        "CombatantMovementHistoryCleared": "Histórico de movimentação apagado"
     },
     "COMPENDIUM": {
         "ClearFilters": "Limpar Filtros",

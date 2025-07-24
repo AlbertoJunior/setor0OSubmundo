@@ -112,6 +112,30 @@ h4.divider {
     background-size: 40px;
 }
 
+.combat-sidebar .combat-tracker :is(.token-initiative input, .token-resource) {
+    color: var(--primary-color);
+}
+
+.combat-sidebar .combat-tracker .combatant.hide {
+    color: var(--primary-color-alpha);
+}
+
+.combat-sidebar .combat-tracker .combatant.defeated,
+.combat-sidebar .combat-tracker .combatant.defeated .name {
+    color: var(--color-red-alpha);
+}
+
+.inline-control.combatant-control.icon.fa-solid:is(.fa-skull, .fa-eye-slash).active {
+    color: var(--on-primary-color);
+    background-color: var(--primary-color-alpha);
+}
+
+.inline-control.combatant-control.icon.fa-solid:is(.fa-skull, .fa-eye-slash).active:hover {
+    color: var(--on-secondary-color);
+    border-color: var(--secondary-color-alpha-50);
+    background-color: var(--secondary-color-alpha-50);
+}
+
 .roll.d10 {
     margin: 0px;
     background-position: center;

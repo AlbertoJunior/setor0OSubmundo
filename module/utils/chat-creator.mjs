@@ -2,6 +2,11 @@ import { FoundryApi } from "./foundry-api.mjs";
 
 export class ChatCreator {
 
+    static MODE_PRIVATE_TO_GM = CONST.DICE_ROLL_MODES.PRIVATE;
+    static MODE_BLIND = CONST.DICE_ROLL_MODES.BLIND;
+    static MODE_SELF = CONST.DICE_ROLL_MODES.SELF;
+    static MODE_PUBLIC = CONST.DICE_ROLL_MODES.PUBLIC;
+
     static async sendToChat(actor, content, mode) {
         const messageData = {
             speaker: FoundryApi.ChatMessage.getSpeaker(actor),
@@ -27,11 +32,11 @@ export class ChatCreator {
 
     static #configureWhisperByMode(mode) {
         switch (mode) {
-            case CONST.DICE_ROLL_MODES.PRIVATE:
+            case this.MODE_PRIVATE_TO_GM:
                 return new Set([...FoundryApi.ChatMessage.getWhisperRecipients("GM").map(u => u.id), game.user.id]);
-            case CONST.DICE_ROLL_MODES.BLIND:
+            case this.MODE_BLIND:
                 return new Set(FoundryApi.ChatMessage.getWhisperRecipients("GM").map(u => u.id));
-            case CONST.DICE_ROLL_MODES.SELF:
+            case this.MODE_SELF:
                 return [game.user.id];
             default:
                 return [];
@@ -40,11 +45,11 @@ export class ChatCreator {
 
     static #configureBlindByMode(mode) {
         switch (mode) {
-            case CONST.DICE_ROLL_MODES.PRIVATE:
+            case this.MODE_PRIVATE_TO_GM:
                 return true;
-            case CONST.DICE_ROLL_MODES.BLIND:
+            case this.MODE_BLIND:
                 return true;
-            case CONST.DICE_ROLL_MODES.SELF:
+            case this.MODE_SELF:
                 return false;
             default:
                 return false;

@@ -153,13 +153,13 @@ async function verifyIsGmAndDefineShowChat(message, actor) {
             confirmButtonText: gameLocalize('Yes'),
             message: localize("Pergunta.Ocultar_Acao"),
             onClose: async () => {
-                await ChatCreator.sendToChat(actor, message, CONST.DICE_ROLL_MODES.PRIVATE);
+                await ChatCreator.sendToChat(actor, message, ChatCreator.MODE_PRIVATE_TO_GM);
             },
             onCancel: async () => {
                 await ChatCreator.sendToChat(actor, message);
             },
             onConfirm: async () => {
-                await ChatCreator.sendToChat(actor, message, CONST.DICE_ROLL_MODES.PRIVATE);
+                await ChatCreator.sendToChat(actor, message, ChatCreator.MODE_PRIVATE_TO_GM);
             }
         });
     } else {
