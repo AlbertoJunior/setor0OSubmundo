@@ -9,12 +9,29 @@ class S0DialogV1 extends Dialog {
         return {
             ...options,
             classes: [
-                ...(options.classes ?? []),
+                ...(options.classes || []),
                 SYSTEM_CLASS_CSS,
                 SYSTEM_CLASS_DIALOG_CSS,
                 VERSION_NAME,
             ]
         };
+    }
+
+    submit(button, event) {
+        const target = this.options.jQuery ? this.element : this.element[0];
+        try {
+            if (button.callback) {
+                button.callback.call(this, this, target, event);
+            }
+
+            const closeDialog = button.closeDialog !== false;
+            if (closeDialog) {
+                this.close();
+            }
+        } catch (err) {
+            ui.notifications.error(err.message);
+            throw new Error(err);
+        }
     }
 }
 
@@ -41,27 +58,39 @@ async function createDialog(data, options) {
         content,
         buttons = [],
         minimizable = true,
+        resizable = false,
         render = (html, renderedDialog, window) => { },
         onClose = () => { }
     } = data;
 
     const parsedButtons = parseButtons(buttons);
 
-    const dialog = await new S0DialogV1(
+    return await new S0DialogV1(
         {
             title,
             content,
             buttons: parsedButtons.buttons,
             default: parsedButtons.default,
-            render: (html) => {
-                const window = DialogUtils.presetDialogRender(html, header);
+            render: (html, dialog) => {
+                const window = DialogUtils.presetDialogV1Render(html, { header: header });
+
+                Object.entries(parsedButtons.buttons)
+                    .forEach(([buttonKey, buttonParams]) => {
+                        const buttonElement = html.find(`button[data-button="${buttonKey}"]`);
+                        if (buttonElement?.length) {
+                            buttonElement.addClass(buttonParams.class);
+                        }
+                    });
                 render(html, dialog, window);
             },
             close: onClose
         },
-        options
+        {
+            ...options,
+            minimizable: minimizable,
+            resizable: resizable,
+        }
     ).render(true);
-    return dialog;
 }
 
 /**
@@ -100,13 +129,20 @@ function parseButtons(buttons) {
         const lowerLabel = bt.label.toLowerCase();
         parsedButtons[lowerLabel] = {
             label: bt.label,
-            callback: (html) => {
-                bt.onClick?.(html);
+            icon: bt.icon ? `<i class="${bt.icon}"></i>` : null,
+            class: Array.isArray(bt.class) ? bt.class : [],
+            closeDialog: bt.closeDialog,
+            callback: (dialog, html, event) => {
+                bt.onClick?.(html, dialog);
             }
         }
         if (bt.default == true) {
             defaultButton = lowerLabel;
         }
     }
-    return { buttons: parsedButtons, default: defaultButton };
+
+    return {
+        buttons: parsedButtons,
+        default: defaultButton,
+    };
 }

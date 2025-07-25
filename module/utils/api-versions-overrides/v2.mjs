@@ -28,21 +28,21 @@ function makeClass(BaseClass) {
 async function createDialog(data, options) {
     const {
         title,
+        header,
         content,
         buttons = [],
         minimizable = true,
+        resizable = false,
         render = (html, renderedDialog, window) => { },
         onClose = () => { }
     } = data;
 
     const parsedButtons = parseDialogButtons(buttons);
     const dialogButons = parsedButtons.buttons;
-    const buttonToRemove = parsedButtons.fakeButton;
     const closeOnSubmit = parsedButtons.closeOnSubmit;
+    const parsedHeaderToControls = parseHeaderToControls(header);
 
     let handleOnClose = true;
-
-    let $html;
 
     // this form will be automatically removed before full rendering
     const modifiedContent = `<form></form>${content}`;
@@ -52,6 +52,8 @@ async function createDialog(data, options) {
             window: {
                 title: title,
                 minimizable: minimizable,
+                resizable: resizable,
+                controls: [...parsedHeaderToControls],
             },
             position: {
                 width: options?.width ?? 'auto',
@@ -60,12 +62,12 @@ async function createDialog(data, options) {
             classes: [SYSTEM_CLASS_CSS, VERSION_NAME, 'S0-dialog'],
             content: modifiedContent,
             buttons: dialogButons,
-            submit: result => {
+            submit: (result, dialog) => {
                 const buttonAction = dialogButons.find(button => button.action == result);
                 const method = buttonAction?.onClick;
                 if (typeof method === 'function') {
                     handleOnClose = false;
-                    method($html);
+                    method($(dialog.element), dialog);
                 } else {
                     console.log(`User picked option: ${buttonAction.label}`);
                 }
@@ -81,26 +83,27 @@ async function createDialog(data, options) {
         options
     );
 
-    const renderedDialog = await dialog.render(true);
-    $html = $(renderedDialog.element);
-    const window = renderedDialog.element.closest(`.${SYSTEM_CLASS_CSS}`)
+    dialog.addEventListener('render', event => {
+        const dialog = event.target;
 
-    if (buttonToRemove) {
-        $html.find(`[data-action="${buttonToRemove}"]`)?.remove();
-    }
+        const $html = $(dialog.element);
 
-    if (typeof onClose === 'function') {
-        renderedDialog.addEventListener('close', () => {
-            if (handleOnClose) {
-                setTimeout(() => {
-                    onClose();
-                }, 50);
-            }
-        });
-    }
+        const buttonToRemove = parsedButtons.fakeButton;
+        if (buttonToRemove) {
+            $html.find(`[data-action="${buttonToRemove}"]`)?.remove();
+        }
 
-    render($html, renderedDialog, window);
-    return renderedDialog;
+        const window = dialog.element.closest(`.${SYSTEM_CLASS_CSS}`);
+
+        render($html, dialog, window);
+    });
+
+    dialog.addEventListener('close', () => {
+        if (handleOnClose && typeof onClose === 'function') {
+            setTimeout(onClose(), 100);
+        }
+    });
+    return await dialog.render(true);
 }
 
 /**
@@ -174,4 +177,27 @@ function parseDialogButtons(buttons) {
         fakeButton: buttonToRemove,
         closeOnSubmit: !parsedButtons.find(button => button.closeDialog == false)
     }
+}
+
+function parseHeaderToControls(header) {
+    const controls = [];
+
+    header?.buttons
+        ?.filter(button => typeof button.onClick === 'function')
+        .forEach(buttonHeader => {
+            controls.push(
+                {
+                    action: buttonHeader.label ?? "clicou",
+                    icon: buttonHeader.icon ?? 'fas fa-add',
+                    label: buttonHeader.label ?? "label",
+                    onClick: (event, params) => {
+                        buttonHeader.onClick();
+                    },
+                    ownership: buttonHeader.ownership ?? CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER,
+                    visible: true,
+                }
+            );
+        });
+
+    return controls;
 }

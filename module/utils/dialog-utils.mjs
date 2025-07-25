@@ -5,7 +5,7 @@ import { FoundryApi } from "./foundry-api.mjs";
 import { HtmlJsUtils } from "./html-js-utils.mjs";
 
 export class DialogUtils {
-    static presetDialogRender(html, params = {}) {
+    static presetDialogV1Render(html, params = {}) {
         const div = html[0]?.parentElement;
         if (!div) {
             return null;
@@ -14,9 +14,9 @@ export class DialogUtils {
         div.classList.add(SYSTEM_CLASS_CSS);
         div.parentElement.style.height = 'auto';
 
-        const paramsContent = params.content;
-        if (paramsContent && typeof paramsContent === 'object') {
-            Object.entries(params.content).forEach(([key, value]) => {
+        const paramsContentStyles = params.contentStyles;
+        if (paramsContentStyles && typeof paramsContentStyles === 'object') {
+            Object.entries(paramsContentStyles).forEach(([key, value]) => {
                 div.style[key] = value;
             });
         }
@@ -26,45 +26,45 @@ export class DialogUtils {
             firtsChild.classList.add('S0-page-transparent');
         }
 
-        this.#setupHeaderParams(div, params);
-        this.#setupDialogButtons(div);
+        this.#setupHeaderParams(div, params.header);
+        this.#verifyRemoveDialogButtonsContainer(div);
 
         HtmlJsUtils.setupHeader(html);
 
         return div.closest(`.${SYSTEM_CLASS_CSS}`);
     }
 
-    static #setupHeaderParams(div, params) {
-        const header = div.parentElement.children[0];
-        header.style.color = 'var(--primary-color)';
+    static #setupHeaderParams(div, paramsHeader) {
+        const headerElement = div.parentElement.children[0];
+        headerElement.style.color = 'var(--primary-color)';
 
-        if (params.header) {
-            const defaultChildren = [...header.children];
+        if (paramsHeader) {
+            const defaultChildren = [...headerElement.children];
             if (defaultChildren.length > 0) {
-                header.innerHTML = '';
-                header.appendChild(defaultChildren[0]);
+                headerElement.innerHTML = '';
+                headerElement.appendChild(defaultChildren[0]);
                 onArrayRemove(defaultChildren, defaultChildren[0]);
             }
 
-            const buttons = params.header.buttons || [];
+            const buttons = paramsHeader.buttons || [];
             buttons.forEach(button => {
                 const elementA = createA(button.label, {
-                    icon: button.icon
+                    icon: { class: button.icon }
                 });
 
                 elementA.onclick = event => button.onClick();
-                header.appendChild(elementA)
+                headerElement.appendChild(elementA)
             });
 
             if (defaultChildren.length > 0) {
                 defaultChildren.forEach(child => {
-                    header.appendChild(child);
+                    headerElement.appendChild(child);
                 });
             }
         }
     }
 
-    static #setupDialogButtons(div) {
+    static #verifyRemoveDialogButtonsContainer(div) {
         const buttons = div.querySelectorAll('.dialog-button').length || 0;
         if (buttons == 0) {
             div.querySelector('.dialog-buttons')?.remove();

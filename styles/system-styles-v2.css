@@ -36,4 +36,10 @@
     box-shadow: 0 0 6px var(--primary-color-alpha);
 }
 
+.S0-V2.S0-content .form-group input[type="checkbox"]:enabled:checked:hover {
+    background-color: var(--color-red-alpha);
+    border-color: var(--color-red-alpha);
+    box-shadow: 0 0 6px var(--color-red-alpha);
+}
+
 /* #endregion */

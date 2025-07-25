@@ -805,7 +805,7 @@ body {
 .S0-button-delete {
     color: var(--on-color-red) !important;
     background-color: var(--color-red-alpha-50) !important;
-    border-color: var(--color-red-alpha) !important;
+    border-color: var(--color-red-alpha-50) !important;
 }
 
 .S0-button-delete:hover {

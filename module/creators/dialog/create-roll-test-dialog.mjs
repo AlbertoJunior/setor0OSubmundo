@@ -5,6 +5,7 @@ import { ConfirmationDialog } from "./confirmation-dialog.mjs";
 import { RollTestUtils } from "../../core/rolls/roll-test-utils.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
 import { FoundryApi } from "../../utils/foundry-api.mjs";
+import { DialogUtils } from "../../utils/dialog-utils.mjs";
 
 export class CreateRollableTestDialog {
     static async view(rollTestData) {
@@ -16,18 +17,18 @@ export class CreateRollableTestDialog {
         const isCreate = rollTestData == undefined;
 
         const buttons = this.#createButtons(rollTestData, { confirm: onConfirm, delete: onDelete });
-        const content = await this.#mountContent(rollTestData, needConfirmation, buttons);
+        const content = await this.#mountContent(rollTestData, needConfirmation);
         const mode = this.#getDialogMode(isCreate, needConfirmation);
+        const header = this.#setupParamsHeader(isCreate, rollTestData);
 
-        FoundryApi.createDialog({
-            title: `${mode}: Teste`,
-            content,
-            render: (html, dialog) => {
-                const params = {}
-                this.#setupParamsHeader(isCreate, rollTestData, params);
-                this.#setupButtons(buttons, html, dialog);
-            },
-        });
+        FoundryApi.createDialog(
+            {
+                title: `${mode}: Teste`,
+                header: header,
+                content: content,
+                buttons: buttons
+            }
+        );
     }
 
     static #createButtons(rollableData, eventButtons) {
@@ -36,65 +37,60 @@ export class CreateRollableTestDialog {
         const haveOnDelete = onDelete !== undefined;
         const inCreate = !rollableData && haveOnConfirm;
 
-        let buttons;
+        const buttons = [];
         if (haveOnConfirm) {
-            buttons = {};
-
             if (haveOnDelete) {
-                buttons['delete'] = {
+                buttons.push({
                     label: localize("Apagar"),
                     closeDialog: false,
-                    classes: 'S0-button-delete',
-                    icon: 'fa-trash',
-                    callback: (html, dialog) => {
+                    icon: 'fas fa-trash',
+                    class: ['S0-button-delete'],
+                    onClick: (html, dialog) => {
                         ConfirmationDialog.open({
                             onConfirm: () => {
+                                dialog?.close();
                                 onDelete(rollableData);
-                                dialog.close();
                             }
                         });
                     }
-                };
+                });
             } else {
-                buttons['cancel'] = {
+                buttons.push({
                     label: localize("Cancelar"),
-                    classes: 'S0-button-confirm',
-                };
+                    class: ['S0-button-confirm'],
+                });
             }
 
-            buttons['confirm'] = {
-                label: inCreate ? localize("Criar") : localize("Editar"),
-                classes: 'S0-button-confirm',
-                icon: inCreate ? 'fa-square-plus' : 'fa-edit',
-                callback: (html, dialog) => {
-                    const form = html[0].querySelector("form");
-                    const formData = new FormData(form);
-                    const data = Object.fromEntries(formData.entries());
-                    const parsed = {
-                        id: rollableData?.id || randomId(),
-                        name: data.name,
-                        primary_attribute: data.primary_attribute,
-                        secondary_attribute: data.secondary_attribute,
-                        ability: data.ability,
-                        bonus: Number(data.bonus || 0),
-                        automatic: Number(data.automatic || 0),
-                        difficulty: Number(data.difficulty || 6),
-                        critic: Number(data.critic || 10),
-                        specialist: Boolean(formData.has("specialist"))
-                    };
-                    onConfirm(parsed);
+            buttons.push(
+                {
+                    label: inCreate ? localize("Criar") : localize("Editar"),
+                    class: ['S0-button-confirm'],
+                    icon: inCreate ? 'fas fa-square-plus' : 'fas fa-edit',
+                    default: !inCreate,
+                    onClick: (html) => {
+                        const data = DialogUtils.getDialogFormData(html);
+                        const parsed = {
+                            id: rollableData?.id || randomId(),
+                            name: data.name,
+                            primary_attribute: data.primaryAttribute,
+                            secondary_attribute: data.secondaryAttribute,
+                            ability: data.ability,
+                            bonus: Number(data.bonus || 0),
+                            automatic: Number(data.automatic || 0),
+                            difficulty: Number(data.difficulty || 6),
+                            critic: Number(data.critic || 10),
+                            specialist: Boolean(data.specialist)
+                        };
+                        onConfirm(parsed);
+                    }
                 }
-            };
-
-            Object.keys(buttons).forEach(key => {
-                buttons[key].key = key;
-            });
+            )
         }
 
         return buttons;
     }
 
-    static async #mountContent(rollableData, needConfirmation, buttons) {
+    static async #mountContent(rollableData, needConfirmation) {
         const data = {
             uuid: `form_dialog.${randomId(10)}`,
             canEdit: needConfirmation,
@@ -105,7 +101,6 @@ export class CreateRollableTestDialog {
             bonus: 0,
             automatic: 0,
             specialist: false,
-            buttons: buttons !== undefined ? Object.values(buttons) : null,
             ...rollableData
         };
 
@@ -125,37 +120,22 @@ export class CreateRollableTestDialog {
         return mode;
     }
 
-    static #setupParamsHeader(isCreate, rollTestData, params) {
-        if (!isCreate) {
-            params['header'] = {
-                buttons: [
-                    {
-                        label: localize("Criar_Macro"),
-                        icon: { class: 'fas fa-code' },
-                        onClick: async () => {
-                            await RollTestUtils.createMacroByRollTestData(rollTestData);
-                        }
-                    }
-                ]
-            }
-        }
-    }
+    static #setupParamsHeader(isCreate, rollTestData) {
+        const headerButtons = [];
 
-    static #setupButtons(buttons, html, dialog) {
-        if (buttons) {
-            Object.keys(buttons).forEach(key => {
-                const button = buttons[key];
-                const buttonElement = html.find(`[data-action="${key}"]`);
-                buttonElement.on("click", () => {
-                    if (button.callback !== undefined) {
-                        button.callback(html, dialog);
-                        if (button.closeDialog == false) {
-                            return;
-                        }
+        if (!isCreate) {
+            headerButtons.push(
+                {
+                    label: localize("Criar_Macro"),
+                    icon: 'fas fa-code',
+                    onClick: async () => {
+                        await RollTestUtils.createMacroByRollTestData(rollTestData);
                     }
-                    dialog.close();
-                });
-            });
+                }
+            );
         }
+        return {
+            buttons: headerButtons
+        };
     }
 }
