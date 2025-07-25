@@ -7,5 +7,8 @@ export const SystemFlags = Object.freeze({
         EDITABLE: 'editable',
         DARK: 'darkMode',
         COMPACT: 'compactMode',
+    },
+    OTHER: {
+        LAST_REFRESH: 'lastRefresh'
     }
 });

@@ -130,4 +130,58 @@ export class HtmlJsUtils {
             onDrop(actor, event);
         });
     }
+
+    static setupTabs(html, group = "menu-tabs", contentSelector = ".S0-nav-content", currentTabIndex = 0, onTabClicked = (tab, index) => { }) {
+        if (!html) {
+            console.warn("the HTML is null");
+            return;
+        }
+
+        const classTabs = "S0-sheet-tabs";
+        const navSelector = `nav.${classTabs}[data-group="${group}"]`;
+        const nav = html.find(navSelector);
+        if (!nav.length) {
+            console.warn(`Tabs: nav[data-group="${group}"] não encontrado.`);
+            return;
+        }
+
+        const isCompacted = FlagsUtils.getItemFlag(game.user, SystemFlags.MODE.COMPACT);
+        const classes = `S0-simulate-button ${isCompacted ? 'S0-compact' : ''}`
+
+        const tabs = html.find(`.tab[data-group="${group}"][data-tab]`);
+        tabs.each((_, element) => {
+            const tab = $(element);
+            const tabName = tab.data("tab");
+            const label = tab.data("label");
+            const icon = tab.data("icon") || "fa-circle";
+
+            if (!tabName || !label) {
+                const identifier = element.outerHTML.split("\n")[0]?.trim();
+                console.warn(`Tab ignorada: falta 'data-tab' ou 'data-label' em ${identifier}`);
+                return;
+            }
+
+            const button = $(`<a class="${classes}" data-tab="${tabName}" title="${label}"><i class="fas ${icon}"></i>${isCompacted ? '' : label}</a>`);
+            nav.append(button);
+        });
+
+        const initial = tabs[currentTabIndex]?.dataset?.tab ?? ""
+
+        const tabsInstance = new FoundryApi.Tabs({
+            navSelector: navSelector,
+            contentSelector: contentSelector,
+            initial: initial,
+        });
+        tabsInstance.bind(html[0]);
+
+        html.find(`${navSelector} a[data-tab]`).on("click", event => {
+            if (typeof onTabClicked === 'function') {
+                const selectedTab = $(event.currentTarget).data("tab");
+                const index = Object.values(tabs).findIndex(el => el.dataset.tab === selectedTab);
+                onTabClicked(selectedTab, index);
+            } else {
+                console.warn("onTabClicked is not a function");
+            }
+        });
+    }
 }

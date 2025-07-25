@@ -12,6 +12,7 @@ export class NpcConversor {
             actor: {
                 id: actor.id,
                 uuid: actor.uuid,
+                isOwner: actor.isOwner,
                 name: actor.name,
                 img: actor.img,
                 system: {

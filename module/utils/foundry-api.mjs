@@ -3,24 +3,45 @@ import { createApplication } from "./api-versions-overrides/create-application.m
 const ApplicationV1 = createApplication("v1");
 const ApplicationV2 = createApplication("v2", ["v1"]);
 
+const Versions = {
+    current: Object.freeze(ApplicationV2),
+    v1: Object.freeze(ApplicationV1),
+    v2: Object.freeze(ApplicationV2),
+};
+
 function convertToClass(BaseClass, application) {
+    if (!application) {
+        application = Versions.current;
+    }
+
     const cls = {
         [BaseClass.name]: class extends BaseClass {
             static VERSION = application.VersionName;
         }
     }[BaseClass.name];
-    return cls;
+    return Object.freeze(cls);
 }
 
 export class FoundryApi {
-    static Versions = {
-        v1: ApplicationV1,
-        v2: ApplicationV2,
-    };
+    static Versions = Versions;
+
+    static Utils = Versions.current.Utils;
+    static Handlebars = Versions.current.Handlebars;
+    static Collections = Versions.current.Collections;
+    static ChatMessage = Object.freeze({
+        getWhisperRecipients: (recipient) => Versions.current.ChatMessage.getWhisperRecipients(recipient),
+        getSpeaker: (actor) => Versions.current.ChatMessage.getSpeaker({ actor: actor }),
+        create: async (messageData, optionsMode) => await Versions.current.ChatMessage.create(messageData, optionsMode)
+    });
+
+    static CombatTracker = convertToClass(Versions.current.CombatTracker);
+    static SceneControls = convertToClass(Versions.current.Ui.SceneControls);
+    static ImagePopout = convertToClass(Versions.current.Apps.ImagePopout);
+    static Tabs = convertToClass(Versions.current.Ux.Tabs);
 
     //#region UPDATED 
-    // static ActorSheet = convertToClass(ApplicationV2.makeClass(ApplicationV2.Sheets.ActorSheet), ApplicationV2);
-    // static ItemSheet = convertToClass(ApplicationV2.makeClass(ApplicationV1.Sheets.ItemSheet), ApplicationV2);
+    // static ActorSheet = convertToClass(Versions.current.makeClass(Versions.current.Sheets.ActorSheet));
+    // static ItemSheet = convertToClass(Versions.current.makeClass(Versions.current.Sheets.ItemSheet));
     //#endregion
 
     //#region NEED UPDATE to V2
@@ -28,31 +49,35 @@ export class FoundryApi {
     static ItemSheet = convertToClass(ApplicationV1.makeClass(ApplicationV1.Sheets.ItemSheet), ApplicationV1);
     //#endregion
 
-    static Actors = convertToClass(ApplicationV2.Collections.Actors, ApplicationV2);
-    static Items = convertToClass(ApplicationV2.Collections.Items, ApplicationV2);
-
-    static CombatTracker = convertToClass(ApplicationV2.CombatTracker, ApplicationV2);
-
-    static SceneControls = Object.freeze(ApplicationV2.Ui.SceneControls);
-    static ImagePopout = Object.freeze(ApplicationV2.Apps.ImagePopout);
-    static Tabs = Object.freeze(ApplicationV2.Ux.Tabs);
-
-    static ChatMessage = Object.freeze({
-        getWhisperRecipients: (recipient) => ApplicationV2.ChatMessage.getWhisperRecipients(recipient),
-        getSpeaker: (actor) => ApplicationV2.ChatMessage.getSpeaker({ actor: actor }),
-        create: async (messageData, optionsMode) => await ApplicationV2.ChatMessage.create(messageData, optionsMode)
-    });
+    static Actors = convertToClass(this.Collections.Actors);
+    static Items = convertToClass(this.Collections.Items);
 
     static async renderTemplate(path, data) {
-        return ApplicationV2.Handlebars.renderTemplate(path, data);
+        return this.Handlebars.renderTemplate(path, data);
+    }
+
+    static async reRenderAllSheets() {
+        // if (Versions.current == ApplicationV1) {
+            Object.values(foundry.ui.windows)
+                .filter(app => app.rendered && typeof app.render === 'function')
+                .forEach(sheet => {
+                    sheet.render();
+                });
+        // } else {
+            // Object.values(foundry.ui.activeWindow)
+            //     .filter(app => app.rendered && typeof app.render === 'function')
+            //     .forEach(sheet => {
+            //         sheet.render();
+            //     });
+        // }
     }
 
     static async loadTemplates(path, data) {
-        return ApplicationV2.Handlebars.loadTemplates(path, data);
+        return this.Handlebars.loadTemplates(path, data);
     }
 
     static mergeObject(object1, object2) {
-        return ApplicationV2.Utils.mergeObject(object1, object2);
+        return this.Utils.mergeObject(object1, object2);
     }
 
     static async createDialog(
@@ -60,7 +85,7 @@ export class FoundryApi {
         options,
         forcedApplication,
     ) {
-        let application = forcedApplication ?? ApplicationV2;
+        let application = forcedApplication ?? Versions.current;
         const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
         if (isSafari) {
             application = ApplicationV1;

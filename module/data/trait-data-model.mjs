@@ -1,4 +1,5 @@
 import { SYSTEM_ID, TEMPLATES_PATH } from "../constants.mjs";
+import { FoundryApi } from "../utils/foundry-api.mjs";
 
 const { NumberField, StringField, BooleanField } = foundry.data.fields;
 
@@ -14,7 +15,7 @@ class TraitDataModel extends foundry.abstract.TypeDataModel {
     }
 
     static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
+        return FoundryApi.mergeObject(super.defaultOptions, {
             classes: [SYSTEM_ID, "sheet", "item", "trait"],
             template: `${TEMPLATES_PATH}/traits/trait-sheet.hbs`,
             width: 600,

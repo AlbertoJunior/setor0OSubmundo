@@ -1,6 +1,6 @@
 import { FoundryApi } from "../../utils/foundry-api.mjs";
 
-class MySceneControls extends FoundryApi.SceneControls {
+class Setor0SceneControls extends FoundryApi.SceneControls {
     _onClickLayer(event) {
         const layerName = event.currentTarget.dataset.canvasLayer;
         if (!layerName) {
@@ -16,6 +16,6 @@ class MySceneControls extends FoundryApi.SceneControls {
 }
 
 export function configureSetor0SceneControl() {
-    ui.controls = new MySceneControls();
+    ui.controls = new Setor0SceneControls();
     ui.controls.render(true);
 }

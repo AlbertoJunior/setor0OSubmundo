@@ -33,7 +33,7 @@ export async function registerNpc() {
 
 export const NpcSheetSize = {
     width: 680,
-    height: 454,
+    height: 460,
 }
 
 class Setor0NpcSheet extends Setor0BaseActorSheet {
@@ -77,7 +77,7 @@ class Setor0NpcSheet extends Setor0BaseActorSheet {
     }
 
     static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
+        return FoundryApi.mergeObject(super.defaultOptions, {
             classes: [SYSTEM_CLASS_CSS, "sheet", "actor"],
             template: `${TEMPLATES_PATH}/npc/npc-sheet.hbs`,
             width: NpcSheetSize.width,

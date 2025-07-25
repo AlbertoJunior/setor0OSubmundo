@@ -3,6 +3,7 @@ import { configureSetor0SceneControl } from "../core/scene/scene-control.mjs";
 import { NotificationsUtils } from "../creators/message/notifications.mjs";
 import { SystemFlags } from "../enums/flags-enums.mjs";
 import { FlagsUtils } from "../utils/flags-utils.mjs";
+import { FoundryApi } from "../utils/foundry-api.mjs";
 
 export class SceneHookHandle {
     static async register() {
@@ -31,10 +32,7 @@ export class SceneHookHandle {
                         const actualMode = FlagsUtils.getItemFlag(game.user, SystemFlags.MODE.DARK, false);
                         await FlagsUtils.setItemFlag(game.user, SystemFlags.MODE.DARK, !actualMode);
 
-                        Object.values(ui.windows).filter(app => app instanceof ActorSheet || app instanceof ItemSheet)
-                            .forEach(sheet => {
-                                sheet.render();
-                            });
+                        FoundryApi.reRenderAllSheets()
                         NotificationsUtils.info(`Tema ${actualMode ? "Claro" : "Escuro"} ativado.`);
                     }
                 },
@@ -46,10 +44,7 @@ export class SceneHookHandle {
                     onClick: async () => {
                         const actualMode = FlagsUtils.getItemFlag(game.user, SystemFlags.MODE.COMPACT, false);
                         await FlagsUtils.setItemFlag(game.user, SystemFlags.MODE.COMPACT, !actualMode);
-                        Object.values(ui.windows).filter(app => app instanceof ActorSheet || app instanceof ItemSheet)
-                            .forEach(sheet => {
-                                sheet.render();
-                            });
+                        FoundryApi.reRenderAllSheets()
                         NotificationsUtils.info(`Modo ${actualMode ? "Expandido" : "Compacto"} ativado.`);
                     }
                 }

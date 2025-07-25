@@ -16,7 +16,7 @@
                     <label for="experiencia.atual">{{localize 'S0.Disponivel'}}</label>
                 </h3>
                 <h4>
-                    <input id="experiencia.atual" name="system.experiencia.atual" type="text"
+                    <input id="experiencia.atual" name="system.experiencia.atual" type="number"
                         value="{{actorValues actor 'actual_experience'}}" placeholder="0" />
                 </h4>
             </li>
@@ -32,7 +32,7 @@
                     <label for="experiencia.usada">{{localize 'S0.Usada'}}</label>
                 </h3>
                 <h4>
-                    <input id="experiencia.usada" name="system.experiencia.usada" type="text"
+                    <input id="experiencia.usada" name="system.experiencia.usada" type="number"
                         value="{{actorValues actor 'used_experience'}}" placeholder="0" />
                 </h4>
             </li>
@@ -256,7 +256,7 @@
 
             <li class="S0-container" style="flex: 3">
                 <h3>
-                    {{ localize 'S0.Vitalidade' }}
+                    {{ localize 'S0.Dano' }}
                     <label style="font-size: var(--font-size-11);">
                         {{actorValues actor 'current_damage'}}/{{actorValues actor 'vitality'}}
                     </label>
