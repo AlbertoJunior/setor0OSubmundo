@@ -19,6 +19,15 @@ export class TokenUtils {
         }
     }
 
+    static getTokenById(tokenId) {
+        if (!tokenId) {
+            console.warn("tokenId is null");
+            return;
+        }
+
+        return this.getTokensPlaceables().find(t => t.id === tokenId);
+    }
+
     static getActorToken(actor) {
         if (!actor) {
             console.warn("Actor is null");

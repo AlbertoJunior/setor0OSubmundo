@@ -62,7 +62,8 @@ export class OscillatingTintManager {
     }
 
     static verifyOscilatingTokens() {
-        for (const token of canvas.tokens.placeables) {
+        const tokensOnCanvas = TokenUtils.getTokensPlaceables() ?? [];
+        for (const token of tokensOnCanvas) {
             const actor = token.actor;
             if (!actor) {
                 continue;

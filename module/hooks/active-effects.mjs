@@ -3,6 +3,7 @@ import { OscillatingTintManager } from "../core/effect/oscilating-effect-manager
 import { FlagsUtils } from "../utils/flags-utils.mjs";
 import { ActiveEffectsFlags } from "../enums/active-effects-enums.mjs";
 import { TokenUtils } from "../core/token/token-utils.mjs";
+import { Setor0TokenDocument } from "../core/token/Setor0TokenDocument.mjs";
 
 export class ActiveEffectHookHandle {
     static register() {
@@ -13,7 +14,7 @@ export class ActiveEffectHookHandle {
     static async #onCreateActiveEffect(effect, options, userId) {
         if (game.user.isGM) {
             await ActiveEffectHookHandle.#verifyRemoveChain(effect, options, userId)
-            await ActiveEffectHookHandle.#verifyChangeTokenTint(effect);
+            await ActiveEffectHookHandle.#verifyChangeTokenTint(effect, options);
         }
     }
 
@@ -32,11 +33,16 @@ export class ActiveEffectHookHandle {
         await ActiveEffectsUtils.removeActorEffects(actor, actorEffects);
     }
 
-    static async #verifyChangeTokenTint(effect) {
-        const actor = effect.parent;
-
-        const token = TokenUtils.getActorToken(actor);
+    static async #verifyChangeTokenTint(effect, options) {
+        const token = this.#getToken(options);
         if (!token) {
+            console.warn("this object not have a token")
+            return;
+        }
+
+        const actor = token.actor;
+        if (!actor) {
+            console.warn("Token Actor is invalid");
             return;
         }
 
@@ -49,6 +55,20 @@ export class ActiveEffectHookHandle {
                 await TokenUtils.updateDocument(token, { [ActiveEffectsUtils.KEYS.TINT_TOKEN]: tintChange.value });
             }
         }
+    }
+
+    static #getToken(options) {
+        const parent = options.parent;
+        if (parent instanceof Actor) {
+            return TokenUtils.getActorToken(parent);
+        }
+
+        if (parent.parent instanceof Setor0TokenDocument) {
+            return TokenUtils.getTokenById(parent.parent.id);
+        }
+
+        console.warn("this object not have oscilating token tint")
+        return;
     }
 
     static async #verifyRemoveTokenTint(effect) {

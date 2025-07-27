@@ -172,7 +172,10 @@
 
 .S0-page-transparent .S0-actor-container-button a {
     color: var(--on-primary-color);
-    text-shadow: none;
+}
+
+.S0-page-transparent .S0-actor-container-button .S0-actor-button:hover {
+    text-shadow: 0px 0px 6px var(--secondary-color-alpha-50);
 }
 
 .S0-content .S0-page-transparent input[type="checkbox"] {

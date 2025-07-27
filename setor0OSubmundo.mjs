@@ -4,6 +4,7 @@ import { CreateItemHookHandle } from "./module/hooks/create-item.mjs";
 import { CreateCombatHookHandle } from "./module/hooks/create-combat.mjs";
 import { UpdateActorHookHandle } from "./module/hooks/update-actor.mjs";
 import { UpdateTokenHookHandle } from "./module/hooks/update-token.mjs";
+import { SceneHookHandle } from "./module/hooks/scene.mjs";
 
 Hooks.once('init', async function () {
   await InitHookHandle.handle();
@@ -21,10 +22,14 @@ Hooks.on('createCombat', (combat) => {
   CreateCombatHookHandle.handle(combat);
 });
 
-Hooks.on("updateActor", (updatedActor, changes, options, userId) => {
+Hooks.on('updateActor', (updatedActor, changes, options, userId) => {
   UpdateActorHookHandle.handle(updatedActor, changes, options, userId);
 });
 
-Hooks.on("updateToken", (updatedToken, changes, options, userId) => {
+Hooks.on('updateToken', (updatedToken, changes, options, userId) => {
   UpdateTokenHookHandle.handle(updatedToken, changes, options, userId);
+});
+
+Hooks.on('getSceneControlButtons', (controls) => {
+  SceneHookHandle.getSceneControlButtons(controls);
 });

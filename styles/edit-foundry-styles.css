@@ -80,6 +80,23 @@ button.plain.active {
     border-radius: 4px 4px 0px 0px;
 }
 
+.tabs.faded-ui button.plain.active {
+    border-radius: 4px;
+}
+
+#hotbar-controls-right {
+    min-height: 64px;
+}
+
+#hotbar #hotbar-page-controls .hotbar-page-number {
+    width: auto;
+    height: auto;
+    margin: 0;
+    position: unset;
+    top: unset;
+    left: unset;
+}
+
 h1.divider,
 h2.divider,
 h3.divider,

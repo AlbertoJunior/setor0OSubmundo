@@ -1,4 +1,3 @@
-import { SceneHookHandle } from "./scene.mjs";
 import { OscillatingTintManager } from "../core/effect/oscilating-effect-manager.mjs";
 import { RepositoriesUtils } from "../utils/repositories.mjs";
 import { ActiveEffectRepository } from "../repository/active-effects-repository.mjs";
@@ -13,16 +12,7 @@ export class ReadyHookHandle {
         await this.#repositories();
         await this.#sheets();
         await this.#macro();
-
         this.#effects();
-
-        await SceneHookHandle.register();
-
-        if (!game.user.isGM) {
-            console.log('-> Setor 0 - O Submundo | Sistema Pronto');
-            return;
-        }
-
         this.#loadOnlyForGm();
     }
 
@@ -51,6 +41,11 @@ export class ReadyHookHandle {
     }
 
     static async #loadOnlyForGm() {
+        if (!game.user.isGM) {
+            console.log('-> Setor 0 - O Submundo | Sistema Pronto');
+            return;
+        }
+
         await MacroInstaller.installDefaultMacrosOnGm();
 
         OscillatingTintManager.verifyOscilatingTokens();

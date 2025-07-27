@@ -450,7 +450,8 @@
         "ToFront": "Enviar para frente",
         "ToBack": "Enviar para trás",
         "Elevation": "Elevação",
-        "OpenConfig": "Configuração"
+        "OpenConfig": "Configuração",
+        "SelectMovementAction": "Selecionar tipo de movimento"
     },
     "COMBAT": {
         "CombatantConfig": "Configuração de Combatente",
@@ -575,7 +576,38 @@
         "WarningNoVision": "Não há nenhum Token nesta Cena que lhe conceda visibilidade da área.",
         "Mirror": "Espelhar Imagem",
         "MirrorX": "Horizontal",
-        "MirrorY": "Vertical"
+        "MirrorY": "Vertical",
+        "MOVEMENT": {
+            "ACTIONS": {
+                "blink": {
+                    "label": "Teleport (Blink)"
+                },
+                "burrow": {
+                    "label": "Burrow"
+                },
+                "climb": {
+                    "label": "Escalar"
+                },
+                "crawl": {
+                    "label": "Crawl"
+                },
+                "displace": {
+                    "label": "Teleport (Displace)"
+                },
+                "jump": {
+                    "label": "Pular"
+                },
+                "fly": {
+                    "label": "Voar"
+                },
+                "swim": {
+                    "label": "Nadar"
+                },
+                "walk": {
+                    "label": "Andar"
+                }
+            }
+        }
     },
     "EFFECT": {
         "StatusDead": "Morto",
@@ -719,6 +751,12 @@
         "HoursAbbreviation": "h",
         "DaysAbbreviation": "d",
         "Since": "{since} atrás"
+    },
+    "APPLICATION": {
+        "TOOLS": {
+            "ToggleControls": "Exibir comandos",
+            "Close": "Fechar janela"
+        }
     },
     "AreYouSure": "Tem certeza?",
     "Yes": "Sim",
