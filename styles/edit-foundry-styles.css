@@ -92,9 +92,18 @@ h4.divider {
     gap: 1.2rem
 }
 
+.category-browser aside nav.tabs>button .count {
+    color: unset;
+}
+
 .combat-sidebar .combat-tracker .token-initiative {
     flex: 1;
     max-width: 40px;
+}
+
+.combat-sidebar .combat-tracker .combatant.active {
+    background: var(--color-gray-alpha-50);
+    box-shadow: 0px 0px 6px var(--primary-color);
 }
 
 .combat-sidebar .combat-tracker .combatant.active::before {
@@ -113,6 +122,7 @@ h4.divider {
 }
 
 .combat-sidebar .combat-tracker :is(.token-initiative input, .token-resource) {
+    font-size: var(--font-size-18);
     color: var(--primary-color);
 }
 

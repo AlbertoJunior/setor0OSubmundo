@@ -7,6 +7,7 @@ const baseApplicationConfig = Object.freeze({
     Version: foundry.applications,
     Api: foundry.applications.api,
     Handlebars: foundry.applications.handlebars,
+    Documents: foundry.documents,
     Collections: foundry.documents.collections,
     ChatMessage: ChatMessage,
     CombatTracker: foundry.applications.sidebar.tabs.CombatTracker,

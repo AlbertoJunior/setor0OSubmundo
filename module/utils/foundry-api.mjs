@@ -28,6 +28,7 @@ export class FoundryApi {
     static Utils = Versions.current.Utils;
     static Handlebars = Versions.current.Handlebars;
     static Collections = Versions.current.Collections;
+    static Documents = Versions.current.Documents;
     static ChatMessage = Object.freeze({
         getWhisperRecipients: (recipient) => Versions.current.ChatMessage.getWhisperRecipients(recipient),
         getSpeaker: (actor) => Versions.current.ChatMessage.getSpeaker({ actor: actor }),
@@ -51,6 +52,7 @@ export class FoundryApi {
 
     static Actors = convertToClass(this.Collections.Actors);
     static Items = convertToClass(this.Collections.Items);
+    static Combat = convertToClass(this.Documents.Combat);
 
     static async renderTemplate(path, data) {
         return this.Handlebars.renderTemplate(path, data);
@@ -58,17 +60,17 @@ export class FoundryApi {
 
     static async reRenderAllSheets() {
         // if (Versions.current == ApplicationV1) {
-            Object.values(foundry.ui.windows)
-                .filter(app => app.rendered && typeof app.render === 'function')
-                .forEach(sheet => {
-                    sheet.render();
-                });
+        Object.values(foundry.ui.windows)
+            .filter(app => app.rendered && typeof app.render === 'function')
+            .forEach(sheet => {
+                sheet.render();
+            });
         // } else {
-            // Object.values(foundry.ui.activeWindow)
-            //     .filter(app => app.rendered && typeof app.render === 'function')
-            //     .forEach(sheet => {
-            //         sheet.render();
-            //     });
+        // Object.values(foundry.ui.activeWindow)
+        //     .filter(app => app.rendered && typeof app.render === 'function')
+        //     .forEach(sheet => {
+        //         sheet.render();
+        //     });
         // }
     }
 

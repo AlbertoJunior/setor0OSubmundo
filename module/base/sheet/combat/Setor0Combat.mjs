@@ -1,8 +1,26 @@
 import { ActorUtils } from "../../../core/actor/actor-utils.mjs";
 import { DefaultActions } from "../../../utils/default-actions.mjs";
 import { ActiveEffectsUtils } from "../../../core/effect/active-effects.mjs";
+import { FoundryApi } from "../../../utils/foundry-api.mjs";
 
-class Setor0Combat extends Combat {
+class Setor0Combatant extends CONFIG.Combatant.documentClass {
+    updateResource() {
+        if (!this.actor || !this.combat) {
+            return this.resource = null;
+        }
+        const value = FoundryApi.Utils.getProperty(this.actor.system, this.parent.settings.resource);
+
+        if (value == null || value == undefined) {
+            this.resource = value;
+        } else {
+            this.resource = Number(value);
+        }
+
+        return this.resource;
+    }
+}
+
+class Setor0Combat extends FoundryApi.Combat {
     getData() {
         const data = super.getData();
         return data;
@@ -29,10 +47,6 @@ class Setor0Combat extends Combat {
         }
 
         return formula + ActorUtils.calculateInitiative(actor);
-    }
-
-    updateResource() {
-        debugger
     }
 
     async startCombat() {
@@ -84,4 +98,5 @@ class Setor0Combat extends Combat {
 
 export async function configureSetor0Combat() {
     CONFIG.Combat.documentClass = Setor0Combat;
+    CONFIG.Combatant.documentClass = Setor0Combatant;
 }

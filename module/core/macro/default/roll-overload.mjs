@@ -15,7 +15,7 @@ export const rollOverloadMacroData = {
   command: `
 ${verifyAndReturnSelectedToken}
 ${verifyAndReturnActor}
-await globalThis.MacroMethods.overload(actor);
+await globalThis.${SYSTEM_ID}.MacroMethods.overload(actor);
 `,
   img: `${ICONS_PATH}/overload.svg`,
   type: "script"

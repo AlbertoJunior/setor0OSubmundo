@@ -25,12 +25,13 @@ const addicted = ActiveEffectsUtils.createEffectData({
         [ActiveEffectsFlags.ORIGIN_ID]: addictedId,
         [ActiveEffectsFlags.ORIGIN_TYPE]: ActiveEffectsOriginTypes.AFFECTED_ENHANCEMENT,
         [ActiveEffectsFlags.TYPE]: ActiveEffectsTypes.DEBUFF,
+        [ActiveEffectsFlags.ALWAYS_SHOW_ON_TOKEN]: false,
     }
 });
 
 const mesmerized = ActiveEffectsUtils.createEffectData({
     id: mesmerizedId,
-    name: "S0.Efeito_Ativo.Racionalizando",
+    name: "S0.Efeito_Ativo.Mesmerizado",
     origin: `Aprimoramento: ${influenceEnhancement.name}`,
     img: `${influenceEnhancement.icon}`,
     duration: { rounds: 99, startTime: 0 },
@@ -46,6 +47,7 @@ const mesmerized = ActiveEffectsUtils.createEffectData({
         [ActiveEffectsFlags.ORIGIN_ID]: mesmerizedId,
         [ActiveEffectsFlags.ORIGIN_TYPE]: ActiveEffectsOriginTypes.AFFECTED_ENHANCEMENT,
         [ActiveEffectsFlags.TYPE]: ActiveEffectsTypes.DEBUFF,
+        [ActiveEffectsFlags.ALWAYS_SHOW_ON_TOKEN]: false,
     }
 });
 
@@ -61,6 +63,7 @@ const racionalize = ActiveEffectsUtils.createEffectData({
         [ActiveEffectsFlags.ORIGIN_ID]: racionalizeId,
         [ActiveEffectsFlags.ORIGIN_TYPE]: ActiveEffectsOriginTypes.AFFECTED_ENHANCEMENT,
         [ActiveEffectsFlags.TYPE]: ActiveEffectsTypes.DEBUFF,
+        [ActiveEffectsFlags.ALWAYS_SHOW_ON_TOKEN]: false,
     }
 });
 
@@ -82,6 +85,7 @@ const fascinated = ActiveEffectsUtils.createEffectData({
         [ActiveEffectsFlags.ORIGIN_ID]: fascinatedId,
         [ActiveEffectsFlags.ORIGIN_TYPE]: ActiveEffectsOriginTypes.AFFECTED_ENHANCEMENT,
         [ActiveEffectsFlags.TYPE]: ActiveEffectsTypes.DEBUFF,
+        [ActiveEffectsFlags.ALWAYS_SHOW_ON_TOKEN]: true,
     }
 });
 

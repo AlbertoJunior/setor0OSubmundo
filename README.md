@@ -131,7 +131,7 @@ O Setor 0 conta com um sistema de Macros pré-definidos para novos jogadores. To
   <summary>Métodos Globais para Macros</summary>
   
   ```mjs
-  global.MacroMethods {
+  globalThis.setor0OSubmundo.MacroMethods {
      overload: async (actor) => {
         // recebe um Actor e executa uma rolagem de Sobrecarga (enviando no chat)
      },
@@ -150,7 +150,7 @@ O Setor 0 conta com um sistema de Macros pré-definidos para novos jogadores. To
   - Ao criar o commando do macro, utilize o seguinte código:
   
   ```mjs
-  global.MacroMethods.rollable(actor, rollId);
+  globalThis.setor0OSubmundo.MacroMethods.rollable(actor, rollId);
   ```
 
   - Um Exemplo de uso real:
@@ -168,7 +168,7 @@ O Setor 0 conta com um sistema de Macros pré-definidos para novos jogadores. To
     return;
   }
   
-  await globalThis.MacroMethods.customs.rollable({actor, id: "642750db952e4aed87227edcf74bc05e"});
+  await globalThis.setor0OSubmundo.MacroMethods.customs.rollable({actor, id: "642750db952e4aed87227edcf74bc05e"});
   ```
 </details>
 

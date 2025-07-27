@@ -15,6 +15,7 @@ import { getActorEnhancementSlot } from "../../../../../enums/characteristic-enu
 import { OnEventType } from "../../../../../enums/on-event-type.mjs";
 import { EnhancementDuration } from "../../../../../enums/enhancement-enums.mjs";
 import { activeEffectOriginTypeLabel, ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../../../../enums/active-effects-enums.mjs";
+import { CombatUtils } from "../../../../../core/combat/combat-utils.mjs";
 
 
 export function updateEnhancementLevelsOptions(enhancementId, selects) {
@@ -207,7 +208,7 @@ async function toggleEnhancementEffectOnActor(effect, actor) {
                 [ActiveEffectsFlags.ORIGIN_TYPE_LABEL]: activeEffectOriginTypeLabel(ActiveEffectsOriginTypes.ENHANCEMENT),
                 [ActiveEffectsFlags.TYPE]: ActiveEffectsTypes.BUFF,
                 ...(effect.duration !== EnhancementDuration.PASSIVE && {
-                    [ActiveEffectsFlags.COMBAT_ID]: game.combat?.id
+                    [ActiveEffectsFlags.COMBAT_ID]: CombatUtils.currentCombat()?.id
                 })
             }
         });

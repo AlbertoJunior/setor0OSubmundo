@@ -1,3 +1,4 @@
+import { TokenUtils } from "../token/token-utils.mjs";
 import { ActiveEffectsUtils } from "./active-effects.mjs";
 
 export class OscillatingTintManager {
@@ -30,7 +31,7 @@ export class OscillatingTintManager {
             const nextIndex = (currentIndex + 1) % activeTints.length;
             const nextTint = activeTints[nextIndex];
 
-            await token.document.update({ [ActiveEffectsUtils.KEYS.TINT_TOKEN]: nextTint });
+            await TokenUtils.updateDocument(token, { [ActiveEffectsUtils.KEYS.TINT_TOKEN]: nextTint })
 
             this.#TOKENS.set(token.id, { interval, index: nextIndex });
         }, this.#OSCILLATION_TIME);
@@ -54,9 +55,9 @@ export class OscillatingTintManager {
         if (remainingTintEffect) {
             const tintChange = remainingTintEffect.changes.find(c => c.key === ActiveEffectsUtils.KEYS.TINT_TOKEN);
             const tint = tintChange?.value ?? null;
-            token.document.update({ [ActiveEffectsUtils.KEYS.TINT_TOKEN]: tint });
+            TokenUtils.updateDocument(token, { [ActiveEffectsUtils.KEYS.TINT_TOKEN]: tint });
         } else {
-            token.document.update({ [ActiveEffectsUtils.KEYS.TINT_TOKEN]: null });
+            TokenUtils.updateDocument(token, { [ActiveEffectsUtils.KEYS.TINT_TOKEN]: null });
         }
     }
 

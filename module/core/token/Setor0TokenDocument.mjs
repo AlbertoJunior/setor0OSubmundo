@@ -1,4 +1,69 @@
 import { gameLocalize, localize } from "../../../scripts/utils/utils.mjs";
+import { SYSTEM_ID } from "../../constants.mjs";
+import { ActiveEffectsFlags } from "../../enums/active-effects-enums.mjs";
+
+export class Setor0TokenCanvas extends foundry.canvas.placeables.Token {
+
+    #verifyIsForcedByFlag(effectFlags) {
+        return effectFlags[SYSTEM_ID][ActiveEffectsFlags.ALWAYS_SHOW_ON_TOKEN] ?? false;
+    }
+
+    get haveValidActor() {
+        return this.actor && this.actor.isOwner;
+    }
+
+    #verifyShowEffect(effectFlags) {
+        const canShowByActor = this.haveValidActor;
+        const forcedShow = this.#verifyIsForcedByFlag(effectFlags);
+        return forcedShow || canShowByActor;
+    }
+
+    /**
+     * Sobrescrita do método original @{super._drawEffects()} apenas para poder passar as flags e saber qual efeito pode exibir ou não.
+     */
+    async _drawEffects() {
+        this.effects.renderable = false;
+
+        // Clear Effects Container
+        this.effects.removeChildren().forEach(c => c.destroy());
+        this.effects.bg = this.effects.addChild(new PIXI.Graphics());
+        this.effects.bg.zIndex = -1;
+        this.effects.overlay = null;
+
+        // Categorize effects
+        const activeEffects = this.actor?.temporaryEffects || [];
+        const overlayEffect = activeEffects.findLast(e => e.img && e.getFlag("core", "overlay"));
+
+        // Draw effects
+        const promises = [];
+        for (const [i, effect] of activeEffects.entries()) {
+            if (!effect.img) continue;
+            const promise = effect === overlayEffect
+                ? this._drawOverlay(effect.img, effect.tint, effect.flags)
+                : this._drawEffect(effect.img, effect.tint, effect.flags);
+            promises.push(promise.then(e => {
+                if (e) e.zIndex = i;
+            }));
+        }
+        await Promise.allSettled(promises);
+
+        this.effects.sortChildren();
+        this.effects.renderable = true;
+        this.renderFlags.set({ refreshEffects: true });
+    }
+
+    async _drawEffect(src, tint, flags) {
+        if (this.#verifyShowEffect(flags)) {
+            return super._drawEffect(src, tint);
+        }
+    }
+
+    async _drawOverlay(src, tint, flags) {
+        if (this.#verifyShowEffect(flags)) {
+            return super._drawOverlay(src, tint);
+        }
+    }
+}
 
 export class Setor0TokenDocument extends CONFIG.Token.documentClass {
     static #mappedLabel = new Map();
@@ -43,4 +108,5 @@ export class Setor0TokenDocument extends CONFIG.Token.documentClass {
 
 export async function configureSetor0TokenDocument() {
     CONFIG.Token.documentClass = Setor0TokenDocument;
+    CONFIG.Token.objectClass = Setor0TokenCanvas;
 }

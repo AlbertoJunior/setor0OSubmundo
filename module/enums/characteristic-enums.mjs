@@ -100,7 +100,7 @@ export const CharacteristicType = Object.freeze({
             system: 'system.tracos.ruins',
         }
     },
-    ENHANCEMENT_ALL: { id: 'enhancement_all', system: 'system.aprimoramentos' },
+    ENHANCEMENT_ALL: { id: 'aprimoramentos', system: 'system.aprimoramentos' },
     ENHANCEMENT: { id: 'enhancement', system: 'system.aprimoramentos.aprimoramento' },
     BONUS: {
         id: 'bonus',

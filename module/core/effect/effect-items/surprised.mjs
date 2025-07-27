@@ -20,6 +20,7 @@ const surprised = ActiveEffectsUtils.createEffectData({
         [ActiveEffectsFlags.ORIGIN_ID]: id,
         [ActiveEffectsFlags.ORIGIN_TYPE]: ActiveEffectsOriginTypes.OTHER,
         [ActiveEffectsFlags.TYPE]: ActiveEffectsTypes.DEBUFF,
+        [ActiveEffectsFlags.ALWAYS_SHOW_ON_TOKEN]: true,
     }
 });
 

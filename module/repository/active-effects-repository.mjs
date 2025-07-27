@@ -29,7 +29,8 @@ export class ActiveEffectRepository {
                     flags: {
                         [SYSTEM_ID]: {
                             [ActiveEffectsFlags.ORIGIN_ID]: effect.id,
-                            [ActiveEffectsFlags.TYPE]: ActiveEffectsTypes.DEBUFF
+                            [ActiveEffectsFlags.TYPE]: ActiveEffectsTypes.DEBUFF,
+                            [ActiveEffectsFlags.ALWAYS_SHOW_ON_TOKEN]: true,
                         }
                     }
                 };

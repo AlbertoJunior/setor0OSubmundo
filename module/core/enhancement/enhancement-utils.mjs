@@ -2,6 +2,7 @@ import { EffectChangeValueType, EnhancementDuration } from "../../enums/enhancem
 import { EnhancementRepository } from "../../repository/enhancement-repository.mjs";
 import { ActorUtils } from "../../core/actor/actor-utils.mjs";
 import { ActiveEffectsUtils } from "../effect/active-effects.mjs";
+import { CombatUtils } from "../combat/combat-utils.mjs";
 
 export class EnhancementUtils {
     static valueCalculators = {
@@ -50,7 +51,7 @@ export class EnhancementUtils {
                 const flags = ActiveEffectsUtils.getFlags(activeEffectData);
                 const haveFlagCombat = flags.combatId != undefined && flags.combatId !== '';
                 if (haveFlagCombat) {
-                    const combat = game.combat
+                    const combat = CombatUtils.currentCombat();
 
                     durationObject = {
                         startRound: combat?.round,

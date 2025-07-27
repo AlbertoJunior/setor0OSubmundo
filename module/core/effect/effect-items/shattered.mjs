@@ -27,6 +27,7 @@ const shattered1 = ActiveEffectsUtils.createEffectData({
         [ActiveEffectsFlags.ORIGIN_TYPE]: ActiveEffectsOriginTypes.AFFECTED_ENHANCEMENT,
         [ActiveEffectsFlags.TYPE]: ActiveEffectsTypes.DEBUFF,
         [ActiveEffectsFlags.REMOVE_EFFECTS]: [shattered2Id, shattered3Id],
+        [ActiveEffectsFlags.ALWAYS_SHOW_ON_TOKEN]: true,
     }
 });
 
@@ -50,6 +51,7 @@ const shattered2 = ActiveEffectsUtils.createEffectData({
         [ActiveEffectsFlags.ORIGIN_TYPE]: ActiveEffectsOriginTypes.AFFECTED_ENHANCEMENT,
         [ActiveEffectsFlags.TYPE]: ActiveEffectsTypes.DEBUFF,
         [ActiveEffectsFlags.REMOVE_EFFECTS]: [shattered1Id, shattered3Id],
+        [ActiveEffectsFlags.ALWAYS_SHOW_ON_TOKEN]: true,
     }
 });
 
@@ -73,6 +75,7 @@ const shattered3 = ActiveEffectsUtils.createEffectData({
         [ActiveEffectsFlags.ORIGIN_TYPE]: ActiveEffectsOriginTypes.AFFECTED_ENHANCEMENT,
         [ActiveEffectsFlags.TYPE]: ActiveEffectsTypes.DEBUFF,
         [ActiveEffectsFlags.REMOVE_EFFECTS]: [shattered1Id, shattered2Id],
+        [ActiveEffectsFlags.ALWAYS_SHOW_ON_TOKEN]: true,
     }
 });
 

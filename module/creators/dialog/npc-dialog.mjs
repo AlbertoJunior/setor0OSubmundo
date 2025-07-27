@@ -1,4 +1,4 @@
-import { localize, randomId } from "../../../scripts/utils/utils.mjs";
+import { localize, randomId, TODO } from "../../../scripts/utils/utils.mjs";
 import { Setor0BaseActorSheet } from "../../base/sheet/actor/BaseActorSheet.mjs";
 import { npcRollHandle } from "../../base/sheet/actor/npc/methods/npc-roll-methods.mjs";
 import { NpcSheetSize } from "../../base/sheet/actor/npc/npc-sheet.mjs";
@@ -25,6 +25,8 @@ export class NpcDialog {
             console.warn('npcInformations is required');
             return;
         }
+
+        TODO("npc dialog funcionar na versão v2");
 
         const content = await this.#mountContent(npcInformations);
         const actor = npcInformations.actor;

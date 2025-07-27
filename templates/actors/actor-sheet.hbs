@@ -42,10 +42,10 @@
         </ul>
         {{else}}
         <h1 style="text-align: center;">{{actor.name}}</h1>
-        <div style="display: flex; align-items: center; justify-content: center; gap: 4px;">
-            <h3>{{actorValues actor 'morphology'}}</h3>
+        <div style="display: flex; align-items: stretch; justify-content: center; gap: 4px;">
+            <h3 style="flex: 1; text-align: end;">{{actorValues actor 'morphology'}}</h3>
             <div class="S0-vertical-divider "></div>
-            <h3>{{actorValues actor 'district'}}</h3>
+            <h3 style="flex: 1; text-align: start;">{{actorValues actor 'district'}}</h3>
         </div>
         {{/if}}
     </header>

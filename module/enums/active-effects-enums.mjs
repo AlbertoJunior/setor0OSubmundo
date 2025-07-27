@@ -30,6 +30,7 @@ export const ActiveEffectsFlags = Object.freeze({
     ORIGIN_TYPE: 'originType',
     ORIGIN_TYPE_LABEL: 'originTypeLabel',
     TYPE: 'type',
+    ALWAYS_SHOW_ON_TOKEN: 'alwaysShowOnToken',
     REMOVE_EFFECTS: 'removeEffects',
     COMBAT_ID: 'combatId',
     IS_PASSIVE: 'isPassve',

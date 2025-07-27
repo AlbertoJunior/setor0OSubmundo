@@ -135,10 +135,6 @@ export class ActorUtils {
         return used < level;
     }
 
-    static getToken(actor) {
-        return canvas.tokens.placeables.find(t => t.actor?.id === actor.id);
-    }
-
     static getAllEnhancements(actor) {
         const allEnhancements = getObject(actor, CharacteristicType.ENHANCEMENT_ALL) || [];
         return Object.values(allEnhancements).filter(enhancement => enhancement.id !== '');

@@ -13,6 +13,10 @@
     border-color: var(--tertiary-color-alpha-50);
 }
 
+.S0-page-transparent .S0-container .S0-vertical-divider {
+    background-color: var(--tertiary-color-alpha-50);
+}
+
 .S0-page-transparent .S0-container :is(select:not(.S0-inner-select), input, textarea):is(:disabled, *) {
     border-color: var(--primary-color-alpha-50);
 }

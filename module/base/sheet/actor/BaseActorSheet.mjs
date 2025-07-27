@@ -1,4 +1,4 @@
-import { getObject, selectCharacteristic } from "../../../../scripts/utils/utils.mjs";
+import { getObject, selectCharacteristic, TODO } from "../../../../scripts/utils/utils.mjs";
 import { SYSTEM_CLASS_CSS } from "../../../constants.mjs";
 import { ActorEquipmentUtils } from "../../../core/actor/actor-equipment.mjs";
 import { BaseActorCharacteristicType } from "../../../enums/characteristic-enums.mjs";
@@ -63,6 +63,7 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
     }
 
     static async #onSubmitDocumentForm(event, form, formData, options = {}) {
+        TODO('essa parte é a principal para fazer o port para o V2');
         debugger
         if (!this.isEditable) {
             return;

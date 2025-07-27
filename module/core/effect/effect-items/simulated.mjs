@@ -25,6 +25,7 @@ const simulated = ActiveEffectsUtils.createEffectData({
         [ActiveEffectsFlags.ORIGIN_ID]: id,
         [ActiveEffectsFlags.ORIGIN_TYPE]: ActiveEffectsOriginTypes.AFFECTED_ENHANCEMENT,
         [ActiveEffectsFlags.TYPE]: ActiveEffectsTypes.BUFF,
+        [ActiveEffectsFlags.ALWAYS_SHOW_ON_TOKEN]: false,
     }
 });
 

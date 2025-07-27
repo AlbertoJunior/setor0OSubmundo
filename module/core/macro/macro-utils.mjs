@@ -15,6 +15,48 @@ import { cleanMacroHotbarUserMacroData } from "./gm/clean-macro-hotbar.mjs";
 import { resetUserFlagsMacroData } from "./gm/reset-user-flags.mjs";
 
 export class MacroUtils {
+    static MacroMethods = {
+        overload: async (actor) => {
+            await DefaultActions.processOverloadRoll(actor);
+        },
+        customs: {
+            rollable: async (params) => {
+                const { actor, id } = params;
+                if (!actor || !id) {
+                    console.log("-> Elementos inválidos")
+                    return;
+                }
+
+                if (!actor?.sheet.canRollOrEdit) {
+                    NotificationsUtils.warning('Você não tem permissão para executar isso com esse personagem.');
+                    return
+                }
+
+                const item = ActorEquipmentUtils.getEquipments(actor).find(item => {
+                    const tests = getObject(item, EquipmentCharacteristicType.POSSIBLE_TESTS) || [];
+                    return tests.some(test => test.id === id);
+                });
+
+                if (item) {
+                    if (getObject(item, EquipmentCharacteristicType.EQUIPPED) || false) {
+                        await rollByItemAndRollId(item, id);
+                    } else {
+                        NotificationsUtils.info(`O Item [${item.name}] precisa estar equipado`);
+                    }
+                    return;
+                }
+
+                const actorTestShortcut = getObject(actor, CharacteristicType.SHORTCUTS).find(test => test.id == id);
+                if (actorTestShortcut) {
+                    await shortcutCustomRoll(actor, id);
+                    return;
+                }
+
+                NotificationsUtils.warning('Erro ao executar o teste');
+            }
+        }
+    };
+
     static getDefaultMacroUsers() {
         return [
             openBagMacroData,
@@ -70,49 +112,5 @@ export class MacroUtils {
         const sameSourceId = sourceIdA === sourceIdB;
 
         return sameName && sameCommand && sameSourceId;
-    }
-
-    static async exposeMethodsForMacros() {
-        globalThis.MacroMethods = {
-            overload: async (actor) => {
-                await DefaultActions.processOverloadRoll(actor);
-            },
-            customs: {
-                rollable: async (params) => {
-                    const { actor, id } = params;
-                    if (!actor || !id) {
-                        console.log("-> Elementos inválidos")
-                        return;
-                    }
-
-                    if (!actor?.sheet.canRollOrEdit) {
-                        NotificationsUtils.warning('Você não tem permissão para executar isso com esse personagem.');
-                        return
-                    }
-
-                    const item = ActorEquipmentUtils.getEquipments(actor).find(item => {
-                        const tests = getObject(item, EquipmentCharacteristicType.POSSIBLE_TESTS) || [];
-                        return tests.some(test => test.id === id);
-                    });
-
-                    if (item) {
-                        if (getObject(item, EquipmentCharacteristicType.EQUIPPED) || false) {
-                            await rollByItemAndRollId(item, id);
-                        } else {
-                            NotificationsUtils.info(`O Item [${item.name}] precisa estar equipado`);
-                        }
-                        return;
-                    }
-
-                    const actorTestShortcut = getObject(actor, CharacteristicType.SHORTCUTS).find(test => test.id == id);
-                    if (actorTestShortcut) {
-                        await shortcutCustomRoll(actor, id);
-                        return;
-                    }
-
-                    NotificationsUtils.warning('Erro ao executar o teste');
-                }
-            }
-        }
     }
 }

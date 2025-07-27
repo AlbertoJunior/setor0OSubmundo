@@ -6,6 +6,9 @@ import { loadHandlebarsHelpers } from "../utils/handlerbars-helper.mjs";
 import { registerTemplates } from "../utils/templates.mjs";
 import { ActiveEffectHookHandle } from "./active-effects.mjs";
 import { configureSetor0CombatTracker } from "../base/sheet/combat/Setor0CombatTracker.mjs";
+import { SYSTEM_ID } from "../constants.mjs";
+import { FoundryApi } from "../utils/foundry-api.mjs";
+import { MacroUtils } from "../core/macro/macro-utils.mjs";
 
 export class InitHookHandle {
     static async handle() {
@@ -26,6 +29,10 @@ export class InitHookHandle {
     }
 
     static #presetConfigs() {
+        globalThis[SYSTEM_ID] = {
+            MacroMethods: MacroUtils.MacroMethods,
+            FoundryApi: FoundryApi
+        };
         //CONFIG.debug.hooks = true;
     }
 }

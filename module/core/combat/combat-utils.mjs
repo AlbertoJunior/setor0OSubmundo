@@ -1,9 +1,17 @@
-import { ActorUtils } from "../actor/actor-utils.mjs";
+import { TokenUtils } from "../token/token-utils.mjs";
 
 export class CombatUtils {
+    static currentCombat() {
+        return game.combat;
+    }
+
+    static refreshRender() {
+        ui.combat.render()
+    }
+
     static async addOrUpdateActorOnCombat(actor, initiative, combatantInformations = {}) {
         const { hidden = false, combatantId, combatantTokenId } = combatantInformations;
-        const currentCombat = game.combat;
+        const currentCombat = this.currentCombat();
         if (!currentCombat) {
             return;
         }
@@ -13,8 +21,8 @@ export class CombatUtils {
         }
 
         const token = combatantTokenId
-            ? this.getTokenByCombatantTokenId(combatantTokenId)
-            : ActorUtils.getToken(actor);
+            ? TokenUtils.getTokenByCombatantTokenId(combatantTokenId)
+            : TokenUtils.getActorToken(actor);
         if (!token) {
             return;
         }
@@ -29,16 +37,12 @@ export class CombatUtils {
         }
     }
 
-    static getTokenByCombatantTokenId(combatantTokenId) {
-        return canvas.tokens.placeables.find(t => t.id === combatantTokenId);
-    }
-
     static getCombatantById(currentCombat, combatantId) {
         return currentCombat.combatants.find(c => c.id === combatantId);
     }
 
     static getTokenInformations(combatantTokenId) {
-        const token = this.getTokenByCombatantTokenId(combatantTokenId);
+        const token = TokenUtils.getTokenByCombatantTokenId(combatantTokenId);
         const document = token.document;
         return {
             id: document.id,

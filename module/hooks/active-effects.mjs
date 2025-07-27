@@ -1,8 +1,8 @@
 import { ActiveEffectsUtils } from "../core/effect/active-effects.mjs";
 import { OscillatingTintManager } from "../core/effect/oscilating-effect-manager.mjs";
-import { ActorUtils } from "../core/actor/actor-utils.mjs";
 import { FlagsUtils } from "../utils/flags-utils.mjs";
 import { ActiveEffectsFlags } from "../enums/active-effects-enums.mjs";
+import { TokenUtils } from "../core/token/token-utils.mjs";
 
 export class ActiveEffectHookHandle {
     static register() {
@@ -35,7 +35,7 @@ export class ActiveEffectHookHandle {
     static async #verifyChangeTokenTint(effect) {
         const actor = effect.parent;
 
-        const token = ActorUtils.getToken(actor);
+        const token = TokenUtils.getActorToken(actor);
         if (!token) {
             return;
         }
@@ -46,7 +46,7 @@ export class ActiveEffectHookHandle {
         } else {
             const tintChange = effect.changes.find(c => c.key === ActiveEffectsUtils.KEYS.TINT_TOKEN);
             if (tintChange) {
-                await token.document.update({ [ActiveEffectsUtils.KEYS.TINT_TOKEN]: tintChange.value });
+                await TokenUtils.updateDocument(token, { [ActiveEffectsUtils.KEYS.TINT_TOKEN]: tintChange.value });
             }
         }
     }
@@ -54,7 +54,7 @@ export class ActiveEffectHookHandle {
     static async #verifyRemoveTokenTint(effect) {
         const actor = effect.parent;
 
-        const token = ActorUtils.getToken(actor);
+        const token = TokenUtils.getActorToken(actor);
         if (!token) {
             return;
         }

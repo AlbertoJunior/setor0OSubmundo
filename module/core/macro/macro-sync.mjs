@@ -24,6 +24,11 @@ export class MacroSync {
         const roles = new Set(missing.map(macro => macro.flags[SYSTEM_ID]?.role.toUpperCase()));
         const folders = {};
 
+        const wasLocked = pack.locked;
+        if (wasLocked) {
+            await pack.configure({ locked: false });
+        }
+
         for (const role of roles) {
             const folder = await this.#getOrCreateMacroFolder(role);
             folders[role] = folder;
@@ -45,6 +50,10 @@ export class MacroSync {
             } catch (e) {
                 console.error(`Erro ao importar macro '${item.name}':`, e);
             }
+        }
+
+        if (wasLocked) {
+            await pack.configure({ locked: true });
         }
 
         console.log(`-> ${missing.length} macros adicionadas no compêndio: ${packId}`);

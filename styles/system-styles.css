@@ -409,7 +409,7 @@ body {
 /* #region BASE STYLES */
 .S0-vertical-divider {
     width: 2px;
-    height: 100%;
+    margin-inline: 4px;
     background-color: var(--secondary-color);
     border-radius: var(--border-radius-small);
 }
