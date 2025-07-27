@@ -54,6 +54,11 @@ export class FoundryApi {
     static Items = convertToClass(this.Collections.Items);
     static Combat = convertToClass(this.Documents.Combat);
 
+    static Combatant = convertToClass(CONFIG.Combatant.documentClass);
+    static ActiveEffect = convertToClass(CONFIG.ActiveEffect.documentClass);
+    static TokenDocument = convertToClass(CONFIG.Token.documentClass);
+    static TokenCanvas = convertToClass(foundry.canvas.placeables.Token);
+
     static async renderTemplate(path, data) {
         return this.Handlebars.renderTemplate(path, data);
     }

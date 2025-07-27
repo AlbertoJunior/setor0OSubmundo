@@ -9,6 +9,7 @@ import { configureSetor0CombatTracker } from "../base/sheet/combat/Setor0CombatT
 import { SYSTEM_ID } from "../constants.mjs";
 import { FoundryApi } from "../utils/foundry-api.mjs";
 import { MacroUtils } from "../core/macro/macro-utils.mjs";
+import { configureSetor0ActiveEffect } from "../core/effect/Setor0ActiveEffect.mjs";
 
 export class InitHookHandle {
     static async handle() {
@@ -22,6 +23,7 @@ export class InitHookHandle {
         await configureSetor0Combat();
         await configureSetor0CombatTracker();
         await configureSetor0TokenDocument();
+        await configureSetor0ActiveEffect();
         await loadHandlebarsHelpers();
         await registerTemplates();
 

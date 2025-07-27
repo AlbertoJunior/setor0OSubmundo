@@ -3,7 +3,7 @@ import { DefaultActions } from "../../../utils/default-actions.mjs";
 import { ActiveEffectsUtils } from "../../../core/effect/active-effects.mjs";
 import { FoundryApi } from "../../../utils/foundry-api.mjs";
 
-class Setor0Combatant extends CONFIG.Combatant.documentClass {
+class Setor0Combatant extends FoundryApi.Combatant {
     updateResource() {
         if (!this.actor || !this.combat) {
             return this.resource = null;

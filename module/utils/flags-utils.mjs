@@ -14,12 +14,11 @@ export class FlagsUtils {
     }
 
     static getItemFlag(item, flag, defaultValue) {
-        const flagValue = item.getFlag(SYSTEM_ID, flag);
-        if (flagValue == undefined || flagValue == null) {
-            return defaultValue;
-        } else {
-            return flagValue
-        }
+        const flagValue = (typeof item.getFlag === 'function')
+            ? item.getFlag(SYSTEM_ID, flag)
+            : item?.flags?.[SYSTEM_ID]?.[flag];
+
+        return flagValue ?? defaultValue;
     }
 
     static getMacroFlag(macro, flag) {

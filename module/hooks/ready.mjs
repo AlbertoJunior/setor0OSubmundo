@@ -28,11 +28,7 @@ export class ReadyHookHandle {
     }
 
     static #effects() {
-        if (game.user.isGM) {
-            CONFIG.statusEffects = ActiveEffectRepository.getItems();
-        } else {
-            CONFIG.statusEffects = [];
-        }
+        CONFIG.statusEffects = game.user.isGM ? ActiveEffectRepository.getItems() : [];
     }
 
     static async #macro() {

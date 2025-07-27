@@ -1,8 +1,9 @@
 import { gameLocalize, localize } from "../../../scripts/utils/utils.mjs";
 import { SYSTEM_ID } from "../../constants.mjs";
 import { ActiveEffectsFlags } from "../../enums/active-effects-enums.mjs";
+import { FoundryApi } from "../../utils/foundry-api.mjs";
 
-export class Setor0TokenCanvas extends foundry.canvas.placeables.Token {
+export class Setor0TokenCanvas extends FoundryApi.TokenCanvas {
 
     #verifyIsForcedByFlag(effectFlags) {
         return effectFlags[SYSTEM_ID][ActiveEffectsFlags.ALWAYS_SHOW_ON_TOKEN] ?? false;
@@ -65,7 +66,7 @@ export class Setor0TokenCanvas extends foundry.canvas.placeables.Token {
     }
 }
 
-export class Setor0TokenDocument extends CONFIG.Token.documentClass {
+export class Setor0TokenDocument extends FoundryApi.TokenDocument {
     static #mappedLabel = new Map();
 
     static setValuesOnMapped(values = []) {
