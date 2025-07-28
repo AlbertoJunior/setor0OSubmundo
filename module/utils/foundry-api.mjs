@@ -52,11 +52,12 @@ export class FoundryApi {
 
     static Actors = convertToClass(this.Collections.Actors);
     static Items = convertToClass(this.Collections.Items);
-    static Combat = convertToClass(this.Documents.Combat);
 
-    static Combatant = convertToClass(CONFIG.Combatant.documentClass);
-    static ActiveEffect = convertToClass(CONFIG.ActiveEffect.documentClass);
-    static TokenDocument = convertToClass(CONFIG.Token.documentClass);
+    static Combat = convertToClass(this.Documents.Combat);
+    static Combatant = convertToClass(this.Documents.Combatant);
+    static ActiveEffect = convertToClass(this.Documents.ActiveEffect);
+    static TokenDocument = convertToClass(this.Documents.TokenDocument);
+
     static TokenCanvas = convertToClass(foundry.canvas.placeables.Token);
 
     static async renderTemplate(path, data) {

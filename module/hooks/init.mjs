@@ -10,6 +10,7 @@ import { SYSTEM_ID } from "../constants.mjs";
 import { FoundryApi } from "../utils/foundry-api.mjs";
 import { MacroUtils } from "../core/macro/macro-utils.mjs";
 import { configureSetor0ActiveEffect } from "../core/effect/Setor0ActiveEffect.mjs";
+import { TokenUtils } from "../core/token/token-utils.mjs";
 
 export class InitHookHandle {
     static async handle() {
@@ -33,7 +34,8 @@ export class InitHookHandle {
     static #presetConfigs() {
         globalThis[SYSTEM_ID] = {
             MacroMethods: MacroUtils.MacroMethods,
-            FoundryApi: FoundryApi
+            FoundryApi: FoundryApi,
+            TokenUtils: TokenUtils,
         };
         //CONFIG.debug.hooks = true;
     }
