@@ -1,10 +1,12 @@
-import { TODO } from "../../utils/utils.mjs";
+import { DEPRECATED } from "../../utils/utils.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
 
-/** Depreciado */
 class Setor0SceneControls extends FoundryApi.SceneControls {
+    constructor() {
+        DEPRECATED('Setor0SceneControls');
+    }
+
     // _onClickLayer(event) {
-    //     debugger
     //     const layerName = event.currentTarget.dataset.canvasLayer;
     //     if (!layerName) {
     //         const controlName = event.currentTarget.dataset.control;
@@ -18,8 +20,7 @@ class Setor0SceneControls extends FoundryApi.SceneControls {
     // }
 }
 
-export function configureSetor0SceneControl() {
-    TODO('verificar se vou apagar tudo isso')
-    ui.controls = Setor0SceneControls;
-    // ui.controls.render(true);
-}
+// export function configureSetor0SceneControl() {
+// ui.controls = Setor0SceneControls;
+// ui.controls.render(true);
+// }

@@ -35,6 +35,11 @@ export class ActiveEffectHookHandle {
     }
 
     static async #verifyChangeTokenTint(effect, options) {
+        const tintChange = effect.changes.find(c => c.key === ActiveEffectsUtils.KEYS.TINT_TOKEN);
+        if (!tintChange) {
+            return
+        }
+
         const token = this.#getToken(options);
         if (!token) {
             console.warn("this object not have a token")
@@ -51,10 +56,7 @@ export class ActiveEffectHookHandle {
         if (hasMultipleTints) {
             OscillatingTintManager.startOscillationForToken(token);
         } else {
-            const tintChange = effect.changes.find(c => c.key === ActiveEffectsUtils.KEYS.TINT_TOKEN);
-            if (tintChange) {
-                await TokenUtils.updateDocument(token, { [ActiveEffectsUtils.KEYS.TINT_TOKEN]: tintChange.value });
-            }
+            await TokenUtils.updateDocument(token, { [ActiveEffectsUtils.KEYS.TINT_TOKEN]: tintChange.value });
         }
     }
 
@@ -62,6 +64,10 @@ export class ActiveEffectHookHandle {
         const parent = options.parent;
         if (parent instanceof Actor) {
             return TokenUtils.getActorToken(parent);
+        }
+
+        if (parent instanceof ActorDelta) {
+            return TokenUtils.getActorDeltaToken(parent);
         }
 
         if (parent.parent instanceof FoundryApi.TokenDocument) {

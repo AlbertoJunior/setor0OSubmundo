@@ -1,4 +1,4 @@
-import { SYSTEM_ID } from "../../constants.mjs";
+import { COLORS, SYSTEM_ID } from "../../constants.mjs";
 import { MacroUtils } from "./macro-utils.mjs";
 
 export class MacroSync {
@@ -77,9 +77,9 @@ export class MacroSync {
 
         switch (upperRole) {
             case "GM":
-                return "#ff0000";
+                return COLORS.BASE.red;
             case "USER":
-                return "#0000ff";
+                return COLORS.BASE.blue;
             default:
                 return `#${Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, "0")}`;
         }

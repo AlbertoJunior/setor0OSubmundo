@@ -101,6 +101,10 @@ export function TODO(message, notify) {
     }
 }
 
+export function DEPRECATED(className, classMethod) {
+    console.warn(`-> ${className}${classMethod ? `.${classMethod}` : ''}`);
+}
+
 export function getObject(object, path) {
     let pathHaveSystem = path;
     if (path.system) {

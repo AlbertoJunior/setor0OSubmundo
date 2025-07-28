@@ -2,10 +2,10 @@ import { CombatUtils } from "../core/combat/combat-utils.mjs";
 
 export class UpdateTokenHookHandle {
     static async handle(updatedToken, changes, options, userId) {
-        this.verifyUpdateCombatTracker(updatedToken, changes, options, userId);
+        this.#verifyUpdateCombatTracker(updatedToken, changes, options, userId);
     }
 
-    static verifyUpdateCombatTracker(updatedToken, changes, options, userId) {
+    static #verifyUpdateCombatTracker(updatedToken, changes, options, userId) {
         const currentCombat = CombatUtils.currentCombat();
         if (!currentCombat || !this.verifyNeedUpdateCombatTracker(changes)) {
             return;

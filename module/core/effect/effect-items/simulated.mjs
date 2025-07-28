@@ -1,4 +1,4 @@
-import { ICONS_PATH } from "../../../constants.mjs";
+import { COLORS, ICONS_PATH } from "../../../constants.mjs";
 import { ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../../enums/active-effects-enums.mjs";
 import { CharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { EffectChangeValueType } from "../../../enums/enhancement-enums.mjs";
@@ -12,7 +12,7 @@ const simulated = ActiveEffectsUtils.createEffectData({
     origin: `Aprimoramento: ${assimilationEnhancement.name}`,
     img: `${ICONS_PATH}/user-ninja.svg`,
     duration: { startRound: 0, rounds: 99 },
-    tint: "#FFDC00",
+    tint: COLORS.BASE.yellow,
     changes: [
         {
             key: CharacteristicType.BONUS.ATTRIBUTES.INTELLIGENCE.system,

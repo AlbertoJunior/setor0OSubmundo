@@ -3,6 +3,7 @@ import { EnhancementRepository } from "../../repository/enhancement-repository.m
 import { ActorUtils } from "../../core/actor/actor-utils.mjs";
 import { ActiveEffectsUtils } from "../effect/active-effects.mjs";
 import { CombatUtils } from "../combat/combat-utils.mjs";
+import { COLORS } from "../../constants.mjs";
 
 export class EnhancementUtils {
     static valueCalculators = {
@@ -95,30 +96,7 @@ export class EnhancementUtils {
                     return;
                 }
 
-                let tint = "#FFFFFF"
-                switch (effect.level) {
-                    case 1: {
-                        tint = "#FFFFFF";
-                        break;
-                    }
-                    case 2: {
-                        tint = "#FFE682";
-                        break;
-                    }
-                    case 3: {
-                        tint = "#FFDC00";
-                        break;
-                    }
-                    case 4: {
-                        tint = "#F07823";
-                        break;
-                    }
-                    case 5: {
-                        tint = "#F00A0A";
-                        break;
-                    }
-                }
-
+                const tint = COLORS.ENHANCEMENT_LEVELS.allColors[effect.level - 1] ?? COLORS.ENHANCEMENT_LEVELS.level1;
                 activeEffectData.tint = tint;
             }
         }

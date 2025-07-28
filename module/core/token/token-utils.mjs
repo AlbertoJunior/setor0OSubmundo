@@ -34,7 +34,18 @@ export class TokenUtils {
             return;
         }
 
-        return this.getTokensPlaceables().find(t => t.actor?.id === actor.id);
+        const actorId = actor.id;
+        return this.getTokensPlaceables().find(t => t.actor?.id === actorId);
+    }
+
+    static getActorDeltaToken(actorDelta) {
+        if (!actorDelta) {
+            console.warn("ActorDelta is null");
+            return;
+        }
+
+        const actorDeltaParentId = actorDelta.parent?.id;
+        return this.getTokenById(actorDeltaParentId);
     }
 
     static getTokenByCombatantTokenId(combatantTokenId) {
@@ -43,7 +54,7 @@ export class TokenUtils {
             return;
         }
 
-        return this.getTokensPlaceables().find(t => t.id === combatantTokenId);
+        return this.getTokenById(combatantTokenId);
     }
 
     static getControlled() {

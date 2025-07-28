@@ -9,11 +9,13 @@ import { CreateFormDialog } from "../../../../creators/dialog/create-dialog.mjs"
 import { SubstanceEffectRepository } from "../../../../repository/substance-effect-repository.mjs";
 import { NotificationsUtils } from "../../../../creators/message/notifications.mjs";
 import { EquipmentInfoParser } from "../../../../core/equipment/equipment-info.mjs";
+import { DialogUtils } from "../../../../utils/dialog-utils.mjs";
 
 export const handlerEquipmentCharacteristicsEvents = {
     [OnEventType.CHECK]: async (item, event) => EquipmentSheetCharacteristicsHandle.check(item, event),
     [OnEventType.ADD]: async (item, event) => EquipmentSheetCharacteristicsHandle.add(item, event),
     [OnEventType.REMOVE]: async (item, event) => EquipmentSheetCharacteristicsHandle.remove(item, event),
+    [OnEventType.VIEW]: async (item, event) => EquipmentSheetCharacteristicsHandle.view(item, event),
 }
 
 class EquipmentSheetCharacteristicsHandle {
@@ -146,5 +148,14 @@ class EquipmentSheetCharacteristicsHandle {
     static async #checkLevel(item, target) {
         const level = selectCharacteristicAndReturnLength(target);
         await EquipmentUpdater.updateEquipment(item, EquipmentCharacteristicType.SUPER_EQUIPMENT.LEVEL, level);
+    }
+
+    static async view(item, event) {
+        const type = event.currentTarget.dataset.type;
+        switch (type) {
+            case 'img': {
+                return DialogUtils.showArtWork(item.name, item.img, true, item.uuid);
+            }
+        }
     }
 }

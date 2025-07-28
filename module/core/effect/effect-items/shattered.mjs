@@ -1,3 +1,4 @@
+import { COLORS } from "../../../constants.mjs";
 import { ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../../enums/active-effects-enums.mjs";
 import { CharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { brutalityEnhancement } from "../../enhancement/enhancement-items/brutality.mjs";
@@ -13,7 +14,7 @@ const shattered1 = ActiveEffectsUtils.createEffectData({
     origin: `Aprimoramento: ${brutalityEnhancement.name}`,
     img: `${brutalityEnhancement.icon}`,
     duration: { startRound: 0, rounds: 99 },
-    tint: "#FFDC00",
+    tint: COLORS.BASE.yellow,
     changes: [
         {
             key: CharacteristicType.BONUS.DAMAGE_PENALTY_FLAT.system,
@@ -37,7 +38,7 @@ const shattered2 = ActiveEffectsUtils.createEffectData({
     origin: `Aprimoramento: ${brutalityEnhancement.name}`,
     img: `${brutalityEnhancement.icon}`,
     duration: { startRound: 0, rounds: 99 },
-    tint: "#F07823",
+    tint: COLORS.BASE.orange,
     changes: [
         {
             key: CharacteristicType.BONUS.DAMAGE_PENALTY_FLAT.system,
@@ -61,7 +62,7 @@ const shattered3 = ActiveEffectsUtils.createEffectData({
     origin: `Aprimoramento: ${brutalityEnhancement.name}`,
     img: `${brutalityEnhancement.icon}`,
     duration: { startRound: 0, rounds: 99 },
-    tint: "#F00A0A",
+    tint: COLORS.BASE.red,
     changes: [
         {
             key: CharacteristicType.BONUS.DAMAGE_PENALTY_FLAT.system,

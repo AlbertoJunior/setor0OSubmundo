@@ -12,6 +12,7 @@ import { npcRollHandle } from "./methods/npc-roll-methods.mjs";
 import { SheetActorDragabbleMethods } from "../player/methods/dragabble-methods.mjs";
 import { handleStatusMethods } from "../player/methods/status-methods.mjs";
 import { FoundryApi } from "../../../../api/foundry-api.mjs";
+import { effectsHandleEvents } from "../player/methods/effects-methods.mjs";
 
 export async function npcTemplatesRegister() {
     const templates = [
@@ -68,7 +69,8 @@ class Setor0NpcSheet extends Setor0BaseActorSheet {
             equipment: {
                 ...handlerEquipmentEvents,
                 [OnEventType.ROLL]: async (actor, event) => npcRollHandle.rollEquipment(actor, event),
-            }
+            },
+            effects: effectsHandleEvents
         };
     }
 

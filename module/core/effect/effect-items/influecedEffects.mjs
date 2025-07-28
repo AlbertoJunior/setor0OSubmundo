@@ -1,3 +1,4 @@
+import { COLORS } from "../../../constants.mjs";
 import { ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../../enums/active-effects-enums.mjs";
 import { CharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { influenceEnhancement } from "../../enhancement/enhancement-items/influence.mjs";
@@ -13,7 +14,7 @@ const addicted = ActiveEffectsUtils.createEffectData({
     name: "S0.Efeito_Ativo.Viciado",
     origin: `Aprimoramento: ${influenceEnhancement.name}`,
     img: `${influenceEnhancement.icon}`,
-    tint: "#FFDC00",
+    tint: COLORS.BASE.yellow,
     changes: [
         {
             key: CharacteristicType.BONUS.VIRTUES.PERSEVERANCE.system,
@@ -35,7 +36,7 @@ const mesmerized = ActiveEffectsUtils.createEffectData({
     origin: `Aprimoramento: ${influenceEnhancement.name}`,
     img: `${influenceEnhancement.icon}`,
     duration: { rounds: 99, startTime: 0 },
-    tint: "#FFDC00",
+    tint: COLORS.BASE.yellow,
     changes: [
         {
             key: CharacteristicType.BONUS.VIRTUES.CONSCIOUSNESS.system,
@@ -57,7 +58,7 @@ const racionalize = ActiveEffectsUtils.createEffectData({
     origin: `Aprimoramento: ${influenceEnhancement.name}`,
     img: `${influenceEnhancement.icon}`,
     duration: { rounds: 99, startTime: 0 },
-    tint: "#FFDC00",
+    tint: COLORS.BASE.yellow,
     changes: [],
     flags: {
         [ActiveEffectsFlags.ORIGIN_ID]: racionalizeId,
@@ -73,7 +74,7 @@ const fascinated = ActiveEffectsUtils.createEffectData({
     origin: `Aprimoramento: ${influenceEnhancement.name}`,
     img: `${influenceEnhancement.icon}`,
     duration: { rounds: 99, startTime: 0 },
-    tint: "#FFDC00",
+    tint: COLORS.BASE.yellow,
     changes: [
         {
             key: CharacteristicType.BONUS.VIRTUES.QUIETNESS.system,

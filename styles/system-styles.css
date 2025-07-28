@@ -541,6 +541,7 @@ body {
 }
 
 .S0-actor-sheet header {
+    min-height: 82px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1266,19 +1267,13 @@ body {
     width: 80px;
 }
 
-.S0-item-bag-compact .S0-item-bag img {
-    max-width: 65px;
-    max-height: 80px;
-    min-height: 80px;
-}
-
 .S0-item-bag-compact .S0-item-bag .S0-item-name {
     font-size: var(--font-size-9);
-    bottom: 18px;
 }
 
 .S0-item-bag-compact .S0-item-bag .S0-item-type {
     font-size: var(--font-size-9);
+    margin-top: 0px !important;
 }
 
 .S0-item-bag-compact .S0-item-bag .S0-item-legend {

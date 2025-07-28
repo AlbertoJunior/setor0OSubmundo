@@ -6,7 +6,9 @@ import { FoundryApi } from "../../api/foundry-api.mjs";
 export class Setor0TokenCanvas extends FoundryApi.TokenCanvas {
 
     #verifyIsForcedByFlag(effectFlags) {
-        return effectFlags[SYSTEM_ID][ActiveEffectsFlags.ALWAYS_SHOW_ON_TOKEN] ?? false;
+        const isOverlay = effectFlags['core']?.['overlay'] ?? false
+        const isForced = effectFlags[SYSTEM_ID][ActiveEffectsFlags.ALWAYS_SHOW_ON_TOKEN] ?? false;
+        return isOverlay || isForced;
     }
 
     get haveValidActor() {
@@ -20,7 +22,7 @@ export class Setor0TokenCanvas extends FoundryApi.TokenCanvas {
     }
 
     /**
-     * Sobrescrita do método original @{super._drawEffects()} apenas para poder passar as flags e saber qual efeito pode exibir ou não.
+     * Sobrescrita do método original @{super._drawEffects()} apenas para poder passar as flags para _drawEffect e _drawOverlay, além de checar se a promise existe e saber qual efeito pode exibir ou não.
      */
     async _drawEffects() {
         this.effects.renderable = false;
@@ -42,6 +44,9 @@ export class Setor0TokenCanvas extends FoundryApi.TokenCanvas {
             const promise = effect === overlayEffect
                 ? this._drawOverlay(effect.img, effect.tint, effect.flags)
                 : this._drawEffect(effect.img, effect.tint, effect.flags);
+
+            if (!promise) continue;
+
             promises.push(promise.then(e => {
                 if (e) e.zIndex = i;
             }));
@@ -57,12 +62,14 @@ export class Setor0TokenCanvas extends FoundryApi.TokenCanvas {
         if (this.#verifyShowEffect(flags)) {
             return super._drawEffect(src, tint);
         }
+        return null;
     }
 
     async _drawOverlay(src, tint, flags) {
-        if (this.#verifyShowEffect(flags)) {
-            return super._drawOverlay(src, tint);
-        }
+        const icon = await this._drawEffect(src, tint, flags);
+        if (icon) icon.alpha = 0.8;
+        this.effects.overlay = icon ?? null;
+        return icon;
     }
 }
 
