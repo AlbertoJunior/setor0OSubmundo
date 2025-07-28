@@ -1,7 +1,7 @@
 import { localize, randomId, snakeToCamel } from "../../../scripts/utils/utils.mjs"
 import { SYSTEM_CLASS_DIALOG_CSS, TEMPLATES_PATH } from "../../constants.mjs";
 import { DialogUtils } from "../../utils/dialog-utils.mjs";
-import { FoundryApi } from "../../utils/foundry-api.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
 /**
  * @typedef {Object} CreateFormDialogOptions

@@ -11,7 +11,7 @@ import { handlerEquipmentEvents } from "../player/methods/equipment-methods.mjs"
 import { npcRollHandle } from "./methods/npc-roll-methods.mjs";
 import { SheetActorDragabbleMethods } from "../player/methods/dragabble-methods.mjs";
 import { handleStatusMethods } from "../player/methods/status-methods.mjs";
-import { FoundryApi } from "../../../../utils/foundry-api.mjs";
+import { FoundryApi } from "../../../../api/foundry-api.mjs";
 
 export async function npcTemplatesRegister() {
     const templates = [

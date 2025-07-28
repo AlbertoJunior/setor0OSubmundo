@@ -1,5 +1,5 @@
 import { TEMPLATES_PATH } from "../../constants.mjs";
-import { FoundryApi } from "../../utils/foundry-api.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
 export class RollInitiativeMessageCreator {
     static async mountContent(params) {

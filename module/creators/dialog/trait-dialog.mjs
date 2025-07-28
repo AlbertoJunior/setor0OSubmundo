@@ -3,7 +3,7 @@ import { ChatCreator } from "../../utils/chat-creator.mjs";
 import { localize } from "../../../scripts/utils/utils.mjs";
 import { TraitMessageCreator } from "../message/trait-message.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
-import { FoundryApi } from "../../utils/foundry-api.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
 export class TraitDialog {
   static async open(type, callback) {

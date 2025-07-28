@@ -1,7 +1,7 @@
 import { onArrayRemove, snakeToCamel } from "../../scripts/utils/utils.mjs";
 import { SYSTEM_CLASS_CSS } from "../constants.mjs";
 import { createA } from "../creators/element/element-creator-jscript.mjs";
-import { FoundryApi } from "./foundry-api.mjs";
+import { FoundryApi } from "../api/foundry-api.mjs";
 import { HtmlJsUtils } from "./html-js-utils.mjs";
 
 export class DialogUtils {

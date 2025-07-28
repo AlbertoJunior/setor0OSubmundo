@@ -1,7 +1,7 @@
 import { TEMPLATES_PATH } from "../../constants.mjs";
 import { EnhancementInfoParser } from "../../core/enhancement/enhancement-info.mjs";
 import { EnhancementRepository } from "../../repository/enhancement-repository.mjs";
-import { FoundryApi } from "../../utils/foundry-api.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
 export class EnhancementMessageCreator {
     static #pathTemplates = `${TEMPLATES_PATH}/messages/enhancement`;

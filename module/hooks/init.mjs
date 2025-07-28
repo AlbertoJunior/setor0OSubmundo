@@ -7,7 +7,7 @@ import { registerTemplates } from "../utils/templates.mjs";
 import { ActiveEffectHookHandle } from "./active-effects.mjs";
 import { configureSetor0CombatTracker } from "../base/sheet/combat/Setor0CombatTracker.mjs";
 import { SYSTEM_ID } from "../constants.mjs";
-import { FoundryApi } from "../utils/foundry-api.mjs";
+import { FoundryApi } from "../api/foundry-api.mjs";
 import { MacroUtils } from "../core/macro/macro-utils.mjs";
 import { configureSetor0ActiveEffect } from "../core/effect/Setor0ActiveEffect.mjs";
 import { TokenUtils } from "../core/token/token-utils.mjs";

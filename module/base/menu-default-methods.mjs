@@ -3,7 +3,7 @@ import { SystemFlags } from "../enums/flags-enums.mjs";
 import { OnEventType } from "../enums/on-event-type.mjs";
 import { DialogUtils } from "../utils/dialog-utils.mjs";
 import { FlagsUtils } from "../utils/flags-utils.mjs";
-import { FoundryApi } from "../utils/foundry-api.mjs";
+import { FoundryApi } from "../api/foundry-api.mjs";
 
 export const menuHandleMethods = {
     [OnEventType.CHECK]: async (item, event) => {

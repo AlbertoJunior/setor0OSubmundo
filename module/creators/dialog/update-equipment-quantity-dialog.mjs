@@ -1,6 +1,6 @@
 import { localize } from "../../../scripts/utils/utils.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
-import { FoundryApi } from "../../utils/foundry-api.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
 export class UpdateEquipmentQuantityDialog {
     static async updateQuantityDialog(quantity, onConfirm = () => { }) {

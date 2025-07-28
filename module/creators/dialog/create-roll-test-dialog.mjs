@@ -4,7 +4,7 @@ import { localize, randomId } from "../../../scripts/utils/utils.mjs"
 import { ConfirmationDialog } from "./confirmation-dialog.mjs";
 import { RollTestUtils } from "../../core/rolls/roll-test-utils.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
-import { FoundryApi } from "../../utils/foundry-api.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 import { DialogUtils } from "../../utils/dialog-utils.mjs";
 
 export class CreateRollableTestDialog {

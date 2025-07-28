@@ -1,4 +1,4 @@
-import { FoundryApi } from "./foundry-api.mjs";
+import { FoundryApi } from "../api/foundry-api.mjs";
 
 export class ChatCreator {
 

@@ -1,6 +1,6 @@
 import { keyJsonToKeyLang, localize } from "../../../scripts/utils/utils.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
-import { FoundryApi } from "../../utils/foundry-api.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
 export class RollVirtueMessageCreator {
     static async mountContent(params) {

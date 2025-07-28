@@ -12,7 +12,7 @@ import { SheetActorDragabbleMethods } from "./methods/dragabble-methods.mjs";
 import { ActorUtils } from "../../../../core/actor/actor-utils.mjs";
 import { characteristicOnClick } from "./methods/characteristics-methods.mjs";
 import { ActiveEffectsUtils } from "../../../../core/effect/active-effects.mjs";
-import { FoundryApi } from "../../../../utils/foundry-api.mjs";
+import { FoundryApi } from "../../../../api/foundry-api.mjs";
 
 class Setor0ActorSheet extends Setor0BaseActorSheet {
 

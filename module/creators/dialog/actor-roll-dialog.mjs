@@ -8,7 +8,7 @@ import { ActorUtils } from "../../core/actor/actor-utils.mjs";
 import { RepertoryRepository } from "../../repository/repertory-repository.mjs";
 import { playerRollHandle } from "../../base/sheet/actor/player/methods/player-roll-methods.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
-import { FoundryApi } from "../../utils/foundry-api.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
 export class ActorRollDialog {
     static #mapedPagesMethods = {

@@ -1,7 +1,7 @@
 import { gameLocalize, localize } from "../../../scripts/utils/utils.mjs";
 import { SYSTEM_ID } from "../../constants.mjs";
 import { ActiveEffectsFlags } from "../../enums/active-effects-enums.mjs";
-import { FoundryApi } from "../../utils/foundry-api.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
 export class Setor0TokenCanvas extends FoundryApi.TokenCanvas {
 

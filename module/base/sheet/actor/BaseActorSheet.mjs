@@ -7,7 +7,7 @@ import { OnEventType, OnMethod, verifyAndParseOnEventType } from "../../../enums
 import { FlagsUtils } from "../../../utils/flags-utils.mjs";
 import { HtmlJsUtils } from "../../../utils/html-js-utils.mjs";
 
-import { FoundryApi } from "../../../utils/foundry-api.mjs";
+import { FoundryApi } from "../../../api/foundry-api.mjs";
 import { ActorUpdater } from "../../updater/actor-updater.mjs";
 
 export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {

@@ -1,7 +1,7 @@
 import { ActorUtils } from "../../../core/actor/actor-utils.mjs";
 import { DefaultActions } from "../../../utils/default-actions.mjs";
 import { ActiveEffectsUtils } from "../../../core/effect/active-effects.mjs";
-import { FoundryApi } from "../../../utils/foundry-api.mjs";
+import { FoundryApi } from "../../../api/foundry-api.mjs";
 
 class Setor0Combatant extends FoundryApi.Combatant {
     updateResource() {

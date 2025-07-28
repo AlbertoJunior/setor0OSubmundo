@@ -1,4 +1,4 @@
-import { createApplication } from "./api-versions-overrides/create-application.mjs";
+import { createApplication } from "./create-application.mjs";
 
 const ApplicationV1 = createApplication("v1");
 const ApplicationV2 = createApplication("v2", ["v1"]);

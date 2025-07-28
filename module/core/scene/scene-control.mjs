@@ -1,5 +1,5 @@
 import { TODO } from "../../../scripts/utils/utils.mjs";
-import { FoundryApi } from "../../utils/foundry-api.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
 /** Depreciado */
 class Setor0SceneControls extends FoundryApi.SceneControls {

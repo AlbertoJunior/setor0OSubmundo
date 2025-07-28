@@ -1,7 +1,7 @@
 import { SYSTEM_ID, REGISTERED_TEMPLATES, TEMPLATES_PATH, SYSTEM_CLASS_CSS } from "../../../constants.mjs";
 import { OnEventTypeClickableEvents } from "../../../enums/on-event-type.mjs";
 import { FlagsUtils } from "../../../utils/flags-utils.mjs";
-import { FoundryApi } from "../../../utils/foundry-api.mjs";
+import { FoundryApi } from "../../../api/foundry-api.mjs";
 import { HtmlJsUtils } from "../../../utils/html-js-utils.mjs";
 import { loadAndRegisterTemplates } from "../../../utils/templates.mjs";
 import { menuHandleMethods } from "../../menu-default-methods.mjs";

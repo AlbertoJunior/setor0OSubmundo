@@ -1,6 +1,6 @@
 import { ActiveEffectsFlags } from "../../enums/active-effects-enums.mjs";
 import { FlagsUtils } from "../../utils/flags-utils.mjs";
-import { FoundryApi } from "../../utils/foundry-api.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
 export class Setor0ActiveEffect extends FoundryApi.ActiveEffect {
     _onCreate(data, options, userId) {

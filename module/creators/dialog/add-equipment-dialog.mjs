@@ -1,7 +1,7 @@
 import { localize, localizeType } from "../../../scripts/utils/utils.mjs"
 import { TEMPLATES_PATH } from "../../constants.mjs";
 import { OnEventType } from "../../enums/on-event-type.mjs";
-import { FoundryApi } from "../../utils/foundry-api.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
 export class AddEquipmentDialog {
     static async showItemSelectorDialog(items, onSelect = () => { }) {

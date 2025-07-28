@@ -1,6 +1,6 @@
-import { randomId } from "../../../scripts/utils/utils.mjs";
-import { v1Overrides } from "./v1.mjs";
-import { v2Overrides } from "./v2.mjs";
+import { randomId } from "../../scripts/utils/utils.mjs";
+import { v1Overrides } from "./versions-overrides/v1.mjs";
+import { v2Overrides } from "./versions-overrides/v2.mjs";
 
 // base config for applications
 const baseApplicationConfig = Object.freeze({

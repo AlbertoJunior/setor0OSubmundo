@@ -1,7 +1,7 @@
 import { TokenUtils } from "../../../core/token/token-utils.mjs";
 import { ActiveEffectsFlags } from "../../../enums/active-effects-enums.mjs";
 import { FlagsUtils } from "../../../utils/flags-utils.mjs";
-import { FoundryApi } from "../../../utils/foundry-api.mjs";
+import { FoundryApi } from "../../../api/foundry-api.mjs";
 
 class Setor0CombatTracker extends FoundryApi.CombatTracker {
     async _prepareTurnContext(combat, combatant, index) {

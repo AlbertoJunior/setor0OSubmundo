@@ -2,7 +2,7 @@ import { normalizeString } from "../../scripts/utils/utils.mjs";
 import { SYSTEM_CLASS_CSS } from "../constants.mjs";
 import { SystemFlags } from "../enums/flags-enums.mjs";
 import { FlagsUtils } from "./flags-utils.mjs";
-import { FoundryApi } from "./foundry-api.mjs";
+import { FoundryApi } from "../api/foundry-api.mjs";
 
 export class HtmlJsUtils {
     static setupContent(html, styles) {

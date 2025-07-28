@@ -1,5 +1,5 @@
 import { SYSTEM_CLASS_CSS, SYSTEM_CLASS_DIALOG_CSS } from "../../constants.mjs";
-import { DialogUtils } from "../dialog-utils.mjs";
+import { DialogUtils } from "../../utils/dialog-utils.mjs"
 
 const VERSION_NAME = 'S0-V1';
 

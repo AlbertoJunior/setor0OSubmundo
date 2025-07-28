@@ -1,7 +1,7 @@
 import { NotificationsUtils } from "../creators/message/notifications.mjs";
 import { SystemFlags } from "../enums/flags-enums.mjs";
 import { FlagsUtils } from "../utils/flags-utils.mjs";
-import { FoundryApi } from "../utils/foundry-api.mjs";
+import { FoundryApi } from "../api/foundry-api.mjs";
 
 export class SceneHookHandle {
     static firstRender = true;
