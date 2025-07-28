@@ -1,4 +1,4 @@
-import { gameLocalize, getObject, labelError, localize } from "../../../scripts/utils/utils.mjs";
+import { gameLocalize, getObject, labelError, localize } from "../../utils/utils.mjs";
 import { ActiveEffectsTypes } from "../../enums/active-effects-enums.mjs";
 import { DamageType, EquipmentCharacteristicType, EquipmentHand, EquipmentHidding, EquipmentType, MeleeSize, SubstanceType, VehicleType } from "../../enums/equipment-enums.mjs";
 

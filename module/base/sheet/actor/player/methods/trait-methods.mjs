@@ -5,7 +5,7 @@ import { ActorTraitField } from "../../../../../field/actor-trait-field.mjs";
 import { CharacteristicType } from "../../../../../enums/characteristic-enums.mjs";
 import { OnEventType } from "../../../../../enums/on-event-type.mjs";
 import { TraitMessageCreator } from "../../../../../creators/message/trait-message.mjs";
-import { getObject, TODO } from "../../../../../../scripts/utils/utils.mjs";
+import { getObject, TODO } from "../../../../../utils/utils.mjs";
 import { ActorUpdater } from "../../../../updater/actor-updater.mjs";
 
 function getCharacteristic(type) {

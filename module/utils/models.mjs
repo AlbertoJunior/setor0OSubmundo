@@ -1,4 +1,4 @@
-import { logTable } from "../../scripts/utils/utils.mjs";
+import { logTable } from "../utils/utils.mjs";
 import { createActorDataModels } from "../data/actor-data-model.mjs";
 import { createEquipmentDataModels } from "../data/equipment-data-model.mjs";
 import { createTraitDataModels } from "../data/trait-data-model.mjs";

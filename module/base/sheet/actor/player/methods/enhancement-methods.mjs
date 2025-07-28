@@ -1,4 +1,4 @@
-import { gameLocalize, getObject, localize, localizeFormat } from "../../../../../../scripts/utils/utils.mjs";
+import { gameLocalize, getObject, localize, localizeFormat } from "../../../../../utils/utils.mjs";
 import { ChatCreator } from "../../../../../utils/chat-creator.mjs";
 import { ActorEnhancementField } from "../../../../../field/actor-fields.mjs";
 import { EnhancementRepository } from "../../../../../repository/enhancement-repository.mjs";

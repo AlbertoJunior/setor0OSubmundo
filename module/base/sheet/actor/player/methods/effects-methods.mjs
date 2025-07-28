@@ -1,4 +1,4 @@
-import { TODO } from "../../../../../../scripts/utils/utils.mjs";
+import { TODO } from "../../../../../utils/utils.mjs";
 import { ActorEquipmentUtils } from "../../../../../core/actor/actor-equipment.mjs";
 import { ActiveEffectsUtils } from "../../../../../core/effect/active-effects.mjs";
 import { OnEventType } from "../../../../../enums/on-event-type.mjs";

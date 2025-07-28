@@ -1,4 +1,4 @@
-import { getObject, localize, TODO } from "../../../scripts/utils/utils.mjs";
+import { getObject, localize, TODO } from "../../utils/utils.mjs";
 import { activeEffectOriginTypeLabel, ActiveEffectsFlags, ActiveEffectsOriginTypes } from "../../enums/active-effects-enums.mjs";
 import { EquipmentCharacteristicType, SubstanceType, validEquipmentTypes } from "../../enums/equipment-enums.mjs";
 import { SuperEquipmentTraitRepository } from "../../repository/superequipment-trait-repository.mjs";

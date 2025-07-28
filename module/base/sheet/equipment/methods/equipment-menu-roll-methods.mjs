@@ -1,4 +1,4 @@
-import { getObject, localize } from "../../../../../scripts/utils/utils.mjs";
+import { getObject, localize } from "../../../../utils/utils.mjs";
 import { CreateRollableTestDialog } from "../../../../creators/dialog/create-roll-test-dialog.mjs";
 import { NotificationsUtils } from "../../../../creators/message/notifications.mjs";
 import { EquipmentCharacteristicType } from "../../../../enums/equipment-enums.mjs";

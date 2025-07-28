@@ -1,4 +1,4 @@
-import { keyJsonToKeyLang, localize } from "../../../scripts/utils/utils.mjs";
+import { keyJsonToKeyLang, localize } from "../../utils/utils.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
 

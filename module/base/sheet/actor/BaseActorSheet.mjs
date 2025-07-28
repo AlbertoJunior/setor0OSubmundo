@@ -1,4 +1,4 @@
-import { getObject, selectCharacteristic, TODO } from "../../../../scripts/utils/utils.mjs";
+import { getObject, selectCharacteristic, TODO } from "../../../utils/utils.mjs";
 import { SYSTEM_CLASS_CSS } from "../../../constants.mjs";
 import { ActorEquipmentUtils } from "../../../core/actor/actor-equipment.mjs";
 import { BaseActorCharacteristicType } from "../../../enums/characteristic-enums.mjs";

@@ -1,6 +1,6 @@
 import { AttributeRepository } from "../../repository/attribute-repository.mjs";
 import { AbilityRepository } from "../../repository/ability-repository.mjs";
-import { localize, randomId } from "../../../scripts/utils/utils.mjs"
+import { localize, randomId } from "../../utils/utils.mjs"
 import { ConfirmationDialog } from "./confirmation-dialog.mjs";
 import { RollTestUtils } from "../../core/rolls/roll-test-utils.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";

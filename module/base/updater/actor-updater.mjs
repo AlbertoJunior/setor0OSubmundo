@@ -1,4 +1,4 @@
-import { getObject } from "../../../scripts/utils/utils.mjs";
+import { getObject } from "../../utils/utils.mjs";
 
 export class ActorUpdater {
     static async verifyAndUpdateActor(actor, systemCharacteristic, value) {

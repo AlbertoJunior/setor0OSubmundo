@@ -1,4 +1,4 @@
-import { getObject } from "../../scripts/utils/utils.mjs";
+import { getObject } from "../utils/utils.mjs";
 import { CombatUtils } from "../core/combat/combat-utils.mjs";
 import { ActorType, BaseActorCharacteristicType, CharacteristicType } from "../enums/characteristic-enums.mjs";
 import { SystemFlags } from "../enums/flags-enums.mjs";

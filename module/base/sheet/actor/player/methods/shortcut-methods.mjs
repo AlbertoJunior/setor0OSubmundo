@@ -1,4 +1,4 @@
-import { getObject, localize, onArrayRemove } from "../../../../../../scripts/utils/utils.mjs";
+import { getObject, localize, onArrayRemove } from "../../../../../utils/utils.mjs";
 import { CreateFormDialog } from "../../../../../creators/dialog/create-dialog.mjs";
 import { CreateRollableTestDialog } from "../../../../../creators/dialog/create-roll-test-dialog.mjs";
 import { NotificationsUtils } from "../../../../../creators/message/notifications.mjs";

@@ -1,4 +1,4 @@
-import { getObject, localize, toKeyLang } from "../../../scripts/utils/utils.mjs";
+import { getObject, localize, toKeyLang } from "../../utils/utils.mjs";
 import { BaseActorCharacteristicType, CharacteristicType } from "../../enums/characteristic-enums.mjs";
 import { EnhancementRepository } from "../../repository/enhancement-repository.mjs";
 import { ActorUtils } from "../actor/actor-utils.mjs";

@@ -1,4 +1,4 @@
-import { gameLocalize, localize, randomId } from "../../../scripts/utils/utils.mjs";
+import { gameLocalize, localize, randomId } from "../../utils/utils.mjs";
 import { EquipmentInfoParser } from "../../core/equipment/equipment-info.mjs";
 import { CharacteristicType } from "../../enums/characteristic-enums.mjs";
 import { EquipmentCharacteristicType, SuperEquipmentParticularityType } from "../../enums/equipment-enums.mjs";

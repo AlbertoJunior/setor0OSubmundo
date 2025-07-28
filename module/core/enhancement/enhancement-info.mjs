@@ -1,5 +1,5 @@
 import { EnhancementDuration, EnhancementOverload } from "../../enums/enhancement-enums.mjs";
-import { labelError, localize } from "../../../scripts/utils/utils.mjs";
+import { labelError, localize } from "../../utils/utils.mjs";
 
 export class EnhancementInfoParser {
 

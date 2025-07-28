@@ -1,5 +1,5 @@
 import { Setor0BaseActorSheet } from "../BaseActorSheet.mjs";
-import { getObject, selectCharacteristic } from "../../../../../scripts/utils/utils.mjs";
+import { getObject, selectCharacteristic } from "../../../../utils/utils.mjs";
 import { OnEventType, OnEventTypeClickableEvents, OnEventTypeContextualEvents } from "../../../../enums/on-event-type.mjs";
 import { SheetMethods } from "./methods/sheet-methods.mjs";
 import { selectLevelOnOptions, updateEnhancementLevelsOptions } from "./methods/enhancement-methods.mjs";

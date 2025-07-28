@@ -1,4 +1,4 @@
-import { NotificationsUtils } from "../../module/creators/message/notifications.mjs";
+import { NotificationsUtils } from "../creators/message/notifications.mjs";
 
 function containClass(element, cls) {
     return element.classList.contains(cls);

@@ -1,4 +1,4 @@
-import { getObject, localize, onArrayRemove, randomId, TODO } from "../../../../../scripts/utils/utils.mjs";
+import { getObject, localize, onArrayRemove, randomId, TODO } from "../../../../utils/utils.mjs";
 import { RollTestUtils } from "../../../../core/rolls/roll-test-utils.mjs";
 import { CreateRollableTestDialog } from "../../../../creators/dialog/create-roll-test-dialog.mjs";
 import { NotificationsUtils } from "../../../../creators/message/notifications.mjs";

@@ -1,4 +1,4 @@
-import { getObject } from "../../../scripts/utils/utils.mjs";
+import { getObject } from "../../utils/utils.mjs";
 import { BaseActorCharacteristicType, CharacteristicType, NpcCharacteristicType } from "../../enums/characteristic-enums.mjs";
 import { NpcQualityRepository } from "../../repository/npc-quality-repository.mjs";
 import { ActorUtils } from "../actor/actor-utils.mjs";

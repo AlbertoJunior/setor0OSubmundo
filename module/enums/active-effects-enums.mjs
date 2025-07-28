@@ -1,4 +1,4 @@
-import { localize } from "../../scripts/utils/utils.mjs";
+import { localize } from "../utils/utils.mjs";
 
 export const ActiveEffectsOriginTypes = Object.freeze({
     ITEM: 1,

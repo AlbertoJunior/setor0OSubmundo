@@ -1,5 +1,5 @@
 import { BaseActorCharacteristicType, CharacteristicType } from "../../enums/characteristic-enums.mjs";
-import { getObject, localize } from "../../../scripts/utils/utils.mjs";
+import { getObject, localize } from "../../utils/utils.mjs";
 import { MorphologyRepository } from "../../repository/morphology-repository.mjs";
 import { FlagsUtils } from "../../utils/flags-utils.mjs";
 import { ActiveEffectsUtils } from "../effect/active-effects.mjs";

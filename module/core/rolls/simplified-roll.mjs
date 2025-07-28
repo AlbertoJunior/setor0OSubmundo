@@ -1,4 +1,4 @@
-import { getObject, labelError } from "../../../scripts/utils/utils.mjs";
+import { getObject, labelError } from "../../utils/utils.mjs";
 import { EquipmentCharacteristicType } from "../../enums/equipment-enums.mjs";
 import { AbilityRepository } from "../../repository/ability-repository.mjs";
 import { EquipmentUtils } from "../equipment/equipment-utils.mjs";

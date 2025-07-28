@@ -1,4 +1,4 @@
-import { logTable } from "../../scripts/utils/utils.mjs";
+import { logTable } from "../utils/utils.mjs";
 import { DistrictRepository } from "../repository/district-repository.mjs";
 import { EnhancementRepository } from "../repository/enhancement-repository.mjs";
 import { EquipmentRepository } from "../repository/equipment-repository.mjs";

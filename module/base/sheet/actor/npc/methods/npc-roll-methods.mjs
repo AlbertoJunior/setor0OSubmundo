@@ -1,4 +1,4 @@
-import { getObject, localize } from "../../../../../../scripts/utils/utils.mjs";
+import { getObject, localize } from "../../../../../utils/utils.mjs";
 import { ActorEquipmentUtils } from "../../../../../core/actor/actor-equipment.mjs";
 import { ActorUtils } from "../../../../../core/actor/actor-utils.mjs";
 import { NpcUtils } from "../../../../../core/npc/npc-utils.mjs";

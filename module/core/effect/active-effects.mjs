@@ -1,4 +1,4 @@
-import { randomId } from "../../../scripts/utils/utils.mjs";
+import { randomId } from "../../utils/utils.mjs";
 import { ActorUpdater } from "../../base/updater/actor-updater.mjs";
 import { SYSTEM_ID } from "../../constants.mjs";
 import { ActiveEffectsFlags, ActiveEffectsTypes } from "../../enums/active-effects-enums.mjs";

@@ -1,4 +1,4 @@
-import { gameLocalize, localize, randomId, snakeToCamel } from "../../../scripts/utils/utils.mjs";
+import { gameLocalize, localize, randomId, snakeToCamel } from "../../utils/utils.mjs";
 import { AttributeRepository } from "../../repository/attribute-repository.mjs";
 import { AbilityRepository } from "../../repository/ability-repository.mjs";
 import { VirtuesRepository } from "../../repository/virtues-repository.mjs";

@@ -1,4 +1,4 @@
-import { gameLocalize } from "../../../scripts/utils/utils.mjs";
+import { gameLocalize } from "../../utils/utils.mjs";
 import { OnEventType } from "../../enums/on-event-type.mjs";
 
 export class ElementCreatorJQuery {

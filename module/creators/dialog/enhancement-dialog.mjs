@@ -1,7 +1,7 @@
 import { EnhancementDuration } from "../../enums/enhancement-enums.mjs";
 import { EnhancementRepository } from "../../repository/enhancement-repository.mjs";
 import { EnhancementInfoParser } from "../../core/enhancement/enhancement-info.mjs";
-import { localize } from "../../../scripts/utils/utils.mjs";
+import { localize } from "../../utils/utils.mjs";
 import { OnEventType } from "../../enums/on-event-type.mjs";
 import { CreateFormDialog } from "./create-dialog.mjs";
 import { ChatCreator } from "../../utils/chat-creator.mjs";

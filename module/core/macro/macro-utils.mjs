@@ -1,4 +1,4 @@
-import { getObject, normalizeString } from "../../../scripts/utils/utils.mjs";
+import { getObject, normalizeString } from "../../utils/utils.mjs";
 import { shortcutCustomRoll } from "../../base/sheet/actor/player/methods/shortcut-methods.mjs";
 import { rollByItemAndRollId } from "../../base/sheet/equipment/methods/equipment-item-roll-methods.mjs";
 import { SYSTEM_ID } from "../../constants.mjs";

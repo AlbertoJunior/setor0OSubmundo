@@ -1,8 +1,8 @@
-import { logTable } from "../../scripts/utils/utils.mjs";
+import { logTable } from "../utils/utils.mjs";
 
 export async function loadHandlebarsHelpers() {
     console.log("-> Carregando helpers do Handlebars...");
-    const helpersPath = "/scripts/helpers/";
+    const helpersPath = "module/helpers/";
     const helperFiles = [
         "selectIfEq.mjs",
         "fetchRepository.mjs",

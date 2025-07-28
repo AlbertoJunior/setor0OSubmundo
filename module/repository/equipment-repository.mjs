@@ -1,4 +1,4 @@
-import { getObject } from "../../scripts/utils/utils.mjs";
+import { getObject } from "../utils/utils.mjs";
 import { SYSTEM_ID } from "../constants.mjs";
 import { equipmentParseData } from "../data/equipment-data-model.mjs";
 import { EquipmentCharacteristicType, validEquipmentTypes } from "../enums/equipment-enums.mjs";

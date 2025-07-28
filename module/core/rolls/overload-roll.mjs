@@ -1,4 +1,4 @@
-import { getObject } from "../../../scripts/utils/utils.mjs";
+import { getObject } from "../../utils/utils.mjs";
 import { CharacteristicType } from "../../enums/characteristic-enums.mjs";
 import { CoreRollMethods } from "./core-roll-methods.mjs";
 

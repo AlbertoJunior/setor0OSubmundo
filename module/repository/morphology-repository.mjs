@@ -1,4 +1,4 @@
-import { localize } from "../../scripts/utils/utils.mjs";
+import { localize } from "../utils/utils.mjs";
 import { SYSTEM_ID } from "../constants.mjs";
 
 export class MorphologyRepository {

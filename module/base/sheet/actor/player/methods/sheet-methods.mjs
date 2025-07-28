@@ -1,5 +1,5 @@
 import { ActorRollDialog } from "../../../../../creators/dialog/actor-roll-dialog.mjs";
-import { getObject, selectCharacteristic, } from "../../../../../../scripts/utils/utils.mjs";
+import { getObject, selectCharacteristic, } from "../../../../../utils/utils.mjs";
 import { CharacteristicType } from "../../../../../enums/characteristic-enums.mjs";
 import { OnEventType } from "../../../../../enums/on-event-type.mjs";
 import { handleStatusMethods } from "./status-methods.mjs";

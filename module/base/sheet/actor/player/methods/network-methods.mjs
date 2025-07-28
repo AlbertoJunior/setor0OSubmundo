@@ -1,4 +1,4 @@
-import { getObject, onArrayRemove } from "../../../../../../scripts/utils/utils.mjs";
+import { getObject, onArrayRemove } from "../../../../../utils/utils.mjs";
 import { NpcConversor } from "../../../../../core/npc/npc-conversor.mjs";
 import { NpcDialog } from "../../../../../creators/dialog/npc-dialog.mjs";
 import { CharacteristicType } from "../../../../../enums/characteristic-enums.mjs";

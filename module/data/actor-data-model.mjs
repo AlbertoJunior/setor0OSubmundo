@@ -6,7 +6,7 @@ import { ActorUtils } from "../core/actor/actor-utils.mjs";
 import { RollTestField } from "../field/roll-test-field.mjs";
 import { NpcSkill } from "../field/npc-fields.mjs";
 import { NpcQualityRepository } from "../repository/npc-quality-repository.mjs";
-import { getObject } from "../../scripts/utils/utils.mjs";
+import { getObject } from "../utils/utils.mjs";
 import { BaseActorCharacteristicType } from "../enums/characteristic-enums.mjs";
 import { NpcUtils } from "../core/npc/npc-utils.mjs";
 import { MorphologyRepository } from "../repository/morphology-repository.mjs";

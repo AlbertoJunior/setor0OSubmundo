@@ -1,4 +1,4 @@
-import { localize } from "../../../../../../scripts/utils/utils.mjs";
+import { localize } from "../../../../../utils/utils.mjs";
 import { RollAttribute } from "../../../../../core/rolls/attribute-roll.mjs";
 import { CustomRoll } from "../../../../../core/rolls/custom-roll.mjs";
 import { RollSimplified } from "../../../../../core/rolls/simplified-roll.mjs";

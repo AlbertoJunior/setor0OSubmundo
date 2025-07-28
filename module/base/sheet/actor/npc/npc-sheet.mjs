@@ -1,5 +1,5 @@
 import { Setor0BaseActorSheet } from "../BaseActorSheet.mjs";
-import { selectCharacteristic } from "../../../../../scripts/utils/utils.mjs";
+import { selectCharacteristic } from "../../../../utils/utils.mjs";
 import { SYSTEM_ID, TEMPLATES_PATH, SYSTEM_CLASS_CSS } from "../../../../constants.mjs";
 import { BaseActorCharacteristicType } from "../../../../enums/characteristic-enums.mjs";
 import { OnEventType, OnEventTypeClickableEvents, OnEventTypeContextualEvents } from "../../../../enums/on-event-type.mjs";

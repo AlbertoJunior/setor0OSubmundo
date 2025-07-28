@@ -1,4 +1,4 @@
-import { getObject, localize, onArrayRemove, selectCharacteristicAndReturnLength } from "../../../../../scripts/utils/utils.mjs";
+import { getObject, localize, onArrayRemove, selectCharacteristicAndReturnLength } from "../../../../utils/utils.mjs";
 import { EquipmentUtils } from "../../../../core/equipment/equipment-utils.mjs";
 import { ConfirmationDialog } from "../../../../creators/dialog/confirmation-dialog.mjs";
 import { EquipmentCharacteristicType } from "../../../../enums/equipment-enums.mjs";

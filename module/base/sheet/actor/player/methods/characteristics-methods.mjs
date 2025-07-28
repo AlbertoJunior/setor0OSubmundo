@@ -1,5 +1,5 @@
 import { ActorUtils } from "../../../../../core/actor/actor-utils.mjs";
-import { selectCharacteristic } from "../../../../../../scripts/utils/utils.mjs";
+import { selectCharacteristic } from "../../../../../utils/utils.mjs";
 import { BaseActorCharacteristicType, CharacteristicType, CharacteristicTypeMap } from "../../../../../enums/characteristic-enums.mjs";
 import { ActorUpdater } from "../../../../updater/actor-updater.mjs";
 

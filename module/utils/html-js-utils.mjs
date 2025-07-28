@@ -1,4 +1,4 @@
-import { normalizeString } from "../../scripts/utils/utils.mjs";
+import { normalizeString } from "../utils/utils.mjs";
 import { SYSTEM_CLASS_CSS } from "../constants.mjs";
 import { SystemFlags } from "../enums/flags-enums.mjs";
 import { FlagsUtils } from "./flags-utils.mjs";

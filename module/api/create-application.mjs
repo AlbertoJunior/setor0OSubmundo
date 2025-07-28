@@ -1,4 +1,4 @@
-import { randomId } from "../../scripts/utils/utils.mjs";
+import { randomId } from "../utils/utils.mjs";
 import { v1Overrides } from "./versions-overrides/v1.mjs";
 import { v2Overrides } from "./versions-overrides/v2.mjs";
 

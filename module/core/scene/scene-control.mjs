@@ -1,4 +1,4 @@
-import { TODO } from "../../../scripts/utils/utils.mjs";
+import { TODO } from "../../utils/utils.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
 
 /** Depreciado */

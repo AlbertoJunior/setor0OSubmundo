@@ -1,4 +1,4 @@
-import { selectCharacteristicAndReturnLength } from "../../../../../../scripts/utils/utils.mjs";
+import { selectCharacteristicAndReturnLength } from "../../../../../utils/utils.mjs";
 import { BaseActorCharacteristicType, CharacteristicType, getActorVirtue } from "../../../../../enums/characteristic-enums.mjs";
 import { DefaultActions } from "../../../../../utils/default-actions.mjs";
 import { ActorUpdater } from "../../../../updater/actor-updater.mjs";

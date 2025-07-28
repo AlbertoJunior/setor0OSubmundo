@@ -1,7 +1,7 @@
 import { RollPerseverance } from "../core/rolls/perseverance-roll.mjs";
 import { MessageRepository } from "../repository/message-repository.mjs";
 import { HtmlJsUtils } from "./html-js-utils.mjs";
-import { localize } from "../../scripts/utils/utils.mjs";
+import { localize } from "../utils/utils.mjs";
 
 export class DOMUtils {
     static #mapEventsHandle = {

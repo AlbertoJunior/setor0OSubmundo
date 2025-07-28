@@ -1,4 +1,4 @@
-import { localize, localizeType } from "../../../scripts/utils/utils.mjs"
+import { localize, localizeType } from "../../utils/utils.mjs"
 import { TEMPLATES_PATH } from "../../constants.mjs";
 import { OnEventType } from "../../enums/on-event-type.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";

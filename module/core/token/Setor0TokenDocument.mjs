@@ -1,4 +1,4 @@
-import { gameLocalize, localize } from "../../../scripts/utils/utils.mjs";
+import { gameLocalize, localize } from "../../utils/utils.mjs";
 import { SYSTEM_ID } from "../../constants.mjs";
 import { ActiveEffectsFlags } from "../../enums/active-effects-enums.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";

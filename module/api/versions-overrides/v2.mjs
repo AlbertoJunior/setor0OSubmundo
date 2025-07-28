@@ -1,4 +1,4 @@
-import { randomId } from "../../../scripts/utils/utils.mjs";
+import { randomId } from "../../utils/utils.mjs";
 import { SYSTEM_CLASS_CSS } from "../../constants.mjs";
 
 const VERSION_NAME = 'S0-V2';

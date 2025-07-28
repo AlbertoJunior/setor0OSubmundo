@@ -1,4 +1,4 @@
-import { getObject, localize, TODO } from "../../../../../../scripts/utils/utils.mjs";
+import { getObject, localize, TODO } from "../../../../../utils/utils.mjs";
 import { ActorEquipmentUtils } from "../../../../../core/actor/actor-equipment.mjs";
 import { ActiveEffectsUtils } from "../../../../../core/effect/active-effects.mjs";
 import { EquipmentUtils } from "../../../../../core/equipment/equipment-utils.mjs";

@@ -1,4 +1,4 @@
-import { getObject, onArrayRemove, } from "../../../../../scripts/utils/utils.mjs";
+import { getObject, onArrayRemove, } from "../../../../utils/utils.mjs";
 import { ActiveEffectsUtils } from "../../../../core/effect/active-effects.mjs";
 import { EquipmentUtils } from "../../../../core/equipment/equipment-utils.mjs";
 import { SuperEquipmentEffectsDialog } from "../../../../creators/dialog/superequipment-effects-dialog.mjs";

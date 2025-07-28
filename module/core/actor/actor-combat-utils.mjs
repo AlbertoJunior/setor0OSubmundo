@@ -1,5 +1,5 @@
 import { CharacteristicType } from "../../enums/characteristic-enums.mjs";
-import { getObject } from "../../../scripts/utils/utils.mjs";
+import { getObject } from "../../utils/utils.mjs";
 import { ActorUtils } from "./actor-utils.mjs";
 
 export class ActorCombatUtils {

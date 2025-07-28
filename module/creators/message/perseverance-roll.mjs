@@ -1,4 +1,4 @@
-import { localize } from "../../../scripts/utils/utils.mjs";
+import { localize } from "../../utils/utils.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
 import { CoreRollMethods } from "../../core/rolls/core-roll-methods.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";

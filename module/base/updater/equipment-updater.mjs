@@ -1,4 +1,4 @@
-import { getObject } from "../../../scripts/utils/utils.mjs";
+import { getObject } from "../../utils/utils.mjs";
 import { SYSTEM_ID } from "../../constants.mjs";
 import { ActorEquipmentUtils } from "../../core/actor/actor-equipment.mjs";
 import { ActorUpdater } from "./actor-updater.mjs";
