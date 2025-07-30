@@ -1,3 +1,4 @@
+import { FoundryApi } from "../../api/foundry-api.mjs";
 import { COLORS, SYSTEM_ID } from "../../constants.mjs";
 import { MacroUtils } from "./macro-utils.mjs";
 
@@ -40,7 +41,7 @@ export class MacroSync {
                 const role = item.flags[SYSTEM_ID]?.role.toUpperCase();
                 const folder = folders[role];
 
-                const macroDoc = await Macro.create({
+                const macroDoc = await FoundryApi.Macro.create({
                     ...item,
                     folder: folder
                 });

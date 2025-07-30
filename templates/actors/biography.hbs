@@ -3,7 +3,8 @@
     <div class="S0-container" style="position: relative;">
         <h2>{{localize 'S0.Descricao'}}</h2>
         <div style="display: flex; justify-content: center; align-items: center;">
-            <img id="actor-image" src="{{actor.img}}" class="{{#if editable}}S0-clickable{{/if}}" data-edit="img">
+            <img id="actor-image" src="{{actor.img}}" {{#if editable}} class="S0-clickable" data-edit="img"
+                data-action="img" data-actor-id="{{actor.id}}" {{/if}}>
         </div>
 
         <div class="S0-biography-container-button">

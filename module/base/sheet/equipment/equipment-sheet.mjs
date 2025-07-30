@@ -28,10 +28,8 @@ export class EquipmentSheet extends FoundryApi.ItemSheet {
 
     static get defaultOptions() {
         return FoundryApi.mergeObject(super.defaultOptions, {
-            classes: [SYSTEM_ID, SYSTEM_CLASS_CSS, "sheet", "item"],
             template: `${TEMPLATES_PATH}/items/default.hbs`,
             width: 320,
-            height: 640
         });
     }
 

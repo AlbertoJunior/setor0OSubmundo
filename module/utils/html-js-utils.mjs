@@ -35,11 +35,14 @@ export class HtmlJsUtils {
         if (isCompactMode) {
             for (const child of headerChildren) {
                 const saveChild = child.firstElementChild;
-                const saveText = normalizeString(child.textContent);
+                const saveText = normalizeString(child.textContent) || child.ariaLabel || "";
                 child.classList.add('S0-icon-expand')
                 child.textContent = '';
                 child.appendChild(saveChild);
-                child.title = saveText;
+                if (!child.dataset.tooltip) {
+                    child.dataset.tooltip = saveText;
+                    child.dataset.tooltipDirection = 'UP';
+                }
             }
         } else {
             for (const child of headerChildren) {
@@ -62,24 +65,27 @@ export class HtmlJsUtils {
 
     static getActualHeight(element) {
         const windowElem = element.closest(`.${SYSTEM_CLASS_CSS}`);
-        if (!windowElem)
+        if (!windowElem) {
             return undefined;
+        }
 
         return windowElem.offsetHeight;
     }
 
     static expandOrContractElement(element, params) {
         const windowElem = element.closest(`.${SYSTEM_CLASS_CSS}`);
-        if (!windowElem)
+        if (!windowElem) {
             return;
+        }
 
         return this.#operate(element, windowElem, params);
     }
 
     static expandOrContractMessageElement(element, params) {
         const windowElem = element.closest(".message-content");
-        if (!windowElem)
+        if (!windowElem) {
             return;
+        }
 
         return this.#operate(element, windowElem, params);
     }
@@ -162,7 +168,9 @@ export class HtmlJsUtils {
                 return;
             }
 
-            const button = $(`<a class="${classes}" data-tab="${tabName}" title="${label}"><i class="fas ${icon}"></i>${isCompacted ? '' : label}</a>`);
+            const iconText = `<i class="fas ${icon}"></i>`;
+            const dataTooltipConfigs = `data-tooltip="${label}" data-tooltip-direction="UP"`;
+            const button = $(`<a class="${classes}" data-tab="${tabName}" ${dataTooltipConfigs}>${iconText}${isCompacted ? '' : label}</a>`);
             nav.append(button);
         });
 

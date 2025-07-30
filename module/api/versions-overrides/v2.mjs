@@ -13,11 +13,41 @@ export const v2Overrides = Object.freeze(
 );
 
 function makeClass(BaseClass) {
-    const { HandlebarsApplicationMixin } = foundry.applications.api;
+    const { HandlebarsApplicationMixin } = this.Api;
     const name = BaseClass.name;
 
     return {
         [name]: class extends HandlebarsApplicationMixin(BaseClass) {
+            static DEFAULT_OPTIONS = {
+                // viewPermission: CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED,
+                // editPermission: CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER,
+                sheetConfig: false,
+                classes: [SYSTEM_CLASS_CSS, VERSION_NAME],
+                window: {
+                    resizable: false,
+                    controls: [
+                        // {
+                        //     action: "example",
+                        //     icon: "fa-regular fa-circle-user",
+                        //     label: "S0.example-control-label",
+                        //     ownership: "OWNER"
+                        // }
+                    ]
+                }
+            }
+
+            _replaceHTML(result, content, options) {
+                const isDisabled = !(this.isEditable && this.canRollOrEdit);
+                if (isDisabled) {
+                    Object.values(result)
+                        .flatMap(part => part?.elements ?? [])
+                        .forEach(element => {
+                            element.disabled = true;
+                        });
+                }
+                return super._replaceHTML(result, content, options)
+            }
+
             getData() {
                 return {};
             }

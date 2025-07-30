@@ -1,6 +1,7 @@
 {{#if canEdit}}
 <li class="S0-simulate-button {{htmlUtils 'marked' editable}} {{htmlUtils 'compacted'}}" data-characteristic="menu"
-    data-action="check" data-type="edit">
+    data-action="check" data-type="edit" data-tooltip="{{ localize 'S0.Habilitar_Desabilitar_Edicao' }}"
+    data-tooltip-direction="UP">
     {{#if editable}}
     <i class="fas fa-toggle-on" style="margin-right: 4px;"></i>
     {{#unless (gameFunc 'isCompactedSheet')}}
@@ -17,7 +18,8 @@
 
 {{#unless hideDarkModeButton}}
 <li class="S0-simulate-button {{htmlUtils 'marked' (gameFunc 'inDarkMode')}} {{htmlUtils 'compacted'}}"
-    data-characteristic="menu" data-action="check" data-type="dark">
+    data-characteristic="menu" data-action="check" data-type="dark"
+    data-tooltip="{{ localize 'S0.Habilitar_Desabilitar_Tema_Escuro' }}" data-tooltip-direction="UP">
     <i class="fas fa-circle-half-stroke"></i>
     {{#unless (gameFunc 'isCompactedSheet')}}
     {{localize 'S0.Modo_Escuro'}}
@@ -27,7 +29,8 @@
 
 {{#unless hideCompactButton}}
 <li class="S0-simulate-button {{htmlUtils 'marked' (gameFunc 'isCompactedSheet')}} {{htmlUtils 'compacted'}}"
-    data-characteristic="menu" data-action="check" data-type="compact" title="{{localize 'S0.Modo_Compacto'}}">
+    data-characteristic="menu" data-action="check" data-type="compact"
+    data-tooltip="{{ localize 'S0.Habilitar_Desabilitar_Modo_Compacto' }}" data-tooltip-direction="UP">
     <i class="fas fa-arrows-left-right-to-line"></i>
     {{#unless (gameFunc 'isCompactedSheet')}}
     {{localize 'S0.Modo_Compacto'}}
@@ -37,7 +40,7 @@
 
 {{#if canRoll}}
 <li class="S0-simulate-button {{htmlUtils 'compacted'}}" data-characteristic="menu" data-action="roll"
-    title="{{localize 'S0.Rolagem'}}">
+    data-tooltip="{{ localize 'S0.Rolagem' }}" data-tooltip-direction="UP">
     <i class="fas fa-dice-d10"></i>
     {{#unless (gameFunc 'isCompactedSheet')}}
     {{ localize 'S0.Rolagem' }}

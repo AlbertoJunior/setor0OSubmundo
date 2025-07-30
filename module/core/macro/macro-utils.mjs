@@ -13,6 +13,7 @@ import { openShortcutMacroData } from "./default/open-shortcut.mjs";
 import { rollOverloadMacroData } from "./default/roll-overload.mjs";
 import { cleanMacroHotbarUserMacroData } from "./gm/clean-macro-hotbar.mjs";
 import { resetUserFlagsMacroData } from "./gm/reset-user-flags.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
 export class MacroUtils {
     static MacroMethods = {
@@ -77,7 +78,7 @@ export class MacroUtils {
         const normalizedCommand = normalizeString(command);
         let macro = game.macros.find(m => normalizeString(m.name) === normalizedName && normalizeString(m.command) === normalizedCommand);
         if (!macro) {
-            macro = await Macro.create({
+            macro = await FoundryApi.Macro.create({
                 flags: {
                     [SYSTEM_ID]: {
                         ...flags

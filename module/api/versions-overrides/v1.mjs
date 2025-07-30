@@ -46,7 +46,17 @@ function makeClass(BaseClass) {
     const name = BaseClass.name;
     return {
         [name]: class extends BaseClass {
-
+            static get defaultOptions() {
+                const options = super.defaultOptions;
+                return {
+                    ...options,
+                    classes: [
+                        ...(options.classes || []),
+                        SYSTEM_CLASS_CSS,
+                        VERSION_NAME,
+                    ]
+                };
+            }
         }
     }[name];
 }

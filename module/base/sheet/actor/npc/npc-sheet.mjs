@@ -1,6 +1,6 @@
 import { Setor0BaseActorSheet } from "../BaseActorSheet.mjs";
 import { selectCharacteristic } from "../../../../utils/utils.mjs";
-import { SYSTEM_ID, TEMPLATES_PATH, SYSTEM_CLASS_CSS } from "../../../../constants.mjs";
+import { SYSTEM_ID, TEMPLATES_PATH } from "../../../../constants.mjs";
 import { BaseActorCharacteristicType } from "../../../../enums/characteristic-enums.mjs";
 import { OnEventType, OnEventTypeClickableEvents, OnEventTypeContextualEvents } from "../../../../enums/on-event-type.mjs";
 import { DialogUtils } from "../../../../utils/dialog-utils.mjs";
@@ -38,6 +38,21 @@ export const NpcSheetSize = {
 }
 
 class Setor0NpcSheet extends Setor0BaseActorSheet {
+    static DEFAULT_OPTIONS = {
+        position: {
+            width: NpcSheetSize.width,
+        },
+        window: {
+            resizable: false,
+        }
+    };
+
+    static PARTS = {
+        sheet: {
+            template: `${TEMPLATES_PATH}/npc/npc-sheet.hbs`,
+        },
+    };
+
     get mapEvents() {
         return {
             menu: menuHandleMethods,
@@ -78,13 +93,13 @@ class Setor0NpcSheet extends Setor0BaseActorSheet {
         super(...args);
     }
 
+    /* Only run on Application V1 */
     static get defaultOptions() {
         return FoundryApi.mergeObject(super.defaultOptions, {
-            classes: [SYSTEM_CLASS_CSS, "sheet", "actor"],
-            template: `${TEMPLATES_PATH}/npc/npc-sheet.hbs`,
-            width: NpcSheetSize.width,
+            template: this.PARTS.sheet.template,
+            resizable: this.DEFAULT_OPTIONS.window.resizable,
+            width: this.DEFAULT_OPTIONS.position.width,
             height: NpcSheetSize.height,
-            resizable: false,
         });
     }
 

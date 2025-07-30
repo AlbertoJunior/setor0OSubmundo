@@ -23,6 +23,8 @@ export class RollOverload {
         for (const element of values) {
             if (element >= this.#OVERLOAD_DIFFICULTY) {
                 result++;
+            } else if (result == 1) {
+                result--;
             }
         }
         return result;

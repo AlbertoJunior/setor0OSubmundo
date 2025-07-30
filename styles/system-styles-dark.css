@@ -105,6 +105,7 @@
 
 
 .S0-page-transparent .S0-actor-images-container :is(.S0-actor-images-name, .S0-actor-images-morph, .S0-actor-button) {
+    color: var(--on-primary-color);
     border-color: var(--primary-color);
 }
 

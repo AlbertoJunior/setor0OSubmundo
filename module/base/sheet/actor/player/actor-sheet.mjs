@@ -17,13 +17,10 @@ import { FoundryApi } from "../../../../api/foundry-api.mjs";
 class Setor0ActorSheet extends Setor0BaseActorSheet {
 
     static DEFAULT_OPTIONS = {
-        ...super.DEFAULT_OPTIONS,
         position: {
-            ...super.DEFAULT_OPTIONS.position,
             width: 600,
         },
         window: {
-            ...super.DEFAULT_OPTIONS.window,
             resizable: false,
         }
     };
@@ -49,16 +46,6 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
         };
     }
 
-    static get options() {
-        return {
-            classes: this.DEFAULT_OPTIONS.classes,
-            template: this.PARTS.sheet.template,
-            width: this.DEFAULT_OPTIONS.position.width,
-            height: 880,
-            resizable: this.DEFAULT_OPTIONS.window.resizable,
-        };
-    }
-
     constructor(...args) {
         super(...args);
         this.filterBag = EquipmentType.UNKNOWM;
@@ -67,8 +54,14 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
         this.defaultHeight = undefined;
     }
 
+    /* Only run on Application V1 */
     static get defaultOptions() {
-        return FoundryApi.mergeObject(super.defaultOptions, Setor0ActorSheet.options);
+        return FoundryApi.mergeObject(super.defaultOptions, {
+            template: this.PARTS.sheet.template,
+            resizable: this.DEFAULT_OPTIONS.window.resizable,
+            width: this.DEFAULT_OPTIONS.position.width,
+            height: 880,
+        });
     }
 
     configureSheet(html) {

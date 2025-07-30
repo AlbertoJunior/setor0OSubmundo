@@ -237,6 +237,13 @@ h4.divider {
 
 /* #endregion */
 
+/* #region FILE PICKER*/
+#file-picker .subheader :is(.set-favorite, .tag) {
+    gap: 4px;
+}
+
+/* #endregion */
+
 /* #region  COMPEDIUM */
 .directory-list .directory-item {
     padding-block: 2px;

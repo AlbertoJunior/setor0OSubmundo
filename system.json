@@ -110,12 +110,14 @@
         {
             "lang": "pt-br",
             "name": "Portugês Brasil",
-            "path": "lang/pt-br.json"
+            "path": "lang/pt-br.json",
+            "system": "setor0OSubmundo"
         },
         {
             "lang": "en",
             "name": "English",
-            "path": "lang/en.json"
+            "path": "lang/en.json",
+            "system": "setor0OSubmundo"
         }
     ],
     "documentTypes": {

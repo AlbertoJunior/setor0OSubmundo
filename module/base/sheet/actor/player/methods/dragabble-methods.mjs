@@ -5,6 +5,7 @@ import { CharacteristicType } from "../../../../../enums/characteristic-enums.mj
 import { NotificationsUtils } from "../../../../../creators/message/notifications.mjs";
 import { HtmlJsUtils } from "../../../../../utils/html-js-utils.mjs";
 import { EquipmentUtils } from "../../../../../core/equipment/equipment-utils.mjs";
+import { FoundryApi } from "../../../../../api/foundry-api.mjs";
 
 export class SheetActorDragabbleMethods {
     static async setup(html, actor) {
@@ -203,7 +204,7 @@ export class SheetActorDragabbleMethods {
         event.preventDefault();
         event.originalEvent.preventDefault();
 
-        const item = await Item.implementation.fromDropData(data);
+        const item = await FoundryApi.Item.implementation.fromDropData(data);
         if (!item) {
             console.warn("-> possível erro ao criar o Item");
             return;
@@ -227,7 +228,7 @@ export class SheetActorDragabbleMethods {
             return;
         }
 
-        const actorCreated = await Actor.implementation.fromDropData(data);
+        const actorCreated = await FoundryApi.Actor.implementation.fromDropData(data);
         if (!actorCreated || !characteristic) {
             console.warn("-> possível erro ao criar o Actor ou na Characteristic");
             NotificationsUtils.warning("Não foi possível adicionar este Personagem.");

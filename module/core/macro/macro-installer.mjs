@@ -1,3 +1,4 @@
+import { FoundryApi } from "../../api/foundry-api.mjs";
 import { SYSTEM_ID } from "../../constants.mjs";
 import { NotificationsUtils } from "../../creators/message/notifications.mjs";
 import { SystemFlags } from "../../enums/flags-enums.mjs";
@@ -44,7 +45,7 @@ export class MacroInstaller {
 
         let worldMacro = game.macros.find(macroB => MacroUtils.isTheSameMacro(macro, macroB));
         if (!worldMacro) {
-            worldMacro = await Macro.create(macro.toObject());
+            worldMacro = await FoundryApi.Macro.create(macro.toObject());
         }
 
         await user.assignHotbarMacro(worldMacro);

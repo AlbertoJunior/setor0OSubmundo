@@ -1,29 +1,49 @@
 import { getObject, selectCharacteristic, TODO } from "../../../utils/utils.mjs";
-import { SYSTEM_CLASS_CSS } from "../../../constants.mjs";
 import { ActorEquipmentUtils } from "../../../core/actor/actor-equipment.mjs";
 import { BaseActorCharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { EquipmentCharacteristicType } from "../../../enums/equipment-enums.mjs";
 import { OnEventType, OnMethod, verifyAndParseOnEventType } from "../../../enums/on-event-type.mjs";
 import { FlagsUtils } from "../../../utils/flags-utils.mjs";
 import { HtmlJsUtils } from "../../../utils/html-js-utils.mjs";
-
 import { FoundryApi } from "../../../api/foundry-api.mjs";
 import { ActorUpdater } from "../../updater/actor-updater.mjs";
 
 export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
     static DEFAULT_OPTIONS = {
-        ...super.DEFAULT_OPTIONS,
-        classes: [SYSTEM_CLASS_CSS, FoundryApi.ActorSheet.VERSION, 'actor'],
+        classes: ['actor'],
         window: {
-            subtitle: "",
+            controls: []
         },
         form: {
+            closeOnSubmit: false,
             submitOnChange: true,
-            handler: this.#onSubmitDocumentForm
+            handler: Setor0BaseActorSheet.#onSubmitDocumentForm
+        },
+        actions: {
+            img: Setor0BaseActorSheet.#selectImg
         }
     };
 
-    static PARTS = {}
+    _getHeaderControls() {
+        return super._getHeaderControls();
+    }
+
+    static async #selectImg() {
+        const actor = this.actor;
+        const img = actor.img;
+        new FoundryApi.FilePicker.implementation({
+            window: {
+                title: 'teste'
+            },
+            type: 'image',
+            current: img,
+            displayMode: "thumbs",
+            // allowUpload: game.user.isGM,
+            callback: async (path, event) => {
+                await ActorUpdater.verifyAndUpdateActor(actor, 'img', path);
+            }
+        }).browse();
+    }
 
     get mapEvents() {
         throw new Error("Getter 'mapEvents' must be implemented in the subclass.");
@@ -42,13 +62,13 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
         this.currentPage = 1;
     }
 
-    async _renderHTML(context, options) {
+    _renderHTML(context, options) {
         const updatedContext = {
             ...context,
             ...this.getData(),
             actor: context.document
         };
-        return await super._renderHTML(updatedContext, options);
+        return super._renderHTML(updatedContext, options);
     }
 
     _postRender(context, options) {
@@ -69,9 +89,6 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
             return;
         }
         await ActorUpdater.verifyAndUpdateActor(this.actor, event.target.name, event.target.value);
-        // const { updateData, ...updateOptions } = options;
-        // const submitData = this._prepareSubmitData(event, form, formData, updateData);
-        // await super._processSubmitData(event, form, submitData, options = {});
     }
 
     get isEditable() {
@@ -84,6 +101,9 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
 
     getData() {
         const data = super.getData();
+        if (data.options) {
+            data.options.sheetConfig = Setor0BaseActorSheet.DEFAULT_OPTIONS.sheetConfig;
+        }
         data.editable = this.isEditable;
         data.canRoll = this.canRollOrEdit;
         data.canEdit = this.canRollOrEdit;
