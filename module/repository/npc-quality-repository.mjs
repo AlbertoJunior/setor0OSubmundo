@@ -1,3 +1,4 @@
+import { FoundryApi } from "../api/foundry-api.mjs";
 import { localize } from "../utils/utils.mjs";
 
 export class NpcQualityRepository {
@@ -24,6 +25,6 @@ export class NpcQualityRepository {
 
     static getItem(id) {
         const item = this.getItems().find(item => item.id == id);
-        return item ? foundry.utils.deepClone(item) : null;
+        return item ? FoundryApi.deepClone(item) : null;
     }
 }

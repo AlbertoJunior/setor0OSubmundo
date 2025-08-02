@@ -15,22 +15,23 @@ import { FoundryApi } from "../../api/foundry-api.mjs";
 export class EnhancementDialog {
     static async open(enhancementEffect, actor, onConfirm) {
         const haveActor = actor != undefined;
+        const clonedEffect = FoundryApi.deepClone(enhancementEffect);
 
-        const enhancementFamily = EnhancementRepository.getEnhancementFamilyByEffectId(enhancementEffect.id);
-        const content = await this.#mountContent(enhancementEffect, enhancementFamily);
+        const enhancementFamily = EnhancementRepository.getEnhancementFamilyByEffectId(clonedEffect.id);
+        const content = await this.#mountContent(clonedEffect, enhancementFamily);
 
         const buttons = [{
             label: localize("Chat"),
-            onClick: () => this.#sendEffectToChat(enhancementEffect, actor)
+            onClick: () => this.#sendEffectToChat(clonedEffect, actor)
         }];
 
         const canActive = haveActor && typeof onConfirm === 'function';
         if (canActive) {
             const hasActivated = ActorUtils.getEffects(actor)
                 .map(effect => ActiveEffectsUtils.getOriginId(effect))
-                .includes(enhancementEffect.id);
+                .includes(clonedEffect.id);
 
-            const isUsableType = enhancementEffect.duration === EnhancementDuration.USE;
+            const isUsableType = clonedEffect.duration === EnhancementDuration.USE;
             const useOrActiveText = isUsableType ? "Usar" : "Ativar";
 
             buttons.push({
@@ -41,14 +42,14 @@ export class EnhancementDialog {
 
         FoundryApi.createDialog(
             {
-                title: enhancementEffect.name,
+                title: clonedEffect.name,
                 content: content,
                 buttons: buttons,
                 render: (html) => {
                     if (haveActor) {
                         $(html)
                             .find(`[data-action="${OnEventType.ROLL}"]`)
-                            .click((event) => this.#onRollEvent(actor, enhancementEffect, event));
+                            .click((event) => this.#onRollEvent(actor, clonedEffect, event));
                     }
                 }
             },

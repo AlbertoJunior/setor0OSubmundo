@@ -2,6 +2,7 @@ import { getObject } from "../../utils/utils.mjs";
 import { SYSTEM_ID } from "../../constants.mjs";
 import { ActorEquipmentUtils } from "../../core/actor/actor-equipment.mjs";
 import { ActorUpdater } from "./actor-updater.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
 export class EquipmentUpdater {
     static async updateEquipment(equipment, characteristic, value) {
@@ -42,7 +43,7 @@ export class EquipmentUpdater {
             return;
         }
 
-        const flags = foundry.utils.deepClone(equipment.flags?.[SYSTEM_ID] || {});
+        const flags = FoundryApi.deepClone(equipment.flags?.[SYSTEM_ID] || {});
 
         for (const { flagKey, value } of updates) {
             flags[flagKey] = value;
@@ -65,7 +66,7 @@ export class EquipmentUpdater {
                 continue;
             }
 
-            const existingFlags = foundry.utils.deepClone(equipment.flags?.[SYSTEM_ID] || {});
+            const existingFlags = FoundryApi.deepClone(equipment.flags?.[SYSTEM_ID] || {});
             for (const { flagKey, value } of flagsToUpdate) {
                 existingFlags[flagKey] = value;
             }

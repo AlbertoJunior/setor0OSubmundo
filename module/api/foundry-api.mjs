@@ -93,6 +93,10 @@ export class FoundryApi {
         return this.Utils.mergeObject(object1, object2);
     }
 
+    static deepClone(object) {
+        return this.Utils.deepClone(object);
+    }
+
     static async createDialog(
         { title, header, content, buttons = [], minimizable = true, render = (html, renderedDialog, window) => { }, onClose = () => { } } = data,
         options,

@@ -1,3 +1,4 @@
+import { FoundryApi } from "../api/foundry-api.mjs";
 import { CharacteristicType } from "../enums/characteristic-enums.mjs";
 
 export class AbilityRepository {
@@ -26,6 +27,6 @@ export class AbilityRepository {
 
     static getItem(id) {
         const item = this.getItems().find(item => item.id == id);
-        return item ? foundry.utils.deepClone(item) : null;
+        return item ? FoundryApi.deepClone(item) : null;
     }
 }

@@ -1,3 +1,4 @@
+import { FoundryApi } from "../api/foundry-api.mjs";
 import { ActiveEffectsTypes } from "../enums/active-effects-enums.mjs";
 import { CharacteristicType } from "../enums/characteristic-enums.mjs";
 import { SubstanceEffectField } from "../field/equipment-field.mjs";
@@ -108,6 +109,6 @@ export class SubstanceEffectRepository {
 
     static getItem(id) {
         const item = this.getItems().find(item => item.id == id);
-        return item ? foundry.utils.deepClone(item) : null;
+        return item ? FoundryApi.deepClone(item) : null;
     }
 }

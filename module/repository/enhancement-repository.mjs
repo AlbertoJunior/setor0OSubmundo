@@ -1,3 +1,4 @@
+import { FoundryApi } from "../api/foundry-api.mjs";
 import { SYSTEM_ID } from "../constants.mjs";
 import { agilityEnhancement } from "../core/enhancement/enhancement-items/agility.mjs";
 import { assimilationEnhancement } from "../core/enhancement/enhancement-items/assimilation.mjs";
@@ -75,7 +76,8 @@ export class EnhancementRepository {
     }
 
     static getEnhancementFamilyByEffectId(effectId) {
-        return this.getItems().find(enhancement => enhancement.effects?.some(effect => effect.id == effectId));
+        const effect = this.getItems().find(enhancement => enhancement.effects?.some(effect => effect.id == effectId));
+        return effect ? FoundryApi.deepClone(effect) : null;
     }
 
 }
