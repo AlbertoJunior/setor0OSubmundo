@@ -20,14 +20,14 @@ export class RollTestField extends SchemaField {
         });
     }
 
-    static toJson(params) {
+    static toJson(data = {}) {
         const {
             id, name,
             primary_attribute, secondary_attribute,
             special_primary, special_secondary,
             ability, bonus = 0, automatic = 0, specialist = false,
             difficulty = 6, critic = 10,
-        } = params;
+        } = data;
 
         const object = new RollTestField();
         object.id = id || randomId();

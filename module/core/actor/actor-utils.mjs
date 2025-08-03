@@ -2,7 +2,7 @@ import { BaseActorCharacteristicType, CharacteristicType } from "../../enums/cha
 import { getObject, localize } from "../../utils/utils.mjs";
 import { MorphologyRepository } from "../../repository/morphology-repository.mjs";
 import { FlagsUtils } from "../../utils/flags-utils.mjs";
-import { ActiveEffectsUtils } from "../effect/active-effects.mjs";
+import { ActiveEffectsUtils } from "../effect/active-effects-utils.mjs";
 
 export class ActorUtils {
     static getAttributeValue(actor, attr) {
@@ -27,6 +27,11 @@ export class ActorUtils {
         return base + bonus;
     }
 
+    static getCharacteristicVirtue(virtue) {
+        return Object.values(CharacteristicType.VIRTUES)
+            .find(item => item && item.system && item.id == virtue);
+    }
+
     static getOverload(actor) {
         return getObject(actor, CharacteristicType.OVERLOAD) || 0;
     }
@@ -36,6 +41,10 @@ export class ActorUtils {
         const enhancementOnActor = this.#findEnhancementOnActorById(enhancement.id, enhancements);
         const levelsOnActor = this.#findEnhancementLevelsWithId(enhancementOnActor);
         return levelsOnActor.length;
+    }
+
+    static getCharacteristicEnhancementSlot(slot) {
+        return `${CharacteristicType.ENHANCEMENT.system}_${slot}`;
     }
 
     static getDamage(actor) {

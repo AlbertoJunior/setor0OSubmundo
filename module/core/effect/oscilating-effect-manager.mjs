@@ -1,5 +1,5 @@
 import { TokenUtils } from "../token/token-utils.mjs";
-import { ActiveEffectsUtils } from "./active-effects.mjs";
+import { ActiveEffectsUtils } from "./active-effects-utils.mjs";
 
 export class OscillatingTintManager {
     static #TOKENS = new Map();

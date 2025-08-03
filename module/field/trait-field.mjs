@@ -2,7 +2,7 @@ import { randomId } from "../utils/utils.mjs";
 
 const { StringField, SchemaField } = foundry.data.fields;
 
-export class ActorTraitField extends SchemaField {
+export class TraitField extends SchemaField {
     constructor({ sourceId, name, particularity } = {}) {
         super({
             id: new StringField({ required: true }),
@@ -20,7 +20,7 @@ export class ActorTraitField extends SchemaField {
     }
 
     static toJson(data = {}) {
-        const object = new ActorTraitField(data);
+        const object = new TraitField(data);
         return object.toObject(object);
     }
 }

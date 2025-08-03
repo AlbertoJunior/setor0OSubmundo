@@ -2,7 +2,7 @@ import { COLORS } from "../../../constants.mjs";
 import { ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../../enums/active-effects-enums.mjs";
 import { CharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { brutalityEnhancement } from "../../enhancement/enhancement-items/brutality.mjs";
-import { ActiveEffectsUtils } from "../active-effects.mjs";
+import { ActiveEffectsUtils } from "../active-effects-utils.mjs";
 
 const shattered1Id = 'destrocado1';
 const shattered2Id = 'destrocado2';

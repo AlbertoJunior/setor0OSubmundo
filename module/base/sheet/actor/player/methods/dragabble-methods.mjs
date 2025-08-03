@@ -1,5 +1,5 @@
 import { getObject } from "../../../../../utils/utils.mjs";
-import { ActorEquipmentUtils } from "../../../../../core/actor/actor-equipment.mjs";
+import { ActorEquipmentUtils } from "../../../../../core/actor/actor-equipment-utils.mjs";
 import { ActorUpdater } from "../../../../updater/actor-updater.mjs";
 import { CharacteristicType } from "../../../../../enums/characteristic-enums.mjs"
 import { NotificationsUtils } from "../../../../../creators/message/notifications.mjs";

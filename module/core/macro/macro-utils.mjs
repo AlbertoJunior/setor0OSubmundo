@@ -7,7 +7,7 @@ import { CharacteristicType } from "../../enums/characteristic-enums.mjs";
 import { EquipmentCharacteristicType } from "../../enums/equipment-enums.mjs";
 import { DefaultActions } from "../../utils/default-actions.mjs";
 import { FlagsUtils } from "../../utils/flags-utils.mjs";
-import { ActorEquipmentUtils } from "../actor/actor-equipment.mjs";
+import { ActorEquipmentUtils } from "../actor/actor-equipment-utils.mjs";
 import { openBagMacroData } from "./default/open-bag.mjs";
 import { openShortcutMacroData } from "./default/open-shortcut.mjs";
 import { rollOverloadMacroData } from "./default/roll-overload.mjs";

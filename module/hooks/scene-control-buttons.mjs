@@ -3,10 +3,10 @@ import { SystemFlags } from "../enums/flags-enums.mjs";
 import { FlagsUtils } from "../utils/flags-utils.mjs";
 import { FoundryApi } from "../api/foundry-api.mjs";
 
-export class SceneHookHandle {
+export class SceneControlButtonsHookHandle {
     static firstRender = true;
 
-    static getSceneControlButtons(controls) {
+    static handle(controls) {
         const tools = {
             none: this.#mountHiddenButton('none'),
             theme: this.#mountThemeButton('theme'),

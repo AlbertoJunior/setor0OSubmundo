@@ -1,5 +1,5 @@
 import { getObject, localize } from "../../../../../utils/utils.mjs";
-import { ActorEquipmentUtils } from "../../../../../core/actor/actor-equipment.mjs";
+import { ActorEquipmentUtils } from "../../../../../core/actor/actor-equipment-utils.mjs";
 import { ActorUtils } from "../../../../../core/actor/actor-utils.mjs";
 import { NpcUtils } from "../../../../../core/npc/npc-utils.mjs";
 import { RollSimplified } from "../../../../../core/rolls/simplified-roll.mjs";

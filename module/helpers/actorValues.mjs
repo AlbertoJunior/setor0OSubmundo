@@ -2,7 +2,7 @@ import { ActorUtils } from "../../module/core/actor/actor-utils.mjs";
 import { ActorCombatUtils } from "../../module/core/actor/actor-combat-utils.mjs";
 import { BaseActorCharacteristicType, CharacteristicType, NpcCharacteristicType, NpcSkillsMap } from "../../module/enums/characteristic-enums.mjs";
 import { getObject } from "../utils/utils.mjs";
-import { ActorEquipmentUtils } from "../../module/core/actor/actor-equipment.mjs";
+import { ActorEquipmentUtils } from "../../module/core/actor/actor-equipment-utils.mjs";
 import { NpcUtils } from "../../module/core/npc/npc-utils.mjs";
 import { CustomRoll } from "../../module/core/rolls/custom-roll.mjs";
 

@@ -1,7 +1,7 @@
 import { ChatCreator } from "../../../../../utils/chat-creator.mjs";
 import { TraitDialog } from "../../../../../creators/dialog/trait-dialog.mjs";
 import { TraitRepository } from "../../../../../repository/trait-repository.mjs";
-import { ActorTraitField } from "../../../../../field/actor-trait-field.mjs";
+import { TraitField } from "../../../../../field/trait-field.mjs";
 import { CharacteristicType } from "../../../../../enums/characteristic-enums.mjs";
 import { OnEventType } from "../../../../../enums/on-event-type.mjs";
 import { TraitMessageCreator } from "../../../../../creators/message/trait-message.mjs";
@@ -36,7 +36,7 @@ export const traitMethods = {
             const characteristic = getCharacteristic(traitType);
             const actorTraits = getObject(actor, characteristic) || [];
 
-            const objectTrait = ActorTraitField.toJson({
+            const objectTrait = TraitField.toJson({
                 sourceId: trait.id,
                 name: trait.name,
                 particularity: trait.particularity
@@ -62,7 +62,7 @@ export const traitMethods = {
         const trait = actorTraits[itemIndex];
 
         TraitDialog.openByTrait(trait, traitType, actor, async (editedTrait) => {
-            const objectTrait = ActorTraitField.toJson(editedTrait.id, editedTrait.name, editedTrait.particularity);
+            const objectTrait = TraitField.toJson(editedTrait.id, editedTrait.name, editedTrait.particularity);
             const updatedTraits = [...actorTraits];
             updatedTraits[itemIndex] = objectTrait;
             await ActorUpdater.verifyAndUpdateActor(actor, characteristic, updatedTraits);

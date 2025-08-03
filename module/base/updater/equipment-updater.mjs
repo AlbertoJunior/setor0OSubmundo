@@ -1,6 +1,6 @@
 import { getObject } from "../../utils/utils.mjs";
 import { SYSTEM_ID } from "../../constants.mjs";
-import { ActorEquipmentUtils } from "../../core/actor/actor-equipment.mjs";
+import { ActorEquipmentUtils } from "../../core/actor/actor-equipment-utils.mjs";
 import { ActorUpdater } from "./actor-updater.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
 

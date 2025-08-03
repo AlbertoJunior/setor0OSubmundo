@@ -1,23 +1,10 @@
 import { ActorUtils } from "../../../core/actor/actor-utils.mjs";
 import { DefaultActions } from "../../../utils/default-actions.mjs";
-import { ActiveEffectsUtils } from "../../../core/effect/active-effects.mjs";
+import { ActiveEffectsUtils } from "../../../core/effect/active-effects-utils.mjs";
 import { FoundryApi } from "../../../api/foundry-api.mjs";
 
-class Setor0Combatant extends FoundryApi.Combatant {
-    updateResource() {
-        if (!this.actor || !this.combat) {
-            return this.resource = null;
-        }
-        const value = FoundryApi.Utils.getProperty(this.actor.system, this.parent.settings.resource);
-
-        if (value == null || value == undefined) {
-            this.resource = value;
-        } else {
-            this.resource = Number(value);
-        }
-
-        return this.resource;
-    }
+export async function configureSetor0Combat() {
+    CONFIG.Combat.documentClass = Setor0Combat;
 }
 
 class Setor0Combat extends FoundryApi.Combat {
@@ -94,9 +81,4 @@ class Setor0Combat extends FoundryApi.Combat {
             ActiveEffectsUtils.removeActorEffects(actor, effectsToRemove);
         }
     }
-}
-
-export async function configureSetor0Combat() {
-    CONFIG.Combat.documentClass = Setor0Combat;
-    CONFIG.Combatant.documentClass = Setor0Combatant;
 }

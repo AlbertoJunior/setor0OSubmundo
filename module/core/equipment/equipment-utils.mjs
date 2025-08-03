@@ -1,8 +1,8 @@
 import { getObject, localize, TODO } from "../../utils/utils.mjs";
-import { activeEffectOriginTypeLabel, ActiveEffectsFlags, ActiveEffectsOriginTypes } from "../../enums/active-effects-enums.mjs";
+import { ActiveEffectsFlags, ActiveEffectsOriginTypes } from "../../enums/active-effects-enums.mjs";
 import { EquipmentCharacteristicType, SubstanceType, validEquipmentTypes } from "../../enums/equipment-enums.mjs";
 import { SuperEquipmentTraitRepository } from "../../repository/superequipment-trait-repository.mjs";
-import { ActiveEffectsUtils } from "../effect/active-effects.mjs";
+import { ActiveEffectsUtils } from "../effect/active-effects-utils.mjs";
 import { EquipmentInfoParser } from "./equipment-info.mjs";
 
 export class EquipmentUtils {
@@ -126,7 +126,7 @@ export class EquipmentUtils {
         const flags = {
             [ActiveEffectsFlags.ORIGIN_ID]: item.id,
             [ActiveEffectsFlags.ORIGIN_TYPE]: ActiveEffectsOriginTypes.ITEM,
-            [ActiveEffectsFlags.ORIGIN_TYPE_LABEL]: activeEffectOriginTypeLabel(ActiveEffectsOriginTypes.ITEM),
+            [ActiveEffectsFlags.ORIGIN_TYPE_LABEL]: ActiveEffectsUtils.activeEffectOriginTypeLabel(ActiveEffectsOriginTypes.ITEM),
             [ActiveEffectsFlags.IS_PASSIVE]: isPassive,
         };
         const changes = [];
@@ -187,7 +187,7 @@ export class EquipmentUtils {
         const originLabel = localize('Substancia');
         const itemId = item.id;
         const itemName = item.name;
-        const originTypeLabel = activeEffectOriginTypeLabel(ActiveEffectsOriginTypes.ITEM);
+        const originTypeLabel = ActiveEffectsUtils.activeEffectOriginTypeLabel(ActiveEffectsOriginTypes.ITEM);
         const allEffects = [];
 
         for (const effect of effects) {

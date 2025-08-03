@@ -1,7 +1,7 @@
-import { ActorEquipmentUtils } from "../core/actor/actor-equipment.mjs";
+import { ActorEquipmentUtils } from "../core/actor/actor-equipment-utils.mjs";
 import { Setor0TokenDocument } from "../core/token/Setor0TokenDocument.mjs";
 import { ActorCharacteristicField, ActorEnhancementField, ActorAttributes, ActorAbilities, ActorVirtues } from "../field/actor-fields.mjs";
-import { ActorTraitField } from "../field/actor-trait-field.mjs";
+import { TraitField } from "../field/trait-field.mjs";
 import { ActorUtils } from "../core/actor/actor-utils.mjs";
 import { RollTestField } from "../field/roll-test-field.mjs";
 import { NpcSkill } from "../field/npc-fields.mjs";
@@ -98,8 +98,8 @@ class PlayerDataModel extends BaseActorDataModel {
                 aprimoramento_4: new ActorEnhancementField()
             }),
             tracos: new SchemaField({
-                bons: new ArrayField(new ActorTraitField()),
-                ruins: new ArrayField(new ActorTraitField())
+                bons: new ArrayField(new TraitField()),
+                ruins: new ArrayField(new TraitField())
             }),
             sobrecarga: new NumberField({ integer: true, initial: 0 }),
             vida: new NumberField({ integer: true, initial: 8, min: 0, max: 10 }),

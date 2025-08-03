@@ -3,7 +3,7 @@ import { ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from
 import { CharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { EffectChangeValueType } from "../../../enums/enhancement-enums.mjs";
 import { assimilationEnhancement } from "../../enhancement/enhancement-items/assimilation.mjs";
-import { ActiveEffectsUtils } from "../active-effects.mjs";
+import { ActiveEffectsUtils } from "../active-effects-utils.mjs";
 
 const id = 'cena_simulada';
 const simulated = ActiveEffectsUtils.createEffectData({

@@ -1,7 +1,7 @@
-import { randomId } from "../../utils/utils.mjs";
+import { localize, randomId } from "../../utils/utils.mjs";
 import { ActorUpdater } from "../../base/updater/actor-updater.mjs";
 import { SYSTEM_ID } from "../../constants.mjs";
-import { ActiveEffectsFlags, ActiveEffectsTypes } from "../../enums/active-effects-enums.mjs";
+import { ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../enums/active-effects-enums.mjs";
 
 export class ActiveEffectsUtils {
     static KEYS = {
@@ -117,5 +117,17 @@ export class ActiveEffectsUtils {
         if (effect) {
             await effect.update({ disabled: true });
         }
+    }
+
+    static activeEffectOriginTypeLabel(type) {
+        const map = {
+            [ActiveEffectsOriginTypes.ITEM]: localize('Item'),
+            [ActiveEffectsOriginTypes.ENHANCEMENT]: localize('Aprimoramento.Nome'),
+            [ActiveEffectsOriginTypes.TRAIT]: localize('Traco'),
+            [ActiveEffectsOriginTypes.OTHER]: localize('Outro'),
+            [ActiveEffectsOriginTypes.AFFECTED_ENHANCEMENT]: localize('Aprimoramento.Afetado_Aprimoramento'),
+        }
+
+        return map[type] || `<${localize('Erro')}>`;
     }
 }

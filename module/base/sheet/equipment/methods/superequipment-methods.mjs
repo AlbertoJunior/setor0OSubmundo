@@ -1,5 +1,5 @@
 import { getObject, onArrayRemove, } from "../../../../utils/utils.mjs";
-import { ActiveEffectsUtils } from "../../../../core/effect/active-effects.mjs";
+import { ActiveEffectsUtils } from "../../../../core/effect/active-effects-utils.mjs";
 import { EquipmentUtils } from "../../../../core/equipment/equipment-utils.mjs";
 import { SuperEquipmentEffectsDialog } from "../../../../creators/dialog/superequipment-effects-dialog.mjs";
 import { EquipmentCharacteristicType } from "../../../../enums/equipment-enums.mjs";

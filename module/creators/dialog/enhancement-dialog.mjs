@@ -6,7 +6,7 @@ import { OnEventType } from "../../enums/on-event-type.mjs";
 import { CreateFormDialog } from "./create-dialog.mjs";
 import { ChatCreator } from "../../utils/chat-creator.mjs";
 import { EnhancementMessageCreator } from "../message/enhancement-message.mjs";
-import { ActiveEffectsUtils } from "../../core/effect/active-effects.mjs";
+import { ActiveEffectsUtils } from "../../core/effect/active-effects-utils.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
 import { ActorUtils } from "../../core/actor/actor-utils.mjs";
 import { playerRollHandle } from "../../base/sheet/actor/player/methods/player-roll-methods.mjs";

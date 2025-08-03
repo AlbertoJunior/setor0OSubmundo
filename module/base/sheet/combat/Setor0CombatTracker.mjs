@@ -3,6 +3,10 @@ import { ActiveEffectsFlags } from "../../../enums/active-effects-enums.mjs";
 import { FlagsUtils } from "../../../utils/flags-utils.mjs";
 import { FoundryApi } from "../../../api/foundry-api.mjs";
 
+export async function configureSetor0CombatTracker() {
+    CONFIG.ui.combat = Setor0CombatTracker;
+}
+
 class Setor0CombatTracker extends FoundryApi.CombatTracker {
     async _prepareTurnContext(combat, combatant, index) {
         const turn = await super._prepareTurnContext(combat, combatant, index);
@@ -45,8 +49,4 @@ class Setor0CombatTracker extends FoundryApi.CombatTracker {
             tooltip: super._formatEffectsTooltip(filtered)
         };
     }
-}
-
-export async function configureSetor0CombatTracker() {
-    CONFIG.ui.combat = Setor0CombatTracker;
 }

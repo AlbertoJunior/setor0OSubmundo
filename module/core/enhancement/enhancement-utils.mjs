@@ -1,7 +1,7 @@
 import { EffectChangeValueType, EnhancementDuration } from "../../enums/enhancement-enums.mjs";
 import { EnhancementRepository } from "../../repository/enhancement-repository.mjs";
 import { ActorUtils } from "../../core/actor/actor-utils.mjs";
-import { ActiveEffectsUtils } from "../effect/active-effects.mjs";
+import { ActiveEffectsUtils } from "../effect/active-effects-utils.mjs";
 import { CombatUtils } from "../combat/combat-utils.mjs";
 import { COLORS } from "../../constants.mjs";
 

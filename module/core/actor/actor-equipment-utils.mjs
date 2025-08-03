@@ -2,7 +2,7 @@ import { getObject } from "../../utils/utils.mjs";
 import { EquipmentUpdater } from "../../base/updater/equipment-updater.mjs";
 import { SYSTEM_ID } from "../../constants.mjs";
 import { EquipmentCharacteristicType, EquipmentType, validEquipmentTypes } from "../../enums/equipment-enums.mjs";
-import { ActiveEffectsUtils } from "../effect/active-effects.mjs";
+import { ActiveEffectsUtils } from "../effect/active-effects-utils.mjs";
 import { EquipmentInfoParser } from "../equipment/equipment-info.mjs";
 import { EquipmentUtils } from "../equipment/equipment-utils.mjs";
 

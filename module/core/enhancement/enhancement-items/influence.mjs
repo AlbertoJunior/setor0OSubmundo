@@ -3,7 +3,7 @@ import { RollTestField } from "../../../field/roll-test-field.mjs";
 import { CharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { EffectChangeValueType, EnhancementDuration, EnhancementOverload } from "../../../enums/enhancement-enums.mjs";
 import { EnhancementEffectField } from "../../../field/enhancement-field.mjs";
-import { ActiveEffectsUtils } from "../../effect/active-effects.mjs";
+import { ActiveEffectsUtils } from "../../effect/active-effects-utils.mjs";
 
 const influenceEffects = [
     EnhancementEffectField.toJson(

@@ -4,19 +4,17 @@ import { ActorEnhancementField } from "../../../../../field/actor-fields.mjs";
 import { EnhancementRepository } from "../../../../../repository/enhancement-repository.mjs";
 import { ActorUpdater } from "../../../../updater/actor-updater.mjs";
 import { EnhancementUtils } from "../../../../../core/enhancement/enhancement-utils.mjs";
-import { ActiveEffectsUtils } from "../../../../../core/effect/active-effects.mjs";
+import { ActiveEffectsUtils } from "../../../../../core/effect/active-effects-utils.mjs";
 import { ActorUtils } from "../../../../../core/actor/actor-utils.mjs";
 import { EnhancementDialog } from "../../../../../creators/dialog/enhancement-dialog.mjs";
 import { createOptionsAndSetOnSelects } from "../../../../../creators/element/element-creator-jscript.mjs";
 import { NotificationsUtils } from "../../../../../creators/message/notifications.mjs";
 import { EnhancementMessageCreator } from "../../../../../creators/message/enhancement-message.mjs";
 import { ConfirmationDialog } from "../../../../../creators/dialog/confirmation-dialog.mjs";
-import { getActorEnhancementSlot } from "../../../../../enums/characteristic-enums.mjs";
 import { OnEventType } from "../../../../../enums/on-event-type.mjs";
 import { EnhancementDuration } from "../../../../../enums/enhancement-enums.mjs";
-import { activeEffectOriginTypeLabel, ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../../../../enums/active-effects-enums.mjs";
+import { ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../../../../enums/active-effects-enums.mjs";
 import { CombatUtils } from "../../../../../core/combat/combat-utils.mjs";
-
 
 export function updateEnhancementLevelsOptions(enhancementId, selects) {
     const enhancementLevels = EnhancementRepository.getEnhancementEffectsByEnhancementId(enhancementId);
@@ -51,7 +49,7 @@ async function updateActorEnhancement(currentTarget, actor) {
     const enhancementId = selectedEnhancement.dataset.itemId;
     const enhancementText = selectedEnhancement.text;
 
-    const enhancementOnSlotKey = getActorEnhancementSlot(currentTarget.dataset.itemId);
+    const enhancementOnSlotKey = ActorUtils.getCharacteristicEnhancementSlot(currentTarget.dataset.itemId);
     const enhancementOnSlot = getObject(actor, enhancementOnSlotKey);
 
     const enhancementsIds = ActorUtils.getAllEnhancements(actor).some(enhancement => enhancement.id === enhancementId);
@@ -85,7 +83,7 @@ async function updateActorLevelEnhancement(currentTarget, actor) {
     const { enhancementSlot, enhancementLevel } = jCurrentTarget.data();
     const effectId = jCurrentTarget.val();
 
-    const enhancementOnSlotKey = getActorEnhancementSlot(enhancementSlot);
+    const enhancementOnSlotKey = ActorUtils.getCharacteristicEnhancementSlot(enhancementSlot);
     const enhancementOnSlot = getObject(actor, enhancementOnSlotKey);
 
     const effect = EnhancementRepository.getEnhancementEffectById(effectId, enhancementOnSlot.id);
@@ -205,7 +203,7 @@ async function toggleEnhancementEffectOnActor(effect, actor) {
             flags: {
                 [ActiveEffectsFlags.ORIGIN_ID]: effect.id,
                 [ActiveEffectsFlags.ORIGIN_TYPE]: ActiveEffectsOriginTypes.ENHANCEMENT,
-                [ActiveEffectsFlags.ORIGIN_TYPE_LABEL]: activeEffectOriginTypeLabel(ActiveEffectsOriginTypes.ENHANCEMENT),
+                [ActiveEffectsFlags.ORIGIN_TYPE_LABEL]: ActiveEffectsUtils.activeEffectOriginTypeLabel(ActiveEffectsOriginTypes.ENHANCEMENT),
                 [ActiveEffectsFlags.TYPE]: ActiveEffectsTypes.BUFF,
                 ...(effect.duration !== EnhancementDuration.PASSIVE && {
                     [ActiveEffectsFlags.COMBAT_ID]: CombatUtils.currentCombat()?.id

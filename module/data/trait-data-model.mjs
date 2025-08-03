@@ -1,5 +1,6 @@
 import { SYSTEM_ID, TEMPLATES_PATH } from "../constants.mjs";
 import { FoundryApi } from "../api/foundry-api.mjs";
+import { TODO } from "../utils/utils.mjs";
 
 const { NumberField, StringField, BooleanField } = foundry.data.fields;
 
@@ -15,6 +16,7 @@ class TraitDataModel extends foundry.abstract.TypeDataModel {
     }
 
     static get defaultOptions() {
+        TODO('isso está no lugar errado, deveria estar no TraitSheet');
         return FoundryApi.mergeObject(super.defaultOptions, {
             classes: [SYSTEM_ID, "sheet", "item", "trait"],
             template: `${TEMPLATES_PATH}/traits/trait-sheet.hbs`,

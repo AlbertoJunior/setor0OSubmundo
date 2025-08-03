@@ -1,4 +1,4 @@
-import { ActorEquipmentUtils } from "../../module/core/actor/actor-equipment.mjs";
+import { ActorEquipmentUtils } from "../../module/core/actor/actor-equipment-utils.mjs";
 import { ActorUtils } from "../../module/core/actor/actor-utils.mjs";
 import { CharacteristicType } from "../../module/enums/characteristic-enums.mjs";
 import { getObject } from "../utils/utils.mjs";

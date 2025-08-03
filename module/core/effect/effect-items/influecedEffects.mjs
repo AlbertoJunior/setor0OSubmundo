@@ -2,7 +2,7 @@ import { COLORS } from "../../../constants.mjs";
 import { ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../../enums/active-effects-enums.mjs";
 import { CharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { influenceEnhancement } from "../../enhancement/enhancement-items/influence.mjs";
-import { ActiveEffectsUtils } from "../active-effects.mjs";
+import { ActiveEffectsUtils } from "../active-effects-utils.mjs";
 
 const addictedId = 'viciado';
 const mesmerizedId = 'mesmerizado';

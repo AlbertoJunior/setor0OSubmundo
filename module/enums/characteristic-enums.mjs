@@ -204,15 +204,6 @@ export const CharacteristicTypeMap = Object.freeze(Object.fromEntries(
     Object.entries(CharacteristicType).map(([key, value]) => [value.id, value.system])
 ));
 
-export function getActorVirtue(virtue) {
-    return Object.values(CharacteristicType.VIRTUES)
-        .find(item => item && item.system && item.id == virtue);
-}
-
-export function getActorEnhancementSlot(slot) {
-    return `${CharacteristicType.ENHANCEMENT.system}_${slot}`;
-}
-
 export const NpcSkillsMap = Object.freeze(
     {
         [NpcCharacteristicType.SKILLS.PRIMARY.id]: NpcCharacteristicType.SKILLS.PRIMARY,

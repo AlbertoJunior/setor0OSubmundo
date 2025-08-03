@@ -1,6 +1,6 @@
 import { TODO } from "../../../../../utils/utils.mjs";
-import { ActorEquipmentUtils } from "../../../../../core/actor/actor-equipment.mjs";
-import { ActiveEffectsUtils } from "../../../../../core/effect/active-effects.mjs";
+import { ActorEquipmentUtils } from "../../../../../core/actor/actor-equipment-utils.mjs";
+import { ActiveEffectsUtils } from "../../../../../core/effect/active-effects-utils.mjs";
 import { OnEventType } from "../../../../../enums/on-event-type.mjs";
 import { HtmlJsUtils } from "../../../../../utils/html-js-utils.mjs";
 

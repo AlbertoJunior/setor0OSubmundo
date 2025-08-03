@@ -1,4 +1,4 @@
-import { ActiveEffectsUtils } from "../../module/core/effect/active-effects.mjs";
+import { ActiveEffectsUtils } from "../../module/core/effect/active-effects-utils.mjs";
 import { EquipmentUtils } from "../../module/core/equipment/equipment-utils.mjs";
 import { EquipmentCharacteristicType } from "../../module/enums/equipment-enums.mjs";
 import { getObject } from "../utils/utils.mjs";

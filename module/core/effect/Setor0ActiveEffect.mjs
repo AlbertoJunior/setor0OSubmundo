@@ -3,6 +3,10 @@ import { FlagsUtils } from "../../utils/flags-utils.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
 import { COLORS } from "../../constants.mjs";
 
+export async function configureSetor0ActiveEffect() {
+    CONFIG.ActiveEffect.documentClass = Setor0ActiveEffect;
+}
+
 export class Setor0ActiveEffect extends FoundryApi.ActiveEffect {
     _onCreate(data, options, userId) {
         this.#verifyHideTooltipText(data, options);
@@ -60,8 +64,4 @@ export class Setor0ActiveEffect extends FoundryApi.ActiveEffect {
             return await originalCreate.call(this, origin, content, options);
         }
     }
-}
-
-export async function configureSetor0ActiveEffect() {
-    CONFIG.ActiveEffect.documentClass = Setor0ActiveEffect;
 }

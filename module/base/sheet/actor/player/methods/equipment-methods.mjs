@@ -1,6 +1,6 @@
 import { getObject, localize, TODO } from "../../../../../utils/utils.mjs";
-import { ActorEquipmentUtils } from "../../../../../core/actor/actor-equipment.mjs";
-import { ActiveEffectsUtils } from "../../../../../core/effect/active-effects.mjs";
+import { ActorEquipmentUtils } from "../../../../../core/actor/actor-equipment-utils.mjs";
+import { ActiveEffectsUtils } from "../../../../../core/effect/active-effects-utils.mjs";
 import { EquipmentUtils } from "../../../../../core/equipment/equipment-utils.mjs";
 import { AddEquipmentDialog } from "../../../../../creators/dialog/add-equipment-dialog.mjs";
 import { ConfirmationDialog } from "../../../../../creators/dialog/confirmation-dialog.mjs";

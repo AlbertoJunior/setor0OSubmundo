@@ -1,9 +1,10 @@
 import { selectCharacteristicAndReturnLength } from "../../../../../utils/utils.mjs";
-import { BaseActorCharacteristicType, CharacteristicType, getActorVirtue } from "../../../../../enums/characteristic-enums.mjs";
+import { BaseActorCharacteristicType, CharacteristicType } from "../../../../../enums/characteristic-enums.mjs";
 import { DefaultActions } from "../../../../../utils/default-actions.mjs";
 import { ActorUpdater } from "../../../../updater/actor-updater.mjs";
 import { OnEventType } from "../../../../../enums/on-event-type.mjs";
-import { ActorEquipmentUtils } from "../../../../../core/actor/actor-equipment.mjs";
+import { ActorEquipmentUtils } from "../../../../../core/actor/actor-equipment-utils.mjs";
+import { ActorUtils } from "../../../../../core/actor/actor-utils.mjs";
 
 function selectLifeCharacteristic(event, addClassIfBlank) {
     let toUpdate = event.currentTarget;
@@ -52,7 +53,7 @@ const mapContextual = {
 const mapCheck = {
     virtue: async (actor, event) => {
         const itemType = event.currentTarget.dataset.itemType;
-        const characteristicKey = getActorVirtue(itemType);
+        const characteristicKey = ActorUtils.getCharacteristicVirtue(itemType);
         if (!characteristicKey) {
             return;
         }
@@ -124,7 +125,7 @@ const mapRemove = {
     },
     virtue: async (actor, event) => {
         const itemType = event.currentTarget.dataset.itemType;
-        const characteristicKey = getActorVirtue(itemType);
+        const characteristicKey = ActorUtils.getCharacteristicVirtue(itemType);
         if (!characteristicKey) {
             return;
         }

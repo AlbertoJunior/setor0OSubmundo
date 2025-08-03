@@ -1,9 +1,8 @@
-import { ActiveEffectsUtils } from "../core/effect/active-effects.mjs";
+import { ActiveEffectsUtils } from "../core/effect/active-effects-utils.mjs";
 import { OscillatingTintManager } from "../core/effect/oscilating-effect-manager.mjs";
 import { FlagsUtils } from "../utils/flags-utils.mjs";
 import { ActiveEffectsFlags } from "../enums/active-effects-enums.mjs";
 import { TokenUtils } from "../core/token/token-utils.mjs";
-import { Setor0TokenDocument } from "../core/token/Setor0TokenDocument.mjs";
 import { FoundryApi } from "../api/foundry-api.mjs";
 
 export class ActiveEffectHookHandle {
