@@ -106,6 +106,21 @@
             }
         }
     ],
+    "packFolders": [
+        {
+            "name": "Setor 0",
+            "label": "Setor 0",
+            "color": "#ffdc00",
+            "sorting": "m",
+            "packs": [
+                "inimigos",
+                "itens",
+                "macros",
+                "traits",
+                "enhancements"
+            ]
+        }
+    ],
     "languages": [
         {
             "lang": "pt-br",
@@ -142,6 +157,13 @@
         "distance": 1,
         "units": "PM"
     },
-    "primaryTokenAttribute": "vitalidade.total",
-    "secondaryTokenAttribute": "sobrecarga"
+    "primaryTokenAttribute": "actualVitality",
+    "secondaryTokenAttribute": "actualPM",
+    "hotReload": {
+        "extensions": [
+            "css",
+            "hbs",
+            "json"
+        ]
+    }
 }

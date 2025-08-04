@@ -1,6 +1,7 @@
 import { FoundryApi } from "../../api/foundry-api.mjs";
 import { OnEventType } from "../../enums/on-event-type.mjs";
 import { MessageRepository } from "../../repository/message-repository.mjs";
+import { HtmlJsUtils } from "../../utils/html-js-utils.mjs";
 import { localize, TODO } from "../../utils/utils.mjs";
 import { RollPerseverance } from "../rolls/perseverance-roll.mjs";
 
@@ -14,7 +15,17 @@ class Setor0ChatLog extends FoundryApi.ChatLog {
 
     static #viewMap = {
         'toggle-tooltip': async (target, message) => {
-
+            let tooltip = target.previousElementSibling;
+            let hooks = 0;
+            while (hooks < 5 && tooltip) {
+                if (tooltip.classList.contains('S0-container-contract')) {
+                    HtmlJsUtils.expandOrContractMessageElement(tooltip, { minHeight: 0, maxHeight: 700, marginBottom: 0 })
+                    return;
+                } else {
+                    tooltip = tooltip.previousElementSibling;
+                    hooks++;
+                }
+            }
         }
     };
 
@@ -35,9 +46,22 @@ class Setor0ChatLog extends FoundryApi.ChatLog {
         },
     }
 
-    static #getMessageId(event) {
-        const { messageId } = event.target.closest("[data-message-id]")?.dataset ?? {};
-        return messageId;
+    static #view(event, target) {
+        Setor0ChatLog.#operateEventOnMap(Setor0ChatLog.#viewMap, event, target);
+    }
+
+    static #check(event, target) {
+        Setor0ChatLog.#operateEventOnMap(Setor0ChatLog.#checkMap, event, target);
+    }
+
+    static #operateEventOnMap(map, event, target) {
+        const { type, message } = Setor0ChatLog.#prepareEventMessage(event, target) ?? {};
+        const method = map[type];
+        if (typeof method === 'function') {
+            method(target, message);
+        } else {
+            console.warn(`Action [${target.dataset.action}] - method is invalid [${type}]`);
+        }
     }
 
     static #prepareEventMessage(event, target) {
@@ -53,7 +77,7 @@ class Setor0ChatLog extends FoundryApi.ChatLog {
             return;
         }
 
-        if (message.speakerActor.isOwner) {
+        if (!message.speakerActor.isOwner) {
             console.warn(`User: ${game.user.name} isn't the owner of this message`);
             return;
         }
@@ -66,24 +90,9 @@ class Setor0ChatLog extends FoundryApi.ChatLog {
         }
     }
 
-    static #view(event, target) {
-        const { type, message } = Setor0ChatLog.#prepareEventMessage(event, target) ?? {};
-        const method = Setor0ChatLog.#viewMap[type];
-        if (typeof method === 'function') {
-            method(target, message);
-        } else {
-            console.warn(`method is invalid [${type}]`);
-        }
-    }
-
-    static #check(event, target) {
-        const { type, message } = Setor0ChatLog.#prepareEventMessage(event, target) ?? {};
-        const method = Setor0ChatLog.#checkMap[type];
-        if (typeof method === 'function') {
-            method(target, message);
-        } else {
-            console.warn(`method is invalid [${type}]`);
-        }
+    static #getMessageId(event) {
+        const { messageId } = event.target.closest("[data-message-id]")?.dataset ?? {};
+        return messageId;
     }
 
     static async #updateButtonOnContent(message, button, text) {

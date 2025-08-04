@@ -41,6 +41,7 @@ export class DOMUtils {
     }
 
     static #toggleTooltip(target) {
+        DEPRECATED('metodo depreciado, parar de usar');
         let tooltip = target.previousElementSibling;
         let hooks = 0;
         while (hooks < 5 && tooltip) {

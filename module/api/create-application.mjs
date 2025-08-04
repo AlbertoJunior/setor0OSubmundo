@@ -54,9 +54,11 @@ const createdVersions = new Set();
  *   Version: ...,
  *   Api: ...,
  *   Handlebars: ...,
+ *   SidebarsTabs: ...,
  *   Collections: ...,
  *   ChatMessage: ...,
  *   Sheets: ...,
+ *   ...,
  *   makeClass: function,
  *   createDialog: function,
  *   VersionName: "S0-V1"

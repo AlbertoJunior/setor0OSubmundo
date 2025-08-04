@@ -201,6 +201,8 @@ function parseDialogButtons(buttons) {
             label: buttonToRemove,
             action: buttonToRemove,
         });
+    } else if (parsedButtons.length == 1) {
+        parsedButtons[0].class = `${parsedButtons[0].class} S0-single-button-dialog`;
     }
 
     return {

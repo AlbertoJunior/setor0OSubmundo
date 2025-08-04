@@ -95,19 +95,19 @@
         "Pilotagem": "Piloting",
         "Quimica": "Chemistry",
         "Especialista": "Specialist",
-        "Repertorio": "Repertoire",
+        "Repertorio": "Repertory",
         "Aliado": "Ally",
         "Aliados": "Allies",
         "Arsenal": "Arsenal",
         "Informante": "Informant",
         "Informantes": "Informants",
         "Recursos": "Resources",
-        "SuperEquipamento": "Super Equipment",
-        "SuperEquipamentos": "Super Equipment",
+        "SuperEquipamento": "SuperEquipment",
+        "SuperEquipamentos": "SuperEquipments",
         "Virtudes": "Virtues",
         "Consciencia": "Conscience",
         "Perseveranca": "Perseverance",
-        "Quietude": "Stillness",
+        "Quietude": "Quietness",
         "Procurado": "Wanted",
         "Influencia": "Influence",
         "Nucleo": "Core",
@@ -201,8 +201,8 @@
         "Quietude_Utilizada": "Quietness used",
         "Nenhum_Teste_Cadastrado": "No test registered",
         "Nivel_De_Procurado": "Wanted Level",
-        "Tracos-Bons": "Positive Traits",
-        "Tracos-Ruins": "Negative Traits",
+        "Tracos-Bons": "Good Traits",
+        "Tracos-Ruins": "Bad Traits",
         "Adicionar_Traco": "Add Trait",
         "Ver_Informacoes": "View Information",
         "Adicionar_Itens": "Add Items",
@@ -336,6 +336,22 @@
         },
         "Placeholder": {
             "Atalho_Nome": "Precise Attack"
+        }
+    },
+    "TYPES": {
+        "Actor": {
+            "NPC": "NPC",
+            "Player": "Player"
+        },
+        "Item": {
+            "Armor": "Armor",
+            "Enhancement": "Enhancement",
+            "Melee": "Melee",
+            "Projectile": "Ranged",
+            "Substance": "Substance",
+            "Vehicle": "Vehicle",
+            "Acessory": "Acessory",
+            "Trait": "Trait"
         }
     }
 }

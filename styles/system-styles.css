@@ -813,6 +813,13 @@ body {
     border-color: var(--primary-color) !important;
 }
 
+.S0-single-button-dialog,
+.S0-single-button-dialog.S0-button-dialog,
+.S0-single-button-dialog.S0-button-dialog.S0-button-focus {
+    width: 100%;
+    max-width: 100%;
+}
+
 .S0-button-delete {
     color: var(--on-color-red) !important;
     background-color: var(--color-red-alpha-50) !important;

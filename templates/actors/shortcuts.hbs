@@ -1,5 +1,5 @@
-<section class="S0-page tab" data-group="menu-tabs" data-tab="shortcuts"
-data-label="{{localize 'S0.Atalhos'}}" id="shortcutPage" data-icon="fas fa-bolt-auto">
+<section class="S0-page tab" data-group="menu-tabs" data-tab="shortcuts" data-label="{{localize 'S0.Atalhos'}}"
+    id="shortcutPage" data-icon="fas fa-bolt-auto">
     <div class="S0-container">
         <h2>
             {{localize 'S0.Ofensivo'}}
@@ -86,11 +86,13 @@ data-label="{{localize 'S0.Atalhos'}}" id="shortcutPage" data-icon="fas fa-bolt-
                     {{/if}}
                 </h3>
 
+                {{#if ../editable}}
                 <a class="S0-icon-rotate" title="{{localize 'S0.Rolar'}}" data-action="roll"
                     data-characteristic="shortcuts" data-item-id="{{shortcut.id}}"
                     style="text-align: center; width: 20px;">
                     <i class="fas fa-dice-d10"></i>
                 </a>
+                {{/if}}
             </div>
             {{/each}}
         </div>
