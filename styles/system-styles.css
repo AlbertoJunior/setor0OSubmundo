@@ -75,6 +75,16 @@ body {
     --color-green-alpha-50: rgba(10, 140, 10, 0.5);
     --on-color-green: var(--color-white);
 
+    --color-blue: rgba(10, 58, 255, 1);
+    --color-blue-alpha: rgba(10, 58, 255, 0.8);
+    --color-blue-alpha-50: rgba(10, 58, 255, 0.5);
+    --on-color-blue: var(--color-white);
+
+    --color-orange: rgba(230, 92, 0, 1);
+    --color-orange-alpha: rgba(230, 92, 0, 0.8);
+    --color-orange-alpha-50: rgba(230, 92, 0, 0.5);
+    --on-color-orange: var(--color-white);
+
     --focus-color: rgba(255, 255, 150, 1);
     --sheet-color: rgba(255, 255, 255, 1);
 
@@ -1025,6 +1035,30 @@ body {
 .S0-roll-result.S0-overload:hover {
     color: var(--primary-color);
     border: dashed 2px var(--primary-color);
+}
+
+.S0-roll-result.S0-blue {
+    color: var(--on-color-blue);
+    background-color: var(--color-blue-alpha-50);
+    border-color: var(--color-blue-alpha);
+}
+
+.S0-roll-result:enabled.S0-blue:hover {
+    color: var(--on-color-blue);
+    background-color: var(--color-blue-alpha);
+    border-color: var(--color-blue);
+}
+
+.S0-roll-result.S0-orange {
+    color: var(--on-color-orange);
+    background-color: var(--color-orange-alpha-50);
+    border-color: var(--color-orange-alpha);
+}
+
+.S0-roll-result:enabled.S0-orange:hover {
+    color: var(--on-color-orange);
+    background-color: var(--color-orange-alpha);
+    border-color: var(--color-orange);
 }
 
 /* #endregion */

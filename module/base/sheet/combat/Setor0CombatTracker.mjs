@@ -3,7 +3,7 @@ import { ActiveEffectsFlags } from "../../../enums/active-effects-enums.mjs";
 import { FlagsUtils } from "../../../utils/flags-utils.mjs";
 import { FoundryApi } from "../../../api/foundry-api.mjs";
 
-export async function configureSetor0CombatTracker() {
+export function configureSetor0CombatTracker() {
     CONFIG.ui.combat = Setor0CombatTracker;
 }
 

@@ -104,10 +104,29 @@
 {{/if}}
 <!-- #endregion -->
 
+<!-- #region CAN USE CONSCIOUSNESS -->
+{{#if canUseConsciousness}}
+<button class="S0-roll-result S0-blue" data-action="check" data-type="consciousness">
+    {{localize 'S0.Usar_Consciencia'}}
+    ( <i class="fas fa-comments-question-check"></i> )
+</button>
+{{/if}}
+<!-- #endregion -->
+
+<!-- #region CAN USE QUIETNESS -->
+{{#if canUseQuietness}}
+<button class="S0-roll-result S0-orange" data-action="check" data-type="quietness">
+    {{localize 'S0.Usar_Quietude'}}
+    ( <i class="fas fa-bolt-slash"></i> )
+</button>
+{{/if}}
+<!-- #endregion -->
+
 <!-- #region CAN USE PERSEVERANCE -->
 {{#if canUsePerseverance}}
-<button class="S0-roll-result" data-action="roll" data-handle-on-dom="true" data-type="perseverance">
+<button class="S0-roll-result" data-action="check" data-type="perseverance">
     {{localize 'S0.Usar_Perseveranca'}}
+    ( <i class="fas fa-check-double"></i> )
 </button>
 {{/if}}
 <!-- #endregion -->

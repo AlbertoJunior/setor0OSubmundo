@@ -7,14 +7,15 @@ const baseApplicationConfig = Object.freeze({
     Version: foundry.applications,
     Api: foundry.applications.api,
     Handlebars: foundry.applications.handlebars,
-    Documents: foundry.documents,
-    Collections: foundry.documents.collections,
-    ChatMessage: ChatMessage,
-    CombatTracker: foundry.applications.sidebar.tabs.CombatTracker,
-    Utils: foundry.utils,
+    SidebarTabs: foundry.applications.sidebar.tabs,
     Ui: foundry.applications.ui,
     Ux: foundry.applications.ux,
-    Apps: foundry.applications.apps
+    Apps: foundry.applications.apps,
+    Documents: foundry.documents,
+    Collections: foundry.documents.collections,
+    Placeables: foundry.canvas.placeables,
+    Utils: foundry.utils,
+    ChatMessage: ChatMessage,
 });
 
 // versions

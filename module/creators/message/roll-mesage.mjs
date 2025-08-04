@@ -1,5 +1,5 @@
 import { CoreRollMethods } from "../../core/rolls/core-roll-methods.mjs";
-import { keyJsonToKeyLang, localize, toTitleCase } from "../../utils/utils.mjs";
+import { keyJsonToKeyLang, localize, TODO, toTitleCase } from "../../utils/utils.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
 
@@ -160,6 +160,14 @@ export class RollMessageCreator {
 
         const canUsePerseverance = diceResults.default.length > 0 && (havePerseverance || false);
 
+
+        TODO('receber se o personagem tem consciência e quietude para utilizar');
+        const canUseQuietness = diceResults.overload.length > 0 && true //haveQuietness;
+        // const isConsciousnessTest = virtue1.label == CharacteristicType.VIRTUES.CONSCIOUSNESS.id || virtue2.label == CharacteristicType.VIRTUES.CONSCIOUSNESS.id;
+        // const haveConsciousness = true;
+        const canUseConsciousness = false;
+        debugger
+
         return {
             formule: formule,
 
@@ -171,6 +179,8 @@ export class RollMessageCreator {
             resultMessage: result.message.message,
             resultValue: result.result,
 
+            canUseConsciousness: canUseConsciousness,
+            canUseQuietness: canUseQuietness,
             canUsePerseverance: canUsePerseverance,
 
             difficulty: safeDifficulty,

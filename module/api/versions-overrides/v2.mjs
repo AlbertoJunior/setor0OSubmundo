@@ -16,7 +16,7 @@ function makeClass(BaseClass) {
     const { HandlebarsApplicationMixin } = this.Api;
     const name = BaseClass.name;
 
-    return {
+    const cls = {
         [name]: class extends HandlebarsApplicationMixin(BaseClass) {
             static DEFAULT_OPTIONS = {
                 // viewPermission: CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED,
@@ -28,7 +28,7 @@ function makeClass(BaseClass) {
                     controls: [
                         // {
                         //     action: "example",
-                        //     icon: "fa-regular fa-circle-user",
+                        //     icon: "fas fa-circle-user",
                         //     label: "S0.example-control-label",
                         //     ownership: "OWNER"
                         // }
@@ -53,6 +53,7 @@ function makeClass(BaseClass) {
             }
         }
     }[name];
+    return cls;
 }
 
 async function createDialog(data, options) {

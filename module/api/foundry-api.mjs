@@ -31,13 +31,15 @@ export class FoundryApi {
     static Collections = Versions.current.Collections;
     static Documents = Versions.current.Documents;
     static Apps = Versions.current.Apps;
+    static SidebarTabs = Versions.current.SidebarTabs;
+    static Placeables = Versions.current.Placeables;
+
     static ChatMessage = Object.freeze({
         getWhisperRecipients: (recipient) => Versions.current.ChatMessage.getWhisperRecipients(recipient),
         getSpeaker: (actor) => Versions.current.ChatMessage.getSpeaker({ actor: actor }),
         create: async (messageData, optionsMode) => await Versions.current.ChatMessage.create(messageData, optionsMode)
     });
 
-    static CombatTracker = convertToClass(Versions.current.CombatTracker);
     static SceneControls = convertToClass(Versions.current.Ui.SceneControls);
     static ImagePopout = convertToClass(Versions.current.Apps.ImagePopout);
     static Tabs = convertToClass(Versions.current.Ux.Tabs);
@@ -63,7 +65,10 @@ export class FoundryApi {
     static Macro = convertToClass(this.Documents.Macro);
     static TokenDocument = convertToClass(this.Documents.TokenDocument);
 
-    static TokenCanvas = convertToClass(foundry.canvas.placeables.Token);
+    static CombatTracker = convertToClass(this.SidebarTabs.CombatTracker);
+    static ChatLog = convertToClass(this.SidebarTabs.ChatLog);
+
+    static TokenCanvas = convertToClass(this.Placeables.Token);
 
     static FilePicker = convertToClass(this.Apps.FilePicker);
 

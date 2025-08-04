@@ -3,7 +3,7 @@ import { DefaultActions } from "../../../utils/default-actions.mjs";
 import { ActiveEffectsUtils } from "../../../core/effect/active-effects-utils.mjs";
 import { FoundryApi } from "../../../api/foundry-api.mjs";
 
-export async function configureSetor0Combat() {
+export function configureSetor0Combat() {
     CONFIG.Combat.documentClass = Setor0Combat;
 }
 

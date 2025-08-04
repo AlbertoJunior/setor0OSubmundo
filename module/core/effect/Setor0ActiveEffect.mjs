@@ -3,7 +3,7 @@ import { FlagsUtils } from "../../utils/flags-utils.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
 import { COLORS } from "../../constants.mjs";
 
-export async function configureSetor0ActiveEffect() {
+export function configureSetor0ActiveEffect() {
     CONFIG.ActiveEffect.documentClass = Setor0ActiveEffect;
 }
 

@@ -44,7 +44,7 @@ export const v1Overrides = Object.freeze({
 
 function makeClass(BaseClass) {
     const name = BaseClass.name;
-    return {
+    const cls = {
         [name]: class extends BaseClass {
             static get defaultOptions() {
                 const options = super.defaultOptions;
@@ -59,6 +59,7 @@ function makeClass(BaseClass) {
             }
         }
     }[name];
+    return cls;
 }
 
 async function createDialog(data, options) {

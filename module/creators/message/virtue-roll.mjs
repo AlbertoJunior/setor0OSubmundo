@@ -1,6 +1,7 @@
-import { keyJsonToKeyLang, localize } from "../../utils/utils.mjs";
+import { keyJsonToKeyLang, localize, TODO } from "../../utils/utils.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
+import { CharacteristicType } from "../../enums/characteristic-enums.mjs";
 
 export class RollVirtueMessageCreator {
     static async mountContent(params) {
@@ -17,6 +18,11 @@ export class RollVirtueMessageCreator {
             classResult = `S0-success`;
         }
 
+        const isConsciousnessTest = virtue1.label == CharacteristicType.VIRTUES.CONSCIOUSNESS.id || virtue2.label == CharacteristicType.VIRTUES.CONSCIOUSNESS.id;
+        TODO('receber se o personagem tem consciência para utilizar');
+        const haveConsciousness = true;
+        debugger
+
         const data = {
             virtue1: keyJsonToKeyLang(virtue1.label),
             virtue2: keyJsonToKeyLang(virtue2.label),
@@ -28,7 +34,8 @@ export class RollVirtueMessageCreator {
             difficulty: difficulty,
             resultMessage: message,
             resultValue: successes,
-            resultMessageClasses: classResult
+            resultMessageClasses: classResult,
+            canUseConsciousness: isConsciousnessTest && haveConsciousness,
         };
         return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/messages/roll/virtue.hbs`, data);
     }

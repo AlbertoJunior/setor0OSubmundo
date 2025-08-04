@@ -3,7 +3,7 @@ import { SYSTEM_ID } from "../../constants.mjs";
 import { ActiveEffectsFlags } from "../../enums/active-effects-enums.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
 
-export class Setor0TokenCanvas extends FoundryApi.TokenCanvas {
+class Setor0TokenCanvas extends FoundryApi.TokenCanvas {
 
     #verifyIsForcedByFlag(effectFlags) {
         const isOverlay = effectFlags['core']?.['overlay'] ?? false
@@ -114,7 +114,7 @@ export class Setor0TokenDocument extends FoundryApi.TokenDocument {
     }
 }
 
-export async function configureSetor0TokenDocument() {
+export function configureSetor0TokenDocument() {
     CONFIG.Token.documentClass = Setor0TokenDocument;
     CONFIG.Token.objectClass = Setor0TokenCanvas;
 }

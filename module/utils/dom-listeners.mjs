@@ -1,7 +1,7 @@
 import { RollPerseverance } from "../core/rolls/perseverance-roll.mjs";
 import { MessageRepository } from "../repository/message-repository.mjs";
 import { HtmlJsUtils } from "./html-js-utils.mjs";
-import { localize } from "../utils/utils.mjs";
+import { DEPRECATED, localize } from "../utils/utils.mjs";
 
 export class DOMUtils {
     static #mapEventsHandle = {
@@ -45,7 +45,7 @@ export class DOMUtils {
         let hooks = 0;
         while (hooks < 5 && tooltip) {
             if (tooltip.classList.contains('S0-container-contract')) {
-                HtmlJsUtils.expandOrContractMessageElement(tooltip, { minHeight: 0, maxHeight: 600, marginBottom: 0 })
+                HtmlJsUtils.expandOrContractMessageElement(tooltip, { minHeight: 0, maxHeight: 700, marginBottom: 0 })
                 return;
             } else {
                 tooltip = tooltip.previousElementSibling;
@@ -55,6 +55,7 @@ export class DOMUtils {
     }
 
     static async #perseverance(target) {
+        DEPRECATED('metodo depreciado, parar de usar');
         const messageId = target.closest('.chat-message')?.dataset?.messageId;
         const message = MessageRepository.findMessage(messageId);
         if (!message) {
@@ -64,18 +65,18 @@ export class DOMUtils {
 
         const result = await RollPerseverance.operateMessage(message);
         if (result) {
-            this.#removePerseveranceButton(message, target);
+            await this.#removePerseveranceButton(message, target);
         }
     }
 
-    static #removePerseveranceButton(message, button) {
+    static async #removePerseveranceButton(message, button) {
         let $content = $(message.content);
         let $button = $content.find(`button[data-action="${button.dataset.action}"][data-type="${button.dataset.type}"]`);
         if ($button) {
             $button.text(localize('Perseveranca_Utilizada'));
             $button.removeAttr('data-action').removeAttr('data-type');
             $button.attr('disabled', true);
-            MessageRepository.updateMessage(message, { content: $content.prop('outerHTML') });
+            await MessageRepository.updateMessage(message, { content: $content.prop('outerHTML') });
         }
     }
 }

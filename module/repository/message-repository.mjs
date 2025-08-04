@@ -7,11 +7,10 @@ export class MessageRepository {
         return game.messages.filter(message => message.speaker.actor == actorId);
     }
 
-    static updateMessage(message, params) {
+    static async updateMessage(message, params) {
         if (!message) {
             return;
         }
-
-        message.update(params);
+        await message.update(params);
     }
 }

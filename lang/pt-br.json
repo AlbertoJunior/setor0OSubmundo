@@ -215,6 +215,7 @@
         "Expandir_Contrair": "Expandir/Contrair",
         "Contrair_Expandir": "Contrair/Expandir",
         "Perseveranca_Utilizada": "Perseverança utilizada",
+        "Quietude_Utilizada": "Quietude utilizada",
         "Nenhum_Teste_Cadastrado": "Nenhum teste cadastrado",
         "Nivel_De_Procurado": "Nível de Procurado",
         "Tracos-Bons": "Traços Bons",
@@ -246,7 +247,9 @@
         "Sucesso_Explosivo": "Sucesso Explosívo",
         "Falha_Critica": "Falha Crítica",
         "Falha_Caotica": "Falha Caótica",
+        "Usar_Consciencia": "Usar Consciência",
         "Usar_Perseveranca": "Usar Perseverança",
+        "Usar_Quietude": "Usar Quietude",
         
         "Vitalidade_Atual": "Vitalidade atual",
         "Vitalidade_Total": "Vitalidade total",

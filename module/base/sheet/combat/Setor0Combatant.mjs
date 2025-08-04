@@ -1,6 +1,6 @@
 import { FoundryApi } from "../../../api/foundry-api.mjs";
 
-export async function configureSetor0Combatant() {
+export function configureSetor0Combatant() {
     CONFIG.Combatant.documentClass = Setor0Combatant;
 }
 

@@ -12,6 +12,7 @@ import { MacroUtils } from "../core/macro/macro-utils.mjs";
 import { configureSetor0ActiveEffect } from "../core/effect/Setor0ActiveEffect.mjs";
 import { TokenUtils } from "../core/token/token-utils.mjs";
 import { ActiveEffectHookHandle } from "./active-effects.mjs";
+import { configureSetor0ChatLog } from "../core/chat/Setor0ChatLog.mjs";
 
 export class InitHookHandle {
     static async handle() {
@@ -22,11 +23,14 @@ export class InitHookHandle {
         DOMUtils.addListenersOnDOM();
 
         await createDataModels();
-        await configureSetor0Combat();
-        await configureSetor0Combatant();
-        await configureSetor0CombatTracker();
-        await configureSetor0TokenDocument();
-        await configureSetor0ActiveEffect();
+
+        configureSetor0Combat();
+        configureSetor0Combatant();
+        configureSetor0CombatTracker();
+        configureSetor0TokenDocument();
+        configureSetor0ActiveEffect();
+        configureSetor0ChatLog();
+
         await loadHandlebarsHelpers();
         await registerTemplates();
 

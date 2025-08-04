@@ -37,6 +37,15 @@
             <label style="display: block; margin-block: 4px;">{{localize 'S0.Automatico'}}: {{ automatic }}</label>
             {{/if}}
         </section>
+
+        <!-- #region CAN USE CONSCIOUSNESS -->
+        {{#if canUseConsciousness}}
+        <button class="S0-roll-result S0-blue" data-action="check" data-type="consciousness">
+            {{localize 'S0.Usar_Consciencia'}}
+            ( <i class="fas fa-comments-question-check"></i> )
+        </button>
+        {{/if}}
+        <!-- #endregion -->
     </div>
 
     <button class="S0-roll-result {{ resultMessageClasses }}" data-action="toggle-tooltip" data-handle-on-dom="true">
