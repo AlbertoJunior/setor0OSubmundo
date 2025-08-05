@@ -1,5 +1,7 @@
-import { randomId } from "../../utils/utils.mjs";
+import { randomId, toKeyLang } from "../../utils/utils.mjs";
 import { SYSTEM_CLASS_CSS } from "../../constants.mjs";
+import { FoundryApi } from "../foundry-api.mjs";
+import { HtmlJsUtils } from "../../utils/html-js-utils.mjs";
 
 const VERSION_NAME = 'S0-V2';
 
@@ -33,20 +35,79 @@ function makeClass(BaseClass) {
                         //     ownership: "OWNER"
                         // }
                     ]
+                },
+                form: {
+                    closeOnSubmit: false,
+                    submitOnChange: true,
+                    handler: this.#onSubmitDocumentForm
+                },
+                actions: {
+                    img: this.#selectImg
                 }
             }
 
+            static async #onSubmitDocumentForm(event, form, formData, options = {}) {
+                if (!this.isEditable) {
+                    return;
+                }
+                await this.updateDocument(this.document, event.target.name, event.target.value);
+            }
+
+            static async #selectImg() {
+                const document = this.document;
+                const img = document.img;
+                new FoundryApi.FilePicker.implementation({
+                    type: 'image',
+                    current: img,
+                    displayMode: "thumbs",
+                    // allowUpload: game.user.isGM,
+                    callback: async (path, event) => {
+                        await this.updateDocument(document, 'img', path);
+                    }
+                }).browse();
+            }
+
+            async updateDocument(document, keyToUpdate, value) {
+                console.warn(`[${document.documentName}]: you need to implement this method (async updateDocument). There was an attempt to update field [${keyToUpdate}] with value [${value}]`);
+            }
+
+            _renderHTML(context, options) {
+                debugger
+                const updatedContext = {
+                    ...context,
+                    ...this.getData(),
+                    actor: context.document
+                };
+                return super._renderHTML(updatedContext, options);
+            }
+
+            _postRender(context, options) {
+                super._postRender(context, options);
+                const html = $(this.element);
+                HtmlJsUtils.setupContent(html);
+                this.postRenderConfiguration(html);
+            }
+
             _replaceHTML(result, content, options) {
+                this.#disableFormItemsOnHtml(result);
+                return super._replaceHTML(result, content, options)
+            }
+
+            #disableFormItemsOnHtml(result) {
                 const isDisabled = !(this.isEditable && this.canRollOrEdit);
                 if (isDisabled) {
                     Object.values(result)
-                        .flatMap(part => part?.elements ?? [])
-                        .forEach(element => {
-                            element.disabled = true;
-                        });
+                        .flatMap(part =>
+                            part !== null && typeof part === 'object'
+                                ? Object.values(part)
+                                : [part]
+                        )
+                        .filter(el => el instanceof Element)
+                        .forEach(el => el.disabled = true);
                 }
-                return super._replaceHTML(result, content, options)
             }
+
+            postRenderConfiguration(html) { }
 
             getData() {
                 return {};
@@ -216,13 +277,16 @@ function parseHeaderToControls(header) {
     const controls = [];
 
     header?.buttons
-        ?.filter(button => typeof button.onClick === 'function')
+        ?.filter(button => typeof button.onClick === 'function' && button.label)
         .forEach(buttonHeader => {
+            const label = buttonHeader.label;
+            const actionName = toKeyLang(label);
+            debugger
             controls.push(
                 {
-                    action: buttonHeader.label ?? "clicou",
+                    action: actionName,
                     icon: buttonHeader.icon ?? 'fas fa-add',
-                    label: buttonHeader.label ?? "label",
+                    label: label,
                     onClick: (event, params) => {
                         buttonHeader.onClick();
                     },

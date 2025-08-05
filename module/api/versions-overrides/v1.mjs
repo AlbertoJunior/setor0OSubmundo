@@ -1,5 +1,6 @@
 import { SYSTEM_CLASS_CSS, SYSTEM_CLASS_DIALOG_CSS } from "../../constants.mjs";
 import { DialogUtils } from "../../utils/dialog-utils.mjs"
+import { HtmlJsUtils } from "../../utils/html-js-utils.mjs";
 
 const VERSION_NAME = 'S0-V1';
 
@@ -57,6 +58,15 @@ function makeClass(BaseClass) {
                     ]
                 };
             }
+
+            activateListeners(html) {
+                super.activateListeners(html);
+                HtmlJsUtils.setupContent(html);
+                HtmlJsUtils.setupHeader(html);
+                this.postRenderConfiguration(html);
+            }
+
+            postRenderConfiguration(html) { }
         }
     }[name];
     return cls;

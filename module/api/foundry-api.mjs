@@ -33,6 +33,7 @@ export class FoundryApi {
     static Apps = Versions.current.Apps;
     static SidebarTabs = Versions.current.SidebarTabs;
     static Placeables = Versions.current.Placeables;
+    static Sheets = Versions.current.Sheets;
 
     static ChatMessage = Object.freeze({
         getWhisperRecipients: (recipient) => Versions.current.ChatMessage.getWhisperRecipients(recipient),
@@ -45,8 +46,8 @@ export class FoundryApi {
     static Tabs = convertToClass(Versions.current.Ux.Tabs);
 
     //#region UPDATED 
-    // static ActorSheet = Versions.current.makeClass(Versions.current.Sheets.ActorSheet);
-    // static ItemSheet = Versions.current.makeClass(Versions.current.Sheets.ItemSheet);
+    // static ActorSheet = Versions.current.makeClass(this.Sheets.ActorSheet);
+    // static ItemSheet = Versions.current.makeClass(this.Sheets.ItemSheet);
     //#endregion
 
     //#region NEED UPDATE to V2

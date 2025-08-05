@@ -1,7 +1,17 @@
 /* #region DIALOG*/
 .application .S0-V2,
 .S0-V2.application {
-    max-height: 98vh;
+    max-height: 96vh;
+}
+
+.S0-V2.S0-content.actor .window-content {
+    padding: 0px;
+}
+
+.S0-V2 .S0-actor-sheet {
+    max-height: 92vh;
+    overflow-y: scroll;
+    margin-left: 12px;
 }
 
 .S0-V2 .S0-dialog :is(h1, h2, h3, h4, label, strong) {

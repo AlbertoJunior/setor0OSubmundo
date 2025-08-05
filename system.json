@@ -4,7 +4,7 @@
     "description": "Jogue Setor 0 - O Submundo no Foundry VTT",
     "url": "https://www.set0rpg.com.br",
     "version": "0.0.2",
-    "background": "https://github.com/AlbertoJunior/RPG-fvtt-sector-0/blob/dev/imgs/banner.png?raw=true",
+    "background": "https://github.com/AlbertoJunior/RPG-fvtt-sector-0/blob/master/imgs/banner.png?raw=true",
     "manifest": "https://raw.githubusercontent.com/AlbertoJunior/RPG-fvtt-sector-0/master/system.json",
     "download": "https://github.com/AlbertoJunior/RPG-fvtt-sector-0/download/archive.zip",
     "bugs": "https://github.com/AlbertoJunior/RPG-fvtt-sector-0/issues",
@@ -30,6 +30,7 @@
     "styles": [
         "styles/edit-foundry-styles.css",
         "styles/system-styles.css",
+        "styles/system-styles-v1.css",
         "styles/system-styles-v2.css",
         "styles/system-styles-dark.css",
         "styles/system-styles-id.css",

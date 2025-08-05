@@ -1,4 +1,4 @@
-import { getObject, selectCharacteristic, TODO } from "../../../utils/utils.mjs";
+import { getObject, selectCharacteristic } from "../../../utils/utils.mjs";
 import { ActorEquipmentUtils } from "../../../core/actor/actor-equipment-utils.mjs";
 import { BaseActorCharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { EquipmentCharacteristicType } from "../../../enums/equipment-enums.mjs";
@@ -13,36 +13,11 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
         classes: ['actor'],
         window: {
             controls: []
-        },
-        form: {
-            closeOnSubmit: false,
-            submitOnChange: true,
-            handler: Setor0BaseActorSheet.#onSubmitDocumentForm
-        },
-        actions: {
-            img: Setor0BaseActorSheet.#selectImg
         }
     };
 
     _getHeaderControls() {
         return super._getHeaderControls();
-    }
-
-    static async #selectImg() {
-        const actor = this.actor;
-        const img = actor.img;
-        new FoundryApi.FilePicker.implementation({
-            window: {
-                title: 'teste'
-            },
-            type: 'image',
-            current: img,
-            displayMode: "thumbs",
-            // allowUpload: game.user.isGM,
-            callback: async (path, event) => {
-                await ActorUpdater.verifyAndUpdateActor(actor, 'img', path);
-            }
-        }).browse();
     }
 
     get mapEvents() {
@@ -62,33 +37,14 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
         this.currentPage = 1;
     }
 
-    _renderHTML(context, options) {
-        const updatedContext = {
-            ...context,
-            ...this.getData(),
-            actor: context.document
-        };
-        return super._renderHTML(updatedContext, options);
-    }
-
-    _postRender(context, options) {
-        super._postRender(context, options);
-        this._postRenderConfiguration($(this.element));
-    }
-
-    _postRenderConfiguration(html) {
-        HtmlJsUtils.setupContent(html);
+    postRenderConfiguration(html) {
+        super.postRenderConfiguration(html);
         this.configureSheet(html);
         this._setupAutoTabs(html);
     }
 
-    static async #onSubmitDocumentForm(event, form, formData, options = {}) {
-        TODO('essa parte é a principal para fazer o port para o V2');
-        debugger
-        if (!this.isEditable) {
-            return;
-        }
-        await ActorUpdater.verifyAndUpdateActor(this.actor, event.target.name, event.target.value);
+    async updateDocument(document, keyToUpdate, value) {
+        await ActorUpdater.verifyAndUpdateActor(document, keyToUpdate, value);
     }
 
     get isEditable() {
@@ -117,18 +73,6 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
 
     async _onDropItem(event, data) {
         console.log('-> On Drop Item');
-    }
-
-    /* Only run on Application V1 */
-    activateListeners(html) {
-        super.activateListeners(html);
-        HtmlJsUtils.setupContent(html, {
-            margin: '0px',
-            padding: '0px 2px 0px 12px',
-            overflowY: 'scroll'
-        });
-        HtmlJsUtils.setupHeader(html);
-        this._postRenderConfiguration(html);
     }
 
     async onActionClick(html, event) {

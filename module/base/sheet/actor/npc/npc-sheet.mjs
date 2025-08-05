@@ -89,10 +89,6 @@ class Setor0NpcSheet extends Setor0BaseActorSheet {
         };
     }
 
-    constructor(...args) {
-        super(...args);
-    }
-
     /* Only run on Application V1 */
     static get defaultOptions() {
         return FoundryApi.mergeObject(super.defaultOptions, {
@@ -128,7 +124,6 @@ class Setor0NpcSheet extends Setor0BaseActorSheet {
             .forEach(action => {
                 html.find(action.selector).on('contextmenu', action.method.bind(this, html));
             });
-
     }
 
     #updateCharacteristic(actor, characteristic, target) {
