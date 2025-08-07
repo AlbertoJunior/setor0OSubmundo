@@ -1,6 +1,5 @@
 import { Setor0BaseActorSheet } from "../BaseActorSheet.mjs";
 import { getObject, selectCharacteristic } from "../../../../utils/utils.mjs";
-import { OnEventType, OnEventTypeClickableEvents, OnEventTypeContextualEvents } from "../../../../enums/on-event-type.mjs";
 import { SheetMethods } from "./methods/sheet-methods.mjs";
 import { selectLevelOnOptions, updateEnhancementLevelsOptions } from "./methods/enhancement-methods.mjs";
 import { EquipmentType } from "../../../../enums/equipment-enums.mjs";
@@ -10,12 +9,36 @@ import { loadAndRegisterTemplates } from "../../../../utils/templates.mjs";
 import { SYSTEM_CLASS_CSS, SYSTEM_ID, TEMPLATES_PATH } from "../../../../constants.mjs";
 import { SheetActorDragabbleMethods } from "./methods/dragabble-methods.mjs";
 import { ActorUtils } from "../../../../core/actor/actor-utils.mjs";
-import { characteristicOnClick } from "./methods/characteristics-methods.mjs";
 import { ActiveEffectsUtils } from "../../../../core/effect/active-effects-utils.mjs";
 import { FoundryApi } from "../../../../api/foundry-api.mjs";
 
-class Setor0ActorSheet extends Setor0BaseActorSheet {
+export async function actorTemplatesRegister() {
+    const templates = [
+        { path: "actors/characteristics" },
+        { path: "actors/biography" },
+        { path: "actors/biography-trait-partial", call: 'traitPartialContainer' },
+        { path: "actors/status" },
+        { path: "actors/enhancement" },
+        { path: "actors/enhancement-partial", call: 'enhancementPartial' },
+        { path: "actors/equipment" },
+        { path: "actors/shortcuts" },
+        { path: "actors/shortcut-default-partial", call: 'shortcutDefaultPartial' },
+        { path: "actors/network" },
+        { path: "actors/network-partial", call: 'networkPartial' },
+    ];
 
+    return await loadAndRegisterTemplates(templates);
+}
+
+export async function registerActor() {
+    await FoundryApi.Actors.unregisterSheet("core", FoundryApi.ActorSheet);
+    await FoundryApi.Actors.registerSheet(SYSTEM_ID, Setor0ActorSheet, {
+        types: ["Player"],
+        makeDefault: true
+    });
+}
+
+class Setor0ActorSheet extends Setor0BaseActorSheet {
     static DEFAULT_OPTIONS = {
         position: {
             width: 600,
@@ -65,32 +88,13 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
     }
 
     configureSheet(html) {
-        this.#presetSheet(html);
-        this.#setupListeners(html);
+        super.configureSheet(html);
         SheetActorDragabbleMethods.setup(html, this.actor);
     }
 
-    #setupListeners(html) {
-        const actionsClick = [
-            { selector: `[data-action="${OnEventType.CHARACTERISTIC}"]`, method: this.#onCharacteristicClick },
-            ...OnEventTypeClickableEvents.map(eventType => ({ selector: `[data-action="${eventType}"]`, method: super.onActionClick }))
-        ];
-        const actionsChange = [
-            { selector: `[data-action="${OnEventType.CHANGE}"]`, method: super.onChange },
-        ];
-        const actionsContextMenu = [
-            ...OnEventTypeContextualEvents.map(eventType => ({ selector: `[data-action="${eventType}"]`, method: super.onContextualClick }))
-        ];
-
-        actionsClick.forEach(action => {
-            html.find(action.selector).click(action.method.bind(this, html));
-        });
-        actionsChange.forEach(action => {
-            html.find(action.selector).change(action.method.bind(this, html));
-        });
-        actionsContextMenu.forEach(action => {
-            html.find(action.selector).on('contextmenu', action.method.bind(this, html));
-        });
+    postRenderConfiguration(html) {
+        super.postRenderConfiguration(html);
+        this.#presetSheet(html);
     }
 
     #presetSheet(html) {
@@ -228,37 +232,4 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
             }
         }
     }
-
-    async #onCharacteristicClick(html, event) {
-        if (!this.isEditable) {
-            return;
-        }
-        await characteristicOnClick(event, this.actor);
-    }
-}
-
-export async function actorTemplatesRegister() {
-    const templates = [
-        { path: "actors/characteristics" },
-        { path: "actors/biography" },
-        { path: "actors/biography-trait-partial", call: 'traitPartialContainer' },
-        { path: "actors/status" },
-        { path: "actors/enhancement" },
-        { path: "actors/enhancement-partial", call: 'enhancementPartial' },
-        { path: "actors/equipment" },
-        { path: "actors/shortcuts" },
-        { path: "actors/shortcut-default-partial", call: 'shortcutDefaultPartial' },
-        { path: "actors/network" },
-        { path: "actors/network-partial", call: 'networkPartial' },
-    ];
-
-    return await loadAndRegisterTemplates(templates);
-}
-
-export async function registerActor() {
-    await FoundryApi.Actors.unregisterSheet("core", FoundryApi.ActorSheet);
-    await FoundryApi.Actors.registerSheet(SYSTEM_ID, Setor0ActorSheet, {
-        types: ["Player"],
-        makeDefault: true
-    });
 }

@@ -1,3 +1,4 @@
+import { Setor0BaseSheet } from "../../base/sheet/Setor0BaseSheet.mjs";
 import { SYSTEM_CLASS_CSS, SYSTEM_CLASS_DIALOG_CSS } from "../../constants.mjs";
 import { DialogUtils } from "../../utils/dialog-utils.mjs"
 import { HtmlJsUtils } from "../../utils/html-js-utils.mjs";
@@ -45,6 +46,7 @@ export const v1Overrides = Object.freeze({
 
 function makeClass(BaseClass) {
     const name = BaseClass.name;
+
     const cls = {
         [name]: class extends BaseClass {
             static get defaultOptions() {
@@ -63,13 +65,13 @@ function makeClass(BaseClass) {
                 super.activateListeners(html);
                 HtmlJsUtils.setupContent(html);
                 HtmlJsUtils.setupHeader(html);
+                this.configureSheet(html);
                 this.postRenderConfiguration(html);
             }
-
-            postRenderConfiguration(html) { }
         }
     }[name];
-    return cls;
+
+    return Setor0BaseSheet(cls);
 }
 
 async function createDialog(data, options) {

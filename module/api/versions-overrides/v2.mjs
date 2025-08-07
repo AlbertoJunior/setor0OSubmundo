@@ -2,6 +2,7 @@ import { randomId, toKeyLang } from "../../utils/utils.mjs";
 import { SYSTEM_CLASS_CSS } from "../../constants.mjs";
 import { FoundryApi } from "../foundry-api.mjs";
 import { HtmlJsUtils } from "../../utils/html-js-utils.mjs";
+import { Setor0BaseSheet } from "../../base/sheet/Setor0BaseSheet.mjs";
 
 const VERSION_NAME = 'S0-V2';
 
@@ -72,25 +73,35 @@ function makeClass(BaseClass) {
             }
 
             _renderHTML(context, options) {
-                debugger
+                const documentName = context.document.documentName.toLowerCase();
                 const updatedContext = {
                     ...context,
                     ...this.getData(),
-                    actor: context.document
+                    [documentName]: context.document
                 };
+
+                if (options.parts.length > 1) {
+                    options.parts = this._operateMultiParts(context.document, options.parts);
+                }
+
                 return super._renderHTML(updatedContext, options);
+            }
+
+            _operateMultiParts(document, parts) {
+                return parts;
+            }
+
+            _replaceHTML(result, content, options) {
+                this.#disableFormItemsOnHtml(result);
+                return super._replaceHTML(result, content, options)
             }
 
             _postRender(context, options) {
                 super._postRender(context, options);
                 const html = $(this.element);
                 HtmlJsUtils.setupContent(html);
+                this.configureSheet(html);
                 this.postRenderConfiguration(html);
-            }
-
-            _replaceHTML(result, content, options) {
-                this.#disableFormItemsOnHtml(result);
-                return super._replaceHTML(result, content, options)
             }
 
             #disableFormItemsOnHtml(result) {
@@ -107,14 +118,12 @@ function makeClass(BaseClass) {
                 }
             }
 
-            postRenderConfiguration(html) { }
-
             getData() {
                 return {};
             }
         }
     }[name];
-    return cls;
+    return Setor0BaseSheet(cls);
 }
 
 async function createDialog(data, options) {

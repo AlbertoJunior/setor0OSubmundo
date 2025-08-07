@@ -2,7 +2,7 @@ import { Setor0BaseActorSheet } from "../BaseActorSheet.mjs";
 import { selectCharacteristic } from "../../../../utils/utils.mjs";
 import { SYSTEM_ID, TEMPLATES_PATH } from "../../../../constants.mjs";
 import { BaseActorCharacteristicType } from "../../../../enums/characteristic-enums.mjs";
-import { OnEventType, OnEventTypeClickableEvents, OnEventTypeContextualEvents } from "../../../../enums/on-event-type.mjs";
+import { OnEventType } from "../../../../enums/on-event-type.mjs";
 import { DialogUtils } from "../../../../utils/dialog-utils.mjs";
 import { loadAndRegisterTemplates } from "../../../../utils/templates.mjs";
 import { menuHandleMethods } from "../../../menu-default-methods.mjs";
@@ -100,30 +100,14 @@ class Setor0NpcSheet extends Setor0BaseActorSheet {
     }
 
     configureSheet(html) {
-        this.#setupListeners(html);
-        Setor0BaseActorSheet.presetStatusVitality(html, this.actor);
-        Setor0BaseActorSheet.presetStatusProtect(html, this.actor);
+        super.configureSheet(html);
         SheetActorDragabbleMethods.setup(html, this.actor);
     }
 
-    #setupListeners(html) {
-        [OnEventType.CHARACTERISTIC, ...OnEventTypeClickableEvents]
-            .map(eventType => ({
-                selector: `[data-action="${eventType}"]`,
-                method: super.onActionClick
-            }))
-            .forEach(action => {
-                html.find(action.selector).click(action.method.bind(this, html));
-            });
-
-        [...OnEventTypeContextualEvents]
-            .map(eventType => ({
-                selector: `[data-action="${eventType}"]`,
-                method: super.onContextualClick
-            }))
-            .forEach(action => {
-                html.find(action.selector).on('contextmenu', action.method.bind(this, html));
-            });
+    postRenderConfiguration(html) {
+        super.postRenderConfiguration(html);
+        Setor0BaseActorSheet.presetStatusVitality(html, this.actor);
+        Setor0BaseActorSheet.presetStatusProtect(html, this.actor);
     }
 
     #updateCharacteristic(actor, characteristic, target) {

@@ -2,7 +2,6 @@ import { getObject, selectCharacteristic } from "../../../utils/utils.mjs";
 import { ActorEquipmentUtils } from "../../../core/actor/actor-equipment-utils.mjs";
 import { BaseActorCharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { EquipmentCharacteristicType } from "../../../enums/equipment-enums.mjs";
-import { OnEventType, OnMethod, verifyAndParseOnEventType } from "../../../enums/on-event-type.mjs";
 import { FlagsUtils } from "../../../utils/flags-utils.mjs";
 import { HtmlJsUtils } from "../../../utils/html-js-utils.mjs";
 import { FoundryApi } from "../../../api/foundry-api.mjs";
@@ -16,35 +15,13 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
         }
     };
 
-    _getHeaderControls() {
-        return super._getHeaderControls();
-    }
-
-    get mapEvents() {
-        throw new Error("Getter 'mapEvents' must be implemented in the subclass.");
-    }
-
-    configureSheet(html) {
-        console.warn("configureSheet(html) must be implemented in the subclass")
-    }
-
-    getMapEvents() {
-        return this.mapEvents;
-    }
-
     constructor(...args) {
         super(...args);
         this.currentPage = 1;
     }
 
-    postRenderConfiguration(html) {
-        super.postRenderConfiguration(html);
-        this.configureSheet(html);
-        this._setupAutoTabs(html);
-    }
-
-    async updateDocument(document, keyToUpdate, value) {
-        await ActorUpdater.verifyAndUpdateActor(document, keyToUpdate, value);
+    get thisDocument() {
+        return this.actor;
     }
 
     get isEditable() {
@@ -53,6 +30,10 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
 
     get canRollOrEdit() {
         return game.user.isGM || this.actor.isOwner;
+    }
+
+    _getHeaderControls() {
+        return super._getHeaderControls();
     }
 
     getData() {
@@ -67,40 +48,13 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
         return data;
     }
 
-    async _onDropActor(event, data) {
-        console.log('-> On Drop Actor');
+    configureSheet(html) {
+        super.configureSheet(html);
+        this._setupAutoTabs(html);
     }
 
-    async _onDropItem(event, data) {
-        console.log('-> On Drop Item');
-    }
-
-    async onActionClick(html, event) {
-        const action = verifyAndParseOnEventType(event.currentTarget.dataset.action, OnMethod.CLICK);
-        this.onEvent(action, html, event);
-    }
-
-    async onChange(html, event) {
-        this.onEvent(OnEventType.CHANGE, html, event);
-    }
-
-    async onContextualClick(html, event) {
-        const action = verifyAndParseOnEventType(event.currentTarget.dataset.action, OnMethod.CONTEXTUAL);
-        this.onEvent(action, html, event);
-    }
-
-    async onEvent(action, html, event) {
-        event.preventDefault();
-
-        const mapEvents = this.getMapEvents();
-
-        const characteristic = event.currentTarget.dataset.characteristic;
-        const method = mapEvents[characteristic]?.[action];
-        if (method) {
-            method(this.actor, event, html);
-        } else {
-            console.warn(`-> [${action}] não existe para: [${characteristic}]`);
-        }
+    async updateDocument(document, keyToUpdate, value) {
+        await ActorUpdater.verifyAndUpdateActor(document, keyToUpdate, value);
     }
 
     static presetStatusVitality(html, actor) {
@@ -127,6 +81,17 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
 
         const value = getObject(armor, EquipmentCharacteristicType.ACTUAL_RESISTANCE) || 0;
         selectCharacteristic(html.find(`#protect .S0-characteristic`)[value - 1]);
+    }
+
+    static setupTabs(html, currentPage) {
+        const group = "menu-tabs";
+        const contentSelector = `.S0-nav-content`;
+
+        HtmlJsUtils.setupTabs(html, group, contentSelector, currentPage - 1, (tab, index) => {
+            if (index !== -1) {
+                currentPage = index + 1;
+            }
+        });
     }
 
     _setupAutoTabs(html) {

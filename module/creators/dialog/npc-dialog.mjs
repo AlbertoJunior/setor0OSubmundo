@@ -70,8 +70,7 @@ export class NpcDialog {
     }
 
     static #configureButtonsMenu(html, npcActor) {
-        const simulatedActorSheet = new Setor0BaseActorSheet();
-        simulatedActorSheet._setupAutoTabs(html);
+        Setor0BaseActorSheet.setupTabs(html, 1);
 
         const buttonContainer = html.find("#floating-menu")[0];
         if (!buttonContainer) {
