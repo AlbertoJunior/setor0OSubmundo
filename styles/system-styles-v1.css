@@ -7,3 +7,11 @@
 .S0-V1.S0-content.sheet .window-header {
     border-bottom: 1px solid var(--secondary-color-alpha);
 }
+
+.S0-V1.S0-content.sheet .window-header :is(h1, h2, h3, h4, a) {
+    text-shadow: none;
+}
+
+.S0-V1.S0-content input {
+    text-align: center;
+}

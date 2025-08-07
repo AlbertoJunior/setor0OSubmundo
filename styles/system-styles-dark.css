@@ -1,5 +1,5 @@
 /* #region DARK MODE */
-.window-content.S0-page-transparent {
+.S0-page-transparent .window-content {
     color: var(--primary-color);
     background: url(/ui/denim075.png) repeat;
     margin: 0;
@@ -36,12 +36,9 @@
     border-color: var(--color-light-gray-alpha-50);
 }
 
-:is(.S0-page-transparent, .S0-dialog) :is(strong, .S0-container label, .S0-page :is(label, span, a)) {
+:is(.S0-page-transparent, .S0-dialog),
+:is(.S0-page-transparent, .S0-dialog) :is(h1, h2, h3, h4) {
     color: var(--primary-color);
-    text-shadow: 0px 0px 6px var(--primary-color-alpha);
-}
-
-:is(.S0-page-transparent .S0-page, .S0-dialog) :is(h1, h2, h3, h4) {
     text-shadow: 0px 0px 6px var(--primary-color-alpha);
 }
 
@@ -179,35 +176,35 @@
     text-shadow: 0px 0px 6px var(--secondary-color-alpha-50);
 }
 
-.S0-content .S0-page-transparent input[type="checkbox"] {
+.S0-page-transparent.S0-content input[type="checkbox"] {
     background-color: var(--alternate-black-color);
     border-color: var(--primary-color-alpha);
 }
 
-.S0-content .S0-page-transparent input[type="checkbox"]:checked {
+.S0-page-transparent.S0-content input[type="checkbox"]:checked {
     background-color: var(--primary-color-alpha);
     border-color: var(--primary-color-alpha);
 }
 
-.S0-content .S0-page-transparent input[type="checkbox"]:hover {
+.S0-page-transparent.S0-content input[type="checkbox"]:hover {
     background-color: var(--primary-color-alpha);
     border-color: var(--primary-color-alpha);
     box-shadow: 0px 0px 6px 0px var(--primary-color-alpha);
 }
 
-.S0-content .S0-page-transparent input[type="checkbox"]:checked:hover {
+.S0-page-transparent.S0-content input[type="checkbox"]:checked:hover {
     background-color: var(--color-red-alpha);
     border-color: var(--primary-color-alpha);
     box-shadow: 0px 0px 6px 0px var(--color-red-alpha);
 }
 
-.S0-content .S0-page-transparent input[type="checkbox"]:disabled {
+.S0-page-transparent.S0-content input[type="checkbox"]:disabled {
     background-color: transparent;
     border-color: var(--primary-color-alpha);
     box-shadow: none;
 }
 
-.S0-content .S0-page-transparent input[type="checkbox"]:disabled:checked {
+.S0-page-transparent.S0-content input[type="checkbox"]:disabled:checked {
     background-color: var(--primary-color-alpha);
     border-color: var(--primary-color-alpha);
     box-shadow: 0px 0px 4px 0px var(--primary-color-alpha);

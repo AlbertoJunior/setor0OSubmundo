@@ -18,8 +18,23 @@ export class NpcUtils {
             [NpcQualityRepository.TYPES.GOOD.id]: 3,
             [NpcQualityRepository.TYPES.EXCEPTIONAL.id]: 4,
         };
+
+        const allSkills = getObject(actor, NpcCharacteristicType.SKILLS);
+        const skillName = NpcCharacteristicType.SKILLS.SKILL_NAME.id;
+        const skillValue = NpcCharacteristicType.SKILLS.VALUE.id;
+        const athleticsId = CharacteristicType.SKILLS.ATHLETICS.id;
+        const foundedSkill = Object.values(allSkills)
+            .filter(skill => skill != null)
+            .filter(skill => skill[skillName] == athleticsId)
+            .reduce((max, current) => {
+                const currentValue = getObject(current, skillValue) ?? 0;
+                const maxValue = getObject(max, skillValue) ?? -Infinity;
+                return currentValue > maxValue ? current : max;
+            }, null);
+
+        const athleticsLevel = Math.floor(getObject(foundedSkill, skillValue) / 2) ?? 0;
         const qualityModifier = mapped[quality] || 0;
-        return 1 + qualityModifier;
+        return 1 + qualityModifier + athleticsLevel;
     }
 
     static calculatePenalty(actor) {

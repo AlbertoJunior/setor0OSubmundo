@@ -21,16 +21,18 @@
             </a>
         </div>
 
-        <div class="S0-container">
-            <label for="assignment" style="display: block; margin: 4px">{{ localize 'S0.Atuacao' }}</label>
-            <input id="assignment" name="system.background.assignment" type="text" rows="5"
-                placeholder="{{ localize 'S0.Atuacao' }}" value="{{actorValues actor 'assignment'}}">
-        </div>
+        <div class="S0-container" style="display: flex; flex-direction: column; row-gap: 4px;">
+            <div>
+                <label for="assignment" style="display: block; margin: 4px">{{ localize 'S0.Atuacao' }}</label>
+                <input id="assignment" name="system.background.assignment" type="text" rows="5"
+                    placeholder="{{ localize 'S0.Atuacao' }}" value="{{actorValues actor 'assignment'}}">
+            </div>
 
-        <div class="S0-container">
-            <label for="biography" style="display: block; margin: 4px">{{ localize 'S0.Biografia' }}</label>
-            <textarea id="biography" style="resize: block;" name="system.background.biography" rows="5"
-                placeholder="{{ localize 'S0.Biografia' }}">{{actorValues actor 'biography'}}</textarea>
+            <div>
+                <label for="biography" style="display: block; margin: 4px">{{ localize 'S0.Biografia' }}</label>
+                <textarea id="biography" style="resize: block;" name="system.background.biography" rows="5"
+                    placeholder="{{ localize 'S0.Biografia' }}">{{actorValues actor 'biography'}}</textarea>
+            </div>
         </div>
     </div>
 
@@ -40,7 +42,7 @@
                 {{actorValues actor 'actual_languages'}}/{{actorValues actor 'total_languages'}}
             </label>
         </h2>
-        <div id="linguasContainer" class="S0-container-4-column">
+        <div id="linguasContainer" class="S0-container-4-fixed-column">
             {{#each (fetchRepository 'language')}}
             <div class="S0-characteristic-container S0-language-container" id="{{id}}">
                 <label title="{{district}}">
@@ -56,7 +58,7 @@
 
     <div class="S0-container">
         <h2> {{localize 'S0.Tracos'}} </h2>
-        <section id="tracosContainer" class="S0-container-2-column">
+        <section id="tracosContainer" class="S0-container-2-fixed-column">
             {{> traitPartialContainer traits=(actorLists actor 'good_traits') type="good" title='S0.Tracos-Bons' }}
 
             {{> traitPartialContainer traits=(actorLists actor 'bad_traits') type="bad" title='S0.Tracos-Ruins' }}

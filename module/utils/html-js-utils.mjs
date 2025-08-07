@@ -5,16 +5,11 @@ import { FlagsUtils } from "./flags-utils.mjs";
 import { FoundryApi } from "../api/foundry-api.mjs";
 
 export class HtmlJsUtils {
-    static setupContent(html, styles) {
-        const inDarkMode = FlagsUtils.getItemFlag(game.user, SystemFlags.MODE.DARK, false);
-
-        const parent = html.parent()[0];
-        parent.classList.toggle('S0-page-transparent', inDarkMode);
-
-        if (styles) {
-            Object.keys(styles).forEach((key) => {
-                parent.style[key] = styles[key];
-            });
+    static setupContent(html) {
+        const content = html.closest('.S0-content')[0];
+        if (content) {
+            const inDarkMode = FlagsUtils.getItemFlag(game.user, SystemFlags.MODE.DARK, false);
+            content.classList.toggle('S0-page-transparent', inDarkMode);
         }
     }
 

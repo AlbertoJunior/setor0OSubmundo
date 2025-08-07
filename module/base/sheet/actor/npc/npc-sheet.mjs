@@ -42,9 +42,6 @@ class Setor0NpcSheet extends Setor0BaseActorSheet {
         position: {
             width: NpcSheetSize.width,
         },
-        window: {
-            resizable: false,
-        }
     };
 
     static PARTS = {
@@ -93,7 +90,7 @@ class Setor0NpcSheet extends Setor0BaseActorSheet {
     static get defaultOptions() {
         return FoundryApi.mergeObject(super.defaultOptions, {
             template: this.PARTS.sheet.template,
-            resizable: this.DEFAULT_OPTIONS.window.resizable,
+            resizable: super.DEFAULT_OPTIONS.window.resizable,
             width: this.DEFAULT_OPTIONS.position.width,
             height: NpcSheetSize.height,
         });

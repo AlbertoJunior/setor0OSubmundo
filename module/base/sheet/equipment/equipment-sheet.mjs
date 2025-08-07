@@ -8,6 +8,7 @@ import { handlerEquipmentCharacteristicsEvents } from "./methods/equipment-chara
 import { handlerEquipmentItemRollEvents } from "./methods/equipment-item-roll-methods.mjs";
 import { handlerEquipmentMenuRollEvents } from "./methods/equipment-menu-roll-methods.mjs";
 import { handlerSuperEquipmentEvents } from "./methods/superequipment-methods.mjs";
+import { EquipmentUpdater } from "../../updater/equipment-updater.mjs";
 
 export async function equipmentTemplatesRegister() {
     const templates = [
@@ -42,7 +43,7 @@ class EquipmentSheet extends FoundryApi.ItemSheet {
     static DEFAULT_OPTIONS = {
         classes: ['S0-sheet-item'],
         position: {
-            width: 320,
+            width: 340,
         },
         window: {
             resizable: true,
@@ -98,6 +99,13 @@ class EquipmentSheet extends FoundryApi.ItemSheet {
     }
     //#endregion
 
+    //#region APPLICATION V2
+    /* Only run on Application V2 */
+    _operateMultiParts(document, parts) {
+        return parts.filter(part => part == document.type.toLocaleLowerCase());
+    }
+    //#endregion
+
     get mapEvents() {
         return {
             menu: menuHandleMethods,
@@ -116,17 +124,18 @@ class EquipmentSheet extends FoundryApi.ItemSheet {
         return FlagsUtils.getItemFlag(this.item, 'editable', false);
     }
 
-    //#region APPLICATION V2
-    /* Only run on Application V2 */
-    _operateMultiParts(document, parts) {
-        return parts.filter(part => part == document.type.toLocaleLowerCase());
+    get isDisabled() {
+        return !this.isEditable;
     }
-    //#endregion
 
     getData() {
         const data = super.getData();
         data.canEdit = game.user.isGM || this.item.getFlag(SYSTEM_ID, 'canEdit');
         return data;
+    }
+
+    async updateDocument(document, keyToUpdate, value) {
+        await EquipmentUpdater.updateEquipment(document, keyToUpdate, value);
     }
 
     postRenderConfiguration(html) {

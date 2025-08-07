@@ -4,20 +4,21 @@ export function Setor0BaseSheet(BaseClass) {
     class Setor0BaseSheet extends BaseClass {
         //#region MUST BE OVERRIDED
         get mapEvents() {
-            debugger
-            throw new Error("Getter 'mapEvents' must be implemented in the subclass.");
+            throw new Error(`[${this.constructor.name}] Getter 'mapEvents' must be implemented in the subclass.`);
         }
 
         get thisDocument() {
-            debugger
-            throw new Error("Getter 'getThisDocument' must be implemented in the subclass.");
+            throw new Error(`[${this.constructor.name}] Getter 'getThisDocument' must be implemented in the subclass.`);
         }
         //#endregion 
 
         //#region CAN BE OVERRIDED
+        get isDisabled() {
+            return this.isEditable;
+        }
+
         async updateDocument(document, keyToUpdate, value) {
-            debugger
-            console.warn(`you need to implement this method (async updateDocument). There was an attempt to update field [${keyToUpdate}] with value [${value}]`);
+            console.warn(`[${this.constructor.name}] You need to implement this method (async updateDocument). There was an attempt to update field [${keyToUpdate}] with value [${value}]`);
         }
         //#endregion
 

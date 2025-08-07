@@ -1,11 +1,11 @@
 <form autocomplete="off">
     {{> itemCommon this}}
 
-    <div class="S0-container form-group">
-        <label for="{{item.id}}.substance_type" style="flex: 1;">
+    <div class="S0-container S0-container-2-fixed-column" style="align-items: center;">
+        <label for="{{item.id}}.substance_type">
             {{localize 'S0.Tipo'}}:
         </label>
-        <select id="{{item.id}}.substance_type" class="S0-select" style="flex: 1;" name="system.substance_type">
+        <select id="{{item.id}}.substance_type" class="S0-select" name="system.substance_type">
             {{#each (fetchRepository 'equipment-substance-type')}}
             <option value="{{id}}" {{selectIfEq (itemValues ../item 'substance_type' ) id }}>{{label}}</option>
             {{/each}}
@@ -15,21 +15,17 @@
     {{#lett withDamage=(itemValues item 'substance_with_damage') withRange=(itemValues item 'substance_with_range')
     item=item}}
     {{#if (operators 'or' withDamage withRange)}}
-    <div class="S0-container">
+    <div class="S0-container S0-container-2-fixed-column" style="align-items: center;">
         {{#if withDamage}}
-        <div class="form-group">
-            <label for="{{item.id}}.damage" style="flex: 1;">{{localize 'S0.Dano'}}:</label>
-            <input id="{{item.id}}.damage" style="flex: 1; text-align: center;" type="number" name="system.damage"
-                min="0" max="99" value="{{itemValues item 'damage'}}" />
-        </div>
+        <label for="{{item.id}}.damage">{{localize 'S0.Dano'}}:</label>
+        <input id="{{item.id}}.damage" type="number" name="system.damage" min="0" max="99"
+            value="{{itemValues item 'damage'}}" />
         {{/if}}
 
         {{#if withRange}}
-        <div class="form-group">
-            <label for="{{item.id}}.range" style="flex: 1;">{{localize 'S0.Alcance'}}:</label>
-            <input id="{{item.id}}.range" style="flex: 1; text-align: center;" type="number" name="system.range" min="0"
-                max="99" value="{{itemValues item 'range'}}" />
-        </div>
+        <label for="{{item.id}}.range">{{localize 'S0.Alcance'}}:</label>
+        <input id="{{item.id}}.range" type="number" name="system.range" min="0" max="99"
+            value="{{itemValues item 'range'}}" />
         {{/if}}
     </div>
     {{/if}}

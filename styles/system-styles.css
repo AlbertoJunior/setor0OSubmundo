@@ -315,7 +315,7 @@ body {
     display: grid;
     grid-column-gap: 10px;
     grid-row-gap: 4px;
-    grid-template-columns: repeat(auto-fit, minmax(48%, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(calc(50% - 5px), 1fr));
 }
 
 .S0-container-2-fixed-column {
@@ -329,7 +329,7 @@ body {
     display: grid;
     grid-column-gap: 10px;
     grid-row-gap: 4px;
-    grid-template-columns: repeat(auto-fit, minmax(31%, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(calc(33% - 5px), 1fr));
 }
 
 .S0-container-3-fixed-column {
@@ -343,7 +343,14 @@ body {
     display: grid;
     grid-column-gap: 10px;
     grid-row-gap: 4px;
-    grid-template-columns: repeat(auto-fit, minmax(23%, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(calc(25% - 10px), 1fr));
+}
+
+.S0-container-4-fixed-column {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-row-gap: 4px;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .S0-container-5-column {
@@ -441,6 +448,7 @@ body {
     color: var(--on-secondary-color);
     border-radius: var(--border-radius-small);
     border: 1px ridge transparent;
+    text-shadow: none;
     transition: width 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, height 0.2s ease;
 }
 

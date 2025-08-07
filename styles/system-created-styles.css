@@ -71,8 +71,8 @@
     border-color: var(--color-black);
 }
 
-.S0-content .form-group input[type="checkbox"]::before,
-.S0-content .form-group input[type="checkbox"]::after {
+.S0-content input[type="checkbox"]::before,
+.S0-content input[type="checkbox"]::after {
     content: none !important;
     display: none !important;
     outline: none !important;

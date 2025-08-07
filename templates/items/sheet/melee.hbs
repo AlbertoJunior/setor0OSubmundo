@@ -1,22 +1,18 @@
 <form autocomplete="off">
     {{> itemCommon this}}
 
-    <div class="S0-page S0-container">
+    <div class="S0-page S0-container S0-container-2-fixed-column" style="align-items: center;">
         {{> itemCommonWeapon this}}
 
-        <div class="form-group">
-            <label for="{{item.id}}.size" style="flex: 1;">
-                {{localize 'S0.Itens.Tamanho'}}:
-            </label>
-            <select id="{{item.id}}.size" class="S0-select" style="flex: 1;" name="system.size">
-                {{#with (itemValues item 'size') as |size|}}
-                {{#each (fetchRepository 'equipment-melee-size')}}
-                <option value="{{id}}" {{selectIfEq size id }}>{{label}}</option>
-                {{/each}}
-                {{/with}}
-                </option>
-            </select>
-        </div>
+        <label for="{{item.id}}.size">{{localize 'S0.Itens.Tamanho'}}:</label>
+        <select id="{{item.id}}.size" class="S0-select" name="system.size">
+            {{#with (itemValues item 'size') as |size|}}
+            {{#each (fetchRepository 'equipment-melee-size')}}
+            <option value="{{id}}" {{selectIfEq size id }}>{{label}}</option>
+            {{/each}}
+            {{/with}}
+            </option>
+        </select>
     </div>
 
     {{#if (itemValues item 'superequipment')}}

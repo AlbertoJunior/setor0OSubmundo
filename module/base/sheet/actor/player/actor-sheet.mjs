@@ -42,9 +42,6 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
     static DEFAULT_OPTIONS = {
         position: {
             width: 600,
-        },
-        window: {
-            resizable: false,
         }
     };
 
@@ -81,7 +78,7 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
     static get defaultOptions() {
         return FoundryApi.mergeObject(super.defaultOptions, {
             template: this.PARTS.sheet.template,
-            resizable: this.DEFAULT_OPTIONS.window.resizable,
+            resizable: super.DEFAULT_OPTIONS.window.resizable,
             width: this.DEFAULT_OPTIONS.position.width,
             height: 880,
         });

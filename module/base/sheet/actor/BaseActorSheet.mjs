@@ -11,6 +11,7 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
     static DEFAULT_OPTIONS = {
         classes: ['actor'],
         window: {
+            resizable: false,
             controls: []
         }
     };
@@ -30,6 +31,10 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
 
     get canRollOrEdit() {
         return game.user.isGM || this.actor.isOwner;
+    }
+
+    get isDisabled() {
+        return !(this.isEditable && this.canRollOrEdit);
     }
 
     _getHeaderControls() {

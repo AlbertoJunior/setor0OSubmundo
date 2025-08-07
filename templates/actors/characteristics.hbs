@@ -3,7 +3,7 @@
     <ul>
         <li class="S0-container">
             <h2> {{localize 'S0.Virtudes'}} </h2>
-            <div id="virtudesContainer" class="S0-container-3-column">
+            <div id="virtudesContainer" class="S0-container-3-fixed-column">
                 {{#lett clickableClass=(operators 'ternary' editable 'S0-clickable' '')}}
                 {{#each (fetchRepository 'virtue')}}
                 <div class="S0-characteristic-container" id="{{id}}">
@@ -26,7 +26,7 @@
             <h2>
                 {{localize 'S0.Fama'}}
             </h2>
-            <div id="fameContainer" class="S0-container-3-column">
+            <div id="fameContainer" class="S0-container-3-fixed-column">
                 {{#lett clickableClass=(operators 'ternary' editable 'S0-clickable' '')}}
                 {{#each (fetchRepository 'fame')}}
                 <div class="S0-characteristic-container" id="{{id}}">

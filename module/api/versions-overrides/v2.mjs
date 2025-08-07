@@ -19,7 +19,7 @@ function makeClass(BaseClass) {
     const { HandlebarsApplicationMixin } = this.Api;
     const name = BaseClass.name;
 
-    const cls = {
+    const Cls = {
         [name]: class extends HandlebarsApplicationMixin(BaseClass) {
             static DEFAULT_OPTIONS = {
                 // viewPermission: CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED,
@@ -28,14 +28,7 @@ function makeClass(BaseClass) {
                 classes: [SYSTEM_CLASS_CSS, VERSION_NAME],
                 window: {
                     resizable: false,
-                    controls: [
-                        // {
-                        //     action: "example",
-                        //     icon: "fas fa-circle-user",
-                        //     label: "S0.example-control-label",
-                        //     ownership: "OWNER"
-                        // }
-                    ]
+                    controls: []
                 },
                 form: {
                     closeOnSubmit: false,
@@ -51,7 +44,19 @@ function makeClass(BaseClass) {
                 if (!this.isEditable) {
                     return;
                 }
-                await this.updateDocument(this.document, event.target.name, event.target.value);
+
+                const value = Cls.#operateValue(event.target);
+                await this.updateDocument(this.document, event.target.name, value);
+            }
+
+            static #operateValue(target) {
+                const targetType = target.type;
+                const canBeBoolean = targetType == 'checkbox' || targetType == 'radiobutton';
+                if (canBeBoolean) {
+                    return new Boolean(target.value.trim()).valueOf();
+                }
+
+                return target.value;
             }
 
             static async #selectImg() {
@@ -105,7 +110,7 @@ function makeClass(BaseClass) {
             }
 
             #disableFormItemsOnHtml(result) {
-                const isDisabled = !(this.isEditable && this.canRollOrEdit);
+                const isDisabled = this.isDisabled;
                 if (isDisabled) {
                     Object.values(result)
                         .flatMap(part =>
@@ -123,7 +128,7 @@ function makeClass(BaseClass) {
             }
         }
     }[name];
-    return Setor0BaseSheet(cls);
+    return Setor0BaseSheet(Cls);
 }
 
 async function createDialog(data, options) {
