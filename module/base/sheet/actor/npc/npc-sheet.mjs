@@ -1,7 +1,7 @@
 import { Setor0BaseActorSheet } from "../BaseActorSheet.mjs";
 import { selectCharacteristic } from "../../../../utils/utils.mjs";
 import { SYSTEM_ID, TEMPLATES_PATH } from "../../../../constants.mjs";
-import { BaseActorCharacteristicType } from "../../../../enums/characteristic-enums.mjs";
+import { BaseActorCharacteristicType, CharacteristicType } from "../../../../enums/characteristic-enums.mjs";
 import { OnEventType } from "../../../../enums/on-event-type.mjs";
 import { DialogUtils } from "../../../../utils/dialog-utils.mjs";
 import { loadAndRegisterTemplates } from "../../../../utils/templates.mjs";
@@ -60,20 +60,21 @@ class Setor0NpcSheet extends Setor0BaseActorSheet {
                 }
             },
             temporary: handleStatusMethods,
-            characteristic: {
+            group: {
                 [OnEventType.CHARACTERISTIC]: async (actor, event) => {
-                    const dataset = event.currentTarget.dataset;
-                    switch (dataset.type) {
-                        case 'vigor':
-                            selectCharacteristic(event.currentTarget);
-                            const level = event.currentTarget.parentElement.querySelectorAll('.S0-selected').length;
+                    const target = event.currentTarget;
+                    const dataset = target.dataset;
+                    switch (dataset.characteristic) {
+                        case CharacteristicType.ATTRIBUTES.STAMINA.id:
+                            selectCharacteristic(target);
+                            const level = target.parentElement.querySelectorAll('.S0-selected').length;
                             ActorUpdater.verifyAndUpdateActor(actor, BaseActorCharacteristicType.VITALITY.TOTAL, level + 5);
                             break;
-                        case 'influencia':
-                            this.#updateCharacteristic(actor, BaseActorCharacteristicType.INFLUENCE, event.currentTarget);
+                        case BaseActorCharacteristicType.INFLUENCE.id:
+                            this.#updateCharacteristic(actor, BaseActorCharacteristicType.INFLUENCE, target);
                             break;
-                        case 'nivel_de_procurado':
-                            this.#updateCharacteristic(actor, BaseActorCharacteristicType.BOUNTY, event.currentTarget);
+                        case BaseActorCharacteristicType.BOUNTY.id:
+                            this.#updateCharacteristic(actor, BaseActorCharacteristicType.BOUNTY, target);
                             break;
                     }
                 }

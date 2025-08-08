@@ -13,7 +13,7 @@
 
                     {{#forLoop 0 5}}
                     <div class="S0-characteristic {{../../clickableClass}}" data-action="characteristic"
-                        data-characteristic="virtudes">
+                        data-action-group="true" data-characteristic="virtudes">
                     </div>
                     {{/forLoop}}
                 </div>
@@ -34,14 +34,14 @@
                         {{localize label}}
                     </label>
 
-                    {{#forLoop 0 4}}
-                    <div class="S0-characteristic {{../../clickableClass}}" data-action="characteristic"
-                        data-characteristic="">
+                    {{#forLoop 1 maxLevel}}
+                    <div class="S0-characteristic  {{../../clickableClass}}" data-action="characteristic"
+                        data-action-group="true" data-characteristic="fama">
                     </div>
                     {{/forLoop}}
 
                     <div class="S0-characteristic S0-characteristic-6 {{../clickableClass}}"
-                        data-action="characteristic" data-characteristic="">
+                        data-action="characteristic" data-action-group="true" data-characteristic="fama">
                     </div>
                 </div>
                 {{/each}}
@@ -63,12 +63,12 @@
 
                     {{#forLoop 0 5}}
                     <div class="S0-characteristic {{../../clickableClass}}" data-action="characteristic"
-                        data-characteristic="atributos">
+                        data-action-group="true" data-characteristic="atributos">
                     </div>
                     {{/forLoop}}
 
                     <div class="S0-characteristic S0-characteristic-6 {{../clickableClass}}"
-                        data-action="characteristic" data-characteristic="atributos">
+                        data-action="characteristic" data-action-group="true" data-characteristic="atributos">
                     </div>
                 </div>
                 {{/each}}
@@ -90,12 +90,12 @@
 
                     {{#forLoop 0 5}}
                     <div class="S0-characteristic {{../../clickableClass}}" data-action="characteristic"
-                        data-characteristic="habilidades">
+                        data-action-group="true" data-characteristic="habilidades">
                     </div>
                     {{/forLoop}}
 
                     <div class="S0-characteristic S0-characteristic-6 {{../clickableClass}}"
-                        data-action="characteristic" data-characteristic="habilidades">
+                        data-action="characteristic" data-action-group="true" data-characteristic="habilidades">
                     </div>
                 </div>
                 {{/each}}
@@ -117,7 +117,7 @@
 
                     {{#forLoop 0 5}}
                     <div class="S0-characteristic {{../../clickableClass}}" data-action="characteristic"
-                        data-characteristic="repertorio">
+                        data-action-group="true" data-characteristic="repertorio">
                     </div>
                     {{/forLoop}}
                 </div>

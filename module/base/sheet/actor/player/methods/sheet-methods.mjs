@@ -11,6 +11,7 @@ import { handlerShortcutEvents } from "./shortcut-methods.mjs";
 import { menuHandleMethods } from "../../../../menu-default-methods.mjs";
 import { alliesHandleEvents, informantsHandleEvents } from "./network-methods.mjs"
 import { effectsHandleEvents } from "./effects-methods.mjs";
+import { characteristicOnClick } from "./characteristics-methods.mjs";
 
 export class SheetMethods {
     static handleMethods = {
@@ -41,6 +42,11 @@ export class SheetMethods {
                 }
 
                 await ActorUpdater.verifyAndUpdateActor(actor, CharacteristicType.LANGUAGE, new Set(updatedLanguages))
+            }
+        },
+        characteristic: {
+            [OnEventType.CHARACTERISTIC]: async (actor, event) => {
+                await characteristicOnClick(event, actor);
             }
         },
         trait: traitMethods,

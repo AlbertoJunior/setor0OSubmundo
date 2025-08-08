@@ -21,6 +21,9 @@ const map = {
     'actual_languages': (actor) => ActorUtils.getActualLanguages(actor).length,
     'total_languages': (actor) => ActorUtils.calculateTotalLanguages(actor),
 
+    'actual_enhancements': (actor) => ActorUtils.getActualEnhancementAmount(actor),
+    'total_enhancements': (actor) => ActorUtils.calculateTotalEnhancements(actor),
+
     'experience': (actor) => getObject(actor, CharacteristicType.EXPERIENCE),
     'actual_experience': (actor) => getObject(actor, CharacteristicType.EXPERIENCE.CURRENT) || 0,
     'used_experience': (actor) => getObject(actor, CharacteristicType.EXPERIENCE.USED) || 0,

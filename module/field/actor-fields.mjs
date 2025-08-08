@@ -50,8 +50,8 @@ class ActorAttributeField extends NumberField {
 }
 
 export class ActorCharacteristicField extends NumberField {
-    constructor(label) {
-        super({ nullable: false, integer: true, min: 0, initial: 0, max: 5, label: label });
+    constructor(label, initial = 0, max = 5) {
+        super({ nullable: false, integer: true, min: 0, initial: initial, max: max, label: label });
     }
 }
 

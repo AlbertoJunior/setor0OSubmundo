@@ -29,7 +29,11 @@
     {{/if}}
 
     <div class="S0-container">
-        <h2> {{localize 'S0.Aprimoramento.Nome_Plural'}}
+        <h2>
+            {{localize 'S0.Aprimoramento.Nome_Plural'}}
+            <label style="font-size: var(--font-size-11);">
+                {{actorValues actor 'actual_enhancements'}}/{{actorValues actor 'total_enhancements'}}
+            </label>
             <a class="S0-icon-rotate" style="font-size: small;" data-action="remove" data-characteristic="enhancement"
                 title="{{localize 'S0.Atualizar_Efeitos'}}">
                 <i class="fas fa-refresh"></i>

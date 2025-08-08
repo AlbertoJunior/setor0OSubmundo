@@ -12,16 +12,6 @@ export function Setor0BaseSheet(BaseClass) {
         }
         //#endregion 
 
-        //#region CAN BE OVERRIDED
-        get isDisabled() {
-            return this.isEditable;
-        }
-
-        async updateDocument(document, keyToUpdate, value) {
-            console.warn(`[${this.constructor.name}] You need to implement this method (async updateDocument). There was an attempt to update field [${keyToUpdate}] with value [${value}]`);
-        }
-        //#endregion
-
         //#region GETTERS
         getMapEvents() {
             return this.mapEvents;
@@ -29,6 +19,16 @@ export function Setor0BaseSheet(BaseClass) {
 
         getThisDocument() {
             return this.thisDocument;
+        }
+        //#endregion
+
+        //#region CAN BE OVERRIDED
+        get isDisabled() {
+            return this.isEditable;
+        }
+
+        async updateDocument(document, keyToUpdate, value) {
+            console.warn(`[${this.constructor.name}] You need to implement this method (async updateDocument). There was an attempt to update field [${keyToUpdate}] with value [${value}]`);
         }
         //#endregion
 
@@ -97,10 +97,23 @@ export function Setor0BaseSheet(BaseClass) {
         async onEvent(action, html, event) {
             event.preventDefault();
             const mapEvents = this.getMapEvents();
-            const characteristic = event.currentTarget.dataset.characteristic;
+            const dataset = event.currentTarget.dataset;
+            
+            const handleActionInGroup = Boolean(dataset.actionGroup?.trim());
+            if (handleActionInGroup) {
+                const methodGroup = mapEvents['group']?.[action];
+                if (methodGroup) {
+                    await methodGroup(this.getThisDocument(), event, html);
+                } else {
+                    console.warn(`-> [${action}] não existe no grupo`);
+                }
+                return;
+            }
+
+            const characteristic = dataset.characteristic;
             const method = mapEvents[characteristic]?.[action];
             if (method) {
-                method(this.getThisDocument(), event, html);
+                await method(this.getThisDocument(), event, html);
             } else {
                 console.warn(`-> [${action}] não existe para: [${characteristic}]`);
             }

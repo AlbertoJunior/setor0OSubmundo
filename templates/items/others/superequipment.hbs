@@ -18,18 +18,17 @@
         {{/forLoop}}
     </div>
 
-    {{#if (itemValues item 'superequipment_needs_activate')}}
     <div class="S0-characteristic-container" style="padding-inline: 15px;">
         <label>
             {{localize 'S0.Ativo'}}
         </label>
 
         <a class="S0-characteristic S0-clickable {{#if (itemValues item 'superequipment_active')}}S0-selected{{/if}}"
-            title="Ativar" data-action="check" data-characteristic="superequipment" data-type="active"
+            data-tooltip="{{#if (itemValues item 'superequipment_active')}}{{localize 'S0.Desativar'}}{{else}}{{localize 'S0.Ativar'}}{{/if}}"
+            data-tooltip-direction="UP" data-action="check" data-characteristic="superequipment" data-type="active"
             data-item-id="{{item.id}}">
         </a>
     </div>
-    {{/if}}
 
     <hr style="margin: 2px;">
 

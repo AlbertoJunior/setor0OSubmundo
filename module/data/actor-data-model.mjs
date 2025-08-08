@@ -11,6 +11,7 @@ import { BaseActorCharacteristicType } from "../enums/characteristic-enums.mjs";
 import { NpcUtils } from "../core/npc/npc-utils.mjs";
 import { MorphologyRepository } from "../repository/morphology-repository.mjs";
 import { DistrictRepository } from "../repository/district-repository.mjs";
+import { FameRepository } from "../repository/fame-repository.mjs";
 
 const { NumberField, SchemaField, StringField, ArrayField } = foundry.data.fields;
 
@@ -28,8 +29,8 @@ class BaseActorDataModel extends foundry.abstract.TypeDataModel {
                 dano_superficial: new NumberField({ integer: true, initial: 0 }),
                 dano_letal: new NumberField({ integer: true, initial: 0 }),
             }),
-            nivel_de_procurado: new ActorCharacteristicField("S0.NivelProcurado"),
-            influencia: new ActorCharacteristicField("S0.Influencia"),
+            nivel_de_procurado: new ActorCharacteristicField("S0.NivelProcurado", FameRepository.TYPES.BOUNTY.initialLevel, FameRepository.TYPES.BOUNTY.maxLevel),
+            influencia: new ActorCharacteristicField("S0.Influencia", FameRepository.TYPES.INFLUENCE.initialLevel, FameRepository.TYPES.INFLUENCE.maxLevel),
         }
     }
 
@@ -88,7 +89,7 @@ class PlayerDataModel extends BaseActorDataModel {
                 superequipamentos: new ActorCharacteristicField("S0.SuperEquipamentos")
             }),
             virtudes: new ActorVirtues(),
-            nucleo: new NumberField({ integer: true, min: 0, initial: 1, max: 5, label: "S0.Nucleo" }),
+            nucleo: new ActorCharacteristicField("S0.Nucleo", FameRepository.TYPES.CORE.initialLevel, FameRepository.TYPES.CORE.maxLevel),
             habilidades: new ActorAbilities(),
             linguas: new ArrayField(new StringField()),
             aprimoramentos: new SchemaField({
@@ -101,7 +102,7 @@ class PlayerDataModel extends BaseActorDataModel {
                 bons: new ArrayField(new TraitField()),
                 ruins: new ArrayField(new TraitField())
             }),
-            sobrecarga: new NumberField({ integer: true, initial: 0 }),
+            sobrecarga: new ActorCharacteristicField("S0.Sobrecarga"),
             vida: new NumberField({ integer: true, initial: 8, min: 0, max: 10 }),
             aliados: new ArrayField(new StringField()),
             informantes: new ArrayField(new StringField()),

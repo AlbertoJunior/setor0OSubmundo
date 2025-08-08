@@ -53,7 +53,7 @@ function makeClass(BaseClass) {
                 const targetType = target.type;
                 const canBeBoolean = targetType == 'checkbox' || targetType == 'radiobutton';
                 if (canBeBoolean) {
-                    return new Boolean(target.value.trim()).valueOf();
+                    return target.checked;
                 }
 
                 return target.value;

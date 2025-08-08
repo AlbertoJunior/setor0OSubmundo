@@ -5,6 +5,10 @@
     margin: 0;
 }
 
+.S0-page-transparent :is(.S0-container, .S0-page) :is(label, strong) {
+    text-shadow: 0px 1px 4px var(--primary-color-alpha);
+}
+
 .S0-dialog :is(:is(input, select):disabled, textarea:read-only) {
     color: var(--on-secondary-alternate-color);
 }
@@ -82,6 +86,10 @@
     color: var(--secondary-color);
 }
 
+.S0-page-transparent :is(.S0-item-name, .S0-item-legend) {
+    color: var(--on-secondary-alternate-color);
+}
+
 .S0-page-transparent .S0-item-type {
     color: var(--on-tertiary-alternate-color);
     background-color: var(--tertiary-color-alpha);
@@ -99,7 +107,6 @@
     border-color: var(--primary-color-alpha);
     box-shadow: 0px 0px 6px 0px var(--primary-color-alpha);
 }
-
 
 .S0-page-transparent .S0-actor-images-container :is(.S0-actor-images-name, .S0-actor-images-morph, .S0-actor-button) {
     color: var(--on-primary-color);

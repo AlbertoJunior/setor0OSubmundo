@@ -10,9 +10,11 @@ const Versions = {
     v2: Object.freeze(ApplicationV2),
 };
 
+const CurrentVersion = Object.freeze(Versions.current);
+
 function convertToClass(BaseClass, application) {
     if (!application) {
-        application = Versions.current;
+        application = CurrentVersion;
     }
 
     const cls = {
@@ -26,28 +28,28 @@ function convertToClass(BaseClass, application) {
 export class FoundryApi {
     static Versions = Versions;
 
-    static Utils = Versions.current.Utils;
-    static Handlebars = Versions.current.Handlebars;
-    static Collections = Versions.current.Collections;
-    static Documents = Versions.current.Documents;
-    static Apps = Versions.current.Apps;
-    static SidebarTabs = Versions.current.SidebarTabs;
-    static Placeables = Versions.current.Placeables;
-    static Sheets = Versions.current.Sheets;
+    static Utils = CurrentVersion.Utils;
+    static Handlebars = CurrentVersion.Handlebars;
+    static Collections = CurrentVersion.Collections;
+    static Documents = CurrentVersion.Documents;
+    static Apps = CurrentVersion.Apps;
+    static SidebarTabs = CurrentVersion.SidebarTabs;
+    static Placeables = CurrentVersion.Placeables;
+    static Sheets = CurrentVersion.Sheets;
 
     static ChatMessage = Object.freeze({
-        getWhisperRecipients: (recipient) => Versions.current.ChatMessage.getWhisperRecipients(recipient),
-        getSpeaker: (actor) => Versions.current.ChatMessage.getSpeaker({ actor: actor }),
-        create: async (messageData, optionsMode) => await Versions.current.ChatMessage.create(messageData, optionsMode)
+        getWhisperRecipients: (recipient) => CurrentVersion.ChatMessage.getWhisperRecipients(recipient),
+        getSpeaker: (actor) => CurrentVersion.ChatMessage.getSpeaker({ actor: actor }),
+        create: async (messageData, optionsMode) => await CurrentVersion.ChatMessage.create(messageData, optionsMode)
     });
 
-    static SceneControls = convertToClass(Versions.current.Ui.SceneControls);
-    static ImagePopout = convertToClass(Versions.current.Apps.ImagePopout);
-    static Tabs = convertToClass(Versions.current.Ux.Tabs);
+    static SceneControls = convertToClass(CurrentVersion.Ui.SceneControls);
+    static ImagePopout = convertToClass(CurrentVersion.Apps.ImagePopout);
+    static Tabs = convertToClass(CurrentVersion.Ux.Tabs);
 
     //#region UPDATED 
-    // static ActorSheet = Versions.current.makeClass(this.Sheets.ActorSheet);
-    // static ItemSheet = Versions.current.makeClass(this.Sheets.ItemSheet);
+    // static ActorSheet = CurrentVersion.makeClass(this.Sheets.ActorSheet);
+    // static ItemSheet = CurrentVersion.makeClass(this.Sheets.ItemSheet);
     //#endregion
 
     //#region NEED UPDATE to V2
@@ -108,7 +110,7 @@ export class FoundryApi {
         options,
         forcedApplication,
     ) {
-        let application = forcedApplication ?? Versions.current;
+        let application = forcedApplication ?? CurrentVersion;
         const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
         if (isSafari) {
             application = ApplicationV1;

@@ -31,14 +31,14 @@
             </label>
 
             {{#lett id=id editable=../editable level=(actorValues ../actor 'characteristic_level' id)}}
-            {{#forLoop 0 4}}
+            {{#forLoop 1 maxLevel}}
             <div class="S0-characteristic {{#if ../editable}}S0-clickable{{/if}} {{selectIfHave ../level index}}"
-                data-action="characteristic" data-characteristic="characteristic" data-type="{{../id}}">
+                data-action="characteristic" data-action-group="true" data-characteristic="{{../id}}">
             </div>
             {{/forLoop}}
 
-            <div class="S0-characteristic S0-characteristic-6 {{#if editable}}S0-clickable{{/if}} {{selectIfHave level 4}}"
-                data-action="characteristic" data-characteristic="characteristic" data-type="{{id}}">
+            <div class="S0-characteristic S0-characteristic-6 {{#if editable}}S0-clickable{{/if}} {{selectIfHave level maxLevel}}"
+                data-action="characteristic" data-action-group="true" data-characteristic="{{id}}">
             </div>
             {{/lett}}
         </div>

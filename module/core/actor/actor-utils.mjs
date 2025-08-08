@@ -246,4 +246,16 @@ export class ActorUtils {
 
         return effects;
     }
+
+    static getActualEnhancementAmount(actor) {
+        const total = this.getAllEnhancements(actor)
+            .flatMap(enhancement => Object.values(enhancement.levels).flatMap(level => level.id))
+            .filter(id => Boolean(id))
+            .length;
+        return total;
+    }
+
+    static calculateTotalEnhancements(actor) {
+        return (getObject(actor, CharacteristicType.CORE) ?? 0) * 4;
+    }
 }

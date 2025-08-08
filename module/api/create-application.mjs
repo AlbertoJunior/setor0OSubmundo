@@ -16,6 +16,7 @@ const baseApplicationConfig = Object.freeze({
     Placeables: foundry.canvas.placeables,
     Utils: foundry.utils,
     ChatMessage: ChatMessage,
+    TooltipManager: foundry.helpers.interaction.TooltipManager,
 });
 
 // versions
