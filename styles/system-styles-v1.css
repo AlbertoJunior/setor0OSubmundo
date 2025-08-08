@@ -8,10 +8,19 @@
     border-bottom: 1px solid var(--secondary-color-alpha);
 }
 
-.S0-V1.S0-content.sheet .window-header :is(h1, h2, h3, h4, a) {
+.S0-V1.S0-content:is(.sheet, .dialog) .window-header :is(h1, h2, h3, h4, a) {
     text-shadow: none;
 }
 
 .S0-V1.S0-content input {
     text-align: center;
+}
+
+.S0-V1.S0-content.S0-dialog .window-content {
+    max-height: 660px;
+    padding-block: 6px;
+    border: none;
+    border-image: initial;
+    margin: 0px;
+    border-radius: 0px 0px var(--border-radius-medium) var(--border-radius-medium);
 }

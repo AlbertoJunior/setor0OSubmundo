@@ -17,12 +17,14 @@
 .S0-V2.S0-content.S0-sheet-item .window-content form {
     overflow-y: scroll;
     margin-left: 12px;
+    margin-right: 2px;
     max-height: 80vh;
 }
 
 .S0-V2 .S0-actor-sheet {
     overflow-y: scroll;
     margin-left: 12px;
+    margin-right: 2px;
     max-height: 88vh;
 }
 

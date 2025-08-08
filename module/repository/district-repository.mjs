@@ -1,15 +1,15 @@
-import { SYSTEM_ID } from "../constants.mjs";
+import { COLORS, SYSTEM_ID } from "../constants.mjs";
 
 export class DistrictRepository {
 
     static TYPES = Object.freeze({
-        COLMEIA: { id: 'colmeia', label: 'Colmeia' },
-        ALFIRAN: { id: 'alfiran', label: 'Alfiran' },
-        AMEISEN: { id: 'ameisen', label: 'Ameisen' },
-        ARANHAS: { id: 'aranhas', label: 'Aranhas' },
-        PTITSY: { id: 'ptitsy', label: 'Ptitsy' },
-        TOKOJIRAMI: { id: 'tokojirami', label: 'Tokojirami' },
-        VYURA: { id: 'vyura', label: 'Vyura' },
+        COLMEIA: { id: 'colmeia', label: 'Colmeia', color: COLORS.BASE.orange },
+        ALFIRAN: { id: 'alfiran', label: 'Alfiran', color: COLORS.BASE.softBlack },
+        AMEISEN: { id: 'ameisen', label: 'Ameisen', color: COLORS.BASE.red },
+        ARANHAS: { id: 'aranhas', label: 'Aranhas', color: COLORS.BASE.yellow },
+        PTITSY: { id: 'ptitsy', label: 'Ptitsy', color: COLORS.BASE.green },
+        TOKOJIRAMI: { id: 'tokojirami', label: 'Tokojirami', color: COLORS.BASE.purple },
+        VYURA: { id: 'vyura', label: 'Vyura', color: COLORS.BASE.blue },
     });
 
     static #items = Object.values(DistrictRepository.TYPES);

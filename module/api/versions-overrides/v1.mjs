@@ -1,7 +1,8 @@
 import { Setor0BaseSheet } from "../../base/sheet/Setor0BaseSheet.mjs";
-import { SYSTEM_CLASS_CSS, SYSTEM_CLASS_DIALOG_CSS } from "../../constants.mjs";
-import { DialogUtils } from "../../utils/dialog-utils.mjs"
+import { SYSTEM_CLASS_CSS, SYSTEM_CLASS_DARK_CSS, SYSTEM_CLASS_DIALOG_CSS } from "../../constants.mjs";
 import { HtmlJsUtils } from "../../utils/html-js-utils.mjs";
+import { onArrayRemove } from "../../utils/utils.mjs";
+import { createA } from "../../creators/element/element-creator-jscript.mjs";
 
 const VERSION_NAME = 'S0-V1';
 
@@ -13,6 +14,7 @@ class S0DialogV1 extends Dialog {
             classes: [
                 ...(options.classes || []),
                 SYSTEM_CLASS_CSS,
+                SYSTEM_CLASS_DARK_CSS,
                 SYSTEM_CLASS_DIALOG_CSS,
                 VERSION_NAME,
             ]
@@ -33,6 +35,65 @@ class S0DialogV1 extends Dialog {
         } catch (err) {
             ui.notifications.error(err.message);
             throw new Error(err);
+        }
+    }
+
+    static presetDialogRender(html, params = {}) {
+        const div = html[0]?.parentElement;
+        if (!div) {
+            return null;
+        }
+
+        div.parentElement.style.height = 'auto';
+
+        const paramsContentStyles = params.contentStyles;
+        if (paramsContentStyles && typeof paramsContentStyles === 'object') {
+            Object.entries(paramsContentStyles).forEach(([key, value]) => {
+                div.style[key] = value;
+            });
+        }
+
+        this.setupHeaderParams(div, params.header);
+        this.verifyRemoveDialogButtonsContainer(div);
+
+        HtmlJsUtils.setupHeader(html);
+
+        return div.closest(`.${SYSTEM_CLASS_CSS}`);
+    }
+
+    static setupHeaderParams(div, paramsHeader) {
+        if (paramsHeader) {
+            const headerElement = div.parentElement.children[0];
+
+            const defaultChildren = [...headerElement.children];
+            if (defaultChildren.length > 0) {
+                headerElement.innerHTML = '';
+                headerElement.appendChild(defaultChildren[0]);
+                onArrayRemove(defaultChildren, defaultChildren[0]);
+            }
+
+            const buttons = paramsHeader.buttons || [];
+            buttons.forEach(button => {
+                const elementA = createA(button.label, {
+                    icon: { class: button.icon }
+                });
+
+                elementA.onclick = event => button.onClick();
+                headerElement.appendChild(elementA)
+            });
+
+            if (defaultChildren.length > 0) {
+                defaultChildren.forEach(child => {
+                    headerElement.appendChild(child);
+                });
+            }
+        }
+    }
+
+    static verifyRemoveDialogButtonsContainer(div) {
+        const buttons = div.querySelectorAll('.dialog-button').length || 0;
+        if (buttons == 0) {
+            div.querySelector('.dialog-buttons')?.remove();
         }
     }
 }
@@ -95,7 +156,7 @@ async function createDialog(data, options) {
             buttons: parsedButtons.buttons,
             default: parsedButtons.default,
             render: (html, dialog) => {
-                const window = DialogUtils.presetDialogV1Render(html, { header: header });
+                const window = S0DialogV1.presetDialogRender(html, { header: header });
 
                 Object.entries(parsedButtons.buttons)
                     .forEach(([buttonKey, buttonParams]) => {

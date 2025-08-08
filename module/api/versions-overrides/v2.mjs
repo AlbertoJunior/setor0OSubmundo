@@ -295,7 +295,6 @@ function parseHeaderToControls(header) {
         .forEach(buttonHeader => {
             const label = buttonHeader.label;
             const actionName = toKeyLang(label);
-            debugger
             controls.push(
                 {
                     action: actionName,

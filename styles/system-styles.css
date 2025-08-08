@@ -262,16 +262,6 @@ body {
     scrollbar-color: var(--tertiary-color-alpha-50) var(--color-scrollbar-track);
 }
 
-.window-content.S0-content {
-    max-height: 660px;
-    padding-block: 6px;
-    background: var(--color-black-alpha-50);
-    border: none;
-    border-image: initial;
-    margin-inline: 0px;
-    border-radius: 0px 0px var(--border-radius-medium) var(--border-radius-medium);
-}
-
 .S0-content.S0-no-padding.application.image-popout figure {
     padding: 0px;
 }

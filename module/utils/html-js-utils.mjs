@@ -6,7 +6,7 @@ import { FoundryApi } from "../api/foundry-api.mjs";
 
 export class HtmlJsUtils {
     static setupContent(html) {
-        const content = html.closest('.S0-content')[0];
+        const content = html.closest(`.${SYSTEM_CLASS_CSS}`)[0];
         if (content) {
             const inDarkMode = FlagsUtils.getItemFlag(game.user, SystemFlags.MODE.DARK, false);
             content.classList.toggle('S0-page-transparent', inDarkMode);
