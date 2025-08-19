@@ -53,15 +53,15 @@ class S0DialogV1 extends Dialog {
             });
         }
 
-        this.setupHeaderParams(div, params.header);
-        this.verifyRemoveDialogButtonsContainer(div);
+        this.#setupHeaderParams(div, params.header);
+        this.#verifyRemoveDialogButtonsContainer(div);
 
         HtmlJsUtils.setupHeader(html);
 
         return div.closest(`.${SYSTEM_CLASS_CSS}`);
     }
 
-    static setupHeaderParams(div, paramsHeader) {
+    static #setupHeaderParams(div, paramsHeader) {
         if (paramsHeader) {
             const headerElement = div.parentElement.children[0];
 
@@ -90,7 +90,7 @@ class S0DialogV1 extends Dialog {
         }
     }
 
-    static verifyRemoveDialogButtonsContainer(div) {
+    static #verifyRemoveDialogButtonsContainer(div) {
         const buttons = div.querySelectorAll('.dialog-button').length || 0;
         if (buttons == 0) {
             div.querySelector('.dialog-buttons')?.remove();
@@ -108,7 +108,7 @@ export const v1Overrides = Object.freeze({
 function makeClass(BaseClass) {
     const name = BaseClass.name;
 
-    const cls = {
+    const Cls = {
         [name]: class extends BaseClass {
             static get defaultOptions() {
                 const options = super.defaultOptions;
@@ -132,7 +132,7 @@ function makeClass(BaseClass) {
         }
     }[name];
 
-    return Setor0BaseSheet(cls);
+    return Setor0BaseSheet(Cls);
 }
 
 async function createDialog(data, options) {

@@ -5,8 +5,9 @@ import { TraitField } from "../../../../../field/trait-field.mjs";
 import { CharacteristicType } from "../../../../../enums/characteristic-enums.mjs";
 import { OnEventType } from "../../../../../enums/on-event-type.mjs";
 import { TraitMessageCreator } from "../../../../../creators/message/trait-message.mjs";
-import { getObject, TODO } from "../../../../../utils/utils.mjs";
+import { getObject, localize, TODO } from "../../../../../utils/utils.mjs";
 import { ActorUpdater } from "../../../../updater/actor-updater.mjs";
+import { NotificationsUtils } from "../../../../../creators/message/notifications.mjs";
 
 function getCharacteristic(type) {
     return type == 'good' ? CharacteristicType.TRAIT.GOOD : CharacteristicType.TRAIT.BAD;
@@ -90,8 +91,20 @@ export const traitMethods = {
         const traitType = getTraitType(event);
         const traitId = getItemId(event);
 
-        const fetchedTrait = TraitRepository.getItemByTypeAndId(traitType, traitId);
-        const messageContent = await TraitMessageCreator.mountContent(fetchedTrait);
+        const fetchedActorTrait = getObject(actor, getCharacteristic(traitType)).find(trait => trait.id == traitId);
+        const sourceId = getObject(fetchedActorTrait, CharacteristicType.TRAIT.SOURCE_ID);
+        if (!sourceId) {
+            NotificationsUtils.error(localize("Aviso.Erro.Traco_Invalido"));
+            return;
+        }
+
+        const originalTrait = TraitRepository.getItemByTypeAndId(traitType, sourceId);
+        const mixedTrait = {
+            ...originalTrait,
+            particularity: getObject(fetchedActorTrait, CharacteristicType.TRAIT.PARTICULARITY)
+        };
+
+        const messageContent = await TraitMessageCreator.mountContent(mixedTrait);
         ChatCreator.sendToChat(actor, messageContent);
     },
     [OnEventType.VIEW]: async (actor, event) => {

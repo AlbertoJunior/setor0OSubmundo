@@ -317,7 +317,8 @@
             },
             "Erro": {
                 "Ator_Invalido": "Invalid actor.",
-                "Efeito_Invalido": "Invalid effect."
+                "Efeito_Invalido": "Invalid effect.",
+                "Traco_Invalido": "Invalid or not founded Trait."
             }
         },
         "Aprimoramento": {

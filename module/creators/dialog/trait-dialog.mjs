@@ -52,7 +52,7 @@ export class TraitDialog {
         label: localize("Chat"),
         default: true,
         onClick: async (html) => {
-          const fetchedTrait = traits.find(t => t.id == trait.id);
+          const fetchedTrait = traits.find(t => t.id == trait.sourceId);
           if (fetchedTrait) {
             const messageContent = await TraitMessageCreator.mountContent(fetchedTrait);
             ChatCreator.sendToChat(actor, messageContent);
@@ -73,7 +73,7 @@ export class TraitDialog {
   }
 
   static async #mountContent(traits, enableChangeTrait, enableChangeParticularity, trait) {
-    const selectedTrait = traits.find(element => element.id == trait?.id);
+    const selectedTrait = traits.find(element => element.id == trait?.sourceId);
 
     const data = {
       title: localize('Traco'),

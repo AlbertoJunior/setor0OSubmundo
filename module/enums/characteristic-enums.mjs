@@ -91,6 +91,8 @@ export const CharacteristicType = Object.freeze({
     TRAIT: {
         id: 'tracos',
         system: 'system.tracos',
+        SOURCE_ID: 'sourceId',
+        PARTICULARITY: 'particularity',
         GOOD: {
             id: 'bons',
             system: 'system.tracos.bons',

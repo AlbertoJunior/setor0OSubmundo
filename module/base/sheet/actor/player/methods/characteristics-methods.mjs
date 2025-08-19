@@ -1,5 +1,5 @@
 import { ActorUtils } from "../../../../../core/actor/actor-utils.mjs";
-import { selectCharacteristic } from "../../../../../utils/utils.mjs";
+import { selectCharacteristic, TODO } from "../../../../../utils/utils.mjs";
 import { BaseActorCharacteristicType, CharacteristicType, CharacteristicTypeMap } from "../../../../../enums/characteristic-enums.mjs";
 import { ActorUpdater } from "../../../../updater/actor-updater.mjs";
 
@@ -9,20 +9,27 @@ export async function characteristicOnClick(event, actor) {
     selectCharacteristic(element);
 
     const characteristicType = event.currentTarget.dataset.characteristic;
-    const systemCharacteristic = CharacteristicTypeMap[characteristicType];
+
+    let systemCharacteristic;
+    TODO('melhorar a forma como sei que é fama')
+    if (characteristicType == 'fama') {
+        systemCharacteristic = CharacteristicType.SIMPLE.system;
+    } else {
+        systemCharacteristic = CharacteristicTypeMap[characteristicType];
+    }
 
     if (systemCharacteristic) {
         const parentElement = element.parentElement;
         const level = Array.from(parentElement.children).filter(el => el.classList.contains('S0-selected')).length;
-        handle(actor, systemCharacteristic, parentElement.id, level);
+        await handle(actor, systemCharacteristic, parentElement.id, level);
     }
 }
 
 async function handle(actor, systemCharacteristic, id, level) {
     if (systemCharacteristic.includes(CharacteristicType.VIRTUES.id)) {
-        handleVirtue(actor, id, level);
+        await handleVirtue(actor, id, level);
     } else {
-        handleOtherwise(actor, systemCharacteristic, id, level);
+        await handleOtherwise(actor, systemCharacteristic, id, level);
     }
 }
 

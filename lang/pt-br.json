@@ -352,7 +352,8 @@
             },
             "Erro": {
                 "Ator_Invalido": "Ator inválido.",
-                "Efeito_Invalido": "Efeito inválido."
+                "Efeito_Invalido": "Efeito inválido.",
+                "Traco_Invalido": "Traço inválido ou não encontrado."
             }
         },
 
