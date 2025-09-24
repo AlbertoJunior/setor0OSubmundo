@@ -159,12 +159,5 @@
         "units": "PM"
     },
     "primaryTokenAttribute": "actualVitality",
-    "secondaryTokenAttribute": "actualPM",
-    "hotReload": {
-        "extensions": [
-            "css",
-            "hbs",
-            "json"
-        ]
-    }
+    "secondaryTokenAttribute": "actualPM"
 }
