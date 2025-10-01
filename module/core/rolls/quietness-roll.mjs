@@ -31,8 +31,6 @@ export class RollQuietness {
             automatic: (optionsRoll.automatic || 0) + (optionsRoll?.weapon?.true_damage || 0)
         };
 
-        debugger
-
         const messageContent = await RollQuietnessMessageCreator.mountContent(newValues);
         const actorOnMessage = game.actors.get(message.speaker.actor);
 

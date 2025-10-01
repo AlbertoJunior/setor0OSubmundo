@@ -1,5 +1,5 @@
 <div class="S0-message-content">
-    <h4 style="text-align: center;">{{localize 'S0.Perseveranca'}}</h4>
+    <h4 style="text-align: center;">{{title}}</h4>
     <hr>
     <div class="dice-tooltip S0-container-contract">
         <ol class="dice-rolls">
@@ -14,6 +14,13 @@
             <li class="S0-d10-small roll d10">{{ this }}</li>
             {{/each}}
         </ol>
+
+        {{#if canUsePerseverance}}
+        <button class="S0-roll-result" data-action="check" data-type="perseverance">
+            {{localize 'S0.Usar_Perseveranca'}}
+            ( <i class="fas fa-check-double"></i> )
+        </button>
+        {{/if}}
     </div>
 
     <button class="S0-roll-result {{ resultMessageClasses }}" data-action="view" data-type="toggle-tooltip">

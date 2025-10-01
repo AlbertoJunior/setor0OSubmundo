@@ -44,7 +44,7 @@ class Setor0ChatLog extends FoundryApi.ChatLog {
         'quietness': async (target, message) => {
             const result = await RollQuietness.operateMessage(message);
             if (result) {
-                // await this.#updateButtonOnContent(message, target, localize('Quietude_Utilizada'));
+                await this.#updateButtonOnContent(message, target, localize('Quietude_Utilizada'));
             }
         },
     }

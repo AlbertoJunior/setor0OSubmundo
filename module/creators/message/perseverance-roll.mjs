@@ -22,6 +22,7 @@ export class RollPerseveranceMessageCreator {
         }
 
         const data = {
+            title: localize('Perseveranca'),
             diceValues: values,
             resultMessage: resultMessage,
             resultMessageClasses: resultMessageClasses,

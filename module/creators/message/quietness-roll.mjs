@@ -22,11 +22,13 @@ export class RollQuietnessMessageCreator {
         }
 
         const data = {
+            title: localize('Quietude'),
             diceValues: values,
             resultMessage: resultMessage,
             resultMessageClasses: resultMessageClasses,
             removedDiceValues: removedValues,
-            resultValue: successes
+            resultValue: successes,
+            canUsePerseverance: true
         };
 
         return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/messages/roll/perseverance.hbs`, data);
