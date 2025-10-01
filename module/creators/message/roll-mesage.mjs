@@ -13,7 +13,7 @@ export class RollMessageCreator {
         const diceResults = this.#getDiceResults(rolls);
 
         const automatic = this.#getAutomaticFromModifiers(modifiers);
-        const result = this.#verifyResultRoll(
+        const result = this.verifyResultRoll(
             diceResults.overload, diceResults.default, modifiers.specialist, difficulty, critic, automatic
         );
 
@@ -40,7 +40,7 @@ export class RollMessageCreator {
         const formule = `(${attr1.value} + ${attr2.value}) ${attr3.value ? `/ 2 + ${attr3.value}` : ''}`.trim();
 
         const automatic = this.#getAutomaticFromModifiers(modifiers);
-        const result = this.#verifyResultRoll(
+        const result = this.verifyResultRoll(
             diceResults.overload, diceResults.default, modifiers.specialist, difficulty, critic, automatic
         );
 
@@ -65,7 +65,7 @@ export class RollMessageCreator {
 
         const diceResults = this.#getDiceResults(rolls);
 
-        const result = this.#verifyResultRoll(
+        const result = this.verifyResultRoll(
             diceResults.overload, diceResults.default, modifiers.specialist, difficulty, critic, modifiers.automatic
         );
 
@@ -88,7 +88,7 @@ export class RollMessageCreator {
 
         const diceResults = this.#getDiceResults(rolls);
 
-        const result = this.#verifyResultRoll(
+        const result = this.verifyResultRoll(
             diceResults.overload, diceResults.default, specialist, difficulty, critic, automatic
         );
 
@@ -104,7 +104,7 @@ export class RollMessageCreator {
         return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/messages/roll/simplified.hbs`, data);
     }
 
-    static #verifyResultRoll(dicesOverload = [], dicesDefault = [], specialist = false, difficulty = 6, critic = 10, automatic = 0) {
+    static verifyResultRoll(dicesOverload = [], dicesDefault = [], specialist = false, difficulty = 6, critic = 10, automatic = 0) {
         const { result, criticalOverload, failureOverload } = CoreRollMethods.calculateSuccess(
             dicesOverload, dicesDefault, specialist, difficulty, critic, automatic
         );
@@ -159,7 +159,6 @@ export class RollMessageCreator {
         const safeHalf = (half == true) || false;
 
         const canUsePerseverance = diceResults.default.length > 0 && (havePerseverance || false);
-
 
         TODO('receber se o personagem tem consciência e quietude para utilizar');
         const canUseQuietness = diceResults.overload.length > 0 && true //haveQuietness;

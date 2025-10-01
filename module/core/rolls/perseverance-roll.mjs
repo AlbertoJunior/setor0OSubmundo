@@ -1,27 +1,32 @@
 import { RollPerseveranceMessageCreator } from "../../creators/message/perseverance-roll.mjs";
 import { ChatCreator } from "../../utils/chat-creator.mjs";
+import { ActorUtils } from "../actor/actor-utils.mjs";
 import { CoreRollMethods } from "./core-roll-methods.mjs";
 
 export class RollPerseverance {
     static async operateMessage(message) {
-        const rollsOnMessage = message.rolls.filter(roll => roll.options.isOverload == false);
+        const actorOnMessage = ActorUtils.getActor(message.speaker.actor);
 
-        if (!rollsOnMessage || rollsOnMessage.length < 1) {
+        const overloadRollsOnMessage = message.rolls.filter(roll => roll.options.isOverload == true);
+        const defaultRollsOnMessage = message.rolls.filter(roll => roll.options.isOverload == false);
+
+        if (!defaultRollsOnMessage || defaultRollsOnMessage.length < 1) {
             console.warn(`-> Nenhuma rolagem encontrada`);
             return null;
         }
 
-        const roll = rollsOnMessage[0];
+        const roll = defaultRollsOnMessage[0];
         const values = CoreRollMethods.getValuesOnRoll(roll);
         const newValues = await RollPerseverance.rerrollValues(values);
 
+        newValues.overloadValues = overloadRollsOnMessage.length > 0 ? CoreRollMethods.getValuesOnRoll(overloadRollsOnMessage[0]) : [];
+        newValues.canUseQuietness = newValues.overloadValues.length > 0;
         newValues.difficulty = roll.options.difficulty || 6;
         newValues.critic = roll.options.critic || 10;
         newValues.specialist = roll.options.specialist || false;
         newValues.automatic = (roll.options.automatic || 0) + (roll.options?.weapon?.true_damage || 0);
 
         const messageContent = await RollPerseveranceMessageCreator.mountContent(newValues);
-        const actorOnMessage = game.actors.get(message.speaker.actor);
 
         await ChatCreator.sendToChatTypeRoll(actorOnMessage, messageContent, [newValues.roll]);
 

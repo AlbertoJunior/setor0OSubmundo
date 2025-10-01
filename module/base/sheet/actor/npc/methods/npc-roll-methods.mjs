@@ -8,6 +8,7 @@ import { NotificationsUtils } from "../../../../../creators/message/notification
 import { CharacteristicType, NpcCharacteristicType } from "../../../../../enums/characteristic-enums.mjs";
 import { OnEventType } from "../../../../../enums/on-event-type.mjs";
 import { DefaultActions } from "../../../../../utils/default-actions.mjs";
+import { FoundryApi } from "../../../../../api/foundry-api.mjs";
 
 export const npcRollHandle = {
     [OnEventType.ROLL]: async (actor, event) => NpcRollMethods.handleRoll(actor, event),
@@ -57,10 +58,7 @@ class NpcRollMethods {
                     }
                 },
                 onConfirm: async (data) => {
-                    const copiedActor = {
-                        ...actor,
-                    };
-
+                    const copiedActor = FoundryApi.duplicate(actor);
                     this.#setNpcOverload(copiedActor, Number(data.overload));
                     this.#mountRollInformations(copiedActor, rollInformations, data);
                 }

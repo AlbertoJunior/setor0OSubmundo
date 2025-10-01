@@ -1,34 +1,33 @@
 import { localize } from "../../utils/utils.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
-import { CoreRollMethods } from "../../core/rolls/core-roll-methods.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
+import { RollMessageCreator } from "./roll-mesage.mjs";
 
 export class RollQuietnessMessageCreator {
     static async mountContent(params) {
-        const { values, removedValues, specialist, difficulty, critic, automatic } = params;
-        const successes = CoreRollMethods.calculateSuccess([], values, specialist, difficulty, critic, automatic).result;
-
-        let resultMessage;
-        let resultMessageClasses;
-        if (successes > 0) {
-            resultMessage = localize('Sucesso');
-            resultMessageClasses = `S0-success`;
-        } else if (successes < 0) {
-            resultMessage = localize('Falha_Critica');
-            resultMessageClasses = `S0-critical-failure`;
-        } else {
-            resultMessage = localize('Falha');
-            resultMessageClasses = `S0-failure`;
-        }
+        const {
+            canUsePerseverance = false,
+            canUseQuietness = false,
+            overloadValues = [],
+            values,
+            removedValues,
+            specialist,
+            difficulty,
+            critic,
+            automatic
+        } = params;
+        
+        const resultRoll = RollMessageCreator.verifyResultRoll([], values, specialist, difficulty, critic, automatic);
 
         const data = {
             title: localize('Quietude'),
             diceValues: values,
-            resultMessage: resultMessage,
-            resultMessageClasses: resultMessageClasses,
+            resultMessage: resultRoll.message.message,
+            resultMessageClasses: resultRoll.message.classes,
             removedDiceValues: removedValues,
-            resultValue: successes,
-            canUsePerseverance: true
+            resultValue: resultRoll.result,
+            canUsePerseverance: canUsePerseverance,
+            canUseQuietness: canUseQuietness
         };
 
         return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/messages/roll/perseverance.hbs`, data);

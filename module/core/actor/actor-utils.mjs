@@ -5,6 +5,10 @@ import { FlagsUtils } from "../../utils/flags-utils.mjs";
 import { ActiveEffectsUtils } from "../effect/active-effects-utils.mjs";
 
 export class ActorUtils {
+    static getActor(actorId) {
+        return game.actors.get(actorId);
+    }
+
     static getAttributeValue(actor, attr) {
         const base = getObject(actor, CharacteristicType.ATTRIBUTES)[attr] || 0;
         const bonus = getObject(actor, CharacteristicType.BONUS.ATTRIBUTES)[attr] || 0;

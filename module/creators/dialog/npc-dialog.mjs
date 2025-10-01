@@ -9,6 +9,7 @@ import { DialogUtils } from "../../utils/dialog-utils.mjs";
 import { FlagsUtils } from "../../utils/flags-utils.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
 import { createLi } from "../element/element-creator-jscript.mjs";
+import { ActorUtils } from "../../core/actor/actor-utils.mjs";
 
 export class NpcDialog {
     static #mapEvents = {
@@ -96,7 +97,7 @@ export class NpcDialog {
         };
         const button = createLi(textContent, options);
         button.addEventListener('click', () => {
-            game.actors.get(npcActor.id)?.sheet?.render(true);
+            ActorUtils.getActor(npcActor.id)?.sheet?.render(true);
         });
 
         buttonContainer.appendChild(button);

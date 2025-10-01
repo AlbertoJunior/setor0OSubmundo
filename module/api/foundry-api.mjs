@@ -39,7 +39,17 @@ export class FoundryApi {
 
     static ChatMessage = Object.freeze({
         getWhisperRecipients: (recipient) => CurrentVersion.ChatMessage.getWhisperRecipients(recipient),
-        getSpeaker: (actor) => CurrentVersion.ChatMessage.getSpeaker({ actor: actor }),
+        getSpeaker: (actor) => {
+            const speaker = CurrentVersion.ChatMessage.getSpeaker({ actor: actor });
+            if (!speaker.actor && actor._id) {
+                speaker.actor = actor._id;
+            }
+
+            if (speaker.alias == game.user.name && actor.name) {
+                speaker.alias = actor.name;
+            }
+            return speaker;
+        },
         create: async (messageData, optionsMode) => await CurrentVersion.ChatMessage.create(messageData, optionsMode)
     });
 
@@ -103,6 +113,10 @@ export class FoundryApi {
 
     static deepClone(object) {
         return this.Utils.deepClone(object);
+    }
+
+    static duplicate(object) {
+        return this.Utils.duplicate(object);
     }
 
     static async createDialog(

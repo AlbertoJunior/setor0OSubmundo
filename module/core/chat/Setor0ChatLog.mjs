@@ -80,7 +80,7 @@ class Setor0ChatLog extends FoundryApi.ChatLog {
             return;
         }
 
-        if (!message.speakerActor.isOwner) {
+        if (!game.user.isGM && !message.speakerActor?.isOwner) {
             console.warn(`User: ${game.user.name} isn't the owner of this message`);
             return;
         }

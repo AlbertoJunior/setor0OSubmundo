@@ -5,6 +5,7 @@ import { EquipmentCharacteristicType, EquipmentType, validEquipmentTypes } from 
 import { ActiveEffectsUtils } from "../effect/active-effects-utils.mjs";
 import { EquipmentInfoParser } from "../equipment/equipment-info.mjs";
 import { EquipmentUtils } from "../equipment/equipment-utils.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
 export class ActorEquipmentUtils {
     static #allowedTypes = validEquipmentTypes().map(EquipmentInfoParser.equipmentTypeIdToTypeString).filter(Boolean);
@@ -52,7 +53,7 @@ export class ActorEquipmentUtils {
 
         const { flags = {}, effects = [] } = params;
 
-        const itemData = foundry.utils.duplicate(equipment);
+        const itemData = FoundryApi.duplicate(equipment);
 
         return {
             name: itemData.name,

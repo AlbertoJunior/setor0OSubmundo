@@ -1,5 +1,6 @@
 import { RollQuietnessMessageCreator } from "../../creators/message/quietness-roll.mjs";
 import { ChatCreator } from "../../utils/chat-creator.mjs";
+import { ActorUtils } from "../actor/actor-utils.mjs";
 import { CoreRollMethods } from "./core-roll-methods.mjs";
 
 export class RollQuietness {
@@ -17,8 +18,10 @@ export class RollQuietness {
             return null;
         }
 
-        const defaultRollResult = defaultRoll[0];
+        const actorOnMessage = ActorUtils.getActor(message.speaker.actor);
+
         const overloadRollResult = overloadRoll[0];
+        const defaultRollResult = defaultRoll[0];
 
         const optionsRoll = defaultRollResult.options;
         const newValues = {
@@ -28,11 +31,12 @@ export class RollQuietness {
             difficulty: optionsRoll.difficulty || 6,
             critic: optionsRoll.critic || 10,
             specialist: optionsRoll.specialist || false,
-            automatic: (optionsRoll.automatic || 0) + (optionsRoll?.weapon?.true_damage || 0)
+            automatic: (optionsRoll.automatic || 0) + (optionsRoll?.weapon?.true_damage || 0),
+            canUsePerseverance: ActorUtils.havePerseverance(actorOnMessage),
+            canUseQuietness: false
         };
 
         const messageContent = await RollQuietnessMessageCreator.mountContent(newValues);
-        const actorOnMessage = game.actors.get(message.speaker.actor);
 
         await ChatCreator.sendToChatTypeRoll(actorOnMessage, messageContent, [newValues.roll]);
 

@@ -2,6 +2,16 @@
     <h4 style="text-align: center;">{{title}}</h4>
     <hr>
     <div class="dice-tooltip S0-container-contract">
+        {{#if (operators 'isNotEmpty' overloadValues)}}
+        <p>{{localize 'S0.Sobrecarga'}}:</p>
+        <ol class="dice-rolls">
+            {{#each overloadValues}}
+            <li class="S0-d10 roll die d10 S0-d10-overload">{{ this }}</li>
+            {{/each}}
+        </ol>
+        <p>{{localize 'S0.Rolagem'}}:</p>
+        {{/if}}
+
         <ol class="dice-rolls">
             {{#each diceValues}}
             <li class="S0-d10 roll d10">{{ this }}</li>

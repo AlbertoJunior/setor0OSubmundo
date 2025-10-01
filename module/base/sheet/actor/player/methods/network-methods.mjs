@@ -4,6 +4,7 @@ import { NpcDialog } from "../../../../../creators/dialog/npc-dialog.mjs";
 import { CharacteristicType } from "../../../../../enums/characteristic-enums.mjs";
 import { OnEventType } from "../../../../../enums/on-event-type.mjs";
 import { ActorUpdater } from "../../../../updater/actor-updater.mjs";
+import { ActorUtils } from "../../../../../core/actor/actor-utils.mjs";
 
 export const alliesHandleEvents = {
     [OnEventType.REMOVE]: async (actor, event) => NetworkHandleEvents.handleRemove(actor, CharacteristicType.ALLIES, event),
@@ -25,7 +26,7 @@ class NetworkHandleEvents {
 
     static async handleView(actor, event) {
         const itemId = event.currentTarget.dataset.itemId;
-        const fetchedActor = game.actors.get(itemId);
+        const fetchedActor = ActorUtils.getActor(itemId);
         if (!fetchedActor) {
             return;
         }
