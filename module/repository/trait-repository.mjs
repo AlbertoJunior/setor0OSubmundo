@@ -23,6 +23,12 @@ export class TraitRepository {
             description: 'Você tem uma quantidade significativa de sabedoria cotidiana prática e costuma pensar antes de agir. Sempre que o personagem estiver a ponto de proceder de modo contrário ao bom senso, o narrador pode fazer sugestões ou avisá-lo sobre as implicações de tal ação — como a conhecida “voz da razão”.<br>Este é um traço muito útil para jogadores iniciantes pouco familiarizados com o cenário ou RPG em si e também para personagens com Inteligência 6.'
         },
         {
+            id: '108',
+            name: 'Celebridade',
+            xp: 3,
+            description: 'Você é conhecido por um grande feito no Setor 0, seja como campeão em corridas de rua, vencedor de um torneio importante, pesquisador, informante, hacker ou até mesmo mercenário. Considere seu nível de {\Influencia} como 1 — mesmo que não seja — para fins de aquisição de itens ou interpretação. Seu nível total não aumenta ao adquirir qualquer nível nessa característica.'
+        },
+        {
             id: '4',
             name: 'Concentração',
             xp: 3,

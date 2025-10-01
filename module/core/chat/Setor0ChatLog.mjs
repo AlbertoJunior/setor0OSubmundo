@@ -4,6 +4,7 @@ import { MessageRepository } from "../../repository/message-repository.mjs";
 import { HtmlJsUtils } from "../../utils/html-js-utils.mjs";
 import { localize, TODO } from "../../utils/utils.mjs";
 import { RollPerseverance } from "../rolls/perseverance-roll.mjs";
+import { RollQuietness } from "../rolls/quietness-roll.mjs";
 
 class Setor0ChatLog extends FoundryApi.ChatLog {
     static DEFAULT_OPTIONS = {
@@ -32,7 +33,7 @@ class Setor0ChatLog extends FoundryApi.ChatLog {
     static #checkMap = {
         'consciousness': async (target, message) => {
             TODO('implementar');
-            await this.#updateButtonOnContent(message, target, "Consciência utilizada");
+            await this.#updateButtonOnContent(message, target, localize('Consciencia_Utilizada'));
         },
         'perseverance': async (target, message) => {
             const result = await RollPerseverance.operateMessage(message);
@@ -41,8 +42,10 @@ class Setor0ChatLog extends FoundryApi.ChatLog {
             }
         },
         'quietness': async (target, message) => {
-            TODO('implementar');
-            await this.#updateButtonOnContent(message, target, localize('Quietude_Utilizada'));
+            const result = await RollQuietness.operateMessage(message);
+            if (result) {
+                // await this.#updateButtonOnContent(message, target, localize('Quietude_Utilizada'));
+            }
         },
     }
 
