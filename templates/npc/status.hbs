@@ -8,12 +8,12 @@
 
             {{#forLoop 0 5}}
             <div class="S0-characteristic {{#if ../editable}}S0-clickable{{/if}} {{#if (operators 'gt' (actorValues ../actor 'npc_stamina') index)}}S0-selected{{/if}}"
-                data-action="characteristic" data-characteristic="characteristic" data-type="vigor">
+                data-action="characteristic" data-characteristic="characteristic" data-type="vigor" data-action-group="true">
             </div>
             {{/forLoop}}
 
             <div class="S0-characteristic S0-characteristic-6 {{#if editable}}S0-clickable{{/if}} {{#if (operators 'gt' (actorValues actor 'npc_stamina') 5)}}S0-selected{{/if}}"
-                data-action="characteristic" data-characteristic="characteristic" data-type="vigor">
+                data-action="characteristic" data-characteristic="characteristic" data-type="vigor" data-action-group="true">
             </div>
         </div>
         <div style="text-align: center;">

@@ -65,10 +65,12 @@ class Setor0NpcSheet extends Setor0BaseActorSheet {
                     const target = event.currentTarget;
                     const dataset = target.dataset;
                     switch (dataset.characteristic) {
-                        case CharacteristicType.ATTRIBUTES.STAMINA.id:
-                            selectCharacteristic(target);
-                            const level = target.parentElement.querySelectorAll('.S0-selected').length;
-                            ActorUpdater.verifyAndUpdateActor(actor, BaseActorCharacteristicType.VITALITY.TOTAL, level + 5);
+                        case OnEventType.CHARACTERISTIC:
+                            if (dataset.type == CharacteristicType.ATTRIBUTES.STAMINA.id) {
+                                selectCharacteristic(target);
+                                const level = target.parentElement.querySelectorAll('.S0-selected').length;
+                                ActorUpdater.verifyAndUpdateActor(actor, BaseActorCharacteristicType.VITALITY.TOTAL, level + 5);
+                            }
                             break;
                         case BaseActorCharacteristicType.INFLUENCE.id:
                             this.#updateCharacteristic(actor, BaseActorCharacteristicType.INFLUENCE, target);
