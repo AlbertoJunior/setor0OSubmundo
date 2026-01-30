@@ -1,5 +1,6 @@
 import { COLORS, SYSTEM_ID } from "../constants.mjs";
 import { influencedActiveEffects } from "../core/effect/effect-items/influecedEffects.mjs";
+import { seendActiveEffect } from "../core/effect/effect-items/seen.mjs";
 import { shatteredActiveEffects } from "../core/effect/effect-items/shattered.mjs";
 import { simulatedActiveEffect } from "../core/effect/effect-items/simulated.mjs";
 import { surprisedActiveEffect } from "../core/effect/effect-items/surprised.mjs";
@@ -10,6 +11,7 @@ export class ActiveEffectRepository {
     static #items = [
         surprisedActiveEffect,
         simulatedActiveEffect,
+        seendActiveEffect,
         ...influencedActiveEffects,
         ...shatteredActiveEffects,
     ];

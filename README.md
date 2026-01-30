@@ -1,11 +1,12 @@
 # Setor 0 RPG para o Foundry VTT
 [🌐 Site oficial do Setor 0](https://setor0rpg.com.br)
 
-![Foundry v12](https://img.shields.io/badge/foundry-v12-green)
 ![Status: Alpha](https://img.shields.io/badge/status-alpha-orange)
+![Foundry v13](https://img.shields.io/badge/foundry-v13-orange)
+![Foundry v12](https://img.shields.io/badge/foundry-v12-green)
 ![License: Custom](https://img.shields.io/badge/license-custom-blue)
 ![PT-BR](https://img.shields.io/badge/lang-pt--br-green)
-![EN](https://img.shields.io/badge/lang-en-lightgrey)
+![EN](https://img.shields.io/badge/lang-en-orange)
 
 ---
 
