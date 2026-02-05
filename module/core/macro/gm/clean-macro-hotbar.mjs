@@ -1,10 +1,10 @@
-import { SYSTEM_ID } from "../../../constants.mjs";
+import { SYSTEM_FLAGS, SYSTEM_ID } from "../../../constants.mjs";
 
 export const cleanMacroHotbarUserMacroData = {
   flags: {
     [SYSTEM_ID]: {
-      sourceId: '1001',
-      role: 'gm',
+      [SYSTEM_FLAGS.SOURCE_ID]: '1001',
+      [SYSTEM_FLAGS.ROLE]: 'gm',
     }
   },
   name: "Limpar Hotbar",

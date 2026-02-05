@@ -1,6 +1,6 @@
 import { localize, randomId } from "../../utils/utils.mjs";
 import { ActorUpdater } from "../../base/updater/actor-updater.mjs";
-import { SYSTEM_ID } from "../../constants.mjs";
+import { SYSTEM_FLAGS, SYSTEM_ID } from "../../constants.mjs";
 import { ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../enums/active-effects-enums.mjs";
 
 export class ActiveEffectsUtils {
@@ -24,12 +24,12 @@ export class ActiveEffectsUtils {
         } = params;
 
         const fullFlags = {
-            originId: "",
-            originType: "",
+            [SYSTEM_FLAGS.ORIGIN_ID]: "",
+            [SYSTEM_FLAGS.ORIGIN_TYPE]: "",
             ...flags
         };
 
-        if (!fullFlags.originId?.trim()) {
+        if (!fullFlags[SYSTEM_FLAGS.ORIGIN_ID]?.trim()) {
             console.warn('Origin ID é OBRIGATÓRIO')
             return null;
         }

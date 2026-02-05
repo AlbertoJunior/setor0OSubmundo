@@ -11,7 +11,6 @@ import { SheetActorDragabbleMethods } from "./methods/dragabble-methods.mjs";
 import { ActorUtils } from "../../../../core/actor/actor-utils.mjs";
 import { ActiveEffectsUtils } from "../../../../core/effect/active-effects-utils.mjs";
 import { FoundryApi } from "../../../../api/foundry-api.mjs";
-import { OnEventType } from "../../../../enums/on-event-type.mjs";
 
 export async function actorTemplatesRegister() {
     const templates = [

@@ -1,6 +1,6 @@
 import { getObject } from "../../utils/utils.mjs";
 import { EquipmentUpdater } from "../../base/updater/equipment-updater.mjs";
-import { SYSTEM_ID } from "../../constants.mjs";
+import { SYSTEM_FLAGS, SYSTEM_ID } from "../../constants.mjs";
 import { EquipmentCharacteristicType, EquipmentType, validEquipmentTypes } from "../../enums/equipment-enums.mjs";
 import { ActiveEffectsUtils } from "../effect/active-effects-utils.mjs";
 import { EquipmentInfoParser } from "../equipment/equipment-info.mjs";
@@ -60,7 +60,7 @@ export class ActorEquipmentUtils {
             img: itemData.img,
             flags: {
                 [SYSTEM_ID]: {
-                    sourceId: itemData._id,
+                    [SYSTEM_FLAGS.SOURCE_ID]: itemData._id,
                     ...flags
                 }
             },

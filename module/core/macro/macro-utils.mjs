@@ -14,6 +14,9 @@ import { rollOverloadMacroData } from "./default/roll-overload.mjs";
 import { cleanMacroHotbarUserMacroData } from "./gm/clean-macro-hotbar.mjs";
 import { resetUserFlagsMacroData } from "./gm/reset-user-flags.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
+import { exportCompendiunsMacroData } from "./gm/export-compendium-json.mjs";
+import { CompendiumExport } from "../pack/compendium-export.mjs";
+import { CompendiumSync } from "../pack/compendium-sync.mjs";
 
 export class MacroUtils {
     static MacroMethods = {
@@ -55,6 +58,12 @@ export class MacroUtils {
 
                 NotificationsUtils.warning('Erro ao executar o teste');
             }
+        },
+        exportCompendium: async() => {
+            await CompendiumExport.exportCompendiumsToJson();
+        },
+        clearFolders: async() => {
+            await CompendiumSync.clear();
         }
     };
 
@@ -69,7 +78,8 @@ export class MacroUtils {
     static getDefaultGmMacro() {
         return [
             cleanMacroHotbarUserMacroData,
-            resetUserFlagsMacroData
+            resetUserFlagsMacroData,
+            exportCompendiunsMacroData,
         ];
     }
 

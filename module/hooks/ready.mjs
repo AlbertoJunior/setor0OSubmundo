@@ -7,6 +7,7 @@ import { registerEquipment } from "../base/sheet/equipment/equipment-sheet.mjs";
 import { registerActor } from "../base/sheet/actor/player/actor-sheet.mjs";
 import { registerNpc } from "../base/sheet/actor/npc/npc-sheet.mjs";
 import { FoundryApi } from "../api/foundry-api.mjs";
+import { CompendiumSync } from "../core/pack/compendium-sync.mjs";
 
 export class ReadyHookHandle {
     static async handle() {
@@ -45,6 +46,7 @@ export class ReadyHookHandle {
         }
 
         await MacroInstaller.installDefaultMacrosOnGm();
+        await CompendiumSync.syncDefaultCompendiums();
 
         OscillatingTintManager.verifyOscilatingTokens();
         console.log('-> Setor 0 - O Submundo | Sistema Pronto');

@@ -205,6 +205,16 @@ const mutationEffects = [
                 }
             ),
         ]
+    ),
+    EnhancementEffectField.toJson(
+        '50',
+        'Aprimorar',
+        5,
+        EnhancementOverload.NONE,
+        EnhancementDuration.PASSIVE,
+        ['47', '48'],
+        [],
+        []
     )
 ];
 

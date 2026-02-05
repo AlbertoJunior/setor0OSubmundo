@@ -1,10 +1,10 @@
-import { SYSTEM_ID } from "../../../constants.mjs";
+import { SYSTEM_FLAGS, SYSTEM_ID } from "../../../constants.mjs";
 
 export const resetUserFlagsMacroData = {
   flags: {
     [SYSTEM_ID]: {
-      sourceId: '1000',
-      role: 'gm',
+      [SYSTEM_FLAGS.SOURCE_ID]: '1000',
+      [SYSTEM_FLAGS.ROLE]: 'gm',
     }
   },
   name: "Resetar Flags",

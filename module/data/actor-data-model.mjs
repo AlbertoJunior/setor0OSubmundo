@@ -108,7 +108,7 @@ class PlayerDataModel extends BaseActorDataModel {
             informantes: new ArrayField(new StringField()),
             experiencia: new SchemaField({
                 usada: new NumberField({ required: false, integer: true, min: 0, initial: 0 }),
-                atual: new NumberField({ required: false, integer: true, min: 0, initial: 0 })
+                atual: new NumberField({ required: false, integer: true, min: 0, initial: 30 })
             }),
             atalhos: new ArrayField(new RollTestField()),
             bonus: new SchemaField({

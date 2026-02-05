@@ -21,47 +21,48 @@ Este é o sistema oficial de RPG **Setor 0**, totalmente integrado ao **Foundry 
 1. Baixe ou clone este repositório.
 2. Mova a pasta para o diretório `Data/systems` do seu Foundry VTT.
 3. A pasta deve ter o nome `setor0OSubmundo`, exatamente dessa forma.
-```
-setor0OSubmundo
-```
-4. Reinicie o Foundry e ative o sistema ao criar um novo mundo.
-> 🚧 Ainda será disponibilizado um manifesto para instalação direta via URL.
+    ```text
+    setor0OSubmundo
+    ```
+4. Se não aparecer, reinicie o Foundry.
+5. Crie um novo mundo com o sistema.
+
+  > 🚧 Ainda será disponibilizado um manifesto para instalação direta via URL.
 
 ### Compartilhando com seus jogadores
 Caso você não possua um servidor para hospedar o Foundry e compartilhar o link, você pode criar um `QuickTunnel` com o `CloudFlare`. Da seguinte maneira:
 
-1. Baixe e instale o [cloudFlarered](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/).
-2. Abra seu `Prompt de Comando`.
-3. Execute o código.
-```console
-cloudflared tunnel --url http://localhost:30000
-```
-4. Pegue o link que foi apresentado no console e compartilhe.
+1. Baixe e instale o [cloudflared](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/).
+2. Configure ele como variável de ambiente com o nome `cloudflared`.
+    1. Se for preciso, peça ajuda a alguma IA para fazer essa etapa.
+3. Abra seu `Prompt de Comando`.
+4. Execute o código.
+    ```console
+    cloudflared tunnel --url http://localhost:30000
+    ```
+5. Pegue o link que foi apresentado no console e compartilhe.
 
 ## Legenda de ícones
 <details>
 
-```
-🧩 Instalação
-🧬 Funcionalidades
-🎨 Interfaces de Usuário
-📜 Licença
-🤝 Contribuindo
-✅ Pronto
-⚠️ Aviso
-🛠️ Em desenvolvimento
-🚧 Planejado
-```
+    🧩 Instalação
+    🧬 Funcionalidades
+    🎨 Interfaces de Usuário
+    📜 Licença
+    🤝 Contribuindo
+    ✅ Pronto
+    ⚠️ Aviso
+    🛠️ Em desenvolvimento
+    🚧 Planejado
+
 </details>
 
 ## 🧬 Funcionalidades
 <details>
   <summary>Idiomas suportados</summary>
   
-  ```
-  ✅ Português
-  🚧 English
-  ```
+    ✅ Português
+    🚧 English
 </details>
 
 ### Personagens
@@ -121,8 +122,50 @@ cloudflared tunnel --url http://localhost:30000
 ### Tokens
 * 🚧 Ocultar efeitos ativos de Tokens inimigos (implementar a classe BasePlaceableHUD).
 
+### Compêndio
+* ✅ Carregar compêndio.
+* 🚧 Imagens.
+* 🚧 Compêndio base do sistema.
+* 🚧 Inimigos.
+* ✅ Armas (Armas Brancas e Armas de Projeção).
+  * ✅ Armas Brancas.
+  * ✅ Armas de Projeção.
+* ✅ Veículos.
+* ✅ Substâncias.
+
+<details>
+  <summary>Como exportar</summary>
+
+  É possível exportar o compêndio utilizando o seguinte comando:
+  ```js
+  setor0OSubmundo.MacroMethods.exportCompendium()
+  ```
+  
+  Após executar o código, será perguntando onde você deseja salvar o Zip que contém todos os elementos que estavam nos compêndios.
+</details>
+
+<details>
+  <summary>Como importar</summary>
+
+Por padrão o sistema sempre vai tentar buscar os compêndios que estão na pasta do sistema: `./packs/src/*`, o Zip que é gerado  já vem com a estrutura de pastas correta para ser extraido dentro de `src`.
+
+```text
+systems/
+└── setor0OSubmundo/
+    └── packs/
+        └── src/
+            ├── enhancements/
+            ├── inimigos/
+            ├── itens/
+            ├── macros/
+            └── traits/
+```
+
+</details>
+
+
 ### Macros
-O Setor 0 conta com um sistema de Macros pré-definidos para novos jogadores. Todo novo jogador recebe em sua Hotbar 3 macros iniciais, dois deles servem para abrir a ficha do Personagem em uma página específica, como a da mochila ou dos atalhos, o terceiro serve para realizar um teste de Sobrecarga, que é comum no sistema.
+O Setor 0 conta com um sistema de Macros pré-definidos para novos jogadores. Todo novo jogador recebe em sua Hotbar 3 macros iniciais, dois deles servem para abrir a ficha do Personagem em uma página específica, como a da `mochila` ou dos `atalhos`, o terceiro serve para realizar um teste de `Sobrecarga`, que é comum no sistema.
 
 * ✅ Macros iniciais pré-configurados para novos jogadores.
 * ✅ Compendium de Macros para Mestres e Jogadores.
