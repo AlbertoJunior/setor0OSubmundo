@@ -1,4 +1,4 @@
-import { getObject, localize, onArrayRemove, randomId, TODO } from "../../../../utils/utils.mjs";
+import { getObject, localize, gameLocalize, onArrayRemove, randomId } from "../../../../utils/utils.mjs";
 import { RollTestUtils } from "../../../../core/rolls/roll-test-utils.mjs";
 import { CreateRollableTestDialog } from "../../../../creators/dialog/create-roll-test-dialog.mjs";
 import { NotificationsUtils } from "../../../../creators/message/notifications.mjs";
@@ -11,6 +11,10 @@ import { npcRollHandle } from "../../actor/npc/methods/npc-roll-methods.mjs";
 import { handlerEquipmentMenuRollEvents } from "./equipment-menu-roll-methods.mjs";
 import { CreateFormDialog } from "../../../../creators/dialog/create-dialog.mjs";
 import { NpcUtils } from "../../../../core/npc/npc-utils.mjs";
+import { RollTestMessageCreator } from "../../../../creators/message/roll-test-message.mjs";
+import { ChatCreator } from "../../../../utils/chat-creator.mjs";
+import { AttributeRepository } from "../../../../repository/attribute-repository.mjs";
+import { AbilityRepository } from "../../../../repository/ability-repository.mjs";
 
 export const handlerEquipmentItemRollEvents = {
     [OnEventType.ADD]: async (item, event) => EquipmentSheetItemRollHandle.add(item, event),
@@ -179,7 +183,35 @@ class EquipmentSheetItemRollHandle {
     }
 
     static async chat(item, event) {
-        TODO('implementar');
+        const rollTest = this.#getItemRollTest(item, this.#getItemRollTestId(event));
+        if (!rollTest) {
+            return;
+        }
+
+        const actor = item.actor;
+        if (!actor) {
+            return;
+        }
+
+        const primaryAttr = AttributeRepository.getItems().find(a => a.id === rollTest.primary_attribute);
+        const secondaryAttr = AttributeRepository.getItems().find(a => a.id === rollTest.secondary_attribute);
+        const ability = AbilityRepository.getItem(rollTest.ability);
+
+        const data = {
+            name: rollTest.name,
+            itemName: item.name,
+            primaryAttributeLabel: primaryAttr ? localize(primaryAttr.label.replace('S0.', '')) : null,
+            secondaryAttributeLabel: secondaryAttr ? localize(secondaryAttr.label.replace('S0.', '')) : null,
+            abilityLabel: ability ? localize(ability.label.replace('S0.', '')) : null,
+            bonus: rollTest.bonus || 0,
+            automatic: rollTest.automatic || 0,
+            difficulty: rollTest.difficulty || 0,
+            specialistLabel: rollTest.specialist ? gameLocalize('Yes') : gameLocalize('No'),
+            critic: rollTest.critic || 0,
+        };
+
+        const messageContent = await RollTestMessageCreator.mountContent(data);
+        ChatCreator.sendToChat(actor, messageContent);
     }
 
     static async view(item, event) {

@@ -175,7 +175,7 @@ async function createDialog(data, options) {
                     handleOnClose = false;
                     method($(dialog.element), dialog);
                 } else {
-                    console.log(`User picked option: ${buttonAction.label}`);
+                    console.log(`-> User picked option: ${buttonAction.label}`);
                 }
 
                 if (!closeOnSubmit && (buttonAction.closeDialog === true || buttonAction.closeDialog == undefined)) {

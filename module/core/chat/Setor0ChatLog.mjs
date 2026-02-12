@@ -27,6 +27,13 @@ class Setor0ChatLog extends FoundryApi.ChatLog {
                     hooks++;
                 }
             }
+        },
+        'open-sheet': async (target, message) => {
+            const uuid = target.dataset.uuid;
+            if (uuid) {
+                const item = fromUuidSync(uuid);
+                item?.sheet?.render(true);
+            }
         }
     };
 

@@ -1,0 +1,84 @@
+<div class="S0-message-content">
+  <h4>{{ localize 'S0.Equipamento' }}: {{name}}</h4>
+  <hr>
+
+  {{#if img}}
+  <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 4px;">
+    <img src="{{img}}" style="width: 128px; height: 128px; object-fit: contain; border: none;" />
+  </div>
+  {{/if}}
+
+  <label style="display: block;"><strong>{{localize 'S0.Tipo'}}:</strong> {{typeLabel}}</label>
+
+  {{#if damageLabel}}
+  <label style="display: block;"><strong>{{localize 'S0.Dano'}}:</strong> {{damage}}</label>
+  <label style="display: block;"><strong>{{localize 'S0.Dano_Automatico'}}:</strong> {{trueDamage}}</label>
+  <label style="display: block;"><strong>{{localize 'S0.Tipo_Dano'}}:</strong> {{damageTypeLabel}}</label>
+  <label style="display: block;"><strong>{{localize 'S0.Maos'}}:</strong> {{handLabel}}</label>
+  <label style="display: block;"><strong>{{localize 'S0.Ocultabilidade'}}:</strong> {{occultabilityLabel}}</label>
+  {{/if}}
+
+  {{#if sizeLabel}}
+  <label style="display: block;"><strong>{{localize 'S0.Itens.Tamanho'}}:</strong> {{sizeLabel}}</label>
+  {{/if}}
+
+  {{#if isProjectile}}
+  <label style="display: block;"><strong>{{localize 'S0.Cadencia'}}:</strong> {{cadence}}</label>
+  <label style="display: block;"><strong>{{localize 'S0.Capacidade'}}:</strong> {{capacity}}</label>
+  <label style="display: block;"><strong>{{localize 'S0.Alcance'}}:</strong> {{range}}</label>
+  {{#if special}}
+  <label style="display: block;"><strong>{{localize 'S0.Especial'}}</strong></label>
+  {{/if}}
+  {{/if}}
+
+  {{#if isVehicle}}
+  <label style="display: block;"><strong>{{localize 'S0.Tipo'}}:</strong> {{vehicleTypeLabel}}</label>
+  <label style="display: block;"><strong>{{localize 'S0.Aceleracao'}}:</strong> {{acceleration}}</label>
+  <label style="display: block;"><strong>{{localize 'S0.Velocidade'}}:</strong> {{speed}}</label>
+  {{/if}}
+
+  {{#if isSubstance}}
+  <label style="display: block;"><strong>{{localize 'S0.Tipo'}}:</strong> {{substanceTypeLabel}}</label>
+  <label style="display: block;"><strong>{{localize 'S0.Quantidade'}}:</strong> {{quantity}}</label>
+  {{/if}}
+
+  {{#if resistance}}
+  <label style="display: block;"><strong>{{localize 'S0.Resistencia'}}:</strong> {{resistance}}</label>
+  {{/if}}
+
+  {{#if isSuperEquipment}}
+  <label style="display: block;"><strong>{{localize 'S0.SuperEquipamento'}}:</strong> {{localize 'S0.Nivel'}}
+    {{superEquipmentLevel}}</label>
+
+  {{#if hasSuperEffects}}
+  <label style="display: block; font-weight: bold;">{{localize 'S0.Itens.Efeitos'}}:</label>
+  <ul style="margin: 2px 0; padding-left: 16px;">
+    {{#each superEffects}}
+    <li>[{{this.cost}}] {{this.name}}{{#if this.particularity}} ({{this.particularity}}){{/if}}</li>
+    {{/each}}
+  </ul>
+  {{/if}}
+
+  {{#if hasSuperDefects}}
+  <label style="display: block; font-weight: bold;">{{localize 'S0.Itens.Defeitos'}}:</label>
+  <ul style="margin: 2px 0; padding-left: 16px;">
+    {{#each superDefects}}
+    <li>[{{this.cost}}] {{this.name}}{{#if this.particularity}} ({{this.particularity}}){{/if}}</li>
+    {{/each}}
+  </ul>
+  {{/if}}
+  {{/if}}
+
+  {{#if description}}
+  <label style="display: block; font-weight: bold;">{{localize 'S0.Descricao'}}:</label>
+  <div class="S0-message-simple-text">
+    {{{description}}}
+  </div>
+  {{/if}}
+
+  {{#if itemUuid}}
+  <button class="S0-roll-result" data-action="view" data-type="open-sheet" data-uuid="{{itemUuid}}">
+    <i class="fas fa-file-lines"></i> {{localize 'S0.Ficha'}}
+  </button>
+  {{/if}}
+</div>

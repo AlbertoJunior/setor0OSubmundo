@@ -50,7 +50,6 @@
         "Valores": "Valores",
         "Clonar": "Clonar",
         "Copia": "Copia",
-
         "Realizar_Teste": "Realizar Teste",
         "Rolagens_Player": "Modo de Rolagem",
         "Rolagem": "Rolagem",
@@ -61,12 +60,10 @@
         "Rolagem_GM_Oculta": "Apenas para o Mestre",
         "Rolagens_GM": "Rolagens do Mestre",
         "Rolagem_Pessoal": "Apenas para mim",
-
         "Id": "Identificador",
         "Nome": "Nome",
         "Caracteristica": "Característica",
         "Caracteristicas": "Características",
-       
         "Personagem": "Personagem",
         "Bairro": "Bairro",
         "Morfologia": "Morfologia",
@@ -74,7 +71,6 @@
         "Ciborgue": "Ciborgue",
         "Sintetico": "Sintético",
         "Humano": "Humano",
-        
         "Atributos": "Atributos",
         "Forca": "Força",
         "Destreza": "Destreza",
@@ -82,7 +78,6 @@
         "Percepcao": "Percepção",
         "Carisma": "Carisma",
         "Inteligencia": "Inteligência",
-       
         "Habilidade": "Habilidade",
         "Habilidades": "Habilidades",
         "Armas_Brancas": "Armas Brancas",
@@ -100,7 +95,6 @@
         "Pilotagem": "Pilotagem",
         "Quimica": "Química",
         "Especialista": "Especialista",
-        
         "Repertorio": "Repertório",
         "Aliado": "Aliado",
         "Aliados": "Aliados",
@@ -110,7 +104,6 @@
         "Recursos": "Recursos",
         "SuperEquipamento": "SuperEquipamento",
         "SuperEquipamentos": "SuperEquipamentos",
-
         "Virtudes": "Virtudes",
         "Consciencia": "Consciência",
         "Perseveranca": "Perseverança",
@@ -124,20 +117,18 @@
         "Remover_Efeito": "Remover Efeito",
         "Remover_Todos_Efeitos": "Remover todos os Efeitos",
         "Ver_Efeito": "Ver Efeito",
-        
         "Status": "Status",
         "Vida": "Vida",
         "Vitalidade": "Vitalidade",
         "Experiencia": "Experiência",
-
         "Traco": "Traço",
         "Tracos": "Traços",
-        
         "Mochila": "Mochila",
         "Equipados": "Equipados",
         "Equipado": "Equipado",
         "Equipamentos": "Equipamentos",
         "Equipamento": "Equipamento",
+        "Ficha": "Ficha",
         "Protecao": "Proteção",
         "Veiculos": "Veiculos",
         "Substancia": "Substância",
@@ -151,20 +142,21 @@
         "Arma": "Arma",
         "Especial": "Especial",
         "Efeitos": "Efeitos",
+        "Efeito": "Efeito",
         "Quantidade": "Quantidade",
         "Cadencia": "Cadência",
         "Capacidade": "Capacidade",
         "Alcance": "Alcance",
-        
         "Outro": "Outro",
         "Outros": "Outros",
         "Fama": "Fama",
         "Biografia": "Biografia",
         "Linguas": "Línguas",
-        
         "Custo": "Custo",
         "Valor": "Valor",
         "Descricao": "Descrição",
+        "Origem": "Origem",
+        "Mudancas": "Mudanças",
         "Tipo": "Tipo",
         "Requisito": "Requisito",
         "Particularidade": "Particularidade",
@@ -194,9 +186,13 @@
         "Movimento": "Movimento",
         "Iniciativa": "Iniciativa",
         "Penalidade": "Penalidade",
+        "Penalidade_Dano": "Penalidade de Dano",
+        "Penalidade_Dano_Fixa": "Penalidade de Dano Fixa",
+        "Ofensivo_Corpo_A_Corpo": "Ofensivo Corpo a Corpo",
+        "Ofensivo_Longo_Alcance": "Ofensivo Longo Alcance",
+        "Defensivo_Multiplo": "Fator Defensivo",
         "Informacoes": "Informações",
         "Item": "Item",
-
         "Habilitar_Desabilitar_Tema_Escuro": "Habilitar/Desabilitar tema escuro",
         "Modo_Escuro": "Modo Escuro",
         "Habilitar_Desabilitar_Modo_Compacto": "Habilitar/Desabilitar modo compacto",
@@ -211,7 +207,6 @@
         "Filtrar_Por_Nome": "Filtrar por nome...",
         "Selecionar_Item": "Selecionar Item",
         "Nao_Possui": "Não Possui",
-
         "Expandir_Contrair": "Expandir/Contrair",
         "Contrair_Expandir": "Contrair/Expandir",
         "Consciencia_Utilizada": "Consciência utilizada",
@@ -231,16 +226,13 @@
         "Dano_Automatico": "Dano Automático",
         "Tipo_Dano": "Tipo de Dano",
         "Efeito_Utilizado": "Efeito Utilizado",
-        
         "Padrao": "Padrão",
         "Customizado": "Customizado",
         "Teste_Padrao": "Teste Padrão",
         "Atualizar_Efeitos": "Atualizar Efeitos",
         "Efeitos_Ativos": "Efeitos Ativos",
-        
         "Clique_Esquerdo": "Clique esquerdo",
         "Clique_Direito": "Clique direito",
-        
         "Testes_Possiveis": "Testes Possíveis",
         "Teste_Nao_Realizado": "O Teste não foi realizado por falta de Dados",
         "Atributo_Primario": "Atributo Primário",
@@ -251,58 +243,47 @@
         "Usar_Consciencia": "Usar Consciência",
         "Usar_Perseveranca": "Usar Perseverança",
         "Usar_Quietude": "Usar Quietude",
-        
         "Vitalidade_Atual": "Vitalidade atual",
         "Vitalidade_Total": "Vitalidade total",
         "Protecao_Atual": "Proteção atual",
         "Protecao_Total": "Proteção total",
         "Pontos_De_Movimento_Atuais": "Pontos de Movimento atuais",
         "PM": "PM",
-        
         "Criar_Macro": "Criar Macro",
         "Nenhum_variavel_Cadastrado": "Nenhum {tipo} cadastrado, arraste e solte um Personagem em cima dessa caixa.",
         "Teste_Customizado": "Teste Customizado",
         "Voce_Usou_Nome": "Você usou {nome}",
-
         "NPC": {
             "Ver_Ficha": "Ver Ficha",
-
             "Principais_Habilidades": "Principais Habilidades",
             "Horrivel": "Horrível",
             "Ruim": "Ruim",
             "Bom": "Bom",
             "Normal": "Normal",
             "Excepcional": "Excepcional",
-            
             "Primaria": "Primária",
             "Secundaria": "Secundária",
             "Terciaria": "Terciária",
             "Quaternaria": "Quaternária"
         },
-
         "Itens": {
             "Alcance": "Curto Alcance",
             "Alcance_Maximo": "Alcance Máximo",
-
             "Bolso": "Bolso",
             "Jaqueta": "Jaqueta",
             "Inocultavel": "Inocultável",
-            
             "Uma_Mao": "Uma Mão",
             "Uma_Mao_Meia": "Uma Mão e Meia",
             "Duas_Maos": "Duas Mãos",
-
             "Superficial": "Superficial",
             "Letal": "Letal",
             "Fogo": "Incendiário",
             "Eletrico": "Elétrico",
             "Gelo": "Gélido",
-
             "Tamanho": "Tamanho",
             "Curta": "Curta",
             "Media": "Média",
             "Grande": "Grande",
-
             "Lata": "Lata",
             "Popular": "Popular",
             "Utilitario": "Utilitário",
@@ -310,11 +291,8 @@
             "Super_Esportivo": "Super Esportivo",
             "Bruto": "Bruto",
             "Exotico": "Exótico",
-
-            "Adicionar_Efeito" : "Adicionar_Efeito",
-            "Efeitos": "Efeitos",
+            "Adicionar_Efeito": "Adicionar_Efeito",
             "Defeitos": "Defeitos",
-
             "Tipo_Substancia": "Tipo de Substância",
             "Droga": "Droga",
             "Veneno": "Veneno",
@@ -322,27 +300,22 @@
             "Gas": "Gás",
             "Melhoria": "Melhoria",
             "Enfraquecimento": "Enfraquecimento",
-
             "Pergunta": {
                 "Usar_Item": "Usar o Item?",
                 "Excluir_SuperEquipamento": "Excluir SuperEquipamento?",
                 "Excluir_SuperEquipamento_Completo": "Essa ação irá excluir todas as informações do SuperEquipamento, tem certeza que deseja continuar?"
             },
-
             "Mensagens": {
-                "Nao_Pode_Efeitos_Iguais" : "Não pode ter dois efeitos iguais",
-                "Aviso_Remocao_Itens_Mochila" : "Essa ação irá remover todos os itens da mochila",
-                "Aviso_Desequipar_Itens" : "Essa ação irá desequipar todos os itens equipados"
+                "Nao_Pode_Efeitos_Iguais": "Não pode ter dois efeitos iguais",
+                "Aviso_Remocao_Itens_Mochila": "Essa ação irá remover todos os itens da mochila",
+                "Aviso_Desequipar_Itens": "Essa ação irá desequipar todos os itens equipados"
             }
-
         },
-
         "Pergunta": {
             "Realizar_Acao": "Tem certeza que deseja realizar essa ação?",
             "Ocultar": "Ocultar?",
             "Ocultar_Acao": "Deseja ocultar esta ação?"
         },
-
         "Aviso": {
             "Teste": {
                 "Erro_Carregar": "Erro ao carregar o teste.",
@@ -357,7 +330,6 @@
                 "Traco_Invalido": "Traço inválido ou não encontrado."
             }
         },
-
         "Aprimoramento": {
             "Nome": "Aprimoramento",
             "Nome_Plural": "Aprimoramentos",
@@ -367,7 +339,6 @@
                 "Ja_Possui_Efeito": "O Personagem já possui esse Efeito: <u>{efeito}</u>"
             }
         },
-
         "Efeito_Ativo": {
             "Viciado": "Viciado",
             "Mesmerizado": "Mesmerizado",
@@ -377,7 +348,6 @@
             "Destrocado2": "Destroçado 2",
             "Destrocado3": "Destroçado 3"
         },
-
         "Placeholder": {
             "Atalho_Nome": "Ataque preciso"
         }
@@ -398,7 +368,6 @@
             "Trait": "Traço"
         }
     },
-
     "DOCUMENT": {
         "ChatMessages": "Mensagens",
         "Combats": "Combates",

@@ -1,8 +1,8 @@
-import { TODO } from "../../../../../utils/utils.mjs";
 import { ActorEquipmentUtils } from "../../../../../core/actor/actor-equipment-utils.mjs";
 import { ActiveEffectsUtils } from "../../../../../core/effect/active-effects-utils.mjs";
 import { OnEventType } from "../../../../../enums/on-event-type.mjs";
 import { HtmlJsUtils } from "../../../../../utils/html-js-utils.mjs";
+import { EffectDialog } from "../../../../../creators/dialog/effect-dialog.mjs";
 
 export const effectsHandleEvents = {
     [OnEventType.CHECK]: async (actor, event) => EffectsHandleEvents.handleCheck(actor, event),
@@ -23,7 +23,7 @@ class EffectsHandleEvents {
             console.warn(`[${type}] não existe para [check]`);
             return
         }
-        
+
         await method()
     }
 
@@ -59,6 +59,10 @@ class EffectsHandleEvents {
     }
 
     static async handleView(actor, event) {
-        TODO('implementar');
+        const itemId = event.currentTarget.dataset.itemId;
+        const effect = actor.effects.get(itemId);
+        if (effect) {
+            EffectDialog.open(effect, actor);
+        }
     }
 }

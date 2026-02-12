@@ -1,6 +1,7 @@
 import { FoundryApi } from "../../api/foundry-api.mjs";
 import { SYSTEM_FLAGS, SYSTEM_ID } from "../../constants.mjs";
 import { FlagsUtils } from "../../utils/flags-utils.mjs";
+import { logTable } from "../../utils/utils.mjs";
 
 export class CompendiumSync {
   static async clear() {
@@ -31,35 +32,31 @@ export class CompendiumSync {
     let totalFolders = 0;
     let totalDocs = 0;
 
-    // ===== Compêndios =====
+    // ===== Compendium =====
     for (const pack of game.packs) {
       try {
-        // Destrava se necessário
         const wasLocked = pack.locked;
         if (wasLocked) await pack.configure({ locked: false });
 
-        // Pastas do compêndio
         if (pack.folders) {
           totalFolders += await deleteFolders(pack.folders.contents);
         }
 
-        // Documentos do compêndio
         const docs = await pack.getDocuments();
         totalDocs += await deleteDocuments(docs);
 
-        // Reaplica lock
         if (wasLocked) await pack.configure({ locked: true });
       } catch (err) {
         console.error(`Erro no compêndio ${pack.collection}`, err);
-        ui.notifications.warn(`Erro ao limpar ${pack.collection}`);
       }
     }
 
-    // ===== Mundo =====
+    // ===== World =====
     totalFolders += await deleteFolders(game.folders.contents);
+    totalDocs += await deleteDocuments(game.items);
 
-    ui.notifications.info(`Pastas apagadas: ${totalFolders}`);
-    ui.notifications.info(`Objetos apagados: ${totalDocs}`);
+    console.log(`-> Pastas apagadas: ${totalFolders}
+      \n-> Objetos apagados: ${totalDocs}`);
   }
 
   static async syncDefaultCompendiums() {
@@ -68,23 +65,45 @@ export class CompendiumSync {
     const browseResult = await FoundryApi.Apps.FilePicker.browse("data", packsBase);
     const toDeleteTemp = [];
 
+    const syncResult = [];
+
     for (const packFolderPath of browseResult.dirs) {
       const packName = packFolderPath.split("/").pop();
       const packId = `${SYSTEM_ID}.${packName}`;
       const pack = game.packs.get(packId);
 
       if (!pack) {
-        console.warn(`Compêndio não encontrado [${packName}]`);
+        syncResult.push({
+          Pack: packName,
+          Status: "Compêndio não encontrado",
+          Expected: "-",
+          Created: "-",
+          Filtered: "-",
+        });
         continue
       }
 
       const jsonFile = await this.#getJson(packFolderPath);
       if (!jsonFile) {
+        syncResult.push({
+          Pack: packName,
+          Status: "Json não encontrado",
+          Expected: "-",
+          Created: "-",
+          Filtered: "-",
+        });
         continue
       }
 
       const data = await this.#loadJson(jsonFile);
       if (!data.elements.length) {
+        syncResult.push({
+          Pack: packName,
+          Status: "Sucesso",
+          Expected: 0,
+          Created: 0,
+          Filtered: 0,
+        });
         continue
       }
 
@@ -96,31 +115,26 @@ export class CompendiumSync {
       const foldersId = await this.#verifyAndCreateFolders(pack, data.folders);
 
       const filteredData = this.#filterCompendiumItems(pack, data);
-      for (const itemData of filteredData) {
-        try {
-          const parentFolder = itemData.folder;
-          if (parentFolder) {
-            const parentFolderNewId = foldersId.get(parentFolder);
-            itemData.folder = parentFolderNewId;
-          }
-          const tempDocument = await pack.documentClass.create(itemData);
-          await pack.importDocument(tempDocument);
-          toDeleteTemp.push(tempDocument)
-        } catch (e) {
-          console.error(`Erro ao importar ${itemData.name} para ${packId}:`, e);
-        }
-      }
+      const createds = await this.#importItemOnCompendium(pack, foldersId, filteredData);
+      toDeleteTemp.push(...createds);
 
       if (wasLocked) {
         await pack.configure({ locked: true });
       }
 
-      console.log(`✅ Pack ${packName} sincronizado: ${data.length} itens importados`);
+      const syncResultText = createds.length == filteredData.length ? "Sucesso" : "Valores divergentes";
+      syncResult.push({
+        Pack: packName,
+        Status: syncResultText,
+        Expected: data.elements.length,
+        Created: createds.length,
+        Filtered: filteredData.length,
+      })
     }
 
     await FoundryApi.deleteFoldersInWorld(toDeleteTemp);
 
-    console.log("🎉 Todos os compêndios da pasta packs/src foram sincronizados!");
+    logTable("Todos os compêndios da pasta packs/src foram sincronizados!", syncResult);
   }
 
   static async #getJson(folderPath) {
@@ -168,5 +182,25 @@ export class CompendiumSync {
     const inPackItems = pack.contents.map(item => FlagsUtils.getSystemFlag(item, SYSTEM_FLAGS.SOURCE_ID)).filter(i => Boolean(i));
     const filteredData = data.elements.filter(item => !inPackItems.includes(FlagsUtils.getSystemFlag(item, SYSTEM_FLAGS.SOURCE_ID)));
     return filteredData;
+  }
+
+  static async #importItemOnCompendium(pack, foldersId, filteredData) {
+    const created = []
+    for (const itemData of filteredData) {
+      try {
+        const parentFolder = itemData.folder;
+        if (parentFolder) {
+          const parentFolderNewId = foldersId.get(parentFolder);
+          itemData.folder = parentFolderNewId;
+        }
+        const tempDocument = await pack.documentClass.create(itemData);
+        await pack.importDocument(tempDocument);
+        created.push(tempDocument)
+      } catch (e) {
+        console.error(`Erro ao importar ${itemData.name} para ${pack.title}:`, e);
+      }
+    }
+
+    return created;
   }
 }

@@ -20,3 +20,4 @@ packs/*
 
 # only for test local scripts
 scripts/test-scripts
+/.agent/docs/

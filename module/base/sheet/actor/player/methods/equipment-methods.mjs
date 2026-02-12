@@ -1,12 +1,15 @@
-import { getObject, localize, TODO } from "../../../../../utils/utils.mjs";
+import { getObject, localize } from "../../../../../utils/utils.mjs";
 import { ActorEquipmentUtils } from "../../../../../core/actor/actor-equipment-utils.mjs";
 import { ActiveEffectsUtils } from "../../../../../core/effect/active-effects-utils.mjs";
 import { EquipmentUtils } from "../../../../../core/equipment/equipment-utils.mjs";
+import { EquipamentDataParser } from "../../../../../core/equipment/equipament-data-parser.mjs";
 import { AddEquipmentDialog } from "../../../../../creators/dialog/add-equipment-dialog.mjs";
 import { ConfirmationDialog } from "../../../../../creators/dialog/confirmation-dialog.mjs";
 import { UpdateEquipmentQuantityDialog } from "../../../../../creators/dialog/update-equipment-quantity-dialog.mjs";
 import { NotificationsUtils } from "../../../../../creators/message/notifications.mjs";
-import { EquipmentCharacteristicType, EquipmentType } from "../../../../../enums/equipment-enums.mjs";
+import { EquipmentMessageCreator } from "../../../../../creators/message/equipment-message.mjs";
+import { ChatCreator } from "../../../../../utils/chat-creator.mjs";
+import { EquipmentCharacteristicType } from "../../../../../enums/equipment-enums.mjs";
 import { OnEventType } from "../../../../../enums/on-event-type.mjs";
 import { EquipmentRepository } from "../../../../../repository/equipment-repository.mjs";
 import { ActorUpdater } from "../../../../updater/actor-updater.mjs";
@@ -240,7 +243,15 @@ class EquipmentHandleEvents {
     }
 
     static async handleChat(actor, event) {
-        TODO('implementar');
+        const equipmentId = event.currentTarget.dataset.itemId;
+        const item = ActorEquipmentUtils.getEquipmentById(actor, equipmentId);
+        if (!item) {
+            return;
+        }
+
+        const equipmentData = EquipamentDataParser.parse(item);
+        const messageContent = await EquipmentMessageCreator.mountContent(equipmentData);
+        ChatCreator.sendToChat(actor, messageContent);
     }
 
     static async handleRoll(actor, event) {
