@@ -58,13 +58,13 @@ export class FoundryApi {
   static Tabs = convertToClass(CurrentVersion.Ux.Tabs);
 
   //#region UPDATED 
-  // static ActorSheet = CurrentVersion.makeClass(this.Sheets.ActorSheet);
-  // static ItemSheet = CurrentVersion.makeClass(this.Sheets.ItemSheet);
+  static ActorSheet = CurrentVersion.makeClass(this.Sheets.ActorSheet);
+  static ItemSheet = CurrentVersion.makeClass(this.Sheets.ItemSheet);
   //#endregion
 
   //#region NEED UPDATE to V2
-  static ActorSheet = ApplicationV1.makeClass(ApplicationV1.Sheets.ActorSheet);
-  static ItemSheet = ApplicationV1.makeClass(ApplicationV1.Sheets.ItemSheet);
+  // static ActorSheet = ApplicationV1.makeClass(ApplicationV1.Sheets.ActorSheet);
+  // static ItemSheet = ApplicationV1.makeClass(ApplicationV1.Sheets.ItemSheet);
   //#endregion
 
   static Actors = convertToClass(this.Collections.Actors);
@@ -90,17 +90,37 @@ export class FoundryApi {
   }
 
   static async reRenderAllSheets() {
-    const isSetor0SheeetV1 = (app) =>
-      (app instanceof this.ActorSheet || app instanceof this.ItemSheet)
-      && app?.element?.hasClass(SYSTEM_CLASS_CSS)
+    // V1: app.element is a jQuery object, use [0] to get native DOM element
+    const isSetor0SheetV1 = (app) =>
+      app?.element?.[0]?.classList?.contains(SYSTEM_CLASS_CSS)
       && app?.rendered && typeof app.render === 'function';
 
+    // V2: check options.classes for system class
     const isSetor0SheetV2 = (app) =>
-      app?.classes?.includes(SYSTEM_CLASS_CSS)
-      && typeof app.document?.render === 'function';
+      app?.options?.classes?.includes(SYSTEM_CLASS_CSS)
+      && app?.rendered && typeof app.render === 'function';
 
-    Object.values(foundry.ui.windows).filter(isSetor0SheeetV1).forEach(app => app.render());
-    Object.values(foundry.ui.activeWindow).filter(isSetor0SheetV2).forEach(app => app.document.render());
+    const safeRender = (app) => {
+      try {
+        app.render();
+      } catch (err) {
+        console.warn(`[reRenderAllSheets] Falha ao re-renderizar: ${err.message}`);
+      }
+    };
+
+    // V1 windows
+    if (foundry.ui?.windows) {
+      Object.values(foundry.ui.windows).filter(isSetor0SheetV1).forEach(safeRender);
+    }
+
+    // V2 application instances
+    if (foundry.applications?.instances) {
+      for (const app of foundry.applications.instances.values()) {
+        if (isSetor0SheetV2(app)) {
+          safeRender(app);
+        }
+      }
+    }
   }
 
   static async loadTemplates(path, data) {

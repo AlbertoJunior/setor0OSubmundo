@@ -14,11 +14,8 @@
     overflow: visible;
 }
 
-.S0-V2.S0-content.S0-sheet-item .window-content form {
-    overflow-y: scroll;
-    margin-left: 12px;
-    margin-right: 2px;
-    max-height: 80vh;
+.S0-V2 .S0-menu-float {
+    z-index: 100;
 }
 
 .S0-V2 .S0-actor-sheet {
@@ -76,6 +73,16 @@
     background-color: var(--color-red-alpha);
     border-color: var(--color-red-alpha);
     box-shadow: 0 0 6px var(--color-red-alpha);
+}
+
+.S0-V2.S0-content input[type="checkbox"]:disabled {
+    background-color: var(--alternate-black-color);
+    border-color: var(--primary-color-alpha);
+}
+
+.S0-V2.S0-content input[type="checkbox"]:disabled:checked {
+    background-color: var(--primary-color-alpha);
+    border-color: var(--primary-color-alpha);
 }
 
 .S0-V2 .form-group {

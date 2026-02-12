@@ -82,6 +82,7 @@ function makeClass(BaseClass) {
                 const updatedContext = {
                     ...context,
                     ...this.getData(),
+                    owner: this.document.isOwner,
                     [documentName]: context.document
                 };
 
@@ -113,13 +114,12 @@ function makeClass(BaseClass) {
                 const isDisabled = this.isDisabled;
                 if (isDisabled) {
                     Object.values(result)
-                        .flatMap(part =>
-                            part !== null && typeof part === 'object'
-                                ? Object.values(part)
-                                : [part]
-                        )
-                        .filter(el => el instanceof Element)
-                        .forEach(el => el.disabled = true);
+                        .filter(el => el instanceof HTMLElement)
+                        .forEach(el => {
+                            el.querySelectorAll('input, select, textarea, button').forEach(input => {
+                                input.disabled = true;
+                            });
+                        });
                 }
             }
 
@@ -206,7 +206,7 @@ async function createDialog(data, options) {
 
     dialog.addEventListener('close', () => {
         if (handleOnClose && typeof onClose === 'function') {
-            setTimeout(onClose(), 100);
+            setTimeout(() => onClose(), 100);
         }
     });
     return await dialog.render(true);

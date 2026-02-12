@@ -24,7 +24,7 @@ export function Setor0BaseSheet(BaseClass) {
 
         //#region CAN BE OVERRIDED
         get isDisabled() {
-            return this.isEditable;
+            return !this.isEditable;
         }
 
         async updateDocument(document, keyToUpdate, value) {
@@ -98,7 +98,7 @@ export function Setor0BaseSheet(BaseClass) {
             event.preventDefault();
             const mapEvents = this.getMapEvents();
             const dataset = event.currentTarget.dataset;
-            
+
             const handleActionInGroup = Boolean(dataset.actionGroup?.trim());
             if (handleActionInGroup) {
                 const methodGroup = mapEvents['group']?.[action];

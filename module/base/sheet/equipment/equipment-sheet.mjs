@@ -150,10 +150,12 @@ class EquipmentSheet extends FoundryApi.ItemSheet {
         }
 
         requestAnimationFrame(() => {
-            const content = html.parent().parent()[0];
+            const appElement = html.closest(`.${SYSTEM_CLASS_CSS}`)[0];
+            const content = appElement?.querySelector('.window-content') || appElement;
+            if (!content) return;
+
             if (!this.defaultHeight) {
-                const windowElem = content.closest(`.${SYSTEM_CLASS_CSS}`);
-                this.defaultHeight = windowElem?.offsetHeight;
+                this.defaultHeight = appElement?.offsetHeight;
             }
 
             if (this.isExpandedTests) {

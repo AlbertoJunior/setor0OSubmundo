@@ -17,8 +17,12 @@ export class HtmlJsUtils {
         const inDarkMode = FlagsUtils.getItemFlag(game.user, SystemFlags.MODE.DARK, false);
         const isCompactMode = FlagsUtils.getItemFlag(game.user, SystemFlags.MODE.COMPACT, false);
 
-        const parent = html.parent()[0];
-        const header = parent.parentElement;
+        // V1: html is form inside .window-content; V2: html is the app element itself
+        const appElement = html.closest(`.${SYSTEM_CLASS_CSS}`)[0];
+        if (!appElement) return;
+
+        const header = appElement.querySelector('.window-header');
+        if (!header) return;
 
         if (inDarkMode) {
             header.style.color = 'var(--primary-color)';
@@ -26,7 +30,7 @@ export class HtmlJsUtils {
             header.style.color = '';
         }
 
-        const headerChildren = header.children?.[0]?.querySelectorAll('a') || [];
+        const headerChildren = header.querySelectorAll('a') || [];
         if (isCompactMode) {
             for (const child of headerChildren) {
                 const saveChild = child.firstElementChild;
