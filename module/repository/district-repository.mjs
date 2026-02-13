@@ -19,7 +19,7 @@ export class DistrictRepository {
     static async _loadFromPack() {
         const compendium = await game.packs.get(`${SYSTEM_ID}.districts`)?.getDocuments();
         if (compendium) {
-            EnhancementRepository.#loadedFromPack = compendium.map((item) => {
+            DistrictRepository.#loadedFromPack = compendium.map((item) => {
                 return {
                     id: item._id,
                     label: item.name,

@@ -16,7 +16,7 @@ export class MorphologyRepository {
     static async _loadFromPack() {
         const compendium = await game.packs.get(`${SYSTEM_ID}.morphologies`)?.getDocuments();
         if (compendium) {
-            EnhancementRepository.#loadedFromPack = compendium.map((item) => {
+            MorphologyRepository.#loadedFromPack = compendium.map((item) => {
                 return {
                     id: item._id,
                     label: item.name,

@@ -15,7 +15,7 @@ export class DefaultActions {
         const resultRoll = await RollInitiative.roll(actor);
         const contentMessage = await RollInitiativeMessageCreator.mountContent(resultRoll);
 
-        if (combatantInformations.hidden === true) {
+        if (combatantInformations?.hidden === true) {
             await ChatCreator.sendToChatTypeRoll(actor, contentMessage, [], ChatCreator.MODE_PRIVATE_TO_GM);
         } else {
             await ChatCreator.sendToChatTypeRoll(actor, contentMessage, [resultRoll.roll], ChatCreator.MODE_PUBLIC);
