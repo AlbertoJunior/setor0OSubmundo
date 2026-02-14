@@ -173,7 +173,7 @@ export class TraitRepository {
             id: '25',
             name: 'Insuplantável',
             xp: 9,
-            description: 'Sua postura defensiva é extremamente eficiente e impossibilita que seus inimigos se aproveitem de seus flancos. Você está sempre atento aos ataques vindos de todos os lados.'
+            description: 'Sua postura defensiva é extremamente eficiente e impossibilita que seus inimigos se aproveitem de seus flancos.Quando em combate, você está sempre atento aos ataques vindos de todos os lados.'
         },
         {
             id: '26',
@@ -193,7 +193,12 @@ export class TraitRepository {
             xp: 12,
             description: 'Para a sua estatura, você possui muito mais músculos e/ou gordura que a maioria dos outros seres. Essa quantia anormal de massa lhe deixa extremamente evidente em locais públicos, porém lhe confere dois níveis a mais de Vitalidade e também +2 dados em testes de Força para carregar, empurrar, puxar e segurar coisas ou seres.',
             effects: [
-                { key: BaseActorCharacteristicType.VITALITY.TOTAL, value: 2, typeOfValue: EffectChangeValueType.FIXED },
+                {
+                    key: BaseActorCharacteristicType.VITALITY.TOTAL.system,
+                    value: 2,
+                    mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+                    typeOfValue: EffectChangeValueType.FIXED
+                },
             ]
         },
         {
@@ -259,7 +264,15 @@ export class TraitRepository {
             name: 'Corpo frágil',
             xp: 4,
             morph: 'Sintético',
-            description: 'Durante sua incubação, sua resistência natural foi removida ou esquecida de ser colocada, talvez para economizar recursos ou simplesmente porque achavam que você não precisaria. Ao contrário da maioria dos outros Sintéticos, você sente mais dor quando é ferido, o que significa que não possui o bônus de ignorar 1 da <i>Penalidade por Dano</i>.'
+            description: 'Durante sua incubação, sua resistência natural foi removida ou esquecida de ser colocada, talvez para economizar recursos ou simplesmente porque achavam que você não precisaria. Ao contrário da maioria dos outros Sintéticos, você sente mais dor quando é ferido, o que significa que não possui o bônus de ignorar 1 da <i>Penalidade por Dano</i>.',
+            effects: [
+                {
+                    key: CharacteristicType.BONUS.DAMAGE_PENALTY.system,
+                    value: 1,
+                    mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+                    typeOfValue: EffectChangeValueType.FIXED
+                },
+            ]
         },
         {
             id: '38',
@@ -466,7 +479,12 @@ export class TraitRepository {
             xp: 6,
             description: 'Todo o seu circuito de alerta sensorial, orgânico ou não, é bastante sensível e reage aos menores estímulos, lhe causando dores desproporcionais à causa.<br>Você sofre a penalidade de -1 em seu Vigor para o cálculo de <i>Penalidade por Dano</i>. Caso o personagem adquira o efeito <i>Proeza da Dor</i> (Rigidez), este traço deve ser removido e a XP que ele concede devolvida.',
             effects: [
-                { key: CharacteristicType.DAMAGE_PENALTY, value: 1, typeOfValue: EffectChangeValueType.FIXED },
+                {
+                    key: CharacteristicType.BONUS.DAMAGE_PENALTY.system,
+                    value: 1,
+                    mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+                    typeOfValue: EffectChangeValueType.FIXED
+                },
             ]
         },
         {
@@ -531,8 +549,13 @@ export class TraitRepository {
             xp: 8,
             description: 'As melhorias que você tanto buscou para o seu corpo se mostraram um pesadelo e sofrimento. Talvez as peças que tenha utilizado não eram as melhores ou a combinação de sistemas distintos não funcionou bem, pode ser até que tenham implantado de forma errada; infelizmente, nada disso importa agora, pois as únicas coisas que você consegue pensar são nos efeitos colaterais que seus Aprimoramentos lhe causam.<br>Um MedTec habilidoso pode ser capaz de fazer algo para ajudar, se tiver uma oportunidade de te operar com tempo suficiente para trabalhar com calma e precisão. Se alguém puder consertá-los, você poderá anular este traço e devolver a XP recebida.<br>Seu núcleo não suporta os Aprimoramentos conectados a ele, esquentando facilmente e lhe deixando inconsciente com frequência. Diminua em 1 a quantia máxima de <i>Sobrecarga</i> suportada, totalizando 4.',
             effects: [
-                { key: CharacteristicType.OVERLOAD, value: -1, typeOfValue: EffectChangeValueType.FIXED },
-            ]
+                {
+                    key: CharacteristicType.OVERLOAD.system,
+                    value: -11,
+                    mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+                    typeOfValue: EffectChangeValueType.FIXED
+                },
+            ],
         }
     ];
 

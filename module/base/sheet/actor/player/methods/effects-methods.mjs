@@ -3,6 +3,7 @@ import { ActiveEffectsUtils } from "../../../../../core/effect/active-effects-ut
 import { OnEventType } from "../../../../../enums/on-event-type.mjs";
 import { HtmlJsUtils } from "../../../../../utils/html-js-utils.mjs";
 import { EffectDialog } from "../../../../../creators/dialog/effect-dialog.mjs";
+import { TODO } from "../../../../../utils/utils.mjs";
 
 export const effectsHandleEvents = {
     [OnEventType.CHECK]: async (actor, event) => EffectsHandleEvents.handleCheck(actor, event),
@@ -53,6 +54,7 @@ class EffectsHandleEvents {
             const effect = actor.effects.get(itemId);
             await ActiveEffectsUtils.removeActorEffect(actor, ActiveEffectsUtils.getOriginId(effect));
         } else if (removeType == 'all') {
+            TODO("não pode remover effects que tem a flag CAN_REMOVE = FALSE")
             const effects = actor.effects.map(effect => ActiveEffectsUtils.getOriginId(effect));
             await ActiveEffectsUtils.removeActorEffects(actor, effects);
         }

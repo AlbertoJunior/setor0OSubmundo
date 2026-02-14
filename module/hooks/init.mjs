@@ -1,4 +1,3 @@
-import { DOMUtils } from "../utils/dom-listeners.mjs";
 import { createDataModels } from "../utils/models.mjs";
 import { configureSetor0Combat } from "../base/sheet/combat/Setor0Combat.mjs";
 import { configureSetor0Combatant } from "../base/sheet/combat/Setor0Combatant.mjs";
@@ -19,8 +18,6 @@ export class InitHookHandle {
         console.log('-> Setor 0 - O Submundo | Inicializando sistema');
 
         this.#presetGlobalSystemConfigs();
-
-        DOMUtils.addListenersOnDOM();
 
         await createDataModels();
 

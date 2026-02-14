@@ -333,10 +333,12 @@
                     data-item-id="{{item._id}}" title="{{localize 'S0.Ver_Efeito'}}">
                     <i class="fas fa-eye"></i>
                 </a>
+                {{#if (itemValues item 'effect_can_remove')}}
                 <a class="S0-icon-expand S0-centralized-icon" data-action="remove" data-characteristic="effects"
                     data-type="single" data-item-id="{{item._id}}" title="{{localize 'S0.Remover_Efeito'}}">
                     <i class="fas fa-remove"></i>
                 </a>
+                {{/if}}
             </li>
             {{/each}}
         </ul>

@@ -1,4 +1,4 @@
-import { randomId, toKeyLang } from "../../utils/utils.mjs";
+import { randomId, TODO, toKeyLang } from "../../utils/utils.mjs";
 import { SYSTEM_CLASS_CSS } from "../../constants.mjs";
 import { FoundryApi } from "../foundry-api.mjs";
 import { HtmlJsUtils } from "../../utils/html-js-utils.mjs";
@@ -46,7 +46,15 @@ function makeClass(BaseClass) {
                 }
 
                 const value = Cls.#operateValue(event.target);
-                await this.updateDocument(this.document, event.target.name, value);
+
+                const eventTargetName = event.target.name
+                TODO("verificar por que eventTargetName está undefined QUANDO VENDO DE UM SELECT")
+                if (!eventTargetName || eventTargetName.length == 0) {
+                    console.warn("eventTargetName is undefined");
+                    return;
+                }
+
+                await this.updateDocument(this.document, eventTargetName, value);
             }
 
             static #operateValue(target) {

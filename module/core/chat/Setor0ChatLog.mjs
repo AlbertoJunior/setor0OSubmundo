@@ -3,6 +3,7 @@ import { OnEventType } from "../../enums/on-event-type.mjs";
 import { MessageRepository } from "../../repository/message-repository.mjs";
 import { HtmlJsUtils } from "../../utils/html-js-utils.mjs";
 import { localize, TODO } from "../../utils/utils.mjs";
+import { RollConsciousness } from "../rolls/consciousness-roll.mjs";
 import { RollPerseverance } from "../rolls/perseverance-roll.mjs";
 import { RollQuietness } from "../rolls/quietness-roll.mjs";
 
@@ -39,8 +40,10 @@ class Setor0ChatLog extends FoundryApi.ChatLog {
 
     static #checkMap = {
         'consciousness': async (target, message) => {
-            TODO('implementar');
-            await this.#updateButtonOnContent(message, target, localize('Consciencia_Utilizada'));
+            const result = await RollConsciousness.operateMessage(message);
+            if (result) {
+                await this.#updateButtonOnContent(message, target, localize('Consciencia_Utilizada'));
+            }
         },
         'perseverance': async (target, message) => {
             const result = await RollPerseverance.operateMessage(message);

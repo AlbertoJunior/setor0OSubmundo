@@ -119,6 +119,11 @@ export class ActiveEffectsUtils {
         }
     }
 
+    static canRemoveEffect(effect) {
+        const canRemove = this.getFlags(effect)[ActiveEffectsFlags.CAN_REMOVE] ?? true
+        return canRemove;
+    }
+
     static activeEffectOriginTypeLabel(type) {
         const map = {
             [ActiveEffectsOriginTypes.ITEM]: localize('Item'),

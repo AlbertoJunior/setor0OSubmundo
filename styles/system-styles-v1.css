@@ -24,3 +24,16 @@
     margin: 0px;
     border-radius: 0px 0px var(--border-radius-medium) var(--border-radius-medium);
 }
+
+.S0-V1 .S0-simulate-button.S0-marked h4 {
+    color: var(--on-primary-color);
+}
+
+.S0-V1 .S0-infinity-horizontal-menu .S0-simulate-button:hover h4,
+.S0-V1 .S0-dialog .S0-infinity-horizontal-menu .S0-simulate-button:hover h4 {
+    color: var(--on-primary-color);
+}
+
+.S0-V1 .S0-simulate-button.S0-marked h4 {
+    color: var(--on-primary-color);
+}

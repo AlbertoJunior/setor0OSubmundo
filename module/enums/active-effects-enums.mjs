@@ -19,5 +19,6 @@ export const ActiveEffectsFlags = Object.freeze({
     ALWAYS_SHOW_ON_TOKEN: 'alwaysShowOnToken',
     REMOVE_EFFECTS: 'removeEffects',
     COMBAT_ID: 'combatId',
-    IS_PASSIVE: 'isPassve',
+    IS_PASSIVE: 'isPassive',
+    CAN_REMOVE: 'canRemove',
 });

@@ -12,6 +12,7 @@ export class DOMUtils {
     }
 
     static addListenersOnDOM() {
+        DEPRECATED('Classe depreciada, usar Setor0ChatLog');
         document.body.addEventListener('click', (event) => {
             const target = event.target;
             const eventData = target.dataset;

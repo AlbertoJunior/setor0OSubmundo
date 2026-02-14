@@ -58,12 +58,12 @@ export class FoundryApi {
   static Tabs = convertToClass(CurrentVersion.Ux.Tabs);
 
   //#region UPDATED 
-  static ActorSheet = CurrentVersion.makeClass(this.Sheets.ActorSheet);
+  // static ActorSheet = CurrentVersion.makeClass(this.Sheets.ActorSheet);
   static ItemSheet = CurrentVersion.makeClass(this.Sheets.ItemSheet);
   //#endregion
 
   //#region NEED UPDATE to V2
-  // static ActorSheet = ApplicationV1.makeClass(ApplicationV1.Sheets.ActorSheet);
+  static ActorSheet = ApplicationV1.makeClass(ApplicationV1.Sheets.ActorSheet);
   // static ItemSheet = ApplicationV1.makeClass(ApplicationV1.Sheets.ItemSheet);
   //#endregion
 

@@ -30,7 +30,7 @@ const map = {
     'size': (item) => getObject(item, EquipmentCharacteristicType.SIZE) || 0,
     'acceleration': (item) => getObject(item, EquipmentCharacteristicType.ACCELERATION) || 0,
     'speed': (item) => getObject(item, EquipmentCharacteristicType.SPEED) || 0,
-    
+
     'vehicle_type': (item) => getObject(item, EquipmentCharacteristicType.VEHICLE.TYPE) || 0,
 
     'superequipment_level': (item) => EquipmentUtils.getSuperEquipmentLevel(item),
@@ -50,6 +50,7 @@ const map = {
     'effect_has_type': (item) => ActiveEffectsUtils.hasType(item),
     'effect_is_buff': (item) => ActiveEffectsUtils.isBuff(item),
     'effect_is_debuff': (item) => ActiveEffectsUtils.isDebuff(item),
+    'effect_can_remove': (item) => ActiveEffectsUtils.canRemoveEffect(item),
 }
 
 export default function itemValues(item, value, ...params) {

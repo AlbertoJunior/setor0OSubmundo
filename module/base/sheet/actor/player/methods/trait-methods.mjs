@@ -5,9 +5,11 @@ import { TraitField } from "../../../../../field/trait-field.mjs";
 import { CharacteristicType } from "../../../../../enums/characteristic-enums.mjs";
 import { OnEventType } from "../../../../../enums/on-event-type.mjs";
 import { TraitMessageCreator } from "../../../../../creators/message/trait-message.mjs";
-import { getObject, localize, TODO } from "../../../../../utils/utils.mjs";
+import { getObject, localize } from "../../../../../utils/utils.mjs";
 import { ActorUpdater } from "../../../../updater/actor-updater.mjs";
 import { NotificationsUtils } from "../../../../../creators/message/notifications.mjs";
+import { ActiveEffectsUtils } from "../../../../../core/effect/active-effects-utils.mjs";
+import { ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../../../../enums/active-effects-enums.mjs";
 
 function getCharacteristic(type) {
     return type == 'good' ? CharacteristicType.TRAIT.GOOD : CharacteristicType.TRAIT.BAD;
@@ -44,7 +46,28 @@ export const traitMethods = {
             });
             const updatedTraits = [...actorTraits, objectTrait];
 
-            TODO("Verificar se vai adicionar algum bonus");
+            if (trait.effects && trait.effects.length > 0) {
+                const isGood = traitType == "good"
+                const effect = ActiveEffectsUtils.createEffectData({
+                    origin: localize(isGood ? "Tracos_Bons" : "Tracos_Ruins"),
+                    name: trait.name,
+                    statuses: [trait.id],
+                    changes: trait.effects.map(effect => ({
+                        key: effect.key,
+                        value: effect.value,
+                        mode: effect.mode,
+                        typeOfValue: effect.typeOfValue,
+                    })),
+                    flags: {
+                        [ActiveEffectsFlags.ORIGIN_ID]: trait.id,
+                        [ActiveEffectsFlags.ORIGIN_TYPE]: ActiveEffectsOriginTypes.TRAIT,
+                        [ActiveEffectsFlags.ORIGIN_TYPE_LABEL]: ActiveEffectsUtils.activeEffectOriginTypeLabel(ActiveEffectsOriginTypes.TRAIT),
+                        [ActiveEffectsFlags.CAN_REMOVE]: false,
+                        [ActiveEffectsFlags.TYPE]: isGood ? ActiveEffectsTypes.BUFF : ActiveEffectsTypes.DEBUFF,
+                    }
+                })
+                await ActiveEffectsUtils.addActorEffect(actor, [effect])
+            }
 
             await ActorUpdater.verifyAndUpdateActor(actor, characteristic, updatedTraits);
         });
@@ -83,8 +106,13 @@ export const traitMethods = {
         const updatedTraits = [...actorTraits];
         updatedTraits.splice(itemIndex, 1);
 
-        TODO("Verificar se vai remover algum bonus");
-
+        const sourceId = getObject(actorTraits[itemIndex], CharacteristicType.TRAIT.SOURCE_ID);
+        const originalTrait = TraitRepository.getItemByTypeAndId(traitType, sourceId);
+        if (originalTrait?.effects && originalTrait?.effects.length > 0) {
+            const itemId = originalTrait.id;
+            const effect = actor.effects.find(effect => effect.statuses.has(itemId));
+            await ActiveEffectsUtils.removeActorEffect(actor, ActiveEffectsUtils.getOriginId(effect));
+        }
         await ActorUpdater.verifyAndUpdateActor(actor, characteristic, updatedTraits);
     },
     [OnEventType.CHAT]: async (actor, event) => {
