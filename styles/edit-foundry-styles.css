@@ -134,7 +134,6 @@ h4.divider {
 }
 
 .combat-sidebar li.combatant .roll:hover {
-    background: url(../icons/d10.png) no-repeat 50% 50%;
     background-size: 40px;
 }
 

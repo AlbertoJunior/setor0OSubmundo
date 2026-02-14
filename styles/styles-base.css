@@ -1,0 +1,458 @@
+/* #region MY STYLES */
+/* #region PAGES */
+.S0-page {
+    margin-inline: 0;
+    border: none;
+}
+
+.S0-page ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.S0-page :is(h1, h2, h3, h4) {
+    width: 100%;
+    text-align: center;
+    text-shadow: 0px 1px 1px var(--color-black-alpha-50);
+}
+
+.S0-page hr {
+    margin-block: 4px;
+    border: none;
+    border-top: 1px solid var(--secondary-color-alpha-50);
+    border-bottom: 1px solid var(--secondary-color-alpha);
+    box-shadow: 0px 0px 3px 0px var(--secondary-color-alpha-50);
+}
+
+/* #endregion */
+
+/* #region CONTENT */
+.S0-content {
+    font-size: var(--font-size-15);
+}
+
+.S0-content textarea[readonly] {
+    background: none;
+    cursor: default;
+}
+
+.S0-content img {
+    cursor: default;
+    border-width: 0px;
+}
+
+.S0-content .S0-clickable>*,
+.S0-content img.S0-clickable {
+    cursor: pointer;
+}
+
+.S0-content h1 {
+    font-size: var(--font-size-28);
+}
+
+.S0-content h2 {
+    font-size: var(--font-size-24);
+}
+
+.S0-content h3 {
+    font-size: var(--font-size-20);
+}
+
+.S0-content h4 {
+    font-size: var(--font-size-16);
+}
+
+.S0-content h5 {
+    font-size: var(--font-size-12);
+}
+
+.S0-content :is(h1, h2, h3, h4).window-title {
+    font-size: var(--font-size-16);
+    line-height: var(--font-size-16);
+    margin: 0px;
+}
+
+.S0-content :is(h1, h2, h3, h4) a {
+    font-size: small;
+    margin-inline: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    vertical-align: middle;
+    transition: text-shadow 0.2s ease-in-out;
+}
+
+.S0-content :is(h1, h2, h3, h4) a:hover {
+    text-shadow: 0px 0px 6px var(--secondary-color-alpha-50);
+}
+
+.S0-content section {
+    margin-inline: 0px;
+    border: none;
+}
+
+.S0-content :is(h1, h2, h3, h4) input {
+    letter-spacing: 0.1em;
+}
+
+.S0-content button,
+.S0-content button:focus,
+.S0-content a.button:focus {
+    border: none;
+    outline: none;
+}
+
+.S0-content :is(select,
+    input[type=datetime-local], input[type=text], input[type=number],
+    input[type=password], input[type=date], input[type=time], input[type=search],
+    input[type=file]):focus {
+    outline: none;
+    box-shadow: 0px 0px 6px 0px var(--primary-color);
+}
+
+.S0-content button {
+    width: 100%;
+}
+
+.S0-content.actor {
+    overflow: visible;
+}
+
+.S0-content.actor .window-content {
+    padding-inline: 6px;
+    padding-block: 2px;
+    overflow: visible;
+}
+
+.S0-content .window-content {
+    padding-inline: 6px;
+    padding-block: 8px;
+}
+
+.S0-content .window-content .standard-form {
+    gap: 4px;
+}
+
+.S0-content .dialog-content {
+    max-height: 640px;
+    overflow-y: scroll;
+    padding-right: 2px;
+    padding-left: 12px;
+}
+
+.S0-content .dialog-buttons {
+    min-height: 36px;
+    max-height: 44px;
+    margin: 0;
+    padding-block: 6px;
+}
+
+.S0-content * {
+    scrollbar-color: var(--tertiary-color-alpha-50) var(--color-scrollbar-track);
+}
+
+.S0-content.S0-no-padding.application.image-popout figure {
+    padding: 0px;
+}
+
+/* #endregion */
+
+/* #region CONTAINERS */
+:is(.S0-container, .S0-page) :is(label, strong) {
+    text-shadow: 0px 1px 4px var(--color-black-alpha-50);
+}
+
+.S0-container {
+    margin-block: 6px;
+    padding: 6px;
+    border: 2px solid var(--secondary-color-alpha);
+    border-radius: var(--border-radius-large);
+    background-color: var(--secondary-color-alpha-50);
+    box-shadow: 0px 1px 4px 0px var(--secondary-color-alpha-50);
+}
+
+.S0-container .S0-container .S0-container,
+.S0-container .S0-container :is(input, textarea, label, span, a, select, h3, h4, h5) {
+    color: var(--on-secondary-alternate-color);
+}
+
+.S0-container :is(.S0-container, .S0-container .S0-container) :is(input:not([type="checkbox"]):enabled, textarea:not(:read-only)) {
+    background-color: var(--color-light-gray-alpha-50);
+    border-color: var(--secondary-color-alpha-50);
+}
+
+.S0-container :is(.S0-container, .S0-container .S0-container) :is(input:not([type="checkbox"]):enabled, textarea:not(:read-only)):is(:hover, :focus) {
+    background-color: var(--secondary-color-alpha-50);
+    border-color: var(--primary-color);
+}
+
+.S0-container .S0-container .S0-select:enabled {
+    border-color: var(--primary-color-alpha-50);
+}
+
+.S0-container-2-column {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-row-gap: 4px;
+    grid-template-columns: repeat(auto-fit, minmax(calc(50% - 5px), 1fr));
+}
+
+.S0-container-2-fixed-column {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-row-gap: 4px;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.S0-container-3-column {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-row-gap: 4px;
+    grid-template-columns: repeat(auto-fit, minmax(calc(33% - 5px), 1fr));
+}
+
+.S0-container-3-fixed-column {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-row-gap: 4px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.S0-container-4-column {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-row-gap: 4px;
+    grid-template-columns: repeat(auto-fit, minmax(calc(25% - 10px), 1fr));
+}
+
+.S0-container-4-fixed-column {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-row-gap: 4px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.S0-container-5-column {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-row-gap: 4px;
+    grid-template-columns: repeat(auto-fit, minmax(18%, 1fr));
+    justify-items: center;
+}
+
+.S0-container :is(h1, h2, h3, h4) {
+    margin: 0px;
+}
+
+.S0-container textarea {
+    padding: 6px;
+}
+
+.S0-container :not(.form-group)>input {
+    padding: 2px 6px;
+}
+
+.S0-container :is(input, textarea) {
+    width: 100%;
+    color: var(--color-black);
+    border: var(--border-def);
+    border-radius: var(--border-radius-large);
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.S0-container :is(input:not([type="checkbox"]), select, textarea) {
+    min-height: 28px;
+    padding-inline: 6px;
+}
+
+.S0-container h2 :is(input:not([type="checkbox"]), select) {
+    min-height: 32px;
+}
+
+.S0-container :is(input:enabled:not([type="checkbox"]), textarea:not(:read-only)):is(:hover, :focus) {
+    border: 2px solid var(--primary-color) !important;
+    color: var(--primary-color);
+    background: var(--secondary-color-alpha-50);
+    box-shadow: 0px 0px 6px 0px var(--primary-color-alpha);
+}
+
+.S0-container :is(input, textarea)::placeholder {
+    color: var(--primary-color-alpha-50);
+}
+
+.S0-container :is(input:not([type="checkbox"]), textarea, select):disabled,
+.S0-container :is(input:not([type="checkbox"]), textarea, select):disabled:hover {
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    border-bottom: 1px solid;
+    border-radius: 0px;
+    appearance: none;
+}
+
+.S0-container .form-group {
+    gap: 8px;
+}
+
+.S0-flex-colum {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+}
+
+/* #endregion */
+
+/* #region BASE STYLES */
+.S0-vertical-divider {
+    width: 2px;
+    margin-inline: 4px;
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius-small);
+}
+
+.S0-float-right-sheet {
+    position: absolute;
+    left: 100%;
+    margin: 4px;
+    list-style-type: none;
+    padding: 0;
+}
+
+.S0-simulate-button {
+    width: 130px;
+    margin-block: 4px;
+    padding: 6px;
+    font-size: var(--font-size-13);
+    background-color: var(--secondary-color-alpha);
+    color: var(--on-secondary-color);
+    border-radius: var(--border-radius-small);
+    border: 1px ridge transparent;
+    text-shadow: none;
+    transition: width 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, height 0.2s ease;
+}
+
+.S0-simulate-button:hover {
+    cursor: pointer;
+    background-color: var(--primary-color-alpha);
+    color: var(--on-primary-color);
+    border-color: var(--primary-color);
+}
+
+.S0-simulate-button:is(.active, .S0-selected) {
+    text-align: center;
+    padding-inline: 0;
+    background-color: var(--primary-color-alpha);
+    color: var(--on-primary-color);
+    border-color: var(--primary-color);
+}
+
+.S0-simulate-button i {
+    margin-inline: 4px;
+}
+
+.S0-simulate-button:hover,
+.S0-simulate-button:hover> :is(a, i) {
+    text-shadow: none;
+}
+
+.S0-marked {
+    background-color: var(--primary-color);
+    color: var(--on-primary-color);
+}
+
+.S0-sheet-tabs a {
+    display: block;
+}
+
+.S0-simulate-button.S0-compact {
+    width: 34px;
+    height: 28px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.S0-simulate-button.S0-compact li {
+    margin: 0;
+}
+
+.S0-infinity-horizontal-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    column-gap: 10px;
+    white-space: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 10px;
+}
+
+.S0-infinity-horizontal-menu>* {
+    scroll-snap-align: start;
+}
+
+.S0-infinity-horizontal-menu .S0-simulate-button {
+    width: auto;
+    padding-inline: 16px
+}
+
+.S0-infinity-horizontal-menu .S0-simulate-button h4 {
+    font-size: var(--font-size-13);
+}
+
+.S0-flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.S0-buff-color {
+    color: var(--color-green);
+    text-shadow: 0px 0px 2px;
+}
+
+.S0-debuff-color {
+    color: var(--color-red);
+    text-shadow: 0px 0px 2px;
+}
+
+/* #endregion */
+
+/* #region EXPAND/CONTRACT CONTAINER */
+.S0-container-contract {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+}
+
+.S0-container-contract.S0-expanded {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    max-height: 700px;
+}
+
+.S0-container-contract.S0-expanded>* {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+.S0-expand-animating,
+.S0-content.S0-expand-animating {
+    transition: height 0.3s ease;
+}
+
+.message-content .S0-container-contract.S0-expanded {
+    overflow-y: hidden;
+}
+
+/* #endregion */

@@ -29,8 +29,13 @@
     "scripts/libs/jszip.min.js"
   ],
   "styles": [
+    "styles/variables.css",
     "styles/edit-foundry-styles.css",
-    "styles/system-styles.css",
+    "styles/styles-base.css",
+    "styles/components/styles-actor.css",
+    "styles/components/styles-items.css",
+    "styles/components/styles-chat.css",
+    "styles/components/styles-dialog.css",
     "styles/system-styles-v1.css",
     "styles/system-styles-v2.css",
     "styles/system-styles-dark.css",
