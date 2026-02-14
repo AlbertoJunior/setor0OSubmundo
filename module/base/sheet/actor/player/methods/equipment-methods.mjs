@@ -9,7 +9,7 @@ import { UpdateEquipmentQuantityDialog } from "../../../../../creators/dialog/up
 import { NotificationsUtils } from "../../../../../creators/message/notifications.mjs";
 import { EquipmentMessageCreator } from "../../../../../creators/message/equipment-message.mjs";
 import { ChatCreator } from "../../../../../utils/chat-creator.mjs";
-import { EquipmentCharacteristicType } from "../../../../../enums/equipment-enums.mjs";
+import { EquipmentCharacteristicType, EquipmentType } from "../../../../../enums/equipment-enums.mjs";
 import { OnEventType } from "../../../../../enums/on-event-type.mjs";
 import { EquipmentRepository } from "../../../../../repository/equipment-repository.mjs";
 import { ActorUpdater } from "../../../../updater/actor-updater.mjs";

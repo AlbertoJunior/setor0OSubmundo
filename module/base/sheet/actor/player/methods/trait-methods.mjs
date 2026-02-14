@@ -63,7 +63,7 @@ export const traitMethods = {
         const trait = actorTraits[itemIndex];
 
         TraitDialog.openByTrait(trait, traitType, actor, async (editedTrait) => {
-            const objectTrait = TraitField.toJson(editedTrait.id, editedTrait.name, editedTrait.particularity);
+            const objectTrait = TraitField.toJson({ sourceId: editedTrait.id, name: editedTrait.name, particularity: editedTrait.particularity });
             const updatedTraits = [...actorTraits];
             updatedTraits[itemIndex] = objectTrait;
             await ActorUpdater.verifyAndUpdateActor(actor, characteristic, updatedTraits);

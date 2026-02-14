@@ -1275,7 +1275,6 @@ body {
 
 .S0-item-bag.S0-marked {
     border-color: var(--primary-color-alpha-50);
-    background: var(--primary-color-alpha-50);
     box-shadow: 0px 0px 6px 0px var(--primary-color-alpha-50);
 }
 

@@ -305,6 +305,7 @@
                 "Excluir_SuperEquipamento_Completo": "This action will delete all Super Equipment data. Are you sure you want to continue?"
             },
             "Mensagens": {
+                "Nenhum_item_adicionado": "No items added, attractive and drop to add",
                 "Nao_Pode_Efeitos_Iguais": "Cannot have duplicate effects",
                 "Aviso_Remocao_Itens_Mochila": "This action will remove all items from the backpack",
                 "Aviso_Desequipar_Itens": "This action will unequip all equipped items"

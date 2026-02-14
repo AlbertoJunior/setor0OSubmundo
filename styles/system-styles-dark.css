@@ -97,6 +97,11 @@
 
 .S0-page-transparent .S0-item-bag {
     border-color: var(--tertiary-color);
+    box-shadow: 0px 0px 6px 0px var(--tertiary-color);
+}
+
+.S0-page-transparent .S0-item-bag.S0-marked {
+    border-color: var(--primary-color);
 }
 
 .S0-page-transparent .S0-actor-images-container {
