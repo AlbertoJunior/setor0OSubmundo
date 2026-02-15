@@ -4,7 +4,7 @@ import { BaseActorCharacteristicType, CharacteristicType, CharacteristicTypeMap 
 import { ActorUpdater } from "../../../../updater/actor-updater.mjs";
 
 export async function characteristicOnClick(event, actor) {
-  const element = event.target;
+  const element = event.currentTarget || event.target;
 
   selectCharacteristic(element);
 

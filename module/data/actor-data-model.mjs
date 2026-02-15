@@ -102,7 +102,7 @@ class PlayerDataModel extends BaseActorDataModel {
         bons: new ArrayField(new TraitField()),
         ruins: new ArrayField(new TraitField())
       }),
-      sobrecarga: new ActorCharacteristicField("S0.Sobrecarga"),
+      sobrecarga: new ActorCharacteristicField("S0.Sobrecarga", 0, 5),
       vida: new NumberField({ integer: true, initial: 8, min: 0, max: 10 }),
       aliados: new ArrayField(new StringField()),
       informantes: new ArrayField(new StringField()),
@@ -190,7 +190,14 @@ export async function createActorDataModels() {
   ]);
 
   const commonBars = ["actualVitalityBar", "actualProtectionBar"];
-  const commonValues = ["influencia", "actualVitality", "totalVitality", "actualProtection", "totalProtection", "actualPM"];
+  const commonValues = [
+    "influencia",
+    "actualVitality",
+    "totalVitality",
+    "actualProtection",
+    "totalProtection",
+    "actualPM"
+  ];
 
   CONFIG.Actor.trackableAttributes = {
     Player: {

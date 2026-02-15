@@ -109,13 +109,15 @@ class Setor0ChatLog extends FoundryApi.ChatLog {
   }
 
   static async #updateButtonOnContent(message, button, text) {
-    const $content = $(message.content);
-    const $button = $content.find(`button[data-action="${button.dataset.action}"][data-type="${button.dataset.type}"]`);
-    if ($button) {
-      $button.text(text);
-      $button.removeAttr('data-action').removeAttr('data-type');
-      $button.attr('disabled', true);
-      await MessageRepository.updateMessage(message, { content: $content.prop('outerHTML') });
+    const div = document.createElement('div');
+    div.innerHTML = message.content;
+    const btn = div.querySelector(`button[data-action="${button.dataset.action}"][data-type="${button.dataset.type}"]`);
+    if (btn) {
+      btn.textContent = text;
+      btn.removeAttribute('data-action');
+      btn.removeAttribute('data-type');
+      btn.disabled = true;
+      await MessageRepository.updateMessage(message, { content: div.innerHTML });
     }
   }
 }

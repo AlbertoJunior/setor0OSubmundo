@@ -39,7 +39,8 @@ class S0DialogV1 extends Dialog {
   }
 
   static presetDialogRender(html, params = {}) {
-    const div = html[0]?.parentElement;
+    const element = html instanceof HTMLElement ? html : html[0];
+    const div = element?.parentElement;
     if (!div) {
       return null;
     }
@@ -56,7 +57,7 @@ class S0DialogV1 extends Dialog {
     this.#setupHeaderParams(div, params.header);
     this.#verifyRemoveDialogButtonsContainer(div);
 
-    HtmlJsUtils.setupHeader(html);
+    HtmlJsUtils.setupHeader(element);
 
     return div.closest(`.${SYSTEM_CLASS_CSS}`);
   }
@@ -124,10 +125,11 @@ function makeClass(BaseClass) {
 
       activateListeners(html) {
         super.activateListeners(html);
-        HtmlJsUtils.setupContent(html);
-        HtmlJsUtils.setupHeader(html);
-        this.configureSheet(html);
-        this.postRenderConfiguration(html);
+        const element = html instanceof HTMLElement ? html : html[0];
+        HtmlJsUtils.setupContent(element);
+        HtmlJsUtils.setupHeader(element);
+        this.configureSheet(element);
+        this.postRenderConfiguration(element);
       }
 
       _getHeaderControls() {
@@ -160,16 +162,17 @@ async function createDialog(data, options) {
       buttons: parsedButtons.buttons,
       default: parsedButtons.default,
       render: (html, dialog) => {
-        const window = S0DialogV1.presetDialogRender(html, { header: header });
+        const element = html instanceof HTMLElement ? html : html[0];
+        const window = S0DialogV1.presetDialogRender(element, { header: header });
 
         Object.entries(parsedButtons.buttons)
           .forEach(([buttonKey, buttonParams]) => {
-            const buttonElement = html.find(`button[data-button="${buttonKey}"]`);
-            if (buttonElement?.length) {
-              buttonElement.addClass(buttonParams.class);
+            const buttonElement = element.querySelector(`button[data-button="${buttonKey}"]`);
+            if (buttonElement) {
+              buttonElement.classList.add(...buttonParams.class);
             }
           });
-        render(html, dialog, window);
+        render(element, dialog, window);
       },
       close: onClose
     },

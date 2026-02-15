@@ -15,7 +15,7 @@ export class RepertoryRepository {
   static async _loadFromPack() {
     const compendium = await game.packs.get(`${SYSTEM_ID}.repertories`)?.getDocuments();
     if (compendium) {
-      EnhancementRepository.#loadedFromPack = compendium.map((item) => {
+      RepertoryRepository.#loadedFromPack = compendium.map((item) => {
         return {
           id: item._id,
           label: item.name,

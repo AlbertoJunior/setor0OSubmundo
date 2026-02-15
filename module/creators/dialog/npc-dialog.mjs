@@ -67,13 +67,17 @@ export class NpcDialog {
           method: NpcDialog.onActionClick
         }
       ))
-      .forEach(action => html.find(action.selector).click(action.method.bind(this, html, npcActor)));
+      .forEach(action => {
+        html.querySelectorAll(action.selector).forEach(element => {
+          element.addEventListener('click', action.method.bind(this, html, npcActor));
+        });
+      });
   }
 
   static #configureButtonsMenu(html, npcActor) {
     Setor0BaseActorSheet.setupTabs(html, 1);
 
-    const buttonContainer = html.find("#floating-menu")[0];
+    const buttonContainer = html.querySelector("#floating-menu");
     if (!buttonContainer) {
       return;
     }
@@ -118,7 +122,7 @@ export class NpcDialog {
   }
 
   static #removeElements(html) {
-    html.find('.S0-characteristic.S0-clickable').removeClass("S0-clickable");
-    html.find('h3 a').remove();
+    html.querySelectorAll('.S0-characteristic.S0-clickable').forEach(el => el.classList.remove("S0-clickable"));
+    html.querySelectorAll('h3 a').forEach(el => el.remove());
   }
 }

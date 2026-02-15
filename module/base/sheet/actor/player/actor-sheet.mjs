@@ -81,7 +81,7 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
       template: this.PARTS.sheet.template,
       resizable: super.DEFAULT_OPTIONS.window.resizable,
       width: this.DEFAULT_OPTIONS.position.width,
-      height: 880,
+      height: 872,
     });
   }
 
@@ -99,19 +99,19 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
     const actor = this.actor;
     [
       {
-        container: html.find('#atributosContainer')[0],
+        container: html.querySelector('#atributosContainer'),
         systemCharacteristic: getObject(actor, CharacteristicType.ATTRIBUTES)
       },
       {
-        container: html.find('#repertorioContainer')[0],
+        container: html.querySelector('#repertorioContainer'),
         systemCharacteristic: getObject(actor, CharacteristicType.REPERTORY)
       },
       {
-        container: html.find('#skillsContainer')[0],
+        container: html.querySelector('#skillsContainer'),
         systemCharacteristic: getObject(actor, CharacteristicType.SKILLS)
       },
       {
-        container: html.find('#fameContainer')[0],
+        container: html.querySelector('#fameContainer'),
         systemCharacteristic: getObject(actor, CharacteristicType.SIMPLE)
       }
     ].forEach(({ container, systemCharacteristic }) => {
@@ -124,7 +124,7 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
       }
     });
 
-    const virtueContainer = html.find('#virtudesContainer')[0];
+    const virtueContainer = html.querySelector('#virtudesContainer');
     let virtueElementChild = virtueContainer.firstElementChild;
     while (virtueElementChild) {
       const virtueLevel = ActorUtils.getVirtueLevel(actor, virtueElementChild.id);
@@ -139,7 +139,7 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
   }
 
   #presetLanguages(html) {
-    const langContainer = html.find('#linguasContainer')[0].children;
+    const langContainer = html.querySelector('#linguasContainer').children;
     const langElements = Array.from(langContainer);
 
     getObject(this.actor, CharacteristicType.LANGUAGE)
@@ -158,9 +158,9 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
     const activeEffects = new Set(ActorUtils.getEffects(actor).map(effect => ActiveEffectsUtils.getOriginId(effect)));
     const actorEnhancements = Object.values(getObject(actor, CharacteristicType.ENHANCEMENT_ALL));
 
-    html.find('.S0-enhancement').each((index, enhaceContainer) => {
+    html.querySelectorAll('.S0-enhancement').forEach((enhaceContainer, index) => {
       const enhancement = actorEnhancements[index];
-      const selects = $(enhaceContainer).find('select');
+      const selects = Array.from(enhaceContainer.querySelectorAll('select'));
 
       const familySelect = selects[0];
       const option = Array.from(familySelect.options).find(option => option.dataset.itemId == enhancement.id);
@@ -174,7 +174,8 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
 
     function select(id, characteristic) {
       const value = getObject(actor, characteristic) || 0;
-      selectCharacteristic(html.find(`#enhancementPage #${id} .S0-characteristic`)[value - 1]);
+      const element = html.querySelector(`#enhancementPage #${id} .S0-characteristic:nth-child(${value})`);
+      if (element) selectCharacteristic(element);
     }
     select('sobrecarga', CharacteristicType.OVERLOAD);
   }
@@ -184,7 +185,8 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
 
     function select(id, characteristic) {
       const value = getObject(actor, characteristic) || 0;
-      selectCharacteristic(html.find(`#statusPage #${id} .S0-characteristic`)[value - 1]);
+      const element = html.querySelector(`#statusPage #${id} .S0-characteristic:nth-child(${value})`);
+      if (element) selectCharacteristic(element);
     }
 
     select('consciencia', CharacteristicType.VIRTUES.CONSCIOUSNESS.USED);
@@ -198,11 +200,11 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
   }
 
   #presetSheetExpandContainers(html) {
-    const effectsContainer = html.find('#effects-container');
+    const effectsContainer = html.querySelector('#effects-container');
     const isExpandedEffects = this.isExpandedEffects;
     this.#verifyAndExpandContainers(effectsContainer, isExpandedEffects, html);
 
-    const shortcutsContainer = html.find(`#shortcuts-container-${this.actor.id}`);
+    const shortcutsContainer = html.querySelector(`#shortcuts-container-${this.actor.id}`);
     if (!shortcutsContainer) {
       return
     }
@@ -212,21 +214,21 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
 
     if (!this.defaultHeight || isExpandedEffects === undefined || isExpandedShortcuts == undefined) {
       requestAnimationFrame(() => {
-        const content = html.parent().parent()[0];
-        const windowElem = content.closest(`.${SYSTEM_CLASS_CSS}`);
+        const content = html.parentElement?.parentElement;
+        const windowElem = content?.closest(`.${SYSTEM_CLASS_CSS}`);
         this.defaultHeight = windowElem?.offsetHeight;
 
-        this.isExpandedEffects = effectsContainer[0].classList.contains('S0-expanded');
-        this.isExpandedShortcuts = shortcutsContainer[0].classList.contains('S0-expanded');
+        this.isExpandedEffects = effectsContainer.classList.contains('S0-expanded');
+        this.isExpandedShortcuts = shortcutsContainer.classList.contains('S0-expanded');
       });
     }
   }
 
   #verifyAndExpandContainers(container, isExpanded, html) {
     if (typeof isExpanded === 'boolean') {
-      container.toggleClass('S0-expanded', isExpanded);
+      container.classList.toggle('S0-expanded', isExpanded);
       if (!isExpanded) {
-        HtmlJsUtils.flipClasses(html.find('#effects-container-icon')[0], 'fa-chevron-up', 'fa-chevron-down');
+        HtmlJsUtils.flipClasses(html.querySelector('#effects-container-icon'), 'fa-chevron-up', 'fa-chevron-down');
       }
     }
   }

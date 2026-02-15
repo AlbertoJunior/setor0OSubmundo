@@ -38,6 +38,6 @@ export class UpdateEquipmentQuantityDialog {
   }
 
   static #getValue(html) {
-    return parseInt(html.find("#quantity").val());
+    return parseInt(html.querySelector("#quantity").value);
   }
 }

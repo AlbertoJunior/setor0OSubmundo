@@ -1,4 +1,4 @@
-import { randomId, TODO, toKeyLang } from "../../utils/utils.mjs";
+import { randomId, toKeyLang } from "../../utils/utils.mjs";
 import { SYSTEM_CLASS_CSS } from "../../constants.mjs";
 import { FoundryApi } from "../foundry-api.mjs";
 import { HtmlJsUtils } from "../../utils/html-js-utils.mjs";
@@ -47,17 +47,27 @@ function makeClass(BaseClass) {
 
         // The element that triggered the change is usually event.submitter.
         const target = event.submitter || event.target;
+        if (!target) {
+          return;
+        }
+
         const name = target?.name;
         const value = Cls.#operateValue(target);
         const dataset = target?.dataset;
 
-        // if not have dataset action, it's a normal field
-        if (name && !dataset?.action) {
-          await this.updateDocument(this.document, name, value);
-        } else {
-          // Fallback: if we can't identify the specific field, we might need to update everything or log it
-          console.warn("Setor0 | Could not identify the changed field name from event.submitter or event.target.");
+        // if have dataset action, it's a custom action
+        if (dataset?.action) {
+          return;
         }
+
+        // if not have dataset action, it's a normal field
+        if (name) {
+          await this.updateDocument(this.document, name, value);
+          return;
+        }
+
+        // Fallback: if we can't identify the specific field, we might need to update everything or log it
+        console.warn("Setor0 | Could not identify the changed field name from event.submitter or event.target.");
       }
 
       static #operateValue(target) {
@@ -115,7 +125,7 @@ function makeClass(BaseClass) {
 
       _postRender(context, options) {
         super._postRender(context, options);
-        const html = $(this.element);
+        const html = this.element;
         HtmlJsUtils.setupContent(html);
         this.configureSheet(html);
         this.postRenderConfiguration(html);
@@ -184,7 +194,7 @@ async function createDialog(data, options) {
         const method = buttonAction?.onClick;
         if (typeof method === 'function') {
           handleOnClose = false;
-          method($(dialog.element), dialog);
+          method(dialog.element, dialog);
         } else {
           console.log(`-> User picked option: ${buttonAction.label}`);
         }
@@ -203,16 +213,17 @@ async function createDialog(data, options) {
   dialog.addEventListener('render', event => {
     const dialog = event.target;
 
-    const $html = $(dialog.element);
+    const html = dialog.element;
+    const window = html.closest(`.${SYSTEM_CLASS_CSS}`);
 
+    // Remove fake button if exists
     const buttonToRemove = parsedButtons.fakeButton;
     if (buttonToRemove) {
-      $html.find(`[data-action="${buttonToRemove}"]`)?.remove();
+      const btn = html.querySelector(`[data-action="${buttonToRemove}"]`);
+      if (btn) btn.remove();
     }
 
-    const window = dialog.element.closest(`.${SYSTEM_CLASS_CSS}`);
-
-    render($html, dialog, window);
+    render(html, dialog, window);
   });
 
   dialog.addEventListener('close', () => {

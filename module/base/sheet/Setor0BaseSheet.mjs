@@ -54,6 +54,11 @@ export function Setor0BaseSheet(BaseClass) {
 
     //#region CONFIGURE DEFAULT EVENTS
     configureSheetEvents(html) {
+      if (!html) {
+        console.warn(`[${this.constructor.name}] html is null in configureSheetEvents`);
+        return;
+      }
+
       const eventMap = [
         {
           types: [...OnEventTypeClickableEvents, OnEventType.CHARACTERISTIC],
@@ -75,7 +80,9 @@ export function Setor0BaseSheet(BaseClass) {
       eventMap.forEach(({ types, event, handler }) => {
         types.forEach(type => {
           const selector = `[data-action="${type}"]`;
-          html.find(selector).on(event, handler.bind(this, html));
+          html.querySelectorAll(selector).forEach(element => {
+            element.addEventListener(event, handler.bind(this, html));
+          });
         });
       });
     }

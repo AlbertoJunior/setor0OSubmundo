@@ -6,7 +6,7 @@ import { FoundryApi } from "../api/foundry-api.mjs";
 
 export class HtmlJsUtils {
   static setupContent(html) {
-    const content = html.closest(`.${SYSTEM_CLASS_CSS}`)[0];
+    const content = html?.closest(`.${SYSTEM_CLASS_CSS}`);
     if (content) {
       const inDarkMode = FlagsUtils.getItemFlag(game.user, SystemFlags.MODE.DARK, false);
       content.classList.toggle('S0-page-transparent', inDarkMode);
@@ -18,7 +18,7 @@ export class HtmlJsUtils {
     const isCompactMode = FlagsUtils.getItemFlag(game.user, SystemFlags.MODE.COMPACT, false);
 
     // V1: html is form inside .window-content; V2: html is the app element itself
-    const appElement = html.closest(`.${SYSTEM_CLASS_CSS}`)[0];
+    const appElement = html?.closest(`.${SYSTEM_CLASS_CSS}`);
     if (!appElement) return;
 
     const header = appElement.querySelector('.window-header');
@@ -119,25 +119,36 @@ export class HtmlJsUtils {
       return;
     }
 
-    containerTarget.on('dragover', (event) => {
-      containerTarget.addClass('S0-drop-target-hover');
+    const element = containerTarget;
+
+    const addClass = (el, cls) => el.classList.add(cls);
+    const removeClass = (el, cls) => el.classList.remove(cls);
+
+    element.addEventListener('dragover', (event) => {
+      addClass(element, 'S0-drop-target-hover');
     });
 
-    containerTarget.on('dragenter', () => {
-      containerTarget.addClass('S0-drop-target-hover');
+    element.addEventListener('dragenter', () => {
+      addClass(element, 'S0-drop-target-hover');
     });
 
-    containerTarget.on('dragleave', () => {
-      containerTarget.removeClass('S0-drop-target-hover');
+    element.addEventListener('dragleave', () => {
+      removeClass(element, 'S0-drop-target-hover');
     });
 
-    containerTarget.on('drop', (event) => {
-      containerTarget.removeClass('S0-drop-target-hover');
+    element.addEventListener('drop', (event) => {
+      removeClass(element, 'S0-drop-target-hover');
       onDrop(actor, event);
     });
   }
 
-  static setupTabs(html, group = "menu-tabs", contentSelector = ".S0-nav-content", currentTabIndex = 0, onTabClicked = (tab, index) => { }) {
+  static setupTabs(
+    html,
+    group = "menu-tabs",
+    contentSelector = ".S0-nav-content",
+    currentTabIndex = 0,
+    onTabClicked = (tab, index) => { }
+  ) {
     if (!html) {
       console.warn("the HTML is null");
       return;
@@ -145,8 +156,10 @@ export class HtmlJsUtils {
 
     const classTabs = "S0-sheet-tabs";
     const navSelector = `nav.${classTabs}[data-group="${group}"]`;
-    const nav = html.find(navSelector);
-    if (!nav.length) {
+    const nav = html.querySelector(navSelector);
+
+    // Check if nav exists (jQuery check used .length, JS uses truthiness)
+    if (!nav) {
       console.warn(`Tabs: nav[data-group="${group}"] não encontrado.`);
       return;
     }
@@ -154,23 +167,28 @@ export class HtmlJsUtils {
     const isCompacted = FlagsUtils.getItemFlag(game.user, SystemFlags.MODE.COMPACT);
     const classes = `S0-simulate-button ${isCompacted ? 'S0-compact' : ''}`
 
-    const tabs = html.find(`.tab[data-group="${group}"][data-tab]`);
-    tabs.each((_, element) => {
-      const tab = $(element);
-      const tabName = tab.data("tab");
-      const label = tab.data("label");
-      const icon = tab.data("icon") || "fa-circle";
+    const tabs = html.querySelectorAll(`.tab[data-group="${group}"][data-tab]`);
+    tabs.forEach((tabElement) => {
+      const tabName = tabElement.dataset.tab;
+      const label = tabElement.dataset.label;
+      const icon = tabElement.dataset.icon || "fa-circle";
 
       if (!tabName || !label) {
-        const identifier = element.outerHTML.split("\n")[0]?.trim();
+        const identifier = tabElement.outerHTML.split("\n")[0]?.trim();
         console.warn(`Tab ignorada: falta 'data-tab' ou 'data-label' em ${identifier}`);
         return;
       }
 
       const iconText = `<i class="fas ${icon}"></i>`;
-      const dataTooltipConfigs = `data-tooltip="${label}" data-tooltip-direction="UP"`;
-      const button = $(`<a class="${classes}" data-tab="${tabName}" ${dataTooltipConfigs}>${iconText}${isCompacted ? '' : label}</a>`);
-      nav.append(button);
+      // Create element properly
+      const button = document.createElement('a');
+      button.className = classes;
+      button.dataset.tab = tabName;
+      button.dataset.tooltip = label;
+      button.dataset.tooltipDirection = "UP";
+      button.innerHTML = `${iconText}${isCompacted ? '' : label}`;
+
+      nav.appendChild(button);
     });
 
     const initial = tabs[currentTabIndex]?.dataset?.tab ?? ""
@@ -180,16 +198,18 @@ export class HtmlJsUtils {
       contentSelector: contentSelector,
       initial: initial,
     });
-    tabsInstance.bind(html[0]);
+    tabsInstance.bind(html);
 
-    html.find(`${navSelector} a[data-tab]`).on("click", event => {
-      if (typeof onTabClicked === 'function') {
-        const selectedTab = $(event.currentTarget).data("tab");
-        const index = Object.values(tabs).findIndex(el => el.dataset.tab === selectedTab);
-        onTabClicked(selectedTab, index);
-      } else {
-        console.warn("onTabClicked is not a function");
-      }
+    html.querySelectorAll(`${navSelector} a[data-tab]`).forEach(a => {
+      a.addEventListener('click', event => {
+        if (typeof onTabClicked === 'function') {
+          const selectedTab = event.currentTarget.dataset.tab;
+          const index = Array.from(tabs).findIndex(el => el.dataset.tab === selectedTab);
+          onTabClicked(selectedTab, index);
+        } else {
+          console.warn("onTabClicked is not a function");
+        }
+      });
     });
   }
 }

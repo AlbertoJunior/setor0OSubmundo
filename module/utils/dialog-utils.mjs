@@ -18,7 +18,7 @@ export class DialogUtils {
 
   static getDialogFormData(html) {
     try {
-      const forms = html[0].querySelectorAll('form');
+      const forms = html.querySelectorAll('form');
       const form = forms[forms.length - 1];
       const formData = new FormData(form);
       const data = snakeToCamel(formData.entries());

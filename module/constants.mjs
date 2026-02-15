@@ -1,22 +1,22 @@
-export const SYSTEM_ID = "setor0OSubmundo";
-export const SYSTEM_NAME = "Setor 0 - O Submundo";
+export const SYSTEM_ID = Object.freeze("setor0OSubmundo");
+export const SYSTEM_NAME = Object.freeze("Setor 0 - O Submundo");
 
-export const ICONS_PATH = `systems/${SYSTEM_ID}/icons`;
-export const LOGO_PATH = `systems/${SYSTEM_ID}/imgs/logo.png`;
-export const TEMPLATES_PATH = `systems/${SYSTEM_ID}/templates`;
+export const ICONS_PATH = Object.freeze(`systems/${SYSTEM_ID}/icons`);
+export const LOGO_PATH = Object.freeze(`systems/${SYSTEM_ID}/imgs/logo.png`);
+export const TEMPLATES_PATH = Object.freeze(`systems/${SYSTEM_ID}/templates`);
 
-export const SYSTEM_CLASS_CSS = "S0-content";
-export const SYSTEM_CLASS_DIALOG_CSS = "S0-dialog";
-export const SYSTEM_CLASS_DARK_CSS = "S0-page-transparent";
+export const SYSTEM_CLASS_CSS = Object.freeze("S0-content");
+export const SYSTEM_CLASS_DIALOG_CSS = Object.freeze("S0-dialog");
+export const SYSTEM_CLASS_DARK_CSS = Object.freeze("S0-page-transparent");
 
-export const REGISTERED_TEMPLATES = new Set();
+export const REGISTERED_TEMPLATES = Object.freeze(new Set());
 
-export const SYSTEM_FLAGS = {
+export const SYSTEM_FLAGS = Object.freeze({
   ORIGIN_ID: "originId",
   ORIGIN_TYPE: "originType",
   SOURCE_ID: "sourceId",
   ROLE: "role"
-}
+});
 
 export const COLORS = {
   BASE: {

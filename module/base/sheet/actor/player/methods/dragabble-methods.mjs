@@ -21,18 +21,20 @@ export class SheetActorDragabbleMethods {
   }
 
   static #findUsingActorId(html, id, actor) {
-    return html.find(`#${id}-${actor.id}`);
+    return html.querySelector(`#${id}-${actor.id}`);
   }
 
   static #setupBagDrag(html, actor) {
     const containerBag = this.#findUsingActorId(html, 'bag', actor);
-    containerBag.on('drop', this.#onDropOnBag.bind(this, actor))
-    containerBag.on('dragenter', (event) => {
-      containerBag[0].style.backgroundColor = "var(--tertiary-color-alpha)";
+    if (!containerBag) return;
+
+    containerBag.addEventListener('drop', this.#onDropOnBag.bind(this, actor));
+    containerBag.addEventListener('dragenter', (event) => {
+      containerBag.style.backgroundColor = "var(--tertiary-color-alpha)";
     });
 
-    containerBag.on('dragleave', (event) => {
-      containerBag[0].style.backgroundColor = "";
+    containerBag.addEventListener('dragleave', (event) => {
+      containerBag.style.backgroundColor = "";
     });
   }
 
@@ -49,7 +51,7 @@ export class SheetActorDragabbleMethods {
   }
 
   static #setupShortcutDragSortable(html, actor) {
-    const containerShortcut = this.#findUsingActorId(html, `shortcuts-container`, actor)[0];
+    const containerShortcut = this.#findUsingActorId(html, `shortcuts-container`, actor);
     if (!containerShortcut) {
       return;
     }
@@ -78,8 +80,8 @@ export class SheetActorDragabbleMethods {
 
   static #setupBagDragSortable(html, actor) {
     const actorId = actor.id;
-    const equippedList = this.#findUsingActorId(html, 'equipped', actor)[0];
-    const bagList = this.#findUsingActorId(html, 'bag', actor)[0];
+    const equippedList = this.#findUsingActorId(html, 'equipped', actor);
+    const bagList = this.#findUsingActorId(html, 'bag', actor);
     if (!equippedList || !bagList) {
       return;
     }
@@ -87,7 +89,9 @@ export class SheetActorDragabbleMethods {
     const sortableOptions = {
       group: `equipment-move-inner-${actorId}`,
       animation: 150,
-      draggable: "li",
+      swapThreshold: 0.65,
+      emptyInsertThreshold: 20,
+      draggable: "li:not(.S0-label-drop-container)",
       handle: ".S0-item-bag",
       onStart: (evt) => {
         bagList.classList.add('S0-drop-target-hover');
@@ -182,7 +186,8 @@ export class SheetActorDragabbleMethods {
       return null;
     }
 
-    const textPlain = event.originalEvent.dataTransfer.getData("text/plain");
+    const dataTransfer = event.dataTransfer || event.originalEvent?.dataTransfer;
+    const textPlain = dataTransfer.getData("text/plain");
     try {
       return JSON.parse(textPlain);
     } catch (error) {
@@ -202,7 +207,7 @@ export class SheetActorDragabbleMethods {
     }
 
     event.preventDefault();
-    event.originalEvent.preventDefault();
+    if (event.originalEvent) event.originalEvent.preventDefault();
 
     const item = await FoundryApi.Item.implementation.fromDropData(data);
     if (!item) {
@@ -221,7 +226,7 @@ export class SheetActorDragabbleMethods {
     }
 
     event.preventDefault();
-    event.originalEvent.preventDefault();
+    if (event.originalEvent) event.originalEvent.preventDefault();
 
     if (data.type !== "Actor") {
       NotificationsUtils.warning("Este campo só aceita Personagens");

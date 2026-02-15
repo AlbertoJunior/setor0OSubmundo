@@ -47,11 +47,13 @@ export class EnhancementDialog {
         buttons: buttons,
         render: (html) => {
           if (haveActor) {
-            $(html)
-              .find(`[data-action="${OnEventType.ROLL}"]`)
-              .click((event) => this.#onRollEvent(actor, clonedEffect, event));
+            html
+              .querySelectorAll(`[data-action="${OnEventType.ROLL}"]`)
+              .forEach(element =>
+                element.addEventListener('click', (event) => this.#onRollEvent(actor, clonedEffect, event))
+              );
           }
-        }
+        },
       },
       { width: 480 }
     );

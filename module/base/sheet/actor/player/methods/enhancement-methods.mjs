@@ -38,10 +38,14 @@ export function selectLevelOnOptions(enhancement, selects, activeEffects) {
 }
 
 function setupViewButtonIsVisibleAndItemIsChecked(parent, isActive) {
-  $(parent).find(`a[data-action=${OnEventType.VIEW}]`).toggleClass('hidden');
-  $(parent).find(`a[data-action=${OnEventType.CHECK}]`)
-    .toggleClass('hidden')
-    .toggleClass('S0-selected', isActive);
+  const viewButton = parent.querySelector(`a[data-action="${OnEventType.VIEW}"]`);
+  if (viewButton) viewButton.classList.toggle('hidden');
+
+  const checkButton = parent.querySelector(`a[data-action="${OnEventType.CHECK}"]`);
+  if (checkButton) {
+    checkButton.classList.toggle('hidden');
+    checkButton.classList.toggle('S0-selected', isActive);
+  }
 }
 
 async function updateActorEnhancement(currentTarget, actor) {
@@ -56,15 +60,14 @@ async function updateActorEnhancement(currentTarget, actor) {
   if (enhancementId !== '' && enhancementsIds) {
     NotificationsUtils.error(localizeFormat('Aprimoramento.Mensagens.Ja_Possui_Aprimoramento', { aprimoramento: enhancementText }));
 
-    const jCurrentTarget = $(currentTarget);
-
     const oldEnhancement = EnhancementRepository.getEnhancementById(enhancementOnSlot?.id);
     if (!oldEnhancement) {
-      jCurrentTarget.prop('selectedIndex', 0).trigger('change');
+      currentTarget.selectedIndex = 0;
+      currentTarget.dispatchEvent(new Event('change', { bubbles: true }));
     } else {
-      const optionIndex = Object.values(jCurrentTarget[0].options)
+      const optionIndex = Array.from(currentTarget.options)
         .findIndex(opt => opt.value == oldEnhancement.value);
-      jCurrentTarget.prop('selectedIndex', optionIndex);
+      currentTarget.selectedIndex = optionIndex;
     }
     return;
   }
@@ -78,10 +81,8 @@ async function updateActorEnhancement(currentTarget, actor) {
 }
 
 async function updateActorLevelEnhancement(currentTarget, actor) {
-  const jCurrentTarget = $(currentTarget);
-
-  const { enhancementSlot, enhancementLevel } = jCurrentTarget.data();
-  const effectId = jCurrentTarget.val();
+  const { enhancementSlot, enhancementLevel } = currentTarget.dataset;
+  const effectId = currentTarget.value;
 
   const enhancementOnSlotKey = ActorUtils.getCharacteristicEnhancementSlot(enhancementSlot);
   const enhancementOnSlot = getObject(actor, enhancementOnSlotKey);
@@ -99,11 +100,12 @@ async function updateActorLevelEnhancement(currentTarget, actor) {
     if (hasEffect) {
       NotificationsUtils.error(localizeFormat('Aprimoramento.Mensagens.Ja_Possui_Efeito', { efeito: effect.name }));
       if (!oldEffect) {
-        jCurrentTarget.prop('selectedIndex', 0).trigger('change');
+        currentTarget.selectedIndex = 0;
+        currentTarget.dispatchEvent(new Event('change', { bubbles: true }));
       } else {
-        const listOptions = Object.values(jCurrentTarget[0].options);
+        const listOptions = Array.from(currentTarget.options);
         const optionIndex = listOptions.findIndex(opt => opt.value == oldEffect.id);
-        jCurrentTarget.prop('selectedIndex', optionIndex);
+        currentTarget.selectedIndex = optionIndex;
       }
       return;
     }
@@ -125,7 +127,7 @@ async function updateActorLevelEnhancement(currentTarget, actor) {
 
 function getEffectSelectedId(event) {
   const currentTarget = event.currentTarget;
-  const select = $(currentTarget.parentElement).find('select')[0];
+  const select = currentTarget.parentElement.querySelector('select');
   return select.selectedOptions[0]?.value;
 }
 

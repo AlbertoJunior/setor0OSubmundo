@@ -1,4 +1,3 @@
-import { EquipmentInfoParser } from "../core/equipment/equipment-info.mjs";
 import { DamageType, EquipmentHand, EquipmentHidding, EquipmentType, MeleeSize, SubstanceType } from "../enums/equipment-enums.mjs";
 import { SubstanceEffectField, SuperEquipmentField } from "../field/equipment-field.mjs";
 import { RollTestField } from "../field/roll-test-field.mjs";
@@ -6,11 +5,6 @@ import { RollTestField } from "../field/roll-test-field.mjs";
 const { StringField, NumberField, BooleanField, ArrayField } = foundry.data.fields;
 
 class BaseEquipmentDataModel extends foundry.abstract.TypeDataModel {
-  setupValues(data) {
-    this.name = data.name;
-    this.img = data.img;
-  }
-
   prepareDerivedData() {
     super.prepareDerivedData();
   }
@@ -135,23 +129,6 @@ class ProjectileDataModel extends WeaponDataModel {
       special: new BooleanField({ initial: false, label: "S0.Especial" })
     };
   }
-}
-
-const EquipmentTypeStringMap = {
-  [EquipmentInfoParser.equipmentTypeIdToTypeString(EquipmentType.MELEE)]: MeleeDataModel,
-  [EquipmentInfoParser.equipmentTypeIdToTypeString(EquipmentType.PROJECTILE)]: ProjectileDataModel,
-  [EquipmentInfoParser.equipmentTypeIdToTypeString(EquipmentType.ARMOR)]: ArmorDataModel,
-  [EquipmentInfoParser.equipmentTypeIdToTypeString(EquipmentType.VEHICLE)]: VehicleDataModel,
-  [EquipmentInfoParser.equipmentTypeIdToTypeString(EquipmentType.SUBSTANCE)]: SubstanceDataModel,
-  [EquipmentInfoParser.equipmentTypeIdToTypeString(EquipmentType.ACESSORY)]: AcessoryDataModel
-};
-
-export function equipmentParseData(data) {
-  const ModelClass = EquipmentTypeStringMap[data.type] ?? BaseEquipmentDataModel;
-  const dataObject = data.toObject();
-  const model = new ModelClass(dataObject.system);
-  model.setupValues(data);
-  return model;
 }
 
 export async function createEquipmentDataModels() {

@@ -39,9 +39,10 @@ export class ActorRollDialog {
             return;
           }
 
-          const rollMode = html.parent().find(`#chat_select`).val();
+          const rollMode = html.closest('.window-content')?.querySelector(`#chat_select`)?.value
+            || html.querySelector(`#chat_select`)?.value;
 
-          const form = $(page).closest("form")[0];
+          const form = page.closest("form");
           const data = snakeToCamel(new FormData(form).entries());
           if (!data) {
             return
@@ -58,14 +59,16 @@ export class ActorRollDialog {
         content: content,
         buttons: buttons,
         render: (html) => {
-          const renderedButtons = html.find(`[data-action="${OnEventType.CHECK}"]`);
-          pages = html.find(`[data-characteristic="page"]`);
+          const renderedButtons = html.querySelectorAll(`[data-action="${OnEventType.CHECK}"]`);
+          pages = html.querySelectorAll(`[data-characteristic="page"]`);
           this.#changePage(currentPageDialog, pages, renderedButtons);
 
-          renderedButtons.on("click", (event) => {
-            event.preventDefault();
-            currentPageDialog = Number(event.currentTarget.dataset.item);
-            this.#changePage(currentPageDialog, pages, renderedButtons);
+          renderedButtons.forEach(button => {
+            button.addEventListener("click", (event) => {
+              event.preventDefault();
+              currentPageDialog = Number(event.currentTarget.dataset.item);
+              this.#changePage(currentPageDialog, pages, renderedButtons);
+            });
           });
         }
       },
@@ -189,7 +192,7 @@ export class ActorRollDialog {
   }
 
   static #changePage(page, pages, buttons) {
-    pages.each((index, htmlPage) => {
+    pages.forEach((htmlPage, index) => {
       const isTarget = page == index;
       htmlPage.classList.toggle('hidden', !isTarget);
       buttons[index].classList.toggle('S0-marked', isTarget)

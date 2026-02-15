@@ -18,7 +18,11 @@ class Setor0Combat extends FoundryApi.Combat {
       for (const combatantId of combatantIdArray) {
         const combatant = this.combatants.get(combatantId);
         const actor = combatant.actor;
-        const combatantInformations = { combatantId: combatantId, combatantTokenId: combatant.tokenId, hidden: combatant.hidden };
+        const combatantInformations = {
+          combatantId: combatantId,
+          combatantTokenId: combatant.tokenId,
+          hidden: combatant.hidden
+        };
         await DefaultActions.processInitiativeRoll(actor, combatantInformations);
       }
     } else {

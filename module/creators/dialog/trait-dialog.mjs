@@ -142,35 +142,35 @@ export class TraitDialog {
   }
 
   static #mountTraitObject(html, traits) {
-    const traitId = html.find('#trait').val();
+    const traitId = html.querySelector('#trait').value;
     const objectTrait = this.#findTrait(traits, traitId);
     if (objectTrait.particularity != undefined) {
-      const particularity = html.find('#particularity').val();
+      const particularity = html.querySelector('#particularity').value;
       objectTrait['particularity'] = particularity;
     }
     return objectTrait;
   }
 
   static #myRender(html, traits) {
-    html.find('#trait').on('change', (event) => {
+    html.querySelector('#trait').addEventListener('change', (event) => {
       this.#updateValues(html, traits)
     });
     this.#updateValues(html, traits);
   }
 
   static #updateValues(html, traits) {
-    const traitId = html.find('#trait').val();
+    const traitId = html.querySelector('#trait').value;
     const selectedTrait = this.#findTrait(traits, traitId);
 
     const htmlElements = {
-      costLabel: { element: html.find('#cost') },
-      divParticularity: { element: html.find('#divParticularity'), addClass: 'hidden' },
-      particularityLabel: { element: html.find('#particularity') },
-      divRequirement: { element: html.find('#divRequirement'), addClass: 'hidden' },
-      requirementLabel: { element: html.find('#requirement') },
-      divMorph: { element: html.find('#divMorph'), addClass: 'hidden' },
-      morphLabel: { element: html.find('#morph') },
-      descriptionLabel: { element: html.find('#description') },
+      costLabel: { element: html.querySelector('#cost') },
+      divParticularity: { element: html.querySelector('#divParticularity'), addClass: 'hidden' },
+      particularityLabel: { element: html.querySelector('#particularity') },
+      divRequirement: { element: html.querySelector('#divRequirement'), addClass: 'hidden' },
+      requirementLabel: { element: html.querySelector('#requirement') },
+      divMorph: { element: html.querySelector('#divMorph'), addClass: 'hidden' },
+      morphLabel: { element: html.querySelector('#morph') },
+      descriptionLabel: { element: html.querySelector('#description') },
     };
 
     if (selectedTrait) {
@@ -178,19 +178,21 @@ export class TraitDialog {
       this.#toggleVisibility(selectedTrait.requirement, htmlElements.divRequirement, htmlElements.requirementLabel, selectedTrait.requirement);
       this.#toggleVisibility(selectedTrait.morph, htmlElements.divMorph, htmlElements.morphLabel, selectedTrait.morph);
 
-      htmlElements.costLabel.element.html(selectedTrait.xp ?? "0");
-      htmlElements.descriptionLabel.element[0].innerHTML = selectedTrait.description;
+      htmlElements.costLabel.element.innerHTML = selectedTrait.xp ?? "0";
+      htmlElements.descriptionLabel.element.innerHTML = selectedTrait.description;
     } else {
       Object.values(htmlElements).forEach(el => {
         if (el.addClass) {
-          el.element.addClass(el.addClass);
+          el.element.classList.add(el.addClass);
         }
       });
-      htmlElements.costLabel.html('0');
-      htmlElements.particularityLabel.html('');
+      htmlElements.costLabel.element.innerHTML = '0';
+      htmlElements.particularityLabel.element.innerHTML = '';
     }
 
-    html.parent().parent().css('height', 'auto');
+    if (html.parentElement && html.parentElement.parentElement) {
+      html.parentElement.parentElement.style.height = 'auto';
+    }
   }
 
   static #findTrait(traits, traitId) {
@@ -202,9 +204,9 @@ export class TraitDialog {
     const element = container.element;
     const label = labelContainer.element;
 
-    element.toggleClass("hidden", !haveElement);
+    element.classList.toggle("hidden", !haveElement);
     if (label) {
-      label.html(haveElement ? value : "");
+      label.innerHTML = haveElement ? value : "";
     }
   }
 }

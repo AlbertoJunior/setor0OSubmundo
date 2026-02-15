@@ -144,13 +144,18 @@ class EquipmentSheet extends FoundryApi.ItemSheet {
   }
 
   #presetSheetExpandContainer(html) {
-    html.find('#rollable-tests-list').toggleClass('S0-expanded', this.isExpandedTests);
-    if (this.isExpandedTests && html.find('.fa-chevron-down').length > 0) {
-      HtmlJsUtils.flipClasses(html.find('.fa-chevron-down')[0], 'fa-chevron-up', 'fa-chevron-down');
+    const rollableTestsList = html.querySelector('#rollable-tests-list');
+    if (rollableTestsList) {
+      rollableTestsList.classList.toggle('S0-expanded', this.isExpandedTests);
+    }
+
+    const chevron = html.querySelector('.fa-chevron-down');
+    if (this.isExpandedTests && chevron) {
+      HtmlJsUtils.flipClasses(chevron, 'fa-chevron-up', 'fa-chevron-down');
     }
 
     requestAnimationFrame(() => {
-      const appElement = html.closest(`.${SYSTEM_CLASS_CSS}`)[0];
+      const appElement = html.closest(`.${SYSTEM_CLASS_CSS}`);
       const content = appElement?.querySelector('.window-content') || appElement;
       if (!content) return;
 

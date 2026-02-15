@@ -25,33 +25,35 @@ export class AddEquipmentDialog {
     const selectedItems = new Set();
 
     let actualSelectedButton = undefined;
-    html.find(`[data-action="${OnEventType.CHECK}"]`).click((event) => {
-      const currentTarget = event.currentTarget;
-      let newList = [];
-      if (actualSelectedButton == currentTarget) {
-        currentTarget.classList.remove('S0-marked');
-        actualSelectedButton = undefined;
+    html.querySelectorAll(`[data-action="${OnEventType.CHECK}"]`).forEach(el => {
+      el.addEventListener('click', (event) => {
+        const currentTarget = event.currentTarget;
+        let newList = [];
+        if (actualSelectedButton == currentTarget) {
+          currentTarget.classList.remove('S0-marked');
+          actualSelectedButton = undefined;
 
-        newList = items;
-      } else {
-        actualSelectedButton?.classList.remove('S0-marked')
-        currentTarget.classList.add('S0-marked');
-        actualSelectedButton = currentTarget;
-
-        const type = currentTarget.dataset.type;
-        if (type == 'selected') {
-          newList = selectedItems;
+          newList = items;
         } else {
-          newList = items.filter(item => item.type.toLowerCase() == type);
-        }
-      }
+          actualSelectedButton?.classList.remove('S0-marked')
+          currentTarget.classList.add('S0-marked');
+          actualSelectedButton = currentTarget;
 
-      this.#renderItems(html, newList, selectedItems);
+          const type = currentTarget.dataset.type;
+          if (type == 'selected') {
+            newList = selectedItems;
+          } else {
+            newList = items.filter(item => item.type.toLowerCase() == type);
+          }
+        }
+
+        this.#renderItems(html, newList, selectedItems);
+      });
     });
 
-    const filterInput = html.find("#filter-input");
-    filterInput.on("input", () => {
-      const query = filterInput.val().toLowerCase();
+    const filterInput = html.querySelector("#filter-input");
+    filterInput.addEventListener("input", () => {
+      const query = filterInput.value.toLowerCase();
 
       let filtered = items;
       if (actualSelectedButton) {
@@ -63,8 +65,9 @@ export class AddEquipmentDialog {
       this.#renderItems(html, filtered, selectedItems);
     });
 
-    const addButton = html.find("#add-item-button");
-    addButton.on("click", () => {
+    const addButton = html.querySelector("#add-item-button");
+    addButton.addEventListener("click", (event) => {
+      event.preventDefault();
       onSelect(selectedItems);
       dialog.close();
     });
@@ -73,71 +76,81 @@ export class AddEquipmentDialog {
   }
 
   static #renderItems(html, filteredItems, selectedItems) {
-    const carousel = html.find("#carousel");
-    const addButton = html.find("#add-item-button");
-    const details = html.find("#item-details");
+    const carousel = html.querySelector("#carousel");
+    const addButton = html.querySelector("#add-item-button");
+    const details = html.querySelector("#item-details");
 
-    carousel.empty();
+    carousel.innerHTML = '';
     for (const item of filteredItems) {
       const card = this.#createItemCard(item, selectedItems.has(item));
 
-      card.on("click", () => {
+      card.addEventListener("click", () => {
         if (selectedItems.has(item)) {
           selectedItems.delete(item);
         } else {
           selectedItems.add(item);
         }
-        card.toggleClass("S0-selected", selectedItems.has(item));
+        card.classList.toggle("S0-selected", selectedItems.has(item));
         this.#updateSelectionCount(addButton, selectedItems);
         this.#updateDetails(details, item, selectedItems.size === 0);
       });
 
-      carousel.append(card);
+      carousel.appendChild(card);
     }
   }
 
   static #createItemCard(item, isSelected) {
-    const card = $('<div>', { class: 'S0-item-bag S0-clickable' });
-    card.toggleClass("S0-selected", isSelected);
+    const card = document.createElement('div');
+    card.className = 'S0-item-bag S0-clickable';
+    if (isSelected) card.classList.add("S0-selected");
 
-    const img = $('<img>', { src: item.img, alt: item.name });
-    const divName = $('<div>', { class: 'S0-item-legend', style: 'padding-inline: 4px' });
-    const name = $('<span>', { class: 'S0-hide-long-text' }).text(item.name);
+    const img = document.createElement('img');
+    img.src = item.img;
+    img.alt = item.name;
 
-    divName.append(name);
+    const divName = document.createElement('div');
+    divName.className = 'S0-item-legend';
+    divName.style.paddingInline = '4px';
 
-    card.append(img, divName);
+    const name = document.createElement('span');
+    name.className = 'S0-hide-long-text';
+    name.textContent = item.name;
+
+    divName.appendChild(name);
+
+    card.appendChild(img);
+    card.appendChild(divName);
     return card;
   }
 
   static #updateSelectionCount(addButton, selectedItems) {
     const count = selectedItems.size;
-    addButton.text(`Adicionar (${count}) ite${count <= 1 ? 'm' : 'ns'}`);
-    addButton.prop("disabled", count === 0);
+    addButton.textContent = `Adicionar (${count}) ite${count <= 1 ? 'm' : 'ns'}`;
+    addButton.disabled = count === 0;
   }
 
   static #updateDetails(details, item, isEmpty) {
     if (isEmpty) {
-      details.html(`            
+      details.innerHTML = `
                 <div class="S0-message-simple-text">
-                    Selecione um item para ver detalhes.            
+                    Selecione um item para ver detalhes.
                 </div>
-            `);
+            `;
       return;
     }
 
     const typeString = `<strong>${localize('Tipo')}:</strong> <span>${localizeType('Item.' + item.type)}</span>`
     const nameString = `<strong>${localize('Nome')}:</strong> <span>${item.name}</span>`
-    details.html(`
+    details.innerHTML = `
             ${typeString}
             <br>
             ${nameString}
             <br>
             <strong>${localize('Descricao')}:</strong>
             <div class="S0-message-simple-text">
-                ${item.description ?? "Sem descrição."}            
+                ${item.description ?? "Sem descrição."}
             </div>
-            `);
+            `;
   }
 
   static async #mountContent() {

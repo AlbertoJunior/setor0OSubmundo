@@ -61,15 +61,17 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
   static presetStatusVitality(html, actor) {
     let letalDamage = getObject(actor, BaseActorCharacteristicType.VITALITY.LETAL_DAMAGE) || 0;
     let superFicialDamage = getObject(actor, BaseActorCharacteristicType.VITALITY.SUPERFICIAL_DAMAGE) || 0;
-    html.find('#vitalidade .S0-characteristic-temp').each((index, item) => {
+
+    const vitalityContainer = html.querySelector('#vitalidade');
+    if (!vitalityContainer) return;
+
+    vitalityContainer.querySelectorAll('.S0-characteristic-temp').forEach((item) => {
       if (superFicialDamage > 0) {
         item.classList.add('S0-superficial');
         superFicialDamage--;
       } else if (letalDamage > 0) {
         item.classList.add('S0-letal');
         letalDamage--;
-      } else {
-        return;
       }
     });
   }
@@ -81,7 +83,12 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
     }
 
     const value = getObject(armor, EquipmentCharacteristicType.ACTUAL_RESISTANCE) || 0;
-    selectCharacteristic(html.find(`#protect .S0-characteristic`)[value - 1]);
+    const protectContainer = html.querySelector('#protect');
+    if (protectContainer) {
+      const characteristics = protectContainer.querySelectorAll('.S0-characteristic');
+      const target = characteristics[value - 1];
+      if (target) selectCharacteristic(target);
+    }
   }
 
   static setupTabs(html, currentPage) {

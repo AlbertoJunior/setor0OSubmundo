@@ -126,35 +126,35 @@ export class SuperEquipmentEffectsDialog {
   static #render(windowApp, html, listTraits, listCharacteristics) {
     const characteristics = listCharacteristics.flatMap(group => group.options);
 
-    const selectEffect = html.find('select[name="selectedTrait"]');
-    const cost = html.find('#costValue');
-    const limit = html.find('#limitValue');
-    const description = html.find('.S0-container .S0-message-simple-text');
+    const selectEffect = html.querySelector('select[name="selectedTrait"]');
+    const cost = html.querySelector('#costValue');
+    const limit = html.querySelector('#limitValue');
+    const description = html.querySelector('.S0-container .S0-message-simple-text');
 
-    const particularityContainer = html.find('#particularityContainer');
-    const inputParticularity = html.find('input[name="particularity"]');
+    const particularityContainer = html.querySelector('#particularityContainer');
+    const inputParticularity = html.querySelector('input[name="particularity"]');
 
-    const selectParticularityContainer = html.find('#selectedParticularityContainer');
-    const selectCharacteristicParticularity = html.find('select[name="selectedParticularity"]');
+    const selectParticularityContainer = html.querySelector('#selectedParticularityContainer');
+    const selectCharacteristicParticularity = html.querySelector('select[name="selectedParticularity"]');
 
     const characteristicElements = { selectCharacteristicParticularity, inputParticularity };
-    selectCharacteristicParticularity.on('change', () => this.#onSelectCharacteristicChange(characteristics, characteristicElements));
+    selectCharacteristicParticularity.addEventListener('change', () => this.#onSelectCharacteristicChange(characteristics, characteristicElements));
 
     const effectsElements = {
       selectEffect, description, cost, limit,
       particularityContainer, inputParticularity,
       selectParticularityContainer, selectCharacteristicParticularity
     };
-    selectEffect.on('change', () => this.#onSelectEffectChange(windowApp, listTraits, effectsElements));
+    selectEffect.addEventListener('change', () => this.#onSelectEffectChange(windowApp, listTraits, effectsElements));
     this.#onSelectEffectChange(windowApp, listTraits, effectsElements);
   }
 
   static #onSelectCharacteristicChange(characteristics, jElements) {
     const { selectCharacteristicParticularity, inputParticularity } = jElements;
-    const selectedVal = selectCharacteristicParticularity.val();
+    const selectedVal = selectCharacteristicParticularity.value;
     const selected = characteristics.find(c => c.id == selectedVal);
     if (selected) {
-      inputParticularity.val(selected.name);
+      inputParticularity.value = selected.name;
     }
   }
 
@@ -165,20 +165,20 @@ export class SuperEquipmentEffectsDialog {
       selectParticularityContainer, selectCharacteristicParticularity: selectCharacteristic
     } = jElements;
 
-    const selectedId = selectEffect.val();
+    const selectedId = selectEffect.value;
     const trait = this.#findTrait(listTraits, selectedId);
 
     if (!trait) {
-      particularityContainer.hide();
-      selectParticularityContainer.hide();
+      particularityContainer.style.display = 'none';
+      selectParticularityContainer.style.display = 'none';
       return;
     }
 
-    description.text(trait.description);
-    cost.text(trait.cost);
-    limit.text(trait.limit);
+    description.textContent = trait.description;
+    cost.textContent = trait.cost;
+    limit.textContent = trait.limit;
 
-    inputParticularity.val('');
+    inputParticularity.value = '';
 
     const jElementsCharacteristics = { selectParticularityContainer, selectCharacteristic, inputParticularity, particularityContainer };
     this.#updateSelectCharacteristic(trait, jElementsCharacteristics);
@@ -203,24 +203,25 @@ export class SuperEquipmentEffectsDialog {
       const canSelect = index != null;
 
       if (particularityType == SuperEquipmentParticularityType.FIXED) {
-        selectParticularityContainer.hide();
-        particularityContainer.hide();
-        selectCharacteristic.val('');
-        inputParticularity.val(trait.particularity.description);
+        selectParticularityContainer.style.display = 'none';
+        particularityContainer.style.display = 'none';
+        selectCharacteristic.value = '';
+        inputParticularity.value = trait.particularity.description;
         return;
       }
 
-      selectParticularityContainer.toggle(canSelect);
-      particularityContainer.toggle(!canSelect);
+      selectParticularityContainer.style.display = canSelect ? '' : 'none';
+      particularityContainer.style.display = !canSelect ? '' : 'none';
 
       if (canSelect) {
-        selectCharacteristic.prop('selectedIndex', index).trigger('change');
+        selectCharacteristic.selectedIndex = index;
+        selectCharacteristic.dispatchEvent(new Event('change'));
       } else {
-        selectCharacteristic.val('');
+        selectCharacteristic.value = '';
       }
     } else {
-      particularityContainer.hide();
-      selectParticularityContainer.hide();
+      particularityContainer.style.display = 'none';
+      selectParticularityContainer.style.display = 'none';
     }
   }
 

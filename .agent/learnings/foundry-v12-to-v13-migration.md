@@ -193,7 +193,6 @@ abstraindo as diferenças entre versões.
 ## Referência de Documentação
 - **v12 Docs**: `.agent/docs/v12/classes/` (982 arquivos HTML)
 - **v13 Docs**: `.agent/docs/v13/classes/` (598 arquivos HTML)
-- **App Source**: `.agent/docs/app/client/` (código fonte da aplicação Foundry)
   - `applications/api/` — ApplicationV2, DocumentSheetV2, HandlebarsApplicationMixin, DialogV2
   - `applications/sheets/` — ActorSheetV2, ItemSheetV2, etc.
   - `appv1/` — Application V1 (legado, mantido para compatibilidade)
@@ -258,3 +257,11 @@ abstraindo as diferenças entre versões.
 - **Dica**: No Setor0, isso foi aplicado no `v2.mjs` para corrigir o bug de campos `<select>` que resultavam em valores indefinidos.
 
 
+### 11. DialogV2: Botões e Form Submission
+- **Problema**: Botões dentro de um `DialogV2` estão dentro de um `<form>`. Se o botão não tiver `type="button"`, ele dispara o evento `submit`, o que pode causar erros ou fechar o diálogo inesperadamente se o handler de submit da classe não estiver preparado.
+- **Solução**: Sempre use `event.preventDefault()` no handler de `click` de botões customizados dentro de diálogos para evitar a propagação para o submit do form.
+
+### 12. Consultas DOM e `.closest()`
+- **V1**: `html` geralmente referia-se ao conteúdo injetado. `html.closest('.window-content')` funcionava porque o jQuery subia a árvore.
+- **V2**: `this.element` é a raiz do app. Se você tentar `this.element.closest('.window-content')`, pode retornar `null` se `this.element` já for o conteúdo ou se a estrutura for diferente (ApplicationV2 não usa `.window-content` da mesma forma que V1).
+- **Prática Segura**: Ao invés de depender de subir a árvore para buscar elementos irmãos ou pais distantes, prefira consultas descendentes (`this.element.querySelector`) ou garanta que o elemento raiz é o esperado. Em diálogos V2, o `render(html)` recebe o elemento raiz do formulário. Use optional chaining `?` ao navegar para cima.
