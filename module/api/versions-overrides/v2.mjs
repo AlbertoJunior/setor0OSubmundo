@@ -45,16 +45,18 @@ function makeClass(BaseClass) {
           return;
         }
 
-        const value = Cls.#operateValue(event.target);
+        // In ApplicationV2 with submitOnChange: true, the 'submit' event is triggered.
+        // The element that triggered the change is usually event.submitter.
+        const target = event.submitter || event.target;
+        const name = target?.name;
+        const value = Cls.#operateValue(target);
 
-        const eventTargetName = event.target.name
-        TODO("verificar por que eventTargetName está undefined QUANDO VENDO DE UM SELECT")
-        if (!eventTargetName || eventTargetName.length == 0) {
-          console.warn("eventTargetName is undefined");
-          return;
+        if (name) {
+          await this.updateDocument(this.document, name, value);
+        } else {
+          // Fallback: if we can't identify the specific field, we might need to update everything or log it
+          console.warn("Setor0 | Could not identify the changed field name from event.submitter or event.target.");
         }
-
-        await this.updateDocument(this.document, eventTargetName, value);
       }
 
       static #operateValue(target) {

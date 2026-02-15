@@ -252,3 +252,9 @@ abstraindo as diferenças entre versões.
 - O getter base em `Setor0BaseSheet` deve retornar `!this.isEditable` (disabled quando NÃO editável).
 - Subclasses como `BaseActorSheet` e `EquipmentSheet` fazem override com lógica mais complexa.
 
+### 10. `submitOnChange` e o `event.submitter`
+- **Problema**: Ao usar `submitOnChange: true` no ApplicationV2, o evento disparado no formulário é um `submit`. Diferente da V1, acessar `event.target` pode retornar o formulário inteiro, dificultando saber qual campo mudou.
+- **Solução**: Use `event.submitter || event.target`. No v13, o elemento que disparou a submissão (mesmo via mudança) é populado no `submitter`.
+- **Dica**: No Setor0, isso foi aplicado no `v2.mjs` para corrigir o bug de campos `<select>` que resultavam em valores indefinidos.
+
+

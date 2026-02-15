@@ -129,6 +129,10 @@ function makeClass(BaseClass) {
         this.configureSheet(html);
         this.postRenderConfiguration(html);
       }
+
+      _getHeaderControls() {
+        return super._getHeaderControls();
+      }
     }
   }[name];
 

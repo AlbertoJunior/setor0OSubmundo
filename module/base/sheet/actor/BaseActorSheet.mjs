@@ -37,10 +37,6 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
     return !(this.isEditable && this.canRollOrEdit);
   }
 
-  _getHeaderControls() {
-    return super._getHeaderControls();
-  }
-
   getData() {
     const data = super.getData();
     if (data.options) {

@@ -21,7 +21,7 @@ trigger: always_on
 ## Execução Técnica
 - **Quinto:** A feature ou fix desenvolvida, deve atender à estrutura do projeto e também a documentação mais recente do Foundry VTT.
 - **Sexto:** Ao concluir a tarefa, execute o fechamento documental:
-  1. Log de Alterações: Crie um arquivo em .agent/history/ seguindo o padrão YYYY-MM-DD-nome-da-task.md. O conteúdo deve resumir: O que foi feito, Arquivos alterados, Decisões técnicas relevantes e Testes sugeridos.
+  1. Log de Alterações: Crie um arquivo em .agent/history/ seguindo o padrão [numeracao]-nome-da-task.md. O conteúdo deve resumir: O que foi feito, Arquivos alterados, Decisões técnicas relevantes e Testes sugeridos.
   2. Manutenção de Índices: Atualize o arquivo .agent/history/_index.md adicionando a nova entrada no topo da lista (ordem cronológica inversa).
   3. Ponte de Aprendizado: Avalie se o que foi feito gerou um novo padrão ou resolveu um erro que pode se repetir. Se sim, acione a seção 'Aprendizagem e Gestão do Conhecimento' de System Rules para registrar esse conhecimento em .agent/learnings/.
   4. Status de Migração: Se a tarefa envolveu um plano de migração (conforme o quarto passo), anote no histórico o status atual dessa transição (ex: "Migração v12 -> v13 em andamento: 40% concluída").
