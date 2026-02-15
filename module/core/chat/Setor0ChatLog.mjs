@@ -2,124 +2,124 @@ import { FoundryApi } from "../../api/foundry-api.mjs";
 import { OnEventType } from "../../enums/on-event-type.mjs";
 import { MessageRepository } from "../../repository/message-repository.mjs";
 import { HtmlJsUtils } from "../../utils/html-js-utils.mjs";
-import { localize, TODO } from "../../utils/utils.mjs";
+import { localize } from "../../utils/utils.mjs";
 import { RollConsciousness } from "../rolls/consciousness-roll.mjs";
 import { RollPerseverance } from "../rolls/perseverance-roll.mjs";
 import { RollQuietness } from "../rolls/quietness-roll.mjs";
 
 class Setor0ChatLog extends FoundryApi.ChatLog {
-    static DEFAULT_OPTIONS = {
-        actions: {
-            [OnEventType.VIEW]: this.#view,
-            [OnEventType.CHECK]: this.#check,
-        }
-    };
-
-    static #viewMap = {
-        'toggle-tooltip': async (target, message) => {
-            let tooltip = target.previousElementSibling;
-            let hooks = 0;
-            while (hooks < 5 && tooltip) {
-                if (tooltip.classList.contains('S0-container-contract')) {
-                    HtmlJsUtils.expandOrContractMessageElement(tooltip, { minHeight: 0, maxHeight: 700, marginBottom: 0 })
-                    return;
-                } else {
-                    tooltip = tooltip.previousElementSibling;
-                    hooks++;
-                }
-            }
-        },
-        'open-sheet': async (target, message) => {
-            const uuid = target.dataset.uuid;
-            if (uuid) {
-                const item = fromUuidSync(uuid);
-                item?.sheet?.render(true);
-            }
-        }
-    };
-
-    static #checkMap = {
-        'consciousness': async (target, message) => {
-            const result = await RollConsciousness.operateMessage(message);
-            if (result) {
-                await this.#updateButtonOnContent(message, target, localize('Consciencia_Utilizada'));
-            }
-        },
-        'perseverance': async (target, message) => {
-            const result = await RollPerseverance.operateMessage(message);
-            if (result) {
-                await this.#updateButtonOnContent(message, target, localize('Perseveranca_Utilizada'));
-            }
-        },
-        'quietness': async (target, message) => {
-            const result = await RollQuietness.operateMessage(message);
-            if (result) {
-                await this.#updateButtonOnContent(message, target, localize('Quietude_Utilizada'));
-            }
-        },
+  static DEFAULT_OPTIONS = {
+    actions: {
+      [OnEventType.VIEW]: this.#view,
+      [OnEventType.CHECK]: this.#check,
     }
+  };
 
-    static #view(event, target) {
-        Setor0ChatLog.#operateEventOnMap(Setor0ChatLog.#viewMap, event, target);
-    }
-
-    static #check(event, target) {
-        Setor0ChatLog.#operateEventOnMap(Setor0ChatLog.#checkMap, event, target);
-    }
-
-    static #operateEventOnMap(map, event, target) {
-        const { type, message } = Setor0ChatLog.#prepareEventMessage(event, target) ?? {};
-        const method = map[type];
-        if (typeof method === 'function') {
-            method(target, message);
+  static #viewMap = {
+    'toggle-tooltip': async (target, message) => {
+      let tooltip = target.previousElementSibling;
+      let hooks = 0;
+      while (hooks < 5 && tooltip) {
+        if (tooltip.classList.contains('S0-container-contract')) {
+          HtmlJsUtils.expandOrContractMessageElement(tooltip, { minHeight: 0, maxHeight: 700, marginBottom: 0 })
+          return;
         } else {
-            console.warn(`Action [${target.dataset.action}] - method is invalid [${type}]`);
+          tooltip = tooltip.previousElementSibling;
+          hooks++;
         }
+      }
+    },
+    'open-sheet': async (target, message) => {
+      const uuid = target.dataset.uuid;
+      if (uuid) {
+        const item = fromUuidSync(uuid);
+        item?.sheet?.render(true);
+      }
+    }
+  };
+
+  static #checkMap = {
+    'consciousness': async (target, message) => {
+      const result = await RollConsciousness.operateMessage(message);
+      if (result) {
+        await this.#updateButtonOnContent(message, target, localize('Consciencia_Utilizada'));
+      }
+    },
+    'perseverance': async (target, message) => {
+      const result = await RollPerseverance.operateMessage(message);
+      if (result) {
+        await this.#updateButtonOnContent(message, target, localize('Perseveranca_Utilizada'));
+      }
+    },
+    'quietness': async (target, message) => {
+      const result = await RollQuietness.operateMessage(message);
+      if (result) {
+        await this.#updateButtonOnContent(message, target, localize('Quietude_Utilizada'));
+      }
+    },
+  }
+
+  static #view(event, target) {
+    Setor0ChatLog.#operateEventOnMap(Setor0ChatLog.#viewMap, event, target);
+  }
+
+  static #check(event, target) {
+    Setor0ChatLog.#operateEventOnMap(Setor0ChatLog.#checkMap, event, target);
+  }
+
+  static #operateEventOnMap(map, event, target) {
+    const { type, message } = Setor0ChatLog.#prepareEventMessage(event, target) ?? {};
+    const method = map[type];
+    if (typeof method === 'function') {
+      method(target, message);
+    } else {
+      console.warn(`Action [${target.dataset.action}] - method is invalid [${type}]`);
+    }
+  }
+
+  static #prepareEventMessage(event, target) {
+    event.preventDefault();
+    if (target.disabled) {
+      return;
     }
 
-    static #prepareEventMessage(event, target) {
-        event.preventDefault();
-        if (target.disabled) {
-            return;
-        }
-
-        const messageId = Setor0ChatLog.#getMessageId(event);
-        const message = MessageRepository.findMessage(messageId);
-        if (!message) {
-            console.warn(`messageId is invalid`);
-            return;
-        }
-
-        if (!game.user.isGM && !message.speakerActor?.isOwner) {
-            console.warn(`User: ${game.user.name} isn't the owner of this message`);
-            return;
-        }
-
-        const dataset = target.dataset;
-        return {
-            action: dataset.action,
-            type: dataset.type,
-            message: message
-        }
+    const messageId = Setor0ChatLog.#getMessageId(event);
+    const message = MessageRepository.findMessage(messageId);
+    if (!message) {
+      console.warn(`messageId is invalid`);
+      return;
     }
 
-    static #getMessageId(event) {
-        const { messageId } = event.target.closest("[data-message-id]")?.dataset ?? {};
-        return messageId;
+    if (!game.user.isGM && !message.speakerActor?.isOwner) {
+      console.warn(`User: ${game.user.name} isn't the owner of this message`);
+      return;
     }
 
-    static async #updateButtonOnContent(message, button, text) {
-        const $content = $(message.content);
-        const $button = $content.find(`button[data-action="${button.dataset.action}"][data-type="${button.dataset.type}"]`);
-        if ($button) {
-            $button.text(text);
-            $button.removeAttr('data-action').removeAttr('data-type');
-            $button.attr('disabled', true);
-            await MessageRepository.updateMessage(message, { content: $content.prop('outerHTML') });
-        }
+    const dataset = target.dataset;
+    return {
+      action: dataset.action,
+      type: dataset.type,
+      message: message
     }
+  }
+
+  static #getMessageId(event) {
+    const { messageId } = event.target.closest("[data-message-id]")?.dataset ?? {};
+    return messageId;
+  }
+
+  static async #updateButtonOnContent(message, button, text) {
+    const $content = $(message.content);
+    const $button = $content.find(`button[data-action="${button.dataset.action}"][data-type="${button.dataset.type}"]`);
+    if ($button) {
+      $button.text(text);
+      $button.removeAttr('data-action').removeAttr('data-type');
+      $button.attr('disabled', true);
+      await MessageRepository.updateMessage(message, { content: $content.prop('outerHTML') });
+    }
+  }
 }
 
 export function configureSetor0ChatLog() {
-    CONFIG.ui.chat = Setor0ChatLog;
+  CONFIG.ui.chat = Setor0ChatLog;
 }

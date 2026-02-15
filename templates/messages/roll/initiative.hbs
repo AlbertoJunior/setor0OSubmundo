@@ -1,16 +1,16 @@
 <div class="S0-message-content">
-    <h4 style="text-align: center;">{{localize 'S0.Iniciativa'}}</h4>
-    <hr>
-    <div class="dice-tooltip S0-container-contract">
-        <ol class="dice-rolls">
-            {{#each diceValues}}
-            <li class="S0-d10 roll die d10">{{ this }}</li>
-            {{/each}}
-        </ol>
+  <h4 style="text-align: center;">{{localize 'S0.Iniciativa'}}</h4>
+  <hr>
+  <div class="dice-tooltip S0-container-contract">
+    <ol class="dice-rolls">
+      {{#each diceValues}}
+      <li class="S0-d10 roll die d10">{{ this }}</li>
+      {{/each}}
+    </ol>
 
-        <label style="display: block; margin-block: 6px;">{{localize 'S0.Base'}}: {{ initiative }}</label>
-        <label style="display: block; margin-block: 6px;">{{localize 'S0.Total'}}: {{ total }}</label>
-    </div>
+    <label style="display: block; margin-block: 6px;">{{localize 'S0.Base'}}: {{ initiative }}</label>
+    <label style="display: block; margin-block: 6px;">{{localize 'S0.Total'}}: {{ total }}</label>
+  </div>
 
-    <button class="S0-roll-result" data-action="view" data-type="toggle-tooltip">( {{ total }} )</button>
+  <button class="S0-roll-result" data-action="view" data-type="toggle-tooltip">( {{ total }} )</button>
 </div>

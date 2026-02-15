@@ -1,50 +1,50 @@
 <section class="S0-page tab" data-group="menu-tabs" data-tab="enhancement"
-    data-label="{{localize 'S0.Aprimoramento.Nome_Plural'}}" id="enhancementPage" data-icon="fas fa-lungs">
-    {{#if (operators 'gt' (actorValues actor 'core') 0)}}
-    <div class="S0-container">
-        <h3>
-            {{ localize 'S0.Sobrecarga' }}
-            {{#if canRoll}}
-            <a class="S0-icon-rotate" data-action="roll" data-characteristic="temporary" data-type="overload">
-                <i class="fas fa-dice-d10"></i>
-            </a>
-            <a class="S0-icon-rotate" data-action="remove" data-characteristic="temporary" data-type="overload">
-                <i class="fas fa-refresh"></i>
-            </a>
-            {{/if}}
-        </h3>
-        <div id="sobrecarga" class="S0-inner-container">
-            {{#lett actor=actor
-            action=(operators 'ternary' canRoll 'check' '')
-            selectedClass=(operators 'ternary' canRoll 'S0-clickable' '')}}
+  data-label="{{localize 'S0.Aprimoramento.Nome_Plural'}}" id="enhancementPage" data-icon="fas fa-lungs">
+  {{#if (operators 'gt' (actorValues actor 'core') 0)}}
+  <div class="S0-container">
+    <h3>
+      {{ localize 'S0.Sobrecarga' }}
+      {{#if canRoll}}
+      <a class="S0-icon-rotate" data-action="roll" data-characteristic="temporary" data-type="overload">
+        <i class="fas fa-dice-d10"></i>
+      </a>
+      <a class="S0-icon-rotate" data-action="remove" data-characteristic="temporary" data-type="overload">
+        <i class="fas fa-refresh"></i>
+      </a>
+      {{/if}}
+    </h3>
+    <div id="sobrecarga" class="S0-inner-container">
+      {{#lett actor=actor
+      action=(operators 'ternary' canRoll 'check' '')
+      selectedClass=(operators 'ternary' canRoll 'S0-clickable' '')}}
 
-            {{#forLoop 0 5}}
-            <div class="S0-characteristic S0-characteristic-temp {{../selectedClass}}" data-action="{{../action}}"
-                data-characteristic="temporary" data-type="overload">
-            </div>
-            {{/forLoop}}
-            {{/lett}}
-        </div>
+      {{#forLoop 0 5}}
+      <div class="S0-characteristic S0-characteristic-temp {{../selectedClass}}" data-action="{{../action}}"
+        data-characteristic="temporary" data-type="overload">
+      </div>
+      {{/forLoop}}
+      {{/lett}}
     </div>
-    {{/if}}
+  </div>
+  {{/if}}
 
-    <div class="S0-container">
-        <h2>
-            {{localize 'S0.Aprimoramento.Nome_Plural'}}
-            <label style="font-size: var(--font-size-11);">
-                {{actorValues actor 'actual_enhancements'}}/{{actorValues actor 'total_enhancements'}}
-            </label>
-            <a class="S0-icon-rotate" style="font-size: small;" data-action="remove" data-characteristic="enhancement"
-                title="{{localize 'S0.Atualizar_Efeitos'}}">
-                <i class="fas fa-refresh"></i>
-            </a>
-        </h2>
+  <div class="S0-container">
+    <h2>
+      {{localize 'S0.Aprimoramento.Nome_Plural'}}
+      <label style="font-size: var(--font-size-11);">
+        {{actorValues actor 'actual_enhancements'}}/{{actorValues actor 'total_enhancements'}}
+      </label>
+      <a class="S0-icon-rotate" style="font-size: small;" data-action="remove" data-characteristic="enhancement"
+        title="{{localize 'S0.Atualizar_Efeitos'}}">
+        <i class="fas fa-refresh"></i>
+      </a>
+    </h2>
 
-        <div class="S0-container-2-column" style="margin-block: 2px; padding-block: 2px; row-gap: 8px">
-            {{#forLoop 1 5}}
-            {{> enhancementPartial enhancement-slot=index}}
-            {{/forLoop}}
-        </div>
+    <div class="S0-container-2-column" style="margin-block: 2px; padding-block: 2px; row-gap: 8px">
+      {{#forLoop 1 5}}
+      {{> enhancementPartial enhancement-slot=index}}
+      {{/forLoop}}
     </div>
+  </div>
 
 </section>

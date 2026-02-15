@@ -1,41 +1,40 @@
 <form autocomplete="off">
-    {{> itemCommon this}}
+  {{> itemCommon this}}
 
-    <div class="S0-page S0-container S0-container-2-fixed-column" style="align-items: center;">
-        {{> itemCommonWeapon this}}
+  <div class="S0-page S0-container S0-container-2-fixed-column" style="align-items: center;">
+    {{> itemCommonWeapon this}}
 
-        <label for="{{item.id}}.cadence">{{localize 'S0.Cadencia'}}:</label>
-        <input id="{{item.id}}.cadence" type="number" name="system.cadence" min="1"
-            value="{{itemValues item 'cadence'}}" />
+    <label for="{{item.id}}.cadence">{{localize 'S0.Cadencia'}}:</label>
+    <input id="{{item.id}}.cadence" type="number" name="system.cadence" min="1" value="{{itemValues item 'cadence'}}" />
 
-        <label for="{{item.id}}.capacity">{{localize 'S0.Capacidade'}}:</label>
-        <input id="{{item.id}}.capacity" type="number" name="system.capacity" min="1"
-            value="{{itemValues item 'capacity'}}" />
+    <label for="{{item.id}}.capacity">{{localize 'S0.Capacidade'}}:</label>
+    <input id="{{item.id}}.capacity" type="number" name="system.capacity" min="1"
+      value="{{itemValues item 'capacity'}}" />
 
-        <label for="{{item.id}}.range">{{localize 'S0.Alcance'}} ({{localize 'S0.PM'}}):</label>
-        <input id="{{item.id}}.range" type="number" name="system.range" min="1" value="{{itemValues item 'range'}}" />
+    <label for="{{item.id}}.range">{{localize 'S0.Alcance'}} ({{localize 'S0.PM'}}):</label>
+    <input id="{{item.id}}.range" type="number" name="system.range" min="1" value="{{itemValues item 'range'}}" />
 
-        <label for="{{item.id}}.max_range">{{localize 'S0.Itens.Alcance_Maximo'}}:</label>
-        {{#with (itemValues item 'max_range') as |max_range|}}
-        <select id="{{item.id}}.max_range" class="S0-select" name="system.max_range">
-            <option value="1" {{selectIfEq max_range 1 }}>x1</option>
-            <option value="2" {{selectIfEq max_range 2 }}>x2</option>
-            <option value="3" {{selectIfEq max_range 3 }}>x3</option>
-        </select>
-        {{/with}}
+    <label for="{{item.id}}.max_range">{{localize 'S0.Itens.Alcance_Maximo'}}:</label>
+    {{#with (itemValues item 'max_range') as |max_range|}}
+    <select id="{{item.id}}.max_range" class="S0-select" name="system.max_range">
+      <option value="1" {{selectIfEq max_range 1 }}>x1</option>
+      <option value="2" {{selectIfEq max_range 2 }}>x2</option>
+      <option value="3" {{selectIfEq max_range 3 }}>x3</option>
+    </select>
+    {{/with}}
 
-        <label for="{{item.id}}.special">{{localize 'S0.Especial'}}?</label>
-        <div style="width: 100%; padding-inline: 6px; display: flex; justify-content: center; align-items: center; ">
-            <input id="{{item.id}}.special" type="checkbox" name="system.special" {{#if (itemValues item 'special'
-                )}}checked{{/if}} />
-        </div>
+    <label for="{{item.id}}.special">{{localize 'S0.Especial'}}?</label>
+    <div style="width: 100%; padding-inline: 6px; display: flex; justify-content: center; align-items: center; ">
+      <input id="{{item.id}}.special" type="checkbox" name="system.special" {{#if (itemValues item 'special'
+        )}}checked{{/if}} />
     </div>
+  </div>
 
-    {{> itemCommonResistance this}}
+  {{> itemCommonResistance this}}
 
-    {{> itemSuperEquipment this}}
+  {{> itemSuperEquipment this}}
 
-    {{> itemRollableTests this}}
+  {{> itemRollableTests this}}
 
-    {{> itemCommonDescription this}}
+  {{> itemCommonDescription this}}
 </form>

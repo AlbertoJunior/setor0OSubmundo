@@ -1,10 +1,10 @@
 <div class="S0-page S0-container S0-container-2-fixed-column" style="align-items: center;">
-    {{#lett resistance=(itemValues item 'resistance') item=item id=item.id}}
-    <label for="{{id}}.resistance">{{localize 'S0.Resistencia_Total'}}:</label>
-    <input id="{{id}}.resistance" type="number" name="system.resistance" value="{{resistance}}" min="1" max="15" />
+  {{#lett resistance=(itemValues item 'resistance') item=item id=item.id}}
+  <label for="{{id}}.resistance">{{localize 'S0.Resistencia_Total'}}:</label>
+  <input id="{{id}}.resistance" type="number" name="system.resistance" value="{{resistance}}" min="1" max="15" />
 
-    <label for="{{id}}.actual_resistance">{{localize 'S0.Resistencia_Atual'}}:</label>
-    <input id="{{id}}.actual_resistance" type="number" min="0" max="{{resistance}}" name="system.actual_resistance"
-        value="{{itemValues item 'actual_resistance'}}" />
-    {{/lett}}
+  <label for="{{id}}.actual_resistance">{{localize 'S0.Resistencia_Atual'}}:</label>
+  <input id="{{id}}.actual_resistance" type="number" min="0" max="{{resistance}}" name="system.actual_resistance"
+    value="{{itemValues item 'actual_resistance'}}" />
+  {{/lett}}
 </div>

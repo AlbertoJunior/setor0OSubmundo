@@ -1,3 +1,3 @@
 export default function lett(params) {
-    return params.fn(Object.assign({}, this, params.hash));
+  return params.fn(Object.assign({}, this, params.hash));
 }

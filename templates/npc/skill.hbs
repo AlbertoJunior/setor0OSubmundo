@@ -1,19 +1,19 @@
 <div style="display: flex; align-items: center; column-gap: 10px;">
-    <label for="{{uuid}}.skill.{{system}}" style="flex: 1;">{{localize name}}:</label>
+  <label for="{{uuid}}.skill.{{system}}" style="flex: 1;">{{localize name}}:</label>
 
-    <select class="S0-select" style="flex: 2;" name="system.habilidades.{{system}}.nome" id="{{uuid}}.skill.{{system}}"
-        {{#unless editable}}disabled{{/unless}}>
-        {{#lett skill=(actorValues actor 'npc_actual_skill_name' system)}}
-        {{#each (fetchRepository 'ability')}}
-        <option value="{{id}}" {{selectIfEq ../skill id }}>{{localize label}}</option>
-        {{/each}}
-        {{/lett}}
-    </select>
+  <select class="S0-select" style="flex: 2;" name="system.habilidades.{{system}}.nome" id="{{uuid}}.skill.{{system}}"
+    {{#unless editable}}disabled{{/unless}}>
+    {{#lett skill=(actorValues actor 'npc_actual_skill_name' system)}}
+    {{#each (fetchRepository 'ability')}}
+    <option value="{{id}}" {{selectIfEq ../skill id }}>{{localize label}}</option>
+    {{/each}}
+    {{/lett}}
+  </select>
 
-    {{#if canRoll}}
-    <a class="S0-icon-rotate" style="font-size: var(--font-size-16);" data-action="roll" data-characteristic="skill"
-        data-subcharacteristic="{{system}}">
-        <i class="fas fa-dice-d10"></i>
-    </a>
-    {{/if}}
+  {{#if canRoll}}
+  <a class="S0-icon-rotate" style="font-size: var(--font-size-16);" data-action="roll" data-characteristic="skill"
+    data-subcharacteristic="{{system}}">
+    <i class="fas fa-dice-d10"></i>
+  </a>
+  {{/if}}
 </div>

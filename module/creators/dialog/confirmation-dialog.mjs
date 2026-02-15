@@ -22,64 +22,64 @@ import { FoundryApi } from "../../api/foundry-api.mjs";
  */
 export class ConfirmationDialog {
 
-    /**
-     * Exibe um diálogo de confirmação com título, mensagem e botões de ação.
-     *
-     * @param {ConfirmationDialogParams} [params={}] - Parâmetros para personalizar o diálogo.
-     * @returns {Promise<void>} Uma Promise que resolve após a exibição do diálogo.
-     *
-     * @example
-     * await ConfirmationDialog.open({
-     *   titleDialog: "Excluir Item",
-     *   message: "Tem certeza que deseja excluir este item?",
-     *   onConfirm: () => console.log("Confirmado"),
-     *   onCancel: () => console.log("Cancelado"),
-     *   onClose: () => console.log("Janela fechada")
-     * });
-    */
-    static async open(params = { onConfirm: () => { }, onCancel: () => { }, onClose: () => { } }) {
-        const { titleDialog, cancelButtonText, confirmButtonText, message, titleMessage, onConfirm, onCancel, onClose } = params;
+  /**
+   * Exibe um diálogo de confirmação com título, mensagem e botões de ação.
+   *
+   * @param {ConfirmationDialogParams} [params={}] - Parâmetros para personalizar o diálogo.
+   * @returns {Promise<void>} Uma Promise que resolve após a exibição do diálogo.
+   *
+   * @example
+   * await ConfirmationDialog.open({
+   *   titleDialog: "Excluir Item",
+   *   message: "Tem certeza que deseja excluir este item?",
+   *   onConfirm: () => console.log("Confirmado"),
+   *   onCancel: () => console.log("Cancelado"),
+   *   onClose: () => console.log("Janela fechada")
+   * });
+  */
+  static async open(params = { onConfirm: () => { }, onCancel: () => { }, onClose: () => { } }) {
+    const { titleDialog, cancelButtonText, confirmButtonText, message, titleMessage, onConfirm, onCancel, onClose } = params;
 
-        const content = await this.#mountContent(message, titleMessage);
-        const buttons = [
-            {
-                label: cancelButtonText ?? localize("Cancelar"),
-                onClick: (html) => {
-                    if (typeof onCancel === 'function') {
-                        onCancel();
-                    }
-                }
-            },
-            {
-                label: confirmButtonText ?? localize("Confirmar"),
-                default: true,
-                onClick: (html) => {
-                    if (typeof onConfirm === 'function') {
-                        onConfirm();
-                    }
-                }
-            }
-        ];
+    const content = await this.#mountContent(message, titleMessage);
+    const buttons = [
+      {
+        label: cancelButtonText ?? localize("Cancelar"),
+        onClick: (html) => {
+          if (typeof onCancel === 'function') {
+            onCancel();
+          }
+        }
+      },
+      {
+        label: confirmButtonText ?? localize("Confirmar"),
+        default: true,
+        onClick: (html) => {
+          if (typeof onConfirm === 'function') {
+            onConfirm();
+          }
+        }
+      }
+    ];
 
-        FoundryApi.createDialog(
-            {
-                title: titleDialog ?? localize("Confirmar"),
-                content: content,
-                buttons: buttons,
-                close: (html) => {
-                    if (typeof onClose === 'function') {
-                        onClose();
-                    }
-                }
-            }
-        );
-    }
+    FoundryApi.createDialog(
+      {
+        title: titleDialog ?? localize("Confirmar"),
+        content: content,
+        buttons: buttons,
+        close: (html) => {
+          if (typeof onClose === 'function') {
+            onClose();
+          }
+        }
+      }
+    );
+  }
 
-    static async #mountContent(message, title) {
-        const data = {
-            title: title ?? localize("Pergunta.Realizar_Acao"),
-            message
-        };
-        return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/others/confirmation-dialog.hbs`, data);
-    }
+  static async #mountContent(message, title) {
+    const data = {
+      title: title ?? localize("Pergunta.Realizar_Acao"),
+      message
+    };
+    return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/others/confirmation-dialog.hbs`, data);
+  }
 }

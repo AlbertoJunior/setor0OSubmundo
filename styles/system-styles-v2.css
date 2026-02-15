@@ -1,112 +1,112 @@
 .application .S0-V2,
 .S0-V2.application {
-    max-height: 96vh;
+  max-height: 96vh;
 }
 
 .S0-V2.S0-content.S0-sheet-item .window-content,
 .S0-V2.S0-content.actor .window-content {
-    padding: 0px;
-    padding-bottom: 6px;
+  padding: 0px;
+  padding-bottom: 6px;
 }
 
 .S0-V2.S0-content.S0-sheet-item .window-content,
 .S0-V2.S0-content.sheet {
-    overflow: visible;
+  overflow: visible;
 }
 
 .S0-V2.S0-content.S0-sheet-item .window-content form {
-    overflow-y: scroll;
-    margin-left: 12px;
-    margin-right: 2px;
-    max-height: 80vh;
+  overflow-y: scroll;
+  margin-left: 12px;
+  margin-right: 2px;
+  max-height: 80vh;
 }
 
 .S0-V2 .S0-menu-float {
-    z-index: 100;
+  z-index: 100;
 }
 
 .S0-V2 .S0-actor-sheet {
-    overflow-y: scroll;
-    margin-left: 12px;
-    margin-right: 2px;
-    max-height: 84vh;
+  overflow-y: scroll;
+  margin-left: 12px;
+  margin-right: 2px;
+  max-height: 84vh;
 }
 
 /* #region DIALOG*/
 .S0-V2 .S0-dialog :is(h1, h2, h3, h4, label, strong) {
-    color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .S0-V2 .S0-dialog .S0-simulate-button>* {
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 .S0-V2 .S0-dialog .S0-simulate-button:hover>* {
-    color: var(--on-primary-color);
+  color: var(--on-primary-color);
 }
 
 .S0-V2 .S0-dialog .S0-marked :is(h1, h2, h3, h4) {
-    color: var(--on-primary-color);
+  color: var(--on-primary-color);
 }
 
 .S0-V2 .S0-dialog .S0-infinity-horizontal-menu .S0-simulate-button h4 {
-    font-size: var(--font-size-12);
+  font-size: var(--font-size-12);
 }
 
 .S0-V2 .S0-infinity-horizontal-menu .S0-simulate-button:hover h4,
 .S0-V2 .S0-dialog .S0-infinity-horizontal-menu .S0-simulate-button:hover h4 {
-    color: var(--on-primary-color);
+  color: var(--on-primary-color);
 }
 
 /* #endregion */
 
 .S0-V2.S0-content input {
-    text-align: center;
+  text-align: center;
 }
 
 .S0-V2.S0-content input[type="checkbox"] {
-    background-color: var(--alternate-black-color);
-    border-color: var(--primary-color-alpha);
+  background-color: var(--alternate-black-color);
+  border-color: var(--primary-color-alpha);
 }
 
 .S0-V2.S0-content input[type="checkbox"]:hover {
-    background-color: var(--primary-color-alpha);
-    border-color: var(--primary-color-alpha);
-    box-shadow: 0 0 6px var(--primary-color-alpha);
+  background-color: var(--primary-color-alpha);
+  border-color: var(--primary-color-alpha);
+  box-shadow: 0 0 6px var(--primary-color-alpha);
 }
 
 .S0-V2.S0-content input[type="checkbox"]:checked {
-    background-color: var(--primary-color-alpha);
-    border-color: var(--primary-color-alpha);
-    box-shadow: 0 0 6px var(--primary-color-alpha);
+  background-color: var(--primary-color-alpha);
+  border-color: var(--primary-color-alpha);
+  box-shadow: 0 0 6px var(--primary-color-alpha);
 }
 
 .S0-V2.S0-content input[type="checkbox"]:enabled:checked:hover {
-    background-color: var(--color-red-alpha);
-    border-color: var(--color-red-alpha);
-    box-shadow: 0 0 6px var(--color-red-alpha);
+  background-color: var(--color-red-alpha);
+  border-color: var(--color-red-alpha);
+  box-shadow: 0 0 6px var(--color-red-alpha);
 }
 
 .S0-V2.S0-content input[type="checkbox"]:disabled {
-    background-color: var(--alternate-black-color);
-    border-color: var(--primary-color-alpha);
+  background-color: var(--alternate-black-color);
+  border-color: var(--primary-color-alpha);
 }
 
 .S0-V2.S0-content input[type="checkbox"]:disabled:checked {
-    background-color: var(--primary-color-alpha);
-    border-color: var(--primary-color-alpha);
+  background-color: var(--primary-color-alpha);
+  border-color: var(--primary-color-alpha);
 }
 
 .S0-V2 .form-group {
-    display: flex;
-    align-items: center;
-    margin-block: 4px;
+  display: flex;
+  align-items: center;
+  margin-block: 4px;
 }
 
 .S0-V2 .S0-image-npc {
-    height: 420px;
+  height: 420px;
 }
 
 .S0-V2 .S0-simulate-button.S0-marked h4 {
-    color: var(--on-primary-color);
+  color: var(--on-primary-color);
 }

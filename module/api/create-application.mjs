@@ -4,25 +4,25 @@ import { v2Overrides } from "./versions-overrides/v2.mjs";
 
 // base config for applications
 const baseApplicationConfig = Object.freeze({
-    Version: foundry.applications,
-    Api: foundry.applications.api,
-    Handlebars: foundry.applications.handlebars,
-    SidebarTabs: foundry.applications.sidebar.tabs,
-    Ui: foundry.applications.ui,
-    Ux: foundry.applications.ux,
-    Apps: foundry.applications.apps,
-    Documents: foundry.documents,
-    Collections: foundry.documents.collections,
-    Placeables: foundry.canvas.placeables,
-    Utils: foundry.utils,
-    ChatMessage: ChatMessage,
-    TooltipManager: foundry.helpers.interaction.TooltipManager,
+  Version: foundry.applications,
+  Api: foundry.applications.api,
+  Handlebars: foundry.applications.handlebars,
+  SidebarTabs: foundry.applications.sidebar.tabs,
+  Ui: foundry.applications.ui,
+  Ux: foundry.applications.ux,
+  Apps: foundry.applications.apps,
+  Documents: foundry.documents,
+  Collections: foundry.documents.collections,
+  Placeables: foundry.canvas.placeables,
+  Utils: foundry.utils,
+  ChatMessage: ChatMessage,
+  TooltipManager: foundry.helpers.interaction.TooltipManager,
 });
 
 // versions
 const applicationOverrides = {
-    v1: v1Overrides,
-    v2: v2Overrides
+  v1: v1Overrides,
+  v2: v2Overrides
 };
 const createdVersions = new Set();
 
@@ -66,35 +66,35 @@ const createdVersions = new Set();
  * }
  */
 export function createApplication(versionKey, fallbackChain = []) {
-    const versionsToTry = [...new Set([versionKey, ...fallbackChain])];
+  const versionsToTry = [...new Set([versionKey, ...fallbackChain])];
 
-    for (const key of versionsToTry) {
-        const overrides = applicationOverrides[key];
-        if (!overrides) {
-            continue;
-        }
-
-        const merged = Object.assign({}, baseApplicationConfig, overrides);
-
-        if (!validateOverride(merged, key)) {
-            continue;
-        }
-
-        if (key !== versionKey) {
-            console.warn(`-> [Fallback] Usando versão '${key}' no lugar de '${versionKey}'`);
-        }
-
-        if (!merged.VersionName || createdVersions.has(merged.VersionName)) {
-            console.warn(`-> [VersionName] Criando um novo nome de versão. É necessário arrumar`);
-            const createdRandomName = createdVersions.has(merged.VersionName) ? `-${randomId(3)}` : '';
-            merged.VersionName = `S0-${versionKey.toUpperCase()}${createdRandomName}`;
-        }
-
-        createdVersions.add(merged.VersionName);
-        return Object.freeze(merged);
+  for (const key of versionsToTry) {
+    const overrides = applicationOverrides[key];
+    if (!overrides) {
+      continue;
     }
 
-    throw new Error(`-> Nenhuma versão válida encontrada para '${versionKey}'`);
+    const merged = Object.assign({}, baseApplicationConfig, overrides);
+
+    if (!validateOverride(merged, key)) {
+      continue;
+    }
+
+    if (key !== versionKey) {
+      console.warn(`-> [Fallback] Usando versão '${key}' no lugar de '${versionKey}'`);
+    }
+
+    if (!merged.VersionName || createdVersions.has(merged.VersionName)) {
+      console.warn(`-> [VersionName] Criando um novo nome de versão. É necessário arrumar`);
+      const createdRandomName = createdVersions.has(merged.VersionName) ? `-${randomId(3)}` : '';
+      merged.VersionName = `S0-${versionKey.toUpperCase()}${createdRandomName}`;
+    }
+
+    createdVersions.add(merged.VersionName);
+    return Object.freeze(merged);
+  }
+
+  throw new Error(`-> Nenhuma versão válida encontrada para '${versionKey}'`);
 }
 
 /**
@@ -105,28 +105,28 @@ export function createApplication(versionKey, fallbackChain = []) {
  * @returns {boolean} Retorna true se for válido, false caso contrário.
  */
 function validateOverride(override, versionKey) {
-    const requiredFields = {
-        Sheets: 'object',
-        makeClass: 'function',
-        createDialog: 'function',
-        VersionName: 'string'
-    };
+  const requiredFields = {
+    Sheets: 'object',
+    makeClass: 'function',
+    createDialog: 'function',
+    VersionName: 'string'
+  };
 
-    let isValid = true;
+  let isValid = true;
 
-    for (const [field, expectedType] of Object.entries(requiredFields)) {
-        const value = override[field];
+  for (const [field, expectedType] of Object.entries(requiredFields)) {
+    const value = override[field];
 
-        const actualType = typeof value;
+    const actualType = typeof value;
 
-        // null é do tipo 'object', mas deve ser rejeitado
-        if (value == null || actualType !== expectedType) {
-            console.warn(
-                `-> [Application ${versionKey}] campo '${field}' inválido. Esperado: '${expectedType}', recebido: '${value === null ? 'null' : actualType}'`
-            );
-            isValid = false;
-        }
+    // null é do tipo 'object', mas deve ser rejeitado
+    if (value == null || actualType !== expectedType) {
+      console.warn(
+        `-> [Application ${versionKey}] campo '${field}' inválido. Esperado: '${expectedType}', recebido: '${value === null ? 'null' : actualType}'`
+      );
+      isValid = false;
     }
+  }
 
-    return isValid;
+  return isValid;
 }

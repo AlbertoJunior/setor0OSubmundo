@@ -1,22 +1,22 @@
 <div class="S0-message-content">
-    <h4 style="text-align: center;">{{ localize 'S0.Aprimoramento.Nome' }}</h4>
-    <div class="S0-container-2-fixed-column" style="grid-column-gap: 5px">
-        <label style="text-align: center;">{{family}}</label>
-        <label style="text-align: center;">{{name}}</label>
-    </div>
-    <div>
+  <h4 style="text-align: center;">{{ localize 'S0.Aprimoramento.Nome' }}</h4>
+  <div class="S0-container-2-fixed-column" style="grid-column-gap: 5px">
+    <label style="text-align: center;">{{family}}</label>
+    <label style="text-align: center;">{{name}}</label>
+  </div>
+  <div>
 
-    </div>
-    <hr>
+  </div>
+  <hr>
 
-    <label style="display: block;"><strong>{{localize 'S0.Nivel'}}:</strong> {{level}}</label>
-    <label style="display: block;"><strong>{{localize 'S0.Custo'}}:</strong> {{overload}}</label>
-    <label style="display: block;"><strong>{{localize 'S0.Duracao'}}:</strong> {{duration}}</label>
+  <label style="display: block;"><strong>{{localize 'S0.Nivel'}}:</strong> {{level}}</label>
+  <label style="display: block;"><strong>{{localize 'S0.Custo'}}:</strong> {{overload}}</label>
+  <label style="display: block;"><strong>{{localize 'S0.Duracao'}}:</strong> {{duration}}</label>
 
-    {{#if (operators 'isNotNull' description)}}
-    <label style="display: block; font-weight: bold;">{{localize 'S0.Descricao'}}:</label>
-    <div class="S0-message-simple-text">
-        {{{description}}}
-    </div>
-    {{/if}}
+  {{#if (operators 'isNotNull' description)}}
+  <label style="display: block; font-weight: bold;">{{localize 'S0.Descricao'}}:</label>
+  <div class="S0-message-simple-text">
+    {{{description}}}
+  </div>
+  {{/if}}
 </div>

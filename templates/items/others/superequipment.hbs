@@ -1,108 +1,109 @@
 <div id="{{item.id}}.superequipment"
-    class="S0-page S0-container S0-superequipment-container {{#unless (itemValues item 'superequipment')}}S0-superequipment-contracted{{/unless}}">
-    <div style="display: flex; align-items: center;">
-        <h4> {{localize 'S0.SuperEquipamento'}}</h4>
-        <input type="checkbox" data-action="check" data-characteristic="characteristic" data-type="superequipment" {{#if
-            (itemValues item 'superequipment' )}}checked{{/if}}>
+  class="S0-page S0-container S0-superequipment-container {{#unless (itemValues item 'superequipment')}}S0-superequipment-contracted{{/unless}}">
+  <div style="display: flex; align-items: center;">
+    <h4> {{localize 'S0.SuperEquipamento'}}</h4>
+    <input type="checkbox" data-action="check" data-characteristic="characteristic" data-type="superequipment" {{#if
+      (itemValues item 'superequipment' )}}checked{{/if}}>
+  </div>
+
+  <div class="S0-characteristic-container" style="padding-inline: 15px;">
+    <label>
+      {{localize 'S0.Nivel'}}
+    </label>
+
+    {{#forLoop 0 5}}
+    <div
+      class="S0-characteristic {{#if ../editable}}S0-clickable{{/if}} {{#if (operators 'gt' (itemValues ../item 'superequipment_level') index)}}S0-selected{{/if}}"
+      data-action="check" data-characteristic="characteristic" data-type="level">
     </div>
+    {{/forLoop}}
+  </div>
 
-    <div class="S0-characteristic-container" style="padding-inline: 15px;">
-        <label>
-            {{localize 'S0.Nivel'}}
-        </label>
+  <div class="S0-characteristic-container" style="padding-inline: 15px;">
+    <label>
+      {{localize 'S0.Ativo'}}
+    </label>
 
-        {{#forLoop 0 5}}
-        <div class="S0-characteristic {{#if ../editable}}S0-clickable{{/if}} {{#if (operators 'gt' (itemValues ../item 'superequipment_level') index)}}S0-selected{{/if}}"
-            data-action="check" data-characteristic="characteristic" data-type="level">
+    <a class="S0-characteristic S0-clickable {{#if (itemValues item 'superequipment_active')}}S0-selected{{/if}}"
+      data-tooltip="{{#if (itemValues item 'superequipment_active')}}{{localize 'S0.Desativar'}}{{else}}{{localize 'S0.Ativar'}}{{/if}}"
+      data-tooltip-direction="UP" data-action="check" data-characteristic="superequipment" data-type="active"
+      data-item-id="{{item.id}}">
+    </a>
+  </div>
+
+  <hr style="margin: 2px;">
+
+  <div style="padding: 4px;">
+    <h4>
+      {{localize 'S0.Itens.Efeitos'}}
+
+      {{#if editable}}
+      <label style="font-size: var(--font-size-11);">
+        {{itemValues item 'superequipment_effects_limit'}}
+      </label>
+      <a class="S0-icon-expand" data-characteristic="superequipment" data-subcharacteristic="trait" data-action="add"
+        data-type="good" title="Adicionar">
+        <i class="fas fa-square-plus"></i>
+      </a>
+      {{/if}}
+    </h4>
+    <ul>
+      {{#each (itemValues item 'superequipment_effects')}}
+      <li>
+        <div
+          style="min-height: 35px; display: flex; align-items: center; margin-block: 2px; padding-block: 8px; border-bottom: 1px solid var(--secondary-color);">
+          <div style="min-width: 0; margin-right: 4px; flex: 1; font-size: var(--font-size-12);">
+            <label style="display: block;">[{{cost}}] {{name}}</label>
+            {{#if particularity}}
+            <label class="S0-hide-long-text" style="display: block;">({{particularity.description}})</label>
+            {{/if}}
+          </div>
+
+          {{#if ../editable}}
+          <a class="S0-icon-expand" data-characteristic="superequipment" data-subcharacteristic="trait"
+            data-action="remove" data-item-id="{{id}}" title="Remover" data-type="good">
+            <i class="fas fa-trash"></i>
+          </a>
+          {{/if}}
         </div>
-        {{/forLoop}}
-    </div>
+      </li>
+      {{/each}}
+    </ul>
 
-    <div class="S0-characteristic-container" style="padding-inline: 15px;">
-        <label>
-            {{localize 'S0.Ativo'}}
-        </label>
+    <h4 style="margin-top: 10px;">
+      {{localize 'S0.Itens.Defeitos'}}
 
-        <a class="S0-characteristic S0-clickable {{#if (itemValues item 'superequipment_active')}}S0-selected{{/if}}"
-            data-tooltip="{{#if (itemValues item 'superequipment_active')}}{{localize 'S0.Desativar'}}{{else}}{{localize 'S0.Ativar'}}{{/if}}"
-            data-tooltip-direction="UP" data-action="check" data-characteristic="superequipment" data-type="active"
-            data-item-id="{{item.id}}">
+      {{#if editable}}
+      <label
+        style="font-size: var(--font-size-11); width: calc(100% - 30px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-wrap: nowrap;">
+        {{itemValues item 'superequipment_defects_limit'}}
+      </label>
+      <a class="S0-icon-expand" data-characteristic="superequipment" data-subcharacteristic="trait" data-action="add"
+        data-type="bad" title="Adicionar">
+        <i class="fas fa-square-plus"></i>
+      </a>
+      {{/if}}
+    </h4>
+
+    <ul>
+      {{#each (itemValues item 'superequipment_defects')}}
+      <li
+        style="min-height: 35px; display: flex; align-items: center; margin-block: 2px; padding-block: 8px; border-bottom: 1px solid var(--secondary-color);">
+        <div style="min-width: 0; margin-right: 4px; flex: 1; font-size: var(--font-size-12);">
+          <label style="display: block;">[{{cost}}] {{name}}</label>
+          {{#if particularity}}
+          <label class="S0-hide-long-text" style="display: block;">({{particularity.description}})</label>
+          {{/if}}
+        </div>
+
+        {{#if ../editable}}
+        <a class="S0-icon-expand" data-characteristic="superequipment" data-subcharacteristic="trait"
+          data-action="remove" data-item-id="{{id}}" title="Remover" data-type="bad">
+          <i class="fas fa-trash"></i>
         </a>
-    </div>
-
-    <hr style="margin: 2px;">
-
-    <div style="padding: 4px;">
-        <h4>
-            {{localize 'S0.Itens.Efeitos'}}
-
-            {{#if editable}}
-            <label style="font-size: var(--font-size-11);">
-                {{itemValues item 'superequipment_effects_limit'}}
-            </label>
-            <a class="S0-icon-expand" data-characteristic="superequipment" data-subcharacteristic="trait"
-                data-action="add" data-type="good" title="Adicionar">
-                <i class="fas fa-square-plus"></i>
-            </a>
-            {{/if}}
-        </h4>
-        <ul>
-            {{#each (itemValues item 'superequipment_effects')}}
-            <li>
-                <div
-                    style="min-height: 35px; display: flex; align-items: center; margin-block: 2px; padding-block: 8px; border-bottom: 1px solid var(--secondary-color);">
-                    <div style="min-width: 0; margin-right: 4px; flex: 1; font-size: var(--font-size-12);">
-                        <label style="display: block;">[{{cost}}] {{name}}</label>
-                        {{#if particularity}}
-                        <label class="S0-hide-long-text" style="display: block;">({{particularity.description}})</label>
-                        {{/if}}
-                    </div>
-
-                    {{#if ../editable}}
-                    <a class="S0-icon-expand" data-characteristic="superequipment" data-subcharacteristic="trait"
-                        data-action="remove" data-item-id="{{id}}" title="Remover" data-type="good">
-                        <i class="fas fa-trash"></i>
-                    </a>
-                    {{/if}}
-                </div>
-            </li>
-            {{/each}}
-        </ul>
-
-        <h4 style="margin-top: 10px;">
-            {{localize 'S0.Itens.Defeitos'}}
-
-            {{#if editable}}
-            <label
-                style="font-size: var(--font-size-11); width: calc(100% - 30px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-wrap: nowrap;">
-                {{itemValues item 'superequipment_defects_limit'}}
-            </label>
-            <a class="S0-icon-expand" data-characteristic="superequipment" data-subcharacteristic="trait"
-                data-action="add" data-type="bad" title="Adicionar">
-                <i class="fas fa-square-plus"></i>
-            </a>
-            {{/if}}
-        </h4>
-
-        <ul>
-            {{#each (itemValues item 'superequipment_defects')}}
-            <li
-                style="min-height: 35px; display: flex; align-items: center; margin-block: 2px; padding-block: 8px; border-bottom: 1px solid var(--secondary-color);">
-                <div style="min-width: 0; margin-right: 4px; flex: 1; font-size: var(--font-size-12);">
-                    <label style="display: block;">[{{cost}}] {{name}}</label>
-                    {{#if particularity}}
-                    <label class="S0-hide-long-text" style="display: block;">({{particularity.description}})</label>
-                    {{/if}}
-                </div>
-
-                {{#if ../editable}}
-                <a class="S0-icon-expand" data-characteristic="superequipment" data-subcharacteristic="trait"
-                    data-action="remove" data-item-id="{{id}}" title="Remover" data-type="bad">
-                    <i class="fas fa-trash"></i>
-                </a>
-                {{/if}}
-            </li>
-            {{/each}}
-        </ul>
-    </div>
+        {{/if}}
+      </li>
+      {{/each}}
+    </ul>
+  </div>
 </div>

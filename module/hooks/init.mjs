@@ -14,32 +14,32 @@ import { ActiveEffectHookHandle } from "./active-effects.mjs";
 import { configureSetor0ChatLog } from "../core/chat/Setor0ChatLog.mjs";
 
 export class InitHookHandle {
-    static async handle() {
-        console.log('-> Setor 0 - O Submundo | Inicializando sistema');
+  static async handle() {
+    console.log('-> Setor 0 - O Submundo | Inicializando sistema');
 
-        this.#presetGlobalSystemConfigs();
+    this.#presetGlobalSystemConfigs();
 
-        await createDataModels();
+    await createDataModels();
 
-        configureSetor0Combat();
-        configureSetor0Combatant();
-        configureSetor0CombatTracker();
-        configureSetor0TokenDocument();
-        configureSetor0ActiveEffect();
-        configureSetor0ChatLog();
+    configureSetor0Combat();
+    configureSetor0Combatant();
+    configureSetor0CombatTracker();
+    configureSetor0TokenDocument();
+    configureSetor0ActiveEffect();
+    configureSetor0ChatLog();
 
-        await loadHandlebarsHelpers();
-        await registerTemplates();
+    await loadHandlebarsHelpers();
+    await registerTemplates();
 
-        ActiveEffectHookHandle.register();
-    }
+    ActiveEffectHookHandle.register();
+  }
 
-    static #presetGlobalSystemConfigs() {
-        globalThis[SYSTEM_ID] = {
-            MacroMethods: MacroUtils.MacroMethods,
-            FoundryApi: FoundryApi,
-            TokenUtils: TokenUtils,
-        };
-        //CONFIG.debug.hooks = true;
-    }
+  static #presetGlobalSystemConfigs() {
+    globalThis[SYSTEM_ID] = {
+      MacroMethods: MacroUtils.MacroMethods,
+      FoundryApi: FoundryApi,
+      TokenUtils: TokenUtils,
+    };
+    //CONFIG.debug.hooks = true;
+  }
 }

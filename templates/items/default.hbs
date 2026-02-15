@@ -1,17 +1,17 @@
 <form class="S0-page" autocomplete="off">
-    <header class="S0-container sheet-header">
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Nome do Equipamento" /></h1>
-    </header>
+  <header class="S0-container sheet-header">
+    <h1><input name="name" type="text" value="{{item.name}}" placeholder="Nome do Equipamento" /></h1>
+  </header>
 
-    <div class="S0-page">
-        <div class="item-image {{#if canEdit}}S0-clickable{{/if}}">
-            <img src="{{item.img}}" data-edit="img" title="{{item.name}}" width="64" height="64" />
-        </div>
-
-        <label>Descrição:</label>
-        <textarea name="system.description">{{system.description}}</textarea>
-
-        <label>Resistência:</label>
-        <input type="number" name="system.resistance" value="{{system.resistance}}" />
+  <div class="S0-page">
+    <div class="item-image {{#if canEdit}}S0-clickable{{/if}}">
+      <img src="{{item.img}}" data-edit="img" title="{{item.name}}" width="64" height="64" />
     </div>
+
+    <label>Descrição:</label>
+    <textarea name="system.description">{{system.description}}</textarea>
+
+    <label>Resistência:</label>
+    <input type="number" name="system.resistance" value="{{system.resistance}}" />
+  </div>
 </form>

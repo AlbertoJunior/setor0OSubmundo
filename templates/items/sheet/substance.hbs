@@ -1,71 +1,71 @@
 <form autocomplete="off">
-    {{> itemCommon this}}
+  {{> itemCommon this}}
 
-    <div class="S0-container S0-container-2-fixed-column" style="align-items: center;">
-        <label for="{{item.id}}.substance_type">
-            {{localize 'S0.Tipo'}}:
-        </label>
-        <select id="{{item.id}}.substance_type" class="S0-select" name="system.substance_type">
-            {{#each (fetchRepository 'equipment-substance-type')}}
-            <option value="{{id}}" {{selectIfEq (itemValues ../item 'substance_type' ) id }}>{{label}}</option>
-            {{/each}}
-        </select>
-    </div>
+  <div class="S0-container S0-container-2-fixed-column" style="align-items: center;">
+    <label for="{{item.id}}.substance_type">
+      {{localize 'S0.Tipo'}}:
+    </label>
+    <select id="{{item.id}}.substance_type" class="S0-select" name="system.substance_type">
+      {{#each (fetchRepository 'equipment-substance-type')}}
+      <option value="{{id}}" {{selectIfEq (itemValues ../item 'substance_type' ) id }}>{{label}}</option>
+      {{/each}}
+    </select>
+  </div>
 
-    {{#lett withDamage=(itemValues item 'substance_with_damage') withRange=(itemValues item 'substance_with_range')
-    item=item}}
-    {{#if (operators 'or' withDamage withRange)}}
-    <div class="S0-container S0-container-2-fixed-column" style="align-items: center;">
-        {{#if withDamage}}
-        <label for="{{item.id}}.damage">{{localize 'S0.Dano'}}:</label>
-        <input id="{{item.id}}.damage" type="number" name="system.damage" min="0" max="99"
-            value="{{itemValues item 'damage'}}" />
-        {{/if}}
-
-        {{#if withRange}}
-        <label for="{{item.id}}.range">{{localize 'S0.Alcance'}}:</label>
-        <input id="{{item.id}}.range" type="number" name="system.range" min="0" max="99"
-            value="{{itemValues item 'range'}}" />
-        {{/if}}
-    </div>
-    {{/if}}
-    {{/lett}}
-
-    {{#if (itemValues item 'substance_with_effects')}}
-    <div class="S0-page S0-container">
-
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <strong>{{localize 'S0.Efeitos'}}</strong>
-
-            {{#if editable}}
-            <div style="display: flex; gap: 8px;">
-                <a class="S0-icon-expand" data-characteristic="characteristic" data-type="substance" data-action="add"
-                    title="{{localize 'S0.Adicionar'}}">
-                    <i class="fas fa-plus"></i>
-                </a>
-            </div>
-            {{/if}}
-        </div>
-
-        <ul>
-            {{#each (itemValues item 'substance_effects')}}
-            <li
-                style="height: 35px; display: flex; align-items: center; margin-block: 2px; padding-block: 8px; border-bottom: 1px solid var(--secondary-color);">
-                <label style="flex: 1; font-size: var(--font-size-12);">{{description}}</label>
-
-                {{#if ../editable}}
-                <a class="S0-icon-expand" data-characteristic="characteristic" data-type="substance"
-                    data-action="remove" data-item-id="{{id}}" title="Remover">
-                    <i class="fas fa-trash"></i>
-                </a>
-                {{/if}}
-            </li>
-            {{/each}}
-        </ul>
-
-    </div>
+  {{#lett withDamage=(itemValues item 'substance_with_damage') withRange=(itemValues item 'substance_with_range')
+  item=item}}
+  {{#if (operators 'or' withDamage withRange)}}
+  <div class="S0-container S0-container-2-fixed-column" style="align-items: center;">
+    {{#if withDamage}}
+    <label for="{{item.id}}.damage">{{localize 'S0.Dano'}}:</label>
+    <input id="{{item.id}}.damage" type="number" name="system.damage" min="0" max="99"
+      value="{{itemValues item 'damage'}}" />
     {{/if}}
 
-    {{> itemCommonDescription this}}
+    {{#if withRange}}
+    <label for="{{item.id}}.range">{{localize 'S0.Alcance'}}:</label>
+    <input id="{{item.id}}.range" type="number" name="system.range" min="0" max="99"
+      value="{{itemValues item 'range'}}" />
+    {{/if}}
+  </div>
+  {{/if}}
+  {{/lett}}
+
+  {{#if (itemValues item 'substance_with_effects')}}
+  <div class="S0-page S0-container">
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <strong>{{localize 'S0.Efeitos'}}</strong>
+
+      {{#if editable}}
+      <div style="display: flex; gap: 8px;">
+        <a class="S0-icon-expand" data-characteristic="characteristic" data-type="substance" data-action="add"
+          title="{{localize 'S0.Adicionar'}}">
+          <i class="fas fa-plus"></i>
+        </a>
+      </div>
+      {{/if}}
+    </div>
+
+    <ul>
+      {{#each (itemValues item 'substance_effects')}}
+      <li
+        style="height: 35px; display: flex; align-items: center; margin-block: 2px; padding-block: 8px; border-bottom: 1px solid var(--secondary-color);">
+        <label style="flex: 1; font-size: var(--font-size-12);">{{description}}</label>
+
+        {{#if ../editable}}
+        <a class="S0-icon-expand" data-characteristic="characteristic" data-type="substance" data-action="remove"
+          data-item-id="{{id}}" title="Remover">
+          <i class="fas fa-trash"></i>
+        </a>
+        {{/if}}
+      </li>
+      {{/each}}
+    </ul>
+
+  </div>
+  {{/if}}
+
+  {{> itemCommonDescription this}}
 
 </form>

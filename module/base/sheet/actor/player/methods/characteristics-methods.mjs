@@ -4,77 +4,77 @@ import { BaseActorCharacteristicType, CharacteristicType, CharacteristicTypeMap 
 import { ActorUpdater } from "../../../../updater/actor-updater.mjs";
 
 export async function characteristicOnClick(event, actor) {
-    const element = event.target;
+  const element = event.target;
 
-    selectCharacteristic(element);
+  selectCharacteristic(element);
 
-    const characteristicType = event.currentTarget.dataset.characteristic;
+  const characteristicType = event.currentTarget.dataset.characteristic;
 
-    let systemCharacteristic;
-    TODO('melhorar a forma como sei que é fama')
-    if (characteristicType == 'fama') {
-        systemCharacteristic = CharacteristicType.SIMPLE.system;
-    } else {
-        systemCharacteristic = CharacteristicTypeMap[characteristicType];
-    }
+  let systemCharacteristic;
+  TODO('melhorar a forma como sei que é fama')
+  if (characteristicType == 'fama') {
+    systemCharacteristic = CharacteristicType.SIMPLE.system;
+  } else {
+    systemCharacteristic = CharacteristicTypeMap[characteristicType];
+  }
 
-    if (systemCharacteristic) {
-        const parentElement = element.parentElement;
-        const level = Array.from(parentElement.children).filter(el => el.classList.contains('S0-selected')).length;
-        await handle(actor, systemCharacteristic, parentElement.id, level);
-    }
+  if (systemCharacteristic) {
+    const parentElement = element.parentElement;
+    const level = Array.from(parentElement.children).filter(el => el.classList.contains('S0-selected')).length;
+    await handle(actor, systemCharacteristic, parentElement.id, level);
+  }
 }
 
 async function handle(actor, systemCharacteristic, id, level) {
-    if (systemCharacteristic.includes(CharacteristicType.VIRTUES.id)) {
-        await handleVirtue(actor, id, level);
-    } else {
-        await handleOtherwise(actor, systemCharacteristic, id, level);
-    }
+  if (systemCharacteristic.includes(CharacteristicType.VIRTUES.id)) {
+    await handleVirtue(actor, id, level);
+  } else {
+    await handleOtherwise(actor, systemCharacteristic, id, level);
+  }
 }
 
 async function handleVirtue(actor, virtueId, level) {
-    let characteristic;
+  let characteristic;
 
-    switch (virtueId) {
-        case CharacteristicType.VIRTUES.CONSCIOUSNESS.id: {
-            characteristic = CharacteristicType.VIRTUES.CONSCIOUSNESS.LEVEL;
-            break;
-        }
-        case CharacteristicType.VIRTUES.PERSEVERANCE.id: {
-            characteristic = CharacteristicType.VIRTUES.PERSEVERANCE.LEVEL;
-            break;
-        }
-        case CharacteristicType.VIRTUES.QUIETNESS.id: {
-            characteristic = CharacteristicType.VIRTUES.QUIETNESS.LEVEL;
-            break;
-        }
-        default: {
-            console.warn("-> Possível erro ao pegar a virtude");
-            return;
-        }
+  switch (virtueId) {
+    case CharacteristicType.VIRTUES.CONSCIOUSNESS.id: {
+      characteristic = CharacteristicType.VIRTUES.CONSCIOUSNESS.LEVEL;
+      break;
     }
+    case CharacteristicType.VIRTUES.PERSEVERANCE.id: {
+      characteristic = CharacteristicType.VIRTUES.PERSEVERANCE.LEVEL;
+      break;
+    }
+    case CharacteristicType.VIRTUES.QUIETNESS.id: {
+      characteristic = CharacteristicType.VIRTUES.QUIETNESS.LEVEL;
+      break;
+    }
+    default: {
+      console.warn("-> Possível erro ao pegar a virtude");
+      return;
+    }
+  }
 
-    await ActorUpdater.verifyAndUpdateActor(actor, characteristic, level);
+  await ActorUpdater.verifyAndUpdateActor(actor, characteristic, level);
 }
 
 async function handleOtherwise(actor, systemCharacteristic, characteristicId, level) {
-    const params = [];
-    params.push(
-        {
-            systemCharacteristic: `${systemCharacteristic}.${characteristicId}`,
-            value: level
-        }
-    );
-
-    if (characteristicId == CharacteristicType.ATTRIBUTES.STAMINA.id) {
-        params.push(
-            {
-                systemCharacteristic: BaseActorCharacteristicType.VITALITY.TOTAL,
-                value: ActorUtils.calculateVitalityByUpAttribute(actor, level)
-            }
-        );
+  const params = [];
+  params.push(
+    {
+      systemCharacteristic: `${systemCharacteristic}.${characteristicId}`,
+      value: level
     }
+  );
 
-    await ActorUpdater.verifyKeysAndUpdateActor(actor, params);
+  if (characteristicId == CharacteristicType.ATTRIBUTES.STAMINA.id) {
+    params.push(
+      {
+        systemCharacteristic: BaseActorCharacteristicType.VITALITY.TOTAL,
+        value: ActorUtils.calculateVitalityByUpAttribute(actor, level)
+      }
+    );
+  }
+
+  await ActorUpdater.verifyKeysAndUpdateActor(actor, params);
 }

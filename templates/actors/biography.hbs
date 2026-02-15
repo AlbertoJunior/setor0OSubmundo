@@ -1,68 +1,68 @@
 <section class="S0-page tab" data-group="menu-tabs" data-tab="biography" data-label="{{ localize 'S0.Biografia' }}"
-    data-icon="fas fa-address-book">
-    <div class="S0-container" style="position: relative;">
-        <h2>{{localize 'S0.Descricao'}}</h2>
-        <div style="display: flex; justify-content: center; align-items: center;">
-            <img id="actor-image" src="{{actor.img}}" {{#if editable}} class="S0-clickable" data-edit="img"
-                data-action="img" data-actor-id="{{actor.id}}" {{/if}}>
-        </div>
-
-        <div class="S0-biography-container-button">
-            <a class="S0-icon-expand" data-action="view" data-characteristic="menu" data-type="actor"
-                title="{{localize 'SIDEBAR.CharArt'}}">
-                <i class="fas fa-eye"></i>
-                <span style="margin-left: 10px;">{{localize 'SIDEBAR.CharArt'}}</span>
-            </a>
-
-            <a class="S0-icon-expand" data-action="view" data-characteristic="menu" data-type="token"
-                title="{{localize 'SIDEBAR.TokenArt'}}">
-                <i class="fas fa-eye"></i>
-                <span style="margin-left: 10px;">{{localize 'SIDEBAR.TokenArt'}}</span>
-            </a>
-        </div>
-
-        <div class="S0-container" style="display: flex; flex-direction: column; row-gap: 4px;">
-            <div>
-                <label for="assignment" style="display: block; margin: 4px">{{ localize 'S0.Atuacao' }}</label>
-                <input id="assignment" name="system.background.assignment" type="text" rows="5"
-                    placeholder="{{ localize 'S0.Atuacao' }}" value="{{actorValues actor 'assignment'}}">
-            </div>
-
-            <div>
-                <label for="biography" style="display: block; margin: 4px">{{ localize 'S0.Biografia' }}</label>
-                <textarea id="biography" style="resize: block;" name="system.background.biography" rows="5"
-                    placeholder="{{ localize 'S0.Biografia' }}">{{actorValues actor 'biography'}}</textarea>
-            </div>
-        </div>
+  data-icon="fas fa-address-book">
+  <div class="S0-container" style="position: relative;">
+    <h2>{{localize 'S0.Descricao'}}</h2>
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <img id="actor-image" src="{{actor.img}}" {{#if editable}} class="S0-clickable" data-edit="img" data-action="img"
+        data-actor-id="{{actor.id}}" {{/if}}>
     </div>
 
-    <div class="S0-container">
-        <h2> {{localize 'S0.Linguas'}}
-            <label style="font-size: var(--font-size-11);">
-                {{actorValues actor 'actual_languages'}}/{{actorValues actor 'total_languages'}}
-            </label>
-        </h2>
-        <div id="linguasContainer" class="S0-container-4-fixed-column">
-            {{#each (fetchRepository 'language')}}
-            <div class="S0-characteristic-container S0-language-container" id="{{id}}">
-                <label title="{{district}}">
-                    {{label}}
-                </label>
-                <div class="S0-characteristic {{#if ../editable}}S0-clickable{{/if}}" data-action="add"
-                    data-characteristic="language">
-                </div>
-            </div>
-            {{/each}}
+    <div class="S0-biography-container-button">
+      <a class="S0-icon-expand" data-action="view" data-characteristic="menu" data-type="actor"
+        title="{{localize 'SIDEBAR.CharArt'}}">
+        <i class="fas fa-eye"></i>
+        <span style="margin-left: 10px;">{{localize 'SIDEBAR.CharArt'}}</span>
+      </a>
+
+      <a class="S0-icon-expand" data-action="view" data-characteristic="menu" data-type="token"
+        title="{{localize 'SIDEBAR.TokenArt'}}">
+        <i class="fas fa-eye"></i>
+        <span style="margin-left: 10px;">{{localize 'SIDEBAR.TokenArt'}}</span>
+      </a>
+    </div>
+
+    <div class="S0-container" style="display: flex; flex-direction: column; row-gap: 4px;">
+      <div>
+        <label for="assignment" style="display: block; margin: 4px">{{ localize 'S0.Atuacao' }}</label>
+        <input id="assignment" name="system.background.assignment" type="text" rows="5"
+          placeholder="{{ localize 'S0.Atuacao' }}" value="{{actorValues actor 'assignment'}}">
+      </div>
+
+      <div>
+        <label for="biography" style="display: block; margin: 4px">{{ localize 'S0.Biografia' }}</label>
+        <textarea id="biography" style="resize: block;" name="system.background.biography" rows="5"
+          placeholder="{{ localize 'S0.Biografia' }}">{{actorValues actor 'biography'}}</textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="S0-container">
+    <h2> {{localize 'S0.Linguas'}}
+      <label style="font-size: var(--font-size-11);">
+        {{actorValues actor 'actual_languages'}}/{{actorValues actor 'total_languages'}}
+      </label>
+    </h2>
+    <div id="linguasContainer" class="S0-container-4-fixed-column">
+      {{#each (fetchRepository 'language')}}
+      <div class="S0-characteristic-container S0-language-container" id="{{id}}">
+        <label title="{{district}}">
+          {{label}}
+        </label>
+        <div class="S0-characteristic {{#if ../editable}}S0-clickable{{/if}}" data-action="add"
+          data-characteristic="language">
         </div>
+      </div>
+      {{/each}}
     </div>
+  </div>
 
-    <div class="S0-container">
-        <h2> {{localize 'S0.Tracos'}} </h2>
-        <section id="tracosContainer" class="S0-container-2-fixed-column">
-            {{> traitPartialContainer traits=(actorLists actor 'good_traits') type="good" title='S0.Tracos_Bons' }}
+  <div class="S0-container">
+    <h2> {{localize 'S0.Tracos'}} </h2>
+    <section id="tracosContainer" class="S0-container-2-fixed-column">
+      {{> traitPartialContainer traits=(actorLists actor 'good_traits') type="good" title='S0.Tracos_Bons' }}
 
-            {{> traitPartialContainer traits=(actorLists actor 'bad_traits') type="bad" title='S0.Tracos_Ruins' }}
-        </section>
-    </div>
+      {{> traitPartialContainer traits=(actorLists actor 'bad_traits') type="bad" title='S0.Tracos_Ruins' }}
+    </section>
+  </div>
 
 </section>

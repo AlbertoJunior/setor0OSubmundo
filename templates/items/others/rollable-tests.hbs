@@ -1,80 +1,79 @@
 <div class="S0-page S0-container">
 
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <strong>{{localize 'S0.Testes_Possiveis'}}</strong>
-        <div style="display: flex; gap: 8px;">
-            <a id="add-rollable-test" class="S0-icon-expand" data-characteristic="menu_roll" data-action="add"
-                title="{{localize 'S0.Adicionar'}}">
-                <i class="fas fa-plus"></i>
-            </a>
-            <a id="toggle-tests" class="S0-icon-expand" data-characteristic="menu_roll" data-action="view"
-                title="{{localize 'S0.Expandir_Contrair'}}">
-                <i class="fas fa-chevron-down"></i>
-            </a>
-        </div>
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <strong>{{localize 'S0.Testes_Possiveis'}}</strong>
+    <div style="display: flex; gap: 8px;">
+      <a id="add-rollable-test" class="S0-icon-expand" data-characteristic="menu_roll" data-action="add"
+        title="{{localize 'S0.Adicionar'}}">
+        <i class="fas fa-plus"></i>
+      </a>
+      <a id="toggle-tests" class="S0-icon-expand" data-characteristic="menu_roll" data-action="view"
+        title="{{localize 'S0.Expandir_Contrair'}}">
+        <i class="fas fa-chevron-down"></i>
+      </a>
     </div>
+  </div>
 
-    <section>
-        <div id="rollable-tests-list" class="S0-container-contract">
-            {{#each (itemValues item 'possible_tests')}}
-            <div
-                style="padding-block: 8px; padding-inline: 6px; display: flex; align-items: center; column-gap: 4px; border-bottom: 1px solid var(--secondary-color-alpha);">
+  <section>
+    <div id="rollable-tests-list" class="S0-container-contract">
+      {{#each (itemValues item 'possible_tests')}}
+      <div
+        style="padding-block: 8px; padding-inline: 6px; display: flex; align-items: center; column-gap: 4px; border-bottom: 1px solid var(--secondary-color-alpha);">
 
-                <div class="S0-characteristic S0-characteristic-temp 
+        <div class="S0-characteristic S0-characteristic-temp 
                 {{#if ../owner}}S0-clickable{{/if}} 
                 {{#if (operators 'eq' (itemValues ../item 'default_test') this.id)}}S0-selected{{/if}}"
-                    data-characteristic="item_roll" {{#if ../owner}}data-action="check" {{/if}}
-                    data-item-id="{{this.id}}">
-                </div>
-
-                <label
-                    style="font-size: var(--font-size-11); width: calc(100% - 30px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-wrap: nowrap;">
-                    {{this.name}}
-                </label>
-
-                {{#if ../owner}}
-                <div class="S0-menu-float-wrapper">
-                    <a>
-                        <i class="fas fa-ellipsis-h"></i>
-                    </a>
-
-                    <div class="S0-menu-float">
-                        <a class="S0-icon-expand" data-characteristic="item_roll" data-action="remove"
-                            data-item-id="{{this.id}}" title="{{localize 'S0.Remover'}}">
-                            <i class="fas fa-trash"></i>
-                        </a>
-                        <a class="S0-icon-expand" data-characteristic="item_roll" data-action="edit"
-                            data-item-id="{{this.id}}" title="{{localize 'S0.Editar'}}">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        <a class="S0-icon-expand" data-characteristic="item_roll" data-action="add" data-type="clone"
-                            data-item-id="{{this.id}}" title="{{localize 'S0.Clonar'}}">
-                            <i class="fas fa-clone"></i>
-                        </a>
-                        <a class="S0-icon-expand" data-characteristic="item_roll" data-action="chat"
-                            data-item-id="{{this.id}}" title="{{localize 'S0.Enviar_No_Chat'}}">
-                            <i class="fas fa-message-quote"></i>
-                        </a>
-                        <a class="S0-icon-expand" data-characteristic="item_roll" data-action="add" data-type="macro"
-                            data-item-id="{{this.id}}" title="{{localize 'S0.Criar_Macro'}}">
-                            <i class="fas fa-code"></i>
-                        </a>
-                        <a class="S0-icon-expand" data-characteristic="item_roll" data-action="roll" data-type="full"
-                            data-item-id="{{this.id}}" title="{{localize 'S0.Rolar'}}">
-                            <i class="fas fa-dice-d10"></i>
-                        </a>
-                        <a class="S0-icon-expand" data-characteristic="item_roll" data-action="view"
-                            data-item-id="{{this.id}}" title="{{localize 'S0.Ver_Informacoes'}}">
-                            <i class="fas fa-eye"></i>
-                        </a>
-                    </div>
-                </div>
-                {{/if}}
-            </div>
-            {{else}}
-            <p style="font-style: italic;">{{localize 'S0.Nenhum_Teste_Cadastrado'}}</p>
-            {{/each}}
+          data-characteristic="item_roll" {{#if ../owner}}data-action="check" {{/if}} data-item-id="{{this.id}}">
         </div>
-    </section>
+
+        <label
+          style="font-size: var(--font-size-11); width: calc(100% - 30px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-wrap: nowrap;">
+          {{this.name}}
+        </label>
+
+        {{#if ../owner}}
+        <div class="S0-menu-float-wrapper">
+          <a>
+            <i class="fas fa-ellipsis-h"></i>
+          </a>
+
+          <div class="S0-menu-float">
+            <a class="S0-icon-expand" data-characteristic="item_roll" data-action="remove" data-item-id="{{this.id}}"
+              title="{{localize 'S0.Remover'}}">
+              <i class="fas fa-trash"></i>
+            </a>
+            <a class="S0-icon-expand" data-characteristic="item_roll" data-action="edit" data-item-id="{{this.id}}"
+              title="{{localize 'S0.Editar'}}">
+              <i class="fas fa-edit"></i>
+            </a>
+            <a class="S0-icon-expand" data-characteristic="item_roll" data-action="add" data-type="clone"
+              data-item-id="{{this.id}}" title="{{localize 'S0.Clonar'}}">
+              <i class="fas fa-clone"></i>
+            </a>
+            <a class="S0-icon-expand" data-characteristic="item_roll" data-action="chat" data-item-id="{{this.id}}"
+              title="{{localize 'S0.Enviar_No_Chat'}}">
+              <i class="fas fa-message-quote"></i>
+            </a>
+            <a class="S0-icon-expand" data-characteristic="item_roll" data-action="add" data-type="macro"
+              data-item-id="{{this.id}}" title="{{localize 'S0.Criar_Macro'}}">
+              <i class="fas fa-code"></i>
+            </a>
+            <a class="S0-icon-expand" data-characteristic="item_roll" data-action="roll" data-type="full"
+              data-item-id="{{this.id}}" title="{{localize 'S0.Rolar'}}">
+              <i class="fas fa-dice-d10"></i>
+            </a>
+            <a class="S0-icon-expand" data-characteristic="item_roll" data-action="view" data-item-id="{{this.id}}"
+              title="{{localize 'S0.Ver_Informacoes'}}">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+        {{/if}}
+      </div>
+      {{else}}
+      <p style="font-style: italic;">{{localize 'S0.Nenhum_Teste_Cadastrado'}}</p>
+      {{/each}}
+    </div>
+  </section>
 
 </div>

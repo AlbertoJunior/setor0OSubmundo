@@ -19,109 +19,109 @@ import { CompendiumExport } from "../pack/compendium-export.mjs";
 import { CompendiumSync } from "../pack/compendium-sync.mjs";
 
 export class MacroUtils {
-    static MacroMethods = {
-        overload: async (actor) => {
-            await DefaultActions.processOverloadRoll(actor);
-        },
-        customs: {
-            rollable: async (params) => {
-                const { actor, id } = params;
-                if (!actor || !id) {
-                    console.log("-> Elementos inválidos")
-                    return;
-                }
-
-                if (!actor?.sheet.canRollOrEdit) {
-                    NotificationsUtils.warning('Você não tem permissão para executar isso com esse personagem.');
-                    return
-                }
-
-                const item = ActorEquipmentUtils.getEquipments(actor).find(item => {
-                    const tests = getObject(item, EquipmentCharacteristicType.POSSIBLE_TESTS) || [];
-                    return tests.some(test => test.id === id);
-                });
-
-                if (item) {
-                    if (getObject(item, EquipmentCharacteristicType.EQUIPPED) || false) {
-                        await rollByItemAndRollId(item, id);
-                    } else {
-                        NotificationsUtils.info(`O Item [${item.name}] precisa estar equipado`);
-                    }
-                    return;
-                }
-
-                const actorTestShortcut = getObject(actor, CharacteristicType.SHORTCUTS).find(test => test.id == id);
-                if (actorTestShortcut) {
-                    await shortcutCustomRoll(actor, id);
-                    return;
-                }
-
-                NotificationsUtils.warning('Erro ao executar o teste');
-            }
-        },
-        exportCompendium: async() => {
-            await CompendiumExport.exportCompendiumsToJson();
-        },
-        clearFolders: async() => {
-            await CompendiumSync.clear();
-        }
-    };
-
-    static getDefaultMacroUsers() {
-        return [
-            openBagMacroData,
-            openShortcutMacroData,
-            rollOverloadMacroData
-        ];
-    }
-
-    static getDefaultGmMacro() {
-        return [
-            cleanMacroHotbarUserMacroData,
-            resetUserFlagsMacroData,
-            exportCompendiunsMacroData,
-        ];
-    }
-
-    static async createMacro({ name, command, img, toHotbar = true, flags } = {}) {
-        const normalizedName = normalizeString(name);
-        const normalizedCommand = normalizeString(command);
-        let macro = game.macros.find(m => normalizeString(m.name) === normalizedName && normalizeString(m.command) === normalizedCommand);
-        if (!macro) {
-            macro = await FoundryApi.Macro.create({
-                flags: {
-                    [SYSTEM_ID]: {
-                        ...flags
-                    }
-                },
-                name,
-                type: "script",
-                command,
-                img,
-            });
-
-            if (toHotbar) {
-                await game.user.assignHotbarMacro(macro);
-                const slot = Object.values(game.user.hotbar).length;
-                NotificationsUtils.info(`Macro "${name}" adicionada ao espaço [${slot}].`);
-            } else {
-                NotificationsUtils.info(`Macro "${name}" criada.`);
-            }
-        } else {
-            NotificationsUtils.info(`Você já possui essa Macro.`);
+  static MacroMethods = {
+    overload: async (actor) => {
+      await DefaultActions.processOverloadRoll(actor);
+    },
+    customs: {
+      rollable: async (params) => {
+        const { actor, id } = params;
+        if (!actor || !id) {
+          console.log("-> Elementos inválidos")
+          return;
         }
 
-        return macro;
+        if (!actor?.sheet.canRollOrEdit) {
+          NotificationsUtils.warning('Você não tem permissão para executar isso com esse personagem.');
+          return
+        }
+
+        const item = ActorEquipmentUtils.getEquipments(actor).find(item => {
+          const tests = getObject(item, EquipmentCharacteristicType.POSSIBLE_TESTS) || [];
+          return tests.some(test => test.id === id);
+        });
+
+        if (item) {
+          if (getObject(item, EquipmentCharacteristicType.EQUIPPED) || false) {
+            await rollByItemAndRollId(item, id);
+          } else {
+            NotificationsUtils.info(`O Item [${item.name}] precisa estar equipado`);
+          }
+          return;
+        }
+
+        const actorTestShortcut = getObject(actor, CharacteristicType.SHORTCUTS).find(test => test.id == id);
+        if (actorTestShortcut) {
+          await shortcutCustomRoll(actor, id);
+          return;
+        }
+
+        NotificationsUtils.warning('Erro ao executar o teste');
+      }
+    },
+    exportCompendium: async () => {
+      await CompendiumExport.exportCompendiumsToJson();
+    },
+    clearFolders: async () => {
+      await CompendiumSync.clear();
+    }
+  };
+
+  static getDefaultMacroUsers() {
+    return [
+      openBagMacroData,
+      openShortcutMacroData,
+      rollOverloadMacroData
+    ];
+  }
+
+  static getDefaultGmMacro() {
+    return [
+      cleanMacroHotbarUserMacroData,
+      resetUserFlagsMacroData,
+      exportCompendiunsMacroData,
+    ];
+  }
+
+  static async createMacro({ name, command, img, toHotbar = true, flags } = {}) {
+    const normalizedName = normalizeString(name);
+    const normalizedCommand = normalizeString(command);
+    let macro = game.macros.find(m => normalizeString(m.name) === normalizedName && normalizeString(m.command) === normalizedCommand);
+    if (!macro) {
+      macro = await FoundryApi.Macro.create({
+        flags: {
+          [SYSTEM_ID]: {
+            ...flags
+          }
+        },
+        name,
+        type: "script",
+        command,
+        img,
+      });
+
+      if (toHotbar) {
+        await game.user.assignHotbarMacro(macro);
+        const slot = Object.values(game.user.hotbar).length;
+        NotificationsUtils.info(`Macro "${name}" adicionada ao espaço [${slot}].`);
+      } else {
+        NotificationsUtils.info(`Macro "${name}" criada.`);
+      }
+    } else {
+      NotificationsUtils.info(`Você já possui essa Macro.`);
     }
 
-    static isTheSameMacro(macroA, macroB) {
-        const sourceIdA = FlagsUtils.getMacroFlag(macroA, 'sourceId');
-        const sourceIdB = FlagsUtils.getMacroFlag(macroB, 'sourceId');
+    return macro;
+  }
 
-        const sameName = normalizeString(macroA.name) === normalizeString(macroB.name);
-        const sameCommand = normalizeString(macroA.command) === normalizeString(macroB.command);
-        const sameSourceId = sourceIdA === sourceIdB;
+  static isTheSameMacro(macroA, macroB) {
+    const sourceIdA = FlagsUtils.getMacroFlag(macroA, 'sourceId');
+    const sourceIdB = FlagsUtils.getMacroFlag(macroB, 'sourceId');
 
-        return sameName && sameCommand && sameSourceId;
-    }
+    const sameName = normalizeString(macroA.name) === normalizeString(macroB.name);
+    const sameCommand = normalizeString(macroA.command) === normalizeString(macroB.command);
+    const sameSourceId = sourceIdA === sourceIdB;
+
+    return sameName && sameCommand && sameSourceId;
+  }
 }

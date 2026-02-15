@@ -1,34 +1,34 @@
 <div class="S0-container">
-    <h3>{{localize title}}</h3>
-    <hr>
-    <div class="S0-container">
-        <div style="padding-inline: 20px;">
-            <h3>{{localize 'S0.Completo'}}</h3>
-            <div style="text-align: center;">
-                <h4 style="display: inline;">{{actorValues actor actorMethodValue1}}</h4>
-                {{#if canRoll}}
-                <a class="S0-icon-rotate" data-action="roll" data-characteristic="shortcuts"
-                    data-sub-characteristic="{{subcharacteristic}}" data-type="{{type1}}">
-                    <i class="fas fa-dice-d10"></i>
-                </a>
-                {{/if}}
-            </div>
-        </div>
-
+  <h3>{{localize title}}</h3>
+  <hr>
+  <div class="S0-container">
+    <div style="padding-inline: 20px;">
+      <h3>{{localize 'S0.Completo'}}</h3>
+      <div style="text-align: center;">
+        <h4 style="display: inline;">{{actorValues actor actorMethodValue1}}</h4>
+        {{#if canRoll}}
+        <a class="S0-icon-rotate" data-action="roll" data-characteristic="shortcuts"
+          data-sub-characteristic="{{subcharacteristic}}" data-type="{{type1}}">
+          <i class="fas fa-dice-d10"></i>
+        </a>
+        {{/if}}
+      </div>
     </div>
-    <div class="S0-container">
-        <div style="padding-inline: 20px;">
-            <h3>{{localize 'S0.Dividido'}}</h3>
 
-            <div style="text-align: center;">
-                <h4 style="display: inline;">{{actorValues actor actorMethodValue2}}</h4>
-                {{#if canRoll}}
-                <a class="S0-icon-rotate" data-action="roll" data-characteristic="shortcuts"
-                    data-sub-characteristic="{{subcharacteristic}}" data-type="{{type2}}">
-                    <i class="fas fa-dice-d10"></i>
-                </a>
-                {{/if}}
-            </div>
-        </div>
+  </div>
+  <div class="S0-container">
+    <div style="padding-inline: 20px;">
+      <h3>{{localize 'S0.Dividido'}}</h3>
+
+      <div style="text-align: center;">
+        <h4 style="display: inline;">{{actorValues actor actorMethodValue2}}</h4>
+        {{#if canRoll}}
+        <a class="S0-icon-rotate" data-action="roll" data-characteristic="shortcuts"
+          data-sub-characteristic="{{subcharacteristic}}" data-type="{{type2}}">
+          <i class="fas fa-dice-d10"></i>
+        </a>
+        {{/if}}
+      </div>
     </div>
+  </div>
 </div>

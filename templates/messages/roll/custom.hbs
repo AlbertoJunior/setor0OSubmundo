@@ -1,42 +1,42 @@
 <div class="S0-message-content">
-    <h4 style="text-align: center;">{{ localize attr1 }} + {{ localize attr2 }}</h4>
+  <h4 style="text-align: center;">{{ localize attr1 }} + {{ localize attr2 }}</h4>
+  <hr>
+
+  {{#if (operators 'or' (operators 'isNotNull' messageTestTitle) (operators 'isNotNull' messageTestSubtitle))}}
+
+  {{#if (operators 'isNotNull' messageTestTitle)}}
+  <p class="S0-hide-long-text" style="text-align: center;">{{ messageTestTitle }}</p>
+  {{/if}}
+
+  {{#if (operators 'isNotNull' messageTestSubtitle)}}
+  <p class="S0-hide-long-text" style="text-align: center;">{{ messageTestSubtitle }}</p>
+  {{/if}}
+
+  <hr>
+
+  {{/if}}
+
+  {{#if haveResult}}
+
+  <div class="dice-tooltip S0-container-contract">
+    {{#if (operators 'isNotNull' attr3)}}
+    <p>{{localize 'S0.Caracteristica'}}: {{ attr3 }}</p>
+    {{/if}}
+
+    <p>{{localize 'S0.Teste'}}: {{ formule }}</p>
+
     <hr>
 
-    {{#if (operators 'or' (operators 'isNotNull' messageTestTitle) (operators 'isNotNull' messageTestSubtitle))}}
+    {{> core-roll-message this}}
+  </div>
 
-    {{#if (operators 'isNotNull' messageTestTitle)}}
-    <p class="S0-hide-long-text" style="text-align: center;">{{ messageTestTitle }}</p>
-    {{/if}}
+  <button class="S0-roll-result {{ resultMessageClasses }}" data-action="view" data-type="toggle-tooltip">
+    {{ resultMessage }} ( {{ resultValue }} )
+  </button>
 
-    {{#if (operators 'isNotNull' messageTestSubtitle)}}
-    <p class="S0-hide-long-text" style="text-align: center;">{{ messageTestSubtitle }}</p>
-    {{/if}}
+  {{else}}
 
-    <hr>
+  {{> core-roll-message-invalid this}}
 
-    {{/if}}
-
-    {{#if haveResult}}
-
-    <div class="dice-tooltip S0-container-contract">
-        {{#if (operators 'isNotNull' attr3)}}
-        <p>{{localize 'S0.Caracteristica'}}: {{ attr3 }}</p>
-        {{/if}}
-
-        <p>{{localize 'S0.Teste'}}: {{ formule }}</p>
-
-        <hr>
-
-        {{> core-roll-message this}}
-    </div>
-
-    <button class="S0-roll-result {{ resultMessageClasses }}" data-action="view" data-type="toggle-tooltip">
-        {{ resultMessage }} ( {{ resultValue }} )
-    </button>
-
-    {{else}}
-
-    {{> core-roll-message-invalid this}}
-
-    {{/if}}
+  {{/if}}
 </div>

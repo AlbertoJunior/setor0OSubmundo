@@ -1,26 +1,26 @@
 <div class="S0-enhancement">
-    <select class="S0-select" data-action="change" data-characteristic="enhancement" data-type="enhancement"
-        data-item-id="{{enhancement-slot}}">
-        <option value=""></option>
-        {{#each (fetchRepository 'enhancement')}}
-        <option value="{{value}}" data-item-id="{{id}}">{{name}}</option>
-        {{/each}}
-    </select>
+  <select class="S0-select" data-action="change" data-characteristic="enhancement" data-type="enhancement"
+    data-item-id="{{enhancement-slot}}">
+    <option value=""></option>
+    {{#each (fetchRepository 'enhancement')}}
+    <option value="{{value}}" data-item-id="{{id}}">{{name}}</option>
+    {{/each}}
+  </select>
 
-    <ul style="margin-top: 6px;">
-        {{#forLoop 1 6}}
-        <li>
-            <select class="S0-inner-select" data-action="change" data-characteristic="enhancement" data-type="level"
-                data-enhancement-slot="{{../enhancement-slot}}" data-enhancement-level="{{index}}">
-            </select>
-            <a class="hidden S0-icon-expand" data-action="view" data-characteristic="enhancement"
-                title="{{localize 'S0.Ver_Informacoes'}}">
-                <i class="fas fa-eye"></i>
-            </a>
-            <a class="S0-characteristic S0-clickable hidden" data-action="check" data-characteristic="enhancement"
-                title="{{localize 'S0.Ativar'}}">
-            </a>
-        </li>
-        {{/forLoop}}
-    </ul>
+  <ul style="margin-top: 6px;">
+    {{#forLoop 1 6}}
+    <li>
+      <select class="S0-inner-select" data-action="change" data-characteristic="enhancement" data-type="level"
+        data-enhancement-slot="{{../enhancement-slot}}" data-enhancement-level="{{index}}">
+      </select>
+      <a class="hidden S0-icon-expand" data-action="view" data-characteristic="enhancement"
+        title="{{localize 'S0.Ver_Informacoes'}}">
+        <i class="fas fa-eye"></i>
+      </a>
+      <a class="S0-characteristic S0-clickable hidden" data-action="check" data-characteristic="enhancement"
+        title="{{localize 'S0.Ativar'}}">
+      </a>
+    </li>
+    {{/forLoop}}
+  </ul>
 </div>

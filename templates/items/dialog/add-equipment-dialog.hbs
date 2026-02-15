@@ -1,27 +1,27 @@
 <div class="S0-dialog">
-    <div class="S0-container">
-        <input style="margin-bottom: 4px; font-family: var(--font-monospace);" type="text" id="filter-input"
-            placeholder="{{localize 'S0.Filtrar_Por_Nome'}}">
+  <div class="S0-container">
+    <input style="margin-bottom: 4px; font-family: var(--font-monospace);" type="text" id="filter-input"
+      placeholder="{{localize 'S0.Filtrar_Por_Nome'}}">
 
-        <ul class="S0-infinity-horizontal-menu">
-            <li class="S0-simulate-button" data-action="check" data-characteristic="equipment"
-                data-sub-characteristic="filter" data-type="selected">
-                <h4>{{localize 'S0.Selecionados'}}</h4>
-            </li>
-            {{#each (fetchRepository 'equipment-types')}}
-            <li class="S0-simulate-button" data-action="check" data-characteristic="equipment"
-                data-sub-characteristic="filter" data-type="{{type}}">
-                <h4>{{label}}</h4>
-            </li>
-            {{/each}}
-        </ul>
-    </div>
+    <ul class="S0-infinity-horizontal-menu">
+      <li class="S0-simulate-button" data-action="check" data-characteristic="equipment"
+        data-sub-characteristic="filter" data-type="selected">
+        <h4>{{localize 'S0.Selecionados'}}</h4>
+      </li>
+      {{#each (fetchRepository 'equipment-types')}}
+      <li class="S0-simulate-button" data-action="check" data-characteristic="equipment"
+        data-sub-characteristic="filter" data-type="{{type}}">
+        <h4>{{label}}</h4>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
 
-    <div id="carousel" class="S0-container S0-item-carousel"></div>
+  <div id="carousel" class="S0-container S0-item-carousel"></div>
 
-    <div id="item-details" class="S0-container" style="min-height: 150px;">
-        {{localize 'S0.Selecione_Um_Item'}}
-    </div>
+  <div id="item-details" class="S0-container" style="min-height: 150px;">
+    {{localize 'S0.Selecione_Um_Item'}}
+  </div>
 
-    <button id="add-item-button" style="margin-block: 6px;" disabled>{{localize 'S0.Adicionar'}}</button>
+  <button id="add-item-button" style="margin-block: 6px;" disabled>{{localize 'S0.Adicionar'}}</button>
 </div>

@@ -1,41 +1,41 @@
 #vitalidade {
-    row-gap: 6px;
-    column-gap: 26px;
-    justify-items: center;
-    flex-wrap: wrap;
+  row-gap: 6px;
+  column-gap: 26px;
+  justify-items: center;
+  flex-wrap: wrap;
 }
 
 #rollable-tests-list.S0-expanded {
-    max-height: 140px;
+  max-height: 140px;
 }
 
 #actor-image {
-    object-position: top;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    aspect-ratio: 1/1;
-    margin: 6px;
+  object-position: top;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  margin: 6px;
 }
 
 #effects-container {
-    padding-left: 12px;
-    padding-right: 2px;
-    margin-top: 6px;
-    margin-bottom: 2px;
-    transition: max-height 0.3s ease, padding 0.2s ease-in-out;
+  padding-left: 12px;
+  padding-right: 2px;
+  margin-top: 6px;
+  margin-bottom: 2px;
+  transition: max-height 0.3s ease, padding 0.2s ease-in-out;
 }
 
 #effects-container li {
-    padding-block: 4px;
-    border-bottom: 1px solid var(--secondary-color);
+  padding-block: 4px;
+  border-bottom: 1px solid var(--secondary-color);
 }
 
 #effects-container li:first-child {
-    border-top: 1px solid var(--secondary-color);
+  border-top: 1px solid var(--secondary-color);
 }
 
 #effects-container.S0-expanded {
-    padding-block: 4px;
-    max-height: 180px;
+  padding-block: 4px;
+  max-height: 180px;
 }

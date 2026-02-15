@@ -4,25 +4,25 @@ import { createEquipmentDataModels } from "../data/equipment-data-model.mjs";
 import { createTraitDataModels } from "../data/trait-data-model.mjs";
 
 export async function createDataModels() {
-    const models = [
-        { model: "Actor", method: createActorDataModels() },
-        { model: "Trait", method: createTraitDataModels() },
-        { model: "Equipment", method: createEquipmentDataModels() },
-    ];
+  const models = [
+    { model: "Actor", method: createActorDataModels() },
+    { model: "Trait", method: createTraitDataModels() },
+    { model: "Equipment", method: createEquipmentDataModels() },
+  ];
 
-    const results = await Promise.all(
-        models.map(({ model, method }) =>
-            (async () => {
-                try {
-                    await method;
-                    return { Model: model, Status: "Sucesso" };
-                } catch (error) {
-                    console.error(error);
-                    return { Model: model, Status: "Falha" };
-                }
-            })()
-        )
-    );
+  const results = await Promise.all(
+    models.map(({ model, method }) =>
+      (async () => {
+        try {
+          await method;
+          return { Model: model, Status: "Sucesso" };
+        } catch (error) {
+          console.error(error);
+          return { Model: model, Status: "Falha" };
+        }
+      })()
+    )
+  );
 
-    logTable('Todos os Models foram configurados!', results);
+  logTable('Todos os Models foram configurados!', results);
 }

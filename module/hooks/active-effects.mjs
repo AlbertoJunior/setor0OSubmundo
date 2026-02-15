@@ -6,94 +6,94 @@ import { TokenUtils } from "../core/token/token-utils.mjs";
 import { FoundryApi } from "../api/foundry-api.mjs";
 
 export class ActiveEffectHookHandle {
-    static register() {
-        Hooks.on("createActiveEffect", ActiveEffectHookHandle.#onCreateActiveEffect);
-        Hooks.on("deleteActiveEffect", ActiveEffectHookHandle.#onDeleteActiveEffect);
+  static register() {
+    Hooks.on("createActiveEffect", ActiveEffectHookHandle.#onCreateActiveEffect);
+    Hooks.on("deleteActiveEffect", ActiveEffectHookHandle.#onDeleteActiveEffect);
+  }
+
+  static async #onCreateActiveEffect(effect, options, userId) {
+    if (game.user.isGM) {
+      await ActiveEffectHookHandle.#verifyRemoveChain(effect, options, userId)
+      await ActiveEffectHookHandle.#verifyChangeTokenTint(effect, options);
+    }
+  }
+
+  static async #onDeleteActiveEffect(effect, options, userId) {
+    await ActiveEffectHookHandle.#verifyRemoveTokenTint(effect);
+  }
+
+  static async #verifyRemoveChain(effect) {
+    const effectsToRemove = new Set(FlagsUtils.getItemFlag(effect, ActiveEffectsFlags.REMOVE_EFFECTS) || []);
+    const actor = effect.parent;
+    const actorEffects = actor.effects
+      .filter(eft => effectsToRemove.has(ActiveEffectsUtils.getOriginId(eft)))
+      .map(eft => ActiveEffectsUtils.getOriginId(eft))
+      .filter(Boolean);
+
+    await ActiveEffectsUtils.removeActorEffects(actor, actorEffects);
+  }
+
+  static async #verifyChangeTokenTint(effect, options) {
+    const tintChange = effect.changes.find(c => c.key === ActiveEffectsUtils.KEYS.TINT_TOKEN);
+    if (!tintChange) {
+      return
     }
 
-    static async #onCreateActiveEffect(effect, options, userId) {
-        if (game.user.isGM) {
-            await ActiveEffectHookHandle.#verifyRemoveChain(effect, options, userId)
-            await ActiveEffectHookHandle.#verifyChangeTokenTint(effect, options);
-        }
+    const token = this.#getToken(options);
+    if (!token) {
+      console.warn("this object not have a token")
+      return;
     }
 
-    static async #onDeleteActiveEffect(effect, options, userId) {
-        await ActiveEffectHookHandle.#verifyRemoveTokenTint(effect);
+    const actor = token.actor;
+    if (!actor) {
+      console.warn("Token Actor is invalid");
+      return;
     }
 
-    static async #verifyRemoveChain(effect) {
-        const effectsToRemove = new Set(FlagsUtils.getItemFlag(effect, ActiveEffectsFlags.REMOVE_EFFECTS) || []);
-        const actor = effect.parent;
-        const actorEffects = actor.effects
-            .filter(eft => effectsToRemove.has(ActiveEffectsUtils.getOriginId(eft)))
-            .map(eft => ActiveEffectsUtils.getOriginId(eft))
-            .filter(Boolean);
+    const hasMultipleTints = this.#hasMultipleTints(actor);
+    if (hasMultipleTints) {
+      OscillatingTintManager.startOscillationForToken(token);
+    } else {
+      await TokenUtils.updateDocument(token, { [ActiveEffectsUtils.KEYS.TINT_TOKEN]: tintChange.value });
+    }
+  }
 
-        await ActiveEffectsUtils.removeActorEffects(actor, actorEffects);
+  static #getToken(options) {
+    const parent = options.parent;
+    if (parent instanceof Actor) {
+      return TokenUtils.getActorToken(parent);
     }
 
-    static async #verifyChangeTokenTint(effect, options) {
-        const tintChange = effect.changes.find(c => c.key === ActiveEffectsUtils.KEYS.TINT_TOKEN);
-        if (!tintChange) {
-            return
-        }
-
-        const token = this.#getToken(options);
-        if (!token) {
-            console.warn("this object not have a token")
-            return;
-        }
-
-        const actor = token.actor;
-        if (!actor) {
-            console.warn("Token Actor is invalid");
-            return;
-        }
-
-        const hasMultipleTints = this.#hasMultipleTints(actor);
-        if (hasMultipleTints) {
-            OscillatingTintManager.startOscillationForToken(token);
-        } else {
-            await TokenUtils.updateDocument(token, { [ActiveEffectsUtils.KEYS.TINT_TOKEN]: tintChange.value });
-        }
+    if (parent instanceof ActorDelta) {
+      return TokenUtils.getActorDeltaToken(parent);
     }
 
-    static #getToken(options) {
-        const parent = options.parent;
-        if (parent instanceof Actor) {
-            return TokenUtils.getActorToken(parent);
-        }
-
-        if (parent instanceof ActorDelta) {
-            return TokenUtils.getActorDeltaToken(parent);
-        }
-
-        if (parent.parent instanceof FoundryApi.TokenDocument) {
-            return TokenUtils.getTokenById(parent.parent.id);
-        }
-
-        console.warn("this object not have oscilating token tint")
-        return;
+    if (parent.parent instanceof FoundryApi.TokenDocument) {
+      return TokenUtils.getTokenById(parent.parent.id);
     }
 
-    static async #verifyRemoveTokenTint(effect) {
-        const actor = effect.parent;
+    console.warn("this object not have oscilating token tint")
+    return;
+  }
 
-        const token = TokenUtils.getActorToken(actor);
-        if (!token) {
-            return;
-        }
+  static async #verifyRemoveTokenTint(effect) {
+    const actor = effect.parent;
 
-        const hasMultipleTints = this.#hasMultipleTints(actor);
-        if (hasMultipleTints) {
-            OscillatingTintManager.startOscillationForToken(token);
-        } else {
-            OscillatingTintManager.stopOscillationForToken(token);
-        }
+    const token = TokenUtils.getActorToken(actor);
+    if (!token) {
+      return;
     }
 
-    static #hasMultipleTints(actor) {
-        return actor.effects.filter(e => e.changes.some(c => c.key === ActiveEffectsUtils.KEYS.TINT_TOKEN)).length > 1;
+    const hasMultipleTints = this.#hasMultipleTints(actor);
+    if (hasMultipleTints) {
+      OscillatingTintManager.startOscillationForToken(token);
+    } else {
+      OscillatingTintManager.stopOscillationForToken(token);
     }
+  }
+
+  static #hasMultipleTints(actor) {
+    return actor.effects.filter(e => e.changes.some(c => c.key === ActiveEffectsUtils.KEYS.TINT_TOKEN)).length > 1;
+  }
 }
