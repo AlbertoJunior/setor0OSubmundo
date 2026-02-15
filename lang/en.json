@@ -41,8 +41,6 @@
     "Aparar": "Parry",
     "Bloquear": "Block",
     "Modificadores": "Modifiers",
-    "Atalhos": "Shortcuts",
-    "Atalho": "Shortcut",
     "Atuacao": "Acting",
     "Qualidade": "Quality",
     "Limite": "Limit",
@@ -348,8 +346,12 @@
       "Destrocado2": "Shattered 2",
       "Destrocado3": "Shattered 3"
     },
-    "Placeholder": {
-      "Atalho_Nome": "Precise Attack"
+    "Atalho": {
+      "Atalhos": "Shortcuts",
+      "Atalho": "Shortcut",
+      "Outros_Atalhos": "Other Shortcuts",
+      "Atalho_Nome": "Precise Attack",
+      "Nenhum_Atalho_Adicionado": "No Shortcuts added"
     }
   },
   "TYPES": {

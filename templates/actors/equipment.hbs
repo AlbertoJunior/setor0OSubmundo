@@ -83,7 +83,7 @@
 
     <ul id="bag-{{actor.id}}" class="S0-container-5-column S0-drop-container" style="row-gap: 10px;">
       {{#if (operators 'isEmpty' (actorLists actor 'equipment_filtered'))}}
-      <li style="display: flex; align-items: center; font-style: italic; text-align: center;">
+      <li class="S0-label-drop-container">
         {{localize 'S0.Itens.Mensagens.Nenhum_item_adicionado'}}
       </li>
       {{/if}}

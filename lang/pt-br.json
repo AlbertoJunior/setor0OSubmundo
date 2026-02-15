@@ -41,8 +41,6 @@
     "Aparar": "Aparar",
     "Bloquear": "Bloquear",
     "Modificadores": "Modificadores",
-    "Atalhos": "Atalhos",
-    "Atalho": "Atalho",
     "Atuacao": "Atuação",
     "Qualidade": "Qualidade",
     "Limite": "Limite",
@@ -198,7 +196,6 @@
     "Habilitar_Desabilitar_Modo_Compacto": "Habilitar/Desabilitar modo compacto",
     "Modo_Compacto": "Modo Compacto",
     "Enviar_No_Chat": "Enviar no Chat",
-    "Outros_Atalhos": "Outros Atalhos",
     "Habilitar_Desabilitar_Edicao": "Habilitar/Desabilitar edição",
     "Permitir_Edicao": "Permitir Edição",
     "Bloquear_Edicao": "Bloquear Edição",
@@ -350,8 +347,12 @@
       "Destrocado2": "Destroçado 2",
       "Destrocado3": "Destroçado 3"
     },
-    "Placeholder": {
-      "Atalho_Nome": "Ataque preciso"
+    "Atalho": {
+      "Atalhos": "Atalhos",
+      "Atalho": "Atalho",
+      "Outros_Atalhos": "Outros Atalhos",
+      "Atalho_Nome": "Ataque preciso",
+      "Nenhum_Atalho_Adicionado": "Nenhum Atalho adicionado"
     }
   },
   "TYPES": {

@@ -32,7 +32,7 @@ function makeClass(BaseClass) {
         },
         form: {
           closeOnSubmit: false,
-          submitOnChange: true,
+          submitOnChange: true, // In ApplicationV2 with submitOnChange: true, the 'submit' event is triggered.
           handler: this.#onSubmitDocumentForm
         },
         actions: {
@@ -45,13 +45,14 @@ function makeClass(BaseClass) {
           return;
         }
 
-        // In ApplicationV2 with submitOnChange: true, the 'submit' event is triggered.
         // The element that triggered the change is usually event.submitter.
         const target = event.submitter || event.target;
         const name = target?.name;
         const value = Cls.#operateValue(target);
+        const dataset = target?.dataset;
 
-        if (name) {
+        // if not have dataset action, it's a normal field
+        if (name && !dataset?.action) {
           await this.updateDocument(this.document, name, value);
         } else {
           // Fallback: if we can't identify the specific field, we might need to update everything or log it

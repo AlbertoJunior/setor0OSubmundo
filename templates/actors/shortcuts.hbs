@@ -1,4 +1,4 @@
-<section class="S0-page tab" data-group="menu-tabs" data-tab="shortcuts" data-label="{{localize 'S0.Atalhos'}}"
+<section class="S0-page tab" data-group="menu-tabs" data-tab="shortcuts" data-label="{{localize 'S0.Atalho.Atalhos'}}"
   id="shortcutPage" data-icon="fas fa-bolt-auto">
   <div class="S0-container">
     <h2>
@@ -48,7 +48,7 @@
 
   <div class="S0-container">
     <h2>
-      {{localize 'S0.Outros_Atalhos'}}
+      {{localize 'S0.Atalho.Outros_Atalhos'}}
       <a class="S0-icon-expand" data-action="view" data-characteristic="shortcuts">
         <i id="shortcuts-container-icon" class="fas fa-chevron-up"></i>
       </a>
@@ -59,9 +59,17 @@
       {{/if}}
     </h2>
 
+    {{#if (operators 'isEmpty' (actorLists actor 'shortcuts'))}}
+    <div id="shortcuts-container-{{actor.id}}" class="S0-container-contract S0-drop-container S0-expanded">
+      <li class="S0-label-drop-container" style="margin-block: 4px;">
+        {{localize 'S0.Atalho.Nenhum_Atalho_Adicionado'}}
+      </li>
+    </div>
+    {{else}}
     <div id="shortcuts-container-{{actor.id}}"
       class="S0-container-2-fixed-column S0-container-contract S0-drop-container S0-expanded"
       style="overflow-y: scroll; padding-left: 4px; grid-row-gap: 0px; grid-column-gap: 4px;">
+
       {{#each (actorLists actor 'shortcuts') as |shortcut|}}
       <div class="S0-container S0-shortcut-item {{#if ../editable}}draggable{{/if}}">
         {{#if ../editable}}
@@ -91,5 +99,6 @@
       </div>
       {{/each}}
     </div>
+    {{/if}}
   </div>
 </section>
