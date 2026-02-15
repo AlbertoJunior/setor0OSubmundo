@@ -4,7 +4,7 @@ trigger: always_on
 
 # System Rules
 
-## Learning & Knowledge Management
+## Aprendizagem e Gestão do Conhecimento
 - Sempre que solicitado a "aprender", "registrar aprendizado" ou "lembrar algo":
   1. **Criação:** Gere um arquivo `.md` em `.agent/learnings/` com nome descritivo (ex: `feature-auth-logic.md`).
   2. **Conteúdo:** Documente o Problema, Causa, Solução e Contexto Técnico.
@@ -20,6 +20,9 @@ trigger: always_on
   3. Se for uma categoria nova, verifique se o `docs/_index.md` (raiz) precisa ser atualizado para listar essa nova categoria.
   4. O formato do índice deve ser: `[Nome do Arquivo](caminho/relativo) - Breve descrição da funcionalidade/aprendizado`.
   5. O modelo sugerido de index deve ser:
+
+## Execução
+- Sempre que for pedido para 'avaliar' ou 'analisar', você tem permissão total para ler arquivos e realizar buscas, mas deve pedir autorização antes de instalar pacotes ou criar arquivos de código no projeto.
     
 ```
 # Índice de Documentação - [Versão/Pasta]
