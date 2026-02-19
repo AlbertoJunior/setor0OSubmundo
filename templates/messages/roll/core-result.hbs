@@ -2,18 +2,18 @@
 {{#if (operators 'isNotEmpty' overloadValues)}}
 <p>{{localize 'S0.Sobrecarga'}}:</p>
 <ol class="dice-rolls">
-    {{#each overloadValues}}
-    <li class="S0-d10 roll die d10 S0-d10-overload">{{ this }}</li>
-    {{/each}}
+  {{#each overloadValues}}
+  <li class="S0-d10 roll die d10 S0-d10-overload">{{ this }}</li>
+  {{/each}}
 </ol>
 {{/if}}
 
 {{#if (operators 'isNotEmpty' defaultValues)}}
 <p>{{localize 'S0.Rolagem'}}:</p>
 <ol class="dice-rolls">
-    {{#each defaultValues }}
-    <li class="S0-d10 roll die d10">{{ this }}</li>
-    {{/each}}
+  {{#each defaultValues }}
+  <li class="S0-d10 roll die d10">{{ this }}</li>
+  {{/each}}
 </ol>
 {{/if}}
 
@@ -22,11 +22,11 @@
 
 <!-- #region DIFFICULTY and CRITIC -->
 <div class="S0-container-2-column">
-    <label>{{localize 'S0.Dificuldade'}}: {{ difficulty }}</label>
+  <label>{{localize 'S0.Dificuldade'}}: {{ difficulty }}</label>
 
-    {{#if (operators 'lt' critic 10)}}
-    <label>{{localize 'S0.Critico'}}: {{ critic }}</label>
-    {{/if}}
+  {{#if (operators 'lt' critic 10)}}
+  <label>{{localize 'S0.Critico'}}: {{ critic }}</label>
+  {{/if}}
 </div>
 
 <hr>
@@ -35,17 +35,17 @@
 <!-- #region HALF and ESPECIALIST -->
 {{#if (operators 'or' half specialist)}}
 <div class="S0-container-2-column">
-    {{#if half}}
-    <label>
-        {{localize 'S0.Dividido'}}
-    </label>
-    {{/if}}
+  {{#if half}}
+  <label>
+    {{localize 'S0.Dividido'}}
+  </label>
+  {{/if}}
 
-    {{#if specialist}}
-    <label>
-        {{localize 'S0.Especialista'}}
-    </label>
-    {{/if}}
+  {{#if specialist}}
+  <label>
+    {{localize 'S0.Especialista'}}
+  </label>
+  {{/if}}
 </div>
 
 <hr>
@@ -55,17 +55,17 @@
 <!-- #region BONUS and PENALTY -->
 {{#if (operators 'or' (operators 'gt' penalty 0) (operators 'gt' bonus 0))}}
 <div class="S0-container-2-column">
-    {{#if (operators 'gt' penalty 0)}}
-    <label>
-        {{localize 'S0.Penalidade'}}: {{ penalty }}
-    </label>
-    {{/if}}
+  {{#if (operators 'gt' penalty 0)}}
+  <label>
+    {{localize 'S0.Penalidade'}}: {{ penalty }}
+  </label>
+  {{/if}}
 
-    {{#if (operators 'gt' bonus 0)}}
-    <label>
-        {{localize 'S0.Bonus'}}: {{ bonus }}
-    </label>
-    {{/if}}
+  {{#if (operators 'gt' bonus 0)}}
+  <label>
+    {{localize 'S0.Bonus'}}: {{ bonus }}
+  </label>
+  {{/if}}
 </div>
 
 <hr>
@@ -75,9 +75,9 @@
 <!-- #region AUTOMATIC -->
 {{#if (operators 'gt' automatic 0)}}
 <div class="S0-container-2-column">
-    <label>
-        {{localize 'S0.Automatico'}}: {{ automatic }}
-    </label>
+  <label>
+    {{localize 'S0.Automatico'}}: {{ automatic }}
+  </label>
 </div>
 
 <hr>
@@ -87,27 +87,46 @@
 <!-- #region WEAPON -->
 {{#if (operators 'isNotNull' weapon)}}
 <div class="S0-message-weapon-container">
-    <label style="margin-block: 4px;" class="S0-hide-long-text">
-        {{weapon.name}}
-    </label>
+  <label style="margin-block: 4px;" class="S0-hide-long-text">
+    {{weapon.name}}
+  </label>
 
-    <hr>
+  <hr>
 
-    <ul style="padding: 0px; margin: 5px 10px;">
-        {{#each weapon.changes as |change|}}
-        <label>{{change}}</label>
-        {{/each}}
-    </ul>
+  <ul style="padding: 0px; margin: 5px 10px;">
+    {{#each weapon.changes as |change|}}
+    <label>{{change}}</label>
+    {{/each}}
+  </ul>
 </div>
 
 <hr>
 {{/if}}
 <!-- #endregion -->
 
+<!-- #region CAN USE CONSCIOUSNESS -->
+{{#if canUseConsciousness}}
+<button class="S0-roll-result S0-blue" data-action="check" data-type="consciousness">
+  {{localize 'S0.Usar_Consciencia'}}
+  ( <i class="fas fa-comments-question-check"></i> )
+</button>
+{{/if}}
+<!-- #endregion -->
+
+<!-- #region CAN USE QUIETNESS -->
+{{#if canUseQuietness}}
+<button class="S0-roll-result S0-orange" data-action="check" data-type="quietness">
+  {{localize 'S0.Usar_Quietude'}}
+  ( <i class="fas fa-bolt-slash"></i> )
+</button>
+{{/if}}
+<!-- #endregion -->
+
 <!-- #region CAN USE PERSEVERANCE -->
 {{#if canUsePerseverance}}
-<button class="S0-roll-result" data-action="roll" data-handle-on-dom="true" data-type="perseverance">
-    {{localize 'S0.Usar_Perseveranca'}}
+<button class="S0-roll-result" data-action="check" data-type="perseverance">
+  {{localize 'S0.Usar_Perseveranca'}}
+  ( <i class="fas fa-check-double"></i> )
 </button>
 {{/if}}
 <!-- #endregion -->

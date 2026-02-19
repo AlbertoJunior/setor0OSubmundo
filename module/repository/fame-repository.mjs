@@ -1,24 +1,26 @@
-import { localize } from "../../scripts/utils/utils.mjs";
+import { localize } from "../utils/utils.mjs";
 import { CharacteristicType, BaseActorCharacteristicType } from "../enums/characteristic-enums.mjs";
 
 export class FameRepository {
-    static #characteristics = [
-        { id: CharacteristicType.CORE.id, label: 'Nucleo' },
-        { id: BaseActorCharacteristicType.INFLUENCE.id, label: 'Influencia' },
-        { id: BaseActorCharacteristicType.BOUNTY.id, label: 'Procurado' }
-    ];
+  static TYPES = Object.freeze({
+    CORE: { id: CharacteristicType.CORE.id, label: 'Nucleo', initialLevel: 1, maxLevel: 5 },
+    INFLUENCE: { id: BaseActorCharacteristicType.INFLUENCE.id, label: 'Influencia', initialLevel: 0, maxLevel: 6 },
+    BOUNTY: { id: BaseActorCharacteristicType.BOUNTY.id, label: 'Procurado', initialLevel: 0, maxLevel: 5 },
+  });
 
-    static getItems() {
-        return [... this.#characteristics]
-            .map(item => {
-                return {
-                    ...item,
-                    label: localize(item.label)
-                };
-            });
-    }
+  static #characteristics = Object.values(this.TYPES);
 
-    static getItemsNpc() {
-        return FameRepository.getItems().filter(item => item.id != 'nucleo')
-    }
+  static getItems() {
+    return [... this.#characteristics]
+      .map(item => {
+        return {
+          ...item,
+          label: localize(item.label)
+        };
+      });
+  }
+
+  static getItemsNpc() {
+    return FameRepository.getItems().filter(item => item.id != 'nucleo')
+  }
 }

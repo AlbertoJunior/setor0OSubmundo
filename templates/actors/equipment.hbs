@@ -1,96 +1,97 @@
-<section data-label="{{localize 'S0.Equipamentos'}}" class="S0-page" data-icon="fas fa-backpack">
-    <div class="S0-container">
-        <h3> {{localize 'S0.Equipados'}} </h3>
+<section class="S0-page tab" data-group="menu-tabs" data-tab="equipment" data-label="{{localize 'S0.Equipamentos'}}"
+  data-icon="fas fa-backpack">
+  <div class="S0-container">
+    <h3> {{localize 'S0.Equipados'}} </h3>
 
-        <div
-            style="display: flex; align-items: center; column-gap: 10px; justify-content: center; margin-top: 2px; margin-bottom: 4px">
+    <div
+      style="display: flex; align-items: center; column-gap: 10px; justify-content: center; margin-top: 2px; margin-bottom: 4px">
 
-            {{#if (gameFunc 'isGm')}}
-            <a class="S0-icon-swaper" data-characteristic="equipment" data-sub-characteristic="menu"
-                data-type="equipped" data-action="check" data-item-type="unlock"
-                title="{{localize 'S0.Permitir_Edicao'}}">
-                <i class="fas fa-lock S0-icon-idle"></i>
-                <i class="fas fa-unlock S0-icon-hover"></i>
-            </a>
+      {{#if (gameFunc 'isGm')}}
+      <a class="S0-icon-swaper" data-characteristic="equipment" data-sub-characteristic="menu" data-type="equipped"
+        data-action="check" data-item-type="unlock" title="{{localize 'S0.Permitir_Edicao'}}">
+        <i class="fas fa-lock S0-icon-idle"></i>
+        <i class="fas fa-unlock S0-icon-hover"></i>
+      </a>
 
-            <a class="S0-icon-swaper" data-characteristic="equipment" data-sub-characteristic="menu"
-                data-type="equipped" data-action="check" data-item-type="lock"
-                title="{{localize 'S0.Bloquear_Edicao'}}">
-                <i class="fas fa-unlock S0-icon-idle"></i>
-                <i class="fas fa-lock S0-icon-hover"></i>
-            </a>
-            {{/if}}
+      <a class="S0-icon-swaper" data-characteristic="equipment" data-sub-characteristic="menu" data-type="equipped"
+        data-action="check" data-item-type="lock" title="{{localize 'S0.Bloquear_Edicao'}}">
+        <i class="fas fa-unlock S0-icon-idle"></i>
+        <i class="fas fa-lock S0-icon-hover"></i>
+      </a>
+      {{/if}}
 
-            {{#if editable}}
-            <a class="S0-icon-swaper" data-characteristic="equipment" data-sub-characteristic="menu"
-                data-type="equipped" data-action="remove" title="{{localize 'S0.Desequipar_Itens'}}">
-                <i class="fas fa-arrow-down-to-bracket S0-icon-idle"></i>
-                <i class="fas fa-arrow-down-to-square S0-icon-hover"></i>
-            </a>
-            {{/if}}
-        </div>
-
-        <hr>
-
-        <ul id="equipped-{{actor.id}}" class="S0-container-5-column S0-drop-container" style="row-gap: 10px;">
-            {{#each (actorLists actor 'equipment_equipped') as |item|}}
-            <li>{{> equipamentEquippedItem item }}</li>
-            {{/each}}
-        </ul>
+      {{#if editable}}
+      <a class="S0-icon-swaper" data-characteristic="equipment" data-sub-characteristic="menu" data-type="equipped"
+        data-action="remove" title="{{localize 'S0.Desequipar_Itens'}}">
+        <i class="fas fa-arrow-down-to-bracket S0-icon-idle"></i>
+        <i class="fas fa-arrow-down-to-square S0-icon-hover"></i>
+      </a>
+      {{/if}}
     </div>
 
-    <div class="S0-container">
-        <h3> {{localize 'S0.Mochila'}} </h3>
-        <div
-            style="display: flex; align-items: center; column-gap: 10px; justify-content: center; margin-top: 2px; margin-bottom: 4px">
-            {{#if (gameFunc 'isGm')}}
-            <a class="S0-icon-swaper" data-characteristic="equipment" data-sub-characteristic="menu" data-type="bag"
-                data-action="check" data-item-type="unlock" title="{{localize 'S0.Permitir_Edicao'}}">
-                <i class="fas fa-lock S0-icon-idle"></i>
-                <i class="fas fa-unlock S0-icon-hover"></i>
-            </a>
+    <hr>
 
-            <a class="S0-icon-swaper" data-characteristic="equipment" data-sub-characteristic="menu" data-type="bag"
-                data-action="check" data-item-type="lock" title="{{localize 'S0.Bloquear_Edicao'}}">
-                <i class="fas fa-unlock S0-icon-idle"></i>
-                <i class="fas fa-lock S0-icon-hover"></i>
-            </a>
-            {{/if}}
+    <ul id="equipped-{{actor.id}}" class="S0-container-5-column S0-drop-container" style="row-gap: 10px;">
+      {{#each (actorLists actor 'equipment_equipped') as |item|}}
+      <li>{{> equipamentEquippedItem item }}</li>
+      {{/each}}
+    </ul>
+  </div>
 
-            {{#if editable}}
-            <a class="S0-icon-swaper" data-characteristic="equipment" data-sub-characteristic="menu" data-type="bag"
-                data-action="remove" title="{{localize 'S0.Remover_Itens'}}">
-                <i class="fas fa-trash S0-icon-idle"></i>
-                <i class="fas fa-trash-list S0-icon-hover"></i>
-            </a>
-            <a class="S0-icon-swaper" data-characteristic="equipment" data-sub-characteristic="menu" data-type="bag"
-                data-action="add" title="{{localize 'S0.Adicionar_Itens'}}">
-                <i class="fas fa-bag-shopping S0-icon-idle"></i>
-                <i class="fas fa-bag-shopping-plus S0-icon-hover"></i>
-            </a>
-            {{/if}}
-        </div>
+  <div class="S0-container">
+    <h3> {{localize 'S0.Mochila'}} </h3>
+    <div
+      style="display: flex; align-items: center; column-gap: 10px; justify-content: center; margin-top: 2px; margin-bottom: 4px">
+      {{#if (gameFunc 'isGm')}}
+      <a class="S0-icon-swaper" data-characteristic="equipment" data-sub-characteristic="menu" data-type="bag"
+        data-action="check" data-item-type="unlock" title="{{localize 'S0.Permitir_Edicao'}}">
+        <i class="fas fa-lock S0-icon-idle"></i>
+        <i class="fas fa-unlock S0-icon-hover"></i>
+      </a>
 
-        <ul class="S0-infinity-horizontal-menu">
-            {{#each (fetchRepository 'equipment-types')}}
-            <li class="S0-simulate-button {{#if (operators 'eq' @root/document.sheet.filterBag id)}}S0-marked{{/if}}"
-                style="width: auto; padding-inline: 16px" data-action="check" data-characteristic="equipment"
-                data-sub-characteristic="filter" data-type="{{type}}">
-                <h4 style="font-size: var(--font-size-13);">
-                    {{label}}
-                </h4>
-            </li>
-            {{/each}}
-        </ul>
+      <a class="S0-icon-swaper" data-characteristic="equipment" data-sub-characteristic="menu" data-type="bag"
+        data-action="check" data-item-type="lock" title="{{localize 'S0.Bloquear_Edicao'}}">
+        <i class="fas fa-unlock S0-icon-idle"></i>
+        <i class="fas fa-lock S0-icon-hover"></i>
+      </a>
+      {{/if}}
 
-        <hr>
-
-        <ul id="bag-{{actor.id}}" class="S0-container-5-column S0-drop-container" style="row-gap: 10px;">
-            {{#each (actorLists actor 'equipment_filtered') as |item|}}
-            <li>
-                {{> equipamentBagItem item }}
-            </li>
-            {{/each}}
-        </ul>
+      {{#if editable}}
+      <a class="S0-icon-swaper" data-characteristic="equipment" data-sub-characteristic="menu" data-type="bag"
+        data-action="remove" title="{{localize 'S0.Remover_Itens'}}">
+        <i class="fas fa-trash S0-icon-idle"></i>
+        <i class="fas fa-trash-list S0-icon-hover"></i>
+      </a>
+      <a class="S0-icon-swaper" data-characteristic="equipment" data-sub-characteristic="menu" data-type="bag"
+        data-action="add" title="{{localize 'S0.Adicionar_Itens'}}">
+        <i class="fas fa-bag-shopping S0-icon-idle"></i>
+        <i class="fas fa-bag-shopping-plus S0-icon-hover"></i>
+      </a>
+      {{/if}}
     </div>
+
+    <ul class="S0-infinity-horizontal-menu">
+      {{#each (fetchRepository 'equipment-types')}}
+      <li class="S0-simulate-button {{#if (operators 'eq' @root/document.sheet.filterBag id)}}S0-marked{{/if}}"
+        data-action="check" data-characteristic="equipment" data-sub-characteristic="filter" data-type="{{type}}">
+        <h4>{{label}}</h4>
+      </li>
+      {{/each}}
+    </ul>
+
+    <hr>
+
+    <ul id="bag-{{actor.id}}" class="S0-container-5-column S0-drop-container" style="row-gap: 10px;">
+      {{#if (operators 'isEmpty' (actorLists actor 'equipment_filtered'))}}
+      <li class="S0-label-drop-container">
+        {{localize 'S0.Itens.Mensagens.Nenhum_item_adicionado'}}
+      </li>
+      {{/if}}
+      {{#each (actorLists actor 'equipment_filtered') as |item|}}
+      <li>
+        {{> equipamentBagItem item }}
+      </li>
+      {{/each}}
+    </ul>
+  </div>
 </section>

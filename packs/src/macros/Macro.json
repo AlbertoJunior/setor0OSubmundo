@@ -1,0 +1,53 @@
+{
+  "title": "Macros",
+  "banner": "ui/banners/macro-banner.webp",
+  "documentName": "Macro",
+  "elements": [],
+  "folders": [
+    {
+      "name": "USER",
+      "type": "Macro",
+      "color": "#0a3aff",
+      "_id": "FYIZmdMEgZeY7Lwa",
+      "description": "",
+      "folder": null,
+      "sorting": "a",
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "setor0OSubmundo",
+        "systemVersion": "0.0.2",
+        "createdTime": 1770321641231,
+        "modifiedTime": 1770321641231,
+        "lastModifiedBy": "tK2FsBNKL3Za9iXa"
+      }
+    },
+    {
+      "name": "GM",
+      "type": "Macro",
+      "color": "#f00a0a",
+      "_id": "l31zESr7vnhT6ZAS",
+      "description": "",
+      "folder": null,
+      "sorting": "a",
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "setor0OSubmundo",
+        "systemVersion": "0.0.2",
+        "createdTime": 1770321641263,
+        "modifiedTime": 1770321641263,
+        "lastModifiedBy": "tK2FsBNKL3Za9iXa"
+      }
+    }
+  ],
+  "sortingMode": "a"
+}

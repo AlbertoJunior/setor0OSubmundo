@@ -1,128 +1,125 @@
-import { localize, randomId, snakeToCamel } from "../../../scripts/utils/utils.mjs"
-import { TEMPLATES_PATH } from "../../constants.mjs";
+import { localize, randomId, snakeToCamel } from "../../utils/utils.mjs"
+import { SYSTEM_CLASS_DIALOG_CSS, TEMPLATES_PATH } from "../../constants.mjs";
 import { DialogUtils } from "../../utils/dialog-utils.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
+/**
+ * @typedef {Object} CreateFormDialogOptions
+ * @property {Object} [presetForm] - Objeto com dados pré-preenchidos no formulário.
+ * @property {Function} [onConfirm] - Callback chamada ao confirmar o formulário.
+ * Recebe os dados processados como argumento.
+ * @property {Function} [onCancel] - Callback chamada ao cancelar. Recebe o HTML do diálogo.
+ * @property {Function} [render] - Função chamada após o conteúdo ser renderizado.
+ * Recebe o HTML do formulário, o diálogo renderizado e a instância `windowApp`.
+ * @property {Function} [onClose] - Função chamada ao fechar o diálogo (mesmo sem confirmação).
+ * @property {Object|null} [windowOptions] - Opções da janela.
+ * @property {FoundryApi.Versions|null} [forcedApiVersion] - Força o uso de uma versão específica da API.
+ */
+
+/**
+ * Classe utilitária para criação de diálogos modais com formulários carregados dinamicamente.
+ *
+ * Fornece um método estático para abrir uma janela de diálogo com conteúdo HTML e callbacks de controle.
+ */
 export class CreateFormDialog {
-    static optionsTemplate = {
-        onConfirm: async (data) => { },
-        onCancel: async (html) => { },
-        render: (html, windowApp) => { },
-        onClose: () => { },
-        presetForm: {},
+  /**
+   * Abre um diálogo contendo um formulário HTML, renderizado dinamicamente a partir de um arquivo externo.
+   *
+   * @param {string} title - Título do diálogo.
+   * @param {string} fileHtml - Caminho para o arquivo HTML do formulário (sem extensão).
+   * @param {CreateFormDialogOptions} options - Objeto de opções para configurar o comportamento do diálogo.
+   *
+   * @returns {Promise<void>} Uma Promise que resolve quando o diálogo for processado e exibido.
+   *
+   * @example
+   * await CreateFormDialog.open('Nova Ficha', 'items/dialog/superequipment-effect-dialog', {
+   *   presetForm: { name: 'Sem nome' },
+   *   onConfirm: async (data) => { console.log('Form enviado', data); },
+   *   onCancel: async (html) => { console.log('Cancelado'); },
+   *   render: (html, dialog, app) => { console.log('Render extra'); },
+   *   onClose: () => { console.log('Janela fechada'); },
+   *   windowOptions: { width: 600, height: 'auto' },
+   *   forcedApiVersion: FoundryApi.Versions.v1
+   * });
+   */
+  static async open(title, fileHtml, options) {
+    const buttons = this.#createButtons(
+      {
+        confirm: options.onConfirm,
+        cancel: options.onCancel
+      }
+    );
+
+    const content = await this.#mountContent(fileHtml.replace(/\.[^/.]+$/, ''), options.presetForm);
+
+    if (!this.#verifyContentIsForm(content)) {
+      console.error('Content isn\'t a form')
+      return;
     }
 
-    static async open(title, fileHtml, options) {
-        const buttons = this.#createButtons(
-            {
-                confirm: options.onConfirm,
-                cancel: options.onCancel
-            }
-        );
-
-        const content = await this.#mountContent(fileHtml.replace(/\.[^/.]+$/, ''), options.presetForm, buttons);
-
-        if (!this.#verifyContentIsForm(content)) {
-            console.error('Content isn\'t a form')
-            return;
+    FoundryApi.createDialog(
+      {
+        title,
+        header: options.header,
+        content,
+        buttons,
+        render: (html, renderedDialog, window) => {
+          if (typeof options.render === 'function') {
+            options.render?.(html, renderedDialog, window);
+          }
+        },
+        close: () => {
+          if (typeof options.onClose === 'function') {
+            options.onClose?.();
+          }
         }
+      },
+      options.windowOptions,
+      options.forcedApiVersion
+    );
+  }
 
-        const dialog = new Dialog({
-            title,
-            content,
-            buttons: {},
-            render: (html) => {
-                const windowApp = this.#render(html, dialog, { buttons });
-                options.render?.(html, windowApp);
-            },
-            close: () => { options.onClose?.() }
-        });
-        dialog.render(true);
-    }
+  static #createButtons(eventButtons) {
+    const onConfirm = eventButtons.confirm;
+    const onCancel = eventButtons.cancel;
+    return [
+      {
+        label: localize("Cancelar"),
+        onClick: (html) => {
+          if (typeof onCancel === 'function') {
+            onCancel?.(html);
+          }
+        }
+      },
+      {
+        label: localize("Confirmar"),
+        default: true,
+        onClick: (html) => {
+          if (typeof onConfirm === 'function') {
+            const data = DialogUtils.getDialogFormData(html);
+            onConfirm?.(data);
+          }
+        }
+      },
+    ];
+  }
 
-    static #createButtons(eventButtons) {
-        const onConfirm = eventButtons.confirm;
-        const onCancel = eventButtons.cancel;
+  static async #mountContent(fileHtml, presetForm = {}) {
+    const dataForm = {
+      uuid: `form_dialog.${randomId(10)}`,
+      ...Object.fromEntries(
+        Object.entries(presetForm).filter(([key]) => key !== 'uuid')
+      )
+    };
 
-        const buttons = {};
-
-        buttons['cancel'] = {
-            label: localize("Cancelar"),
-            classes: 'S0-button-confirm',
-            callback: (html) => {
-                onCancel?.(html)
-            }
-        };
-
-        buttons['confirm'] = {
-            label: localize("Confirmar"),
-            classes: 'S0-button-confirm default',
-            callback: (html) => {
-                const form = html[0].querySelector("form");
-                const formData = new FormData(form);
-                const data = snakeToCamel(formData.entries());
-                onConfirm?.(data);
-            }
-        };
-
-        Object.keys(buttons).forEach(key => {
-            buttons[key].key = key;
-        });
-
-        return buttons;
-    }
-
-    static async #mountContent(fileHtml, presetForm = {}, buttons = null) {
-        const dataForm = {
-            uuid: `form_dialog.${randomId(10)}`,
-            ...Object.fromEntries(
-                Object.entries(presetForm).filter(([key]) => key !== 'uuid')
-            )
-        };
-
-        const dataButtons = {
-            buttons: (buttons && typeof buttons === 'object') ? Object.values(buttons) : null,
-        };
-
-        const [formHtml, buttonsHtml] = await Promise.all([
-            renderTemplate(`${TEMPLATES_PATH}/${fileHtml}.hbs`, dataForm),
-            renderTemplate(`${TEMPLATES_PATH}/others/buttons-dialog.hbs`, dataButtons),
-        ]);
-
-        return `
-        <div class="S0-dialog">
+    const formHtml = await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/${fileHtml}.hbs`, dataForm);
+    return `
+        <div class="${SYSTEM_CLASS_DIALOG_CSS}">
             ${formHtml}
-            ${buttonsHtml}
         </div>`;
-    }
+  }
 
-    static #verifyContentIsForm(content) {
-        return content.includes("<form");
-    }
-
-    static #render(html, dialog, params) {
-        const { buttons, header } = params
-        const windowApp = DialogUtils.presetDialogRender(html, header);
-        this.#setupButtonsRender(html, dialog, buttons);
-        return windowApp;
-    }
-
-    static #setupButtonsRender(html, dialog, buttons = {}) {
-        const entries = Object.entries(buttons);
-        for (const [key, { callback, closeDialog }] of entries) {
-            const buttonElement = html.find(`[data-action="${key}"]`);
-            if (!buttonElement.length) {
-                continue;
-            }
-
-            buttonElement.on("click", () => {
-                if (typeof callback === "function") {
-                    callback(html);
-                    if (closeDialog === false) {
-                        return;
-                    }
-                }
-                dialog.close();
-            });
-        }
-    }
+  static #verifyContentIsForm(content) {
+    return content.includes("<form");
+  }
 }

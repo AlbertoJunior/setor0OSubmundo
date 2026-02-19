@@ -3,25 +3,25 @@
 <hr>
 
 <div class="dice-tooltip S0-container-contract">
-    <p>{{localize 'S0.Teste'}}: {{ formule }}</p>
+  <p>{{localize 'S0.Teste'}}: {{ formule }}</p>
 
-    <hr>
+  <hr>
 
-    {{#if (operators 'gt' penalty 0)}}
-    <label style="display: block; margin-block: 4px;">{{localize 'S0.Penalidade'}}: {{ penalty }}</label>
-    {{/if}}
+  {{#if (operators 'gt' penalty 0)}}
+  <label style="display: block; margin-block: 4px;">{{localize 'S0.Penalidade'}}: {{ penalty }}</label>
+  {{/if}}
 
-    {{#unless (operators 'eq' bonus 0)}}
-    <label style="display: block; margin-block: 4px;">{{localize 'S0.Bonus'}}: {{ bonus }}</label>
-    {{/unless}}
+  {{#unless (operators 'eq' bonus 0)}}
+  <label style="display: block; margin-block: 4px;">{{localize 'S0.Bonus'}}: {{ bonus }}</label>
+  {{/unless}}
 
-    {{#if (operators 'gt' automatic 0)}}
-    <label style="display: block; margin-block: 4px;">{{localize 'S0.Automatico'}}: {{ automatic }}</label>
-    {{/if}}
+  {{#if (operators 'gt' automatic 0)}}
+  <label style="display: block; margin-block: 4px;">{{localize 'S0.Automatico'}}: {{ automatic }}</label>
+  {{/if}}
 
-    <hr>
+  <hr>
 </div>
 
-<button class="S0-roll-result" data-action="toggle-tooltip" data-handle-on-dom="true">
-    {{localize 'S0.Detalhes'}}
+<button class="S0-roll-result" data-action="view" data-type="toggle-tooltip">
+  {{localize 'S0.Detalhes'}}
 </button>

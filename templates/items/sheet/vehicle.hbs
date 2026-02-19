@@ -1,40 +1,31 @@
 <form autocomplete="off">
-    {{> itemCommon this}}
+  {{> itemCommon this}}
 
-    <div class="S0-page S0-container">
-        <div class="form-group">
-            <label for="{{item.id}}.type" style="flex: 1;">
-                {{localize 'S0.Tipo'}}:
-            </label>
-            <select id="{{item.id}}.type" class="S0-select" style="flex: 1; min-width: 142.5px;"
-                name="system.vehicle_type">
-                {{#with (itemValues item 'vehicle_type') as |vehicle_type|}}
-                {{#each (fetchRepository 'equipment-vehicle-type')}}
-                <option value="{{id}}" {{selectIfEq vehicle_type id }}>{{label}}</option>
-                {{/each}}
-                {{/with}}
-                </option>
-            </select>
-        </div>
+  <div class="S0-page S0-container S0-container-2-fixed-column" style="align-items: center;">
+    <label for="{{item.id}}.type">{{localize 'S0.Tipo'}}:</label>
+    <select id="{{item.id}}.type" class="S0-select" name="system.vehicle_type">
+      {{#with (itemValues item 'vehicle_type') as |vehicle_type|}}
+      {{#each (fetchRepository 'equipment-vehicle-type')}}
+      <option value="{{id}}" {{selectIfEq vehicle_type id }}>{{label}}</option>
+      {{/each}}
+      {{/with}}
+      </option>
+    </select>
 
-        <div class="form-group">
-            <label for="{{item.id}}.acceleration" style="flex: 1;">{{localize 'S0.Aceleracao'}}:</label>
-            <input id="{{item.id}}.acceleration" style="flex: 1; text-align: center;" type="number"
-                name="system.acceleration" min="0" max="6" value="{{itemValues item 'acceleration'}}" />
-        </div>
+    <label for="{{item.id}}.acceleration">{{localize 'S0.Aceleracao'}}:</label>
+    <input id="{{item.id}}.acceleration" type="number" name="system.acceleration" min="0" max="6"
+      value="{{itemValues item 'acceleration'}}" />
 
-        <div class="form-group">
-            <label for="{{item.id}}.speed" style="flex: 1;">{{localize 'S0.Velocidade'}}:</label>
-            <input id="{{item.id}}.speed" style="flex: 1; text-align: center;" type="number" name="system.speed" min="0"
-                max="6" value="{{itemValues item 'speed'}}" />
-        </div>
-    </div>
+    <label for="{{item.id}}.speed">{{localize 'S0.Velocidade'}}:</label>
+    <input id="{{item.id}}.speed" type="number" name="system.speed" min="0" max="6"
+      value="{{itemValues item 'speed'}}" />
+  </div>
 
-    {{> itemCommonResistance this}}
+  {{> itemCommonResistance this}}
 
-    {{> itemSuperEquipment this}}
+  {{> itemSuperEquipment this}}
 
-    {{> itemRollableTests this}}
+  {{> itemRollableTests this}}
 
-    {{> itemCommonDescription this}}
+  {{> itemCommonDescription this}}
 </form>

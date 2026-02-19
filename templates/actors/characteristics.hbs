@@ -1,128 +1,129 @@
-<section data-label="{{ localize 'S0.Caracteristicas' }}" class="S0-page" data-icon="fas fa-person-dots-from-line">
-    <ul>
-        <li class="S0-container">
-            <h2> {{localize 'S0.Virtudes'}} </h2>
-            <div id="virtudesContainer" class="S0-container-3-column">
-                {{#lett clickableClass=(operators 'ternary' editable 'S0-clickable' '')}}
-                {{#each (fetchRepository 'virtue')}}
-                <div class="S0-characteristic-container" id="{{id}}">
-                    <label>
-                        {{localize label}}
-                    </label>
+<section class="S0-page tab" data-group="menu-tabs" data-tab="characteristics"
+  data-label="{{ localize 'S0.Caracteristicas' }}" data-icon="fas fa-person-dots-from-line">
+  <ul>
+    <li class="S0-container">
+      <h2> {{localize 'S0.Virtudes'}} </h2>
+      <div id="virtudesContainer" class="S0-container-3-fixed-column">
+        {{#lett clickableClass=(operators 'ternary' editable 'S0-clickable' '')}}
+        {{#each (fetchRepository 'virtue')}}
+        <div class="S0-characteristic-container" id="{{id}}">
+          <label>
+            {{localize label}}
+          </label>
 
-                    {{#forLoop 0 5}}
-                    <div class="S0-characteristic {{../../clickableClass}}" data-action="characteristic"
-                        data-characteristic="virtudes">
-                    </div>
-                    {{/forLoop}}
-                </div>
-                {{/each}}
-                {{/lett}}
-            </div>
-        </li>
+          {{#forLoop 0 5}}
+          <div class="S0-characteristic {{../../clickableClass}}" data-action="characteristic" data-action-group="true"
+            data-characteristic="virtudes">
+          </div>
+          {{/forLoop}}
+        </div>
+        {{/each}}
+        {{/lett}}
+      </div>
+    </li>
 
-        <li class="S0-container">
-            <h2>
-                {{localize 'S0.Fama'}}
-            </h2>
-            <div id="fameContainer" class="S0-container-3-column">
-                {{#lett clickableClass=(operators 'ternary' editable 'S0-clickable' '')}}
-                {{#each (fetchRepository 'fame')}}
-                <div class="S0-characteristic-container" id="{{id}}">
-                    <label>
-                        {{localize label}}
-                    </label>
+    <li class="S0-container">
+      <h2>
+        {{localize 'S0.Fama'}}
+      </h2>
+      <div id="fameContainer" class="S0-container-3-fixed-column">
+        {{#lett clickableClass=(operators 'ternary' editable 'S0-clickable' '')}}
+        {{#each (fetchRepository 'fame')}}
+        <div class="S0-characteristic-container" id="{{id}}">
+          <label>
+            {{localize label}}
+          </label>
 
-                    {{#forLoop 0 4}}
-                    <div class="S0-characteristic {{../../clickableClass}}" data-action="characteristic"
-                        data-characteristic="">
-                    </div>
-                    {{/forLoop}}
+          {{#forLoop 1 maxLevel}}
+          <div class="S0-characteristic  {{../../clickableClass}}" data-action="characteristic" data-action-group="true"
+            data-characteristic="fama">
+          </div>
+          {{/forLoop}}
 
-                    <div class="S0-characteristic S0-characteristic-6 {{../clickableClass}}"
-                        data-action="characteristic" data-characteristic="">
-                    </div>
-                </div>
-                {{/each}}
-                {{/lett}}
-            </div>
-        </li>
+          <div class="S0-characteristic S0-characteristic-6 {{../clickableClass}}" data-action="characteristic"
+            data-action-group="true" data-characteristic="fama">
+          </div>
+        </div>
+        {{/each}}
+        {{/lett}}
+      </div>
+    </li>
 
-        <li class="S0-container">
-            <h2>
-                {{localize 'S0.Atributos'}}
-            </h2>
-            <div id="atributosContainer" class="S0-container-2-column">
-                {{#lett clickableClass=(operators 'ternary' editable 'S0-clickable' '')}}
-                {{#each (fetchRepository 'attribute')}}
-                <div class="S0-characteristic-container" id="{{id}}">
-                    <label>
-                        {{localize label}}
-                    </label>
+    <li class="S0-container">
+      <h2>
+        {{localize 'S0.Atributos'}}
+      </h2>
+      <div id="atributosContainer" class="S0-container-2-column">
+        {{#lett clickableClass=(operators 'ternary' editable 'S0-clickable' '')}}
+        {{#each (fetchRepository 'attribute')}}
+        <div class="S0-characteristic-container" id="{{id}}">
+          <label>
+            {{localize label}}
+          </label>
 
-                    {{#forLoop 0 5}}
-                    <div class="S0-characteristic {{../../clickableClass}}" data-action="characteristic"
-                        data-characteristic="atributos">
-                    </div>
-                    {{/forLoop}}
+          {{#forLoop 0 5}}
+          <div class="S0-characteristic {{../../clickableClass}}" data-action="characteristic" data-action-group="true"
+            data-characteristic="atributos">
+          </div>
+          {{/forLoop}}
 
-                    <div class="S0-characteristic S0-characteristic-6 {{../clickableClass}}"
-                        data-action="characteristic" data-characteristic="atributos">
-                    </div>
-                </div>
-                {{/each}}
-                {{/lett}}
-            </div>
-        </li>
+          <div class="S0-characteristic S0-characteristic-6 {{../clickableClass}}" data-action="characteristic"
+            data-action-group="true" data-characteristic="atributos">
+          </div>
+        </div>
+        {{/each}}
+        {{/lett}}
+      </div>
+    </li>
 
-        <li class="S0-container">
-            <h2>
-                {{localize 'S0.Habilidades'}}
-            </h2>
-            <div id="skillsContainer" class="S0-container-2-column">
-                {{#lett clickableClass=(operators 'ternary' editable 'S0-clickable' '')}}
-                {{#each (fetchRepository 'ability')}}
-                <div class="S0-characteristic-container" id="{{id}}">
-                    <label>
-                        {{localize label}}
-                    </label>
+    <li class="S0-container">
+      <h2>
+        {{localize 'S0.Habilidades'}}
+      </h2>
+      <div id="skillsContainer" class="S0-container-2-column">
+        {{#lett clickableClass=(operators 'ternary' editable 'S0-clickable' '')}}
+        {{#each (fetchRepository 'ability')}}
+        <div class="S0-characteristic-container" id="{{id}}">
+          <label>
+            {{localize label}}
+          </label>
 
-                    {{#forLoop 0 5}}
-                    <div class="S0-characteristic {{../../clickableClass}}" data-action="characteristic"
-                        data-characteristic="habilidades">
-                    </div>
-                    {{/forLoop}}
+          {{#forLoop 0 5}}
+          <div class="S0-characteristic {{../../clickableClass}}" data-action="characteristic" data-action-group="true"
+            data-characteristic="habilidades">
+          </div>
+          {{/forLoop}}
 
-                    <div class="S0-characteristic S0-characteristic-6 {{../clickableClass}}"
-                        data-action="characteristic" data-characteristic="habilidades">
-                    </div>
-                </div>
-                {{/each}}
-                {{/lett}}
-            </div>
-        </li>
+          <div class="S0-characteristic S0-characteristic-6 {{../clickableClass}}" data-action="characteristic"
+            data-action-group="true" data-characteristic="habilidades">
+          </div>
+        </div>
+        {{/each}}
+        {{/lett}}
+      </div>
+    </li>
 
-        <li class="S0-container">
-            <h2>
-                {{localize 'S0.Repertorio'}}
-            </h2>
-            <div id="repertorioContainer">
-                {{#lett clickableClass=(operators 'ternary' editable 'S0-clickable' '')}}
-                {{#each (fetchRepository 'repertory')}}
-                <div class="S0-characteristic-container" id="{{id}}">
-                    <label>
-                        {{localize label}}
-                    </label>
+    <li class="S0-container">
+      <h2>
+        {{localize 'S0.Repertorio'}}
+      </h2>
+      <div id="repertorioContainer">
+        {{#lett clickableClass=(operators 'ternary' editable 'S0-clickable' '')}}
+        {{#each (fetchRepository 'repertory')}}
+        <div class="S0-characteristic-container" id="{{id}}">
+          <label>
+            {{localize label}}
+          </label>
 
-                    {{#forLoop 0 5}}
-                    <div class="S0-characteristic {{../../clickableClass}}"
-                        data-action="characteristic" data-characteristic="repertorio">
-                    </div>
-                    {{/forLoop}}
-                </div>
-                {{/each}}
-                {{/lett}}
-            </div>
-        </li>
-    </ul>
+          {{#forLoop 0 5}}
+          <div class="S0-characteristic {{../../clickableClass}}" data-action="characteristic" data-action-group="true"
+            data-characteristic="repertorio">
+          </div>
+          {{/forLoop}}
+        </div>
+        {{/each}}
+        {{/lett}}
+      </div>
+    </li>
+  </ul>
 </section>

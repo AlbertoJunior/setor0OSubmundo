@@ -1,11 +1,11 @@
-import { SYSTEM_ID } from "../../../constants.mjs";
+import { SYSTEM_FLAGS, SYSTEM_ID } from "../../../constants.mjs";
 import { verifyAndReturnActor, verifyAndReturnSelectedToken } from "../commands/macro-utils-commands.mjs";
 
 export const openShortcutMacroData = {
   flags: {
     [SYSTEM_ID]: {
-      sourceId: '2',
-      role: 'user',
+      [SYSTEM_FLAGS.SOURCE_ID]: '2',
+      [SYSTEM_FLAGS.ROLE]: 'user',
     }
   },
   name: "Abrir Atalhos",

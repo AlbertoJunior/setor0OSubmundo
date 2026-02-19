@@ -1,17 +1,25 @@
 <ul id="floating-menu" class="S0-float-right-sheet">
-    {{> "buttons-float-menu" canEdit=canEdit editable=editable}}
+  {{> "buttons-float-menu" canEdit=canEdit editable=editable}}
 </ul>
 
 <div class="S0-page">
-    <header class="S0-container sheet-header">
-        <h2>
-            <input name="name" type="text" value="{{item.name}}" placeholder="Nome do Equipamento" />
-        </h2>
-    </header>
+  <header class="S0-container sheet-header">
+    <h2>
+      <input name="name" type="text" value="{{item.name}}" placeholder="Nome do Equipamento" />
+    </h2>
+  </header>
 
-    <div class="S0-flex-center S0-container">
-        <img {{#if editable}}class="S0-clickable" {{/if}}
-            style="object-fit: contain; width: 100%; border-radius: var(--border-radius-large);" src="{{item.img}}"
-            data-edit="img" title="{{item.name}}" width="128" height="128" />
+  <div class="S0-flex-center S0-container" style="position: relative;">
+    <div class="S0-biography-container-button">
+      <a class="S0-icon-expand" data-action="view" data-characteristic="characteristic" data-type="img"
+        title="{{localize 'ITEM.ViewArt'}}">
+        <i class="fas fa-eye"></i>
+        <span style="margin-left: 10px;">{{localize 'ITEM.ViewArt'}}</span>
+      </a>
     </div>
+
+    <img {{#if editable}}class="S0-clickable" {{/if}}
+      style="object-fit: contain; width: 100%; border-width: 0px; border-radius: var(--border-radius-large);"
+      src="{{item.img}}" data-edit="img" title="{{item.name}}" width="128" height="128" />
+  </div>
 </div>

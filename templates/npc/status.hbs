@@ -1,86 +1,125 @@
-<div class="S0-page" data-label="{{ localize 'S0.Status' }}" data-icon="fas fa-heart-pulse">
-    <div class="S0-container S0-container-2-column" style="align-items: center;">
-        <div class="S0-characteristic-container" id="vigor">
-            <label>
-                {{localize 'S0.Vigor'}}
-            </label>
+<div class="S0-page tab" data-group="menu-tabs" data-tab="status" data-label="{{ localize 'S0.Status' }}"
+  data-icon="fas fa-heart-pulse">
+  <div class="S0-container S0-container-2-column" style="align-items: center;">
+    <div class="S0-characteristic-container" id="vigor">
+      <label>
+        {{localize 'S0.Vigor'}}
+      </label>
 
-            {{#forLoop 0 5}}
-            <div class="S0-characteristic {{#if ../editable}}S0-clickable{{/if}} {{#if (operators 'gt' (actorValues ../actor 'npc_stamina') index)}}S0-selected{{/if}}"
-                data-action="characteristic" data-characteristic="characteristic" data-type="vigor">
-            </div>
-            {{/forLoop}}
+      {{#forLoop 0 5}}
+      <div
+        class="S0-characteristic {{#if ../editable}}S0-clickable{{/if}} {{#if (operators 'gt' (actorValues ../actor 'npc_stamina') index)}}S0-selected{{/if}}"
+        data-action="characteristic" data-characteristic="characteristic" data-type="vigor" data-action-group="true">
+      </div>
+      {{/forLoop}}
 
-            <div class="S0-characteristic S0-characteristic-6 {{#if editable}}S0-clickable{{/if}} {{#if (operators 'gt' (actorValues actor 'npc_stamina') 5)}}S0-selected{{/if}}"
-                data-action="characteristic" data-characteristic="characteristic" data-type="vigor">
-            </div>
-        </div>
-        <div style="text-align: center;">
-            <h4>{{localize 'S0.Movimento'}}</h4>
-            <label>{{actorValues actor 'npc_pm'}}</label>
-        </div>
+      <div
+        class="S0-characteristic S0-characteristic-6 {{#if editable}}S0-clickable{{/if}} {{#if (operators 'gt' (actorValues actor 'npc_stamina') 5)}}S0-selected{{/if}}"
+        data-action="characteristic" data-characteristic="characteristic" data-type="vigor" data-action-group="true">
+      </div>
     </div>
+    <div style="text-align: center;">
+      <h4>{{localize 'S0.Movimento'}}</h4>
+      <label>{{actorValues actor 'npc_pm'}}</label>
+    </div>
+  </div>
 
-    <ul>
-        {{#if (actorValues actor 'have_equipped_armor') }}
-        <div id="protecao" class="S0-container" style="display: flex; flex-direction: column;">
-            <h3>
-                {{ localize 'S0.Protecao' }}
-                {{#if canRoll}}
-                <a class="S0-icon-rotate" data-action="remove" data-characteristic="temporary" data-type="protect">
-                    <i class="fas fa-refresh"></i>
-                </a>
-                {{/if}}
-            </h3>
-
-            <div id="protect" class="S0-inner-container"
-                style="flex-wrap: wrap; column-gap: 12px; row-gap:10px; flex: 1">
-                {{#forLoop 0 (actorValues actor 'equipped_amor_total_resistance')}}
-                {{#with ../canRoll as |canRoll|}}
-                <div class="S0-characteristic S0-characteristic-temp {{#if canRoll}}S0-clickable{{/if}}"
-                    data-action="{{#if canRoll}}check{{/if}}" data-characteristic="temporary" data-type="protect">
-                </div>
-                {{/with}}
-                {{/forLoop}}
-            </div>
-        </div>
+  <ul>
+    {{#if (actorValues actor 'have_equipped_armor') }}
+    <div id="protecao" class="S0-container" style="display: flex; flex-direction: column;">
+      <h3>
+        {{ localize 'S0.Protecao' }}
+        {{#if canRoll}}
+        <a class="S0-icon-rotate" data-action="remove" data-characteristic="temporary" data-type="protect">
+          <i class="fas fa-refresh"></i>
+        </a>
         {{/if}}
+      </h3>
 
-        <li class="S0-container">
-            <h3>
-                {{ localize 'S0.Vitalidade' }}
-                <label style="font-size: var(--font-size-11);">
-                    {{actorValues actor 'current_damage'}}/{{actorValues actor 'vitality'}}
-                </label>
-                {{#if canRoll}}
-                <a class="S0-icon-rotate" data-action="remove" data-characteristic="temporary" data-type="health">
-                    <i class="fas fa-refresh"></i>
-                </a>
-                {{/if}}
-            </h3>
-            <div id="vitalidade" class="S0-inner-container" style="column-gap: 20px;">
-                {{#forLoop 0 (actorValues actor 'vitality')}}
-                {{#with ../canRoll as |canRoll|}}
-                <div class="S0-characteristic S0-characteristic-temp {{#if canRoll}}S0-clickable{{/if}}"
-                    data-action="{{#if canRoll}}check_contextual{{/if}}" data-characteristic="temporary"
-                    data-type="health">
-                </div>
-                {{/with}}
-                {{/forLoop}}
-            </div>
+      <div id="protect" class="S0-inner-container" style="flex-wrap: wrap; column-gap: 12px; row-gap:10px; flex: 1">
+        {{#forLoop 0 (actorValues actor 'equipped_amor_total_resistance')}}
+        {{#with ../canRoll as |canRoll|}}
+        <div class="S0-characteristic S0-characteristic-temp {{#if canRoll}}S0-clickable{{/if}}"
+          data-action="{{#if canRoll}}check{{/if}}" data-characteristic="temporary" data-type="protect">
+        </div>
+        {{/with}}
+        {{/forLoop}}
+      </div>
+    </div>
+    {{/if}}
 
-            <div class="S0-container S0-container-2-column" style="margin-bottom: 2px;">
-                <div class="S0-inner-li">
-                    <label><strong>{{localize 'S0.Clique_Esquerdo'}}:</strong> {{localize 'S0.Letal'}}</label>
-                    <div class="S0-characteristic S0-characteristic-temp S0-letal">
-                    </div>
-                </div>
-                <div class="S0-inner-li">
-                    <label><strong>{{localize 'S0.Clique_Direito'}}:</strong> {{localize 'S0.Superficial'}}</label>
-                    <div class="S0-characteristic S0-characteristic-temp S0-superficial">
-                    </div>
-                </div>
-            </div>
-        </li>
-    </ul>
+    <li class="S0-container">
+      <h3>
+        {{ localize 'S0.Dano' }}
+        <label style="font-size: var(--font-size-11);">
+          {{actorValues actor 'current_damage'}}/{{actorValues actor 'vitality'}}
+        </label>
+        {{#if canRoll}}
+        <a class="S0-icon-rotate" data-action="remove" data-characteristic="temporary" data-type="health">
+          <i class="fas fa-refresh"></i>
+        </a>
+        {{/if}}
+      </h3>
+      <div id="vitalidade" class="S0-inner-container" style="column-gap: 20px;">
+        {{#forLoop 0 (actorValues actor 'vitality')}}
+        {{#with ../canRoll as |canRoll|}}
+        <div class="S0-characteristic S0-characteristic-temp {{#if canRoll}}S0-clickable{{/if}}"
+          data-action="{{#if canRoll}}check_contextual{{/if}}" data-characteristic="temporary" data-type="health">
+        </div>
+        {{/with}}
+        {{/forLoop}}
+      </div>
+
+      <div class="S0-container S0-container-2-column" style="margin-bottom: 2px;">
+        <div class="S0-inner-li">
+          <label><strong>{{localize 'S0.Clique_Esquerdo'}}:</strong> {{localize 'S0.Letal'}}</label>
+          <div class="S0-characteristic S0-characteristic-temp S0-letal">
+          </div>
+        </div>
+        <div class="S0-inner-li">
+          <label><strong>{{localize 'S0.Clique_Direito'}}:</strong> {{localize 'S0.Superficial'}}</label>
+          <div class="S0-characteristic S0-characteristic-temp S0-superficial">
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  {{#if (gameFunc 'isGm')}}
+  <ul id="effects-container" class="S0-container" style="max-height: 138px; overflow-y: scroll;">
+    <h3 style="margin-block: 4px;">
+      {{localize 'S0.Efeitos_Ativos'}}
+      <a class="S0-icon-expand" data-action="remove" data-characteristic="effects" data-type="all"
+        title="{{localize 'S0.Remover_Todos_Efeitos'}}">
+        <i class="fas fa-trash"></i>
+      </a>
+    </h3>
+
+    {{#each (actorLists actor 'effects') as |item|}}
+    <li style="display: flex; gap: 4px; align-items: center;">
+      {{#if (itemValues item 'effect_has_type')}}
+
+      {{#if (itemValues item 'effect_is_buff')}}
+      <i class="fas fa-arrow-trend-up S0-buff-color"></i>
+      {{/if}}
+
+      {{#if (itemValues item 'effect_is_debuff')}}
+      <i class="fas fa-arrow-trend-down S0-debuff-color"></i>
+      {{/if}}
+
+      {{/if}}
+
+      <span class="S0-hide-long-text" style="flex: 1">{{parse 'effect_on_status' item}}</span>
+      <a class="S0-icon-expand S0-centralized-icon" data-action="view" data-characteristic="effects"
+        data-item-id="{{item._id}}" title="{{localize 'S0.Ver_Efeito'}}">
+        <i class="fas fa-eye"></i>
+      </a>
+      <a class="S0-icon-expand S0-centralized-icon" data-action="remove" data-characteristic="effects"
+        data-type="single" data-item-id="{{item._id}}" title="{{localize 'S0.Remover_Efeito'}}">
+        <i class="fas fa-remove"></i>
+      </a>
+    </li>
+    {{/each}}
+  </ul>
+  {{/if}}
 </div>

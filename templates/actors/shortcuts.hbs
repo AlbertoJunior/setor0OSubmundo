@@ -1,97 +1,104 @@
-<section data-label="{{localize 'S0.Atalhos'}}" class="S0-page" id="shortcutPage" data-icon="fas fa-bolt-auto">
-    <div class="S0-container">
-        <h2>
-            {{localize 'S0.Ofensivo'}}
-        </h2>
+<section class="S0-page tab" data-group="menu-tabs" data-tab="shortcuts" data-label="{{localize 'S0.Atalho.Atalhos'}}"
+  id="shortcutPage" data-icon="fas fa-bolt-auto">
+  <div class="S0-container">
+    <h2>
+      {{localize 'S0.Ofensivo'}}
+    </h2>
 
-        <div class="S0-container-3-column">
-            {{> shortcutDefaultPartial title='S0.Disparar'
-            subcharacteristic='offensive'
-            actorMethodValue1='offensive_projectile' type1='projectile-complete'
-            actorMethodValue2='offensive_projectile_half' type2='projectile-half'}}
+    <div class="S0-container-3-fixed-column">
+      {{> shortcutDefaultPartial title='S0.Disparar'
+      subcharacteristic='offensive'
+      actorMethodValue1='offensive_projectile' type1='projectile-complete'
+      actorMethodValue2='offensive_projectile_half' type2='projectile-half'}}
 
-            {{> shortcutDefaultPartial title='S0.Briga'
-            subcharacteristic='offensive'
-            actorMethodValue1='offensive_brawl' type1='brawl-complete'
-            actorMethodValue2='offensive_brawl_half' type2='brawl-half'}}
+      {{> shortcutDefaultPartial title='S0.Briga'
+      subcharacteristic='offensive'
+      actorMethodValue1='offensive_brawl' type1='brawl-complete'
+      actorMethodValue2='offensive_brawl_half' type2='brawl-half'}}
 
-            {{> shortcutDefaultPartial title='S0.Armas_Brancas'
-            subcharacteristic='offensive'
-            actorMethodValue1='offensive_melee' type1='melee-complete'
-            actorMethodValue2='offensive_melee_half' type2='melee-half' }}
-        </div>
+      {{> shortcutDefaultPartial title='S0.Armas_Brancas'
+      subcharacteristic='offensive'
+      actorMethodValue1='offensive_melee' type1='melee-complete'
+      actorMethodValue2='offensive_melee_half' type2='melee-half' }}
     </div>
+  </div>
 
-    <div class="S0-container">
-        <h2>
-            {{localize 'S0.Defensivo'}}
-        </h2>
+  <div class="S0-container">
+    <h2>
+      {{localize 'S0.Defensivo'}}
+    </h2>
 
-        <div class="S0-container-3-column">
-            {{> shortcutDefaultPartial title='S0.Esquivar'
-            subcharacteristic='defensive'
-            actorMethodValue1='defensive_dodge' type1='dodge-complete'
-            actorMethodValue2='defensive_dodge_half' type2='dodge-half'}}
+    <div class="S0-container-3-fixed-column">
+      {{> shortcutDefaultPartial title='S0.Esquivar'
+      subcharacteristic='defensive'
+      actorMethodValue1='defensive_dodge' type1='dodge-complete'
+      actorMethodValue2='defensive_dodge_half' type2='dodge-half'}}
 
-            {{> shortcutDefaultPartial title='S0.Bloquear'
-            subcharacteristic='defensive'
-            actorMethodValue1='defensive_block_brawl' type1='brawl-complete'
-            actorMethodValue2='defensive_block_brawl_half' type2='brawl-half'}}
+      {{> shortcutDefaultPartial title='S0.Bloquear'
+      subcharacteristic='defensive'
+      actorMethodValue1='defensive_block_brawl' type1='brawl-complete'
+      actorMethodValue2='defensive_block_brawl_half' type2='brawl-half'}}
 
-            {{> shortcutDefaultPartial title='S0.Aparar'
-            subcharacteristic='defensive'
-            actorMethodValue1='defensive_block_melee' type1='melee-complete'
-            actorMethodValue2='defensive_block_melee_half' type2='melee-half'}}
-        </div>
+      {{> shortcutDefaultPartial title='S0.Aparar'
+      subcharacteristic='defensive'
+      actorMethodValue1='defensive_block_melee' type1='melee-complete'
+      actorMethodValue2='defensive_block_melee_half' type2='melee-half'}}
     </div>
+  </div>
 
-    <div class="S0-container">
-        <h2>
-            {{localize 'S0.Outros_Atalhos'}}
-            <a class="S0-icon-expand" data-action="view" data-characteristic="shortcuts">
-                <i id="shortcuts-container-icon" class="fas fa-chevron-up"></i>
-            </a>
-            {{#if editable}}
-            <a class="S0-icon-expand" data-characteristic="shortcuts" data-action="add"
-                title="{{localize 'S0.Adicionar'}}">
-                <i class="fas fa-square-plus"></i>
-            </a>
-            {{/if}}
-        </h2>
+  <div class="S0-container">
+    <h2>
+      {{localize 'S0.Atalho.Outros_Atalhos'}}
+      <a class="S0-icon-expand" data-action="view" data-characteristic="shortcuts">
+        <i id="shortcuts-container-icon" class="fas fa-chevron-up"></i>
+      </a>
+      {{#if editable}}
+      <a class="S0-icon-expand" data-characteristic="shortcuts" data-action="add" title="{{localize 'S0.Adicionar'}}">
+        <i class="fas fa-square-plus"></i>
+      </a>
+      {{/if}}
+    </h2>
 
-        <div id="shortcuts-container-{{actor.id}}"
-            class="S0-container-2-fixed-column S0-container-contract S0-drop-container S0-expanded"
-            style="overflow-y: scroll; padding-left: 4px; grid-row-gap: 0px; grid-column-gap: 4px;">
-            {{#each (actorLists actor 'shortcuts') as |shortcut|}}
-            <div class="S0-container S0-shortcut-item {{#if ../editable}}draggable{{/if}}">
-                {{#if ../editable}}
-                <a class="S0-icon-expand" title="{{localize 'S0.Editar'}}" data-action="edit"
-                    data-characteristic="shortcuts" data-item-id="{{shortcut.id}}"
-                    style="text-align: center; width: 20px; margin-right: 4px">
-                    <i class="fas fa-edit"></i>
-                </a>
-                {{/if}}
-
-                <label class="S0-max-2-line-text"
-                    style="pointer-events: none; text-align: start; flex: 1; max-width: 160px; margin-right: 4px;">
-                    {{shortcut.name}}
-                </label>
-
-                <h3 class="S0-h-marked" {{#if shortcut.specialist}} title="{{localize 'S0.Especialista'}}" {{/if}}
-                    style="{{#if shortcut.specialist}}border: 2px ridge var(--primary-color-alpha);{{/if}}">
-                    {{actorValues ../actor 'calculate_dice_pool' shortcut}}
-                    {{#if (operators 'gt' automatic 0)}}
-                    <span style="display: block; font-size: var(--font-size-10);">{{automatic}}*</span>
-                    {{/if}}
-                </h3>
-
-                <a class="S0-icon-rotate" title="{{localize 'S0.Rolar'}}" data-action="roll"
-                    data-characteristic="shortcuts" data-item-id="{{shortcut.id}}"
-                    style="text-align: center; width: 20px;">
-                    <i class="fas fa-dice-d10"></i>
-                </a>
-            </div>
-            {{/each}}
-        </div>
+    {{#if (operators 'isEmpty' (actorLists actor 'shortcuts'))}}
+    <div id="shortcuts-container-{{actor.id}}" class="S0-container-contract S0-drop-container S0-expanded">
+      <li class="S0-label-drop-container" style="margin-block: 4px;">
+        {{localize 'S0.Atalho.Nenhum_Atalho_Adicionado'}}
+      </li>
     </div>
+    {{else}}
+    <div id="shortcuts-container-{{actor.id}}"
+      class="S0-container-2-fixed-column S0-container-contract S0-drop-container S0-expanded"
+      style="overflow-y: scroll; padding-left: 4px; grid-row-gap: 0px; grid-column-gap: 4px;">
+
+      {{#each (actorLists actor 'shortcuts') as |shortcut|}}
+      <div class="S0-container S0-shortcut-item {{#if ../editable}}draggable{{/if}}">
+        {{#if ../editable}}
+        <a class="S0-icon-expand" title="{{localize 'S0.Editar'}}" data-action="edit" data-characteristic="shortcuts"
+          data-item-id="{{shortcut.id}}" style="text-align: center; width: 20px; margin-right: 4px">
+          <i class="fas fa-edit"></i>
+        </a>
+        {{/if}}
+
+        <label class="S0-max-2-line-text"
+          style="pointer-events: none; text-align: start; flex: 1; max-width: 160px; margin-right: 4px;">
+          {{shortcut.name}}
+        </label>
+
+        <h3 class="S0-h-marked" {{#if shortcut.specialist}} title="{{localize 'S0.Especialista'}}" {{/if}}
+          style="{{#if shortcut.specialist}}border: 2px ridge var(--primary-color-alpha);{{/if}}">
+          {{actorValues ../actor 'calculate_dice_pool' shortcut}}
+          {{#if (operators 'gt' automatic 0)}}
+          <span style="display: block; font-size: var(--font-size-10);">{{automatic}}*</span>
+          {{/if}}
+        </h3>
+
+        <a class="S0-icon-rotate" title="{{localize 'S0.Rolar'}}" data-action="roll" data-characteristic="shortcuts"
+          data-item-id="{{shortcut.id}}" style="text-align: center; width: 20px;">
+          <i class="fas fa-dice-d10"></i>
+        </a>
+      </div>
+      {{/each}}
+    </div>
+    {{/if}}
+  </div>
 </section>

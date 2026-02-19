@@ -1,0 +1,39 @@
+.S0-V1.S0-content.sheet .window-content {
+  margin: 0px;
+  padding: 0px 2px 0px 12px;
+  overflow-y: scroll;
+}
+
+.S0-V1.S0-content.sheet .window-header {
+  border-bottom: 1px solid var(--secondary-color-alpha);
+}
+
+.S0-V1.S0-content:is(.sheet, .dialog) .window-header :is(h1, h2, h3, h4, a) {
+  text-shadow: none;
+}
+
+.S0-V1.S0-content input {
+  text-align: center;
+}
+
+.S0-V1.S0-content.S0-dialog .window-content {
+  max-height: 660px;
+  padding-block: 6px;
+  border: none;
+  border-image: initial;
+  margin: 0px;
+  border-radius: 0px 0px var(--border-radius-medium) var(--border-radius-medium);
+}
+
+.S0-V1 .S0-simulate-button.S0-marked h4 {
+  color: var(--on-primary-color);
+}
+
+.S0-V1 .S0-infinity-horizontal-menu .S0-simulate-button:hover h4,
+.S0-V1 .S0-dialog .S0-infinity-horizontal-menu .S0-simulate-button:hover h4 {
+  color: var(--on-primary-color);
+}
+
+.S0-V1 .S0-simulate-button.S0-marked h4 {
+  color: var(--on-primary-color);
+}

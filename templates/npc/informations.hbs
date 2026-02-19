@@ -1,66 +1,67 @@
-<div class="S0-page" data-label="{{ localize 'S0.Informacoes' }}" data-icon="fas fa-address-book">
-    <div class="S0-container S0-flex-colum">
-        <div style="display: flex; align-items: center;">
-            <label for="job" style="flex: 1;">{{ localize 'S0.Atuacao' }}:</label>
-            {{#lett assignment=(actorValues actor 'assignment') editable=editable}}
-            <input id="job" style="color: var(--primary-color); flex: 2;" name="system.background.assignment"
-                type="text" placeholder="{{ localize 'S0.Atuacao' }}" value="{{assignment}}" {{#unless
-                editable}}disabled{{/unless}} />
-            {{/lett}}
-        </div>
-
-        <div style="display: flex; align-items: center;">
-            <label for="quality" style="flex: 1;">{{localize 'S0.Qualidade'}}:</label>
-            <select class="S0-select" style="flex: 2;" id="quality" name="system.qualidade" {{#unless
-                editable}}disabled{{/unless}}>
-                {{#with (actorValues actor 'npc_quality') as |quality|}}
-                {{#each (fetchRepository 'npc-quality')}}
-                <option value="{{id}}" {{selectIfEq quality id}}>{{label}}</option>
-                {{/each}}
-                {{/with}}
-            </select>
-        </div>
+<div class="S0-page tab" data-group="menu-tabs" data-tab="informations" data-label="{{ localize 'S0.Informacoes' }}"
+  data-icon="fas fa-address-book">
+  <div class="S0-container S0-flex-colum">
+    <div style="display: flex; align-items: center;">
+      <label for="job" style="flex: 1;">{{ localize 'S0.Atuacao' }}:</label>
+      {{#lett assignment=(actorValues actor 'assignment') editable=editable}}
+      <input id="job" style="color: var(--primary-color); flex: 2;" name="system.background.assignment" type="text"
+        placeholder="{{ localize 'S0.Atuacao' }}" value="{{assignment}}" {{#unless editable}}disabled{{/unless}} />
+      {{/lett}}
     </div>
 
-    <div class="S0-container S0-container-2-column">
-        {{#each (fetchRepository 'npc-fame')}}
-        <div class="S0-characteristic-container" id="{{id}}">
-            <label>
-                {{localize label}}
-            </label>
-
-            {{#lett id=id editable=../editable level=(actorValues ../actor 'characteristic_level' id)}}
-            {{#forLoop 0 4}}
-            <div class="S0-characteristic {{#if ../editable}}S0-clickable{{/if}} {{selectIfHave ../level index}}"
-                data-action="characteristic" data-characteristic="characteristic" data-type="{{../id}}">
-            </div>
-            {{/forLoop}}
-
-            <div class="S0-characteristic S0-characteristic-6 {{#if editable}}S0-clickable{{/if}} {{selectIfHave level 4}}"
-                data-action="characteristic" data-characteristic="characteristic" data-type="{{id}}">
-            </div>
-            {{/lett}}
-        </div>
+    <div style="display: flex; align-items: center;">
+      <label for="quality" style="flex: 1;">{{localize 'S0.Qualidade'}}:</label>
+      <select class="S0-select" style="flex: 2;" id="quality" name="system.qualidade" {{#unless
+        editable}}disabled{{/unless}}>
+        {{#with (actorValues actor 'npc_quality') as |quality|}}
+        {{#each (fetchRepository 'npc-quality')}}
+        <option value="{{id}}" {{selectIfEq quality id}}>{{label}}</option>
         {{/each}}
+        {{/with}}
+      </select>
     </div>
+  </div>
 
-    <div class="S0-container" style="margin-bottom: 0px;">
-        <label>{{localize 'S0.NPC.Principais_Habilidades'}}</label>
+  <div class="S0-container S0-container-2-column">
+    {{#each (fetchRepository 'npc-fame')}}
+    <div class="S0-characteristic-container" id="{{id}}">
+      <label>
+        {{localize label}}
+      </label>
 
-        <hr>
+      {{#lett id=id editable=../editable level=(actorValues ../actor 'characteristic_level' id)}}
+      {{#forLoop 1 maxLevel}}
+      <div class="S0-characteristic {{#if ../editable}}S0-clickable{{/if}} {{selectIfHave ../level index}}"
+        data-action="characteristic" data-action-group="true" data-characteristic="{{../id}}">
+      </div>
+      {{/forLoop}}
 
-        <div class="S0-flex-colum">
-            {{> npcSkillPartial name="S0.NPC.Primaria" system="primaria" actor=actor }}
-
-            {{> npcSkillPartial name="S0.NPC.Secundaria" system="secundaria" actor=actor }}
-
-            {{#if (operators 'gt' (actorValues actor 'npc_tertiary_value') 0)}}
-            {{> npcSkillPartial name="S0.NPC.Terciaria" system="terciaria" actor=actor }}
-            {{/if}}
-
-            {{#if (operators 'gt' (actorValues actor 'npc_quaternary_value') 0)}}
-            {{> npcSkillPartial name="S0.NPC.Quaternaria" system="quaternaria" actor=actor }}
-            {{/if}}
-        </div>
+      <div
+        class="S0-characteristic S0-characteristic-6 {{#if editable}}S0-clickable{{/if}} {{selectIfHave level maxLevel}}"
+        data-action="characteristic" data-action-group="true" data-characteristic="{{id}}">
+      </div>
+      {{/lett}}
     </div>
+    {{/each}}
+  </div>
+
+  <div class="S0-container" style="margin-bottom: 0px;">
+    <label>{{localize 'S0.NPC.Principais_Habilidades'}}</label>
+
+    <hr>
+
+    <div class="S0-flex-colum">
+      {{> npcSkillPartial name="S0.NPC.Primaria" system="primaria" actor=actor }}
+
+      {{> npcSkillPartial name="S0.NPC.Secundaria" system="secundaria" actor=actor }}
+
+      {{#if (operators 'gt' (actorValues actor 'npc_tertiary_value') 0)}}
+      {{> npcSkillPartial name="S0.NPC.Terciaria" system="terciaria" actor=actor }}
+      {{/if}}
+
+      {{#if (operators 'gt' (actorValues actor 'npc_quaternary_value') 0)}}
+      {{> npcSkillPartial name="S0.NPC.Quaternaria" system="quaternaria" actor=actor }}
+      {{/if}}
+    </div>
+  </div>
 </div>

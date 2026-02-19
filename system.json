@@ -1,132 +1,175 @@
 {
-    "id": "setor0OSubmundo",
-    "title": "Setor 0 - O Submundo",
-    "description": "Jogue Setor 0 - O Submundo no Foundry VTT",
-    "version": "0.0.1",
-    "compatibility": {
-        "minimum": 12,
-        "verified": 12
+  "id": "setor0OSubmundo",
+  "title": "Setor 0 - O Submundo",
+  "description": "Jogue Setor 0 - O Submundo no Foundry VTT",
+  "url": "https://www.set0rpg.com.br",
+  "version": "0.0.2",
+  "background": "/systems/setor0OSubmundo/imgs/banner.png",
+  "manifest": "https://raw.githubusercontent.com/AlbertoJunior/RPG-fvtt-sector-0/master/system.json",
+  "download": "https://github.com/AlbertoJunior/RPG-fvtt-sector-0/download/archive.zip",
+  "bugs": "https://github.com/AlbertoJunior/RPG-fvtt-sector-0/issues",
+  "authors": [
+    {
+      "name": "Alberto Junior",
+      "url": "https://github.com/AlbertoJunior",
+      "discord": "Alberto Junior#8050"
+    }
+  ],
+  "license": "LICENSE",
+  "readme": "README.md",
+  "compatibility": {
+    "minimum": 12,
+    "verified": 13
+  },
+  "esmodules": [
+    "setor0OSubmundo.mjs"
+  ],
+  "scripts": [
+    "scripts/libs/Sortable.min.js",
+    "scripts/libs/jszip.min.js"
+  ],
+  "styles": [
+    "styles/variables.css",
+    "styles/edit-foundry-styles.css",
+    "styles/styles-base.css",
+    "styles/components/styles-actor.css",
+    "styles/components/styles-items.css",
+    "styles/components/styles-chat.css",
+    "styles/components/styles-dialog.css",
+    "styles/system-styles-v1.css",
+    "styles/system-styles-v2.css",
+    "styles/system-styles-dark.css",
+    "styles/system-styles-id.css",
+    "styles/system-created-styles.css"
+  ],
+  "packs": [
+    {
+      "name": "inimigos",
+      "label": "Inimigos conhecidos",
+      "system": "setor0OSubmundo",
+      "path": "packs/inimigos",
+      "type": "Actor",
+      "private": false
     },
-    "authors": [
-        {
-            "name": "Alberto Junior",
-            "url": "https://github.com/AlbertoJunior",
-            "discord": "Alberto Junior#8050"
+    {
+      "name": "itens",
+      "label": "Itens conhecidos",
+      "system": "setor0OSubmundo",
+      "path": "packs/itens",
+      "type": "Item",
+      "private": false,
+      "flags": {
+        "filter": {
+          "type": [
+            "Armor",
+            "Melee",
+            "Projectile",
+            "Substance",
+            "Vehicle"
+          ]
         }
-    ],
-    "esmodules": [
-        "setor0OSubmundo.mjs"
-    ],
-    "scripts": [
-        "scripts/libs/Sortable.min.js"
-    ],
-    "styles": [
-        "styles/system-styles.css"
-    ],
-    "background": "https://github.com/AlbertoJunior/RPG-fvtt-sector-0/blob/dev/imgs/banner.png?raw=true",
-    "packs": [
-        {
-            "name": "inimigos",
-            "label": "Inimigos conhecidos",
-            "system": "setor0OSubmundo",
-            "path": "packs/inimigos",
-            "type": "Actor"
-        },
-        {
-            "name": "itens",
-            "label": "Itens conhecidos",
-            "system": "setor0OSubmundo",
-            "path": "packs/itens",
-            "type": "Item",
-            "flags": {
-                "filter": {
-                    "type": [
-                        "Armor",
-                        "Melee",
-                        "Projectile",
-                        "Substance",
-                        "Vehicle"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "traits",
-            "label": "Novos Traços",
-            "system": "setor0OSubmundo",
-            "path": "packs/tracos",
-            "type": "Item",
-            "flags": {
-                "filter": {
-                    "type": [
-                        "Trait"
-                    ]
-                }
-            },
-            "ownership": {
-                "PLAYER": "OBSERVER"
-            }
-        },
-        {
-            "name": "enhancements",
-            "label": "Novos Aprimoramentos",
-            "system": "setor0OSubmundo",
-            "path": "packs/aprimoramentos",
-            "type": "Item",
-            "flags": {
-                "filter": {
-                    "type": [
-                        "Enhancement"
-                    ]
-                }
-            },
-            "ownership": {
-                "PLAYER": "OBSERVER"
-            }
-        },
-        {
-            "name": "macros",
-            "label": "Macros",
-            "system": "setor0OSubmundo",
-            "path": "packs/macros",
-            "type": "Macro",
-            "ownership": {
-                "PLAYER": "OBSERVER"
-            }
-        }
-    ],
-    "languages": [
-        {
-            "lang": "pt-br",
-            "name": "Portugês Brasil",
-            "path": "lang/pt-br.json"
-        }
-    ],
-    "documentTypes": {
-        "Actor": {
-            "Player": {},
-            "NPC": {}
-        },
-        "Item": {
-            "Acessory": {},
-            "Armor": {},
-            "Melee": {},
-            "Projectile": {},
-            "Substance": {},
-            "Vehicle": {},
-            "Trait": {},
-            "Enhancement": {}
-        }
+      },
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
     },
-    "socket": false,
-    "initiative": "1d10",
-    "grid": {
-        "distance": 1,
-        "units": "PM"
+    {
+      "name": "traits",
+      "label": "Novos Traços",
+      "system": "setor0OSubmundo",
+      "path": "packs/tracos",
+      "type": "Item",
+      "private": false,
+      "flags": {
+        "filter": {
+          "type": [
+            "Trait"
+          ]
+        }
+      },
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
     },
-    "primaryTokenAttribute": "vitalidade.total",
-    "secondaryTokenAttribute": "sobrecarga",
-    "url": "https://www.set0rpg.com.br",
-    "manifest": "https://github.com/AlbertoJunior/setor0OSubmundo/system.json",
-    "download": "https://github.com/AlbertoJunior/setor0OSubmundo/download/archive.zip"
+    {
+      "name": "enhancements",
+      "label": "Novos Aprimoramentos",
+      "system": "setor0OSubmundo",
+      "path": "packs/aprimoramentos",
+      "type": "Item",
+      "flags": {
+        "filter": {
+          "type": [
+            "Enhancement"
+          ]
+        }
+      },
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "macros",
+      "label": "Macros",
+      "system": "setor0OSubmundo",
+      "path": "packs/macros",
+      "type": "Macro",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "Setor 0",
+      "label": "Setor 0",
+      "color": "#ffdc00",
+      "sorting": "m",
+      "packs": [
+        "inimigos",
+        "itens",
+        "traits",
+        "enhancements",
+        "macros"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "lang": "pt-br",
+      "name": "Portugês Brasil",
+      "path": "lang/pt-br.json",
+      "system": "setor0OSubmundo"
+    },
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json",
+      "system": "setor0OSubmundo"
+    }
+  ],
+  "documentTypes": {
+    "Actor": {
+      "Player": {},
+      "NPC": {}
+    },
+    "Item": {
+      "Acessory": {},
+      "Armor": {},
+      "Melee": {},
+      "Projectile": {},
+      "Substance": {},
+      "Vehicle": {},
+      "Trait": {},
+      "Enhancement": {}
+    }
+  },
+  "socket": false,
+  "initiative": "1d10",
+  "grid": {
+    "distance": 1,
+    "units": "PM"
+  },
+  "primaryTokenAttribute": "actualVitality",
+  "secondaryTokenAttribute": "actualPM"
 }

@@ -1,11 +1,11 @@
-import { SYSTEM_ID } from "../../../constants.mjs";
+import { SYSTEM_FLAGS, SYSTEM_ID } from "../../../constants.mjs";
 import { verifyAndReturnActor, verifyAndReturnSelectedToken } from "../commands/macro-utils-commands.mjs";
 
 export const openBagMacroData = {
   flags: {
     [SYSTEM_ID]: {
-      sourceId: '1',
-      role: 'user',
+      [SYSTEM_FLAGS.SOURCE_ID]: '1',
+      [SYSTEM_FLAGS.ROLE]: 'user',
     }
   },
   name: "Abrir Mochila",
