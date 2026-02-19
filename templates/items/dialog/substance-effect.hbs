@@ -1,11 +1,11 @@
 <form class="S0-container">
-    <select class="S0-select" name="selectedEffect">
-        {{#each effects as |group|}}
-        <optgroup label="{{ group.label }}">
-            {{#each group.options as |option|}}
-            <option value="{{ option.id }}"> {{ option.description }} </option>
-            {{/each}}
-        </optgroup>
-        {{/each}}
-    </select>
+  <select class="S0-select" name="selectedEffect">
+    {{#each effects as |group|}}
+    <optgroup label="{{ group.label }}">
+      {{#each group.options as |option|}}
+      <option value="{{ option.id }}"> {{ option.description }} </option>
+      {{/each}}
+    </optgroup>
+    {{/each}}
+  </select>
 </form>

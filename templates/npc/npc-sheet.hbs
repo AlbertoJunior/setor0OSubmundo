@@ -1,62 +1,65 @@
 <form class="S0-actor-sheet" autocomplete="off">
-    <ul id="floating-menu" class="S0-float-right-sheet">
-        {{> "buttons-float-menu" canEdit=canEdit editable=editable canRoll=false hideDarkModeButton=hideDarkModeButton
-        hideCompactButton=hideCompactButton}}
-    </ul>
+  <ul id="floating-menu" class="S0-float-right-sheet">
+    {{> "buttons-float-menu" canEdit=canEdit editable=editable canRoll=false hideDarkModeButton=hideDarkModeButton
+    hideCompactButton=hideCompactButton}}
+    <li>
+      <nav class="S0-sheet-tabs" data-group="menu-tabs"></nav>
+    </li>
+  </ul>
 
-    <div class="S0-container" style="display: flex; align-items: flex-start; column-gap: 6px;">
-        <div class="S0-image-npc" {{#if editable}}style="border-color: var(--primary-color-alpha-50)" {{/if}}>
-            <img {{#if editable}}data-edit="img" title="Clique para alterar a imagem" {{else}}
-                title="Clique para ver a imagem" data-action="view" data-characteristic="img" {{/if}}
-                class="S0-actor-images S0-clickable" src="{{actor.img}}">
-        </div>
-
-        <div style="flex: 1;">
-            <header>
-                <div class="S0-container" style="margin-top: 0px;">
-                    <h2 class="charname" style="display: flex; align-items: center;">
-                        <label for="name" style="flex: 1">{{ localize 'S0.Nome' }}:</label>
-                        <input id="name" name="name" style="margin-left: 6px; color: var(--primary-color);" type="text"
-                            value="{{actor.name}}" placeholder="{{ localize 'S0.Nome' }}" {{#unless
-                            editable}}disabled{{/unless}} />
-                    </h2>
-
-                    <div class="S0-container-2-column" style="margin-top: 6px;">
-                        <div style="display: flex; align-items: center; column-gap: 6px;">
-                            <label for="morfologia">{{ localize 'S0.Morfologia' }}:</label>
-                            <select class="S0-select" id="morfologia" name="system.morfologia" {{#unless
-                                editable}}disabled{{/unless}}>
-                                {{#with (actorValues actor 'morphology' ) as |morphology|}}
-                                {{#each (fetchRepository 'morphology')}}
-                                <option value="{{id}}" {{selectIfEq morphology id }}>
-                                    {{label}}
-                                </option>
-                                {{/each}}
-                                {{/with}}
-                            </select>
-                        </div>
-
-                        <div style="display: flex; align-items: center; column-gap: 6px;">
-                            <label for="bairro">{{ localize 'S0.Bairro' }}:</label>
-                            <select class="S0-select" id="bairro" name="system.bairro" {{#unless
-                                editable}}disabled{{/unless}}>
-                                {{#with (actorValues actor 'district' ) as |district|}}
-                                {{#each (fetchRepository 'district')}}
-                                <option value="{{id}}" {{selectIfEq district id }}>
-                                    {{label}}
-                                </option>
-                                {{/each}}
-                                {{/with}}
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-            {{> npcInformations this}}
-            {{> npcStatus this}}
-            {{> npcBag this}}
-
-        </div>
+  <div class="S0-container" style="display: flex; align-items: flex-start; column-gap: 6px;">
+    <div class="S0-image-npc" {{#if editable}}style="border-color: var(--primary-color-alpha-50)" {{/if}}>
+      <img {{#if editable}}data-edit="img" data-action="img" title="Clique para alterar a imagem" {{else}}
+        title="Clique para ver a imagem" data-action="view" data-characteristic="img" {{/if}}
+        class="S0-actor-images S0-clickable" src="{{actor.img}}">
     </div>
+
+    <div style="flex: 1;">
+      <header>
+        <div class="S0-container" style="margin-top: 0px;">
+          <h2 style="display: flex; align-items: center;">
+            <label for="{{uuid}}.name" style="flex: 1">{{ localize 'S0.Nome' }}:</label>
+            <input id="{{uuid}}.name" name="name" style="margin-left: 6px;" type="text" value="{{actor.name}}"
+              placeholder="{{ localize 'S0.Nome' }}" {{#unless editable}}disabled{{/unless}} />
+          </h2>
+
+          <div class="S0-container-2-column" style="margin-top: 6px;">
+            <div style="display: flex; align-items: center; column-gap: 6px;">
+              <label for="{{uuid}}.morfologia">{{ localize 'S0.Morfologia' }}:</label>
+              <select class="S0-select" id="{{uuid}}.morfologia" name="system.morfologia" {{#unless
+                editable}}disabled{{/unless}}>
+                {{#with (actorValues actor 'morphology' ) as |morphology|}}
+                {{#each (fetchRepository 'morphology')}}
+                <option value="{{id}}" {{selectIfEq morphology id }}>
+                  {{label}}
+                </option>
+                {{/each}}
+                {{/with}}
+              </select>
+            </div>
+
+            <div style="display: flex; align-items: center; column-gap: 6px;">
+              <label for="{{uuid}}.bairro">{{ localize 'S0.Bairro' }}:</label>
+              <select class="S0-select" id="{{uuid}}.bairro" name="system.bairro" {{#unless
+                editable}}disabled{{/unless}}>
+                {{#with (actorValues actor 'district' ) as |district|}}
+                {{#each (fetchRepository 'district')}}
+                <option value="{{id}}" {{selectIfEq district id }}>
+                  {{label}}
+                </option>
+                {{/each}}
+                {{/with}}
+              </select>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="S0-nav-content">
+        {{> npcInformations this}}
+        {{> npcStatus this}}
+        {{> npcBag this}}
+      </div>
+    </div>
+  </div>
 </form>

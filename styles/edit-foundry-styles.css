@@ -1,0 +1,306 @@
+/* #region EDIT FOUNDRY STYLE */
+h3.nue {
+  color: var(--primary-color);
+  text-shadow: 0px 0px 6px var(--color-red);
+}
+
+a.nue-tab,
+a.nue-action,
+.nue a[href] {
+  color: var(--primary-color);
+  text-shadow: none;
+  transition: color ease-in-out 0.2s;
+}
+
+a.nue-tab:hover,
+a.nue-action:hover,
+.nue a[href]:hover {
+  color: var(--color-red);
+  text-shadow: 0px 0px var(--color-red);
+}
+
+.themed.theme-dark .ui-control {
+  --control-active-border-color: var(--primary-color);
+  --control-border-color: var(--secondary-color-alpha-50);
+  --control-hover-border-color: var(--primary-color-alpha);
+  --range-thumb-border-color: var(--primary-color-alpha);
+}
+
+body.theme-dark input[type=checkbox],
+body.theme-dark input[type=radio] {
+  --checkbox-background-color: var(--secondary-color-alpha);
+  --checkbox-checked-color: var(--primary-color);
+}
+
+body.game .app {
+  --color-shadow-primary: var(--shadow-hover-color);
+  --color-underline-header: var(--secondary-color);
+  --color-scrollbar: var(--secondary-color);
+  --color-scrollbar-border: var(--primary-color);
+  --color-checkbox-checked: var(--secondary-color);
+}
+
+input[type=range] {
+  --range-thumb-background-color: var(--primary-color-alpha);
+}
+
+.window-header button {
+  max-width: 26px;
+  min-width: 26px;
+  max-height: 24px;
+  min-height: 24px;
+}
+
+.settings-sidebar button {
+  border: none;
+  outline: none;
+}
+
+a.button {
+  color: var(--on-secondary-color);
+  border-color: var(--secondary-color);
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+button {
+  background-color: var(--secondary-color);
+  color: var(--on-secondary-color);
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+a.button:hover,
+button:enabled:hover {
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
+  color: var(--on-primary-color);
+}
+
+button.plain.active {
+  padding: 6px;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.tabs.faded-ui button.plain.active {
+  border-radius: 4px;
+}
+
+#hotbar-controls-right {
+  min-height: 64px;
+}
+
+#hotbar #hotbar-page-controls .hotbar-page-number {
+  width: auto;
+  height: auto;
+  margin: 0;
+  position: unset;
+  top: unset;
+  left: unset;
+}
+
+h1.divider,
+h2.divider,
+h3.divider,
+h4.divider {
+  text-align: center;
+  white-space: normal;
+}
+
+.settings-sidebar.active {
+  gap: 1.2rem
+}
+
+.category-browser aside nav.tabs>button .count {
+  color: unset;
+}
+
+.combat-sidebar .combat-tracker .token-initiative {
+  flex: 1;
+  max-width: 40px;
+}
+
+.combat-sidebar .combat-tracker .combatant.active {
+  background: var(--color-gray-alpha-50);
+  box-shadow: 0px 0px 6px var(--primary-color);
+}
+
+.combat-sidebar .combat-tracker .combatant.active::before {
+  border-color: var(--primary-color);
+}
+
+.combat-sidebar li.combatant .roll {
+  background: url(../icons/d10.png) no-repeat 50% 50%;
+  background-size: 32px;
+  transition: background-size 0.2s ease-in-out;
+}
+
+.combat-sidebar li.combatant .roll:hover {
+  background-size: 40px;
+}
+
+.combat-sidebar .combat-tracker :is(.token-initiative input, .token-resource) {
+  font-size: var(--font-size-18);
+  color: var(--primary-color);
+}
+
+.combat-sidebar .combat-tracker .combatant.hide {
+  color: var(--primary-color-alpha);
+}
+
+.combat-sidebar .combat-tracker .combatant.defeated,
+.combat-sidebar .combat-tracker .combatant.defeated .name {
+  color: var(--color-red-alpha);
+}
+
+.inline-control.combatant-control.icon.fa-solid:is(.fa-skull, .fa-eye-slash).active {
+  color: var(--on-primary-color);
+  background-color: var(--primary-color-alpha);
+}
+
+.inline-control.combatant-control.icon.fa-solid:is(.fa-skull, .fa-eye-slash).active:hover {
+  color: var(--on-secondary-color);
+  border-color: var(--secondary-color-alpha-50);
+  background-color: var(--secondary-color-alpha-50);
+}
+
+.roll.d10 {
+  margin: 0px;
+  background-position: center;
+  background-size: var(--d10-size);
+  height: var(--d10-size);
+  width: var(--d10-size);
+  line-height: var(--d10-line-height);
+  font-size: var(--font-size-16);
+}
+
+#hotbar #action-bar .slot:hover {
+  border-color: var(--primary-color-alpha);
+}
+
+/* #region MESSAGES CHAT */
+#chat-message {
+  border: 2px solid var(--primary-color-alpha);
+  --input-placeholder-color: var(--primary-color);
+}
+
+#chat-message:focus {
+  outline-color: var(--primary-color-alpha);
+}
+
+#chat-log {
+  overflow-y: scroll;
+  padding-left: 10px;
+}
+
+#chat-controls {
+  min-height: 36px;
+  justify-content: space-around;
+  align-items: center;
+  column-gap: 4px;
+}
+
+#chat-controls .roll-type-select {
+  width: auto;
+  margin: 0px;
+}
+
+#chat-controls .control-buttons {
+  flex: none;
+  margin: 0px;
+}
+
+.flavor-text,
+.whisper-to {
+  color: var(--on-secondary-color);
+}
+
+.chat-message {
+  margin-inline: 0px;
+  margin-block: 6px;
+  background: var(--secondary-color-alpha-50);
+}
+
+.chat-message.whisper {
+  background: var(--whisper-color-alpha-50);
+}
+
+.chat-message.blind {
+  border-color: var(--primary-color-alpha-50);
+}
+
+.message-sender,
+.message-metadata,
+.chat-message {
+  color: var(--primary-color);
+  text-shadow: 0 0px 2px var(--color-red);
+}
+
+/* #endregion */
+
+/* #region FILE PICKER*/
+#file-picker .subheader :is(.set-favorite, .tag) {
+  gap: 4px;
+}
+
+/* #endregion */
+
+/* #region  COMPEDIUM */
+.directory-list .directory-item {
+  padding-block: 2px;
+  box-shadow: 0px 1px 6px black;
+}
+
+.compendium.directory .directory-item.document {
+  color: var(--primary-color);
+  background-color: var(--color-gray-alpha-50);
+}
+
+.compendium.directory .directory-item.document img {
+  margin-inline: 6px;
+}
+
+.compendium.directory .directory-item.document h4 {
+  margin: 0px;
+}
+
+/* #endregion */
+
+/* #region TOKEN HUD */
+#token-hud .status-effects {
+  width: max-content;
+  max-width: 200px;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 4px;
+  row-gap: 4px;
+  column-gap: 4px;
+}
+
+#token-hud .status-effects .effect-control {
+  width: 50px;
+  height: 50px;
+  aspect-ratio: 1/1;
+}
+
+#token-hud .movement-actions .movement-action-control:hover {
+  border-color: var(--tertiary-color-alpha);
+}
+
+.placeable-hud .control-icon.active {
+  background-color: var(--primary-color-alpha);
+  border-color: var(--primary-color);
+}
+
+.placeable-hud .control-icon {
+  border-color: var(--secondary-color-alpha);
+}
+
+.placeable-hud .control-icon:hover {
+  color: var(--on-secondary-color);
+  border-color: var(--primary-color);
+}
+
+.placeable-hud .control-icon:focus {
+  border-color: var(--primary-color);
+}
+
+/* #endregion */
+/* #endregion */

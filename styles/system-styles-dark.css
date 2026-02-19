@@ -1,0 +1,225 @@
+/* #region DARK MODE */
+.S0-page-transparent .window-content {
+  color: var(--primary-color);
+  background: url(/ui/denim075.png) repeat;
+  margin: 0;
+}
+
+.S0-page-transparent :is(.S0-container, .S0-page) :is(label, strong) {
+  text-shadow: 0px 1px 4px var(--primary-color-alpha);
+}
+
+.S0-dialog :is(:is(input, select):disabled, textarea:read-only) {
+  color: var(--on-secondary-alternate-color);
+}
+
+.S0-page-transparent .S0-container {
+  border-color: var(--tertiary-color-alpha-50);
+}
+
+.S0-page-transparent .S0-container .S0-vertical-divider {
+  background-color: var(--tertiary-color-alpha-50);
+}
+
+.S0-page-transparent .S0-container :is(select:not(.S0-inner-select), input, textarea):is(:disabled, *) {
+  border-color: var(--primary-color-alpha-50);
+}
+
+:is(.S0-page-transparent, .S0-dialog, .S0-message-content) hr {
+  margin-block: 4px;
+  border-top: 1px solid var(--tertiary-color-alpha-50);
+  border-bottom: 1px solid var(--tertiary-color-alpha);
+  box-shadow: 0px 0px 3px 0px var(--tertiary-color-alpha-50);
+}
+
+.S0-page-transparent :is(select, input, textarea) {
+  color: var(--primary-color);
+}
+
+.S0-page-transparent .S0-inner-select:enabled {
+  border-color: var(--color-light-gray-alpha-50);
+}
+
+:is(.S0-page-transparent, .S0-dialog),
+:is(.S0-page-transparent, .S0-dialog) :is(h1, h2, h3, h4) {
+  color: var(--primary-color);
+  text-shadow: 0px 0px 6px var(--primary-color-alpha);
+}
+
+.S0-page-transparent .S0-selected {
+  color: var(--on-primary-color);
+  background-color: var(--primary-color-alpha);
+  border-color: var(--primary-color);
+  box-shadow: 0px 0px 6px var(--primary-color-alpha-50);
+}
+
+.S0-page-transparent .S0-clickable.S0-characteristic:is(.S0-selected, :hover) {
+  background-color: var(--primary-color-alpha);
+}
+
+.S0-page-transparent .S0-characteristic {
+  border-color: var(--primary-color-alpha);
+}
+
+.S0-page-transparent .S0-characteristic.S0-letal,
+.S0-page-transparent .S0-clickable.S0-characteristic:is(.S0-letal, .S0-superficial:hover) {
+  background-color: var(--primary-color-alpha);
+  box-shadow: 0px 0px 3px 0px var(--primary-color);
+}
+
+.S0-page-transparent .S0-characteristic.S0-superficial,
+.S0-page-transparent .S0-clickable.S0-characteristic.S0-superficial {
+  background-color: var(--tertiary-color-alpha);
+  box-shadow: 0px 0px 3px 0px var(--tertiary-color);
+}
+
+.S0-page-transparent .S0-clickable.S0-characteristic {
+  background-color: var(--alternate-black-color);
+}
+
+.S0-page-transparent .S0-clickable:is(.S0-letal, .S0-selected):hover {
+  background-color: var(--color-red-alpha);
+  box-shadow: 0px 0px 6px 0px var(--color-red-alpha);
+}
+
+.S0-page-transparent .S0-badge span {
+  color: var(--secondary-color);
+}
+
+.S0-page-transparent :is(.S0-item-name, .S0-item-legend) {
+  color: var(--on-secondary-alternate-color);
+}
+
+.S0-page-transparent .S0-item-type {
+  color: var(--on-tertiary-alternate-color);
+  background-color: var(--tertiary-color-alpha);
+}
+
+.S0-page-transparent .S0-item-bag {
+  border-color: var(--tertiary-color);
+  box-shadow: 0px 0px 6px 0px var(--tertiary-color);
+}
+
+.S0-page-transparent .S0-item-bag.S0-marked {
+  border-color: var(--primary-color);
+}
+
+.S0-page-transparent .S0-actor-images-container {
+  border-color: var(--primary-color-alpha-50);
+}
+
+.S0-page-transparent .S0-actor-images-container:hover {
+  border-color: var(--primary-color-alpha);
+  box-shadow: 0px 0px 6px 0px var(--primary-color-alpha);
+}
+
+.S0-page-transparent .S0-actor-images-container :is(.S0-actor-images-name, .S0-actor-images-morph, .S0-actor-button) {
+  color: var(--on-primary-color);
+  border-color: var(--primary-color);
+}
+
+.S0-page-transparent :is(.S0-actor-images-name, .S0-actor-images-morph, .S0-actor-button) {
+  background-color: var(--primary-color-alpha);
+  color: var(--on-primary-color);
+}
+
+.S0-page-transparent .S0-h-marked {
+  background-color: var(--tertiary-color-alpha);
+}
+
+.S0-page-transparent .S0-image-npc {
+  border-color: var(--tertiary-color-alpha-50);
+}
+
+.S0-page-transparent .S0-content :is(h1, h2, h3, h4, label) {
+  color: var(--primary-color);
+}
+
+.S0-page-transparent .S0-container :is(.S0-container, .S0-container .S0-container) {
+  color: var(--on-secondary-alternate-color);
+}
+
+.S0-page-transparent .S0-container :is(.S0-container, .S0-container .S0-container) :is(input:not([type="checkbox"]):enabled, textarea:not(:read-only)) {
+  border-color: var(--primary-color-alpha-50);
+  background-color: var(--alternate-black-color);
+}
+
+.S0-page-transparent .S0-container :is(.S0-container, .S0-container .S0-container) :is(input:not([type="checkbox"]):enabled, textarea:not(:read-only)):is(:hover, :focus) {
+  background-color: var(--secondary-color-alpha-50);
+  border-color: var(--primary-color);
+  box-shadow: 0px 0px 6px 0px var(--primary-color-alpha);
+}
+
+.S0-page-transparent .S0-biography-container-button>* {
+  background: var(--tertiary-color-alpha-50);
+}
+
+.S0-page-transparent .S0-language-container {
+  height: auto;
+  border-bottom: 1px solid var(--primary-color);
+}
+
+.S0-page-transparent :is(input[type=text],
+  input[type=number],
+  input[type=password],
+  input[type=date],
+  input[type=time],
+  input[type=datetime-local],
+  input[type=search],
+  input[type=file],
+  select,
+  textarea) {
+  background: var(--alternate-black-color);
+}
+
+.S0-page-transparent :is(textarea[readonly]) {
+  background: none;
+}
+
+.S0-page-transparent .S0-enhancement ul {
+  background-color: var(--color-gray-alpha-50);
+}
+
+.S0-page-transparent .S0-actor-container-button a {
+  color: var(--on-primary-color);
+}
+
+.S0-page-transparent .S0-actor-container-button .S0-actor-button:hover {
+  text-shadow: 0px 0px 6px var(--secondary-color-alpha-50);
+}
+
+.S0-page-transparent.S0-content input[type="checkbox"] {
+  background-color: var(--alternate-black-color);
+  border-color: var(--primary-color-alpha);
+}
+
+.S0-page-transparent.S0-content input[type="checkbox"]:checked {
+  background-color: var(--primary-color-alpha);
+  border-color: var(--primary-color-alpha);
+}
+
+.S0-page-transparent.S0-content input[type="checkbox"]:hover {
+  background-color: var(--primary-color-alpha);
+  border-color: var(--primary-color-alpha);
+  box-shadow: 0px 0px 6px 0px var(--primary-color-alpha);
+}
+
+.S0-page-transparent.S0-content input[type="checkbox"]:checked:hover {
+  background-color: var(--color-red-alpha);
+  border-color: var(--primary-color-alpha);
+  box-shadow: 0px 0px 6px 0px var(--color-red-alpha);
+}
+
+.S0-page-transparent.S0-content input[type="checkbox"]:disabled {
+  background-color: transparent;
+  border-color: var(--primary-color-alpha);
+  box-shadow: none;
+}
+
+.S0-page-transparent.S0-content input[type="checkbox"]:disabled:checked {
+  background-color: var(--primary-color-alpha);
+  border-color: var(--primary-color-alpha);
+  box-shadow: 0px 0px 4px 0px var(--primary-color-alpha);
+}
+
+/* #endregion */

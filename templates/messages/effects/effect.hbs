@@ -1,0 +1,36 @@
+<div class="S0-message-content">
+  <h4>{{ localize 'S0.Efeitos_Ativos' }}: {{name}}</h4>
+  <hr>
+
+  {{#if origin}}
+  <label style="display: block;"><strong>{{localize 'S0.Origem'}}:</strong> {{origin}}</label>
+  {{/if}}
+
+  {{#if originTypeLabel}}
+  <label style="display: block;"><strong>{{localize 'S0.Tipo'}}:</strong> {{originTypeLabel}}</label>
+  {{/if}}
+
+  {{#if effectTypeLabel}}
+  <label style="display: block;"><strong>{{effectTypeLabel}}</strong></label>
+  {{/if}}
+
+  {{#if disabled}}
+  <label style="display: block;"><strong>{{localize 'S0.Status'}}:</strong> {{localize 'S0.Inativo'}}</label>
+  {{/if}}
+
+  {{#if description}}
+  <label style="display: block; font-weight: bold;">{{localize 'S0.Descricao'}}:</label>
+  <div class="S0-message-simple-text">
+    {{{description}}}
+  </div>
+  {{/if}}
+
+  {{#if hasChanges}}
+  <label style="display: block; font-weight: bold;">{{localize 'S0.Mudancas'}}:</label>
+  <ul style="margin: 2px 0; padding-left: 16px;">
+    {{#each changes}}
+    <li>{{this.label}}: {{this.value}}</li>
+    {{/each}}
+  </ul>
+  {{/if}}
+</div>

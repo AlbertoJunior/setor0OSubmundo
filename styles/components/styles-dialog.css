@@ -1,0 +1,101 @@
+.S0-dialog {
+  display: flex;
+  flex-direction: column;
+  color: var(--primary-color);
+  border-radius: var(--border-radius-medium);
+}
+
+:is(.S0-dialog, .S0-dialog .S0-container) :is(input, textarea, select) {
+  background-color: var(--secondary-color-alpha);
+  color: var(--on-secondary-color);
+  border-color: var(--primary-color-alpha);
+}
+
+:is(.S0-dialog, .S0-dialog .S0-container) :is(input, textarea):enabled:hover {
+  box-shadow: 0px 0px 6px 0px var(--primary-color);
+}
+
+.S0-dialog :is(h1, h2, h3, h4):not(:first-child):not(.window-title) {
+  margin-top: 16px;
+}
+
+.S0-dialog :is(label, span, strong) {
+  text-shadow: 0px 0px 6px var(--primary-color-alpha);
+}
+
+:is(.S0-dialog, .S0-dialog .S0-container) select:disabled {
+  color: var(--primary-color);
+}
+
+:is(.S0-dialog, .S0-dialog .S0-container) .S0-item-bag {
+  border-color: var(--tertiary-color-alpha-50);
+  box-shadow: 0px 0px 6px 0px var(--color-black-alpha-50);
+}
+
+:is(.S0-dialog, .S0-dialog .S0-container) .S0-item-bag.S0-clickable:hover {
+  background-color: var(--tertiary-color-alpha-50);
+}
+
+.S0-dialog label {
+  margin-block: 0.3em;
+}
+
+/* #region DIALOG BUTTONS*/
+.S0-button-dialog {
+  flex: 1;
+  color: var(--on-secondary-color);
+  background-color: var(--secondary-color-alpha-50);
+  box-shadow: none;
+  border: 1px solid !important;
+  border-color: var(--secondary-color-alpha) !important;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.S0-button-dialog:hover {
+  background-color: var(--primary-color-alpha);
+  box-shadow: 0px 0px 6px 0px var(--primary-color-alpha-50);
+  border-color: var(--primary-color) !important;
+}
+
+.S0-single-button-dialog,
+.S0-single-button-dialog.S0-button-dialog,
+.S0-single-button-dialog.S0-button-dialog.S0-button-focus {
+  width: 100%;
+  max-width: 100%;
+}
+
+.S0-button-delete {
+  color: var(--on-color-red) !important;
+  background-color: var(--color-red-alpha-50) !important;
+  border-color: var(--color-red-alpha-50) !important;
+}
+
+.S0-button-delete:hover {
+  background-color: var(--color-red-alpha) !important;
+  box-shadow: 0px 0px 6px 0px var(--color-red-alpha-50) !important;
+  border-color: var(--color-red) !important;
+}
+
+.S0-button-create {
+  color: var(--on-color-green) !important;
+  background-color: var(--color-green-alpha-50) !important;
+  border-color: var(--color-green-alpha) !important;
+}
+
+.S0-button-create:hover {
+  background-color: var(--color-green-alpha) !important;
+  box-shadow: 0px 0px 6px 0px var(--color-green-alpha-50) !important;
+  border-color: var(--color-green) !important;
+}
+
+.S0-button-confirm {
+  border: none;
+  outline: none;
+}
+
+.S0-button-focus {
+  flex: 2;
+  max-width: 55%;
+}
+
+/* #endregion */

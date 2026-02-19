@@ -1,19 +1,19 @@
-import { SYSTEM_ID } from "../../../constants.mjs";
+import { SYSTEM_FLAGS, SYSTEM_ID } from "../../../constants.mjs";
 
 export const getInvalidActorJsonMacroData = {
-    flags: {
-        [SYSTEM_ID]: {
-            sourceId: '1002',
-            role: 'gm',
-        }
-    },
-    name: "Pegar Json de Ator com erro",
-    ownership: {
-        default: CONST.USER_ROLES.GAMEMASTER
-    },
-    img: "icons/svg/explosion.svg",
-    type: "script",
-    command: `
+  flags: {
+    [SYSTEM_ID]: {
+      [SYSTEM_FLAGS.SOURCE_ID]: '1002',
+      [SYSTEM_FLAGS.ROLE]: 'gm',
+    }
+  },
+  name: "Pegar Json de Ator com erro",
+  ownership: {
+    default: CONST.USER_ROLES.GAMEMASTER
+  },
+  img: "icons/svg/explosion.svg",
+  type: "script",
+  command: `
 const invalidIds = game.actors.invalidDocumentIds;
 const invalidActors = game.actors._source.filter(actor => invalidIds.has(actor._id));
 

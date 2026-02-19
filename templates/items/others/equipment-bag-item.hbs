@@ -1,65 +1,65 @@
-<div class="S0-item-bag S0-clickable" {{#if flags.setor0OSubmundo.editable}} style="background-color: #00ffd0;" {{/if}}>
-    <div class="S0-item-container" data-action="view" data-characteristic="equipment" data-sub-characteristic="bag"
-        data-type="{{type}}" data-item-id="{{id}}">
-        <img src="{{img}}" />
+<div class="S0-item-bag S0-clickable {{#if flags.setor0OSubmundo.editable}}S0-marked{{/if}}">
+  <div class="S0-item-container" data-action="view" data-characteristic="equipment" data-sub-characteristic="bag"
+    data-type="{{type}}" data-item-id="{{id}}">
+    <img src="{{img}}" />
 
-        <h4 class="S0-item-type">
-            {{localize (concat 'TYPES.Item.' type)}}
-        </h4>
+    <h4 class="S0-item-type">
+      {{localize (concat 'TYPES.Item.' type)}}
+    </h4>
 
-        <span class="S0-item-name S0-hide-long-text">
-            {{name}}
-        </span>
+    <span class="S0-item-name S0-hide-long-text">
+      {{name}}
+    </span>
 
-        {{#if system.haveQuantity}}
-        <div class="S0-badge">
-            <span class="S0-hide-long-text">{{parse 'item_quantity' this}}</span>
-        </div>
-        {{/if}}
+    {{#if (itemValues this 'haveQuantity')}}
+    <div class="S0-badge">
+      <span class="S0-hide-long-text">{{parse 'item_quantity' this}}</span>
     </div>
+    {{/if}}
+  </div>
 
-    <div class="S0-item-legend">
-        <a class="S0-icon-swaper" data-action="chat" data-characteristic="equipment" data-sub-characteristic="bag"
-            data-type="{{type}}" data-item-id="{{id}}" title="{{localize 'S0.Enviar_No_Chat'}}">
-            <i class="fas fa-message S0-icon-idle"></i>
-            <i class="fas fa-message-quote S0-icon-hover"></i>
-        </a>
+  <div class="S0-item-legend">
+    <a class="S0-icon-swaper" data-action="chat" data-characteristic="equipment" data-sub-characteristic="bag"
+      data-type="{{type}}" data-item-id="{{id}}" title="{{localize 'S0.Enviar_No_Chat'}}">
+      <i class="fas fa-message S0-icon-idle"></i>
+      <i class="fas fa-message-quote S0-icon-hover"></i>
+    </a>
 
-        {{#if (itemValues this 'canEquip')}}
-        <a {{#if system.equipped}}class="hidden" {{else}}class="S0-icon-swaper" {{/if}} data-action="add"
-            data-characteristic="equipment" data-sub-characteristic="bag" data-type="{{type}}" data-item-id="{{id}}"
-            title="{{localize 'S0.Equipar'}}">
-            <i class="fas fa-arrow-up-from-square S0-icon-idle"></i>
-            <i class="fas fa-arrow-up-to-bracket S0-icon-hover"></i>
-        </a>
-        {{/if}}
+    {{#if (itemValues this 'canEquip')}}
+    <a {{#if (itemValues this 'equipped' )}}class="hidden" {{else}}class="S0-icon-swaper" {{/if}} data-action="add"
+      data-characteristic="equipment" data-sub-characteristic="bag" data-type="{{type}}" data-item-id="{{id}}"
+      title="{{localize 'S0.Equipar'}}">
+      <i class="fas fa-arrow-up-from-square S0-icon-idle"></i>
+      <i class="fas fa-arrow-up-to-bracket S0-icon-hover"></i>
+    </a>
+    {{/if}}
 
-        {{#if (itemValues this 'canUse')}}
-        <a class="S0-icon-swaper" data-action="check" data-characteristic="equipment" data-sub-characteristic="bag"
-            data-type="{{type}}" data-item-id="{{id}}" title="{{localize 'S0.Usar'}}">
-            <i class="fas fa-hand-holding S0-icon-idle"></i>
-            <i class="fas fa-hand-holding-droplet S0-icon-hover"></i>
-        </a>
-        {{/if}}
+    {{#if (itemValues this 'canUse')}}
+    <a class="S0-icon-swaper" data-action="check" data-characteristic="equipment" data-sub-characteristic="bag"
+      data-type="{{type}}" data-item-id="{{id}}" title="{{localize 'S0.Usar'}}">
+      <i class="fas fa-hand-holding S0-icon-idle"></i>
+      <i class="fas fa-hand-holding-droplet S0-icon-hover"></i>
+    </a>
+    {{/if}}
 
-        {{#if (itemValues this 'haveQuantity')}}
-        <a class="S0-icon-hover-slider" data-action="edit" data-characteristic="equipment" data-sub-characteristic="bag"
-            data-type="{{type}}" data-item-id="{{id}}" title="{{localize 'S0.Alterar_Quantidade'}}">
-            <i class="fas fa-plus-minus S0-icon-idle"></i>
-            <div class="S0-icon-hover">
-                <i class="fas fa-plus-minus"></i>
-                <i class="fas fa-plus"></i>
-                <i class="fas fa-minus"></i>
-            </div>
-        </a>
-        {{/if}}
+    {{#if (itemValues this 'haveQuantity')}}
+    <a class="S0-icon-hover-slider" data-action="edit" data-characteristic="equipment" data-sub-characteristic="bag"
+      data-type="{{type}}" data-item-id="{{id}}" title="{{localize 'S0.Alterar_Quantidade'}}">
+      <i class="fas fa-plus-minus S0-icon-idle"></i>
+      <div class="S0-icon-hover">
+        <i class="fas fa-plus-minus"></i>
+        <i class="fas fa-plus"></i>
+        <i class="fas fa-minus"></i>
+      </div>
+    </a>
+    {{/if}}
 
-        {{#if @root/editable}}
-        <a class="S0-icon-expand" data-action="remove" data-characteristic="equipment" data-sub-characteristic="bag"
-            data-type="{{type}}" data-item-id="{{id}}" title="{{localize 'S0.Remover'}}">
-            <i class="fas fa-trash"></i>
-        </a>
-        {{/if}}
+    {{#if @root/editable}}
+    <a class="S0-icon-expand" data-action="remove" data-characteristic="equipment" data-sub-characteristic="bag"
+      data-type="{{type}}" data-item-id="{{id}}" title="{{localize 'S0.Remover'}}">
+      <i class="fas fa-trash"></i>
+    </a>
+    {{/if}}
 
-    </div>
+  </div>
 </div>

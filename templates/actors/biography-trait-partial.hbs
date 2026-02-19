@@ -1,46 +1,45 @@
 <div style="padding-block: 4px;">
-    <h3> {{localize title}}
-        {{#if editable}}
-        <a class="S0-icon-expand" data-characteristic="trait" data-action="add" data-type="{{type}}"
-            title="{{localize 'S0.Adicionar'}}">
-            <i class="fas fa-square-plus"></i>
-        </a>
-        {{/if}}
-    </h3>
+  <h3> {{localize title}}
+    {{#if editable}}
+    <a class="S0-icon-expand" data-characteristic="trait" data-action="add" data-type="{{type}}"
+      title="{{localize 'S0.Adicionar'}}">
+      <i class="fas fa-square-plus"></i>
+    </a>
+    {{/if}}
+  </h3>
 
-    <ul id="container-trait-{{type}}">
-        {{#each traits as |item index|}}
-        {{#with ../type as |type|}}
+  <ul id="container-trait-{{type}}">
+    {{#each traits as |item index|}}
+    {{#with ../type as |type|}}
 
-        <li style="display: flex; align-items: center; padding: 2px" data-item-index="{{index}}"
-            data-item-id="{{item.id}}">
-            <label style="flex: 1;">{{item.name}}</label>
+    <li style="display: flex; align-items: center; padding: 2px" data-item-index="{{index}}" data-item-id="{{item.id}}">
+      <label style="flex: 1;">{{item.name}}</label>
 
-            {{#if @root.editable}}
+      {{#if @root.editable}}
 
-            <a class="S0-icon-expand" data-action="edit" data-characteristic="trait" data-type="{{type}}"
-                data-item-id="{{item.id}}" style="margin-inline: 4px;" title="{{localize 'S0.Editar'}}">
-                <i class="fas fa-edit"></i>
-            </a>
-            <a class="S0-icon-expand" data-action="remove" data-characteristic="trait" data-type="{{type}}"
-                data-item-id="{{item.id}}" style="margin-inline: 4px;" title="{{localize 'S0.Remover'}}">
-                <i class="fas fa-trash"></i>
-            </a>
+      <a class="S0-icon-expand" data-action="edit" data-characteristic="trait" data-type="{{type}}"
+        data-item-id="{{item.id}}" style="margin-inline: 4px;" title="{{localize 'S0.Editar'}}">
+        <i class="fas fa-edit"></i>
+      </a>
+      <a class="S0-icon-expand" data-action="remove" data-characteristic="trait" data-type="{{type}}"
+        data-item-id="{{item.id}}" style="margin-inline: 4px;" title="{{localize 'S0.Remover'}}">
+        <i class="fas fa-trash"></i>
+      </a>
 
-            {{else}}
+      {{else}}
 
-            <a class="S0-icon-expand" data-action="chat" data-characteristic="trait" data-type="{{type}}"
-                data-item-id="{{item.id}}" style="margin-inline: 4px;" title="{{localize 'S0.Enviar_No_Chat'}}">
-                <i class="fas fa-message-quote"></i>
-            </a>
-            <a class="S0-icon-expand" data-action="view" data-characteristic="trait" data-type="{{type}}"
-                data-item-id="{{item.id}}" style="margin-inline: 4px;" title="{{localize 'S0.Ver_Informacoes'}}">
-                <i class="fas fa-eye"></i>
-            </a>
+      <a class="S0-icon-expand" data-action="chat" data-characteristic="trait" data-type="{{type}}"
+        data-item-id="{{item.id}}" style="margin-inline: 4px;" title="{{localize 'S0.Enviar_No_Chat'}}">
+        <i class="fas fa-message-quote"></i>
+      </a>
+      <a class="S0-icon-expand" data-action="view" data-characteristic="trait" data-type="{{type}}"
+        data-item-id="{{item.id}}" style="margin-inline: 4px;" title="{{localize 'S0.Ver_Informacoes'}}">
+        <i class="fas fa-eye"></i>
+      </a>
 
-            {{/if}}
-        </li>
-        {{/with}}
-        {{/each}}
-    </ul>
+      {{/if}}
+    </li>
+    {{/with}}
+    {{/each}}
+  </ul>
 </div>

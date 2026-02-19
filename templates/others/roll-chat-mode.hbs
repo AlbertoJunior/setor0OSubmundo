@@ -1,18 +1,18 @@
 <div class="form-group" style="display: flex;">
-    <label for="chat_select" style="flex:1;">{{localize 'S0.Enviar_No_Chat'}}:</label>
-    <select id="chat_select" name="chat_select" class="S0-select" style="flex:1; text-align: start;">
-        <optgroup label="{{localize 'S0.Rolagens_Player'}}">
-            {{#each (gameFunc 'players-roll-mode')}}
-            <option value="{{value}}">{{label}}</option>
-            {{/each}}
-        </optgroup>
+  <label for="chat_select" style="flex:1;">{{localize 'S0.Enviar_No_Chat'}}:</label>
+  <select id="chat_select" name="chat_select" class="S0-select" style="flex:1; text-align: start;">
+    <optgroup label="{{localize 'S0.Rolagens_Player'}}">
+      {{#each (gameFunc 'players-roll-mode')}}
+      <option value="{{value}}">{{label}}</option>
+      {{/each}}
+    </optgroup>
 
-        {{#if (gameFunc 'isGm')}}
-        <optgroup label="{{localize 'S0.Rolagens_GM'}}">
-            {{#each (gameFunc 'gm-roll-mode')}}
-            <option value="{{value}}">{{label}}</option>
-            {{/each}}
-        </optgroup>
-        {{/if}}
-    </select>
+    {{#if (gameFunc 'isGm')}}
+    <optgroup label="{{localize 'S0.Rolagens_GM'}}">
+      {{#each (gameFunc 'gm-roll-mode')}}
+      <option value="{{value}}">{{label}}</option>
+      {{/each}}
+    </optgroup>
+    {{/if}}
+  </select>
 </div>

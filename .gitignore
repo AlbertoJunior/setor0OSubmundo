@@ -20,3 +20,10 @@ packs/*
 
 # only for test local scripts
 scripts/test-scripts
+
+# 1. Ignora todo o conteúdo dentro de .agent/docs/
+/.agent/docs/**
+# 2. Permite que o Git "entre" nas pastas para procurar exceções
+!/.agent/docs/**/
+# 3. Abre a exceção específica para os arquivos _index.md em qualquer nível
+!/.agent/docs/**/_index.md

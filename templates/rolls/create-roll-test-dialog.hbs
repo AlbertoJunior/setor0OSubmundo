@@ -1,75 +1,72 @@
 <div class="S0-dialog">
-    <form class="S0-container">
-        <div class="form-group">
-            <label>
-                {{localize 'S0.Nome'}}
-            </label>
-            <textarea rows="2" style="resize: none;" maxlength="45" name="name" placeholder="{{localize 'S0.Nome'}}"
-                {{#unless canEdit}}disabled{{/unless}}>{{name}}</textarea>
-        </div>
+  <form class="S0-container">
+    <h3>{{localize 'S0.Nome'}}</h3>
+    <div class="form-group">
+      <input type="text" style="resize: none;" maxlength="45" name="name" value="{{name}}"
+        placeholder="{{localize 'S0.Atalho.Atalho_Nome'}}" {{#unless canEdit}}disabled{{/unless}}>
+    </div>
 
-        <h3>{{localize 'S0.Atributos'}}</h3>
-        <div class="form-group">
-            <select id="primary_attribute" class="S0-select" name="primary_attribute" {{#unless
-                canEdit}}disabled{{/unless}}>
-                {{#each attributes}}
-                <option value="{{id}}" {{selectIfEq ../primary_attribute id }}>{{localize label}}</option>
-                {{/each}}
-            </select>
-            <select id="secondary_attribute" class="S0-select" name="secondary_attribute" {{#unless
-                canEdit}}disabled{{/unless}}>
-                {{#each attributes}}
-                <option value="{{id}}" {{selectIfEq ../secondary_attribute id }}>{{localize label}}</option>
-                {{/each}}
-            </select>
-        </div>
+    <h3>{{localize 'S0.Atributos'}}</h3>
+    <div class="form-group">
+      <select id="primary_attribute" class="S0-select" name="primary_attribute" {{#unless canEdit}}disabled{{/unless}}>
+        {{#each attributes}}
+        <option value="{{id}}" {{selectIfEq ../primary_attribute id }}>{{localize label}}</option>
+        {{/each}}
+      </select>
+      <select id="secondary_attribute" class="S0-select" name="secondary_attribute" {{#unless
+        canEdit}}disabled{{/unless}}>
+        {{#each attributes}}
+        <option value="{{id}}" {{selectIfEq ../secondary_attribute id }}>{{localize label}}</option>
+        {{/each}}
+      </select>
+    </div>
 
-        <h3>{{localize 'S0.Habilidade'}}</h3>
-        <div class="form-group">
-            <select id="ability" class="S0-select" name="ability" {{#unless canEdit}}disabled{{/unless}}>
-                {{#each abilities}}
-                <option value="{{id}}" {{selectIfEq ../ability id }}>{{localize label}}</option>
-                {{/each}}
-            </select>
+    <h3>{{localize 'S0.Habilidade'}}</h3>
+    <div class="form-group">
+      <select id="ability" class="S0-select" name="ability" {{#unless canEdit}}disabled{{/unless}}>
+        {{#each abilities}}
+        <option value="{{id}}" {{selectIfEq ../ability id }}>{{localize label}}</option>
+        {{/each}}
+      </select>
 
-            <label for="{{uuid}}.specialist">{{localize 'S0.Especialista'}}</label>
-            <input id="{{uuid}}.specialist" type="checkbox" name="specialist" value="true" {{#if specialist}}checked{{/if}}
-                {{#unless canEdit}}disabled{{/unless}} />
-        </div>
+      <label for="{{uuid}}.specialist">{{localize 'S0.Especialista'}}</label>
+      <input id="{{uuid}}.specialist" type="checkbox" name="specialist" value="true" {{#if specialist}}checked{{/if}}
+        {{#unless canEdit}}disabled{{/unless}} />
+    </div>
 
-        <h3>{{localize 'S0.Outros'}}</h3>
+    <h3>{{localize 'S0.Outros'}}</h3>
 
-        <div class="form-group">
-            <label for="{{uuid}}.difficulty">{{localize 'S0.Dificuldade'}}:</label>
-            <select class="S0-select" id="{{uuid}}.difficulty" name="difficulty" {{#unless canEdit}}disabled{{/unless}}>
-                {{#forLoop 5 11}}
-                <option value="{{index}}" {{selectIfEq index ../difficulty}}>{{index}}</option>
-                {{/forLoop}}
-            </select>
-        </div>
+    <div class="form-group">
+      <label for="{{uuid}}.difficulty">{{localize 'S0.Dificuldade'}}:</label>
+      <select class="S0-select" id="{{uuid}}.difficulty" name="difficulty" {{#unless canEdit}}disabled{{/unless}}>
+        {{#forLoop 5 11}}
+        <option value="{{index}}" {{selectIfEq index ../difficulty}}>{{index}}</option>
+        {{/forLoop}}
+      </select>
+    </div>
 
-        <div class="form-group">
-            <label for="{{uuid}}.critic">{{localize 'S0.Critico'}}:</label>
-            <select class="S0-select" id="{{uuid}}.critic" name="critic" {{#unless canEdit}}disabled{{/unless}}>
-                {{#forLoop 5 11}}
-                <option value="{{index}}" {{selectIfEq index ../critic}}>{{index}}</option>
-                {{/forLoop}}
-            </select>
-        </div>
+    <div class="form-group">
+      <label for="{{uuid}}.critic">{{localize 'S0.Critico'}}:</label>
+      <select class="S0-select" id="{{uuid}}.critic" name="critic" {{#unless canEdit}}disabled{{/unless}}>
+        {{#forLoop 5 11}}
+        <option value="{{index}}" {{selectIfEq index ../critic}}>{{index}}</option>
+        {{/forLoop}}
+      </select>
+    </div>
 
-        <div class="form-group">
-            <label for="{{uuid}}.bonus">{{localize 'S0.Bonus'}}</label>
-            <input id="{{uuid}}.bonus" type="number" name="bonus" value="{{bonus}}" min="0" {{#unless
-                canEdit}}disabled{{/unless}} />
-        </div>
+    <div class="form-group">
+      <label for="{{uuid}}.bonus">{{localize 'S0.Bonus'}}</label>
+      <input id="{{uuid}}.bonus" type="number" name="bonus" value="{{bonus}}" min="0" {{#unless
+        canEdit}}disabled{{/unless}} />
+    </div>
 
-        <div class="form-group">
-            <label for="{{uuid}}.automatic">{{localize 'S0.Automatico'}}</label>
-            <input id="{{uuid}}.automatic" type="number" name="automatic" value="{{automatic}}" min="0" {{#unless
-                canEdit}}disabled{{/unless}} />
-        </div>
-    </form>
+    <div class="form-group">
+      <label for="{{uuid}}.automatic">{{localize 'S0.Automatico'}}</label>
+      <input id="{{uuid}}.automatic" type="number" name="automatic" value="{{automatic}}" min="0" {{#unless
+        canEdit}}disabled{{/unless}} />
+    </div>
+  </form>
 
-    {{> buttons-dialog buttons=buttons}}
+  {{> buttons-dialog buttons=buttons}}
 
 </div>
