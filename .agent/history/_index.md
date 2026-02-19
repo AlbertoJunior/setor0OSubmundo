@@ -2,6 +2,7 @@
 
 | Arquivo | Descrição | Data |
 | :--- | :--- | :--- |
+| [10-atualizacao-readme.md](./10-atualizacao-readme.md) | Atualização do README com novas funcionalidades e suporte V2 | 19/02/2026 |
 | [09-refatoracao-remove-jquery.md](./09-refatoracao-remove-jquery.md) | Remoção de dependências de jQuery em methods e ChatLog | 18/02/2026 |
 | [08-refatoracao-dialogs-utilities.md](./08-refatoracao-dialogs-utilities.md) | Refatoração de Dialogs e Utilitários para Vanilla JS e Normalização HTML | 18/02/2026 |
 | [07-migracao-v13-fase2-actor-sheet.md](./07-migracao-v13-fase2-actor-sheet.md) | Migração V13 Fase 2: Actor Sheet Sem jQuery e Refatoração Vanilla JS | 15/02/2026 |
