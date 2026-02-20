@@ -1,4 +1,4 @@
-import { keyJsonToKeyLang, localize, TODO } from "../../utils/utils.mjs";
+import { keyJsonToKeyLang, localize } from "../../utils/utils.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
 import { CharacteristicType } from "../../enums/characteristic-enums.mjs";

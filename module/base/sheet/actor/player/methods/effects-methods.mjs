@@ -3,7 +3,6 @@ import { ActiveEffectsUtils } from "../../../../../core/effect/active-effects-ut
 import { OnEventType } from "../../../../../enums/on-event-type.mjs";
 import { HtmlJsUtils } from "../../../../../utils/html-js-utils.mjs";
 import { EffectDialog } from "../../../../../creators/dialog/effect-dialog.mjs";
-import { TODO } from "../../../../../utils/utils.mjs";
 
 export const effectsHandleEvents = {
   [OnEventType.CHECK]: async (actor, event) => EffectsHandleEvents.handleCheck(actor, event),

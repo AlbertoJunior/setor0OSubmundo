@@ -2,6 +2,8 @@
 
 | Arquivo | Descrição | Data |
 | :--- | :--- | :--- |
+| [15-atualizacao-equipamentos-substancias.md](./15-atualizacao-equipamentos-substancias.md) | Atualização de Particularidades no Super Equipamento e Chat ao usar Substâncias | 20/02/2026 |
+| [14-implementacao-get-equipment-roll-information.md](./14-implementacao-get-equipment-roll-information.md) | Implementação da rolagem de informações específicas para equipamentos que não são armas | 20/02/2026 |
 | [13-implementacao-usos-virtudes.md](./13-implementacao-usos-virtudes.md) | Implementação do Controle de Uso das Virtudes (Quietude e Consciência) no Chat | 20/02/2026 |
 | [12-implementacao-rolagem-consciencia.md](./12-implementacao-rolagem-consciencia.md) | Implementação da Rolagem de Consciência separando dados e somando sucessos | 20/02/2026 |
 | [11-remocao-efeitos-can-remove.md](./11-remocao-efeitos-can-remove.md) | Adicionado filtro CAN_REMOVE ao remover todos os efeitos do ator | 20/02/2026 |
