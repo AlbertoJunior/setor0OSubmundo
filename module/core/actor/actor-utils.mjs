@@ -148,6 +148,18 @@ export class ActorUtils {
     return used < level;
   }
 
+  static haveQuietness(actor) {
+    const level = getObject(actor, CharacteristicType.VIRTUES.QUIETNESS.LEVEL);
+    const used = getObject(actor, CharacteristicType.VIRTUES.QUIETNESS.USED);
+    return used < level;
+  }
+
+  static haveConsciousness(actor) {
+    const level = getObject(actor, CharacteristicType.VIRTUES.CONSCIOUSNESS.LEVEL);
+    const used = getObject(actor, CharacteristicType.VIRTUES.CONSCIOUSNESS.USED);
+    return used < level;
+  }
+
   static getAllEnhancements(actor) {
     const allEnhancements = getObject(actor, CharacteristicType.ENHANCEMENT_ALL) || [];
     return Object.values(allEnhancements).filter(enhancement => enhancement.id !== '');

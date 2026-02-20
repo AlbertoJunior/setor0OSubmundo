@@ -2,6 +2,7 @@
 
 | Arquivo | Descrição | Data |
 | :--- | :--- | :--- |
+| [13-implementacao-usos-virtudes.md](./13-implementacao-usos-virtudes.md) | Implementação do Controle de Uso das Virtudes (Quietude e Consciência) no Chat | 20/02/2026 |
 | [12-implementacao-rolagem-consciencia.md](./12-implementacao-rolagem-consciencia.md) | Implementação da Rolagem de Consciência separando dados e somando sucessos | 20/02/2026 |
 | [11-remocao-efeitos-can-remove.md](./11-remocao-efeitos-can-remove.md) | Adicionado filtro CAN_REMOVE ao remover todos os efeitos do ator | 20/02/2026 |
 | [10-atualizacao-readme.md](./10-atualizacao-readme.md) | Atualização do README com novas funcionalidades e suporte V2 | 19/02/2026 |
