@@ -1,0 +1,24 @@
+<div class="S0-message-content">
+  <h4 style="text-align: center;">{{title}}</h4>
+  <hr>
+  <div class="dice-tooltip S0-container-contract">
+    <p>{{localize 'S0.Rolagem_Anterior'}}:</p>
+
+    <ol class="dice-rolls">
+      {{#each diceValues}}
+      <li class="S0-d10 roll d10">{{ this }}</li>
+      {{/each}}
+    </ol>
+
+    <p>{{localize 'S0.Nova_Rolagem'}}:</p>
+    <ol style="margin-top: 0px;" class="dice-rolls">
+      {{#each newDiceValues}}
+      <li class="S0-d10 roll d10">{{ this }}</li>
+      {{/each}}
+    </ol>
+  </div>
+
+  <button class="S0-roll-result {{ resultMessageClasses }}" data-action="view" data-type="toggle-tooltip">
+    {{ resultMessage }} ( {{ resultValue }} )
+  </button>
+</div>

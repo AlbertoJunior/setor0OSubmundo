@@ -2,6 +2,8 @@
 
 | Arquivo | Descrição | Data |
 | :--- | :--- | :--- |
+| [12-implementacao-rolagem-consciencia.md](./12-implementacao-rolagem-consciencia.md) | Implementação da Rolagem de Consciência separando dados e somando sucessos | 20/02/2026 |
+| [11-remocao-efeitos-can-remove.md](./11-remocao-efeitos-can-remove.md) | Adicionado filtro CAN_REMOVE ao remover todos os efeitos do ator | 20/02/2026 |
 | [10-atualizacao-readme.md](./10-atualizacao-readme.md) | Atualização do README com novas funcionalidades e suporte V2 | 19/02/2026 |
 | [09-refatoracao-remove-jquery.md](./09-refatoracao-remove-jquery.md) | Remoção de dependências de jQuery em methods e ChatLog | 18/02/2026 |
 | [08-refatoracao-dialogs-utilities.md](./08-refatoracao-dialogs-utilities.md) | Refatoração de Dialogs e Utilitários para Vanilla JS e Normalização HTML | 18/02/2026 |

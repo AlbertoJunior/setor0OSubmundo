@@ -54,8 +54,9 @@ class EffectsHandleEvents {
       const effect = actor.effects.get(itemId);
       await ActiveEffectsUtils.removeActorEffect(actor, ActiveEffectsUtils.getOriginId(effect));
     } else if (removeType == 'all') {
-      TODO("não pode remover effects que tem a flag CAN_REMOVE = FALSE")
-      const effects = actor.effects.map(effect => ActiveEffectsUtils.getOriginId(effect));
+      const effects = actor.effects
+        .filter(effect => ActiveEffectsUtils.canRemoveEffect(effect))
+        .map(effect => ActiveEffectsUtils.getOriginId(effect));
       await ActiveEffectsUtils.removeActorEffects(actor, effects);
     }
   }

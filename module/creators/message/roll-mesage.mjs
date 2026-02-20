@@ -158,7 +158,7 @@ export class RollMessageCreator {
     const safeCritic = critic || 10;
     const safeHalf = (half == true) || false;
 
-    const canUsePerseverance = diceResults.default.length > 0 && (havePerseverance || false);
+    const canUsePerseverance = diceResults.default.length > 0 && (havePerseverance ?? false);
 
     TODO('receber se o personagem tem consciência e quietude para utilizar');
     const canUseQuietness = diceResults.overload.length > 0 && true //haveQuietness;

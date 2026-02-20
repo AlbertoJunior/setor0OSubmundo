@@ -2,11 +2,12 @@ import { RollQuietnessMessageCreator } from "../../creators/message/quietness-ro
 import { ChatCreator } from "../../utils/chat-creator.mjs";
 import { ActorUtils } from "../actor/actor-utils.mjs";
 import { CoreRollMethods } from "./core-roll-methods.mjs";
+import { RollUtils } from "../../utils/roll-utils.mjs";
 
 export class RollQuietness {
   static async operateMessage(message) {
-    const overloadRoll = message.rolls.filter(roll => roll.options.isOverload == true);
-    const defaultRoll = message.rolls.filter(roll => roll.options.isOverload == false);
+    const overloadRoll = message.rolls.filter(roll => RollUtils.isOverloadRoll(roll));
+    const defaultRoll = message.rolls.filter(roll => !RollUtils.isOverloadRoll(roll));
 
     if (!overloadRoll || defaultRoll.length < 1) {
       console.warn(`-> Nenhum dado de Sobrecarga rolado`);
