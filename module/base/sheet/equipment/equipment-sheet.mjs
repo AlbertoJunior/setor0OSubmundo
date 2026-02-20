@@ -32,7 +32,6 @@ export async function equipmentTemplatesRegister() {
 }
 
 export async function registerEquipment() {
-  await FoundryApi.Items.unregisterSheet("core", FoundryApi.ItemSheet);
   await FoundryApi.Items.registerSheet(SYSTEM_ID, EquipmentSheet, {
     types: ["Melee", "Projectile", "Armor", "Vehicle", "Substance", "Acessory"],
     makeDefault: true

@@ -31,7 +31,6 @@ export async function actorTemplatesRegister() {
 }
 
 export async function registerActor() {
-  await FoundryApi.Actors.unregisterSheet("core", FoundryApi.ActorSheet);
   await FoundryApi.Actors.registerSheet(SYSTEM_ID, Setor0ActorSheet, {
     types: ["Player"],
     makeDefault: true

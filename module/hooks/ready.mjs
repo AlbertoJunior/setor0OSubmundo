@@ -6,6 +6,7 @@ import { MacroInstaller } from "../core/macro/macro-installer.mjs";
 import { registerEquipment } from "../base/sheet/equipment/equipment-sheet.mjs";
 import { registerActor } from "../base/sheet/actor/player/actor-sheet.mjs";
 import { registerNpc } from "../base/sheet/actor/npc/npc-sheet.mjs";
+import { registerTrait } from "../base/sheet/trait/trait-sheet.mjs";
 import { FoundryApi } from "../api/foundry-api.mjs";
 import { CompendiumSync } from "../core/pack/compendium-sync.mjs";
 
@@ -25,9 +26,13 @@ export class ReadyHookHandle {
   }
 
   static async #sheets() {
+    await FoundryApi.Items.unregisterSheet("core", FoundryApi.ItemSheet);
+    await FoundryApi.Actors.unregisterSheet("core", FoundryApi.ActorSheet);
+
     await registerEquipment();
     await registerActor();
     await registerNpc();
+    await registerTrait();
   }
 
   static #effects() {
