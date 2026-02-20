@@ -128,6 +128,7 @@ class PlayerDataModel extends BaseActorDataModel {
         ofensivo_longo_alcance: new NumberField({ integer: true, initial: 0 }),
         defensivo: new NumberField({ integer: true, initial: 0 }),
         defensivo_multiplo: new NumberField({ integer: true, initial: 0 }),
+        sobrecarga_limite: new NumberField({ integer: true, initial: 0 }),
       })
     };
   }

@@ -212,7 +212,7 @@
           action=(operators 'ternary' canRoll 'check' '')
           selectedClass=(operators 'ternary' canRoll 'S0-clickable' '')}}
 
-          {{#forLoop 0 5}}
+          {{#forLoop 0 (actorValues actor 'overload_limit')}}
           <div class="S0-characteristic S0-characteristic-temp {{../selectedClass}}" data-action="{{../action}}"
             data-characteristic="temporary" data-type="overload">
           </div>

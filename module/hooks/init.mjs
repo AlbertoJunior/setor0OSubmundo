@@ -5,7 +5,7 @@ import { configureSetor0CombatTracker } from "../base/sheet/combat/Setor0CombatT
 import { configureSetor0TokenDocument } from "../core/token/Setor0TokenDocument.mjs";
 import { loadHandlebarsHelpers } from "../utils/handlerbars-helper.mjs";
 import { registerTemplates } from "../utils/templates.mjs";
-import { SYSTEM_ID } from "../constants.mjs";
+import { DEFAULT_VALUES, SYSTEM_ID } from "../constants.mjs";
 import { FoundryApi } from "../api/foundry-api.mjs";
 import { MacroUtils } from "../core/macro/macro-utils.mjs";
 import { configureSetor0ActiveEffect } from "../core/effect/Setor0ActiveEffect.mjs";
@@ -39,6 +39,7 @@ export class InitHookHandle {
       MacroMethods: MacroUtils.MacroMethods,
       FoundryApi: FoundryApi,
       TokenUtils: TokenUtils,
+      DEFAULT_VALUES: DEFAULT_VALUES
     };
     //CONFIG.debug.hooks = true;
   }

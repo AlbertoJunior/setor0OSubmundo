@@ -18,6 +18,14 @@ export const SYSTEM_FLAGS = Object.freeze({
   ROLE: "role"
 });
 
+export const DEFAULT_VALUES = Object.freeze({
+  BASE_VITALITY: 5,
+  OVERLOAD_LIMIT: 5,
+  SYNTHETIC_PENALTY_BONUS: 1,
+  BASE_MOVIMENT_POINTS: 1,
+  ENHANCEMENT_SLOTS_PER_CORE: 4,
+});
+
 export const COLORS = {
   BASE: {
     primary: '#FFDC00',

@@ -550,8 +550,8 @@ export class TraitRepository {
       description: 'As melhorias que você tanto buscou para o seu corpo se mostraram um pesadelo e sofrimento. Talvez as peças que tenha utilizado não eram as melhores ou a combinação de sistemas distintos não funcionou bem, pode ser até que tenham implantado de forma errada; infelizmente, nada disso importa agora, pois as únicas coisas que você consegue pensar são nos efeitos colaterais que seus Aprimoramentos lhe causam.<br>Um MedTec habilidoso pode ser capaz de fazer algo para ajudar, se tiver uma oportunidade de te operar com tempo suficiente para trabalhar com calma e precisão. Se alguém puder consertá-los, você poderá anular este traço e devolver a XP recebida.<br>Seu núcleo não suporta os Aprimoramentos conectados a ele, esquentando facilmente e lhe deixando inconsciente com frequência. Diminua em 1 a quantia máxima de <i>Sobrecarga</i> suportada, totalizando 4.',
       effects: [
         {
-          key: CharacteristicType.OVERLOAD.system,
-          value: -11,
+          key: CharacteristicType.BONUS.OVERLOAD_LIMIT.system,
+          value: -1,
           mode: CONST.ACTIVE_EFFECT_MODES.ADD,
           typeOfValue: EffectChangeValueType.FIXED
         },

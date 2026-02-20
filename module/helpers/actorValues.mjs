@@ -20,6 +20,8 @@ const map = {
   'vitality': (actor) => getObject(actor, BaseActorCharacteristicType.VITALITY.TOTAL),
   'actual_languages': (actor) => ActorUtils.getActualLanguages(actor).length,
   'total_languages': (actor) => ActorUtils.calculateTotalLanguages(actor),
+  'overload': (actor) => ActorUtils.getOverload(actor),
+  'overload_limit': (actor) => ActorUtils.getOverloadLimit(actor),
 
   'actual_enhancements': (actor) => ActorUtils.getActualEnhancementAmount(actor),
   'total_enhancements': (actor) => ActorUtils.calculateTotalEnhancements(actor),

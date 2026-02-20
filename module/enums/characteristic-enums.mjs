@@ -137,6 +137,7 @@ export const CharacteristicType = Object.freeze({
     OFENSIVE_PROJECTILE: { id: 'bonus_ofensivo_longo_alcance', system: 'system.bonus.ofensivo_longo_alcance' },
     DEFENSIVE_FACTOR: { id: 'bonus_defensivo_multiplo', system: 'system.bonus.defensivo_multiplo' },
     DEFENSIVE: { id: 'bonus_defensivo', system: 'system.bonus.defensivo' },
+    OVERLOAD_LIMIT: { id: 'bonus_sobrecarga_limite', system: 'system.bonus.sobrecarga_limite' },
   },
   ALLIES: {
     id: 'aliados',
