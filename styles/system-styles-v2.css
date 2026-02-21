@@ -1,35 +1,19 @@
-.application .S0-V2,
 .S0-V2.application {
-  max-height: 96vh;
+  border-radius: 6px;
 }
 
-.S0-V2.S0-content.S0-sheet-item .window-content,
-.S0-V2.S0-content.actor .window-content {
-  padding: 0px;
-  padding-bottom: 6px;
+.S0-V2.S0-content .window-header {
+  border-radius: 6px 6px 0px 0px;
 }
 
-.S0-V2.S0-content.S0-sheet-item .window-content,
+.S0-V2.S0-content .window-content {
+  padding: 4px;
+  border-radius: 0px 0px 6px 6px;
+}
+
+.S0-V2.S0-content .window-content,
 .S0-V2.S0-content.sheet {
   overflow: visible;
-}
-
-.S0-V2.S0-content.S0-sheet-item .window-content form {
-  overflow-y: scroll;
-  margin-left: 12px;
-  margin-right: 2px;
-  max-height: 80vh;
-}
-
-.S0-V2 .S0-menu-float {
-  z-index: 100;
-}
-
-.S0-V2 .S0-actor-sheet {
-  overflow-y: scroll;
-  margin-left: 12px;
-  margin-right: 2px;
-  max-height: 86vh;
 }
 
 /* #region DIALOG*/

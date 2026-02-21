@@ -173,7 +173,7 @@ abstraindo as diferenças entre versões.
 {
   VersionName: 'S0-V1',
   Sheets: foundry.appv1.sheets,
-  makeClass,    // usa defaultOptions getter, activateListeners
+  makeSheetClass,    // usa defaultOptions getter, activateListeners
   createDialog, // usa Dialog (V1)
 }
 ```
@@ -183,7 +183,7 @@ abstraindo as diferenças entre versões.
 {
   VersionName: 'S0-V2',
   Sheets: foundry.applications.sheets,
-  makeClass,    // usa DEFAULT_OPTIONS, HandlebarsApplicationMixin, _postRender
+  makeSheetClass,    // usa DEFAULT_OPTIONS, HandlebarsApplicationMixin, _postRender
   createDialog, // usa DialogV2
 }
 ```

@@ -33,6 +33,7 @@
     "styles/edit-foundry-styles.css",
     "styles/styles-base.css",
     "styles/components/styles-actor.css",
+    "styles/components/styles-equipment.css",
     "styles/components/styles-items.css",
     "styles/components/styles-chat.css",
     "styles/components/styles-dialog.css",

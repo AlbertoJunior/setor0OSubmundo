@@ -1,7 +1,5 @@
-.S0-V1.S0-content.sheet .window-content {
-  margin: 0px;
-  padding: 0px 2px 0px 12px;
-  overflow-y: scroll;
+.S0-V1.S0-content.sheet {
+  overflow: visible;
 }
 
 .S0-V1.S0-content.sheet .window-header {

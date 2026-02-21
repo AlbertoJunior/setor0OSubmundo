@@ -1,4 +1,16 @@
 /* #region ACTOR */
+.S0-actor-sheet {
+  overflow-y: scroll;
+  margin-left: 12px;
+  margin-right: 2px;
+  max-height: 86vh;
+}
+
+.S0-dialog .S0-actor-sheet {
+  overflow: auto;
+  margin: 0px;
+}
+
 .S0-actor-sheet img.S0-clickable {
   background-color: var(--secondary-color-alpha-50);
   border: 2px solid var(--primary-color-alpha-50);

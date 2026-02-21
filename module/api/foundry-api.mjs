@@ -58,13 +58,8 @@ export class FoundryApi {
   static Tabs = convertToClass(CurrentVersion.Ux.Tabs);
 
   //#region UPDATED 
-  // static ActorSheet = CurrentVersion.makeClass(this.Sheets.ActorSheet);
-  // static ItemSheet = CurrentVersion.makeClass(this.Sheets.ItemSheet);
-  //#endregion
-
-  //#region NEED UPDATE to V2
-  static ActorSheet = ApplicationV1.makeClass(ApplicationV1.Sheets.ActorSheet);
-  static ItemSheet = ApplicationV1.makeClass(ApplicationV1.Sheets.ItemSheet);
+  static ActorSheet = CurrentVersion.makeSheetClass(this.Sheets.ActorSheet);
+  static ItemSheet = CurrentVersion.makeSheetClass(this.Sheets.ItemSheet);
   //#endregion
 
   static Actors = convertToClass(this.Collections.Actors);
@@ -140,7 +135,16 @@ export class FoundryApi {
   }
 
   static async createDialog(
-    { title, header, content, buttons = [], minimizable = true, render = (html, renderedDialog, window) => { }, onClose = () => { } } = data,
+    {
+      classes = [],
+      title,
+      header,
+      content,
+      buttons = [],
+      minimizable = true,
+      render = (html, renderedDialog, window) => { },
+      onClose = () => { }
+    } = data,
     options,
     forcedApplication,
   ) {
@@ -150,7 +154,7 @@ export class FoundryApi {
       application = ApplicationV1;
     }
 
-    return application.createDialog({ title, header, content, buttons, minimizable, render, onClose }, options);
+    return application.createDialog({ classes, title, header, content, buttons, minimizable, render, onClose }, options);
   }
 
   static async deleteFoldersInWorld(folders) {

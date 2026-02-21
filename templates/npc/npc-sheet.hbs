@@ -18,8 +18,8 @@
       <header>
         <div class="S0-container" style="margin-top: 0px;">
           <h2 style="display: flex; align-items: center;">
-            <label for="{{uuid}}.name" style="flex: 1">{{ localize 'S0.Nome' }}:</label>
-            <input id="{{uuid}}.name" name="name" style="margin-left: 6px;" type="text" value="{{actor.name}}"
+            <label for="{{uuid}}.name" style="min-width: 72px;">{{ localize 'S0.Nome' }}:</label>
+            <input id="{{uuid}}.name" name="name" type="text" value="{{actor.name}}"
               placeholder="{{ localize 'S0.Nome' }}" {{#unless editable}}disabled{{/unless}} />
           </h2>
 

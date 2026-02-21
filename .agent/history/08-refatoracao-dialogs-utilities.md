@@ -10,7 +10,7 @@ O objetivo desta tarefa foi remover a dependência do jQuery de todos os diálog
 ### 1. Normalização na Camada de API (Overrides)
 A estratégia adotada foi garantir que o objeto `html` passado para os métodos das Apps seja sempre um `HTMLElement`.
 - **`v1.mjs` (Legacy)**: 
-  - No método `makeClass`, o `activateListeners` foi interceptado para converter `html` (que vem como jQuery object na V1) para `HTMLElement` (`html[0]`) antes de chamar os métodos do sistema (`setupContent`, `configureSheet`, etc.).
+  - No método `makeSheetClass`, o `activateListeners` foi interceptado para converter `html` (que vem como jQuery object na V1) para `HTMLElement` (`html[0]`) antes de chamar os métodos do sistema (`setupContent`, `configureSheet`, etc.).
   - No `createDialog`, o callback de renderização também foi normalizado.
 - **`v2.mjs` (Modern)**:
   - Já trabalha nativamente com `HTMLElement`. Garantido que não há wrapping desnecessário de jQuery (ex: removido `$(html)`).

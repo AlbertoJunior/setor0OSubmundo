@@ -118,19 +118,8 @@
   width: 100%;
 }
 
-.S0-content.actor {
-  overflow: visible;
-}
-
-.S0-content.actor .window-content {
-  padding-inline: 6px;
-  padding-block: 2px;
-  overflow: visible;
-}
-
 .S0-content .window-content {
-  padding-inline: 6px;
-  padding-block: 8px;
+  padding: 6px;
 }
 
 .S0-content .window-content .standard-form {
@@ -304,6 +293,10 @@
   row-gap: 4px;
 }
 
+.S0-overflow-visible {
+  overflow: visible;
+}
+
 /* #endregion */
 
 /* #region BASE STYLES */
@@ -320,6 +313,7 @@
   margin: 4px;
   list-style-type: none;
   padding: 0;
+  z-index: 200;
 }
 
 .S0-simulate-button {

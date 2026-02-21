@@ -141,6 +141,10 @@ export function normalizeString(str) {
   return str.replace(/\s+/g, ' ').trim();
 }
 
+export function normalizeArray(array) {
+  return [...new Set(array)];
+}
+
 export function logTable(title, table) {
   console.log(`---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----\n-> ${title}`);
   console.table(table);

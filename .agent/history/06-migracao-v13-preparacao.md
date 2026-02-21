@@ -12,7 +12,7 @@ Refatoração da camada de compatibilidade da API (`v2.mjs`) e utilitários (`Ht
 - **[MODIFICADO]** `setupHeader(html)`: Atualizado para aceitar tanto `HTMLElement` (nativo) quanto jQuery Objects.
 
 ### `module/api/versions-overrides/v2.mjs`
-- **[MODIFICADO]** `makeClass`:
+- **[MODIFICADO]** `makeSheetClass`:
   - `_postRender`: Refatorado para usar `this.element` (nativo) como fonte primária. Mantém wrapper jQuery `$(this.element)` apenas para chamadas a métodos legados (`configureSheet`, `postRenderConfiguration`).
 - **[MODIFICADO]** `createDialog`:
   - `render` listener: Refatorado para obter o elemento da janela via `dialog.element.closest` (nativo), garantindo compatibilidade futura.
