@@ -2,6 +2,7 @@
 
 | Arquivo | Descrição | Contexto |
 | :--- | :--- | :--- |
+| [pattern-global-application-overrides.md](./pattern-global-application-overrides.md) | Padrão de Injeção Global em Application Overrides para UI | Foundry VTT v13 |
 | [pattern-hybrid-item-architecture.md](./pattern-hybrid-item-architecture.md) | Padrão e separação de lógica na Arquitetura de Itens (Enums, Utils, Updaters, Repository) | Sugestão de Padrão Foundry VTT |
 | [pattern-normalization-html.md](./pattern-normalization-html.md) | Padrão de Normalização de HTML na Fronteira para compatibilidade V1/V2 | Foundry VTT v13 |
 | [refactoring-legacy-jquery-to-hybrid-vanilla.md](./refactoring-legacy-jquery-to-hybrid-vanilla.md) | Padrão Híbrido jQuery/DOM para Utilitários de Migração | Foundry VTT v13 |

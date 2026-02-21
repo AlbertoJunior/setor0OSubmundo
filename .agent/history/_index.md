@@ -2,6 +2,7 @@
 
 | Arquivo | Descrição | Data |
 | :--- | :--- | :--- |
+| [17-migracao-v13-overrides-e-config.md](./17-migracao-v13-overrides-e-config.md) | Extração de Overrides V1/V2 e implementando Adapter de SHEET_CONFIG customizado nas AppV1/V2 | 21/02/2026 |
 | [16-implementacao-trait-sheet.md](./16-implementacao-trait-sheet.md) | Implementação da Ficha de interface gráfica, Modelo de Dados e Efeitos para os Traços (Traits) | 20/02/2026 |
 | [15-atualizacao-equipamentos-substancias.md](./15-atualizacao-equipamentos-substancias.md) | Atualização de Particularidades no Super Equipamento e Chat ao usar Substâncias | 20/02/2026 |
 | [14-implementacao-get-equipment-roll-information.md](./14-implementacao-get-equipment-roll-information.md) | Implementação da rolagem de informações específicas para equipamentos que não são armas | 20/02/2026 |

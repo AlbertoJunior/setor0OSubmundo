@@ -34,20 +34,17 @@ export async function registerNpc() {
 
 export const NpcSheetSize = {
   width: 680,
-  height: 460,
+  height: 470,
 }
 
 class Setor0NpcSheet extends Setor0BaseActorSheet {
-  static DEFAULT_OPTIONS = {
-    position: {
-      width: NpcSheetSize.width,
-    },
-  };
-
-  static PARTS = {
-    sheet: {
-      template: `${TEMPLATES_PATH}/npc/npc-sheet.hbs`,
-    },
+  static SHEET_CONFIG = {
+    templates: [
+      { name: 'sheet', template: `${TEMPLATES_PATH}/npc/npc-sheet.hbs` }
+    ],
+    width: NpcSheetSize.width,
+    height: NpcSheetSize.height,
+    classes: []
   };
 
   get mapEvents() {
@@ -89,15 +86,7 @@ class Setor0NpcSheet extends Setor0BaseActorSheet {
     };
   }
 
-  /* Only run on Application V1 */
-  static get defaultOptions() {
-    return FoundryApi.mergeObject(super.defaultOptions, {
-      template: this.PARTS.sheet.template,
-      resizable: super.DEFAULT_OPTIONS.window.resizable,
-      width: this.DEFAULT_OPTIONS.position.width,
-      height: NpcSheetSize.height,
-    });
-  }
+
 
   configureSheet(html) {
     super.configureSheet(html);

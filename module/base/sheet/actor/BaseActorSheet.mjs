@@ -8,12 +8,10 @@ import { FoundryApi } from "../../../api/foundry-api.mjs";
 import { ActorUpdater } from "../../updater/actor-updater.mjs";
 
 export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
-  static DEFAULT_OPTIONS = {
+  static SHEET_CONFIG = {
+    templates: [],
     classes: ['actor'],
-    window: {
-      resizable: false,
-      controls: []
-    }
+    resizable: false,
   };
 
   constructor(...args) {
@@ -40,7 +38,7 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
   getData() {
     const data = super.getData();
     if (data.options) {
-      data.options.sheetConfig = Setor0BaseActorSheet.DEFAULT_OPTIONS.sheetConfig;
+      data.options.sheetConfig = Setor0BaseActorSheet.SHEET_CONFIG;
     }
     data.editable = this.isEditable;
     data.canRoll = this.canRollOrEdit;

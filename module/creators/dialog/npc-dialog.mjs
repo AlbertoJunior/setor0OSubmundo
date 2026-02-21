@@ -2,7 +2,7 @@ import { localize, randomId, TODO } from "../../utils/utils.mjs";
 import { Setor0BaseActorSheet } from "../../base/sheet/actor/BaseActorSheet.mjs";
 import { npcRollHandle } from "../../base/sheet/actor/npc/methods/npc-roll-methods.mjs";
 import { NpcSheetSize } from "../../base/sheet/actor/npc/npc-sheet.mjs";
-import { TEMPLATES_PATH } from "../../constants.mjs";
+import { SYSTEM_CLASS_DARK_CSS, TEMPLATES_PATH } from "../../constants.mjs";
 import { SystemFlags } from "../../enums/flags-enums.mjs";
 import { OnEventType } from "../../enums/on-event-type.mjs";
 import { DialogUtils } from "../../utils/dialog-utils.mjs";
@@ -27,21 +27,19 @@ export class NpcDialog {
       return;
     }
 
-    TODO("npc dialog funcionar na versão v2");
-
     const content = await this.#mountContent(npcInformations);
     const actor = npcInformations.actor;
     FoundryApi.createDialog(
       {
+        classes: [SYSTEM_CLASS_DARK_CSS, 'S0-overflow-visible'],
         title: actor.name,
         content: content,
         render: (html) => this.#render(html, actor)
       },
       {
-        height: NpcSheetSize.height + 20,
+        height: NpcSheetSize.height,
         width: NpcSheetSize.width,
       },
-      FoundryApi.Versions.v1
     );
   }
 

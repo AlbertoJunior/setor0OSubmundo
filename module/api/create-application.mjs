@@ -60,7 +60,7 @@ const createdVersions = new Set();
  *   ChatMessage: ...,
  *   Sheets: ...,
  *   ...,
- *   makeClass: function,
+ *   makeSheetClass: function,
  *   createDialog: function,
  *   VersionName: "S0-V1"
  * }
@@ -107,7 +107,7 @@ export function createApplication(versionKey, fallbackChain = []) {
 function validateOverride(override, versionKey) {
   const requiredFields = {
     Sheets: 'object',
-    makeClass: 'function',
+    makeSheetClass: 'function',
     createDialog: 'function',
     VersionName: 'string'
   };

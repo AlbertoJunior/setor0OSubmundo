@@ -14,16 +14,16 @@ import { FoundryApi } from "../../../../api/foundry-api.mjs";
 
 export async function actorTemplatesRegister() {
   const templates = [
-    { path: "actors/characteristics" },
-    { path: "actors/biography" },
+    { path: "actors/characteristics", call: 'actorCharacteristic' },
+    { path: "actors/biography", call: 'actorBiography' },
     { path: "actors/biography-trait-partial", call: 'traitPartialContainer' },
-    { path: "actors/status" },
-    { path: "actors/enhancement" },
+    { path: "actors/status", call: 'actorStatus' },
+    { path: "actors/enhancement", call: 'actorEnhancement' },
     { path: "actors/enhancement-partial", call: 'enhancementPartial' },
-    { path: "actors/equipment" },
-    { path: "actors/shortcuts" },
+    { path: "actors/equipment", call: 'actorEquipment' },
+    { path: "actors/shortcuts", call: 'actorShortcuts' },
     { path: "actors/shortcut-default-partial", call: 'shortcutDefaultPartial' },
-    { path: "actors/network" },
+    { path: "actors/network", call: 'actorNetwork' },
     { path: "actors/network-partial", call: 'networkPartial' },
   ];
 
@@ -38,16 +38,13 @@ export async function registerActor() {
 }
 
 class Setor0ActorSheet extends Setor0BaseActorSheet {
-  static DEFAULT_OPTIONS = {
-    position: {
-      width: 600,
-    }
-  };
-
-  static PARTS = {
-    sheet: {
-      template: `${TEMPLATES_PATH}/actors/actor-sheet.hbs`,
-    },
+  static SHEET_CONFIG = {
+    templates: [
+      { name: 'sheet', template: `${TEMPLATES_PATH}/actors/actor-sheet.hbs` }
+    ],
+    width: 600,
+    height: 890,
+    classes: []
   };
 
   get mapEvents() {
@@ -72,16 +69,6 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
     this.isExpandedEffects = undefined;
     this.isExpandedShortcuts = undefined;
     this.defaultHeight = undefined;
-  }
-
-  /* Only run on Application V1 */
-  static get defaultOptions() {
-    return FoundryApi.mergeObject(super.defaultOptions, {
-      template: this.PARTS.sheet.template,
-      resizable: super.DEFAULT_OPTIONS.window.resizable,
-      width: this.DEFAULT_OPTIONS.position.width,
-      height: 872,
-    });
   }
 
   configureSheet(html) {

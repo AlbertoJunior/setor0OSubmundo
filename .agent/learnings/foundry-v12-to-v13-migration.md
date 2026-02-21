@@ -106,11 +106,13 @@ class MyActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
 | `html.find('.selector')` | `this.element.querySelector('.selector')` |
 | Manual event binding | Actions declarativas no `DEFAULT_OPTIONS.actions` |
 
-### 4. Template Rendering
+### 4. Template Rendering e Roteamento Estático no V2
 | v12 | v13 |
 |-----|-----|
-| Template único | `PARTS` com múltiplas seções renderizáveis |
+| Template único em strings | Objeto `PARTS` com múltiplas seções renderizáveis |
 | `this.template` | `static PARTS = { part: { template: "..." } }` |
+
+> **Nota Crítica sobre O Pulo do Gato (SHEET_CONFIG)**: no ApplicationV2, acessar propriedades estáticas da classe herdada (ex: `this.SHEET_CONFIG`) de dentro de `static get DEFAULT_OPTIONS` invocado pela API interna V13 resultará em um `this` assinalado ao Mixin Base (ex: `Setor0BaseSheet`), e NÃO à subclasse final (ex: `EquipmentSheet`). Para injetar dinamicamente atributos como `width` e `height`, o Foundry Application V2 precisa que você intercepte via `_initializeApplicationOptions(options)`. (Ver secção de armadilhas no final deste documento).
 
 ### 5. Sheets
 | v12 | v13 |
@@ -265,3 +267,21 @@ abstraindo as diferenças entre versões.
 - **V1**: `html` geralmente referia-se ao conteúdo injetado. `html.closest('.window-content')` funcionava porque o jQuery subia a árvore.
 - **V2**: `this.element` é a raiz do app. Se você tentar `this.element.closest('.window-content')`, pode retornar `null` se `this.element` já for o conteúdo ou se a estrutura for diferente (ApplicationV2 não usa `.window-content` da mesma forma que V1).
 - **Prática Segura**: Ao invés de depender de subir a árvore para buscar elementos irmãos ou pais distantes, prefira consultas descendentes (`this.element.querySelector`) ou garanta que o elemento raiz é o esperado. Em diálogos V2, o `render(html)` recebe o elemento raiz do formulário. Use optional chaining `?` ao navegar para cima.
+
+### 13. O Desafio Imutável do `DEFAULT_OPTIONS` e Classes Dinâmicas
+- **Problema**: Aplicar atributos como largura (`width`), altura (`height`) ou classes dinâmicas extras (`classes`) lendo propriedades estáticas filhas (`this.SHEET_CONFIG.classes`) não funciona dentro do Mixin Factory de ApplicationV2. O getter estático `DEFAULT_OPTIONS()` é evaluado num contexto *Base* onde as customizações filhas estáticas não constam. Tentar remendar atribuindo `this.options.classes.push(...)` no construtor também falha pois a mesclagem para o frame da janela já "trancou" (freeze) esses valores internamente antes do setup.
+- **Solução (Override Imbutido)**: Sobrescrever a função de ciclo de vida nativo interna `_initializeApplicationOptions(options)` interceptando e alterando o *options* de inicialização das opções imediatamente após o super criá-las mas **antes** do registro imutável do sistema.
+```javascript
+_initializeApplicationOptions(options) {
+  options = super._initializeApplicationOptions(options);
+  const config = this.constructor.SHEET_CONFIG || {};
+
+  if (config.classes) { // Utilizar spread and push evitando .includes do readOnly V2 array.
+    options.classes.push(...config.classes.filter(c => !options.classes.includes(c)));
+  }
+  if (config.width) options.position.width = Number(config.width);
+  if (config.forcedHeight) options.position.height = Number(config.forcedHeight);
+  
+  return options;
+}
+```

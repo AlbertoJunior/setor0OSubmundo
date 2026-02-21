@@ -22,42 +22,14 @@ export async function registerTrait() {
 }
 
 export class TraitSheet extends FoundryApi.ItemSheet {
-  static DEFAULT_OPTIONS = {
-    classes: ['S0-sheet-item'],
-    position: {
-      width: 340,
-    },
-    window: {
-      resizable: true,
-    }
+  static SHEET_CONFIG = {
+    templates: [
+      { name: 'trait', template: `${TEMPLATES_PATH}/traits/trait-sheet.hbs` }
+    ],
+    width: 340,
+    resizable: true,
+    classes: ['S0-trait-sheet']
   };
-
-  static PARTS = {
-    trait: {
-      template: `${TEMPLATES_PATH}/traits/trait-sheet.hbs`,
-    },
-  };
-
-  //#region APPLICATION V1
-  /* Only run on Application V1 */
-  static get defaultOptions() {
-    return FoundryApi.mergeObject(super.defaultOptions, {
-      template: `${TEMPLATES_PATH}/traits/trait-sheet.hbs`,
-      width: this.DEFAULT_OPTIONS.position.width,
-    });
-  }
-
-  get template() {
-    return `${TEMPLATES_PATH}/traits/trait-sheet.hbs`;
-  }
-  //#endregion
-
-  //#region APPLICATION V2
-  /* Only run on Application V2 */
-  _operateMultiParts(document, parts) {
-    return parts.filter(part => part == document.type.toLocaleLowerCase());
-  }
-  //#endregion
 
   get mapEvents() {
     return {

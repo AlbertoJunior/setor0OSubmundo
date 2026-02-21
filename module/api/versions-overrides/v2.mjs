@@ -1,4 +1,4 @@
-import { randomId, toKeyLang } from "../../utils/utils.mjs";
+import { normalizeArray, randomId, toKeyLang } from "../../utils/utils.mjs";
 import { SYSTEM_CLASS_CSS } from "../../constants.mjs";
 import { FoundryApi } from "../foundry-api.mjs";
 import { HtmlJsUtils } from "../../utils/html-js-utils.mjs";
@@ -10,34 +10,74 @@ export const v2Overrides = Object.freeze(
   {
     VersionName: VERSION_NAME,
     Sheets: foundry.applications.sheets,
-    makeClass,
+    makeSheetClass,
     createDialog,
   }
 );
 
-function makeClass(BaseClass) {
+function makeSheetClass(BaseClass) {
   const { HandlebarsApplicationMixin } = this.Api;
   const name = BaseClass.name;
 
   const Cls = {
     [name]: class extends HandlebarsApplicationMixin(BaseClass) {
-      static DEFAULT_OPTIONS = {
-        // viewPermission: CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED,
-        // editPermission: CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER,
-        sheetConfig: false,
-        classes: [SYSTEM_CLASS_CSS, VERSION_NAME],
-        window: {
-          resizable: false,
-          controls: []
-        },
-        form: {
-          closeOnSubmit: false,
-          submitOnChange: true, // In ApplicationV2 with submitOnChange: true, the 'submit' event is triggered.
-          handler: this.#onSubmitDocumentForm
-        },
-        actions: {
-          img: this.#selectImg
+      static get DEFAULT_OPTIONS() {
+        return {
+          sheetConfig: false,
+          classes: [SYSTEM_CLASS_CSS, VERSION_NAME],
+          window: {
+            resizable: false,
+            controls: []
+          },
+          position: {
+            width: 600,
+            height: 'auto',
+          },
+          form: {
+            closeOnSubmit: false,
+            submitOnChange: true,
+            handler: this.#onSubmitDocumentForm
+          },
+          actions: {
+            img: this.#selectImg
+          }
+        };
+      }
+
+      static get PARTS() {
+        const config = this.SHEET_CONFIG || {};
+        const partsDef = {};
+        if (config.templates) {
+          config.templates.forEach(t => {
+            partsDef[t.name] = { template: t.template };
+          });
         }
+        return partsDef;
+      }
+
+      _initializeApplicationOptions(options) {
+        options = super._initializeApplicationOptions(options);
+        const config = this.constructor.SHEET_CONFIG || {};
+
+        if (config.classes && Array.isArray(config.classes)) {
+          const newClasses = config.classes.filter(cssClass => !options.classes.includes(cssClass));
+          if (newClasses.length) {
+            options.classes.push(...newClasses);
+          }
+        }
+
+        if (config.resizable !== undefined) {
+          options.window.resizable = config.resizable;
+        }
+
+        if (config.width) {
+          options.position.width = Number(config.width);
+        }
+        if (config.forcedHeight) {
+          options.position.height = Number(config.forcedHeight);
+        }
+
+        return options;
       }
 
       static async #onSubmitDocumentForm(event, form, formData, options = {}) {
@@ -115,6 +155,13 @@ function makeClass(BaseClass) {
       }
 
       _operateMultiParts(document, parts) {
+        const docTypePart = document?.type?.toLowerCase();
+        if (docTypePart && parts.includes(docTypePart)) {
+          return [docTypePart];
+        }
+        if (parts.includes('default')) {
+          return ['default'];
+        }
         return parts;
       }
 
@@ -154,6 +201,7 @@ function makeClass(BaseClass) {
 
 async function createDialog(data, options) {
   const {
+    classes = [],
     title,
     header,
     content,
@@ -174,6 +222,14 @@ async function createDialog(data, options) {
   // this form will be automatically removed before full rendering
   const modifiedContent = `<form></form>${content}`;
 
+  const normalizedClasses = normalizeArray([
+    SYSTEM_CLASS_CSS,
+    VERSION_NAME,
+    'S0-dialog',
+    ...(options.classes || []),
+    ...classes
+  ]);
+
   const dialog = new this.Api.DialogV2(
     {
       window: {
@@ -184,9 +240,9 @@ async function createDialog(data, options) {
       },
       position: {
         width: options?.width ?? 'auto',
-        height: options?.height ?? 'auto',
+        height: options?.forcedHeight ?? 'auto',
       },
-      classes: [SYSTEM_CLASS_CSS, VERSION_NAME, 'S0-dialog'],
+      classes: normalizedClasses,
       content: modifiedContent,
       buttons: dialogButons,
       submit: (result, dialog) => {
