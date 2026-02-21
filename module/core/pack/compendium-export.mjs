@@ -13,25 +13,43 @@ export class CompendiumExport {
 
     const systemPacks = game.packs.filter(p => p.metadata.system === SYSTEM_ID);
 
-    const result = []
+    const result = [];
 
     for (const pack of systemPacks) {
+      const typeName = pack.documentName;
+
       try {
-        const mappedItems = pack.contents.map(this.#mountItemToExport);
+        const mappedItems = pack.contents.map(item => this.#mountItemToExport(item));
+
+        let stats = {};
+        if (pack.contents.size > 0 || pack.contents.length > 0) {
+          const firstItem = pack.contents.values().next().value;
+          stats = firstItem._stats || {};
+          stats = {
+            coreVersion: stats.coreVersion,
+            systemId: stats.systemId,
+            modifiedTime: stats.modifiedTime,
+            lastModifiedBy: stats.lastModifiedBy
+          };
+        }
+
+        const mappedFolders = (pack.folders.contents ?? pack.folders).map(folder => this.#mountFolderToExport(folder));
+
         const compendium = {
           title: pack.title,
           banner: pack.banner,
           documentName: pack.documentName,
-          elements: mappedItems,
-          folders: pack.folders,
+          stats: stats,
           sortingMode: pack.sortingMode,
+          elements: mappedItems,
+          folders: mappedFolders,
         }
 
-        const typeName = `${pack.documentName}.json`;
+        const typeNameJson = `${typeName}.json`;
 
         const folder = zip.folder(pack.metadata.name);
-        folder.file(typeName, JSON.stringify(compendium, null, 2));
-        result.push({ Pack: pack.title, Status: `✅ Adicionado: ${pack.metadata.name}/${typeName}` });
+        folder.file(typeNameJson, JSON.stringify(compendium, null, 2));
+        result.push({ Pack: pack.title, Status: `✅ Adicionado: ${pack.metadata.name}/${typeNameJson}` });
       } catch (error) {
         result.push({
           Pack: pack.title,
@@ -56,12 +74,15 @@ export class CompendiumExport {
   }
 
   static #mountItemToExport(item) {
-    const baseFlags = item.flags ?? {};
+    const jsonItem = item.toObject ? item.toObject() : { ...item };
+    const baseFlags = jsonItem.flags ?? {};
     const systemFlags = baseFlags[SYSTEM_ID] ?? {};
-    const sourceId = systemFlags[SYSTEM_FLAGS.SOURCE_ID] ?? item._id;
+    const sourceId = systemFlags[SYSTEM_FLAGS.SOURCE_ID] ?? jsonItem._id;
+
+    delete jsonItem._stats;
 
     return {
-      ...item,
+      ...jsonItem,
       folder: item?.folder?._id,
       flags: {
         ...baseFlags,
@@ -71,5 +92,11 @@ export class CompendiumExport {
         }
       }
     };
+  }
+
+  static #mountFolderToExport(folder) {
+    const jsonFolder = folder.toObject ? folder.toObject() : { ...folder };
+    delete jsonFolder._stats;
+    return jsonFolder;
   }
 }

@@ -112,10 +112,10 @@ export class CompendiumSync {
         await pack.configure({ locked: false });
       }
 
-      const foldersId = await this.#verifyAndCreateFolders(pack, data.folders);
+      const foldersId = await this.#verifyAndCreateFolders(pack, data.folders, data.stats);
 
       const filteredData = this.#filterCompendiumItems(pack, data);
-      const createds = await this.#importItemOnCompendium(pack, foldersId, filteredData);
+      const createds = await this.#importItemOnCompendium(pack, foldersId, filteredData, data.stats);
       toDeleteTemp.push(...createds);
 
       if (wasLocked) {
@@ -148,13 +148,10 @@ export class CompendiumSync {
     return data;
   }
 
-  static async #verifyAndCreateFolders(pack, folders) {
+  static async #verifyAndCreateFolders(pack, folders, compendiumStats) {
     const toDelete = [];
-    folders = folders.sort((a, b) => {
-      if (!a.folder && b.folder) return -1;
-      if (a.folder && !b.folder) return 1;
-      return 0;
-    });
+
+    folders = folders.sort((a, b) => this.#getDepth(a._id, folders) - this.#getDepth(b._id, folders));
 
     const mapperId = new Map();
 
@@ -165,6 +162,10 @@ export class CompendiumSync {
         if (parentFolder) {
           const parentFolderNewId = mapperId.get(parentFolder);
           folder.folder = parentFolderNewId;
+        }
+
+        if (compendiumStats) {
+          folder._stats = { ...compendiumStats };
         }
 
         const folderDocument = await FoundryApi.Documents.Folder.create(folder);
@@ -178,13 +179,25 @@ export class CompendiumSync {
     return mapperId;
   }
 
+  static #getDepth(id, folders) {
+    let depth = 0;
+    let parentId = folders.find(f => f._id === id)?.folder;
+    while (parentId) {
+      depth++;
+      parentId = folders.find(f => f._id === parentId)?.folder;
+      if (depth > 20)
+        break;
+    }
+    return depth;
+  }
+
   static #filterCompendiumItems(pack, data) {
     const inPackItems = pack.contents.map(item => FlagsUtils.getSystemFlag(item, SYSTEM_FLAGS.SOURCE_ID)).filter(i => Boolean(i));
     const filteredData = data.elements.filter(item => !inPackItems.includes(FlagsUtils.getSystemFlag(item, SYSTEM_FLAGS.SOURCE_ID)));
     return filteredData;
   }
 
-  static async #importItemOnCompendium(pack, foldersId, filteredData) {
+  static async #importItemOnCompendium(pack, foldersId, filteredData, compendiumStats) {
     const created = []
     for (const itemData of filteredData) {
       try {
@@ -193,6 +206,11 @@ export class CompendiumSync {
           const parentFolderNewId = foldersId.get(parentFolder);
           itemData.folder = parentFolderNewId;
         }
+
+        if (compendiumStats) {
+          itemData._stats = { ...compendiumStats };
+        }
+
         const tempDocument = await pack.documentClass.create(itemData);
         await pack.importDocument(tempDocument);
         created.push(tempDocument)
