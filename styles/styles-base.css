@@ -297,6 +297,18 @@
   overflow: visible;
 }
 
+.S0-width-100 {
+  width: 100%;
+}
+
+.S0-width-50 {
+  width: 50%;
+}
+
+.S0-width-25 {
+  width: 25%;
+}
+
 /* #endregion */
 
 /* #region BASE STYLES */

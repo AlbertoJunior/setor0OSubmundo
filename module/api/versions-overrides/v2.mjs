@@ -226,7 +226,7 @@ async function createDialog(data, options) {
     SYSTEM_CLASS_CSS,
     VERSION_NAME,
     'S0-dialog',
-    ...(options.classes || []),
+    ...(options?.classes || []),
     ...classes
   ]);
 

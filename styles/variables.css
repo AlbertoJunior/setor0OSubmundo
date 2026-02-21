@@ -1,4 +1,3 @@
-/* #region HTML ITEMS */
 body {
   --font-size-9: 0.5063rem;
   --font-size-10: 0.5625rem;
@@ -23,7 +22,6 @@ body {
   --color-warm-1: var(--primary-color);
   --color-warm-2: var(--primary-color);
 
-  /* Z-Index Layers */
   --z-index-dropdown: 10;
   --z-index-tooltip: 99;
   --z-index-modal: 100;
@@ -110,5 +108,3 @@ body {
 
   --border-def: 2px solid var(--secondary-color-alpha-50);
 }
-
-/* #endregion */

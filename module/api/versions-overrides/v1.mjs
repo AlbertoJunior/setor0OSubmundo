@@ -10,7 +10,7 @@ class S0DialogV1 extends Dialog {
   static get defaultOptions() {
     const options = super.defaultOptions;
     const classes = normalizeArray([
-      ...(options.classes || []),
+      ...(options?.classes || []),
       SYSTEM_CLASS_CSS,
       SYSTEM_CLASS_DARK_CSS,
       SYSTEM_CLASS_DIALOG_CSS,
@@ -122,8 +122,8 @@ function makeSheetClass(BaseClass) {
         }
 
         const classes = normalizeArray([
-          ...(options.classes || []),
-          ...(config.classes || []),
+          ...(options?.classes || []),
+          ...(config?.classes || []),
           SYSTEM_CLASS_CSS,
           VERSION_NAME,
         ]);
