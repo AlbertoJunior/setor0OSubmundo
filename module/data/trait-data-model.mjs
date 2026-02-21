@@ -1,28 +1,37 @@
-import { SYSTEM_ID, TEMPLATES_PATH } from "../constants.mjs";
-import { FoundryApi } from "../api/foundry-api.mjs";
-import { TODO } from "../utils/utils.mjs";
+const { NumberField, StringField, BooleanField, ArrayField, SchemaField } = foundry.data.fields;
 
-const { NumberField, StringField, BooleanField } = foundry.data.fields;
+export class TraitEffectField extends SchemaField {
+  constructor({ key, value, typeOfValue, mode } = {}) {
+    super({
+      key: new StringField({ required: false, nullable: true, initial: key }),
+      value: new NumberField({ required: false, integer: true, initial: value }),
+      typeOfValue: new NumberField({ required: false, integer: true, initial: typeOfValue }),
+      mode: new NumberField({ required: false, integer: true, initial: mode })
+    }, { initial: null, nullable: true });
+
+    this.key = key;
+    this.value = value;
+    this.typeOfValue = typeOfValue;
+    this.mode = mode;
+  }
+
+  static toJson(data = {}) {
+    const instance = new TraitEffectField(data);
+    return instance.toObject(instance);
+  }
+}
 
 class TraitDataModel extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     return {
-      xp: new NumberField({ required: true, initial: 0, min: 0, label: "S0.Custo" }),
-      description: new StringField({ required: true, label: "S0.Descricao" }),
-      requirement: new StringField({ label: "S0.Requisito" }),
-      type: new StringField({ required: true, initial: 'good', label: "S0.Tipo" }),
-      haveParticularity: new BooleanField({ required: true, initial: false, label: "S0.Particularidade" }),
+      xp: new NumberField({ required: true, nullable: false, initial: 0, min: 0, label: "S0.Custo" }),
+      description: new StringField({ required: false, nullable: true, label: "S0.Descricao" }),
+      requirement: new StringField({ required: false, nullable: true, label: "S0.Requisito" }),
+      morph: new StringField({ required: false, nullable: true, initial: null, label: "S0.Morfologia" }),
+      type: new StringField({ required: true, nullable: false, initial: 'good', label: "S0.Tipo" }),
+      haveParticularity: new BooleanField({ required: true, nullable: false, initial: false, label: "S0.Particularidade" }),
+      effects: new ArrayField(new TraitEffectField()),
     };
-  }
-
-  static get defaultOptions() {
-    TODO('isso está no lugar errado, deveria estar no TraitSheet');
-    return FoundryApi.mergeObject(super.defaultOptions, {
-      classes: [SYSTEM_ID, "sheet", "item", "trait"],
-      template: `${TEMPLATES_PATH}/traits/trait-sheet.hbs`,
-      width: 600,
-      height: 850
-    });
   }
 }
 

@@ -81,7 +81,7 @@ export class SuperEquipmentEffectsDialog {
 
   static #mapCharacteristicsToOptions() {
     const groups = {
-      [localize('Atributos')]: AttributeRepository.getItems(),
+      [localize('Atributos.Atributos')]: AttributeRepository.getItems(),
       [localize('Habilidades')]: AbilityRepository.getItems(),
       [localize('Tipo_Dano')]: EquipmentInfoParser.getDamageTypes(),
     };

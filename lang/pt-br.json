@@ -71,7 +71,6 @@
     "Ciborgue": "Ciborgue",
     "Sintetico": "Sintético",
     "Humano": "Humano",
-    "Atributos": "Atributos",
     "Forca": "Força",
     "Destreza": "Destreza",
     "Vigor": "Vigor",
@@ -104,7 +103,6 @@
     "Recursos": "Recursos",
     "SuperEquipamento": "SuperEquipamento",
     "SuperEquipamentos": "SuperEquipamentos",
-    "Virtudes": "Virtudes",
     "Consciencia": "Consciência",
     "Perseveranca": "Perseverança",
     "Quietude": "Quietude",
@@ -121,8 +119,6 @@
     "Vida": "Vida",
     "Vitalidade": "Vitalidade",
     "Experiencia": "Experiência",
-    "Traco": "Traço",
-    "Tracos": "Traços",
     "Mochila": "Mochila",
     "Equipados": "Equipados",
     "Equipado": "Equipado",
@@ -168,6 +164,8 @@
     "Uso": "Uso",
     "Tempo": "Tempo",
     "Nenhum": "Nenhum",
+    "Todas": "Todas",
+    "Todos": "Todos",
     "Automatico": "Automático",
     "Letal": "Letal",
     "Superficial": "Superficial",
@@ -252,6 +250,16 @@
     "Nenhum_variavel_Cadastrado": "Nenhum {tipo} cadastrado, arraste e solte um Personagem em cima dessa caixa.",
     "Teste_Customizado": "Teste Customizado",
     "Voce_Usou_Nome": "Você usou {nome}",
+    "Atributos": {
+      "Atributo": "Atributo",
+      "Atributos": "Atributos",
+      "Forca": "Força",
+      "Destreza": "Destreza",
+      "Vigor": "Vigor",
+      "Percepcao": "Percepção",
+      "Carisma": "Carisma",
+      "Inteligencia": "Inteligência"
+    },
     "NPC": {
       "Ver_Ficha": "Ver Ficha",
       "Principais_Habilidades": "Principais Habilidades",
@@ -312,25 +320,6 @@
         "Aviso_Desequipar_Itens": "Essa ação irá desequipar todos os itens equipados"
       }
     },
-    "Pergunta": {
-      "Realizar_Acao": "Tem certeza que deseja realizar essa ação?",
-      "Ocultar": "Ocultar?",
-      "Ocultar_Acao": "Deseja ocultar esta ação?"
-    },
-    "Aviso": {
-      "Teste": {
-        "Erro_Carregar": "Erro ao carregar o teste.",
-        "Erro_Sem_Nome": "O teste precisa de um nome para ser criado.",
-        "Erro_Sem_Ator": "O item precisa estar associado a algum personagem.",
-        "Erro_Sem_Teste_Padrao": "É preciso definir um teste padrão para o item.",
-        "Erro_Sem_Habilidade": "O teste desse item não utiliza nenhuma Habilidade conhecida pelo Personagem"
-      },
-      "Erro": {
-        "Ator_Invalido": "Ator inválido.",
-        "Efeito_Invalido": "Efeito inválido.",
-        "Traco_Invalido": "Traço inválido ou não encontrado."
-      }
-    },
     "Aprimoramento": {
       "Nome": "Aprimoramento",
       "Nome_Plural": "Aprimoramentos",
@@ -355,6 +344,46 @@
       "Outros_Atalhos": "Outros Atalhos",
       "Atalho_Nome": "Ataque preciso",
       "Nenhum_Atalho_Adicionado": "Nenhum Atalho adicionado"
+    },
+    "Traco": {
+      "Traco": "Traço",
+      "Tracos": "Traços",
+      "Bom": "Bom",
+      "Ruim": "Ruim",
+      "Tracos_Bons": "Traços Bons",
+      "Tracos_Ruins": "Traços Ruins",
+      "Placeholder": {
+        "Requisito": "Nenhum requisito"
+      }
+    },
+    "Virtude": {
+      "Virtude": "Virtude",
+      "Virtudes": "Virtudes",
+      "Consciencia": "Consciência",
+      "Perseveranca": "Perseverança",
+      "Quietude": "Quietude",
+      "Placeholder": {
+        "Requisito": "Nenhum requisito"
+      }
+    },
+    "Pergunta": {
+      "Realizar_Acao": "Tem certeza que deseja realizar essa ação?",
+      "Ocultar": "Ocultar?",
+      "Ocultar_Acao": "Deseja ocultar esta ação?"
+    },
+    "Aviso": {
+      "Teste": {
+        "Erro_Carregar": "Erro ao carregar o teste.",
+        "Erro_Sem_Nome": "O teste precisa de um nome para ser criado.",
+        "Erro_Sem_Ator": "O item precisa estar associado a algum personagem.",
+        "Erro_Sem_Teste_Padrao": "É preciso definir um teste padrão para o item.",
+        "Erro_Sem_Habilidade": "O teste desse item não utiliza nenhuma Habilidade conhecida pelo Personagem"
+      },
+      "Erro": {
+        "Ator_Invalido": "Ator inválido.",
+        "Efeito_Invalido": "Efeito inválido.",
+        "Traco_Invalido": "Traço inválido ou não encontrado."
+      }
     }
   },
   "TYPES": {

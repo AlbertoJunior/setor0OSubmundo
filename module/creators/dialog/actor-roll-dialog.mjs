@@ -113,7 +113,7 @@ export class ActorRollDialog {
     const allCharacteristicOptionsGroup = [];
     allCharacteristicOptionsGroup.push(
       {
-        group_label: localize('Atributos'),
+        group_label: localize('Atributos.Atributos'),
         group_items: attributesOptions
       }
     );
@@ -125,7 +125,7 @@ export class ActorRollDialog {
     );
     allCharacteristicOptionsGroup.push(
       {
-        group_label: localize('Virtudes'),
+        group_label: localize('Virtude.Virtudes'),
         group_items: virtueOptions
       }
     );

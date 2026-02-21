@@ -69,7 +69,6 @@
     "Ciborgue": "Cyborg",
     "Sintetico": "Synthetic",
     "Humano": "Human",
-    "Atributos": "Attributes",
     "Forca": "Strength",
     "Destreza": "Dexterity",
     "Vigor": "Stamina",
@@ -119,8 +118,6 @@
     "Vida": "Health",
     "Vitalidade": "Vitality",
     "Experiencia": "Experience",
-    "Traco": "Trait",
-    "Tracos": "Traits",
     "Mochila": "Backpack",
     "Equipados": "Equipped",
     "Equipado": "Equipped",
@@ -249,6 +246,16 @@
     "Nenhum_variavel_Cadastrado": "No {type} registered, drag and drop a Character onto this box.",
     "Teste_Customizado": "Custom Test",
     "Voce_Usou_Nome": "You used {name}",
+    "Atributos": {
+      "Atributo": "Attribute",
+      "Atributos": "Attributes",
+      "Forca": "Strength",
+      "Destreza": "Dexterity",
+      "Vigor": "Stamina",
+      "Percepcao": "Perception",
+      "Carisma": "Charisma",
+      "Inteligencia": "Intelligence"
+    },
     "NPC": {
       "Ver_Ficha": "View Sheet",
       "Principais_Habilidades": "Main Skills",
@@ -352,6 +359,17 @@
       "Outros_Atalhos": "Other Shortcuts",
       "Atalho_Nome": "Precise Attack",
       "Nenhum_Atalho_Adicionado": "No Shortcuts added"
+    },
+    "Traco": {
+      "Traco": "Trait",
+      "Tracos": "Traits",
+      "Bom": "Good",
+      "Ruim": "Bad",
+      "Tracos_Bons": "Good Traits",
+      "Tracos_Ruins": "Bad Traits",
+      "Placeholder": {
+        "Requisito": "No requirement"
+      }
     }
   },
   "TYPES": {

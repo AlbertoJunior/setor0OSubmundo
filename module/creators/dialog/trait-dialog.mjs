@@ -34,7 +34,7 @@ export class TraitDialog {
   static async openByTrait(trait, type, actor, callback) {
     const traits = TraitRepository.getItemsByType(type);
     const content = await this.#mountContent(traits, false, callback != undefined, trait);
-    const title = `${callback ? `${localize('Editar')} ` : ''}${localize('Traco')}`;
+    const title = `${callback ? `${localize('Editar')} ` : ''}${localize('Traco.Traco')}`;
 
     const buttons = [];
     if (callback != undefined) {
@@ -76,7 +76,7 @@ export class TraitDialog {
     const selectedTrait = traits.find(element => element.id == trait?.sourceId);
 
     const data = {
-      title: localize('Traco'),
+      title: localize('Traco.Traco'),
       options: this.#mapOptions(traits, selectedTrait),
       isEnabledChangeTrait: enableChangeTrait ? '' : 'disabled',
       particularity: localize('Particularidade'),

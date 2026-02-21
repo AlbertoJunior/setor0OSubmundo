@@ -2,6 +2,7 @@
 
 | Arquivo | Descrição | Data |
 | :--- | :--- | :--- |
+| [16-implementacao-trait-sheet.md](./16-implementacao-trait-sheet.md) | Implementação da Ficha de interface gráfica, Modelo de Dados e Efeitos para os Traços (Traits) | 20/02/2026 |
 | [15-atualizacao-equipamentos-substancias.md](./15-atualizacao-equipamentos-substancias.md) | Atualização de Particularidades no Super Equipamento e Chat ao usar Substâncias | 20/02/2026 |
 | [14-implementacao-get-equipment-roll-information.md](./14-implementacao-get-equipment-roll-information.md) | Implementação da rolagem de informações específicas para equipamentos que não são armas | 20/02/2026 |
 | [13-implementacao-usos-virtudes.md](./13-implementacao-usos-virtudes.md) | Implementação do Controle de Uso das Virtudes (Quietude e Consciência) no Chat | 20/02/2026 |

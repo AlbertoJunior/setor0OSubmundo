@@ -1,0 +1,11 @@
+<form autocomplete="off">
+  <div class="S0-page S0-container">
+    <label for="effectKey" style="display: block; margin-bottom: 5px;">{{localize 'Efeito'}}</label>
+    <select id="effectKey" name="key" class="S0-select" style="margin-bottom: 15px;">
+      {{selectOptions effectsOptions}}
+    </select>
+
+    <label for="effectValue" style="display: block; margin-bottom: 5px;">{{localize 'Valor'}}</label>
+    <input id="effectValue" type="number" name="value" value="1" required />
+  </div>
+</form>

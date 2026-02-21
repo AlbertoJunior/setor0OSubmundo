@@ -2,6 +2,7 @@
 
 | Arquivo | Descrição | Contexto |
 | :--- | :--- | :--- |
+| [pattern-hybrid-item-architecture.md](./pattern-hybrid-item-architecture.md) | Padrão e separação de lógica na Arquitetura de Itens (Enums, Utils, Updaters, Repository) | Sugestão de Padrão Foundry VTT |
 | [pattern-normalization-html.md](./pattern-normalization-html.md) | Padrão de Normalização de HTML na Fronteira para compatibilidade V1/V2 | Foundry VTT v13 |
 | [refactoring-legacy-jquery-to-hybrid-vanilla.md](./refactoring-legacy-jquery-to-hybrid-vanilla.md) | Padrão Híbrido jQuery/DOM para Utilitários de Migração | Foundry VTT v13 |
 | [foundry-v12-to-v13-migration.md](./foundry-v12-to-v13-migration.md) | Guia completo de migração V1 (v12) para V2 (v13) com soluções para bugs comuns | Foundry VTT v13 |

@@ -49,7 +49,7 @@ export const traitMethods = {
       if (trait.effects && trait.effects.length > 0) {
         const isGood = traitType == "good"
         const effect = ActiveEffectsUtils.createEffectData({
-          origin: localize(isGood ? "Tracos_Bons" : "Tracos_Ruins"),
+          origin: localize(isGood ? "Traco.Tracos_Bons" : "Traco.Tracos_Ruins"),
           name: trait.name,
           statuses: [trait.id],
           changes: trait.effects.map(effect => ({

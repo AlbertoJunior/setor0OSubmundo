@@ -2,6 +2,7 @@ import { logTable } from "../utils/utils.mjs";
 import { actorTemplatesRegister } from "../base/sheet/actor/player/actor-sheet.mjs";
 import { equipmentTemplatesRegister } from "../base/sheet/equipment/equipment-sheet.mjs";
 import { npcTemplatesRegister } from "../base/sheet/actor/npc/npc-sheet.mjs";
+import { traitTemplatesRegister } from "../base/sheet/trait/trait-sheet.mjs";
 import { REGISTERED_TEMPLATES, TEMPLATES_PATH } from "../constants.mjs";
 import { FoundryApi } from "../api/foundry-api.mjs";
 
@@ -37,6 +38,7 @@ async function loadSheetTemplates() {
     { model: 'Player', method: actorTemplatesRegister() },
     { model: 'Npc', method: npcTemplatesRegister() },
     { model: 'Items', method: equipmentTemplatesRegister() },
+    { model: 'Traits', method: traitTemplatesRegister() },
   ];
 
   const results = await Promise.all(sheetTemplates.map(async (template) => {

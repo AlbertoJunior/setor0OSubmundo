@@ -2,7 +2,7 @@
   data-label="{{ localize 'S0.Caracteristicas' }}" data-icon="fas fa-person-dots-from-line">
   <ul>
     <li class="S0-container">
-      <h2> {{localize 'S0.Virtudes'}} </h2>
+      <h2> {{localize 'S0.Virtude.Virtudes'}} </h2>
       <div id="virtudesContainer" class="S0-container-3-fixed-column">
         {{#lett clickableClass=(operators 'ternary' editable 'S0-clickable' '')}}
         {{#each (fetchRepository 'virtue')}}
@@ -51,7 +51,7 @@
 
     <li class="S0-container">
       <h2>
-        {{localize 'S0.Atributos'}}
+        {{localize 'S0.Atributos.Atributos'}}
       </h2>
       <div id="atributosContainer" class="S0-container-2-column">
         {{#lett clickableClass=(operators 'ternary' editable 'S0-clickable' '')}}

@@ -1,6 +1,8 @@
 import { SYSTEM_ID } from "../constants.mjs";
 import { BaseActorCharacteristicType, CharacteristicType } from "../enums/characteristic-enums.mjs";
 import { EffectChangeValueType } from "../enums/enhancement-enums.mjs";
+import { TraitUtils } from "../core/trait/trait-utils.mjs";
+import { localize } from "../utils/utils.mjs";
 
 export class TraitRepository {
   static #goodTrait = [
@@ -561,6 +563,7 @@ export class TraitRepository {
 
   static #loadedGoodFromPack = [];
   static #loadedBadFromPack = [];
+  static #traitEffectsOptionsMapCache = null;
 
   static async _loadFromPack() {
     const compendium = (await game.packs.get(`${SYSTEM_ID}.traits`)?.getDocuments());
@@ -569,23 +572,35 @@ export class TraitRepository {
         const convertedItem = {
           id: item._id,
           name: item.name,
-          xp: item.system.xp,
-          description: item.system.description
+          xp: TraitUtils.getXp(item),
+          description: TraitUtils.getDescription(item),
+          type: TraitUtils.getType(item)
         };
 
-        if (item.haveParticularity) {
-          convertedItem[particularity] = '';
+        if (TraitUtils.getHaveParticularity(item)) {
+          convertedItem['particularity'] = '';
         }
 
-        if (item.requirement && item.requirement !== '') {
-          convertedItem[requirement] = item.requirement;
+        const requirement = TraitUtils.getRequirement(item);
+        if (requirement && requirement !== '') {
+          convertedItem['requirement'] = requirement;
+        }
+
+        const morph = TraitUtils.getMorph(item);
+        if (morph && morph !== '') {
+          convertedItem['morph'] = morph;
+        }
+
+        const effects = TraitUtils.getEffects(item);
+        if (effects.length > 0) {
+          convertedItem['effects'] = [...effects];
         }
 
         return convertedItem;
       });
 
-      TraitRepository.#loadedGoodFromPack = allTraits.filter(item => item.type == 'good')
-      TraitRepository.#loadedBadFromPack = allTraits.filter(item => item.type == 'bad')
+      TraitRepository.#loadedGoodFromPack = allTraits.filter(item => item.type === 'good');
+      TraitRepository.#loadedBadFromPack = allTraits.filter(item => item.type === 'bad');
     }
   }
 
@@ -610,5 +625,30 @@ export class TraitRepository {
 
   static getItemByTypeAndId(type, traitId) {
     return this.getItemsByType(type).find(element => element.id == traitId);
+  }
+
+  static getBonusOptionsMap() {
+    if (TraitRepository.#traitEffectsOptionsMapCache)
+      return TraitRepository.#traitEffectsOptionsMapCache;
+
+    TraitRepository.#traitEffectsOptionsMapCache = {};
+    for (const characteristicCategoryKey in CharacteristicType.BONUS) {
+      const category = CharacteristicType.BONUS[characteristicCategoryKey];
+      if (typeof category !== 'object' || category === null) continue;
+
+      let hasSubCategories = false;
+      for (const characteristicSubCategoryKey in category) {
+        const subCategory = category[characteristicSubCategoryKey];
+        if (typeof subCategory === 'object' && subCategory !== null && subCategory.system) {
+          TraitRepository.#traitEffectsOptionsMapCache[subCategory.system] = localize(`${subCategory.label || subCategory.id}`);
+          hasSubCategories = true;
+        }
+      }
+
+      if (!hasSubCategories && category.system) {
+        TraitRepository.#traitEffectsOptionsMapCache[category.system] = localize(`${category.label || category.id}`);
+      }
+    }
+    return TraitRepository.#traitEffectsOptionsMapCache;
   }
 }

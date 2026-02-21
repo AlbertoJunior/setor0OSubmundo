@@ -128,7 +128,7 @@ export class ActiveEffectsUtils {
     const map = {
       [ActiveEffectsOriginTypes.ITEM]: localize('Item'),
       [ActiveEffectsOriginTypes.ENHANCEMENT]: localize('Aprimoramento.Nome'),
-      [ActiveEffectsOriginTypes.TRAIT]: localize('Traco'),
+      [ActiveEffectsOriginTypes.TRAIT]: localize('Traco.Traco'),
       [ActiveEffectsOriginTypes.OTHER]: localize('Outro'),
       [ActiveEffectsOriginTypes.AFFECTED_ENHANCEMENT]: localize('Aprimoramento.Afetado_Aprimoramento'),
     }
