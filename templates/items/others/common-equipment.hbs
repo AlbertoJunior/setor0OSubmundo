@@ -18,8 +18,8 @@
       </a>
     </div>
 
-    <img {{#if editable}}class="S0-clickable" {{/if}}
-      style="object-fit: contain; width: 100%; border-width: 0px; border-radius: var(--border-radius-large);"
-      src="{{item.img}}" data-edit="img" title="{{item.name}}" width="128" height="128" />
+    <img {{#if editable}} class=" S0-clickable" data-action="edit" data-characteristic="img" {{/if}}
+      style="object-fit: contain; width: 100%; max-height: 128px; aspect-ratio: 1; border-width: 0px; border-radius: var(--border-radius-large);"
+      src="{{item.img}}" title="{{item.name}}" />
   </div>
 </div>

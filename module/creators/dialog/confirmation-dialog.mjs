@@ -37,7 +37,7 @@ export class ConfirmationDialog {
    *   onClose: () => console.log("Janela fechada")
    * });
   */
-  static async open(params = { onConfirm: () => { }, onCancel: () => { }, onClose: () => { } }) {
+  static async open(params = { onConfirm: () => { }, onCancel: () => { }, onClose: () => { } }, options) {
     const {
       titleDialog,
       cancelButtonText,
@@ -78,7 +78,7 @@ export class ConfirmationDialog {
 
     FoundryApi.createDialog(
       {
-        classes: ['S0-width-50'],
+        classes: ['S0-max-width-50'],
         title: titleDialog ?? localize("Confirmar"),
         content: content,
         buttons: buttons,
@@ -87,7 +87,8 @@ export class ConfirmationDialog {
             onClose();
           }
         }
-      }
+      },
+      options
     );
   }
 

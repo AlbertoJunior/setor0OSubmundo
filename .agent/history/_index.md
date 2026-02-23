@@ -2,6 +2,7 @@
 
 | Arquivo | Descrição | Data |
 | :--- | :--- | :--- |
+| [19-centralizacao-filepicker.md](./19-centralizacao-filepicker.md) | Centralização e correção da abertura universal do `FilePicker` para imagens de instâncias de Actors e Itens no `Setor0BaseSheet` com sistema de Lazy Cache. | 23/02/2026 |
 | [18-refatoracao-estrutural-compendium-json.md](./18-refatoracao-estrutural-compendium-json.md) | Refatoração estrutural (remoção do _stats) de JSONs de Compêndios, aprimoramento de Importação de Pastas por Depth e Botões de Controle na UI para GMs | 21/02/2026 |
 | [17-migracao-v13-overrides-e-config.md](./17-migracao-v13-overrides-e-config.md) | Extração de Overrides V1/V2 e implementando Adapter de SHEET_CONFIG customizado nas AppV1/V2 | 21/02/2026 |
 | [16-implementacao-trait-sheet.md](./16-implementacao-trait-sheet.md) | Implementação da Ficha de interface gráfica, Modelo de Dados e Efeitos para os Traços (Traits) | 20/02/2026 |

@@ -32,20 +32,19 @@
   font-size: var(--font-size-15);
 }
 
-.S0-content textarea[readonly] {
-  background: none;
-  cursor: default;
-}
+/* .S0-content img { */
+/* cursor: default; */
+/* border-width: 0px; */
+/* } */
 
-.S0-content img {
-  cursor: default;
-  border-width: 0px;
-}
-
-.S0-content .S0-clickable>*,
-.S0-content img.S0-clickable {
+.S0-clickable {
   cursor: pointer;
 }
+
+/* .S0-content .S0-clickable>*,
+.S0-content img.S0-clickable {
+  cursor: pointer;
+} */
 
 .S0-content h1 {
   font-size: var(--font-size-28);
@@ -106,7 +105,7 @@
   outline: none;
 }
 
-.S0-content :is(select,
+.S0-content :is(select, textarea,
   input[type=datetime-local], input[type=text], input[type=number],
   input[type=password], input[type=date], input[type=time], input[type=search],
   input[type=file]):focus {
@@ -241,6 +240,10 @@
   padding: 6px;
 }
 
+.S0-content textarea[readonly] {
+  background: none;
+}
+
 .S0-container :not(.form-group)>input {
   padding: 2px 6px;
 }
@@ -307,6 +310,14 @@
 
 .S0-width-25 {
   width: 25%;
+}
+
+.S0-max-width-50 {
+  max-width: 50%;
+}
+
+.S0-max-width-25 {
+  max-width: 25%;
 }
 
 /* #endregion */

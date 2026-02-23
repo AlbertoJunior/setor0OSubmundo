@@ -1,6 +1,5 @@
 import { normalizeArray, randomId, toKeyLang } from "../../utils/utils.mjs";
 import { SYSTEM_CLASS_CSS } from "../../constants.mjs";
-import { FoundryApi } from "../foundry-api.mjs";
 import { HtmlJsUtils } from "../../utils/html-js-utils.mjs";
 import { Setor0BaseSheet } from "../../base/sheet/Setor0BaseSheet.mjs";
 
@@ -37,9 +36,6 @@ function makeSheetClass(BaseClass) {
             closeOnSubmit: false,
             submitOnChange: true,
             handler: this.#onSubmitDocumentForm
-          },
-          actions: {
-            img: this.#selectImg
           }
         };
       }
@@ -118,20 +114,6 @@ function makeSheetClass(BaseClass) {
         }
 
         return target.value;
-      }
-
-      static async #selectImg() {
-        const document = this.document;
-        const img = document.img;
-        new FoundryApi.FilePicker.implementation({
-          type: 'image',
-          current: img,
-          displayMode: "thumbs",
-          // allowUpload: game.user.isGM,
-          callback: async (path, event) => {
-            await this.updateDocument(document, 'img', path);
-          }
-        }).browse();
       }
 
       async updateDocument(document, keyToUpdate, value) {

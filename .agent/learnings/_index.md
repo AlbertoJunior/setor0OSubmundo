@@ -2,6 +2,7 @@
 
 | Arquivo | Descrição | Contexto |
 | :--- | :--- | :--- |
+| [filepicker-standardization.md](./filepicker-standardization.md) | Padronização global de clique na imagem (FilePicker) centralizada em Setor0BaseSheet usando `data-action="edit" data-characteristic="img"`. | Foundry VTT v13 |
 | [pattern-global-application-overrides.md](./pattern-global-application-overrides.md) | Padrão de Injeção Global em Application Overrides para UI | Foundry VTT v13 |
 | [pattern-hybrid-item-architecture.md](./pattern-hybrid-item-architecture.md) | Padrão e separação de lógica na Arquitetura de Itens (Enums, Utils, Updaters, Repository) | Sugestão de Padrão Foundry VTT |
 | [pattern-normalization-html.md](./pattern-normalization-html.md) | Padrão de Normalização de HTML na Fronteira para compatibilidade V1/V2 | Foundry VTT v13 |

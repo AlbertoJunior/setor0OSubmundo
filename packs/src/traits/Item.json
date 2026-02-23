@@ -2,7 +2,90 @@
   "title": "Novos Traços",
   "banner": "ui/banners/item-banner.webp",
   "documentName": "Item",
-  "elements": [],
-  "folders": [],
-  "sortingMode": "a"
+  "stats": {
+    "coreVersion": "13.346",
+    "systemId": "setor0OSubmundo",
+    "modifiedTime": 1771709312235,
+    "lastModifiedBy": "tK2FsBNKL3Za9iXa"
+  },
+  "sortingMode": "a",
+  "elements": [
+    {
+      "folder": "qT9ymX4tjCoLihLi",
+      "name": "Franzino",
+      "type": "Trait",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "type": "bad",
+        "xp": 10,
+        "morph": "Sintético",
+        "haveParticularity": false,
+        "requirement": "",
+        "description": ""
+      },
+      "effects": [],
+      "ownership": {
+        "default": 0,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "SDFmT3ZWuy0ly3Lm"
+        }
+      },
+      "_id": "UQEOhliPsJW3O3dq",
+      "sort": 0
+    },
+    {
+      "folder": "X4erHQU4FafGJ1F9",
+      "name": "Teste",
+      "type": "Trait",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "type": "bad",
+        "xp": 4,
+        "haveParticularity": false,
+        "requirement": "",
+        "description": ""
+      },
+      "effects": [],
+      "ownership": {
+        "default": 0,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": true,
+          "sourceId": "RUwDlw8KO1e4fuwm"
+        }
+      },
+      "_id": "pbsMtUyPfxpaic52",
+      "sort": 0
+    }
+  ],
+  "folders": [
+    {
+      "type": "Item",
+      "folder": null,
+      "name": "Traços Bons",
+      "color": "#00c20d",
+      "sorting": "a",
+      "_id": "X4erHQU4FafGJ1F9",
+      "description": "",
+      "sort": 0,
+      "flags": {}
+    },
+    {
+      "type": "Item",
+      "folder": null,
+      "name": "Traços Ruins",
+      "color": "#ad0505",
+      "sorting": "a",
+      "_id": "qT9ymX4tjCoLihLi",
+      "description": "",
+      "sort": 0,
+      "flags": {}
+    }
+  ]
 }

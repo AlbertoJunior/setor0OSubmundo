@@ -9,7 +9,7 @@
 
   <div class="S0-container" style="display: flex; align-items: flex-start; column-gap: 6px;">
     <div class="S0-image-npc" {{#if editable}}style="border-color: var(--primary-color-alpha-50)" {{/if}}>
-      <img {{#if editable}}data-edit="img" data-action="img" title="Clique para alterar a imagem" {{else}}
+      <img {{#if editable}}data-action="edit" data-characteristic="img" title="Clique para alterar a imagem" {{else}}
         title="Clique para ver a imagem" data-action="view" data-characteristic="img" {{/if}}
         class="S0-actor-images S0-clickable" src="{{actor.img}}">
     </div>

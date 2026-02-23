@@ -14,7 +14,10 @@
 .S0-actor-sheet img.S0-clickable {
   background-color: var(--secondary-color-alpha-50);
   border: 2px solid var(--primary-color-alpha-50);
-  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out,
+    background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
 }
 
 .S0-actor-sheet img.S0-clickable:hover {

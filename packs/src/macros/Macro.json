@@ -2,52 +2,163 @@
   "title": "Macros",
   "banner": "ui/banners/macro-banner.webp",
   "documentName": "Macro",
-  "elements": [],
+  "stats": {
+    "coreVersion": "13.346",
+    "systemId": "setor0OSubmundo",
+    "modifiedTime": 1771709311566,
+    "lastModifiedBy": "tK2FsBNKL3Za9iXa"
+  },
+  "sortingMode": "a",
+  "elements": [
+    {
+      "flags": {
+        "setor0OSubmundo": {
+          "sourceId": "1",
+          "role": "user"
+        }
+      },
+      "name": "Abrir Mochila",
+      "ownership": {
+        "default": 1,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "command": "const targetPage = 4;\n\nconst selectedToken = canvas.tokens.controlled[0];\nif (!selectedToken) {\n  ui.notifications.warn(\"Selecione um token primeiro.\");\n  return;\n}\n\n\nconst actor = selectedToken.actor;\nif(!actor?.sheet.canRollOrEdit) {\n  ui.notifications.warn(\"Sem permissão para esse personagem.\");\n  return;\n}\n\nactor.sheet.render(true);\nsetTimeout(() => {\n  if (actor.sheet.currentPage !== undefined) {\n    actor.sheet.currentPage = targetPage;\n    actor.sheet.render(false);\n  } else {\n    ui.notifications.warn(\"Esta ficha não suporta navegação por página.\");\n  }\n}, 50);",
+      "img": "icons/svg/book.svg",
+      "type": "script",
+      "folder": "SGG0OIEemH1jxDrl",
+      "author": "tK2FsBNKL3Za9iXa",
+      "scope": "global",
+      "_id": "BJGgYujbCTjFokks",
+      "sort": 0
+    },
+    {
+      "flags": {
+        "setor0OSubmundo": {
+          "sourceId": "3",
+          "role": "user"
+        }
+      },
+      "name": "Teste de Sobrecarga",
+      "ownership": {
+        "default": 1,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "command": "const selectedToken = canvas.tokens.controlled[0];\nif (!selectedToken) {\n  ui.notifications.warn(\"Selecione um token primeiro.\");\n  return;\n}\n\n\nconst actor = selectedToken.actor;\nif(!actor?.sheet.canRollOrEdit) {\n  ui.notifications.warn(\"Sem permissão para esse personagem.\");\n  return;\n}\n\nawait globalThis.setor0OSubmundo.MacroMethods.overload(actor);",
+      "img": "systems/setor0OSubmundo/icons/overload.svg",
+      "type": "script",
+      "folder": "SGG0OIEemH1jxDrl",
+      "author": "tK2FsBNKL3Za9iXa",
+      "scope": "global",
+      "_id": "BpnveexloDXvTgYz",
+      "sort": 0
+    },
+    {
+      "flags": {
+        "setor0OSubmundo": {
+          "sourceId": "1000",
+          "role": "gm"
+        }
+      },
+      "name": "Resetar Flags",
+      "img": "icons/svg/explosion.svg",
+      "type": "script",
+      "command": "const namespace = 'setor0OSubmundo';\n  const user = game.user;\n  const flags = foundry.utils.getProperty(user.flags, namespace);\n\n  if (!flags) {\n  ui.notifications.info(\"Nenhuma flag encontrada para este usuário.\");\n  } else {\n  for (const key of Object.keys(flags)) {\n  await user.unsetFlag(namespace, key);\n  }\n  ui.notifications.info(\"Flags resetadas com sucesso.\");\n  }",
+      "folder": "ldaDbbX0XPxi4Cws",
+      "author": "tK2FsBNKL3Za9iXa",
+      "scope": "global",
+      "ownership": {
+        "default": 0,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "_id": "KLaKl2HSZxzpD36B",
+      "sort": 0
+    },
+    {
+      "flags": {
+        "setor0OSubmundo": {
+          "sourceId": "1001",
+          "role": "gm"
+        }
+      },
+      "name": "Limpar Hotbar",
+      "img": "icons/svg/explosion.svg",
+      "type": "script",
+      "command": "const user = game.user;\nconst hotbar = user.hotbar;\n\nlet updated = false;\n\nfor (const [slot, macroId] of Object.entries(hotbar)) {\n  const macro = game.macros.get(macroId);\n  if (!macro) {\n    await user.assignHotbarMacro(null, Number(slot));\n    updated = true;\n  }\n}\n\nif (updated) {\n  ui.notifications.info(\"Hotbar limpa: macros inválidas removidas.\");\n} else {\n  ui.notifications.info(\"Nenhuma macro inválida encontrada na hotbar.\");\n}",
+      "folder": "ldaDbbX0XPxi4Cws",
+      "author": "tK2FsBNKL3Za9iXa",
+      "scope": "global",
+      "ownership": {
+        "default": 0,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "_id": "SuhUNNf3GK2tYL0X",
+      "sort": 0
+    },
+    {
+      "flags": {
+        "setor0OSubmundo": {
+          "sourceId": "1004",
+          "role": "gm"
+        }
+      },
+      "name": "Exportar compendiuns",
+      "img": "icons/svg/explosion.svg",
+      "type": "script",
+      "command": "await globalThis.setor0OSubmundo.MacroMethods.exportCompendium()",
+      "folder": "ldaDbbX0XPxi4Cws",
+      "author": "tK2FsBNKL3Za9iXa",
+      "scope": "global",
+      "ownership": {
+        "default": 0,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "_id": "Zm9KigdeQ1N9oU1O",
+      "sort": 0
+    },
+    {
+      "flags": {
+        "setor0OSubmundo": {
+          "sourceId": "2",
+          "role": "user"
+        }
+      },
+      "name": "Abrir Atalhos",
+      "ownership": {
+        "default": 1,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "command": "const targetPage = 7;\n\nconst selectedToken = canvas.tokens.controlled[0];\nif (!selectedToken) {\n  ui.notifications.warn(\"Selecione um token primeiro.\");\n  return;\n}\n\n\nconst actor = selectedToken.actor;\nif(!actor?.sheet.canRollOrEdit) {\n  ui.notifications.warn(\"Sem permissão para esse personagem.\");\n  return;\n}\n\nactor.sheet.render(true);\nsetTimeout(() => {\n  if (actor.sheet.currentPage !== undefined) {\n    actor.sheet.currentPage = targetPage;\n    actor.sheet.render(false);\n  } else {\n    ui.notifications.warn(\"Esta ficha não suporta navegação por página.\");\n  }\n}, 50);",
+      "img": "icons/svg/book.svg",
+      "type": "script",
+      "folder": "SGG0OIEemH1jxDrl",
+      "author": "tK2FsBNKL3Za9iXa",
+      "scope": "global",
+      "_id": "vxmxRO1E5jlgxTYh",
+      "sort": 0
+    }
+  ],
   "folders": [
     {
       "name": "USER",
       "type": "Macro",
       "color": "#0a3aff",
-      "_id": "FYIZmdMEgZeY7Lwa",
+      "_id": "SGG0OIEemH1jxDrl",
       "description": "",
       "folder": null,
       "sorting": "a",
       "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770321641231,
-        "modifiedTime": 1770321641231,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa"
-      }
+      "flags": {}
     },
     {
       "name": "GM",
       "type": "Macro",
       "color": "#f00a0a",
-      "_id": "l31zESr7vnhT6ZAS",
+      "_id": "ldaDbbX0XPxi4Cws",
       "description": "",
       "folder": null,
       "sorting": "a",
       "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770321641263,
-        "modifiedTime": 1770321641263,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa"
-      }
+      "flags": {}
     }
-  ],
-  "sortingMode": "a"
+  ]
 }
