@@ -5,6 +5,7 @@ import { CreateCombatHookHandle } from "./module/hooks/create-combat.mjs";
 import { UpdateActorHookHandle } from "./module/hooks/update-actor.mjs";
 import { UpdateTokenHookHandle } from "./module/hooks/update-token.mjs";
 import { SceneControlButtonsHookHandle } from "./module/hooks/scene-control-buttons.mjs";
+import { PreCreateItemHookHandle } from "./module/hooks/pre-create-item.mjs";
 
 Hooks.once('init', async function () {
   await InitHookHandle.handle();
@@ -16,6 +17,10 @@ Hooks.once('ready', async () => {
 
 Hooks.on('createItem', (item) => {
   CreateItemHookHandle.handle(item);
+});
+
+Hooks.on('preCreateItem', (item, data, options, userId) => {
+  PreCreateItemHookHandle.handle(item, data, options, userId);
 });
 
 Hooks.on('createCombat', (combat) => {

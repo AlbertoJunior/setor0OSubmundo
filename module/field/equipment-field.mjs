@@ -1,6 +1,5 @@
-import { ActiveEffectsTypes } from "../enums/active-effects-enums.mjs";
 import { SuperEquipmentParticularityType } from "../enums/equipment-enums.mjs";
-import { ChangeField } from "./change-field.mjs";
+import { StandardEffectChangeField } from "./effect-fields.mjs";
 
 const { NumberField, BooleanField, StringField, SchemaField, ArrayField } = foundry.data.fields;
 
@@ -58,7 +57,7 @@ export class SuperEquipmentParticularityField extends SchemaField {
     super({
       type: new NumberField({ required: true, integer: true, initial: SuperEquipmentParticularityType.TEXT }),
       description: new StringField({ required: false, initial: '' }),
-      change: new ChangeField(),
+      change: new StandardEffectChangeField(),
     }, { initial: null, nullable: true });
 
     this.type = type;
@@ -68,27 +67,6 @@ export class SuperEquipmentParticularityField extends SchemaField {
 
   static toJson(data = {}) {
     const instance = new SuperEquipmentParticularityField(data);
-    return instance.toObject(instance);
-  }
-}
-
-export class SubstanceEffectField extends SchemaField {
-  constructor({ id, description, change, type } = {}) {
-    super({
-      id: new StringField({ required: true }),
-      type: new StringField({ required: false, initial: ActiveEffectsTypes.BUFF }),
-      description: new StringField({ required: true }),
-      change: new ChangeField(),
-    }, { initial: null, nullable: true });
-
-    this.id = id;
-    this.description = description;
-    this.type = type;
-    this.change = change;
-  }
-
-  static toJson(data = {}) {
-    const instance = new SubstanceEffectField(data);
     return instance.toObject(instance);
   }
 }

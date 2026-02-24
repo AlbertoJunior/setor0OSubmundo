@@ -13,6 +13,7 @@ import { TokenUtils } from "../core/token/token-utils.mjs";
 import { ActiveEffectHookHandle } from "./active-effects.mjs";
 import { configureSetor0ChatLog } from "../core/chat/Setor0ChatLog.mjs";
 import { Setor0Settings } from "../utils/settings.mjs";
+import { PreCreateItemHookHandle } from "./pre-create-item.mjs";
 
 export class InitHookHandle {
   static async handle() {
@@ -33,17 +34,19 @@ export class InitHookHandle {
     await registerTemplates();
 
     ActiveEffectHookHandle.register();
+    await PreCreateItemHookHandle.validateDefaultIcons();
     Hooks.callAll(SYSTEM_HOOKS.MIGRATIONS_INIT);
   }
 
   static #presetGlobalSystemConfigs() {
+    // CONFIG.debug.hooks = true;
+
     globalThis[SYSTEM_ID] = {
       MacroMethods: MacroUtils.MacroMethods,
       FoundryApi: FoundryApi,
       TokenUtils: TokenUtils,
       DEFAULT_VALUES: DEFAULT_VALUES
     };
-    //CONFIG.debug.hooks = true;
     Setor0Settings.register();
   }
 }

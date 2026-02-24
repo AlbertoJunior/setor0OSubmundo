@@ -13,6 +13,7 @@ const baseApplicationConfig = Object.freeze({
   Apps: foundry.applications.apps,
   Documents: foundry.documents,
   Collections: foundry.documents.collections,
+  Canvas: foundry.canvas,
   Placeables: foundry.canvas.placeables,
   Utils: foundry.utils,
   ChatMessage: ChatMessage,

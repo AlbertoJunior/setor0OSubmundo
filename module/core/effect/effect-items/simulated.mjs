@@ -1,3 +1,4 @@
+import { StandardEffectChangeField } from "../../../field/effect-fields.mjs";
 import { COLORS, ICONS_PATH } from "../../../constants.mjs";
 import { ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../../enums/active-effects-enums.mjs";
 import { CharacteristicType } from "../../../enums/characteristic-enums.mjs";
@@ -14,12 +15,12 @@ const simulated = ActiveEffectsUtils.createEffectData({
   duration: { startRound: 0, rounds: 99 },
   tint: COLORS.BASE.yellow,
   changes: [
-    {
+    StandardEffectChangeField.toJson({
       key: CharacteristicType.BONUS.ATTRIBUTES.INTELLIGENCE.system,
       value: 0,
       mode: CONST.ACTIVE_EFFECT_MODES.ADD,
       typeOfValue: EffectChangeValueType.ENHANCEMENT_LEVEL
-    },
+    }),
   ],
   flags: {
     [ActiveEffectsFlags.ORIGIN_ID]: id,

@@ -137,7 +137,7 @@ export class EquipmentUtils {
         {
           key: particularity.change.key,
           value: particularity.change.value,
-          mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+          mode: particularity.change.mode ?? CONST.ACTIVE_EFFECT_MODES.ADD,
         },
       )
     }
@@ -197,13 +197,11 @@ export class EquipmentUtils {
         description: effect.description,
         statuses: [`${itemId}`],
         duration: { startRound: 0, rounds: 99 },
-        changes: [
-          {
-            key: effect.change.key,
-            value: effect.change.value,
-            mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-          },
-        ],
+        changes: effect.changes.map(change => ({
+          key: change.key,
+          value: change.value,
+          mode: change.mode ?? CONST.ACTIVE_EFFECT_MODES.ADD,
+        })),
         flags: {
           [ActiveEffectsFlags.ORIGIN_ID]: itemId,
           [ActiveEffectsFlags.ORIGIN_TYPE]: ActiveEffectsOriginTypes.ITEM,

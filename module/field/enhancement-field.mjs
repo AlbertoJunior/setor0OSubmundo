@@ -1,6 +1,5 @@
 import { RollTestField } from "./roll-test-field.mjs";
-import { EffectChangeValueType } from "../enums/enhancement-enums.mjs";
-import { ChangeField } from "./change-field.mjs";
+import { StandardEffectChangeField } from "./effect-fields.mjs";
 
 const { SchemaField, StringField, NumberField, ArrayField } = foundry.data.fields;
 
@@ -14,7 +13,7 @@ export class EnhancementEffectField extends SchemaField {
       duration: new StringField({ required: true, initial: '' }),
       description: new StringField({ required: false, initial: null, nullable: true }),
       requirement: new ArrayField(new StringField()),
-      effectChanges: new ArrayField(new EnhancementEffectDataChange()),
+      effectChanges: new ArrayField(new StandardEffectChangeField()),
       possible_tests: new ArrayField(new RollTestField()),
     });
 
@@ -32,15 +31,5 @@ export class EnhancementEffectField extends SchemaField {
   static toJson(id, name, level, overload, duration, requirement, effectChanges = [], possibleTests = [], description) {
     const object = new EnhancementEffectField(id, name, level, overload, duration, requirement, effectChanges, possibleTests, description);
     return object.toObject(object);
-  }
-}
-
-class EnhancementEffectDataChange extends SchemaField {
-  constructor(key, value = 0) {
-    super({
-      ...ChangeField.getBaseChangeSchema({ key, value }),
-      typeOfValue: new NumberField({ integer: true, required: true, initial: EffectChangeValueType.FIXED }),
-      otherValue: new StringField({ required: false, initial: undefined }),
-    });
   }
 }

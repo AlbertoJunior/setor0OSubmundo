@@ -34,6 +34,7 @@ export class FoundryApi {
   static Documents = CurrentVersion.Documents;
   static Apps = CurrentVersion.Apps;
   static SidebarTabs = CurrentVersion.SidebarTabs;
+  static Canvas = CurrentVersion.Canvas;
   static Placeables = CurrentVersion.Placeables;
   static Sheets = CurrentVersion.Sheets;
 
@@ -60,6 +61,11 @@ export class FoundryApi {
   //#region UPDATED 
   static ActorSheet = CurrentVersion.makeSheetClass(this.Sheets.ActorSheet);
   static ItemSheet = CurrentVersion.makeSheetClass(this.Sheets.ItemSheet);
+  //#endregion
+
+  //#region NEED UPDATE to V2
+  // static ActorSheet = ApplicationV1.makeSheetClass(ApplicationV1.Sheets.ActorSheet);
+  // static ItemSheet = ApplicationV1.makeSheetClass(ApplicationV1.Sheets.ItemSheet);
   //#endregion
 
   static Actors = convertToClass(this.Collections.Actors);

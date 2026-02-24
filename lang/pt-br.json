@@ -308,6 +308,14 @@
       "Gas": "Gás",
       "Melhoria": "Melhoria",
       "Enfraquecimento": "Enfraquecimento",
+      "Tipos": {
+        "Corpo_a_Corpo": "Corpo a Corpo",
+        "Arma_Projecao": "Arma de Projeção",
+        "Armadura": "Armadura",
+        "Veiculo": "Veiculo",
+        "Substancia": "Substância",
+        "Acessorio": "Acessório"
+      },
       "Pergunta": {
         "Usar_Item": "Usar o Item?",
         "Excluir_SuperEquipamento": "Excluir SuperEquipamento?",

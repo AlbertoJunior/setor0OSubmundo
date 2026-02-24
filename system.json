@@ -4,7 +4,7 @@
   "description": "Jogue Setor 0 - O Submundo no Foundry VTT",
   "url": "https://www.set0rpg.com.br",
   "version": "0.0.3",
-  "background": "/systems/setor0OSubmundo/imgs/banner.png",
+  "background": "/systems/setor0OSubmundo/imgs/banner.webp",
   "manifest": "https://raw.githubusercontent.com/AlbertoJunior/RPG-fvtt-sector-0/master/system.json",
   "download": "https://github.com/AlbertoJunior/RPG-fvtt-sector-0/download/archive.zip",
   "bugs": "https://github.com/AlbertoJunior/RPG-fvtt-sector-0/issues",
@@ -29,7 +29,10 @@
     "scripts/libs/jszip.min.js"
   ],
   "styles": [
-    "styles/variables.css",
+    {
+      "src": "styles/variables.css",
+      "layer": "variables"
+    },
     "styles/edit-foundry-styles.css",
     "styles/styles-base.css",
     "styles/components/styles-actor.css",
@@ -45,19 +48,30 @@
   ],
   "packs": [
     {
-      "name": "inimigos",
-      "label": "Inimigos conhecidos",
+      "name": "characters",
+      "label": "Personagens",
       "system": "setor0OSubmundo",
-      "path": "packs/inimigos",
+      "path": "packs/personagens",
       "type": "Actor",
+      "banner": "/systems/setor0OSubmundo/imgs/banner_actors.webp",
       "private": false
     },
     {
-      "name": "itens",
-      "label": "Itens conhecidos",
+      "name": "enemies",
+      "label": "Inimigos",
+      "system": "setor0OSubmundo",
+      "path": "packs/inimigos",
+      "type": "Actor",
+      "banner": "/systems/setor0OSubmundo/imgs/banner_enemies.webp",
+      "private": false
+    },
+    {
+      "name": "items",
+      "label": "Itens",
       "system": "setor0OSubmundo",
       "path": "packs/itens",
       "type": "Item",
+      "banner": "/systems/setor0OSubmundo/imgs/banner_equipments.webp",
       "private": false,
       "flags": {
         "filter": {
@@ -80,6 +94,7 @@
       "system": "setor0OSubmundo",
       "path": "packs/tracos",
       "type": "Item",
+      "banner": "/systems/setor0OSubmundo/imgs/banner_traits.webp",
       "private": false,
       "flags": {
         "filter": {
@@ -97,6 +112,7 @@
       "label": "Novos Aprimoramentos",
       "system": "setor0OSubmundo",
       "path": "packs/aprimoramentos",
+      "banner": "/systems/setor0OSubmundo/imgs/banner_enhancements.webp",
       "type": "Item",
       "flags": {
         "filter": {
@@ -114,6 +130,7 @@
       "label": "Macros",
       "system": "setor0OSubmundo",
       "path": "packs/macros",
+      "banner": "/systems/setor0OSubmundo/imgs/banner_macros.webp",
       "type": "Macro",
       "ownership": {
         "PLAYER": "OBSERVER"
@@ -122,13 +139,14 @@
   ],
   "packFolders": [
     {
-      "name": "Setor 0",
+      "name": "Setor0",
       "label": "Setor 0",
       "color": "#ffdc00",
       "sorting": "m",
       "packs": [
-        "inimigos",
-        "itens",
+        "characters",
+        "enemies",
+        "items",
         "traits",
         "enhancements",
         "macros"

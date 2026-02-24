@@ -2,6 +2,8 @@
 
 | Arquivo | Descrição | Contexto |
 | :--- | :--- | :--- |
+| [pattern-standard-active-effects.md](./pattern-standard-active-effects.md) | Padronização arquitetural da modelagem das propriedades de Efeitos Ativos (StandardEffectField) | Foundry VTT v13 |
+| [pattern-data-migration.md](./pattern-data-migration.md) | Arquitetura Bi-direcional de Migração de Dados de versão usando hooks nativos (`migrateData`) e Async Sync | Foundry VTT v13 |
 | [filepicker-standardization.md](./filepicker-standardization.md) | Padronização global de clique na imagem (FilePicker) centralizada em Setor0BaseSheet usando `data-action="edit" data-characteristic="img"`. | Foundry VTT v13 |
 | [pattern-global-application-overrides.md](./pattern-global-application-overrides.md) | Padrão de Injeção Global em Application Overrides para UI | Foundry VTT v13 |
 | [pattern-hybrid-item-architecture.md](./pattern-hybrid-item-architecture.md) | Padrão e separação de lógica na Arquitetura de Itens (Enums, Utils, Updaters, Repository) | Sugestão de Padrão Foundry VTT |

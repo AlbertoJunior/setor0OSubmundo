@@ -95,7 +95,7 @@ Caso você não possua um servidor para hospedar o Foundry e compartilhar o link
 ### Efeitos
 * ✅ Efeitos específicos do Setor 0.
 * ✅ Efeitos ativos baseado em Aprimoramentos.
-* 🛠️ Efeitos ativos baseado em Traços.
+* ✅ Efeitos ativos baseado em Traços.
 * ✅ Efeitos ativos baseado em Equipamentos.
 * ✅ Efeitos que são ativados durante um combate são desativados automaticamente ao final dele.
 
@@ -127,7 +127,7 @@ Caso você não possua um servidor para hospedar o Foundry e compartilhar o link
 
 ### Compêndio
 * ✅ Carregar compêndio.
-* 🚧 Imagens.
+* ✅ Imagens.
 * 🚧 Compêndio base do sistema.
 * 🚧 Inimigos.
 * ✅ Armas (Armas Brancas e Armas de Projeção).
@@ -135,8 +135,7 @@ Caso você não possua um servidor para hospedar o Foundry e compartilhar o link
   * ✅ Armas de Projeção.
 * ✅ Veículos.
 * ✅ Substâncias.
-* ✅ Distritos.
-* ✅ Traços de SuperEquipamentos.
+* 🚧 Traços de SuperEquipamentos.
 
 <details>
   <summary>Como exportar</summary>
@@ -147,24 +146,29 @@ Caso você não possua um servidor para hospedar o Foundry e compartilhar o link
   ```
   
   Após executar o código, será perguntando onde você deseja salvar o Zip que contém todos os elementos que estavam nos compêndios.
+
+  Ou então, como GM, clicando no botão do Setor 0 no menu de Sistemas e selecionando a opção de Exportar Compêndio.
 </details>
 
 <details>
   <summary>Como importar</summary>
 
-Por padrão o sistema sempre vai tentar buscar os compêndios que estão na pasta do sistema: `./packs/src/*`, o Zip que é gerado  já vem com a estrutura de pastas correta para ser extraido dentro de `src`.
+  Por padrão o sistema sempre vai tentar buscar os compêndios que estão na pasta do sistema: `./packs/src/*`, o Zip que é gerado  já vem com a estrutura de pastas correta para ser extraido dentro de `src`.
 
-```text
-systems/
-└── setor0OSubmundo/
-    └── packs/
-        └── src/
-            ├── enhancements/
-            ├── inimigos/
-            ├── itens/
-            ├── macros/
-            └── traits/
-```
+  ```text
+  systems/
+  └── setor0OSubmundo/
+      └── packs/
+          └── src/
+              ├── enhancements/
+              ├── inimigos/
+              ├── itens/
+              ├── macros/
+              ├── personagens/
+              └── tracos/
+  ```
+
+  Mas caso queira resetar o compendium já carregado, como GM, clicando no botão do Setor 0 no menu de Sistemas e selecionando a opção de apagar e Recarregar Compêndios.
 
 </details>
 

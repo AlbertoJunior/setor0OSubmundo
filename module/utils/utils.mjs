@@ -158,3 +158,9 @@ export function logTable(title, table) {
 
   console.log('---> ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- <---');
 }
+
+export function logDiffMigration(version, diffLog) {
+  console.log(`================ MIGRATION DIFF ${version} ================`);
+  console.log(JSON.stringify(diffLog, null, 2));
+  console.log("======================================================");
+}

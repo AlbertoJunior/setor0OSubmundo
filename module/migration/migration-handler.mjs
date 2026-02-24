@@ -48,7 +48,7 @@ export class MigrationHandler {
       }
 
       // Update the version setting to prevent re-running
-      // await game.settings.set(SYSTEM_ID, "systemMigrationVersion", lastMigratedVersionSuccessed);
+      await game.settings.set(SYSTEM_ID, "systemMigrationVersion", lastMigratedVersionSuccessed);
 
       if (!haveError) {
         console.log(`-> Setor 0 - O Submundo | Migração finalizada com sucesso.`);
