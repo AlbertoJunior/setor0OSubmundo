@@ -1,7 +1,6 @@
 <div class="S0-page S0-container">
-  <label for="{{item.id}}.description" style="display: block;">
+  <label class="S0-block" for="{{item.id}}.description">
     {{localize 'S0.Descricao'}}:
   </label>
-  <textarea id="{{item.id}}.description" style="resize: none; margin-top: 5px;" name="system.description"
-    maxlength="150" rows="5">{{itemValues item 'description'}}</textarea>
+  <textarea class="S0-resize-none S0-mt-5" id="{{item.id}}.description" name="system.description" maxlength="150" rows="5">{{itemValues item 'description'}}</textarea>
 </div>

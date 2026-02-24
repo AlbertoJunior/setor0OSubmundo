@@ -2,8 +2,7 @@
   <h3>{{localize title}}</h3>
   <hr>
 
-  <ul id="{{type}}-{{actor.id}}" class="S0-container-4-column S0-drop-container"
-    style="justify-items: center; row-gap: 10px;">
+  <ul id="{{type}}-{{actor.id}}" class="S0-container-4-column S0-drop-container S0-row-gap-10" style="justify-items: center;">
     {{#each (actorLists actor type)}}
     <li class="S0-actor-images-container">
       <div class="S0-actor-container-button">
@@ -20,7 +19,7 @@
         </a>
       </div>
 
-      <div style="width: 100%; height: 100%; overflow: hidden">
+      <div class="S0-w-full S0-h-full S0-overflow-hidden">
         <img class="S0-actor-images" src="{{img}}" />
 
         <h4 class="S0-actor-images-name S0-hide-long-text">{{system.morfologia}}</h4>

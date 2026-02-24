@@ -2,6 +2,7 @@
 
 | Arquivo | Descrição | Data |
 | :--- | :--- | :--- |
+| [23-padronizacao-estilos-inline.md](./23-padronizacao-estilos-inline.md) | Padronização de estilos inline em templates substituindo-os por classes CSS Utilitárias (`S0-*`) centralizadas no `utilities.css`. | 24/02/2026 |
 | [22-sistema-migracao-v13.md](./22-sistema-migracao-v13.md) | Sistema Oficial de Migration (DataModel e Background Sync) para atualizar documentos de versões antigas | 24/02/2026 |
 | [21-implementacao-icones-padrao-itens.md](./21-implementacao-icones-padrao-itens.md) | Implementação de ícones padrão por tipo de item utilizando `CONFIG.Item.typeIcons`. | 23/02/2026 |
 | [20-padronizacao-active-effects.md](./20-padronizacao-active-effects.md) | Padronização de Efeitos Ativos em DataModels (StandardEffectChangeField e StandardEffectField) | 21/02/2026 |

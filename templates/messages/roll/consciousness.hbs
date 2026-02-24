@@ -1,5 +1,5 @@
 <div class="S0-message-content">
-  <h4 style="text-align: center;">{{title}}</h4>
+  <h4 class="S0-text-center">{{title}}</h4>
   <hr>
   <div class="dice-tooltip S0-container-contract">
     <p>{{localize 'S0.Rolagem_Anterior'}}:</p>
@@ -11,7 +11,7 @@
     </ol>
 
     <p>{{localize 'S0.Nova_Rolagem'}}:</p>
-    <ol style="margin-top: 0px;" class="dice-rolls">
+    <ol class="dice-rolls S0-mt-0">
       {{#each newDiceValues}}
       <li class="S0-d10 roll d10">{{ this }}</li>
       {{/each}}

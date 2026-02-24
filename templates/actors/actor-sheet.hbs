@@ -8,14 +8,14 @@
 
   <header class="S0-container" style="min-height: 88px">
     {{#if editable}}
-    <h2 style="display: flex; align-items: center;">
+    <h2 class="S0-flex S0-items-center">
       <label for="name" style="min-width: 84.5px;">{{ localize 'S0.Nome' }}:</label>
       <input id="name" name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'S0.Nome' }}" />
     </h2>
-    <ul style="columns: 2; padding: 0px; margin: 0px;">
-      <li style="display: flex; align-items: center;">
-        <label for="morfologia" style="flex: 1;">{{ localize 'S0.Morfologia' }}:</label>
-        <select class="S0-select" id="morfologia" name="system.morfologia" style="flex: 2;">
+    <ul class="S0-m-0" style="columns: 2; padding: 0px;">
+      <li class="S0-flex S0-items-center">
+        <label class="S0-flex-1" for="morfologia">{{ localize 'S0.Morfologia' }}:</label>
+        <select class="S0-select S0-flex-2" id="morfologia" name="system.morfologia">
           {{#with (actorValues actor 'morphology' ) as |morphology|}}
           {{#each (fetchRepository 'morphology')}}
           <option value="{{id}}" {{selectIfEq morphology id }}>
@@ -26,9 +26,9 @@
         </select>
       </li>
 
-      <li style="display: flex; align-items: center;">
-        <label for="bairro" style="flex: 1;">{{ localize 'S0.Bairro' }}:</label>
-        <select class="S0-select" id="bairro" name="system.bairro" style="flex: 2;">
+      <li class="S0-flex S0-items-center">
+        <label class="S0-flex-1" for="bairro">{{ localize 'S0.Bairro' }}:</label>
+        <select class="S0-select S0-flex-2" id="bairro" name="system.bairro">
           {{#with (actorValues actor 'district' ) as |district|}}
           {{#each (fetchRepository 'district')}}
           <option value="{{id}}" {{selectIfEq district id }}>
@@ -40,11 +40,11 @@
       </li>
     </ul>
     {{else}}
-    <h1 style="text-align: center;">{{actor.name}}</h1>
-    <div style="display: flex; align-items: stretch; justify-content: center; gap: 4px;">
-      <h3 style="flex: 1; text-align: end;">{{actorValues actor 'morphology'}}</h3>
+    <h1 class="S0-text-center">{{actor.name}}</h1>
+    <div class="S0-flex S0-justify-center S0-gap-4" style="align-items: stretch;">
+      <h3 class="S0-flex-1" style="text-align: end;">{{actorValues actor 'morphology'}}</h3>
       <div class="S0-vertical-divider "></div>
-      <h3 style="flex: 1; text-align: start;">{{actorValues actor 'district'}}</h3>
+      <h3 class="S0-flex-1 S0-text-start">{{actorValues actor 'district'}}</h3>
     </div>
     {{/if}}
   </header>

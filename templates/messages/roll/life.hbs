@@ -1,5 +1,5 @@
 <div class="S0-message-content">
-  <h4 style="text-align: center;">{{localize 'S0.Vida'}} [ {{ life }} ]</h4>
+  <h4 class="S0-text-center">{{localize 'S0.Vida'}} [ {{ life }} ]</h4>
   <hr>
   <div class="dice-tooltip S0-container-contract">
     <ol class="dice-rolls">
@@ -8,7 +8,7 @@
       {{/each}}
     </ol>
 
-    <label style="display: block; margin-block: 6px;">{{localize 'S0.Sucessos'}}: {{ resultValue }}</label>
+    <label class="S0-block S0-my-6">{{localize 'S0.Sucessos'}}: {{ resultValue }}</label>
   </div>
 
   <button class="S0-roll-result {{ resultMessageClasses }}" data-action="view" data-type="toggle-tooltip">

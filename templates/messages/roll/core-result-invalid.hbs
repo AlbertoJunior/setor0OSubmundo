@@ -1,4 +1,4 @@
-<p style="text-align: center;">{{localize 'S0.Teste_Nao_Realizado'}}</p>
+<p class="S0-text-center">{{localize 'S0.Teste_Nao_Realizado'}}</p>
 
 <hr>
 
@@ -8,15 +8,15 @@
   <hr>
 
   {{#if (operators 'gt' penalty 0)}}
-  <label style="display: block; margin-block: 4px;">{{localize 'S0.Penalidade'}}: {{ penalty }}</label>
+  <label class="S0-block S0-my-4">{{localize 'S0.Penalidade'}}: {{ penalty }}</label>
   {{/if}}
 
   {{#unless (operators 'eq' bonus 0)}}
-  <label style="display: block; margin-block: 4px;">{{localize 'S0.Bonus'}}: {{ bonus }}</label>
+  <label class="S0-block S0-my-4">{{localize 'S0.Bonus'}}: {{ bonus }}</label>
   {{/unless}}
 
   {{#if (operators 'gt' automatic 0)}}
-  <label style="display: block; margin-block: 4px;">{{localize 'S0.Automatico'}}: {{ automatic }}</label>
+  <label class="S0-block S0-my-4">{{localize 'S0.Automatico'}}: {{ automatic }}</label>
   {{/if}}
 
   <hr>

@@ -12,41 +12,40 @@
     </header>
   </div>
 
-  <div class="S0-page S0-container S0-container-2-fixed-column" style="align-items: center;">
-    <label for="{{item.id}}.type" style="display: block;">{{localize 'S0.Tipo'}}:</label>
+  <div class="S0-page S0-container S0-container-2-fixed-column S0-items-center">
+    <label class="S0-block" for="{{item.id}}.type">{{localize 'S0.Tipo'}}:</label>
     <select id="{{item.id}}.type" name="system.type" class="S0-select">
       {{selectOptions traitTypes selected=(traitValues item 'type')}}
     </select>
-    <label for="{{item.id}}.xp" style="display: block;">{{localize 'S0.Custo'}} (XP):</label>
+    <label class="S0-block" for="{{item.id}}.xp">{{localize 'S0.Custo'}} (XP):</label>
     <input id="{{item.id}}.xp" type="number" name="system.xp" value="{{traitValues item 'xp'}}" min="0" />
   </div>
 
-  <div class="S0-page S0-container S0-container-2-fixed-column" style="align-items: center;">
-    <label for="{{item.id}}.morph" style="display: block;">{{localize 'S0.Morfologia'}}: </label>
+  <div class="S0-page S0-container S0-container-2-fixed-column S0-items-center">
+    <label class="S0-block" for="{{item.id}}.morph">{{localize 'S0.Morfologia'}}: </label>
     <select id="{{item.id}}.morph" name="system.morph" class="S0-select">
       {{selectOptions morphologies selected=(traitValues item 'morph') localize=true}}
     </select>
 
-    <label for="{{item.id}}.haveParticularity" style="display: block;">{{localize 'S0.Particularidade'}}: </label>
-    <div style="display: flex; justify-content: center; align-items: center;">
+    <label class="S0-block" for="{{item.id}}.haveParticularity">{{localize 'S0.Particularidade'}}: </label>
+    <div class="S0-flex S0-justify-center S0-items-center">
       <input id="{{item.id}}.haveParticularity" type="checkbox" name="system.haveParticularity" {{checked (traitValues
         item 'haveParticularity' )}}>
     </div>
   </div>
 
-  <div class="S0-page S0-container" style="align-items: center;">
-    <label for="{{item.id}}.requirement" style="display: block;">
+  <div class="S0-page S0-container S0-items-center">
+    <label class="S0-block" for="{{item.id}}.requirement">
       {{localize 'S0.Requisito'}}:
     </label>
-    <input id="{{item.id}}.requirement" style="margin-top: 2px;" type="text" name="system.requirement"
-      value="{{traitValues item 'requirement'}}" placeholder="{{localize 'S0.Traco.Placeholder.Requisito'}}">
+    <input class="S0-mt-2" id="{{item.id}}.requirement" type="text" name="system.requirement" value="{{traitValues item 'requirement'}}" placeholder="{{localize 'S0.Traco.Placeholder.Requisito'}}">
   </div>
 
   <div class="S0-page S0-container">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="S0-flex S0-justify-between S0-items-center">
       <label><strong>{{localize 'S0.Efeitos'}}</strong></label>
       {{#if editable}}
-      <div style="display: flex; gap: 8px;">
+      <div class="S0-flex S0-gap-8">
         <a class="S0-icon-expand" data-characteristic="characteristic" data-type="trait-effect" data-action="add"
           title="{{localize 'S0.Adicionar'}}">
           <i class="fas fa-plus"></i>
@@ -56,9 +55,8 @@
     </div>
     <ul>
       {{#each (traitValues item 'effects')}}
-      <li
-        style="height: 35px; display: flex; align-items: center; justify-content: space-between; margin-block: 2px; padding-block: 8px; border-bottom: 1px solid var(--secondary-color);">
-        <label style="flex: 1; font-size: var(--font-size-12);">{{value}} {{localizedKey}}</label>
+      <li class="S0-h-35 S0-flex S0-items-center S0-justify-between S0-my-2 S0-py-8 S0-border-b-secondary">
+        <label class="S0-flex-1 S0-text-12">{{value}} {{localizedKey}}</label>
         {{#if ../editable}}
         <a class="S0-icon-expand" data-characteristic="characteristic" data-type="trait-effect" data-action="remove"
           data-item-index="{{@index}}" title="{{localize 'Remover'}}">

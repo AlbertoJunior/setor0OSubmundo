@@ -9,17 +9,15 @@
     </h2>
   </header>
 
-  <div class="S0-flex-center S0-container" style="position: relative;">
+  <div class="S0-flex-center S0-container S0-relative">
     <div class="S0-biography-container-button">
       <a class="S0-icon-expand" data-action="view" data-characteristic="characteristic" data-type="img"
         title="{{localize 'ITEM.ViewArt'}}">
         <i class="fas fa-eye"></i>
-        <span style="margin-left: 10px;">{{localize 'ITEM.ViewArt'}}</span>
+        <span class="S0-ml-10">{{localize 'ITEM.ViewArt'}}</span>
       </a>
     </div>
 
-    <img {{#if editable}} class=" S0-clickable" data-action="edit" data-characteristic="img" {{/if}}
-      style="object-fit: contain; width: 100%; max-height: 128px; aspect-ratio: 1; border-width: 0px; border-radius: var(--border-radius-large);"
-      src="{{item.img}}" title="{{item.name}}" />
+    <img {{#if editable}} class="S0-clickable S0-w-full S0-object-contain S0-max-h-128" data-action="edit" data-characteristic="img" {{/if}} style="aspect-ratio: 1; border-width: 0px; border-radius: var(--border-radius-large);" src="{{item.img}}" title="{{item.name}}" />
   </div>
 </div>

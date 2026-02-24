@@ -1,5 +1,5 @@
 <div class="S0-message-content">
-  <h4 style="text-align: center;">{{title}}</h4>
+  <h4 class="S0-text-center">{{title}}</h4>
   <hr>
   <div class="dice-tooltip S0-container-contract">
     {{#if (operators 'isNotEmpty' overloadValues)}}
@@ -18,8 +18,8 @@
       {{/each}}
     </ol>
 
-    <label style="display: block; margin-top: 6px;">{{localize 'S0.Removidos'}}</label>
-    <ol style="margin-top: 0px;" class="dice-rolls">
+    <label class="S0-block S0-mt-6">{{localize 'S0.Removidos'}}</label>
+    <ol class="dice-rolls S0-mt-0">
       {{#each removedDiceValues}}
       <li class="S0-d10-small roll d10">{{ this }}</li>
       {{/each}}

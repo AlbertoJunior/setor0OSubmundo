@@ -1,6 +1,6 @@
 <div class="S0-page tab" data-group="menu-tabs" data-tab="status" data-label="{{ localize 'S0.Status' }}"
   data-icon="fas fa-heart-pulse">
-  <div class="S0-container S0-container-2-column" style="align-items: center;">
+  <div class="S0-container S0-container-2-column S0-items-center">
     <div class="S0-characteristic-container" id="vigor">
       <label>
         {{localize 'S0.Vigor'}}
@@ -18,7 +18,7 @@
         data-action="characteristic" data-characteristic="characteristic" data-type="vigor" data-action-group="true">
       </div>
     </div>
-    <div style="text-align: center;">
+    <div class="S0-text-center">
       <h4>{{localize 'S0.Movimento'}}</h4>
       <label>{{actorValues actor 'npc_pm'}}</label>
     </div>
@@ -26,7 +26,7 @@
 
   <ul>
     {{#if (actorValues actor 'have_equipped_armor') }}
-    <div id="protecao" class="S0-container" style="display: flex; flex-direction: column;">
+    <div id="protecao" class="S0-container S0-flex S0-flex-col">
       <h3>
         {{ localize 'S0.Protecao' }}
         {{#if canRoll}}
@@ -36,7 +36,7 @@
         {{/if}}
       </h3>
 
-      <div id="protect" class="S0-inner-container" style="flex-wrap: wrap; column-gap: 12px; row-gap:10px; flex: 1">
+      <div id="protect" class="S0-inner-container S0-wrap S0-flex-1 S0-col-gap-12 S0-row-gap-10">
         {{#forLoop 0 (actorValues actor 'equipped_amor_total_resistance')}}
         {{#with ../canRoll as |canRoll|}}
         <div class="S0-characteristic S0-characteristic-temp {{#if canRoll}}S0-clickable{{/if}}"
@@ -51,7 +51,7 @@
     <li class="S0-container">
       <h3>
         {{ localize 'S0.Dano' }}
-        <label style="font-size: var(--font-size-11);">
+        <label class="S0-text-11">
           {{actorValues actor 'current_damage'}}/{{actorValues actor 'vitality'}}
         </label>
         {{#if canRoll}}
@@ -60,7 +60,7 @@
         </a>
         {{/if}}
       </h3>
-      <div id="vitalidade" class="S0-inner-container" style="column-gap: 20px;">
+      <div id="vitalidade" class="S0-inner-container S0-col-gap-20">
         {{#forLoop 0 (actorValues actor 'vitality')}}
         {{#with ../canRoll as |canRoll|}}
         <div class="S0-characteristic S0-characteristic-temp {{#if canRoll}}S0-clickable{{/if}}"
@@ -70,7 +70,7 @@
         {{/forLoop}}
       </div>
 
-      <div class="S0-container S0-container-2-column" style="margin-bottom: 2px;">
+      <div class="S0-container S0-container-2-column S0-mb-2">
         <div class="S0-inner-li">
           <label><strong>{{localize 'S0.Clique_Esquerdo'}}:</strong> {{localize 'S0.Letal'}}</label>
           <div class="S0-characteristic S0-characteristic-temp S0-letal">
@@ -86,8 +86,8 @@
   </ul>
 
   {{#if (gameFunc 'isGm')}}
-  <ul id="effects-container" class="S0-container" style="max-height: 138px; overflow-y: scroll;">
-    <h3 style="margin-block: 4px;">
+  <ul id="effects-container" class="S0-container S0-max-h-138 S0-overflow-y-scroll">
+    <h3 class="S0-my-4">
       {{localize 'S0.Efeitos_Ativos'}}
       <a class="S0-icon-expand" data-action="remove" data-characteristic="effects" data-type="all"
         title="{{localize 'S0.Remover_Todos_Efeitos'}}">
@@ -96,7 +96,7 @@
     </h3>
 
     {{#each (actorLists actor 'effects') as |item|}}
-    <li style="display: flex; gap: 4px; align-items: center;">
+    <li class="S0-flex S0-gap-4 S0-items-center">
       {{#if (itemValues item 'effect_has_type')}}
 
       {{#if (itemValues item 'effect_is_buff')}}
@@ -109,7 +109,7 @@
 
       {{/if}}
 
-      <span class="S0-hide-long-text" style="flex: 1">{{parse 'effect_on_status' item}}</span>
+      <span class="S0-hide-long-text S0-flex-1">{{parse 'effect_on_status' item}}</span>
       <a class="S0-icon-expand S0-centralized-icon" data-action="view" data-characteristic="effects"
         data-item-id="{{item._id}}" title="{{localize 'S0.Ver_Efeito'}}">
         <i class="fas fa-eye"></i>

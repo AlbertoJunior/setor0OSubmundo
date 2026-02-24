@@ -3,12 +3,12 @@
   data-action="check" data-type="edit" data-tooltip="{{ localize 'S0.Habilitar_Desabilitar_Edicao' }}"
   data-tooltip-direction="UP">
   {{#if editable}}
-  <i class="fas fa-toggle-on" style="margin-right: 4px;"></i>
+  <i class="fas fa-toggle-on S0-mr-4"></i>
   {{#unless (gameFunc 'isCompactedSheet')}}
   {{ localize 'S0.Editando' }}
   {{/unless}}
   {{else}}
-  <i class="fas fa-toggle-off" style="margin-right: 4px;"></i>
+  <i class="fas fa-toggle-off S0-mr-4"></i>
   {{#unless (gameFunc 'isCompactedSheet')}}
   {{ localize 'S0.Editar' }}
   {{/unless}}

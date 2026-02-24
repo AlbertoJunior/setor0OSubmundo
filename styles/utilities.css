@@ -1,0 +1,374 @@
+/* Utilitários S0 (S0 Utilities) */
+
+/* Display & Flexbox */
+.S0-flex {
+  display: flex;
+}
+
+.S0-block {
+  display: block;
+}
+
+.S0-inline-block {
+  display: inline-block;
+}
+
+/* Flex Properties */
+.S0-flex-1 {
+  flex: 1;
+}
+
+.S0-flex-col {
+  flex-direction: column;
+}
+
+.S0-wrap {
+  flex-wrap: wrap;
+}
+
+.S0-items-center {
+  align-items: center;
+}
+
+.S0-items-start {
+  align-items: flex-start;
+}
+
+.S0-justify-between {
+  justify-content: space-between;
+}
+
+.S0-justify-center {
+  justify-content: center;
+}
+
+.S0-gap-4 {
+  gap: 4px;
+}
+
+.S0-gap-8 {
+  gap: 8px;
+}
+
+.S0-gap-16 {
+  gap: 16px;
+}
+
+/* Typography */
+.S0-font-bold {
+  font-weight: bold;
+}
+
+.S0-text-center {
+  text-align: center;
+}
+
+.S0-text-start {
+  text-align: start;
+}
+
+.S0-text-12 {
+  font-size: var(--font-size-12);
+}
+
+.S0-text-16 {
+  font-size: var(--font-size-16);
+}
+
+.S0-text-24 {
+  font-size: var(--font-size-24);
+}
+
+/* Spacing (Margin & Padding) */
+.S0-mt-0 {
+  margin-top: 0;
+}
+
+.S0-mt-2 {
+  margin-top: 2px;
+}
+
+.S0-mt-4 {
+  margin-top: 4px;
+}
+
+.S0-mt-8 {
+  margin-top: 8px;
+}
+
+.S0-mt-10 {
+  margin-top: 10px;
+}
+
+.S0-mb-2 {
+  margin-bottom: 2px;
+}
+
+.S0-mb-4 {
+  margin-bottom: 4px;
+}
+
+.S0-mb-8 {
+  margin-bottom: 8px;
+}
+
+.S0-my-2 {
+  margin-block: 2px;
+}
+
+.S0-my-3 {
+  margin-block: 3px;
+}
+
+.S0-my-4 {
+  margin-block: 4px;
+}
+
+.S0-my-8 {
+  margin-block: 8px;
+}
+
+.S0-mx-4 {
+  margin-inline: 4px;
+}
+
+.S0-mx-5 {
+  margin-inline: 5px;
+}
+
+.S0-p-0 {
+  padding: 0;
+}
+
+.S0-py-2 {
+  padding-block: 2px;
+}
+
+.S0-py-4 {
+  padding-block: 4px;
+}
+
+.S0-py-8 {
+  padding-block: 8px;
+}
+
+.S0-px-4 {
+  padding-inline: 4px;
+}
+
+.S0-px-8 {
+  padding-inline: 8px;
+}
+
+/* Sizing */
+.S0-w-full {
+  width: 100%;
+}
+
+.S0-h-full {
+  height: 100%;
+}
+
+.S0-h-35 {
+  height: 35px;
+}
+
+.S0-max-w-110 {
+  max-width: 110px;
+}
+
+.S0-max-w-max {
+  max-width: max-content;
+}
+
+.S0-max-h-330 {
+  max-height: 330px;
+}
+
+.S0-min-h-1 {
+  min-height: 1px;
+}
+
+/* Overflow & Misc */
+.S0-overflow-hidden {
+  overflow: hidden;
+}
+
+.S0-overflow-y-auto {
+  overflow-y: auto;
+}
+
+.S0-whitespace-pre-wrap {
+  white-space: pre-wrap;
+}
+
+.S0-relative {
+  position: relative;
+}
+
+.S0-absolute {
+  position: absolute;
+}
+
+.S0-border-b-secondary {
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+/* Missing Utilities from Refactoring */
+.S0-m-0 {
+  margin: 0;
+}
+
+.S0-mt-5 {
+  margin-top: 5px;
+}
+
+.S0-mt-6 {
+  margin-top: 6px;
+}
+
+.S0-mb-16 {
+  margin-bottom: 16px;
+}
+
+.S0-my-6 {
+  margin-block: 6px;
+}
+
+.S0-my-5-mx-10 {
+  margin: 5px 10px;
+}
+
+.S0-mx-10 {
+  margin-inline: 10px;
+}
+
+.S0-ml-4 {
+  margin-left: 4px;
+}
+
+.S0-ml-10 {
+  margin-left: 10px;
+}
+
+.S0-mr-4 {
+  margin-right: 4px;
+}
+
+.S0-p-2 {
+  padding: 2px;
+}
+
+.S0-p-4 {
+  padding: 4px;
+}
+
+.S0-pl-16 {
+  padding-left: 16px;
+}
+
+.S0-px-6 {
+  padding-inline: 6px;
+}
+
+.S0-px-15 {
+  padding-inline: 15px;
+}
+
+.S0-flex-2 {
+  flex: 2;
+}
+
+.S0-flex-3 {
+  flex: 3;
+}
+
+.S0-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.S0-col-gap-4 {
+  column-gap: 4px;
+}
+
+.S0-col-gap-6 {
+  column-gap: 6px;
+}
+
+.S0-col-gap-10 {
+  column-gap: 10px;
+}
+
+.S0-col-gap-12 {
+  column-gap: 12px;
+}
+
+.S0-col-gap-20 {
+  column-gap: 20px;
+}
+
+.S0-row-gap-6 {
+  row-gap: 6px;
+}
+
+.S0-row-gap-10 {
+  row-gap: 10px;
+}
+
+.S0-text-11 {
+  font-size: var(--font-size-11);
+}
+
+.S0-text-small {
+  font-size: small;
+}
+
+.S0-text-xx-small {
+  font-size: xx-small;
+}
+
+.S0-italic {
+  font-style: italic;
+}
+
+.S0-max-w-170 {
+  max-width: 170px;
+}
+
+.S0-min-w-72 {
+  min-width: 72px;
+}
+
+.S0-min-h-150 {
+  min-height: 150px;
+}
+
+.S0-max-h-128 {
+  max-height: 128px;
+}
+
+.S0-max-h-138 {
+  max-height: 138px;
+}
+
+.S0-border-b-secondary-alpha {
+  border-bottom: 1px solid var(--secondary-color-alpha);
+}
+
+.S0-border-none {
+  border: none;
+}
+
+.S0-resize-none {
+  resize: none;
+}
+
+.S0-object-contain {
+  object-fit: contain;
+}
+
+.S0-overflow-auto {
+  overflow: auto;
+}

@@ -167,8 +167,13 @@ Caso você não possua um servidor para hospedar o Foundry e compartilhar o link
               ├── personagens/
               └── tracos/
   ```
+  
+</details>
 
-  Mas caso queira resetar o compendium já carregado, como GM, clicando no botão do Setor 0 no menu de Sistemas e selecionando a opção de apagar e Recarregar Compêndios.
+<details>
+  <summary>Como resetar</summary>
+
+  Caso queira resetar o compendium já carregado, como GM, clicando no botão do Setor 0 no menu de Sistemas e selecionando a opção de apagar e Recarregar Compêndios.
 
 </details>
 
@@ -193,6 +198,7 @@ O Setor 0 conta com um sistema de Macros pré-definidos para novos jogadores. To
             // recebe um Actor e um id referente a um RollTestData e realiza a rolagem (enviando no chat)
         }
      }
+     ...
   }
   ```
 </details>

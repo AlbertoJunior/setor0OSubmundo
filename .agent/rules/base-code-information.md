@@ -8,11 +8,14 @@ trigger: always_on
 - **Primeiro:** Consultar .agent/learnings/_index.md para ver se possui alguma informação relevante.
 - **Segundo:** Verificar no projeto se já tem algo próximo do que foi pedido para tomar como base.
 - **Terceiro:** Consultar o índice em .agent/docs/v13/_index.md e a documentação correspondente.
-- **Quarto:** Eventualmente busque por soluções modernas fora dessas bases. Compare-as com o conhecimento interno baseado em performance, manutenção e legibilidade. Caso a solução proposta pertença a uma versão superior do Foundry VTT (ex: migração de v12 para v13, v13 para v14, etc...):
-  1. Sugira formalmente a atualização da versão do projeto.
-  2. Elabore um Plano de Migração detalhado (listando Breaking Changes, novas APIs a serem usadas e impactos no código atual).
-  3. Garanta que a solução seja superior e compatível com a documentação da versão alvo.
-  4. Se a migração for aprovada, sugira a alteração da base de aprendizado e a implementação do novo código.
+- **Quarto:** Explore soluções modernas fora das bases locais, consultando obrigatoriamente a [Foundry VTT Wiki (Resources)](https://foundryvtt.wiki/en/development/guides) e outras fontes web.
+  1. **Filtro de Validação:** Considere estritamente conteúdos validados e compatíveis com a arquitetura atual (v12+). Ignore guias obsoletos ou padrões depreciados (ex: actor.data).
+  2. **Análise Comparativa:** Compare a solução externa com o conhecimento interno (.agent/learnings) baseando-se em performance, manutenção e legibilidade.
+  3. **Julgamento de Valor:** Se a solução externa for superior, sugira a alteração do código e a atualização da base de aprendizado. Se for inferior ou equivalente, justifique por que manteremos o padrão atual do projeto.
+  4. **Migração Estratégica:** Caso a melhor solução pertença a uma versão superior (v13, v14, etc.):
+    - Sugira formalmente a atualização do projeto.
+    - Elabore um Plano de Migração detalhado (Breaking Changes, novas APIs e impactos).
+    - Garanta que a solução seja superior e compatível com a documentação da versão alvo.
 
 ## PONTO DE DECISÃO (Conforme System Rules - Execução)
 - **PARE E APRESENTE:** Após concluir os passos de 1 a 4, você deve apresentar o resultado da sua análise e o plano de implementação (ou migração) ao usuário. 

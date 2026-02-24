@@ -2,13 +2,13 @@
   <h4>{{ localize 'S0.Traco.Traco' }}: {{name}}</h4>
   <hr>
 
-  <label style="display: block;"><strong>{{localize 'S0.Valor'}}:</strong> {{xp}}</label>
+  <label class="S0-block"><strong>{{localize 'S0.Valor'}}:</strong> {{xp}}</label>
 
   {{#unless (operators 'isNull' morph) }}
-  <label style="display: block;"><strong>{{localize 'S0.Morfologia'}}:</strong> {{morph}}</label>
+  <label class="S0-block"><strong>{{localize 'S0.Morfologia'}}:</strong> {{morph}}</label>
   {{/unless}}
 
-  <label style="display: block; font-weight: bold;">{{localize 'S0.Descricao'}}:</label>
+  <label class="S0-block S0-font-bold">{{localize 'S0.Descricao'}}:</label>
   <div class="S0-message-simple-text">
     {{{description}}}
   </div>

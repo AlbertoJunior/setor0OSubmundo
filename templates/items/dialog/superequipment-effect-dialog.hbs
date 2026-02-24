@@ -1,5 +1,5 @@
 <form class="S0-container">
-  <div style="display: flex; row-gap: 6px; flex-direction: column;">
+  <div class="S0-flex S0-flex-col S0-row-gap-6">
     <select class="S0-select" name="selectedTrait">
       {{#each traits as |group|}}
       <optgroup label="{{ group.label }}">
@@ -23,19 +23,18 @@
     </div>
 
     <div>
-      <strong style="display: block;">{{ localize 'S0.Descricao' }}:</strong>
+      <strong class="S0-block">{{ localize 'S0.Descricao' }}:</strong>
       <div class="S0-message-simple-text"></div>
     </div>
 
     <div id="particularityContainer">
       <label for="{{uuid}}.particularity"><strong>{{localize 'S0.Particularidade'}}:</strong></label>
-      <input type="text" name="particularity" id="{{uuid}}.particularity" maxlength="55" style="margin-top: 6px;" />
+      <input class="S0-mt-6" type="text" name="particularity" id="{{uuid}}.particularity" maxlength="55" />
     </div>
 
     <div id="selectedParticularityContainer">
       <label for="{{uuid}}.selectedParticularity"><strong>{{localize 'S0.Caracteristica'}}:</strong></label>
-      <select class="S0-select" id="{{uuid}}.selectedParticularity" name="selectedParticularity"
-        style="margin-top: 6px;">
+      <select class="S0-select S0-mt-6" id="{{uuid}}.selectedParticularity" name="selectedParticularity">
         {{#each characteristic as |group|}}
         <optgroup label="{{ group.label }}">
           {{#each group.options as |option|}}

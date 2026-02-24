@@ -3,31 +3,31 @@
   <hr>
 
   {{#if origin}}
-  <label style="display: block;"><strong>{{localize 'S0.Origem'}}:</strong> {{origin}}</label>
+  <label class="S0-block"><strong>{{localize 'S0.Origem'}}:</strong> {{origin}}</label>
   {{/if}}
 
   {{#if originTypeLabel}}
-  <label style="display: block;"><strong>{{localize 'S0.Tipo'}}:</strong> {{originTypeLabel}}</label>
+  <label class="S0-block"><strong>{{localize 'S0.Tipo'}}:</strong> {{originTypeLabel}}</label>
   {{/if}}
 
   {{#if effectTypeLabel}}
-  <label style="display: block;"><strong>{{effectTypeLabel}}</strong></label>
+  <label class="S0-block"><strong>{{effectTypeLabel}}</strong></label>
   {{/if}}
 
   {{#if disabled}}
-  <label style="display: block;"><strong>{{localize 'S0.Status'}}:</strong> {{localize 'S0.Inativo'}}</label>
+  <label class="S0-block"><strong>{{localize 'S0.Status'}}:</strong> {{localize 'S0.Inativo'}}</label>
   {{/if}}
 
   {{#if description}}
-  <label style="display: block; font-weight: bold;">{{localize 'S0.Descricao'}}:</label>
+  <label class="S0-block S0-font-bold">{{localize 'S0.Descricao'}}:</label>
   <div class="S0-message-simple-text">
     {{{description}}}
   </div>
   {{/if}}
 
   {{#if hasChanges}}
-  <label style="display: block; font-weight: bold;">{{localize 'S0.Mudancas'}}:</label>
-  <ul style="margin: 2px 0; padding-left: 16px;">
+  <label class="S0-block S0-font-bold">{{localize 'S0.Mudancas'}}:</label>
+  <ul class="S0-pl-16" style="margin: 2px 0;">
     {{#each changes}}
     <li>{{this.label}}: {{this.value}}</li>
     {{/each}}

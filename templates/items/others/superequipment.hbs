@@ -1,6 +1,6 @@
 <div id="{{item.id}}.superequipment"
   class="S0-page S0-container S0-superequipment-container {{#unless (itemValues item 'superequipment')}}S0-superequipment-contracted{{/unless}}">
-  <div style="display: flex; align-items: center;">
+  <div class="S0-flex S0-items-center">
     <h4> {{localize 'S0.SuperEquipamento'}}</h4>
     <input type="checkbox" data-action="check" data-characteristic="characteristic" data-type="superequipment" {{#if
       (itemValues item 'superequipment' )}}checked{{/if}}>
@@ -38,7 +38,7 @@
       {{localize 'S0.Itens.Efeitos'}}
 
       {{#if editable}}
-      <label style="font-size: var(--font-size-11);">
+      <label class="S0-text-11">
         {{itemValues item 'superequipment_effects_limit'}}
       </label>
       <a class="S0-icon-expand" data-characteristic="superequipment" data-subcharacteristic="trait" data-action="add"
@@ -50,12 +50,11 @@
     <ul>
       {{#each (itemValues item 'superequipment_effects')}}
       <li>
-        <div
-          style="min-height: 35px; display: flex; align-items: center; margin-block: 2px; padding-block: 8px; border-bottom: 1px solid var(--secondary-color);">
-          <div style="min-width: 0; margin-right: 4px; flex: 1; font-size: var(--font-size-12);">
-            <label style="display: block;">[{{cost}}] {{name}}</label>
+        <div class="S0-flex S0-items-center S0-my-2 S0-py-8 S0-border-b-secondary" style="min-height: 35px;">
+          <div class="S0-flex-1 S0-text-12 S0-mr-4" style="min-width: 0;">
+            <label class="S0-block">[{{cost}}] {{name}}</label>
             {{#if particularity}}
-            <label class="S0-hide-long-text" style="display: block;">({{particularity.description}})</label>
+            <label class="S0-hide-long-text S0-block">({{particularity.description}})</label>
             {{/if}}
           </div>
 
@@ -70,12 +69,11 @@
       {{/each}}
     </ul>
 
-    <h4 style="margin-top: 10px;">
+    <h4 class="S0-mt-10">
       {{localize 'S0.Itens.Defeitos'}}
 
       {{#if editable}}
-      <label
-        style="font-size: var(--font-size-11); width: calc(100% - 30px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-wrap: nowrap;">
+      <label class="S0-overflow-hidden S0-text-11" style="width: calc(100% - 30px); text-overflow: ellipsis; white-space: nowrap; text-wrap: nowrap;">
         {{itemValues item 'superequipment_defects_limit'}}
       </label>
       <a class="S0-icon-expand" data-characteristic="superequipment" data-subcharacteristic="trait" data-action="add"
@@ -87,12 +85,11 @@
 
     <ul>
       {{#each (itemValues item 'superequipment_defects')}}
-      <li
-        style="min-height: 35px; display: flex; align-items: center; margin-block: 2px; padding-block: 8px; border-bottom: 1px solid var(--secondary-color);">
-        <div style="min-width: 0; margin-right: 4px; flex: 1; font-size: var(--font-size-12);">
-          <label style="display: block;">[{{cost}}] {{name}}</label>
+      <li class="S0-flex S0-items-center S0-my-2 S0-py-8 S0-border-b-secondary" style="min-height: 35px;">
+        <div class="S0-flex-1 S0-text-12 S0-mr-4" style="min-width: 0;">
+          <label class="S0-block">[{{cost}}] {{name}}</label>
           {{#if particularity}}
-          <label class="S0-hide-long-text" style="display: block;">({{particularity.description}})</label>
+          <label class="S0-hide-long-text S0-block">({{particularity.description}})</label>
           {{/if}}
         </div>
 

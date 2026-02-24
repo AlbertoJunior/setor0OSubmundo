@@ -44,7 +44,11 @@
     "styles/system-styles-v2.css",
     "styles/system-styles-dark.css",
     "styles/system-styles-id.css",
-    "styles/system-created-styles.css"
+    "styles/system-created-styles.css",
+    {
+      "src": "styles/utilities.css",
+      "layer": null
+    }
   ],
   "packs": [
     {

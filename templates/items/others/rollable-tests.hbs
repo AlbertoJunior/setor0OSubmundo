@@ -1,8 +1,8 @@
 <div class="S0-page S0-container">
 
-  <div style="display: flex; justify-content: space-between; align-items: center;">
+  <div class="S0-flex S0-justify-between S0-items-center">
     <strong>{{localize 'S0.Testes_Possiveis'}}</strong>
-    <div style="display: flex; gap: 8px;">
+    <div class="S0-flex S0-gap-8">
       <a id="add-rollable-test" class="S0-icon-expand" data-characteristic="menu_roll" data-action="add"
         title="{{localize 'S0.Adicionar'}}">
         <i class="fas fa-plus"></i>
@@ -17,8 +17,7 @@
   <section>
     <div id="rollable-tests-list" class="S0-container-contract">
       {{#each (itemValues item 'possible_tests')}}
-      <div
-        style="padding-block: 8px; padding-inline: 6px; display: flex; align-items: center; column-gap: 4px; border-bottom: 1px solid var(--secondary-color-alpha);">
+      <div class="S0-py-8 S0-flex S0-items-center S0-px-6 S0-col-gap-4 S0-border-b-secondary-alpha">
 
         <div class="S0-characteristic S0-characteristic-temp 
                 {{#if ../owner}}S0-clickable{{/if}} 
@@ -26,8 +25,7 @@
           data-characteristic="item_roll" {{#if ../owner}}data-action="check" {{/if}} data-item-id="{{this.id}}">
         </div>
 
-        <label
-          style="font-size: var(--font-size-11); width: calc(100% - 30px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-wrap: nowrap;">
+        <label class="S0-overflow-hidden S0-text-11" style="width: calc(100% - 30px); text-overflow: ellipsis; white-space: nowrap; text-wrap: nowrap;">
           {{this.name}}
         </label>
 

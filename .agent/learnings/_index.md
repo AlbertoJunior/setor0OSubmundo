@@ -2,6 +2,8 @@
 
 | Arquivo | Descrição | Contexto |
 | :--- | :--- | :--- |
+| [foundry-v13-css-cascade-layers.md](./foundry-v13-css-cascade-layers.md) | Guia completo de utilização, injeções e overrides de CSS Cascade Layers (`@layer`) no Foundry VTT v13. | Foundry VTT v13 |
+| [css-utility-classes.md](./css-utility-classes.md) | Padrão arquitetural de Classes CSS Utilitárias (prefixo `S0-`) para substituir estilos inline no HTML. | UI/CSS |
 | [pattern-standard-active-effects.md](./pattern-standard-active-effects.md) | Padronização arquitetural da modelagem das propriedades de Efeitos Ativos (StandardEffectField) | Foundry VTT v13 |
 | [pattern-data-migration.md](./pattern-data-migration.md) | Arquitetura Bi-direcional de Migração de Dados de versão usando hooks nativos (`migrateData`) e Async Sync | Foundry VTT v13 |
 | [filepicker-standardization.md](./filepicker-standardization.md) | Padronização global de clique na imagem (FilePicker) centralizada em Setor0BaseSheet usando `data-action="edit" data-characteristic="img"`. | Foundry VTT v13 |
