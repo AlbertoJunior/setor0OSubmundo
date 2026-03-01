@@ -27,7 +27,9 @@ Este é o sistema oficial de RPG **Setor 0**, totalmente integrado ao **Foundry 
 4. Se não aparecer, reinicie o Foundry.
 5. Crie um novo mundo com o sistema.
 
-  > 🚧 Ainda será disponibilizado um manifesto para instalação direta via URL.
+> 🚧 Ainda será disponibilizado um manifesto para instalação direta via URL dentro do próprio Foundry VTT.
+
+---
 
 ### Compartilhando com seus jogadores
 Caso você não possua um servidor para hospedar o Foundry e compartilhar o link, você pode criar um `QuickTunnel` com o `CloudFlare`. Da seguinte maneira:
@@ -44,6 +46,7 @@ Caso você não possua um servidor para hospedar o Foundry e compartilhar o link
 
 ## Legenda de ícones
 <details>
+  <summary>Ícones</summary>
 
     🧩 Instalação
     🧬 Funcionalidades
@@ -130,6 +133,7 @@ Caso você não possua um servidor para hospedar o Foundry e compartilhar o link
 * ✅ Imagens.
 * 🚧 Compêndio base do sistema.
 * 🚧 Inimigos.
+* 🚧 Personagens.
 * ✅ Armas (Armas Brancas e Armas de Projeção).
   * ✅ Armas Brancas.
   * ✅ Armas de Projeção.
@@ -242,7 +246,7 @@ O Setor 0 conta com um sistema de Macros pré-definidos para novos jogadores. To
 - ✅ Suporte a Application V2 do Foundry.
 </details>
 
-### Telas
+### Telas (v12)
 <details>
     <summary>Ficha de Personagem</summary>
 

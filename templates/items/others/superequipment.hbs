@@ -6,7 +6,7 @@
       (itemValues item 'superequipment' )}}checked{{/if}}>
   </div>
 
-  <div class="S0-characteristic-container" style="padding-inline: 15px;">
+  <div class="S0-characteristic-container S0-px-16">
     <label>
       {{localize 'S0.Nivel'}}
     </label>
@@ -19,7 +19,7 @@
     {{/forLoop}}
   </div>
 
-  <div class="S0-characteristic-container" style="padding-inline: 15px;">
+  <div class="S0-characteristic-container S0-px-16">
     <label>
       {{localize 'S0.Ativo'}}
     </label>
@@ -33,7 +33,7 @@
 
   <hr style="margin: 2px;">
 
-  <div style="padding: 4px;">
+  <div class="S0-p-4">
     <h4>
       {{localize 'S0.Itens.Efeitos'}}
 
@@ -73,7 +73,8 @@
       {{localize 'S0.Itens.Defeitos'}}
 
       {{#if editable}}
-      <label class="S0-overflow-hidden S0-text-11" style="width: calc(100% - 30px); text-overflow: ellipsis; white-space: nowrap; text-wrap: nowrap;">
+      <label class="S0-overflow-hidden S0-text-11"
+        style="width: calc(100% - 30px); text-overflow: ellipsis; white-space: nowrap; text-wrap: nowrap;">
         {{itemValues item 'superequipment_defects_limit'}}
       </label>
       <a class="S0-icon-expand" data-characteristic="superequipment" data-subcharacteristic="trait" data-action="add"

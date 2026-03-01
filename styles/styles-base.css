@@ -32,19 +32,9 @@
   font-size: var(--font-size-15);
 }
 
-/* .S0-content img { */
-/* cursor: default; */
-/* border-width: 0px; */
-/* } */
-
 .S0-clickable {
   cursor: pointer;
 }
-
-/* .S0-content .S0-clickable>*,
-.S0-content img.S0-clickable {
-  cursor: pointer;
-} */
 
 .S0-content h1 {
   font-size: var(--font-size-28);

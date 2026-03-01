@@ -34,13 +34,12 @@
       <label class="S0-text-11">
         {{actorValues actor 'actual_enhancements'}}/{{actorValues actor 'total_enhancements'}}
       </label>
-      <a class="S0-icon-rotate" style="font-size: small;" data-action="remove" data-characteristic="enhancement"
-        title="{{localize 'S0.Atualizar_Efeitos'}}">
+      <a class="S0-icon-rotate S0-text-small" data-action="remove" data-characteristic="enhancement" title="{{localize 'S0.Atualizar_Efeitos'}}">
         <i class="fas fa-refresh"></i>
       </a>
     </h2>
 
-    <div class="S0-container-2-column S0-my-2 S0-py-2" style="row-gap: 8px;">
+    <div class="S0-container-2-column S0-my-2 S0-py-2 S0-row-gap-8">
       {{#forLoop 1 5}}
       {{> enhancementPartial enhancement-slot=index}}
       {{/forLoop}}

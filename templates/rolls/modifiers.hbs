@@ -1,5 +1,5 @@
 <form class="S0-container">
-  <h3 class="S0-my-3">{{localize 'S0.Modificadores'}}</h3>
+  <h3 class="S0-my-4">{{localize 'S0.Modificadores'}}</h3>
   <div class="form-group">
     <label class="S0-flex-1" for="{{uuid}}.difficulty">{{localize 'S0.Dificuldade'}}:</label>
     <select class="S0-select S0-flex-1" id="{{uuid}}.difficulty" name="difficulty">
@@ -25,7 +25,8 @@
   {{#if canBeOverload}}
   <div class="form-group">
     <label class="S0-flex-1" for="{{uuid}}.overload">{{localize 'S0.Sobrecarga'}}:</label>
-    <input class="S0-flex-1" id="{{uuid}}.overload" name="overload" type="number" value="{{values.overload}}" max="5" min="0">
+    <input class="S0-flex-1" id="{{uuid}}.overload" name="overload" type="number" value="{{values.overload}}" max="5"
+      min="0">
   </div>
   {{/if}}
 

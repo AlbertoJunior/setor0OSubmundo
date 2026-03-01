@@ -12,7 +12,7 @@
       <label for="name" style="min-width: 84.5px;">{{ localize 'S0.Nome' }}:</label>
       <input id="name" name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'S0.Nome' }}" />
     </h2>
-    <ul class="S0-m-0" style="columns: 2; padding: 0px;">
+    <ul class="S0-m-0 S0-p-0 S0-columns-2">
       <li class="S0-flex S0-items-center">
         <label class="S0-flex-1" for="morfologia">{{ localize 'S0.Morfologia' }}:</label>
         <select class="S0-select S0-flex-2" id="morfologia" name="system.morfologia">
@@ -41,8 +41,8 @@
     </ul>
     {{else}}
     <h1 class="S0-text-center">{{actor.name}}</h1>
-    <div class="S0-flex S0-justify-center S0-gap-4" style="align-items: stretch;">
-      <h3 class="S0-flex-1" style="text-align: end;">{{actorValues actor 'morphology'}}</h3>
+    <div class="S0-flex S0-justify-center S0-gap-4 S0-items-stretch">
+      <h3 class="S0-flex-1 S0-text-end">{{actorValues actor 'morphology'}}</h3>
       <div class="S0-vertical-divider "></div>
       <h3 class="S0-flex-1 S0-text-start">{{actorValues actor 'district'}}</h3>
     </div>

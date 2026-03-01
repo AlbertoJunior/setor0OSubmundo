@@ -4,9 +4,7 @@
     <div class="S0-flex S0-items-center">
       <label class="S0-flex-1" for="job">{{ localize 'S0.Atuacao' }}:</label>
       {{#lett assignment=(actorValues actor 'assignment') editable=editable}}
-      <input class="S0-flex-2" id="job" style="color: var(--primary-color);" name="system.background.assignment"
-        type="text" placeholder="{{ localize 'S0.Atuacao' }}" value="{{assignment}}" {{#unless
-        editable}}disabled{{/unless}} />
+      <input class="S0-flex-2 S0-text-primary" id="job" name="system.background.assignment" type="text" placeholder="{{ localize 'S0.Atuacao' }}" value="{{assignment}}" {{#unless editable}}disabled{{/unless}} />
       {{/lett}}
     </div>
 

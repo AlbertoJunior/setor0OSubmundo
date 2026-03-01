@@ -18,9 +18,8 @@
     <label class="S0-block S0-font-bold">{{ localize 'S0.Testes' }}:</label>
 
     {{#each possible_tests}}
-    <div class="S0-flex S0-items-center S0-col-gap-10 S0-border-b-secondary-alpha" style="padding: 6px;">
-      <a class="S0-icon-rotate" style="text-shadow: 0 0 6px var(--primary-color-alpha);"
-        data-characteristic="enhancement" data-action="roll" data-item-id="{{id}}">
+    <div class="S0-flex S0-items-center S0-col-gap-10 S0-border-b-secondary-alpha S0-p-6">
+      <a class="S0-icon-rotate S0-shadow-primary" data-characteristic="enhancement" data-action="roll" data-item-id="{{id}}">
         <i class="fas fa-dice-d10"></i>
       </a>
       <div>
@@ -29,12 +28,12 @@
           <h4>{{parse 'roll_enhancement_formule' ../familyId primary_attribute secondary_attribute ability}}
           </h4>
         </label>
-        <label style="display: inline;">{{localize 'S0.Dificuldade'}}:</label>
-        <h4 style="display: inline;">{{difficulty}}</h4>
+        <label class="S0-inline">{{localize 'S0.Dificuldade'}}:</label>
+        <h4 class="S0-inline">{{difficulty}}</h4>
       </div>
     </div>
     {{else}}
-    <p style="font-style: italic;">{{localize 'S0.Nao_Possui'}}</p>
+    <p class="S0-italic">{{localize 'S0.Nao_Possui'}}</p>
     {{/each}}
   </div>
 

@@ -2,12 +2,12 @@
   "id": "setor0OSubmundo",
   "title": "Setor 0 - O Submundo",
   "description": "Jogue Setor 0 - O Submundo no Foundry VTT",
-  "url": "https://www.set0rpg.com.br",
   "version": "0.0.3",
   "background": "/systems/setor0OSubmundo/imgs/banner.webp",
-  "manifest": "https://raw.githubusercontent.com/AlbertoJunior/RPG-fvtt-sector-0/master/system.json",
-  "download": "https://github.com/AlbertoJunior/RPG-fvtt-sector-0/download/archive.zip",
-  "bugs": "https://github.com/AlbertoJunior/RPG-fvtt-sector-0/issues",
+  "url": "https://github.com/AlbertoJunior/setor0OSubmundo",
+  "manifest": "https://raw.githubusercontent.com/AlbertoJunior/setor0OSubmundo/refs/heads/master/system.json",
+  "download": "https://github.com/AlbertoJunior/setor0OSubmundo/archive/refs/heads/master.zip",
+  "bugs": "https://github.com/AlbertoJunior/setor0OSubmundo/issues",
   "authors": [
     {
       "name": "Alberto Junior",
@@ -18,8 +18,8 @@
   "license": "LICENSE",
   "readme": "README.md",
   "compatibility": {
-    "minimum": 12,
-    "verified": 13
+    "minimum": "12",
+    "verified": "13.346"
   },
   "esmodules": [
     "setor0OSubmundo.mjs"
