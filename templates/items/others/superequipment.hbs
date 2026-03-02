@@ -31,7 +31,7 @@
     </a>
   </div>
 
-  <hr style="margin: 2px;">
+  <hr class="S0-m-2">
 
   <div class="S0-p-4">
     <h4>
@@ -50,8 +50,8 @@
     <ul>
       {{#each (itemValues item 'superequipment_effects')}}
       <li>
-        <div class="S0-flex S0-items-center S0-my-2 S0-py-8 S0-border-b-secondary" style="min-height: 35px;">
-          <div class="S0-flex-1 S0-text-12 S0-mr-4" style="min-width: 0;">
+        <div class="S0-flex S0-items-center S0-my-2 S0-py-8 S0-border-b-secondary S0-min-h-35">
+          <div class="S0-flex-1 S0-text-12 S0-mr-4 S0-min-w-0">
             <label class="S0-block">[{{cost}}] {{name}}</label>
             {{#if particularity}}
             <label class="S0-hide-long-text S0-block">({{particularity.description}})</label>
@@ -73,8 +73,7 @@
       {{localize 'S0.Itens.Defeitos'}}
 
       {{#if editable}}
-      <label class="S0-overflow-hidden S0-text-11"
-        style="width: calc(100% - 30px); text-overflow: ellipsis; white-space: nowrap; text-wrap: nowrap;">
+      <label class="S0-overflow-hidden S0-text-11 S0-w-calc-30 S0-truncate">
         {{itemValues item 'superequipment_defects_limit'}}
       </label>
       <a class="S0-icon-expand" data-characteristic="superequipment" data-subcharacteristic="trait" data-action="add"
@@ -86,8 +85,8 @@
 
     <ul>
       {{#each (itemValues item 'superequipment_defects')}}
-      <li class="S0-flex S0-items-center S0-my-2 S0-py-8 S0-border-b-secondary" style="min-height: 35px;">
-        <div class="S0-flex-1 S0-text-12 S0-mr-4" style="min-width: 0;">
+      <li class="S0-flex S0-items-center S0-my-2 S0-py-8 S0-border-b-secondary S0-min-h-35">
+        <div class="S0-flex-1 S0-text-12 S0-mr-4 S0-min-w-0">
           <label class="S0-block">[{{cost}}] {{name}}</label>
           {{#if particularity}}
           <label class="S0-hide-long-text S0-block">({{particularity.description}})</label>

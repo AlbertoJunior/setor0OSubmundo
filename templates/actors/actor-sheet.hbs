@@ -6,12 +6,12 @@
     </li>
   </ul>
 
-  <header class="S0-container" style="min-height: 88px">
+  <header class="S0-container S0-min-h-88">
     {{#if editable}}
-    <h2 class="S0-flex S0-items-center">
-      <label for="name" style="min-width: 84.5px;">{{ localize 'S0.Nome' }}:</label>
+    <div class="S0-flex S0-items-center S0-flex-1">
+      <label for="name" class="S0-min-w-85">{{ localize 'S0.Nome' }}:</label>
       <input id="name" name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'S0.Nome' }}" />
-    </h2>
+    </div>
     <ul class="S0-m-0 S0-p-0 S0-columns-2">
       <li class="S0-flex S0-items-center">
         <label class="S0-flex-1" for="morfologia">{{ localize 'S0.Morfologia' }}:</label>

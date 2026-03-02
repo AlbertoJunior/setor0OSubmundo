@@ -66,17 +66,18 @@
       </li>
     </div>
     {{else}}
-    <div id="shortcuts-container-{{actor.id}}" class="S0-container-2-fixed-column S0-container-contract S0-drop-container S0-expanded S0-overflow-y-scroll S0-pl-4 S0-row-gap-0 S0-col-gap-4">
+    <div id="shortcuts-container-{{actor.id}}"
+      class="S0-container-2-fixed-column S0-container-contract S0-drop-container S0-expanded S0-overflow-y-scroll S0-pl-4 S0-row-gap-0 S0-col-gap-4">
       {{#each (actorLists actor 'shortcuts') as |shortcut|}}
       <div class="S0-container S0-shortcut-item {{#if ../editable}}draggable{{/if}}">
         {{#if ../editable}}
-        <a class="S0-icon-expand S0-text-center S0-mr-4" title="{{localize 'S0.Editar'}}" data-action="edit"
-          data-characteristic="shortcuts" data-item-id="{{shortcut.id}}" style="width: 20px;">
+        <a class="S0-icon-expand S0-text-center S0-mr-4 S0-w-20" title="{{localize 'S0.Editar'}}" data-action="edit"
+          data-characteristic="shortcuts" data-item-id="{{shortcut.id}}">
           <i class="fas fa-edit"></i>
         </a>
         {{/if}}
 
-        <label class="S0-max-2-line-text S0-text-start S0-flex-1 S0-mr-4 S0-pointer-events-none" style="max-width: 160px;">
+        <label class="S0-max-2-line-text S0-text-start S0-flex-1 S0-mr-4 S0-pointer-events-none S0-max-w-160">
           {{shortcut.name}}
         </label>
 
@@ -88,8 +89,8 @@
           {{/if}}
         </h3>
 
-        <a class="S0-icon-rotate S0-text-center" title="{{localize 'S0.Rolar'}}" data-action="roll"
-          data-characteristic="shortcuts" data-item-id="{{shortcut.id}}" style="width: 20px;">
+        <a class="S0-icon-rotate S0-text-center S0-w-20" title="{{localize 'S0.Rolar'}}" data-action="roll"
+          data-characteristic="shortcuts" data-item-id="{{shortcut.id}}">
           <i class="fas fa-dice-d10"></i>
         </a>
       </div>

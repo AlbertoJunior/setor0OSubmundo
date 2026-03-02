@@ -1,5 +1,5 @@
 import { ActorUtils } from "../../../../../core/actor/actor-utils.mjs";
-import { selectCharacteristic, TODO } from "../../../../../utils/utils.mjs";
+import { selectCharacteristic } from "../../../../../utils/utils.mjs";
 import { BaseActorCharacteristicType, CharacteristicType, CharacteristicTypeMap } from "../../../../../enums/characteristic-enums.mjs";
 import { ActorUpdater } from "../../../../updater/actor-updater.mjs";
 
@@ -11,8 +11,7 @@ export async function characteristicOnClick(event, actor) {
   const characteristicType = event.currentTarget.dataset.characteristic;
 
   let systemCharacteristic;
-  TODO('melhorar a forma como sei que é fama')
-  if (characteristicType == 'fama') {
+  if (characteristicType == undefined) {
     systemCharacteristic = CharacteristicType.SIMPLE.system;
   } else {
     systemCharacteristic = CharacteristicTypeMap[characteristicType];

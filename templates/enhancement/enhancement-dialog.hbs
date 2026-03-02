@@ -1,5 +1,5 @@
 <div class="S0-dialog">
-  <div class="S0-container S0-flex" style="column-gap: 5px;">
+  <div class="S0-container S0-flex S0-col-gap-6">
     <div class="S0-flex-3">
       <h3>
         {{ localize 'S0.Level' }}: {{level}}
@@ -19,7 +19,8 @@
 
     {{#each possible_tests}}
     <div class="S0-flex S0-items-center S0-col-gap-10 S0-border-b-secondary-alpha S0-p-6">
-      <a class="S0-icon-rotate S0-shadow-primary" data-characteristic="enhancement" data-action="roll" data-item-id="{{id}}">
+      <a class="S0-icon-rotate S0-shadow-primary" data-characteristic="enhancement" data-action="roll"
+        data-item-id="{{id}}">
         <i class="fas fa-dice-d10"></i>
       </a>
       <div>

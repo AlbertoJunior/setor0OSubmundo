@@ -8,7 +8,7 @@
   </ul>
 
   <div class="S0-container S0-flex S0-items-start S0-col-gap-6">
-    <div class="S0-image-npc" {{#if editable}}style="border-color: var(--primary-color-alpha-50)" {{/if}}>
+    <div class="S0-image-npc {{#if editable}}S0-border-primary-alpha-50{{/if}}">
       <img {{#if editable}}data-action="edit" data-characteristic="img" title="Clique para alterar a imagem" {{else}}
         title="Clique para ver a imagem" data-action="view" data-characteristic="img" {{/if}}
         class="S0-actor-images S0-clickable" src="{{actor.img}}">

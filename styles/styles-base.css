@@ -416,12 +416,6 @@
   font-size: var(--font-size-13);
 }
 
-.S0-flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .S0-buff-color {
   color: var(--color-green);
   text-shadow: 0px 0px 2px;
