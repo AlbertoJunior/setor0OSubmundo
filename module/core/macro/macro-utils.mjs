@@ -11,6 +11,8 @@ import { ActorEquipmentUtils } from "../actor/actor-equipment-utils.mjs";
 import { openBagMacroData } from "./default/open-bag.mjs";
 import { openShortcutMacroData } from "./default/open-shortcut.mjs";
 import { rollOverloadMacroData } from "./default/roll-overload.mjs";
+import { openRollMacroData } from "./default/open-roll.mjs";
+import { ActorRollDialog } from "../../creators/dialog/actor-roll-dialog.mjs";
 import { cleanMacroHotbarUserMacroData } from "./gm/clean-macro-hotbar.mjs";
 import { resetUserFlagsMacroData } from "./gm/reset-user-flags.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
@@ -20,6 +22,9 @@ import { CompendiumSync } from "../pack/compendium-sync.mjs";
 
 export class MacroUtils {
   static MacroMethods = {
+    rollDialog: async (actor) => {
+      ActorRollDialog.open(actor);
+    },
     overload: async (actor) => {
       await DefaultActions.processOverloadRoll(actor);
     },
@@ -71,7 +76,8 @@ export class MacroUtils {
     return [
       openBagMacroData,
       openShortcutMacroData,
-      rollOverloadMacroData
+      rollOverloadMacroData,
+      openRollMacroData
     ];
   }
 

@@ -2,6 +2,7 @@
 
 | Arquivo | Descrição | Data |
 | :--- | :--- | :--- |
+| [25-nova-macro-rolagem.md](./25-nova-macro-rolagem.md) | Criação da macro padrão "Fazer Rolagem" que integra o ActorRollDialog utilizando as injeções globais e validações de canvas/permissão. | 04/03/2026 |
 | [24-remocao-estilos-inline-restantes.md](./24-remocao-estilos-inline-restantes.md) | Padronização dos estilos inline remanescentes nas sub-fichas/variados para uso de classes Utilitárias (`S0-*`). | 01/03/2026 |
 | [23-padronizacao-estilos-inline.md](./23-padronizacao-estilos-inline.md) | Padronização de estilos inline em templates substituindo-os por classes CSS Utilitárias (`S0-*`) centralizadas no `utilities.css`. | 24/02/2026 |
 | [22-sistema-migracao-v13.md](./22-sistema-migracao-v13.md) | Sistema Oficial de Migration (DataModel e Background Sync) para atualizar documentos de versões antigas | 24/02/2026 |
