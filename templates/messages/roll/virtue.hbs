@@ -18,24 +18,36 @@
 
     <hr>
 
-    <div class="S0-flex S0-items-center S0-col-gap-4 S0-my-6 S0-justify-around">
-      <label>{{localize 'S0.Sucessos'}}: {{ resultValue }} </label>
+    <div class="S0-container-2-column">
+      {{!-- <label>{{localize 'S0.Sucessos'}}: {{ resultValue }} </label> --}}
       <label>{{localize 'S0.Dificuldade'}}: {{ difficulty }}</label>
     </div>
 
-    <section>
-      {{#if (operators 'gt' penalty 0)}}
-      <label class="S0-block S0-my-4">{{localize 'S0.Penalidade'}}: {{ penalty }}</label>
-      {{/if}}
+    <hr>
 
+    <!-- #region BONUS and PENALTY -->
+    {{#if (operators 'or' (operators 'gt' penalty 0) (operators 'gt' bonus 0))}}
+    <div class="S0-container-2-column">
       {{#if (operators 'gt' bonus 0)}}
-      <label class="S0-block S0-my-4">{{localize 'S0.Bonus'}}: {{ bonus }}</label>
+      <label>{{localize 'S0.Bonus'}}: {{ bonus }}</label>
       {{/if}}
 
-      {{#if (operators 'gt' automatic 0)}}
-      <label class="S0-block S0-my-4">{{localize 'S0.Automatico'}}: {{ automatic }}</label>
+      {{#if (operators 'gt' penalty 0)}}
+      <label>{{localize 'S0.Penalidade'}}: {{ penalty }}</label>
       {{/if}}
-    </section>
+    </div>
+
+    <hr>
+    {{/if}}
+    <!-- #endregion -->
+
+    {{#if (operators 'gt' automatic 0)}}
+    <div class="S0-container-2-column">
+      <label>{{localize 'S0.Automatico'}}: {{ automatic }}</label>
+    </div>
+
+    <hr>
+    {{/if}}
 
     <!-- #region CAN USE CONSCIOUSNESS -->
     {{#if canUseConsciousness}}

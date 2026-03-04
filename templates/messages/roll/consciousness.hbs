@@ -2,7 +2,7 @@
   <h4 class="S0-text-center">{{title}}</h4>
   <hr>
   <div class="dice-tooltip S0-container-contract">
-    <p>{{localize 'S0.Rolagem_Anterior'}}:</p>
+    <p>{{localize 'S0.Rolagem_Anterior'}} ({{firstRollResult}}):</p>
 
     <ol class="dice-rolls">
       {{#each diceValues}}
@@ -10,12 +10,32 @@
       {{/each}}
     </ol>
 
-    <p>{{localize 'S0.Nova_Rolagem'}}:</p>
+    <p>{{localize 'S0.Nova_Rolagem'}} ({{secondRollResult}}):</p>
     <ol class="dice-rolls S0-mt-0">
       {{#each newDiceValues}}
       <li class="S0-d10 roll d10">{{ this }}</li>
       {{/each}}
     </ol>
+
+    <hr>
+
+    <div class="S0-container-2-column">
+      <label>
+        {{localize 'S0.Dificuldade'}}: {{ difficulty }}
+      </label>
+    </div>
+
+    <hr>
+
+    {{#if (operators 'gt' automatic 0)}}
+    <div class="S0-container-2-column">
+      <label>
+        {{localize 'S0.Automatico'}}: {{ automatic }}
+      </label>
+    </div>
+
+    <hr>
+    {{/if}}
   </div>
 
   <button class="S0-roll-result {{ resultMessageClasses }}" data-action="view" data-type="toggle-tooltip">

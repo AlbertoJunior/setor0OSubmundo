@@ -24,10 +24,10 @@ export class RollConsciousness {
       values: values,
       newValues: resultRoll.values,
       difficulty: optionsRoll.difficulty || 6,
-      critic: optionsRoll.critic || 10,
-      specialist: optionsRoll.specialist || false,
-      automatic: (optionsRoll.automatic || 0) + (optionsRoll?.weapon?.true_damage || 0)
+      automatic: (optionsRoll.automatic || 0)
     };
+
+    params.successes = this.#calculateSuccesses(values, resultRoll.values, params)
 
     const messageContent = await RollConsciousnessMessageCreator.mountContent(params);
 
@@ -37,5 +37,27 @@ export class RollConsciousness {
     await ChatCreator.sendToChatTypeRoll(actorOnMessage, messageContent, [newRoll]);
 
     return params;
+  }
+
+  static #calculateSuccesses(firstRoll, secondRoll, params) {
+    const { difficulty, automatic } = params
+    const first = this.#calculate(firstRoll, difficulty)
+    const second = this.#calculate(secondRoll, difficulty)
+    return {
+      first: first,
+      second: second,
+      automatic: automatic,
+      total: first + second + automatic
+    }
+  }
+
+  static #calculate(values, difficulty) {
+    let result = 0;
+    for (const element of values) {
+      if (element >= difficulty) {
+        result++;
+      }
+    }
+    return result;
   }
 }

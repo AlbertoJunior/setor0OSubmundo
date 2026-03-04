@@ -1,31 +1,48 @@
 import { localize } from "../../utils/utils.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
-import { RollMessageCreator } from "./roll-mesage.mjs";
 
 export class RollConsciousnessMessageCreator {
   static async mountContent(params) {
     const {
       values,
       newValues,
-      specialist,
       difficulty,
-      critic,
-      automatic
+      automatic,
+      successes
     } = params;
 
-    const combinedValues = [...values, ...newValues];
-    const resultRoll = RollMessageCreator.verifyResultRoll([], combinedValues, specialist, difficulty, critic, automatic);
+    debugger
+    const mountedMessage = this.#mountMessage(successes);
 
     const data = {
       title: localize('Consciencia'),
+      automatic: automatic,
       diceValues: values,
+      difficulty: difficulty,
       newDiceValues: newValues,
-      resultMessage: resultRoll.message.message,
-      resultMessageClasses: resultRoll.message.classes,
-      resultValue: resultRoll.result
+      resultMessage: mountedMessage.message,
+      resultMessageClasses: mountedMessage.classes,
+      firstRollResult: successes.first,
+      secondRollResult: successes.second,
+      resultValue: successes.total,
     };
 
     return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/messages/roll/consciousness.hbs`, data);
+  }
+
+  static #mountMessage(successes) {
+    let message = localize('Falha')
+    let classes = "S0-failure"
+
+    if (successes.total > 0) {
+      message = localize('Sucesso')
+      classes = "S0-success"
+    }
+
+    return {
+      message: message,
+      classes: classes,
+    }
   }
 }
