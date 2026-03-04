@@ -4,7 +4,7 @@ export const cleanMacroHotbarUserMacroData = {
   flags: {
     [SYSTEM_ID]: {
       [SYSTEM_FLAGS.SOURCE_ID]: '1001',
-      [SYSTEM_FLAGS.ROLE]: 'gm',
+      [SYSTEM_FLAGS.ROLE]: SYSTEM_FLAGS.ROLE_GM,
     }
   },
   name: "Limpar Hotbar",

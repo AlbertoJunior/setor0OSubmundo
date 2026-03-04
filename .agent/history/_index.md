@@ -2,6 +2,7 @@
 
 | Arquivo | Descrição | Data |
 | :--- | :--- | :--- |
+| [27-organizacao-macros-personagem.md](./27-organizacao-macros-personagem.md) | Criação de FolderUtils para unificar a arquitetura de pastas dinâmicas, blindagem Null-Safety no Sync e organização das Macros na pasta Jogadores > Personagem. | 04/03/2026 |
 | [26-reorganizacao-de-pastas-setup-field.md](./26-reorganizacao-de-pastas-setup-field.md) | Reorganização de pastas: migração de fields para dentro de data e criação da pasta setup extraindo configurações de arquivos de utils. | 04/03/2026 |
 | [25-nova-macro-rolagem.md](./25-nova-macro-rolagem.md) | Criação da macro padrão "Fazer Rolagem" que integra o ActorRollDialog utilizando as injeções globais e validações de canvas/permissão. | 04/03/2026 |
 | [24-remocao-estilos-inline-restantes.md](./24-remocao-estilos-inline-restantes.md) | Padronização dos estilos inline remanescentes nas sub-fichas/variados para uso de classes Utilitárias (`S0-*`). | 01/03/2026 |

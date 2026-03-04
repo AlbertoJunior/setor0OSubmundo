@@ -16,7 +16,7 @@ export class MacroInstaller {
 
   static async installList(list) {
     for (const macro of list) {
-      await this.installMacroOnce(macro.name, FlagsUtils.getMacroFlag(macro, SystemFlags.MACRO.SOURCE_ID));
+      await this.installMacroOnce(macro.name, FlagsUtils.getSystemFlag(macro, SystemFlags.SOURCE.ID));
     }
   }
 
@@ -37,7 +37,7 @@ export class MacroInstaller {
     }
 
     const macros = await pack.getDocuments();
-    const macro = macros.find(m => m.name === macroName && FlagsUtils.getMacroFlag(m, SystemFlags.MACRO.SOURCE_ID) && sourceId);
+    const macro = macros.find(m => m.name === macroName && FlagsUtils.getSystemFlag(m, SystemFlags.SOURCE.ID) === sourceId);
     if (!macro) {
       console.warn(`Macro "${macroName}" não encontrada no compêndio ${packId}.`);
       return;

@@ -1,5 +1,7 @@
 import { FoundryApi } from "../../api/foundry-api.mjs";
-import { COLORS, SYSTEM_ID } from "../../constants.mjs";
+import { SYSTEM_ID, SYSTEM_FLAGS } from "../../constants.mjs";
+import { FlagsUtils } from "../../utils/flags-utils.mjs";
+import { FolderUtils } from "../../utils/folder-utils.mjs";
 import { MacroUtils } from "./macro-utils.mjs";
 
 export class MacroSync {
@@ -11,18 +13,14 @@ export class MacroSync {
       return;
     }
 
-    const compendiumMacros = await pack.getDocuments();
-    const defaultMacros = MacroUtils.getDefaultMacroUsers();
-    const gmMacros = MacroUtils.getDefaultGmMacro();
-
-    const allMacros = [...defaultMacros, ...gmMacros];
-
-    const missing = allMacros.filter(macroA => !compendiumMacros.some(macroB => MacroUtils.isTheSameMacro(macroA, macroB)));
-    if (missing.length === 0) {
+    const missingMacros = await this.verifyMissingMacros(pack);
+    if (missingMacros.length === 0) {
       return;
     }
 
-    const roles = new Set(missing.map(macro => macro.flags[SYSTEM_ID]?.role.toUpperCase()));
+    const roles = new Set(
+      missingMacros.map(macro => FlagsUtils.getSystemFlag(macro, SYSTEM_FLAGS.ROLE)?.toUpperCase()).filter(Boolean)
+    );
     const folders = {};
 
     const wasLocked = pack.locked;
@@ -31,25 +29,25 @@ export class MacroSync {
     }
 
     for (const role of roles) {
-      const folder = await this.#getOrCreateMacroFolder(role);
+      const folder = await FolderUtils.getOrCreateMacroFolder(role);
       folders[role] = folder;
       await pack.importFolder(folder);
     }
 
-    for (const item of missing) {
+    for (const macroItem of missingMacros) {
       try {
-        const role = item.flags[SYSTEM_ID]?.role.toUpperCase();
+        const role = FlagsUtils.getSystemFlag(macroItem, SYSTEM_FLAGS.ROLE)?.toUpperCase();
         const folder = folders[role];
 
         const macroDoc = await FoundryApi.Macro.create({
-          ...item,
+          ...macroItem,
           folder: folder
         });
 
         await pack.importDocument(macroDoc);
         await macroDoc.delete();
       } catch (e) {
-        console.error(`Erro ao importar macro '${item.name}':`, e);
+        console.error(`Erro ao importar macro '${macroItem.name}':`, e);
       }
     }
 
@@ -57,32 +55,16 @@ export class MacroSync {
       await pack.configure({ locked: true });
     }
 
-    console.log(`-> ${missing.length} macros adicionadas no compêndio: ${packId}`);
+    console.log(`-> ${missingMacros.length} macros adicionadas no compêndio: ${packId}`);
   }
 
-  static async #getOrCreateMacroFolder(folderName) {
-    let folder = game.folders.find(f => f.name === folderName && f.type === "Macro");
-    if (!folder) {
-      const folderColor = this.#getFolderColor(folderName);
-      folder = await Folder.create({
-        name: folderName,
-        type: "Macro",
-        color: folderColor
-      });
-    }
-    return folder;
-  }
+  static async verifyMissingMacros(pack) {
+    const compendiumMacros = await pack.getDocuments();
+    const defaultMacros = MacroUtils.getDefaultMacroUsers();
+    const gmMacros = MacroUtils.getDefaultGmMacro();
 
-  static #getFolderColor(role) {
-    const upperRole = role.toUpperCase();
+    const allMacros = [...defaultMacros, ...gmMacros];
 
-    switch (upperRole) {
-      case "GM":
-        return COLORS.BASE.red;
-      case "USER":
-        return COLORS.BASE.blue;
-      default:
-        return `#${Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, "0")}`;
-    }
+    return allMacros.filter(macroA => !compendiumMacros.some(macroB => MacroUtils.isTheSameMacro(macroA, macroB)));
   }
 }

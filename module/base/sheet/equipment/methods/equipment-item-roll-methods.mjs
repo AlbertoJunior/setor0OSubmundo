@@ -40,7 +40,7 @@ class EquipmentSheetItemRollHandle {
 
     const addType = event.currentTarget.dataset.type;
     if (addType == 'macro') {
-      await RollTestUtils.createMacroByRollTestData(rollTest, { parentName: item.name, img: item.img });
+      await RollTestUtils.createMacroByRollTestData(rollTest, { parentName: item.name, img: item.img, actor: item.actor });
     } else if (addType == 'clone') {
       const cloneTest = {
         ...rollTest,

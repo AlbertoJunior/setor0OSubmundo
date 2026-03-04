@@ -5,7 +5,7 @@ export const seeArtWorkMacroData = {
   flags: {
     [SYSTEM_ID]: {
       [SYSTEM_FLAGS.SOURCE_ID]: '4',
-      [SYSTEM_FLAGS.ROLE]: 'user',
+      [SYSTEM_FLAGS.ROLE]: SYSTEM_FLAGS.ROLE_USER,
     }
   },
   name: "Ver arte do Personagem",

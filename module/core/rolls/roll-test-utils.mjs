@@ -1,9 +1,10 @@
 import { MacroUtils } from "../macro/macro-utils.mjs";
 import { createCustomRollableMacro } from "../../core/macro/commands/custom-rollable.mjs";
+import { FolderUtils } from "../../utils/folder-utils.mjs";
 
 export class RollTestUtils {
   static async createMacroByRollTestData(rollTestData, params = {}) {
-    const { img, parentName } = params
+    const { img, parentName, actor } = params
     const safeParentName = parentName ? `${parentName}: ` : '';
 
     const name = `${safeParentName}${rollTestData.name}`;
@@ -11,6 +12,12 @@ export class RollTestUtils {
     const flags = {
       sourceId: rollTestData.id
     };
-    await MacroUtils.createMacro({ name, command, img, flags });
+
+    let folderId = null;
+    if (actor) {
+      folderId = await FolderUtils.getCharacterMacroFolderId(actor);
+    }
+
+    await MacroUtils.createMacro({ name, command, img, flags, folder: folderId, toHotbar: true });
   }
 }

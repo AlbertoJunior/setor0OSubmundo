@@ -5,7 +5,7 @@ export const openShortcutMacroData = {
   flags: {
     [SYSTEM_ID]: {
       [SYSTEM_FLAGS.SOURCE_ID]: '2',
-      [SYSTEM_FLAGS.ROLE]: 'user',
+      [SYSTEM_FLAGS.ROLE]: SYSTEM_FLAGS.ROLE_USER,
     }
   },
   name: "Abrir Atalhos",

@@ -43,7 +43,7 @@ export class UpdateActorHookHandle {
       const all = new Set([...allies, ...informants]);
       if (all.has(updatedActorId)) {
         if (this.#verifyNeedUpdate(actor, startRefreshTime)) {
-          FlagsUtils.setItemFlag(actor, SystemFlags.OTHER.LAST_REFRESH, startRefreshTime);
+          FlagsUtils.setItemFlag(actor, SystemFlags.TIME.LAST_REFRESH, startRefreshTime);
           actor.sheet.render(false);
         }
       }
@@ -55,7 +55,7 @@ export class UpdateActorHookHandle {
       return false;
     }
 
-    const lastRefresh = FlagsUtils.getItemFlag(actor, SystemFlags.OTHER.LAST_REFRESH);
+    const lastRefresh = FlagsUtils.getItemFlag(actor, SystemFlags.TIME.LAST_REFRESH);
     return !lastRefresh || currentTime - lastRefresh > 1000
   }
 

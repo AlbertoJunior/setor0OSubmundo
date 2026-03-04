@@ -1,6 +1,16 @@
+// TODO: PASSAR A USAR ESSE AO INVÉS DE SYSTEM_FLAGS
 export const SystemFlags = Object.freeze({
+  ORIGIN: {
+    ID: "originId",
+    TYPE: "originType",
+  },
+  SOURCE: {
+    ID: 'sourceId'
+  },
+  CHARACTER: {
+    ID: 'characterId'
+  },
   MACRO: {
-    SOURCE_ID: 'sourceId',
     INSTALLED: 'macroInstalled',
   },
   MODE: {
@@ -8,7 +18,11 @@ export const SystemFlags = Object.freeze({
     DARK: 'darkMode',
     COMPACT: 'compactMode',
   },
-  OTHER: {
+  TIME: {
     LAST_REFRESH: 'lastRefresh'
+  },
+  ROLE: {
+    USER: 'user',
+    GM: 'gm',
   }
 });

@@ -16,11 +16,15 @@ export const SYSTEM_HOOKS = Object.freeze({
   MIGRATIONS_INIT: "setor0OSubmundo.migrationsInit"
 });
 
+// DEPRECATED: Usar SystemFlags no lugar
 export const SYSTEM_FLAGS = Object.freeze({
   ORIGIN_ID: "originId",
   ORIGIN_TYPE: "originType",
   SOURCE_ID: "sourceId",
-  ROLE: "role"
+  CHARACTER_ID: "characterId",
+  ROLE: "role",
+  ROLE_GM: "gm",
+  ROLE_USER: "user",
 });
 
 export const DEFAULT_VALUES = Object.freeze({

@@ -4,7 +4,7 @@ export const getInvalidActorJsonMacroData = {
   flags: {
     [SYSTEM_ID]: {
       [SYSTEM_FLAGS.SOURCE_ID]: '1002',
-      [SYSTEM_FLAGS.ROLE]: 'gm',
+      [SYSTEM_FLAGS.ROLE]: SYSTEM_FLAGS.ROLE_GM,
     }
   },
   name: "Pegar Json de Ator com erro",

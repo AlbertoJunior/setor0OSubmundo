@@ -4,7 +4,7 @@ export const exportCompendiunsMacroData = {
   flags: {
     [SYSTEM_ID]: {
       [SYSTEM_FLAGS.SOURCE_ID]: '1004',
-      [SYSTEM_FLAGS.ROLE]: 'gm',
+      [SYSTEM_FLAGS.ROLE]: SYSTEM_FLAGS.ROLE_GM,
     }
   },
   name: "Exportar compendiuns",

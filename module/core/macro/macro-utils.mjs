@@ -1,7 +1,7 @@
 import { getObject, normalizeString } from "../../utils/utils.mjs";
 import { shortcutCustomRoll } from "../../base/sheet/actor/player/methods/shortcut-methods.mjs";
 import { rollByItemAndRollId } from "../../base/sheet/equipment/methods/equipment-item-roll-methods.mjs";
-import { SYSTEM_ID } from "../../constants.mjs";
+import { SYSTEM_FLAGS, SYSTEM_ID } from "../../constants.mjs";
 import { NotificationsUtils } from "../../creators/message/notifications.mjs";
 import { CharacteristicType } from "../../enums/characteristic-enums.mjs";
 import { EquipmentCharacteristicType } from "../../enums/equipment-enums.mjs";
@@ -89,7 +89,9 @@ export class MacroUtils {
     ];
   }
 
-  static async createMacro({ name, command, img, toHotbar = true, flags } = {}) {
+  static async createMacro(params = {}) {
+    const { name, command, img, toHotbar = false, flags, folder } = params;
+
     const normalizedName = normalizeString(name);
     const normalizedCommand = normalizeString(command);
     let macro = game.macros.find(m => normalizeString(m.name) === normalizedName && normalizeString(m.command) === normalizedCommand);
@@ -104,6 +106,7 @@ export class MacroUtils {
         type: "script",
         command,
         img,
+        folder: folder,
       });
 
       if (toHotbar) {
@@ -121,8 +124,8 @@ export class MacroUtils {
   }
 
   static isTheSameMacro(macroA, macroB) {
-    const sourceIdA = FlagsUtils.getMacroFlag(macroA, 'sourceId');
-    const sourceIdB = FlagsUtils.getMacroFlag(macroB, 'sourceId');
+    const sourceIdA = FlagsUtils.getSystemFlag(macroA, SYSTEM_FLAGS.SOURCE_ID);
+    const sourceIdB = FlagsUtils.getSystemFlag(macroB, SYSTEM_FLAGS.SOURCE_ID);
 
     const sameName = normalizeString(macroA.name) === normalizeString(macroB.name);
     const sameCommand = normalizeString(macroA.command) === normalizeString(macroB.command);
