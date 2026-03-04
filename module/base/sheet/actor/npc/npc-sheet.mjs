@@ -4,7 +4,7 @@ import { SYSTEM_ID, TEMPLATES_PATH } from "../../../../constants.mjs";
 import { BaseActorCharacteristicType, CharacteristicType } from "../../../../enums/characteristic-enums.mjs";
 import { OnEventType } from "../../../../enums/on-event-type.mjs";
 import { DialogUtils } from "../../../../utils/dialog-utils.mjs";
-import { loadAndRegisterTemplates } from "../../../../utils/templates.mjs";
+import { loadAndRegisterTemplates } from "../../../../setup/templates.mjs";
 import { menuHandleMethods } from "../../../menu-default-methods.mjs";
 import { ActorUpdater } from "../../../updater/actor-updater.mjs";
 import { handlerEquipmentEvents } from "../player/methods/equipment-methods.mjs";

@@ -1,4 +1,4 @@
-import { randomId } from "../utils/utils.mjs";
+import { randomId } from "../../utils/utils.mjs";
 
 const { StringField, SchemaField } = foundry.data.fields;
 

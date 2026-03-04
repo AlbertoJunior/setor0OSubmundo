@@ -3,7 +3,7 @@ import { EquipmentUtils } from "../../../../core/equipment/equipment-utils.mjs";
 import { ConfirmationDialog } from "../../../../creators/dialog/confirmation-dialog.mjs";
 import { EquipmentCharacteristicType } from "../../../../enums/equipment-enums.mjs";
 import { OnEventType } from "../../../../enums/on-event-type.mjs";
-import { SuperEquipmentField } from "../../../../field/equipment-field.mjs";
+import { SuperEquipmentField } from "../../../../data/field/equipment-field.mjs";
 import { EquipmentUpdater } from "../../../updater/equipment-updater.mjs";
 import { CreateFormDialog } from "../../../../creators/dialog/create-dialog.mjs";
 import { SubstanceEffectRepository } from "../../../../repository/substance-effect-repository.mjs";

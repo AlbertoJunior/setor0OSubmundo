@@ -1,4 +1,4 @@
-import { StandardEffectChangeField } from "../field/effect-fields.mjs";
+import { StandardEffectChangeField } from "../data/field/effect-fields.mjs";
 
 const { NumberField, StringField, BooleanField, ArrayField } = foundry.data.fields;
 

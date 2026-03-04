@@ -1,7 +1,7 @@
 import { FoundryApi } from "../api/foundry-api.mjs";
 import { ActiveEffectsTypes } from "../enums/active-effects-enums.mjs";
 import { CharacteristicType } from "../enums/characteristic-enums.mjs";
-import { StandardEffectField } from "../field/effect-fields.mjs";
+import { StandardEffectField } from "../data/field/effect-fields.mjs";
 
 export class SubstanceEffectRepository {
 

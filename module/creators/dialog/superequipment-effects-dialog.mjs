@@ -2,7 +2,7 @@ import { gameLocalize, localize, randomId } from "../../utils/utils.mjs";
 import { EquipmentInfoParser } from "../../core/equipment/equipment-info.mjs";
 import { CharacteristicType } from "../../enums/characteristic-enums.mjs";
 import { EquipmentCharacteristicType, SuperEquipmentParticularityType } from "../../enums/equipment-enums.mjs";
-import { SuperEquipmentParticularityField } from "../../field/equipment-field.mjs";
+import { SuperEquipmentParticularityField } from "../../data/field/equipment-field.mjs";
 import { AbilityRepository } from "../../repository/ability-repository.mjs";
 import { AttributeRepository } from "../../repository/attribute-repository.mjs";
 import { SuperEquipmentTraitRepository } from "../../repository/superequipment-trait-repository.mjs";

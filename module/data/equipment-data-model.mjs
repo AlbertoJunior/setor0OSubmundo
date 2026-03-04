@@ -1,7 +1,7 @@
 import { DamageType, EquipmentHand, EquipmentHidding, EquipmentType, MeleeSize, SubstanceType } from "../enums/equipment-enums.mjs";
-import { SuperEquipmentField } from "../field/equipment-field.mjs";
-import { StandardEffectField } from "../field/effect-fields.mjs";
-import { RollTestField } from "../field/roll-test-field.mjs";
+import { SuperEquipmentField } from "../data/field/equipment-field.mjs";
+import { StandardEffectField } from "../data/field/effect-fields.mjs";
+import { RollTestField } from "../data/field/roll-test-field.mjs";
 import { ActiveEffectsMigration } from "../migration/migrations/migrate-active-effects.mjs";
 
 const { StringField, NumberField, BooleanField, ArrayField } = foundry.data.fields;

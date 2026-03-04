@@ -1,5 +1,5 @@
-import { ActiveEffectsTypes } from "../enums/active-effects-enums.mjs";
-import { EffectChangeValueType } from "../enums/enhancement-enums.mjs";
+import { ActiveEffectsTypes } from "../../enums/active-effects-enums.mjs";
+import { EffectChangeValueType } from "../../enums/enhancement-enums.mjs";
 
 const { NumberField, StringField, SchemaField, ArrayField } = foundry.data.fields;
 

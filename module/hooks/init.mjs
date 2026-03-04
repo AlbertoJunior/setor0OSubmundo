@@ -1,10 +1,11 @@
-import { createDataModels } from "../utils/models.mjs";
+import { loadHandlebarsHelpers } from "../setup/handlerbars-helper.mjs";
+import { createDataModels } from "../setup/models.mjs";
+import { Setor0Settings } from "../setup/settings.mjs";
+import { registerTemplates } from "../setup/templates.mjs";
 import { configureSetor0Combat } from "../base/sheet/combat/Setor0Combat.mjs";
 import { configureSetor0Combatant } from "../base/sheet/combat/Setor0Combatant.mjs";
 import { configureSetor0CombatTracker } from "../base/sheet/combat/Setor0CombatTracker.mjs";
 import { configureSetor0TokenDocument } from "../core/token/Setor0TokenDocument.mjs";
-import { loadHandlebarsHelpers } from "../utils/handlerbars-helper.mjs";
-import { registerTemplates } from "../utils/templates.mjs";
 import { DEFAULT_VALUES, SYSTEM_HOOKS, SYSTEM_ID } from "../constants.mjs";
 import { FoundryApi } from "../api/foundry-api.mjs";
 import { MacroUtils } from "../core/macro/macro-utils.mjs";
@@ -12,7 +13,6 @@ import { configureSetor0ActiveEffect } from "../core/effect/Setor0ActiveEffect.m
 import { TokenUtils } from "../core/token/token-utils.mjs";
 import { ActiveEffectHookHandle } from "./active-effects.mjs";
 import { configureSetor0ChatLog } from "../core/chat/Setor0ChatLog.mjs";
-import { Setor0Settings } from "../utils/settings.mjs";
 import { PreCreateItemHookHandle } from "./pre-create-item.mjs";
 
 export class InitHookHandle {

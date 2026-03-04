@@ -1,10 +1,10 @@
 import { ActorEquipmentUtils } from "../core/actor/actor-equipment-utils.mjs";
 import { Setor0TokenDocument } from "../core/token/Setor0TokenDocument.mjs";
-import { ActorCharacteristicField, ActorEnhancementField, ActorAttributes, ActorAbilities, ActorVirtues } from "../field/actor-fields.mjs";
-import { TraitField } from "../field/trait-field.mjs";
+import { ActorCharacteristicField, ActorEnhancementField, ActorAttributes, ActorAbilities, ActorVirtues } from "../data/field/actor-fields.mjs";
+import { TraitField } from "../data/field/trait-field.mjs";
 import { ActorUtils } from "../core/actor/actor-utils.mjs";
-import { RollTestField } from "../field/roll-test-field.mjs";
-import { NpcSkill } from "../field/npc-fields.mjs";
+import { RollTestField } from "../data/field/roll-test-field.mjs";
+import { NpcSkill } from "../data/field/npc-fields.mjs";
 import { NpcQualityRepository } from "../repository/npc-quality-repository.mjs";
 import { getObject } from "../utils/utils.mjs";
 import { BaseActorCharacteristicType } from "../enums/characteristic-enums.mjs";

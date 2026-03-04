@@ -1,7 +1,7 @@
 import { SYSTEM_ID, TEMPLATES_PATH } from "../../../constants.mjs";
 import { FlagsUtils } from "../../../utils/flags-utils.mjs";
 import { FoundryApi } from "../../../api/foundry-api.mjs";
-import { loadAndRegisterTemplates } from "../../../utils/templates.mjs";
+import { loadAndRegisterTemplates } from "../../../setup/templates.mjs";
 import { menuHandleMethods } from "../../menu-default-methods.mjs";
 import { handlerTraitCharacteristicsEvents } from "./methods/trait-effects-methods.mjs";
 import { localize } from "../../../utils/utils.mjs";

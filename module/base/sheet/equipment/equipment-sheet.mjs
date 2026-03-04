@@ -2,7 +2,7 @@ import { SYSTEM_ID, TEMPLATES_PATH, SYSTEM_CLASS_CSS } from "../../../constants.
 import { FlagsUtils } from "../../../utils/flags-utils.mjs";
 import { FoundryApi } from "../../../api/foundry-api.mjs";
 import { HtmlJsUtils } from "../../../utils/html-js-utils.mjs";
-import { loadAndRegisterTemplates } from "../../../utils/templates.mjs";
+import { loadAndRegisterTemplates } from "../../../setup/templates.mjs";
 import { menuHandleMethods } from "../../menu-default-methods.mjs";
 import { handlerEquipmentCharacteristicsEvents } from "./methods/equipment-characteristics-methods.mjs";
 import { handlerEquipmentItemRollEvents } from "./methods/equipment-item-roll-methods.mjs";

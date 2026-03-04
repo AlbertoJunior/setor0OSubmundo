@@ -1,4 +1,4 @@
-import { StandardEffectChangeField } from "../../../field/effect-fields.mjs";
+import { StandardEffectChangeField } from "../../../data/field/effect-fields.mjs";
 import { COLORS, ICONS_PATH } from "../../../constants.mjs";
 import { ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../../enums/active-effects-enums.mjs";
 import { EffectChangeValueType } from "../../../enums/enhancement-enums.mjs";

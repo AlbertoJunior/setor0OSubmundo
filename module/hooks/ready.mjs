@@ -1,6 +1,6 @@
+import { RepositoriesUtils } from "../setup/repositories.mjs";
 import { MigrationHandler } from "../migration/migration-handler.mjs";
 import { OscillatingTintManager } from "../core/effect/oscilating-effect-manager.mjs";
-import { RepositoriesUtils } from "../utils/repositories.mjs";
 import { ActiveEffectRepository } from "../repository/active-effects-repository.mjs";
 import { MacroSync } from "../core/macro/macro-sync.mjs";
 import { MacroInstaller } from "../core/macro/macro-installer.mjs";

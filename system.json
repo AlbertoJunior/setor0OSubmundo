@@ -190,6 +190,7 @@
   "socket": false,
   "initiative": "1d10",
   "grid": {
+    "type": 0,
     "distance": 1,
     "units": "PM"
   },

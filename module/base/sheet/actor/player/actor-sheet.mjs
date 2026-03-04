@@ -5,7 +5,7 @@ import { selectLevelOnOptions, updateEnhancementLevelsOptions } from "./methods/
 import { EquipmentType } from "../../../../enums/equipment-enums.mjs";
 import { CharacteristicType } from "../../../../enums/characteristic-enums.mjs";
 import { HtmlJsUtils } from "../../../../utils/html-js-utils.mjs";
-import { loadAndRegisterTemplates } from "../../../../utils/templates.mjs";
+import { loadAndRegisterTemplates } from "../../../../setup/templates.mjs";
 import { SYSTEM_CLASS_CSS, SYSTEM_ID, TEMPLATES_PATH } from "../../../../constants.mjs";
 import { SheetActorDragabbleMethods } from "./methods/dragabble-methods.mjs";
 import { ActorUtils } from "../../../../core/actor/actor-utils.mjs";

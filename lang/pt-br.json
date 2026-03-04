@@ -500,7 +500,7 @@
     "NotStarted": "Não Iniciado",
     "Linked": "Conectado à Cena, clique para Desconectar",
     "Unlinked": "Combate Desconectado, clique para Conectar à cena",
-    "Round": "Turno",
+    "Round": "Turno {round}",
     "Rounds": "Turnos",
     "RoundPrev": "Voltar Turno",
     "RoundNext": "Próximo Turno",
@@ -539,7 +539,7 @@
     "CombatantStatus": "Status",
     "CombatantScene": "Cena do Combatente",
     "CombatantClearMovementHistory": "Limpar histórico de movimentação",
-    "CombatantMovementHistoryCleared": "Histórico de movimentação apagado"
+    "CombatantMovementHistoryCleared": "Histórico de movimentação apagado para o Token \"{name}\""
   },
   "COMPENDIUM": {
     "ClearFilters": "Limpar Filtros",
@@ -748,7 +748,7 @@
     "NONE": "Nenhum",
     "OBSERVER": "Observador",
     "OWNER": "Dono",
-    "Title": "Configuração de Propriedade"
+    "Title": "Configuração de Propriedade: {object}"
   },
   "PACKAGE": {
     "Locked": "Bloqueado",

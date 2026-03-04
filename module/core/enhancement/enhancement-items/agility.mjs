@@ -1,7 +1,7 @@
 import { ICONS_PATH } from "../../../constants.mjs";
 import { CharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { EffectChangeValueType, EnhancementDuration, EnhancementOverload } from "../../../enums/enhancement-enums.mjs";
-import { EnhancementEffectField } from "../../../field/enhancement-field.mjs";
+import { EnhancementEffectField } from "../../../data/field/enhancement-field.mjs";
 
 const agilityEffects = [
   EnhancementEffectField.toJson(

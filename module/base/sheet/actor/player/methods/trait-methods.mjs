@@ -1,7 +1,7 @@
 import { ChatCreator } from "../../../../../utils/chat-creator.mjs";
 import { TraitDialog } from "../../../../../creators/dialog/trait-dialog.mjs";
 import { TraitRepository } from "../../../../../repository/trait-repository.mjs";
-import { TraitField } from "../../../../../field/trait-field.mjs";
+import { TraitField } from "../../../../../data/field/trait-field.mjs";
 import { CharacteristicType } from "../../../../../enums/characteristic-enums.mjs";
 import { OnEventType } from "../../../../../enums/on-event-type.mjs";
 import { TraitMessageCreator } from "../../../../../creators/message/trait-message.mjs";

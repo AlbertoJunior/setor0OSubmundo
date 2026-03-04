@@ -1,4 +1,4 @@
-import { SuperEquipmentParticularityType } from "../enums/equipment-enums.mjs";
+import { SuperEquipmentParticularityType } from "../../enums/equipment-enums.mjs";
 import { StandardEffectChangeField } from "./effect-fields.mjs";
 
 const { NumberField, BooleanField, StringField, SchemaField, ArrayField } = foundry.data.fields;

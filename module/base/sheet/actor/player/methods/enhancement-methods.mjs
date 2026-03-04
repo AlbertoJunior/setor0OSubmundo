@@ -1,6 +1,6 @@
 import { gameLocalize, getObject, localize, localizeFormat } from "../../../../../utils/utils.mjs";
 import { ChatCreator } from "../../../../../utils/chat-creator.mjs";
-import { ActorEnhancementField } from "../../../../../field/actor-fields.mjs";
+import { ActorEnhancementField } from "../../../../../data/field/actor-fields.mjs";
 import { EnhancementRepository } from "../../../../../repository/enhancement-repository.mjs";
 import { ActorUpdater } from "../../../../updater/actor-updater.mjs";
 import { EnhancementUtils } from "../../../../../core/enhancement/enhancement-utils.mjs";

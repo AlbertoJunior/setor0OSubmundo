@@ -1,8 +1,8 @@
 import { SYSTEM_ID } from "../constants.mjs";
 import { CharacteristicType } from "../enums/characteristic-enums.mjs";
 import { SuperEquipmentParticularityType } from "../enums/equipment-enums.mjs";
-import { StandardEffectChangeField } from "../field/effect-fields.mjs";
-import { SuperEquipmentTraitField } from "../field/equipment-field.mjs";
+import { StandardEffectChangeField } from "../data/field/effect-fields.mjs";
+import { SuperEquipmentTraitField } from "../data/field/equipment-field.mjs";
 
 export class SuperEquipmentTraitRepository {
   static #goodTrait = [
