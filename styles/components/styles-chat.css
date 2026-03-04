@@ -20,7 +20,7 @@
 }
 
 .S0-message-content p {
-  margin-block: 0.4em;
+  margin-block: 0.4rem;
 }
 
 .S0-message-content .S0-container-2-column label {
@@ -71,7 +71,7 @@
 
 .S0-roll-result {
   font-family: var(--S0-font-family);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.1rem;
   width: 100%;
   margin: 2px 0px;
   color: var(--on-tertiary-color);

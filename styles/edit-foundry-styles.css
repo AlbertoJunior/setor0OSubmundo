@@ -128,7 +128,7 @@ h4.divider {
 }
 
 .combat-sidebar li.combatant .roll {
-  background: url(../icons/d10.png) no-repeat 50% 50%;
+  background: url(../icons/d10.webp) no-repeat 50% 50%;
   background-size: 32px;
   transition: background-size 0.2s ease-in-out;
 }

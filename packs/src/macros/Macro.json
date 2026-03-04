@@ -44,7 +44,7 @@
         "tK2FsBNKL3Za9iXa": 3
       },
       "command": "const selectedToken = canvas.tokens.controlled[0];\nif (!selectedToken) {\n  ui.notifications.warn(\"Selecione um token primeiro.\");\n  return;\n}\n\n\nconst actor = selectedToken.actor;\nif(!actor?.sheet.canRollOrEdit) {\n  ui.notifications.warn(\"Sem permissão para esse personagem.\");\n  return;\n}\n\nawait globalThis.setor0OSubmundo.MacroMethods.overload(actor);",
-      "img": "systems/setor0OSubmundo/icons/overload.svg",
+      "img": "systems/setor0OSubmundo/icons/s10.webp",
       "type": "script",
       "folder": "SGG0OIEemH1jxDrl",
       "author": "tK2FsBNKL3Za9iXa",

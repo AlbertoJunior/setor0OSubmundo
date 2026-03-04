@@ -20,6 +20,7 @@
 ## Decisões técnicas relevantes
 - Identificou-se que a refatoração original (Histórico 23) ainda deixava uma série de propriedades atômicas espalhadas inline em sub-painéis ou trechos menos frequentados.
 - Estilos dinâmicos, tal qual referências diretas de contexto ou *Handlebars* interpolados (ex.: filtro de coloração dos dados `style="filter: sepia(1) hue-rotate({{../colorValue}}deg);"` em `life.hbs`), foram preservados propositalmente usando marcações inline para atender às regras do framework apontadas no `css-utility-classes.md`.
+- **Refinamento Final**: Houve uma varredura para identificar classes atômicas mapeadas em arquivos `.hbs` originadas da refatoração e que, por lapso, não haviam sido declaradas em `utilities.css`. Devido à isso, utilitárias faltantes (`S0-nav-content` para abas, `S0-resize-block`, `S0-overflow-y-scroll` e `S0-font-monospace`) foram propriamente incluídas no CSS global para sanar falhas visuais em painéis de *Actor*, *NPC* e Diálogos de *Items*.
 
 ## Testes sugeridos
 - Verificar se nomes muito longos em "Testes Possíveis" ou em defeitos nos *"Super Equipamentos"* continuam apresentando o comportamento *Ellipsis* ("...") no lugar da quebra violenta de texto.

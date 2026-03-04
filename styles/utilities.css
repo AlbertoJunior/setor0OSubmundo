@@ -57,6 +57,10 @@
   justify-content: center;
 }
 
+.S0-justify-around {
+  justify-content: space-around;
+}
+
 .S0-justify-items-center {
   justify-items: center;
 }
@@ -126,6 +130,10 @@
 /* Typography */
 .S0-font-bold {
   font-weight: bold;
+}
+
+.S0-font-monospace {
+  font-family: monospace;
 }
 
 .S0-text-center {
@@ -474,6 +482,20 @@
 /* Overflow, Position & Misc */
 .S0-overflow-hidden {
   overflow: hidden;
+}
+
+.S0-overflow-y-scroll {
+  overflow-y: scroll;
+}
+
+.S0-resize-block {
+  resize: both;
+  overflow: hidden;
+}
+
+.S0-nav-content {
+  display: block;
+  flex: 1;
 }
 
 .S0-overflow-auto {

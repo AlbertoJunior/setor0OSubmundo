@@ -24,7 +24,6 @@ class PlayerRollMethods {
 
   static async handleVirtueRoll(actor, inputParams) {
     const { difficulty, rollMode } = inputParams;
-
     const resultRoll = await RollVirtue.roll(actor, inputParams);
     await DefaultActions.processVirtueRoll(actor, resultRoll, difficulty, rollMode);
   }

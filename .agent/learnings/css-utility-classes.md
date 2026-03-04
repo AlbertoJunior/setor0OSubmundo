@@ -13,6 +13,7 @@ As classes utilitárias para o projeto possuem exclusivamente o prefixo **`S0-`*
 - **Display/Flex:** `S0-flex`, `S0-block`, `S0-items-center`, `S0-justify-between`
 - **Espaçamento (Margin/Padding):** `S0-mt-10` (margin-top: 10px), `S0-px-8` (padding-inline: 8px)
 - **Tipografia:** `S0-text-center`, `S0-font-bold`
+- **Estruturação Funcional/Marcação:** `S0-nav-content` (utilizada estritamente para estruturação e exibição de abas/tabs nos templates como `actor-sheet.hbs`), além de delimitadores como `S0-overflow-y-scroll` e `S0-resize-block`.
 
 O uso de `style=""` nos templates agora deve ser estritamente reservado para valores verdadeiramente dinâmicos ou altamente específicos ao contexto do componente abstrato (ex. `grid-template-columns: repeat(...)` ou `filter: sepia(1) hue-rotate({{colorValue}}deg)`).
 

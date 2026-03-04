@@ -51,6 +51,8 @@
     "Realizar_Teste": "Perform Test",
     "Rolagens_Player": "Rolling Mode",
     "Rolagem": "Roll",
+    "Rolagem_Anterior": "Previous Roll",
+    "Nova_Rolagem": "Reroll",
     "Rolar": "Roll",
     "Rolar_Dividido": "Split Roll",
     "Rolagem_Publica": "Public",
@@ -101,7 +103,6 @@
     "Recursos": "Resources",
     "SuperEquipamento": "SuperEquipment",
     "SuperEquipamentos": "SuperEquipments",
-    "Virtudes": "Virtues",
     "Consciencia": "Conscience",
     "Perseveranca": "Perseverance",
     "Quietude": "Quietness",
@@ -161,6 +162,8 @@
     "Cena": "Scene",
     "Uso": "Usage",
     "Tempo": "Time",
+    "Todas": "All",
+    "Todos": "All",
     "Nenhum": "None",
     "Automatico": "Automatic",
     "Letal": "Lethal",
@@ -192,7 +195,6 @@
     "Habilitar_Desabilitar_Modo_Compacto": "Enable/Disable Compact Mode",
     "Modo_Compacto": "Compact Mode",
     "Enviar_No_Chat": "Send to Chat",
-    "Outros_Atalhos": "Other Shortcuts",
     "Habilitar_Desabilitar_Edicao": "Enable/Disable Editing",
     "Permitir_Edicao": "Allow Editing",
     "Bloquear_Edicao": "Lock Editing",
@@ -203,6 +205,7 @@
     "Nao_Possui": "Not Available",
     "Expandir_Contrair": "Expand/Collapse",
     "Contrair_Expandir": "Collapse/Expand",
+    "Consciencia_Utilizada": "Consciousness used",
     "Perseveranca_Utilizada": "Perseverance used",
     "Quietude_Utilizada": "Quietness used",
     "Nenhum_Teste_Cadastrado": "No test registered",
@@ -314,6 +317,16 @@
         "Nao_Pode_Efeitos_Iguais": "Cannot have duplicate effects",
         "Aviso_Remocao_Itens_Mochila": "This action will remove all items from the backpack",
         "Aviso_Desequipar_Itens": "This action will unequip all equipped items"
+      }
+    },
+    "Virtude": {
+      "Virtude": "Virtue",
+      "Virtudes": "Virtues",
+      "Consciencia": "Consciousness",
+      "Perseveranca": "Perseverance",
+      "Quietude": "Quietness",
+      "Placeholder": {
+        "Requisito": "No requirements"
       }
     },
     "Pergunta": {

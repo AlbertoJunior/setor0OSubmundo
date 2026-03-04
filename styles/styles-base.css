@@ -85,7 +85,7 @@
 }
 
 .S0-content :is(h1, h2, h3, h4) input {
-  letter-spacing: 0.1em;
+  letter-spacing: 0.1rem;
 }
 
 .S0-content button,

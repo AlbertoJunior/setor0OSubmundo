@@ -17,6 +17,6 @@ ${verifyAndReturnSelectedToken}
 ${verifyAndReturnActor}
 await globalThis.${SYSTEM_ID}.MacroMethods.overload(actor);
 `,
-  img: `${ICONS_PATH}/overload.svg`,
+  img: `${ICONS_PATH}/s10.webp`,
   type: "script"
 }

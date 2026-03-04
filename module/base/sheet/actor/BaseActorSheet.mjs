@@ -90,6 +90,7 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
   }
 
   static setupTabs(html, currentPage) {
+    TODO("esse método esta duplicad e existe apenas para fazer funcionar o dialog de PLAYER -> NPC, verificar forma de não precisar duplicar")
     const group = "menu-tabs";
     const contentSelector = `.S0-nav-content`;
 
