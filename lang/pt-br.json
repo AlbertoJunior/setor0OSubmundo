@@ -849,8 +849,14 @@
     "JumpToBottom": "Ir para o fim",
     "PrivateRollContent": "{user} rolou dados em segredo"
   },
-  "SCENES": {
-    "Configure": "Configurar"
+  "SCENE": {
+    "Configure": "Configurar",
+    "FIELDS": {
+      "tokenVision": {
+        "label": "Visão do Token",
+        "hint": "Restringe a visibilidade dentro desta Cena à visão dos Tokens controlados. Se desabilitado, a Cena inteira fica visível."
+      }
+    }
   },
   "ITEM": {
     "ViewArt": "Ver arte do Item"

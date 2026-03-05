@@ -10,6 +10,7 @@ import { registerNpc } from "../base/sheet/actor/npc/npc-sheet.mjs";
 import { registerTrait } from "../base/sheet/trait/trait-sheet.mjs";
 import { FoundryApi } from "../api/foundry-api.mjs";
 import { CompendiumSync } from "../core/pack/compendium-sync.mjs";
+import { ConfigDefaults } from "../setup/config-defaults.mjs";
 
 export class ReadyHookHandle {
   static async handle() {
@@ -17,6 +18,7 @@ export class ReadyHookHandle {
     await this.#sheets();
     await this.#macro();
     FoundryApi.Versions.current.TooltipManager.TOOLTIP_ACTIVATION_MS = 200;
+    await this.#config();
     this.#effects();
     this.#loadOnlyForGm();
   }
@@ -43,6 +45,10 @@ export class ReadyHookHandle {
   static async #macro() {
     await MacroSync.verifyDefaultMacroCompendium();
     await MacroInstaller.installDefaultMacrosOnUser();
+  }
+
+  static async #config() {
+    await ConfigDefaults.enforceReadyDefaults();
   }
 
   static async #loadOnlyForGm() {

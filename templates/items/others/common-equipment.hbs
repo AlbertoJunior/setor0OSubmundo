@@ -18,6 +18,8 @@
       </a>
     </div>
 
-    <img {{#if editable}} class="S0-clickable S0-w-full S0-object-contain S0-max-h-128 S0-aspect-1 S0-border-0 S0-rounded-large" data-action="edit" data-characteristic="img" {{/if}} src="{{item.img}}" title="{{item.name}}" />
+    <img
+      class="{{#if editable}}S0-clickable{{/if}} S0-w-full S0-object-contain S0-max-h-128 S0-aspect-1 S0-border-0 S0-rounded-large"
+      {{#if editable}}data-action="edit" data-characteristic="img" {{/if}} src="{{item.img}}" title="{{item.name}}" />
   </div>
 </div>

@@ -24,5 +24,17 @@ export const SystemFlags = Object.freeze({
   ROLE: {
     USER: 'user',
     GM: 'gm',
+  },
+  LANGUAGE: {
+    SET_BY_USER: 'languageSetByUser'
+  },
+  WORLD: {
+    DEFAULT_LANGUAGE: 'worldDefaultLanguage'
+  },
+  COMBAT: {
+    TRACKER_INITIALIZED: 'combatTrackerInitialized'
+  },
+  MIGRATION: {
+    VERSION: 'systemMigrationVersion'
   }
 });

@@ -2,6 +2,7 @@
 
 | Arquivo | Descrição | Contexto |
 | :--- | :--- | :--- |
+| [foundry-v13-core-settings-override.md](./foundry-v13-core-settings-override.md) | Estratégia de Sync Passivo de configurações Locais (Core Settings) em multi-clientes via Hook updateSetting | Foundry VTT v13 |
 | [foundry-v13-css-cascade-layers.md](./foundry-v13-css-cascade-layers.md) | Guia completo de utilização, injeções e overrides de CSS Cascade Layers (`@layer`) no Foundry VTT v13. | Foundry VTT v13 |
 | [css-utility-classes.md](./css-utility-classes.md) | Padrão arquitetural de Classes CSS Utilitárias (prefixo `S0-`) para substituir estilos inline no HTML. | UI/CSS |
 | [pattern-standard-active-effects.md](./pattern-standard-active-effects.md) | Padronização arquitetural da modelagem das propriedades de Efeitos Ativos (StandardEffectField) | Foundry VTT v13 |
