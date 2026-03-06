@@ -18,6 +18,7 @@ export async function actorTemplatesRegister() {
     { path: "actors/biography", call: 'actorBiography' },
     { path: "actors/biography-trait-partial", call: 'traitPartialContainer' },
     { path: "actors/status", call: 'actorStatus' },
+    { path: "actors/status-overload", call: 'actorOverload' },
     { path: "actors/enhancement", call: 'actorEnhancement' },
     { path: "actors/enhancement-partial", call: 'enhancementPartial' },
     { path: "actors/equipment", call: 'actorEquipment' },

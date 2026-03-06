@@ -12,7 +12,6 @@ export class RollConsciousnessMessageCreator {
       successes
     } = params;
 
-    debugger
     const mountedMessage = this.#mountMessage(successes);
 
     const data = {

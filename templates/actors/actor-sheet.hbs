@@ -50,12 +50,14 @@
   </header>
 
   <div class="S0-nav-content">
-    {{> "systems/setor0OSubmundo/templates/actors/characteristics.hbs"}}
-    {{> "systems/setor0OSubmundo/templates/actors/biography.hbs"}}
-    {{> "systems/setor0OSubmundo/templates/actors/enhancement.hbs"}}
-    {{> "systems/setor0OSubmundo/templates/actors/equipment.hbs"}}
-    {{> "systems/setor0OSubmundo/templates/actors/network.hbs"}}
-    {{> "systems/setor0OSubmundo/templates/actors/status.hbs"}}
-    {{> "systems/setor0OSubmundo/templates/actors/shortcuts.hbs"}}
+    {{> actorCharacteristic}}
+    {{> actorBiography}}
+    {{#if (operators 'gt' (actorValues actor 'core') 0)}}
+    {{> actorEnhancement}}
+    {{/if}}
+    {{> actorEquipment}}
+    {{> actorNetwork}}
+    {{> actorStatus}}
+    {{> actorShortcuts}}
   </div>
 </form>

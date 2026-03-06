@@ -13,11 +13,11 @@ export const openShortcutMacroData = {
     default: CONST.USER_ROLES.PLAYER
   },
   command: `
-const targetPage = 7;
 ${verifyAndReturnSelectedToken}
 ${verifyAndReturnActor}
 actor.sheet.render(true);
 setTimeout(() => {
+  const targetPage = actor.system.nucleo > 0 ? 7 : 6;
   if (actor.sheet.currentPage !== undefined) {
     actor.sheet.currentPage = targetPage;
     actor.sheet.render(false);

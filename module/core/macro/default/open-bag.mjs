@@ -13,11 +13,11 @@ export const openBagMacroData = {
     default: CONST.USER_ROLES.PLAYER
   },
   command: `
-const targetPage = 4;
-${verifyAndReturnSelectedToken}
-${verifyAndReturnActor}
+${verifyAndReturnSelectedToken.trim()}
+${verifyAndReturnActor.trim()}
 actor.sheet.render(true);
 setTimeout(() => {
+  const targetPage = actor.system.nucleo > 0 ? 4 : 3;
   if (actor.sheet.currentPage !== undefined) {
     actor.sheet.currentPage = targetPage;
     actor.sheet.render(false);

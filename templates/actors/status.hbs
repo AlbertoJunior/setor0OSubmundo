@@ -196,29 +196,7 @@
 
       {{#if (operators 'gt' (actorValues actor 'core') 0)}}
       <li class="S0-container">
-        <h3>
-          {{ localize 'S0.Sobrecarga' }}
-          {{#if canEdit}}
-          <a class="S0-icon-rotate" data-action="roll" data-characteristic="temporary" data-type="overload">
-            <i class="fas fa-dice-d10"></i>
-          </a>
-          <a class="S0-icon-rotate" data-action="remove" data-characteristic="temporary" data-type="overload">
-            <i class="fas fa-refresh"></i>
-          </a>
-          {{/if}}
-        </h3>
-        <div id="sobrecarga" class="S0-inner-container">
-          {{#lett actor=actor
-          action=(operators 'ternary' canEdit 'check' '')
-          selectedClass=(operators 'ternary' canEdit 'S0-clickable' '')}}
-
-          {{#forLoop 0 (actorValues actor 'overload_limit')}}
-          <div class="S0-characteristic S0-characteristic-temp {{../selectedClass}}" data-action="{{../action}}"
-            data-characteristic="temporary" data-type="overload">
-          </div>
-          {{/forLoop}}
-          {{/lett}}
-        </div>
+        {{> actorOverload this}}
       </li>
       {{/if}}
     </ul>
