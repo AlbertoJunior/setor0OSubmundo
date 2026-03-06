@@ -24,6 +24,9 @@ async function loadAuxiliaryTemplates() {
     { call: "buttons-float-menu", path: "others/list-default-buttons-float-menu" },
     { call: "core-roll-message", path: "messages/roll/core-result" },
     { call: "core-roll-message-invalid", path: "messages/roll/core-result-invalid" },
+    { call: "button-quietness", path: "messages/roll/button-quietness" },
+    { call: "button-perseverance", path: "messages/roll/button-perseverance" },
+    { call: "button-consciousness", path: "messages/roll/button-consciousness" },
   ];
 
   const loadedAuxiliaryTemplates = await loadAndRegisterTemplates(configTemplates);

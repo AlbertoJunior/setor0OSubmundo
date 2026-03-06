@@ -1,5 +1,5 @@
 import { ActorEquipmentUtils } from "../core/actor/actor-equipment-utils.mjs";
-import { Setor0TokenDocument } from "../core/token/Setor0TokenDocument.mjs";
+import { Setor0TokenDocument } from "../base/document/Setor0TokenDocument.mjs";
 import { ActorCharacteristicField, ActorEnhancementField, ActorAttributes, ActorAbilities, ActorVirtues } from "../data/field/actor-fields.mjs";
 import { TraitField } from "../data/field/trait-field.mjs";
 import { ActorUtils } from "../core/actor/actor-utils.mjs";

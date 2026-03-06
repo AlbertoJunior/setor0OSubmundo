@@ -161,4 +161,16 @@
   border-color: var(--color-orange);
 }
 
+.S0-roll-result.S0-red {
+  color: var(--on-color-red);
+  background-color: var(--color-red-alpha-50);
+  border-color: var(--color-red-alpha);
+}
+
+.S0-roll-result:enabled.S0-red:hover {
+  color: var(--on-color-red);
+  background-color: var(--color-red-alpha);
+  border-color: var(--color-red);
+}
+
 /* #endregion */

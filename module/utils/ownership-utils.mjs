@@ -5,23 +5,43 @@ export class OwnershipUtils {
   static OBSERVER = 2;
   static OWNER = 3;
 
-  static isOwner(actor) {
-    return actor?.isOwner || false
+  static isOwner(item) {
+    return item?.isOwner || false
   }
 
-  static isLimited(actor) {
-    return this.#ownershipDefault(actor) == this.LIMITED || false
+  static isDefaultLimited(item) {
+    return this.#ownershipDefault(item) == this.LIMITED || false
   }
 
-  static isObserver(actor) {
-    return this.#ownershipDefault(actor) == this.OBSERVER || false
+  static isDefaultObserver(item) {
+    return this.#ownershipDefault(item) == this.OBSERVER || false
   }
 
-  static canDoSomething(actor) {
-    return this.#ownershipDefault(actor) > this.NONE
+  static canEdit(item) {
+    if (game.user.isGM)
+      return true;
+
+    const ownership = this.#ownershipUser(item);
+    return ownership == this.OWNER;
   }
 
-  static #ownershipDefault(actor) {
-    return actor?.ownership?.default || this.NONE
+  static canRoll(item) {
+    if (game.user.isGM)
+      return true;
+
+    const ownership = this.#ownershipUser(item);
+    return ownership == this.OWNER || ownership == this.LIMITED;
+  }
+
+  static canDoSomething(item) {
+    return this.#ownershipDefault(item) > this.NONE || this.#ownershipUser(item) > this.NONE
+  }
+
+  static #ownershipDefault(item) {
+    return item?.ownership?.default || this.NONE
+  }
+
+  static #ownershipUser(item) {
+    return item?.ownership?.[game.user.id] || this.NONE
   }
 }

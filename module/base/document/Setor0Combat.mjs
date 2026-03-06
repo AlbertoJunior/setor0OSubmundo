@@ -1,7 +1,7 @@
-import { ActorUtils } from "../../../core/actor/actor-utils.mjs";
-import { DefaultActions } from "../../../utils/default-actions.mjs";
-import { ActiveEffectsUtils } from "../../../core/effect/active-effects-utils.mjs";
-import { FoundryApi } from "../../../api/foundry-api.mjs";
+import { ActorUtils } from "../../core/actor/actor-utils.mjs";
+import { DefaultActions } from "../../utils/default-actions.mjs";
+import { ActiveEffectsUtils } from "../../core/effect/active-effects-utils.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
 export function configureSetor0Combat() {
   CONFIG.Combat.documentClass = Setor0Combat;

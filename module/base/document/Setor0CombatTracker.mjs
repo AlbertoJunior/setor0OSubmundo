@@ -1,7 +1,7 @@
-import { TokenUtils } from "../../../core/token/token-utils.mjs";
-import { ActiveEffectsFlags } from "../../../enums/active-effects-enums.mjs";
-import { FlagsUtils } from "../../../utils/flags-utils.mjs";
-import { FoundryApi } from "../../../api/foundry-api.mjs";
+import { TokenUtils } from "../../core/token/token-utils.mjs";
+import { ActiveEffectsFlags } from "../../enums/active-effects-enums.mjs";
+import { FlagsUtils } from "../../utils/flags-utils.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
 export function configureSetor0CombatTracker() {
   CONFIG.ui.combat = Setor0CombatTracker;

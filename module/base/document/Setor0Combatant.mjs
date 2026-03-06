@@ -1,4 +1,4 @@
-import { FoundryApi } from "../../../api/foundry-api.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
 export function configureSetor0Combatant() {
   CONFIG.Combatant.documentClass = Setor0Combatant;

@@ -9,6 +9,7 @@ const operators = {
   isNotNull: ([value]) => !operators['isNull']([value]),
   isEmpty: (collection) => Array.isArray(collection) && collection.length === 0,
   isNotEmpty: (collection) => Array.isArray(collection) && collection.length > 0,
+  and: (values) => values.every(Boolean),
   or: (values) => values.some(Boolean),
   orValue: (values) => {
     const a = values[0];

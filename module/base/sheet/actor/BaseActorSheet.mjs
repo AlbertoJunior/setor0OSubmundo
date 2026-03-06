@@ -6,6 +6,7 @@ import { FlagsUtils } from "../../../utils/flags-utils.mjs";
 import { HtmlJsUtils } from "../../../utils/html-js-utils.mjs";
 import { FoundryApi } from "../../../api/foundry-api.mjs";
 import { ActorUpdater } from "../../updater/actor-updater.mjs";
+import { OwnershipUtils } from "../../../utils/ownership-utils.mjs";
 
 export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
   static SHEET_CONFIG = {
@@ -24,11 +25,19 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
   }
 
   get isEditable() {
-    return FlagsUtils.getActorFlag(this.actor, "editable") && this.canRollOrEdit;
+    return FlagsUtils.getActorFlag(this.actor, "editable");
+  }
+
+  get canRoll() {
+    return OwnershipUtils.canRoll(this.actor)
+  }
+
+  get canEdit() {
+    return OwnershipUtils.canEdit(this.actor);
   }
 
   get canRollOrEdit() {
-    return game.user.isGM || this.actor.isOwner;
+    return this.canRoll || this.canEdit;
   }
 
   get isDisabled() {
@@ -40,9 +49,9 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
     if (data.options) {
       data.options.sheetConfig = Setor0BaseActorSheet.SHEET_CONFIG;
     }
-    data.editable = this.isEditable;
-    data.canRoll = this.canRollOrEdit;
-    data.canEdit = this.canRollOrEdit;
+    data.editable = this.isEditable && this.canEdit;
+    data.canRoll = this.canRoll;
+    data.canEdit = this.canEdit;
     data.uuid = this.actor.uuid;
     return data;
   }

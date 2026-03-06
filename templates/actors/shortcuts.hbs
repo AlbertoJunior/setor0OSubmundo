@@ -89,10 +89,12 @@
           {{/if}}
         </h3>
 
+        {{#if ../canRoll}}
         <a class="S0-icon-rotate S0-text-center S0-w-20" title="{{localize 'S0.Rolar'}}" data-action="roll"
           data-characteristic="shortcuts" data-item-id="{{shortcut.id}}">
           <i class="fas fa-dice-d10"></i>
         </a>
+        {{/if}}
       </div>
       {{/each}}
     </div>

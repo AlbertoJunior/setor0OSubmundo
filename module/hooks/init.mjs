@@ -2,10 +2,10 @@ import { loadHandlebarsHelpers } from "../setup/handlerbars-helper.mjs";
 import { createDataModels } from "../setup/models.mjs";
 import { Setor0Settings } from "../setup/settings.mjs";
 import { registerTemplates } from "../setup/templates.mjs";
-import { configureSetor0Combat } from "../base/sheet/combat/Setor0Combat.mjs";
-import { configureSetor0Combatant } from "../base/sheet/combat/Setor0Combatant.mjs";
-import { configureSetor0CombatTracker } from "../base/sheet/combat/Setor0CombatTracker.mjs";
-import { configureSetor0TokenDocument } from "../core/token/Setor0TokenDocument.mjs";
+import { configureSetor0Combat } from "../base/document/Setor0Combat.mjs";
+import { configureSetor0Combatant } from "../base/document/Setor0Combatant.mjs";
+import { configureSetor0CombatTracker } from "../base/document/Setor0CombatTracker.mjs";
+import { configureSetor0TokenDocument } from "../base/document/Setor0TokenDocument.mjs";
 import { DEFAULT_VALUES, SYSTEM_HOOKS, SYSTEM_ID } from "../constants.mjs";
 import { FoundryApi } from "../api/foundry-api.mjs";
 import { MacroUtils } from "../core/macro/macro-utils.mjs";
@@ -29,6 +29,7 @@ export class InitHookHandle {
     configureSetor0TokenDocument();
     configureSetor0ActiveEffect();
     configureSetor0ChatLog();
+    configureSetor0Item();
 
     await loadHandlebarsHelpers();
     await registerTemplates();

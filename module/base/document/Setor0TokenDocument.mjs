@@ -5,20 +5,8 @@ import { FoundryApi } from "../../api/foundry-api.mjs";
 
 class Setor0TokenCanvas extends FoundryApi.TokenCanvas {
 
-  #verifyIsForcedByFlag(effectFlags) {
-    const isOverlay = effectFlags['core']?.['overlay'] ?? false
-    const isForced = effectFlags[SYSTEM_ID][ActiveEffectsFlags.ALWAYS_SHOW_ON_TOKEN] ?? false;
-    return isOverlay || isForced;
-  }
-
   get haveValidActor() {
     return this.actor && this.actor.isOwner;
-  }
-
-  #verifyShowEffect(effectFlags) {
-    const canShowByActor = this.haveValidActor;
-    const forcedShow = this.#verifyIsForcedByFlag(effectFlags);
-    return forcedShow || canShowByActor;
   }
 
   /**
@@ -63,6 +51,18 @@ class Setor0TokenCanvas extends FoundryApi.TokenCanvas {
       return super._drawEffect(src, tint);
     }
     return null;
+  }
+
+  #verifyShowEffect(effectFlags) {
+    const canShowByActor = this.haveValidActor;
+    const forcedShow = this.#verifyIsForcedByFlag(effectFlags);
+    return forcedShow || canShowByActor;
+  }
+
+  #verifyIsForcedByFlag(effectFlags) {
+    const isOverlay = effectFlags['core']?.['overlay'] ?? false
+    const isForced = effectFlags[SYSTEM_ID][ActiveEffectsFlags.ALWAYS_SHOW_ON_TOKEN] ?? false;
+    return isOverlay || isForced;
   }
 
   async _drawOverlay(src, tint, flags) {

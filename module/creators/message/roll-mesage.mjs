@@ -5,7 +5,18 @@ import { FoundryApi } from "../../api/foundry-api.mjs";
 
 export class RollMessageCreator {
   static async mountContentDefaultRoll(params) {
-    const { messageTest, rolls, abilityInfo, modifiers, difficulty, critic, half, havePerseverance, haveQuietness, haveConsciousness } = params;
+    const {
+      messageTest,
+      rolls,
+      abilityInfo,
+      modifiers,
+      difficulty,
+      critic,
+      half,
+      havePerseverance,
+      haveQuietness,
+      haveConsciousness
+    } = params;
 
     const { attr1, attr2 } = params.attrs;
     const formule = `(${attr1.value} + ${attr2.value}) / 2 + ${abilityInfo.value}`;
@@ -17,7 +28,9 @@ export class RollMessageCreator {
       diceResults.overload, diceResults.default, modifiers.specialist, difficulty, critic, automatic
     );
 
-    const coreContentData = this.mountCoreInformationRoll(diceResults, result, difficulty, critic, half, modifiers, havePerseverance, haveQuietness, haveConsciousness, formule);
+    const coreContentData = this.mountCoreInformationRoll(
+      diceResults, result, difficulty, critic, half, modifiers, havePerseverance, haveQuietness, haveConsciousness, formule
+    );
 
     const data = {
       haveMessageTest: typeof messageTest === "string" && messageTest.trim().length > 0,
@@ -32,7 +45,17 @@ export class RollMessageCreator {
   }
 
   static async mountContentCustomRoll(params) {
-    const { rolls, messageTest, modifiers, difficulty, critic, half, havePerseverance, haveQuietness, haveConsciousness } = params;
+    const {
+      rolls,
+      messageTest,
+      modifiers,
+      difficulty,
+      critic,
+      half,
+      havePerseverance,
+      haveQuietness,
+      haveConsciousness
+    } = params;
 
     const diceResults = this.#getDiceResults(rolls);
 
@@ -46,7 +69,9 @@ export class RollMessageCreator {
 
     const formatedMessageTest = messageTest.split(":");
 
-    const coreContentData = this.mountCoreInformationRoll(diceResults, result, difficulty, critic, half, modifiers, havePerseverance, haveQuietness, haveConsciousness, formule);
+    const coreContentData = this.mountCoreInformationRoll(
+      diceResults, result, difficulty, critic, half, modifiers, havePerseverance, haveQuietness, haveConsciousness, formule
+    );
 
     const data = {
       messageTestTitle: formatedMessageTest[0],
@@ -61,7 +86,16 @@ export class RollMessageCreator {
   }
 
   static async mountContentSimplifiedRoll(params) {
-    const { rolls, modifiers, difficulty, critic, half, havePerseverance, haveQuietness, haveConsciousness } = params;
+    const {
+      rolls,
+      modifiers,
+      difficulty,
+      critic,
+      half,
+      havePerseverance,
+      haveQuietness,
+      haveConsciousness
+    } = params;
 
     const diceResults = this.#getDiceResults(rolls);
 
@@ -72,7 +106,9 @@ export class RollMessageCreator {
     const name = params.name || params.abilityInfo.label;
     const formule = (diceResults.overload?.length || 0) + (diceResults.default?.length || 0)
 
-    const coreContentData = this.mountCoreInformationRoll(diceResults, result, difficulty, critic, half, modifiers, havePerseverance, haveQuietness, haveConsciousness, formule);
+    const coreContentData = this.mountCoreInformationRoll(
+      diceResults, result, difficulty, critic, half, modifiers, havePerseverance, haveQuietness, haveConsciousness, formule
+    );
 
     const data = {
       testName: name,
@@ -83,7 +119,18 @@ export class RollMessageCreator {
   }
 
   static async mountContentByAmountRoll(params) {
-    const { name, amount, rolls, difficulty, critic, half, modifiers, havePerseverance, haveQuietness, haveConsciousness } = params;
+    const {
+      name,
+      amount,
+      rolls,
+      difficulty,
+      critic,
+      half,
+      modifiers,
+      havePerseverance,
+      haveQuietness,
+      haveConsciousness
+    } = params;
     const { automatic, specialist } = modifiers;
 
     const diceResults = this.#getDiceResults(rolls);
@@ -94,7 +141,9 @@ export class RollMessageCreator {
 
     const formule = `${amount}D10`;
 
-    const coreContentData = this.mountCoreInformationRoll(diceResults, result, difficulty, critic, half, modifiers, havePerseverance, haveQuietness, haveConsciousness, formule);
+    const coreContentData = this.mountCoreInformationRoll(
+      diceResults, result, difficulty, critic, half, modifiers, havePerseverance, haveQuietness, haveConsciousness, formule
+    );
 
     const data = {
       testName: name,
@@ -149,7 +198,18 @@ export class RollMessageCreator {
     return automatic;
   }
 
-  static mountCoreInformationRoll(diceResults, result, difficulty, critic, half, modifiers, havePerseverance, haveQuietness, haveConsciousness, formule) {
+  static mountCoreInformationRoll(
+    diceResults,
+    result,
+    difficulty,
+    critic,
+    half,
+    modifiers,
+    havePerseverance,
+    haveQuietness,
+    haveConsciousness,
+    formule
+  ) {
     const overloadDices = (diceResults.overload || []).flat();
     const defaultDices = (diceResults.default || []).flat();
     const haveResult = (overloadDices.length + defaultDices.length) > 0;

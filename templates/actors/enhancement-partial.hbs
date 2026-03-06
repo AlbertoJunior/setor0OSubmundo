@@ -17,8 +17,8 @@
         title="{{localize 'S0.Ver_Informacoes'}}">
         <i class="fas fa-eye"></i>
       </a>
-      <a class="S0-characteristic S0-clickable hidden" data-action="check" data-characteristic="enhancement"
-        title="{{localize 'S0.Ativar'}}">
+      <a class="S0-characteristic hidden {{#if ../canEdit}}S0-clickable{{/if}}" data-action="check" {{#if
+        ../canEdit}}data-characteristic="enhancement" {{/if}} title="{{localize 'S0.Ativar'}}">
       </a>
     </li>
     {{/forLoop}}

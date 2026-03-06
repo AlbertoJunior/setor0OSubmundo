@@ -74,10 +74,10 @@ export class MacroUtils {
 
   static getDefaultMacroUsers() {
     return [
+      openRollMacroData,
+      rollOverloadMacroData,
       openBagMacroData,
       openShortcutMacroData,
-      rollOverloadMacroData,
-      openRollMacroData
     ];
   }
 

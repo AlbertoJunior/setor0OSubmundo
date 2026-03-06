@@ -49,14 +49,7 @@
     <hr>
     {{/if}}
 
-    <!-- #region CAN USE CONSCIOUSNESS -->
-    {{#if canUseConsciousness}}
-    <button class="S0-roll-result S0-blue" data-action="check" data-type="consciousness">
-      {{localize 'S0.Usar_Consciencia'}}
-      ( <i class="fas fa-comments-question-check"></i> )
-    </button>
-    {{/if}}
-    <!-- #endregion -->
+    {{> button-consciousness canUseConsciousness=canUseConsciousness}}
   </div>
 
   <button class="S0-roll-result {{ resultMessageClasses }}" data-action="view" data-type="toggle-tooltip">
