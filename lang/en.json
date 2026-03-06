@@ -110,6 +110,7 @@
     "Influencia": "Influence",
     "Nucleo": "Core",
     "Sobrecarga": "Overload",
+    "Sobrecarga_Limite": "Overload Limit",
     "Aprimoramentos": "Enhancements",
     "Reiniciar_Efeitos_Passivos": "Reset Passive Effects",
     "Remover_Efeito": "Remove Effect",
@@ -380,6 +381,9 @@
       "Ruim": "Bad",
       "Tracos_Bons": "Good Traits",
       "Tracos_Ruins": "Bad Traits",
+      "Adicionar_Efeito": "Add Effect",
+      "Valor_Explicacao": "The value is fixed, and can be negative or positive.",
+      "Valor_Explicacao_Fator": "The value of a factor is a multiplier, it is recommended to use values between -1 and 1.",
       "Placeholder": {
         "Requisito": "No requirement"
       }

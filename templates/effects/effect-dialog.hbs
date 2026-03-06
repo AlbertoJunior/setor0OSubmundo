@@ -1,6 +1,11 @@
 <div class="S0-dialog">
   <div class="S0-container">
-    <h4>{{name}}</h4>
+    <h4>
+      {{#if effectTypeLabel}}
+      <label>{{effectTypeLabel}}:</label>
+      {{/if}}
+      {{name}}
+    </h4>
     <hr>
 
     {{#if origin}}
@@ -11,9 +16,7 @@
     <label class="S0-block"><strong>{{localize 'S0.Tipo'}}:</strong> {{originTypeLabel}}</label>
     {{/if}}
 
-    {{#if effectTypeLabel}}
-    <label class="S0-block"><strong>{{effectTypeLabel}}</strong></label>
-    {{/if}}
+
 
     {{#if disabled}}
     <label class="S0-block"><strong>{{localize 'S0.Status'}}:</strong> {{localize 'S0.Inativo'}}</label>

@@ -160,9 +160,14 @@ export class SuperEquipmentEffectsDialog {
 
   static #onSelectEffectChange(windowApp, listTraits, jElements) {
     const {
-      selectEffect, description, cost, limit,
-      particularityContainer, inputParticularity,
-      selectParticularityContainer, selectCharacteristicParticularity: selectCharacteristic
+      selectEffect,
+      description,
+      cost,
+      limit,
+      particularityContainer,
+      inputParticularity,
+      selectParticularityContainer,
+      selectCharacteristicParticularity: selectCharacteristic
     } = jElements;
 
     const selectedId = selectEffect.value;

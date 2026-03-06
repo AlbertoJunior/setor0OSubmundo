@@ -13,6 +13,9 @@ export const SystemFlags = Object.freeze({
   MACRO: {
     INSTALLED: 'macroInstalled',
   },
+  MANAGER: {
+    CAN_EDIT: 'canEdit',
+  },
   MODE: {
     EDITABLE: 'editable',
     DARK: 'darkMode',

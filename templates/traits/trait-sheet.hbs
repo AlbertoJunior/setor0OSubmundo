@@ -38,7 +38,8 @@
     <label class="S0-block" for="{{item.id}}.requirement">
       {{localize 'S0.Requisito'}}:
     </label>
-    <input class="S0-mt-2" id="{{item.id}}.requirement" type="text" name="system.requirement" value="{{traitValues item 'requirement'}}" placeholder="{{localize 'S0.Traco.Placeholder.Requisito'}}">
+    <input class="S0-mt-2" id="{{item.id}}.requirement" type="text" name="system.requirement"
+      value="{{traitValues item 'requirement'}}" placeholder="{{localize 'S0.Traco.Placeholder.Requisito'}}">
   </div>
 
   <div class="S0-page S0-container">
@@ -56,7 +57,9 @@
     <ul>
       {{#each (traitValues item 'effects')}}
       <li class="S0-h-35 S0-flex S0-items-center S0-justify-between S0-my-2 S0-py-8 S0-border-b-secondary">
-        <label class="S0-flex-1 S0-text-12">{{value}} {{localizedKey}}</label>
+        <label class="S0-flex-1 S0-text-12">
+          {{#if (operators 'gt' value 0)}}+{{/if}}{{value}} {{localizedKey}}
+        </label>
         {{#if ../editable}}
         <a class="S0-icon-expand" data-characteristic="characteristic" data-type="trait-effect" data-action="remove"
           data-item-index="{{@index}}" title="{{localize 'Remover'}}">
@@ -68,5 +71,11 @@
     </ul>
   </div>
 
-  {{> itemCommonDescription this}}
+  <div class="S0-page S0-container">
+    <label class="S0-block" for="{{item.id}}.description">
+      {{localize 'S0.Descricao'}}:
+    </label>
+    <textarea class="S0-resize-none S0-mt-6" id="{{item.id}}.description" name="system.description" maxlength="150"
+      rows="5">{{itemValues item 'description'}}</textarea>
+  </div>
 </form>

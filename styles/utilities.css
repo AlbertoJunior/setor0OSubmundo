@@ -79,6 +79,10 @@
   gap: 4px;
 }
 
+.S0-gap-6 {
+  gap: 6px;
+}
+
 .S0-gap-8 {
   gap: 8px;
 }
@@ -170,6 +174,10 @@
 
 .S0-text-small {
   font-size: small;
+}
+
+.S0-text-x-small {
+  font-size: x-small;
 }
 
 .S0-text-xx-small {
@@ -309,6 +317,10 @@
   padding: 6px;
 }
 
+.S0-p-8 {
+  padding: 8px;
+}
+
 .S0-py-2 {
   padding-block: 2px;
 }
@@ -343,6 +355,10 @@
 
 .S0-pl-4 {
   padding-left: 4px;
+}
+
+.S0-pl-8 {
+  padding-left: 8px;
 }
 
 .S0-pl-16 {
@@ -382,22 +398,6 @@
   height: 304px;
 }
 
-.S0-max-w-110 {
-  max-width: 110px;
-}
-
-.S0-max-w-170 {
-  max-width: 170px;
-}
-
-.S0-max-w-160 {
-  max-width: 160px;
-}
-
-.S0-max-w-max {
-  max-width: max-content;
-}
-
 .S0-max-h-128 {
   max-height: 128px;
 }
@@ -412,6 +412,26 @@
 
 .S0-max-h-330 {
   max-height: 330px;
+}
+
+.S0-max-w-110 {
+  max-width: 110px;
+}
+
+.S0-max-w-160 {
+  max-width: 160px;
+}
+
+.S0-max-w-170 {
+  max-width: 170px;
+}
+
+.S0-max-w-250 {
+  max-width: 250px;
+}
+
+.S0-max-w-max {
+  max-width: max-content;
 }
 
 .S0-min-w-0 {
@@ -480,6 +500,10 @@
 }
 
 /* Overflow, Position & Misc */
+.S0-hidden {
+  display: none;
+}
+
 .S0-overflow-hidden {
   overflow: hidden;
 }
@@ -533,4 +557,12 @@
 
 .S0-pointer-events-none {
   pointer-events: none;
+}
+
+.S0-list-disclosure-closed {
+  list-style-type: disclosure-closed;
+}
+
+.S0-list-disclosure-open {
+  list-style-type: disclosure-open;
 }

@@ -2,6 +2,8 @@
 
 | Arquivo | Descrição | Data |
 | :--- | :--- | :--- |
+| [30-correcao-bug-tracos-seletor-habilidades.md](./30-correcao-bug-tracos-seletor-habilidades.md) | Correção de sobrescrita de Models e Adição de Seletor de Habilidades dinâmico em Traços. | 06/03/2026 |
+| [29-correcao-duplicidade-loja.md](./29-correcao-duplicidade-loja.md) | Correção de bug de duplicidade em itens da loja que adicionava Embedded Documents ao repositório global. | 06/03/2026 |
 | [28-configuracoes-iniciais-mundo-jogadores.md](./28-configuracoes-iniciais-mundo-jogadores.md) | Implementação das configurações iniciais para novos mundos: sincronização de idioma (GM -> Players), Tracker de combate padrão desativado e valores default para Scene/Token. | 05/03/2026 |
 | [27-organizacao-macros-personagem.md](./27-organizacao-macros-personagem.md) | Criação de FolderUtils para unificar a arquitetura de pastas dinâmicas, blindagem Null-Safety no Sync e organização das Macros na pasta Jogadores > Personagem. | 04/03/2026 |
 | [26-reorganizacao-de-pastas-setup-field.md](./26-reorganizacao-de-pastas-setup-field.md) | Reorganização de pastas: migração de fields para dentro de data e criação da pasta setup extraindo configurações de arquivos de utils. | 04/03/2026 |

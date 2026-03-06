@@ -6,6 +6,7 @@ import { configureSetor0Combat } from "../base/document/Setor0Combat.mjs";
 import { configureSetor0Combatant } from "../base/document/Setor0Combatant.mjs";
 import { configureSetor0CombatTracker } from "../base/document/Setor0CombatTracker.mjs";
 import { configureSetor0TokenDocument } from "../base/document/Setor0TokenDocument.mjs";
+import { configureSetor0Item } from "../base/document/Setor0Item.mjs";
 import { DEFAULT_VALUES, SYSTEM_HOOKS, SYSTEM_ID } from "../constants.mjs";
 import { FoundryApi } from "../api/foundry-api.mjs";
 import { MacroUtils } from "../core/macro/macro-utils.mjs";

@@ -110,6 +110,7 @@
     "Influencia": "Influência",
     "Nucleo": "Núcleo",
     "Sobrecarga": "Sobrecarga",
+    "Sobrecarga_Limite": "Limite de Sobrecarga",
     "Aprimoramentos": "Aprimoramentos",
     "Reiniciar_Efeitos_Passivos": "Reiniciar Efeitos Passivos",
     "Remover_Efeito": "Remover Efeito",
@@ -360,6 +361,9 @@
       "Ruim": "Ruim",
       "Tracos_Bons": "Traços Bons",
       "Tracos_Ruins": "Traços Ruins",
+      "Adicionar_Efeito": "Adicionar Efeito",
+      "Valor_Explicacao": "O valor é fixo, e pode ser negativo ou positivo.",
+      "Valor_Explicacao_Fator": "O valor de um fator é um multiplicador, é recomendado utilizar valores entre -1 e 1.",
       "Placeholder": {
         "Requisito": "Nenhum requisito"
       }

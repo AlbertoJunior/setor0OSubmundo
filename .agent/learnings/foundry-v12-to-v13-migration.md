@@ -285,3 +285,11 @@ _initializeApplicationOptions(options) {
   return options;
 }
 ```
+
+### 14. Depreciação em Handlebars helpers (`selectOptions`)
+- **Problema**: Na v12, o helper `{{selectOptions}}` utilizava a propriedade `nameAttr="id"` para destinar qual atributo seria o `value=""` das tags options.
+- **Aviso de Depreciação**: No Foundry v13, o uso de `nameAttr` passou a disparar warnings no console indicando depreciação com previsão de quebra na v14.
+- **Solução**: Troque o parâmetro `nameAttr="id"` por `valueAttr="id"`. Exemplo:
+```handlebars
+{{selectOptions myOptions valueAttr="id" labelAttr="name"}}
+```

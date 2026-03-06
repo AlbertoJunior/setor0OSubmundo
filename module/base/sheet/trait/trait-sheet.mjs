@@ -5,6 +5,8 @@ import { loadAndRegisterTemplates } from "../../../setup/templates.mjs";
 import { menuHandleMethods } from "../../menu-default-methods.mjs";
 import { handlerTraitCharacteristicsEvents } from "./methods/trait-effects-methods.mjs";
 import { localize } from "../../../utils/utils.mjs";
+import { TraitUpdater } from "../../updater/trait-updater.mjs";
+import { SystemFlags } from "../../../enums/flags-enums.mjs";
 
 export async function traitTemplatesRegister() {
   const templates = [
@@ -50,9 +52,13 @@ export class TraitSheet extends FoundryApi.ItemSheet {
     return !this.isEditable;
   }
 
+  get canEdit() {
+    return game.user.isGM || this.item.getFlag(SYSTEM_ID, SystemFlags.MANAGER.CAN_EDIT);
+  }
+
   getData() {
     const data = super.getData();
-    data.canEdit = game.user.isGM || this.item.getFlag(SYSTEM_ID, 'canEdit');
+    data.canEdit = this.canEdit
     data.system = this.item.system;
 
     data.traitTypes = {
@@ -68,5 +74,9 @@ export class TraitSheet extends FoundryApi.ItemSheet {
     };
 
     return data;
+  }
+
+  async updateDocument(document, keyToUpdate, value) {
+    await TraitUpdater.updateTrait(document, keyToUpdate, value);
   }
 }

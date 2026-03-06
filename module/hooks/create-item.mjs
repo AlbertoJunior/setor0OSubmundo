@@ -34,8 +34,20 @@ export class CreateItemHookHandle {
   }
 
   static async #operateItemCreated(item) {
+    if (this.#isItemInActor(item)) return;
+
     if (EquipmentUtils.isEquipment(item)) {
       EquipmentRepository.addItem(item);
     }
+  }
+
+  /**
+   * Verifica se o item pertence a um Ator (Embedded Document)
+   * em vez de ser um item global (World Item)
+   * @param {Item} item 
+   * @returns {boolean}
+   */
+  static #isItemInActor(item) {
+    return Boolean(item.parent);
   }
 }

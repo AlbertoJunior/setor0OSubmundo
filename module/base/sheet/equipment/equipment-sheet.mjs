@@ -9,6 +9,7 @@ import { handlerEquipmentItemRollEvents } from "./methods/equipment-item-roll-me
 import { handlerEquipmentMenuRollEvents } from "./methods/equipment-menu-roll-methods.mjs";
 import { handlerSuperEquipmentEvents } from "./methods/superequipment-methods.mjs";
 import { EquipmentUpdater } from "../../updater/equipment-updater.mjs";
+import { SystemFlags } from "../../../enums/flags-enums.mjs";
 
 export async function equipmentTemplatesRegister() {
   const templates = [
@@ -83,9 +84,13 @@ class EquipmentSheet extends FoundryApi.ItemSheet {
     return !this.isEditable;
   }
 
+  get canEdit() {
+    return game.user.isGM || this.item.getFlag(SYSTEM_ID, SystemFlags.MANAGER.CAN_EDIT)
+  }
+
   getData() {
     const data = super.getData();
-    data.canEdit = game.user.isGM || this.item.getFlag(SYSTEM_ID, 'canEdit');
+    data.canEdit = this.canEdit;
     return data;
   }
 

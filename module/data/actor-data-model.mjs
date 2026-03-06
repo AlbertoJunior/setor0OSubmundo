@@ -211,8 +211,8 @@ export async function createActorDataModels() {
     }
   };
 
-  CONFIG.Actor.dataModels = {
+  Object.assign(CONFIG.Actor.dataModels, {
     Player: PlayerDataModel,
     NPC: NPCDataModel
-  };
+  });
 }

@@ -140,12 +140,12 @@ class ProjectileDataModel extends WeaponDataModel {
 }
 
 export async function createEquipmentDataModels() {
-  CONFIG.Item.dataModels = {
+  Object.assign(CONFIG.Item.dataModels, {
     Melee: MeleeDataModel,
     Projectile: ProjectileDataModel,
     Armor: ArmorDataModel,
     Vehicle: VehicleDataModel,
     Substance: SubstanceDataModel,
     Acessory: AcessoryDataModel,
-  };
+  });
 }
