@@ -23,7 +23,7 @@ Hooks.on('createItem', (item) => {
 });
 
 Hooks.on('preCreateItem', (item, data, options, userId) => {
-  // PreCreateItemHookHandle.handle(item, data, options, userId);
+  PreCreateItemHookHandle.handle(item, data, options, userId);
 });
 
 Hooks.on('createCombat', (combat) => {

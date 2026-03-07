@@ -86,6 +86,8 @@ export class FoundryApi {
 
   static FilePicker = convertToClass(this.Apps.FilePicker);
 
+  static TooltipManager = convertToClass(CurrentVersion.TooltipManager);
+
   static async renderTemplate(path, data) {
     return this.Handlebars.renderTemplate(path, data);
   }
@@ -177,4 +179,5 @@ export class FoundryApi {
     }
     return 0;
   }
+
 }

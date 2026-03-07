@@ -44,11 +44,11 @@ export class PreCreateItemHookHandle {
   }
 
   static handle(item, data, options, userId) {
-    if (item.img === "icons/svg/item-bag.svg" || !item.img) {
-      const typeIcon = this.DEFAULT_ICONS[item.type];
-      if (typeIcon) {
-        item.updateSource({ img: typeIcon });
-      }
-    }
+    // if (item.img === "icons/svg/item-bag.svg" || !item.img) {
+    //   const typeIcon = this.DEFAULT_ICONS[item.type];
+    //   if (typeIcon) {
+    //     item.updateSource({ img: typeIcon });
+    //   }
+    // }
   }
 }

@@ -10,14 +10,15 @@ import { registerNpc } from "../base/sheet/actor/npc/npc-sheet.mjs";
 import { registerTrait } from "../base/sheet/trait/trait-sheet.mjs";
 import { FoundryApi } from "../api/foundry-api.mjs";
 import { CompendiumSync } from "../core/pack/compendium-sync.mjs";
+import { Setor0TooltipManager } from "../base/ui/Setor0TooltipManager.mjs";
 import { ConfigDefaults } from "../setup/config-defaults.mjs";
 
 export class ReadyHookHandle {
   static async handle() {
+    Setor0TooltipManager.applyActivationDelay();
     await this.#repositories();
     await this.#sheets();
     await this.#macro();
-    FoundryApi.Versions.current.TooltipManager.TOOLTIP_ACTIVATION_MS = 200;
     await this.#config();
     this.#effects();
     this.#loadOnlyForGm();

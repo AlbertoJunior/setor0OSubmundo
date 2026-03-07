@@ -2,6 +2,7 @@
 
 | Arquivo | Descrição | Data |
 | :--- | :--- | :--- |
+| [31-configuracao-direta-tooltipmanager.md](./31-configuracao-direta-tooltipmanager.md) | Alteração do TooltipManager para diminuir o delay global da interface. | 06/03/2026 |
 | [30-correcao-bug-tracos-seletor-habilidades.md](./30-correcao-bug-tracos-seletor-habilidades.md) | Correção de sobrescrita de Models e Adição de Seletor de Habilidades dinâmico em Traços. | 06/03/2026 |
 | [29-correcao-duplicidade-loja.md](./29-correcao-duplicidade-loja.md) | Correção de bug de duplicidade em itens da loja que adicionava Embedded Documents ao repositório global. | 06/03/2026 |
 | [28-configuracoes-iniciais-mundo-jogadores.md](./28-configuracoes-iniciais-mundo-jogadores.md) | Implementação das configurações iniciais para novos mundos: sincronização de idioma (GM -> Players), Tracker de combate padrão desativado e valores default para Scene/Token. | 05/03/2026 |

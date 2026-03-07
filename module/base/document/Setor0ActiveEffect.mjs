@@ -43,7 +43,7 @@ export class Setor0ActiveEffect extends FoundryApi.ActiveEffect {
 
       const textStyle = {
         _fontFamily: "Setor0",
-        _fontSize: 30,
+        _fontSize: 40,
         _fill: fillColor,
         _stroke: strokeColor,
         _letterSpacing: 5,
@@ -57,7 +57,8 @@ export class Setor0ActiveEffect extends FoundryApi.ActiveEffect {
 
       options = {
         ...options,
-        ...textStyle
+        ...textStyle,
+        duration: 2000
       };
 
       canvas.interface.createScrollingText = originalCreate;
