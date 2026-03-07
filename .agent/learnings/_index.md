@@ -2,6 +2,8 @@
 
 | Arquivo | Descrição | Contexto |
 | :--- | :--- | :--- |
+| [document-hooks-lifecycle.md](./document-hooks-lifecycle.md) | Diferenças anatômicas dos parâmetros entre os Document Hooks (_onCreate, _onUpdate, _onDelete) e prevenção de ReferenceErrors com falsos objetos `data` em Diffs. | Hooks / Foundry VTT |
+| [ephemeral-monkey-patching.md](./ephemeral-monkey-patching.md) | Padrão arquitetural (Salvar-Substituir-Restaurar) para sobrescrever métodos sensíveis globais da Canvas Interface sem causar Memory Leaks com a UI travada. | Arquitetura de UI / Performance |
 | [no-hardcoded-system-attributes.md](./no-hardcoded-system-attributes.md) | Regra estrita contra o uso de caminhos fixos (hardcoded) como `system.atributos.forca`, obrigando o uso de Enums (ex: `CharacteristicType`). | Padronização Interna |
 | [foundry-hooks-embedded-documents.md](./foundry-hooks-embedded-documents.md) | Ignorar processamento indevido de Embedded Documents com `if (document.parent)` em Hooks Genéricos. | Hooks / Foundry VTT |
 | [foundry-v13-core-settings-override.md](./foundry-v13-core-settings-override.md) | Estratégia de Sync Passivo de configurações Locais (Core Settings) em multi-clientes via Hook updateSetting | Foundry VTT v13 |

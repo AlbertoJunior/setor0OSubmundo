@@ -17,12 +17,12 @@ function convertToClass(BaseClass, application) {
     application = CurrentVersion;
   }
 
-  const cls = {
-    [BaseClass.name]: class extends BaseClass {
-      static VERSION = application.VersionName;
-    }
-  }[BaseClass.name];
-  return cls;
+  class DynamicClass extends BaseClass {
+    static VERSION = application.VersionName;
+  }
+  Object.defineProperty(DynamicClass, 'name', { value: BaseClass.name });
+
+  return DynamicClass;
 }
 
 export class FoundryApi {
@@ -58,15 +58,8 @@ export class FoundryApi {
   static ImagePopout = convertToClass(CurrentVersion.Apps.ImagePopout);
   static Tabs = convertToClass(CurrentVersion.Ux.Tabs);
 
-  //#region UPDATED 
   static ActorSheet = CurrentVersion.makeSheetClass(this.Sheets.ActorSheet);
   static ItemSheet = CurrentVersion.makeSheetClass(this.Sheets.ItemSheet);
-  //#endregion
-
-  //#region NEED UPDATE to V2
-  // static ActorSheet = ApplicationV1.makeSheetClass(ApplicationV1.Sheets.ActorSheet);
-  // static ItemSheet = ApplicationV1.makeSheetClass(ApplicationV1.Sheets.ItemSheet);
-  //#endregion
 
   static Actors = convertToClass(this.Collections.Actors);
   static Items = convertToClass(this.Collections.Items);
