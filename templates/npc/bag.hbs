@@ -1,22 +1,20 @@
 <div class="S0-page tab" data-group="menu-tabs" data-tab="equipments" data-label="{{ localize 'S0.Equipamentos' }}"
   data-icon="fas fa-backpack">
   <div class="S0-container-2-column S0-h-304 S0-max-h-304">
-    <div class="S0-container S0-overflow-auto">
+    <div class="S0-container S0-m-0 S0-overflow-auto">
       <h3> {{localize 'S0.Equipados'}} </h3>
       <hr>
-      <ul id="equipped-{{actor.id}}" class="S0-container-2-column S0-drop-container S0-row-gap-6"
-        style="grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));">
+      <ul id="equipped-{{actor.id}}" class="S0-container-2-column S0-drop-container S0-row-gap-6">
         {{#each (actorLists actor 'equipment_equipped') as |item|}}
         <li class="S0-item-bag-compact">{{> equipamentEquippedItem item }}</li>
         {{/each}}
       </ul>
     </div>
 
-    <div class="S0-container S0-overflow-auto">
+    <div class="S0-container S0-m-0 S0-overflow-auto">
       <h3> {{localize 'S0.Mochila'}} </h3>
       <hr>
-      <ul id="bag-{{actor.id}}" class="S0-container-2-column S0-drop-container S0-row-gap-6"
-        style="grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));">
+      <ul id="bag-{{actor.id}}" class="S0-container-2-column S0-drop-container S0-row-gap-6">
         {{#each (actorLists actor 'equipment_filtered') as |item|}}
         <li class="S0-item-bag-compact">{{> equipamentBagItem item }}</li>
         {{/each}}

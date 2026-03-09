@@ -111,7 +111,8 @@ export const traitMethods = {
     if (originalTrait?.effects && originalTrait?.effects.length > 0) {
       const itemId = originalTrait.id;
       const effect = actor.effects.find(effect => effect.statuses.has(itemId));
-      await ActiveEffectsUtils.removeActorEffect(actor, ActiveEffectsUtils.getOriginId(effect));
+      if (effect)
+        await ActiveEffectsUtils.removeActorEffect(actor, ActiveEffectsUtils.getOriginId(effect));
     }
     await ActorUpdater.verifyAndUpdateActor(actor, characteristic, updatedTraits);
   },

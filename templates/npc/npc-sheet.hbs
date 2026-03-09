@@ -14,16 +14,16 @@
         class="S0-actor-images S0-clickable" src="{{actor.img}}">
     </div>
 
-    <div class="S0-flex-1">
+    <div class="S0-flex-col S0-flex-1 S0-gap-6">
       <header>
-        <div class="S0-container S0-mt-0">
+        <div class="S0-container S0-flex-col S0-gap-4 S0-m-0">
           <h2 class="S0-flex S0-items-center">
             <label class="S0-min-w-72" for="{{uuid}}.name">{{ localize 'S0.Nome' }}:</label>
             <input id="{{uuid}}.name" name="name" type="text" value="{{actor.name}}"
               placeholder="{{ localize 'S0.Nome' }}" {{#unless editable}}disabled{{/unless}} />
           </h2>
 
-          <div class="S0-container-2-column S0-mt-6">
+          <div class="S0-container-2-column S0-m-0">
             <div class="S0-flex S0-items-center S0-col-gap-6">
               <label for="{{uuid}}.morfologia">{{ localize 'S0.Morfologia' }}:</label>
               <select class="S0-select" id="{{uuid}}.morfologia" name="system.morfologia" {{#unless

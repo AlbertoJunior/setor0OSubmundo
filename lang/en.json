@@ -387,6 +387,73 @@
       "Placeholder": {
         "Requisito": "No requirement"
       }
+    },
+    "CONTROL": {
+      "HIDDEN_BUTTON": {
+        "Info": "You can change settings like 'Theme' and 'Layout'"
+      },
+      "THEME_BUTTON": {
+        "Title": "Toggle Dark/Light Theme ({state})",
+        "Dark": "Dark",
+        "Light": "Light",
+        "Activated": "{state} theme activated."
+      },
+      "LAYOUT_BUTTON": {
+        "Title": "Toggle Expanded/Compact Layout ({state})",
+        "Compact": "Compact",
+        "Expanded": "Expanded",
+        "Activated": "{state} layout activated."
+      },
+      "LANGUAGE_BUTTON": {
+        "Title": "Change language"
+      },
+      "EXPORT_COMPENDIUMS_BUTTON": {
+        "Title": "Export System Compendiums"
+      },
+      "IMPORT_COMPENDIUMS_BUTTON": {
+        "Title": "Delete & Reload Compendiums",
+        "Dialog_Title": "Attention: Compendium Deletion",
+        "Dialog_Message": "<p>This action will <b>DELETE</b> all items and folders from all your current system compendiums in this world and replace them with the original content shipped with this package version.</p><p>There is no way to undo this. Are you sure you want to proceed?</p>",
+        "Notify_Start": "Starting compendium deletion, please wait...",
+        "Notify_End": "Deletion complete. The world will be reloaded in a moment to apply the changes."
+      },
+      "REMOVE_TOKENS_EFFECTS_BUTTON": {
+        "Title": "Remove Effects",
+        "Label": "Remove Tokens Effects",
+        "Tokens_Selected": "Selected tokens",
+        "Choose_Action": "Choose how you would like to remove the active effects:",
+        "Content_Simple_Title": "Remove Simple Effects:",
+        "Content_Simple_Desc": "Removes removable effects (preserves native/locked project effects, such as passives).",
+        "Content_All_Title": "Remove ALL Effects:",
+        "Content_All_Desc": "Forces the removal of absolutely all effects from the selected tokens.",
+        "Remove_Simple": "Remove Simple",
+        "Remove_All": "Remove All",
+        "No_Tokens_Selected": "No tokens selected for effect removal.",
+        "Removed_Simple_Success": "Simple effects removed from {qtd} token(s).",
+        "Removed_All_Success": "ALL effects removed from {qtd} token(s)."
+      },
+      "EXPERIENCE_CALCULATOR_BUTTON": {
+        "Title": "Experience Calculator",
+        "Dialog_Title": "Experience Calculator",
+        "Como_Utilizar": "How to use the Calculator",
+        "Ajuda_Texto1": "After dragging the character to the center of the screen, click on one of the two calculation modes in the <strong>Experience Cost</strong> column.",
+        "XP_Otimizada": "Optimized XP",
+        "XP_Otimizada_Desc": "The system attempts to allocate free starting points to the highest-level skills and attributes, spending experience points only on what remains, ensuring the lowest possible XP cost on the sheet.",
+        "XP_Aproximada": "Approximate XP",
+        "XP_Aproximada_Desc": "The natural (organic) calculation considers that very high proficiencies (by default, Skill Level 5+ and Attribute 4+) can only be acquired during play using experience. These levels will not consume free starting points, charging their cost directly.",
+        "Personagem_Aqui": "Drag and Drop a Character here",
+        "Gasto_Experiencia": "Experience Cost",
+        "Otimizada": "Optimized",
+        "Aproximada": "Approximate",
+        "Configuracoes_Calculo_Aproximado": "Approximate Calculation Settings",
+        "Atributos_Ajuda": "Defines from which level the attribute will be charged in experience points (Approximate). Default is 4+",
+        "Habilidades_Ajuda": "Defines from which level the skill will be charged in experience points (Approximate). Default is 5+",
+        "Aprimoramentos_Ajuda": "Defines the base cost used to multiply by the possessed Enhancements level (Approximate). Default is 4.",
+        "Recalcular": "Recalculate",
+        "Abrir_Ficha": "Open Character Sheet",
+        "NPC_Warning": "This character's experience cannot be calculated",
+        "No_Actor_Warning": "Drag a character here first!"
+      }
     }
   },
   "TYPES": {

@@ -9,7 +9,9 @@ export const SYSTEM_CLASS_CSS = Object.freeze("S0-content");
 export const SYSTEM_CLASS_DIALOG_CSS = Object.freeze("S0-dialog");
 export const SYSTEM_CLASS_DARK_CSS = Object.freeze("S0-page-transparent");
 
-export const REGISTERED_TEMPLATES = Object.freeze(new Set());
+export const REGISTERED_TEMPLATES = Object.freeze(new Set([
+  `${TEMPLATES_PATH}/others/remove-tokens-effects-dialog.hbs`
+]));
 export const REGISTERED_MIGRATIONS = Object.freeze(new Set());
 
 export const SYSTEM_HOOKS = Object.freeze({

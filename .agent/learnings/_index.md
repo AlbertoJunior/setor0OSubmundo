@@ -2,7 +2,9 @@
 
 | Arquivo | Descrição | Contexto |
 | :--- | :--- | :--- |
+| [foundry-v13-scene-control-dummy-tool.md](./foundry-v13-scene-control-dummy-tool.md) | Limitação do v13 em gerenciar painéis apenas de botões sem propriedades `activeTool` gerando TypeError e exigindo uso de DummyTools no Hook getSceneControlButtons. | Hooks / Foundry VTT v13 |
 | [document-hooks-lifecycle.md](./document-hooks-lifecycle.md) | Diferenças anatômicas dos parâmetros entre os Document Hooks (_onCreate, _onUpdate, _onDelete) e prevenção de ReferenceErrors com falsos objetos `data` em Diffs. | Hooks / Foundry VTT |
+| [item-repository-sourceid-fetching.md](./item-repository-sourceid-fetching.md) | Obtenção de Dados Originais de Itens (ex: Traços) via sourceId em Repositórios e chamadas seguras com `getObject()` instanciado para Casting e Enums de Ator. | Arquitetura de Itens / Data Model |
 | [ephemeral-monkey-patching.md](./ephemeral-monkey-patching.md) | Padrão arquitetural (Salvar-Substituir-Restaurar) para sobrescrever métodos sensíveis globais da Canvas Interface sem causar Memory Leaks com a UI travada. | Arquitetura de UI / Performance |
 | [no-hardcoded-system-attributes.md](./no-hardcoded-system-attributes.md) | Regra estrita contra o uso de caminhos fixos (hardcoded) como `system.atributos.forca`, obrigando o uso de Enums (ex: `CharacteristicType`). | Padronização Interna |
 | [foundry-hooks-embedded-documents.md](./foundry-hooks-embedded-documents.md) | Ignorar processamento indevido de Embedded Documents com `if (document.parent)` em Hooks Genéricos. | Hooks / Foundry VTT |

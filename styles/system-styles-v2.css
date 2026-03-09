@@ -6,6 +6,10 @@
   border-radius: 6px 6px 0px 0px;
 }
 
+.S0-V2.S0-content .window-header .window-icon {
+  color: var(--primary-color);
+}
+
 .S0-V2.S0-content .window-content {
   padding: 4px;
   border-radius: 0px 0px 6px 6px;

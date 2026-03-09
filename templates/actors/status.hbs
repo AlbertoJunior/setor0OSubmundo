@@ -15,7 +15,7 @@
         <h3>
           <label for="experiencia.atual">{{localize 'S0.Disponivel'}}</label>
         </h3>
-        <h4>
+        <h4 class="S0-m-0">
           <input id="experiencia.atual" name="system.experiencia.atual" type="number"
             value="{{actorValues actor 'actual_experience'}}" placeholder="0" />
         </h4>
@@ -23,7 +23,7 @@
       {{else}}
       <li class="S0-container">
         <h3>{{localize 'S0.Disponivel'}}</h3>
-        <h4>{{actorValues actor 'actual_experience'}}</h4>
+        <h4 class="S0-m-0">{{actorValues actor 'actual_experience'}}</h4>
       </li>
       {{/if}}
 
@@ -31,7 +31,7 @@
         <h3>
           <label for="experiencia.usada">{{localize 'S0.Usada'}}</label>
         </h3>
-        <h4>
+        <h4 class="S0-m-0">
           <input id="experiencia.usada" name="system.experiencia.usada" type="number"
             value="{{actorValues actor 'used_experience'}}" placeholder="0" />
         </h4>
@@ -41,19 +41,19 @@
 
       <li class="S0-container">
         <h3>{{localize 'S0.Disponivel'}}</h3>
-        <h4>{{actorValues actor 'actual_experience'}}</h4>
+        <h4 class="S0-m-0">{{actorValues actor 'actual_experience'}}</h4>
       </li>
       <li class="S0-container">
         <h3>{{localize 'S0.Usada'}}</h3>
-        <h4>{{actorValues actor 'used_experience'}}</h4>
+        <h4 class="S0-m-0">{{actorValues actor 'used_experience'}}</h4>
       </li>
 
       {{/if}}
 
       <li class="S0-container">
-        <div class="S0-h-full S0-flex S0-flex-col S0-justify-center">
+        <div class="S0-h-full S0-flex-col S0-justify-center">
           <h3>{{localize 'S0.Total'}}</h3>
-          <h4>{{actorValues actor 'total_experience'}}</h4>
+          <h4 class="S0-m-0">{{actorValues actor 'total_experience'}}</h4>
         </div>
       </li>
     </ul>
@@ -72,7 +72,7 @@
     <ul class="S0-ul-flex">
       <li class="S0-container">
         <h3>{{ localize 'S0.Movimento'}}</h3>
-        <h4>{{actorValues actor 'pm'}}</h4>
+        <h4 class="S0-m-0">{{actorValues actor 'pm'}}</h4>
       </li>
       <li class="S0-container">
         <h3>
@@ -203,7 +203,7 @@
 
     <ul class="S0-ul-flex">
       {{#if (actorValues actor 'have_equipped_armor') }}
-      <div class="S0-container S0-flex-1 S0-flex S0-flex-col">
+      <div class="S0-container S0-flex-1 S0-flex-col">
         <h3>
           {{ localize 'S0.Protecao' }}
           {{#if canEdit}}

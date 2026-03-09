@@ -396,6 +396,73 @@
         "Efeito_Invalido": "Efeito inválido.",
         "Traco_Invalido": "Traço inválido ou não encontrado."
       }
+    },
+    "CONTROL": {
+      "HIDDEN_BUTTON": {
+        "Info": "Você pode alterar configurações como 'Tema' e 'Layout'"
+      },
+      "THEME_BUTTON": {
+        "Title": "Alternar Tema Claro e Escuro ({state})",
+        "Dark": "Escuro",
+        "Light": "Claro",
+        "Activated": "Tema {state} ativado."
+      },
+      "LAYOUT_BUTTON": {
+        "Title": "Alternar Layout Expandido e Compacto ({state})",
+        "Compact": "Compacto",
+        "Expanded": "Expandido",
+        "Activated": "Layout {state} ativado."
+      },
+      "LANGUAGE_BUTTON": {
+        "Title": "Alterar idioma"
+      },
+      "EXPORT_COMPENDIUMS_BUTTON": {
+        "Title": "Exportar Compêndios do Sistema"
+      },
+      "IMPORT_COMPENDIUMS_BUTTON": {
+        "Title": "Apagar & Recarregar Compêndios",
+        "Dialog_Title": "Atenção: Exclusão de Compêndios",
+        "Dialog_Message": "<p>Esta ação irá <b>APAGAR</b> todos os itens e pastas de todos os seus compêndios atuais do mundo referentes ao sistema e irá substituí-los pelo conteúdo original incluído com a versão do pacote.</p><p>Não há como reverter isso, tem certeza que deseja prosseguir?</p>",
+        "Notify_Start": "Iniciando exclusão dos compêndios, por favor aguarde...",
+        "Notify_End": "Exclusão completa. O mundo será recarregado em instantes para que possa carregar as informações."
+      },
+      "REMOVE_TOKENS_EFFECTS_BUTTON": {
+        "Title": "Remover Efeitos",
+        "Label": "Remover Efeitos dos Tokens",
+        "Tokens_Selected": "Tokens selecionados",
+        "Choose_Action": "Escolha como deseja remover os efeitos ativos:",
+        "Content_Simple_Title": "Remover Efeitos Simples:",
+        "Content_Simple_Desc": "Remove os efeitos removíveis (preserva efeitos nativos/bloqueados do projeto, como de passivas).",
+        "Content_All_Title": "Remover TODOS os Efeitos:",
+        "Content_All_Desc": "Força a remoção de absolutamente todos os efeitos dos tokens selecionados.",
+        "Remove_Simple": "Remover Simples",
+        "Remove_All": "Remover Todos",
+        "No_Tokens_Selected": "Nenhum token selecionado para remoção de efeitos.",
+        "Removed_Simple_Success": "Efeitos simples removidos de {qtd} token(s).",
+        "Removed_All_Success": "TODOS os efeitos removidos de {qtd} token(s)."
+      },
+      "EXPERIENCE_CALCULATOR_BUTTON": {
+        "Title": "Calculadora de Experiência",
+        "Dialog_Title": "Calculadora de Experiência",
+        "Como_Utilizar": "Como utilizar a Calculadora",
+        "Ajuda_Texto1": "Após arrastar o personagem para o centro da tela, clique em um dos dois modos de cálculo na coluna de <strong>Gasto de Experiência</strong>.",
+        "XP_Otimizada": "XP - Otimizada",
+        "XP_Otimizada_Desc": "O sistema tenta alocar os pontos iniciais gratuitos do personagem nas habilidades e atributos de maior nível, gastando pontos de experiência apenas no que sobrar, garantindo o menor gasto de XP possível na ficha.",
+        "XP_Aproximada": "XP - Aproximada",
+        "XP_Aproximada_Desc": "O cálculo natural (orgânico) considera que proficiências muito altas (por padrão, Nível 5+ de Habilidade e 4+ de Atributo) só podem ser adquiridas durante o jogo por meio de experiência. Esses níveis não consumirão os pontos gratuitos da criação do personagem, cobrando o seu custo diretamente.",
+        "Personagem_Aqui": "Arraste e solte um Personagem aqui",
+        "Gasto_Experiencia": "Gasto de Experiência",
+        "Otimizada": "Otimizada",
+        "Aproximada": "Aproximada",
+        "Configuracoes_Calculo_Aproximado": "Configurações de Cálculo Aproximado",
+        "Atributos_Ajuda": "Define a partir de qual nível o atributo será cobrado em pontos de experiência (Aproximada). O padrão é 4+",
+        "Habilidades_Ajuda": "Define a partir de qual nível a habilidade será cobrada em pontos de experiência (Aproximada). O padrão é 5+",
+        "Aprimoramentos_Ajuda": "Define o custo base utilizado para multiplicar pelo nível de Aprimoramentos possuídos (Aproximada). O padrão é 4.",
+        "Recalcular": "Recalcular",
+        "Abrir_Ficha": "Abrir Ficha do Personagem",
+        "NPC_Warning": "Este personagem não pode ter a experiência calculada",
+        "No_Actor_Warning": "Arraste um personagem primeiro!"
+      }
     }
   },
   "TYPES": {

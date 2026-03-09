@@ -5,6 +5,9 @@ import { FlagsUtils } from "../utils/flags-utils.mjs";
 import { FoundryApi } from "../api/foundry-api.mjs";
 import { CompendiumExport } from "../core/pack/compendium-export.mjs";
 import { CompendiumSync } from "../core/pack/compendium-sync.mjs";
+import { RemoveTokensEffectsDialog } from "../creators/dialog/remove-tokens-effects-dialog.mjs";
+import { ExperienceCalculatorDialog } from "../creators/dialog/experience-calculator-dialog.mjs";
+import { localize, localizeFormat } from "../utils/utils.mjs";
 
 export class SceneControlButtonsHookHandle {
   static firstRender = true;
@@ -14,14 +17,20 @@ export class SceneControlButtonsHookHandle {
       none: this.#mountHiddenButton('none'),
       theme: this.#mountThemeButton('theme'),
       layout: this.#mountLayoutButton('layout'),
-      language: this.#mountLanguageButton('language')
+      language: this.#mountLanguageButton('language'),
+      experienceCalculator: this.#mountExperienceCalculatorButton('experienceCalculator')
     };
 
     if (game.user.isGM) {
+      tools.removeTokensEffects = this.#mountRemoveTokensEffectsButton('removeTokensEffects');
       tools.exportCompendiums = this.#mountExportCompendiumsButton('exportCompendiums');
       tools.importCompendiums = this.#mountImportCompendiumsButton('importCompendiums');
     }
 
+    this.#mountControls(controls, tools);
+  }
+
+  static #mountControls(controls, tools) {
     controls.setor0 = {
       name: "setor0",
       title: "Setor 0: Configurações",
@@ -58,7 +67,7 @@ export class SceneControlButtonsHookHandle {
       name: name,
       title: "none",
       icon: "fas fa-text",
-      order: 99,
+      order: 999999,
       class: ['hidden'],
       button: false,
       toggle: false,
@@ -67,7 +76,7 @@ export class SceneControlButtonsHookHandle {
       onChange: async (event, active) => {
         if (active && this.firstRender) {
           this.firstRender = false;
-          NotificationsUtils.info("Você pode alterar configurações como 'Tema' e 'Botões'");
+          NotificationsUtils.info(localize('CONTROL.HIDDEN_BUTTON.Info'));
         }
       }
     };
@@ -81,14 +90,15 @@ export class SceneControlButtonsHookHandle {
     const isActive = verifyActive();
 
     const toolTitle = (active) => {
-      return `Alternar Tema Claro e Escuro (${active ? 'Escuro' : 'Claro'})`;
+      const modeText = active ? localize('CONTROL.THEME_BUTTON.Dark') : localize('CONTROL.THEME_BUTTON.Light');
+      return localizeFormat('CONTROL.THEME_BUTTON.Title', { state: modeText });
     }
 
     return {
       name: name,
       title: toolTitle(isActive),
       icon: "fas fa-adjust",
-      order: 1,
+      order: 100,
       toggle: true,
       active: isActive,
       verifyActive: verifyActive,
@@ -97,7 +107,9 @@ export class SceneControlButtonsHookHandle {
         const actualMode = FlagsUtils.getItemFlag(user, SystemFlags.MODE.DARK, false);
         await FlagsUtils.setItemFlag(user, SystemFlags.MODE.DARK, !actualMode);
         FoundryApi.reRenderAllSheets()
-        NotificationsUtils.info(`Tema ${actualMode ? "Claro" : "Escuro"} ativado.`);
+
+        const modeText = !actualMode ? localize('CONTROL.THEME_BUTTON.Dark') : localize('CONTROL.THEME_BUTTON.Light');
+        NotificationsUtils.info(localizeFormat('CONTROL.THEME_BUTTON.Activated', { state: modeText }));
         event.target.ariaLabel = toolTitle(!actualMode);
       }
     };
@@ -111,14 +123,15 @@ export class SceneControlButtonsHookHandle {
     const isActive = verifyActive();
 
     const toolTitle = (active) => {
-      return `Alternar Layout Expandido e Compacto (${active ? 'Compacto' : 'Expandido'})`;
+      const modeText = active ? localize('CONTROL.LAYOUT_BUTTON.Compact') : localize('CONTROL.LAYOUT_BUTTON.Expanded');
+      return localizeFormat('CONTROL.LAYOUT_BUTTON.Title', { state: modeText });
     }
 
     return {
       name: name,
       title: toolTitle(isActive),
       icon: "fas fa-columns",
-      order: 2,
+      order: 200,
       toggle: true,
       active: isActive,
       verifyActive: verifyActive,
@@ -127,7 +140,9 @@ export class SceneControlButtonsHookHandle {
         const actualMode = FlagsUtils.getItemFlag(user, SystemFlags.MODE.COMPACT, false);
         await FlagsUtils.setItemFlag(user, SystemFlags.MODE.COMPACT, !actualMode);
         FoundryApi.reRenderAllSheets()
-        NotificationsUtils.info(`Modo ${actualMode ? "Expandido" : "Compacto"} ativado.`);
+
+        const modeText = !actualMode ? localize('CONTROL.LAYOUT_BUTTON.Compact') : localize('CONTROL.LAYOUT_BUTTON.Expanded');
+        NotificationsUtils.info(localizeFormat('CONTROL.LAYOUT_BUTTON.Activated', { state: modeText }));
         event.target.ariaLabel = toolTitle(!actualMode);
       }
     };
@@ -136,9 +151,9 @@ export class SceneControlButtonsHookHandle {
   static #mountLanguageButton(name) {
     return {
       name: name,
-      title: 'Alterar idioma',
+      title: localize('CONTROL.LANGUAGE_BUTTON.Title'),
       icon: "fas fa-language",
-      order: 3,
+      order: 300,
       button: true,
       toggle: false,
       active: false,
@@ -153,12 +168,29 @@ export class SceneControlButtonsHookHandle {
     };
   }
 
+  static #mountRemoveTokensEffectsButton(name) {
+    return {
+      name: name,
+      title: localize('CONTROL.REMOVE_TOKENS_EFFECTS_BUTTON.Label'),
+      icon: "fas fa-skull",
+      order: 400,
+      button: true,
+      toggle: false,
+      active: false,
+      visible: true,
+      onChange: async (event, active) => {
+        const tokens = canvas?.tokens?.controlled || [];
+        RemoveTokensEffectsDialog.open(tokens);
+      }
+    };
+  }
+
   static #mountExportCompendiumsButton(name) {
     return {
       name: name,
-      title: 'Exportar Compêndios do Sistema',
+      title: localize('CONTROL.EXPORT_COMPENDIUMS_BUTTON.Title'),
       icon: "fas fa-file-export",
-      order: 4,
+      order: 600,
       button: true,
       toggle: false,
       active: false,
@@ -172,25 +204,40 @@ export class SceneControlButtonsHookHandle {
   static #mountImportCompendiumsButton(name) {
     return {
       name: name,
-      title: 'Apagar & Recarregar Compêndios',
+      title: localize('CONTROL.IMPORT_COMPENDIUMS_BUTTON.Title'),
       icon: "fas fa-file-import",
-      order: 5,
+      order: 700,
       button: true,
       toggle: false,
       active: false,
       visible: true,
       onChange: async (event, active) => {
         ConfirmationDialog.open({
-          titleDialog: "Atenção: Exclusão de Compêndios",
-          message: "<p>Esta ação irá <b>APAGAR</b> todos os itens e pastas de todos os seus compêndios atuais do mundo referentes ao sistema e irá substituí-los pelo conteúdo original incluído com a versão do pacote.</p><p>Não há como reverter isso, tem certeza que deseja prosseguir?</p>",
+          titleDialog: localize('CONTROL.IMPORT_COMPENDIUMS_BUTTON.Dialog_Title'),
+          message: localize('CONTROL.IMPORT_COMPENDIUMS_BUTTON.Dialog_Message'),
           isDanger: true,
           onConfirm: async () => {
-            NotificationsUtils.info("Iniciando exclusão dos compêndios, por favor aguarde...");
+            NotificationsUtils.info(localize('CONTROL.IMPORT_COMPENDIUMS_BUTTON.Notify_Start'));
             await CompendiumSync.clear();
-            NotificationsUtils.info("Exclusão completa. O mundo será recarregado em instantes para que possa carregar as informações.");
+            NotificationsUtils.info(localize('CONTROL.IMPORT_COMPENDIUMS_BUTTON.Notify_End'));
             setTimeout(() => window.location.reload(), 1000);
           }
         });
+      }
+    };
+  }
+
+  static #mountExperienceCalculatorButton(name) {
+    return {
+      name: name,
+      title: localize('CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Title'),
+      icon: "fas fa-calculator",
+      order: 350,
+      button: true,
+      toggle: false,
+      active: false,
+      onChange: async (event, active) => {
+        ExperienceCalculatorDialog.open();
       }
     };
   }

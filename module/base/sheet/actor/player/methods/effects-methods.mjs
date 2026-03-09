@@ -53,10 +53,7 @@ class EffectsHandleEvents {
       const effect = actor.effects.get(itemId);
       await ActiveEffectsUtils.removeActorEffect(actor, ActiveEffectsUtils.getOriginId(effect));
     } else if (removeType == 'all') {
-      const effects = actor.effects
-        .filter(effect => ActiveEffectsUtils.canRemoveEffect(effect))
-        .map(effect => ActiveEffectsUtils.getOriginId(effect));
-      await ActiveEffectsUtils.removeActorEffects(actor, effects);
+      await ActiveEffectsUtils.removeAllRemovableActorEffects(actor);
     }
   }
 

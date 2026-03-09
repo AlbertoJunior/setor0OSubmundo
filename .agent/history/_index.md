@@ -1,7 +1,12 @@
 # Índice de Histórico de Alterações
 
-| Arquivo | Descrição | Data |
+### Versão 13 - Componentização e Aplicações V2
+
+| Arquivo | Descrição | Última Atualização |
 | :--- | :--- | :--- |
+| [35-rollback-scene-control.md](./35-rollback-scene-control.md) | Investigação e Rollback da tentativa de substituir o fallback de Dummy Tool nativo nas barras laterais de UI (SceneControls) que causava incompatibilidade/crash na V13. | 08/03/2026 |
+| [34-calculadora-experiencia.md](./34-calculadora-experiencia.md) | Calculadora de Experiência completa: otimizada e revisada + UI (Três Colunas & Regex Translations) | 08/03/2026 |
+| [33-remocao-efeitos-tokens.md](./33-remocao-efeitos-tokens.md) | Criação de recurso para GM remover massivamente efeitos simples ou absolutos dos tokens selecionados. | 07/03/2026 |
 | [32-analise-geral-projeto.md](./32-analise-geral-projeto.md) | Análise geral de arquitetura, refatoração de convertToClass em FoundryApi e correção do hook _onUpdate de Efeitos Ativos. | 06/03/2026 |
 | [31-configuracao-direta-tooltipmanager.md](./31-configuracao-direta-tooltipmanager.md) | Alteração do TooltipManager para diminuir o delay global da interface. | 06/03/2026 |
 | [30-correcao-bug-tracos-seletor-habilidades.md](./30-correcao-bug-tracos-seletor-habilidades.md) | Correção de sobrescrita de Models e Adição de Seletor de Habilidades dinâmico em Traços. | 06/03/2026 |

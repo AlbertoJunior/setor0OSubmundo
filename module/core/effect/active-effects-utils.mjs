@@ -88,6 +88,21 @@ export class ActiveEffectsUtils {
     await Promise.all(effectsToRemove.map(effect => effect.delete()));
   }
 
+  static async removeAllRemovableActorEffects(actor) {
+    if (!actor) return;
+    const effectsId = actor.effects
+      .filter(effect => this.canRemoveEffect(effect))
+      .map(effect => this.getOriginId(effect));
+
+    await this.removeActorEffects(actor, effectsId);
+  }
+
+  static async removeAllActorEffects(actor) {
+    if (!actor) return;
+    const effectsId = actor.effects.map(effect => this.getOriginId(effect));
+    await this.removeActorEffects(actor, effectsId);
+  }
+
   static isPassive(effect) {
     return effect.duration.type == 'none';
   }

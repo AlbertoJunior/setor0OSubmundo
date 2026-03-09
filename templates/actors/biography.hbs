@@ -21,7 +21,7 @@
       </a>
     </div>
 
-    <div class="S0-container S0-flex S0-flex-col S0-row-gap-4">
+    <div class="S0-container S0-flex-col S0-row-gap-4">
       <div>
         <label class="S0-block S0-m-4" for="assignment">{{ localize 'S0.Atuacao' }}</label>
         <input id="assignment" name="system.background.assignment" type="text" rows="5"
@@ -30,7 +30,8 @@
 
       <div>
         <label class="S0-block S0-m-4" for="biography">{{ localize 'S0.Biografia' }}</label>
-        <textarea class="S0-resize-block" id="biography" name="system.background.biography" rows="5" placeholder="{{ localize 'S0.Biografia' }}">{{actorValues actor 'biography'}}</textarea>
+        <textarea class="S0-resize-block" id="biography" name="system.background.biography" rows="5"
+          placeholder="{{ localize 'S0.Biografia' }}">{{actorValues actor 'biography'}}</textarea>
       </div>
     </div>
   </div>
