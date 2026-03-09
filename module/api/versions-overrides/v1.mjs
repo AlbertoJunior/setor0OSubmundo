@@ -16,10 +16,8 @@ class S0DialogV1 extends Dialog {
       SYSTEM_CLASS_DIALOG_CSS,
       VERSION_NAME,
     ]);
-    return {
-      ...options,
-      classes: classes
-    };
+    options.classes = classes;
+    return options;
   }
 
   submit(button, event) {
@@ -180,16 +178,22 @@ function makeSheetClass(BaseClass) {
 
 async function createDialog(data, options) {
   const {
-    classes = [],
+    classes,
     title,
     header,
     content,
-    buttons = [],
-    minimizable = true,
-    resizable = false,
-    render = (html, renderedDialog, window) => { },
-    onClose = () => { }
+    buttons,
+    minimizable,
+    resizable,
+    render,
+    onClose
   } = data;
+
+  if (classes.length > 0) {
+    const optionsClasses = options?.classes ?? [];
+    const dialogDefaultClasses = S0DialogV1.defaultOptions.classes;
+    options.classes = normalizeArray([...optionsClasses, ...classes, ...dialogDefaultClasses]);
+  }
 
   const parsedButtons = parseButtons(buttons);
 
@@ -218,7 +222,6 @@ async function createDialog(data, options) {
       ...options,
       minimizable: minimizable,
       resizable: resizable,
-      classes: classes,
     }
   ).render(true);
 }
@@ -263,7 +266,8 @@ function parseButtons(buttons) {
       class: Array.isArray(bt.class) ? bt.class : [],
       closeDialog: bt.closeDialog,
       callback: (dialog, html, event) => {
-        bt.onClick?.(html, dialog);
+        const element = html instanceof HTMLElement ? html : html[0];
+        bt.onClick?.(element, dialog);
       }
     }
     if (bt.default == true) {

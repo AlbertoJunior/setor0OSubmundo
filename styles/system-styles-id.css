@@ -16,7 +16,7 @@
   border-radius: 50%;
   aspect-ratio: 1/1;
   margin: 6px;
-  border-width: 2px;
+  border-width: var(--border-medium);
 }
 
 #effects-container {
@@ -29,14 +29,13 @@
 
 #effects-container li {
   padding-block: 4px;
-  border-bottom: 1px solid var(--secondary-color);
+  border-bottom: var(--border-thin) solid var(--secondary-color);
 }
 
 #effects-container li:first-child {
-  border-top: 1px solid var(--secondary-color);
+  border-top: var(--border-thin) solid var(--secondary-color);
 }
 
 #effects-container.S0-expanded {
-  padding-block: 4px;
-  max-height: 180px;
+  max-height: 150px;
 }

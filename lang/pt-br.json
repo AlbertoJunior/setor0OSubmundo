@@ -460,6 +460,8 @@
         "Aprimoramentos_Ajuda": "Define o custo base utilizado para multiplicar pelo nível de Aprimoramentos possuídos (Aproximada). O padrão é 4.",
         "Recalcular": "Recalcular",
         "Abrir_Ficha": "Abrir Ficha do Personagem",
+        "Aplicar_Exp": "Aplicar experiência ao personagem",
+        "Exp_atribuida_ao_personagem": "Experiência atribuída ao personagem",
         "NPC_Warning": "Este personagem não pode ter a experiência calculada",
         "No_Actor_Warning": "Arraste um personagem primeiro!"
       }

@@ -2,11 +2,7 @@
   <h4 class="S0-text-center">{{localize 'S0.Iniciativa'}}</h4>
   <hr>
   <div class="dice-tooltip S0-container-contract">
-    <ol class="dice-rolls">
-      {{#each diceValues}}
-      <li class="S0-d10 roll die d10">{{ this }}</li>
-      {{/each}}
-    </ol>
+    {{> default-dices values=diceValues}}
 
     <label class="S0-block S0-my-6">{{localize 'S0.Base'}}: {{ initiative }}</label>
     <label class="S0-block S0-my-6">{{localize 'S0.Total'}}: {{ total }}</label>

@@ -183,15 +183,16 @@ function makeSheetClass(BaseClass) {
 
 async function createDialog(data, options) {
   const {
-    classes = [],
+    classes,
+    icon,
     title,
     header,
     content,
-    buttons = [],
-    minimizable = true,
-    resizable = false,
-    render = (html, renderedDialog, window) => { },
-    onClose = () => { }
+    buttons,
+    minimizable,
+    resizable,
+    render,
+    onClose
   } = data;
 
   const parsedButtons = parseDialogButtons(buttons);
@@ -215,6 +216,7 @@ async function createDialog(data, options) {
   const dialog = new this.Api.DialogV2(
     {
       window: {
+        icon: icon,
         title: title,
         minimizable: minimizable,
         resizable: resizable,

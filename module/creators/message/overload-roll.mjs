@@ -13,6 +13,6 @@ export class RollOverloadMessageCreator {
       resultValue: success,
       resultMessageClasses: isSuccess ? `S0-success` : 'S0-critical-failure'
     };
-    return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/messages/roll/overload.hbs`, data);
+    return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/messages/roll/overload-roll.hbs`, data);
   }
 }

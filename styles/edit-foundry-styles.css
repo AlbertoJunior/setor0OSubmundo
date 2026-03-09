@@ -178,7 +178,7 @@ h4.divider {
 
 /* #region MESSAGES CHAT */
 #chat-message {
-  border: 2px solid var(--primary-color-alpha);
+  border: var(--border-medium) solid var(--primary-color-alpha);
   --input-placeholder-color: var(--primary-color);
 }
 

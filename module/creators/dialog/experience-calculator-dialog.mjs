@@ -1,8 +1,10 @@
 import { NotificationsUtils } from "../message/notifications.mjs";
-import { localize } from "../../utils/utils.mjs";
-import { ActorType } from "../../enums/characteristic-enums.mjs";
+import { localize, randomId } from "../../utils/utils.mjs";
+import { ActorType, CharacteristicType } from "../../enums/characteristic-enums.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
 import { ActorExperienceUtils } from "../../core/actor/actor-experience-utils.mjs";
+import { ActorUpdater } from "../../base/updater/actor-updater.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -22,8 +24,8 @@ export class ExperienceCalculatorDialog extends HandlebarsApplicationMixin(Appli
   }
 
   static get DEFAULT_OPTIONS() {
-    return foundry.utils.mergeObject(super.DEFAULT_OPTIONS, {
-      id: "experience-calculator-dialog",
+    return FoundryApi.mergeObject(super.DEFAULT_OPTIONS, {
+      id: `${randomId(10)}-experience-calculator-dialog`,
       classes: ["S0-V2", "S0-content", "S0-dialog"],
       tag: "form",
       window: {
@@ -41,7 +43,8 @@ export class ExperienceCalculatorDialog extends HandlebarsApplicationMixin(Appli
         calculateApproximate: ExperienceCalculatorDialog.prototype._onCalculateApproximate,
         recalculate: ExperienceCalculatorDialog.prototype._onRecalculate,
         toggleThresholds: ExperienceCalculatorDialog.prototype._onToggleThresholds,
-        openSheet: ExperienceCalculatorDialog.prototype._onOpenSheet
+        openSheet: ExperienceCalculatorDialog.prototype._onOpenSheet,
+        applyExperience: ExperienceCalculatorDialog.prototype._onApplyExperience
       }
     });
   }
@@ -215,6 +218,17 @@ export class ExperienceCalculatorDialog extends HandlebarsApplicationMixin(Appli
   async _onOpenSheet(event, target) {
     if (this.actor) {
       this.actor.sheet.render(true);
+    }
+  }
+
+  async _onApplyExperience(event, target) {
+    if (this.actor) {
+      ActorUpdater.verifyAndUpdateActor(
+        this.actor,
+        CharacteristicType.EXPERIENCE.USED,
+        this.xpData.total
+      );
+      NotificationsUtils.success(localize("CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Exp_atribuida_ao_personagem"));
     }
   }
 }

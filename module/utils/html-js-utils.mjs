@@ -25,9 +25,9 @@ export class HtmlJsUtils {
     if (!header) return;
 
     if (inDarkMode) {
-      header.style.color = 'var(--primary-color)';
+      header.classList.add('S0-text-primary');
     } else {
-      header.style.color = '';
+      header.classList.remove('S0-text-primary');
     }
 
     const headerChildren = header.querySelectorAll('a') || [];

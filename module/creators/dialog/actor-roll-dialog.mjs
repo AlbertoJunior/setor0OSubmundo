@@ -55,6 +55,7 @@ export class ActorRollDialog {
 
     FoundryApi.createDialog(
       {
+        icon: "fas fa-dice-d10",
         title: localize("Realizar_Teste"),
         content: content,
         buttons: buttons,
@@ -188,7 +189,7 @@ export class ActorRollDialog {
       uuid: uuid,
       ...dataOptions
     }
-    return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/rolls/default-roll-dialog.hbs`, data);
+    return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/rolls/roll-dialog.hbs`, data);
   }
 
   static #changePage(page, pages, buttons) {

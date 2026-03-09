@@ -6,10 +6,8 @@ export class RollLifeMessageCreator {
   static async mountContent(params) {
     const { life, values, success, missed } = params;
     const isSuccess = missed <= 0;
-    const colorValue = 70 - ((values[0] - 1) * 15);
     const data = {
       life: life,
-      colorValue: colorValue,
       diceValues: values,
       resultMessage: isSuccess ? localize('Sucesso') : localize('Falha'),
       resultValue: success,

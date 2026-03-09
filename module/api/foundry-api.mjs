@@ -136,26 +136,38 @@ export class FoundryApi {
   }
 
   static async createDialog(
-    {
-      classes = [],
-      title,
-      header,
-      content,
-      buttons = [],
-      minimizable = true,
-      render = (html, renderedDialog, window) => { },
-      onClose = () => { }
-    } = data,
+    data,
     options,
     forcedApplication,
   ) {
+    if (!data?.content) {
+      console.warn("[createDialog] 'content' is required");
+      return;
+    }
+
     let application = forcedApplication ?? CurrentVersion;
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
     if (isSafari) {
       application = ApplicationV1;
     }
 
-    return application.createDialog({ classes, title, header, content, buttons, minimizable, render, onClose }, options);
+    const {
+      icon = null,
+      classes = [],
+      title = "",
+      header,
+      content,
+      buttons = [],
+      minimizable = true,
+      resizable = false,
+      render = (html, renderedDialog, window) => { },
+      onClose = () => { }
+    } = data
+
+    return application.createDialog(
+      { icon, classes, title, header, content, buttons, minimizable, resizable, render, onClose },
+      options
+    );
   }
 
   static async deleteFoldersInWorld(folders) {
@@ -164,8 +176,8 @@ export class FoundryApi {
       for (const deletable of sorted) {
         try {
           await deletable.delete();
-        } catch (error) {
-
+        } catch (_) {
+          console.warn(`[deleteFoldersInWorld] Falha ao deletar pasta: ${deletable.name}`);
         }
       }
       return sorted.length;

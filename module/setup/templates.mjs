@@ -22,11 +22,20 @@ async function loadAuxiliaryTemplates() {
     { call: "buttons-dialog", path: "others/buttons-dialog" },
     { call: "roll-chat-mode", path: "others/roll-chat-mode" },
     { call: "buttons-float-menu", path: "others/list-default-buttons-float-menu" },
+    // MESSAGES
     { call: "core-roll-message", path: "messages/roll/core-result" },
     { call: "core-roll-message-invalid", path: "messages/roll/core-result-invalid" },
-    { call: "button-quietness", path: "messages/roll/button-quietness" },
-    { call: "button-perseverance", path: "messages/roll/button-perseverance" },
-    { call: "button-consciousness", path: "messages/roll/button-consciousness" },
+    { call: "button-quietness", path: "messages/roll/parts/button-quietness" },
+    { call: "button-perseverance", path: "messages/roll/parts/button-perseverance" },
+    { call: "button-consciousness", path: "messages/roll/parts/button-consciousness" },
+    { call: "default-dices", path: "messages/roll/parts/default-dices" },
+    { call: "overload-dices", path: "messages/roll/parts/overload-dices" },
+    // ROLL DIALOG
+    { call: "roll-dialog", path: "rolls/roll-dialog" },
+    { call: "roll-dialog-default", path: "rolls/roll-dialog-default" },
+    { call: "roll-dialog-custom", path: "rolls/roll-dialog-custom" },
+    { call: "roll-dialog-simple", path: "rolls/roll-dialog-simple" },
+    { call: "roll-dialog-virtue", path: "rolls/roll-dialog-virtue" },
   ];
 
   const loadedAuxiliaryTemplates = await loadAndRegisterTemplates(configTemplates);

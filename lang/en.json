@@ -451,6 +451,8 @@
         "Aprimoramentos_Ajuda": "Defines the base cost used to multiply by the possessed Enhancements level (Approximate). Default is 4.",
         "Recalcular": "Recalculate",
         "Abrir_Ficha": "Open Character Sheet",
+        "Aplicar_Exp": "Apply Experience to Character",
+        "Exp_atribuida_ao_personagem": "Experience applied to character",
         "NPC_Warning": "This character's experience cannot be calculated",
         "No_Actor_Warning": "Drag a character here first!"
       }

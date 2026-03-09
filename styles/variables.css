@@ -97,6 +97,10 @@ body {
   --shadow-glow-soft: 0px 0px 3px var(--primary-color-alpha);
   --shadow-text: 0px 1px 4px var(--color-black-alpha-50);
 
+  --border-thin: 1px;
+  --border-medium: 2px;
+  --border-large: 3px;
+
   --border-radius-small: 4px;
   --border-radius-medium: 6px;
   --border-radius-large: 8px;
@@ -106,5 +110,5 @@ body {
   --d10-size-small: 32px;
   --d10-small-line-height: 38px;
 
-  --border-def: 2px solid var(--secondary-color-alpha-50);
+  --border-def: var(--border-medium) solid var(--secondary-color-alpha-50);
 }

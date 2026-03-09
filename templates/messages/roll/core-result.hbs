@@ -1,20 +1,13 @@
 <!-- #region ROLLS -->
 {{#if (operators 'isNotEmpty' overloadValues)}}
 <p>{{localize 'S0.Sobrecarga'}}:</p>
-<ol class="dice-rolls">
-  {{#each overloadValues}}
-  <li class="S0-d10 roll die d10 S0-d10-overload">{{ this }}</li>
-  {{/each}}
-</ol>
+
+{{> overload-dices values=overloadValues}}
 {{/if}}
 
 {{#if (operators 'isNotEmpty' defaultValues)}}
 <p>{{localize 'S0.Rolagem'}}:</p>
-<ol class="dice-rolls">
-  {{#each defaultValues }}
-  <li class="S0-d10 roll die d10">{{ this }}</li>
-  {{/each}}
-</ol>
+{{> default-dices values=defaultValues}}
 {{/if}}
 
 <hr>

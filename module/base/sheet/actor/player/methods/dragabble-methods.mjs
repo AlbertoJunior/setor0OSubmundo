@@ -28,13 +28,16 @@ export class SheetActorDragabbleMethods {
     const containerBag = this.#findUsingActorId(html, 'bag', actor);
     if (!containerBag) return;
 
-    containerBag.addEventListener('drop', this.#onDropOnBag.bind(this, actor));
+    containerBag.addEventListener('drop', (event) => {
+      containerBag.classList.remove("S0-drag-over");
+      this.#onDropOnBag(actor, event);
+    });
     containerBag.addEventListener('dragenter', (event) => {
-      containerBag.style.backgroundColor = "var(--tertiary-color-alpha)";
+      containerBag.classList.add("S0-drag-over");
     });
 
     containerBag.addEventListener('dragleave', (event) => {
-      containerBag.style.backgroundColor = "";
+      containerBag.classList.remove("S0-drag-over");
     });
   }
 

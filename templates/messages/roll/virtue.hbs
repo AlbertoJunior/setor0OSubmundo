@@ -9,11 +9,7 @@
 
     {{#unless (operators 'isEmpty' diceValues)}}
     <p>{{localize 'S0.Rolagem'}}:</p>
-    <ol class="dice-rolls">
-      {{#each diceValues }}
-      <li class="S0-d10 roll die d10">{{ this }}</li>
-      {{/each}}
-    </ol>
+    {{> default-dices values=diceValues}}
     {{/unless}}
 
     <hr>

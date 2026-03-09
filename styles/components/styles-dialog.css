@@ -46,7 +46,7 @@
   color: var(--on-secondary-color);
   background-color: var(--secondary-color-alpha-50);
   box-shadow: none;
-  border: 1px solid !important;
+  border: var(--border-thin) solid !important;
   border-color: var(--secondary-color-alpha) !important;
   transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease, border-color 0.2s ease;
 }
