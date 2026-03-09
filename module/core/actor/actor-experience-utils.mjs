@@ -20,7 +20,6 @@ export class ActorExperienceUtils {
     const aprimoramentosQtd = allEnhancements.map(e => Object.values(e.levels).filter(l => l.id !== "").length);
 
     // Repertorios
-    debugger
     const aliados = ActorUtils.getAllies(actor).length;
     const informantes = ActorUtils.getInformants(actor).length;
     const arsenal = Number(getObject(actor, CharacteristicType.REPERTORY.ARSENAL)) || 0;

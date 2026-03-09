@@ -14,6 +14,7 @@ import { FoundryApi } from "../../../../api/foundry-api.mjs";
 
 export async function actorTemplatesRegister() {
   const templates = [
+    { path: "actors/actor-header", call: 'actorHeader' },
     { path: "actors/characteristics", call: 'actorCharacteristic' },
     { path: "actors/biography", call: 'actorBiography' },
     { path: "actors/biography-trait-partial", call: 'traitPartialContainer' },

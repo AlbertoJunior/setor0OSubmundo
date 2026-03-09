@@ -6,48 +6,7 @@
     </li>
   </ul>
 
-  <header class="S0-container S0-min-h-88">
-    {{#if editable}}
-    <div class="S0-flex S0-items-center S0-flex-1">
-      <label for="name" class="S0-min-w-85">{{ localize 'S0.Nome' }}:</label>
-      <input id="name" name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'S0.Nome' }}" />
-    </div>
-    <ul class="S0-m-0 S0-p-0 S0-columns-2">
-      <li class="S0-flex S0-items-center">
-        <label class="S0-flex-1" for="morfologia">{{ localize 'S0.Morfologia' }}:</label>
-        <select class="S0-select S0-flex-2" id="morfologia" name="system.morfologia">
-          {{#with (actorValues actor 'morphology' ) as |morphology|}}
-          {{#each (fetchRepository 'morphology')}}
-          <option value="{{id}}" {{selectIfEq morphology id }}>
-            {{label}}
-          </option>
-          {{/each}}
-          {{/with}}
-        </select>
-      </li>
-
-      <li class="S0-flex S0-items-center">
-        <label class="S0-flex-1" for="bairro">{{ localize 'S0.Bairro' }}:</label>
-        <select class="S0-select S0-flex-2" id="bairro" name="system.bairro">
-          {{#with (actorValues actor 'district' ) as |district|}}
-          {{#each (fetchRepository 'district')}}
-          <option value="{{id}}" {{selectIfEq district id }}>
-            {{label}}
-          </option>
-          {{/each}}
-          {{/with}}
-        </select>
-      </li>
-    </ul>
-    {{else}}
-    <h1 class="S0-text-center">{{actor.name}}</h1>
-    <div class="S0-flex S0-justify-center S0-gap-6 S0-items-stretch">
-      <h3 class="S0-flex-1 S0-text-end S0-m-0">{{actorValues actor 'morphology'}}</h3>
-      <div class="S0-vertical-divider"></div>
-      <h3 class="S0-flex-1 S0-text-start S0-m-0">{{actorValues actor 'district'}}</h3>
-    </div>
-    {{/if}}
-  </header>
+  {{> actorHeader}}
 
   <div class="S0-nav-content">
     {{> actorCharacteristic}}

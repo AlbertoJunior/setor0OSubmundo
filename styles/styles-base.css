@@ -88,6 +88,15 @@
   letter-spacing: 0.1rem;
 }
 
+.S0-content button {
+  width: 100%;
+}
+
+.S0-content button:disabled {
+  color: var(--on-color-gray);
+  background-color: var(--color-gray-alpha-50);
+}
+
 .S0-content button,
 .S0-content button:focus,
 .S0-content a.button:focus {
@@ -101,10 +110,6 @@
   input[type=file]):focus {
   outline: none;
   box-shadow: 0px 0px 6px 0px var(--primary-color);
-}
-
-.S0-content button {
-  width: 100%;
 }
 
 .S0-content .window-content {
@@ -366,7 +371,9 @@
   text-shadow: none;
 }
 
-.S0-marked {
+.S0-marked,
+.S0-button-confirm.active,
+.S0-simulate-button.active {
   background-color: var(--primary-color);
   color: var(--on-primary-color);
 }
