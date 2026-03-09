@@ -4,6 +4,7 @@
 
 | Arquivo | Descrição | Última Atualização |
 | :--- | :--- | :--- |
+| [36-limpeza-docs-v13.md](./36-limpeza-docs-v13.md) | Otimização e limpeza programada com script Node.js dos arquivos HTML baixados de documentação v13, reduzindo 104 MB para 78 MB, removendo css/js/svg desnecessários e poupando custos de contexto LLM. | 08/03/2026 |
 | [35-rollback-scene-control.md](./35-rollback-scene-control.md) | Investigação e Rollback da tentativa de substituir o fallback de Dummy Tool nativo nas barras laterais de UI (SceneControls) que causava incompatibilidade/crash na V13. | 08/03/2026 |
 | [34-calculadora-experiencia.md](./34-calculadora-experiencia.md) | Calculadora de Experiência completa: otimizada e revisada + UI (Três Colunas & Regex Translations) | 08/03/2026 |
 | [33-remocao-efeitos-tokens.md](./33-remocao-efeitos-tokens.md) | Criação de recurso para GM remover massivamente efeitos simples ou absolutos dos tokens selecionados. | 07/03/2026 |
