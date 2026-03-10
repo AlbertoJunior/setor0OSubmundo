@@ -2,6 +2,7 @@
 
 | Arquivo | Descrição | Contexto |
 | :--- | :--- | :--- |
+| [lazy-load-localization-helpers.md](./lazy-load-localization-helpers.md) | Adoção do padrão Lazy-Loading (Funções de Fechamento/Closures) em Dicionários estáticos exportados para a UI e Helpers a fim de combater Race-Conditions no recebimento assíncrono de Localizações (`game.i18n`) por clientes conectados. | UI / Performance de Renderização / Hooks |
 | [foundry-v13-scene-control-dummy-tool.md](./foundry-v13-scene-control-dummy-tool.md) | Limitação do v13 em gerenciar painéis apenas de botões sem propriedades `activeTool` gerando TypeError e exigindo uso de DummyTools no Hook getSceneControlButtons. | Hooks / Foundry VTT v13 |
 | [document-hooks-lifecycle.md](./document-hooks-lifecycle.md) | Diferenças anatômicas dos parâmetros entre os Document Hooks (_onCreate, _onUpdate, _onDelete) e prevenção de ReferenceErrors com falsos objetos `data` em Diffs. | Hooks / Foundry VTT |
 | [item-repository-sourceid-fetching.md](./item-repository-sourceid-fetching.md) | Obtenção de Dados Originais de Itens (ex: Traços) via sourceId em Repositórios e chamadas seguras com `getObject()` instanciado para Casting e Enums de Ator. | Arquitetura de Itens / Data Model |

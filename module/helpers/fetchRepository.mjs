@@ -14,46 +14,35 @@ import { NpcQualityRepository } from "../../module/repository/npc-quality-reposi
 import { EquipmentInfoParser } from "../../module/core/equipment/equipment-info.mjs";
 import { SuperEquipmentTraitRepository } from "../../module/repository/superequipment-trait-repository.mjs";
 
-function getActorEquipmentTypes() {
-  return validEquipmentTypes().map(item => {
-    const type = EquipmentInfoParser.equipmentTypeIdToTypeString(item);
-    return {
-      id: item,
-      label: localizeType(`Item.${type}`),
-      type: type.toLowerCase(),
-    }
-  });
-}
-
 const repositoryMap = {
-  'morphology': MorphologyRepository.getItems(),
-  'district': DistrictRepository.getItems(),
-  'enhancement': EnhancementRepository.getItems(),
-  'trait-good': TraitRepository.getGoodTraits(),
-  'trait-bad': TraitRepository.getBadTraits(),
-  'language': LanguageRepository.getItems(),
-  'attribute': AttributeRepository.getItems(),
-  'ability': AbilityRepository.getItems(),
-  'repertory': RepertoryRepository.getItems(),
-  'virtue': VirtuesRepository.getItems(),
-  'fame': FameRepository.getItems(),
-  'npc-fame': FameRepository.getItemsNpc(),
-  'npc-quality': NpcQualityRepository.getItems(),
-  'equipment-types': getActorEquipmentTypes,
-  'equipment-occultability': EquipmentInfoParser.getOccultabilityTypes,
-  'equipment-damage-type': EquipmentInfoParser.getDamageTypes,
-  'equipment-hand-type': EquipmentInfoParser.getHandTypes,
-  'equipment-melee-size': EquipmentInfoParser.getMeleeSize,
-  'equipment-vehicle-type': EquipmentInfoParser.getVehicleTypes,
-  'equipment-substance-type': EquipmentInfoParser.getSubstanceTypes,
-  'superequipment-good-traits': SuperEquipmentTraitRepository.getGoodTraits,
-  'superequipment-bad-traits': SuperEquipmentTraitRepository.getBadTraits,
+  'morphology': () => MorphologyRepository.getItems(),
+  'district': () => DistrictRepository.getItems(),
+  'enhancement': () => EnhancementRepository.getItems(),
+  'trait-good': () => TraitRepository.getGoodTraits(),
+  'trait-bad': () => TraitRepository.getBadTraits(),
+  'language': () => LanguageRepository.getItems(),
+  'attribute': () => AttributeRepository.getItems(),
+  'ability': () => AbilityRepository.getItems(),
+  'repertory': () => RepertoryRepository.getItems(),
+  'virtue': () => VirtuesRepository.getItems(),
+  'fame': () => FameRepository.getItems(),
+  'npc-fame': () => FameRepository.getItemsNpc(),
+  'npc-quality': () => NpcQualityRepository.getItems(),
+  'equipment-types': () => EquipmentInfoParser.getActorEquipmentTypes(),
+  'equipment-occultability': () => EquipmentInfoParser.getOccultabilityTypes(),
+  'equipment-damage-type': () => EquipmentInfoParser.getDamageTypes(),
+  'equipment-hand-type': () => EquipmentInfoParser.getHandTypes(),
+  'equipment-melee-size': () => EquipmentInfoParser.getMeleeSize(),
+  'equipment-vehicle-type': () => EquipmentInfoParser.getVehicleTypes(),
+  'equipment-substance-type': () => EquipmentInfoParser.getSubstanceTypes(),
+  'superequipment-good-traits': () => SuperEquipmentTraitRepository.getGoodTraits(),
+  'superequipment-bad-traits': () => SuperEquipmentTraitRepository.getBadTraits(),
 }
 
 export default function fetchRepository(repositoryName) {
   const resolver = repositoryMap[repositoryName];
   if (resolver) {
-    return resolver;
+    return typeof resolver === 'function' ? resolver() : resolver;
   }
 
   console.warn(`-> [${repositoryName}] não existe no mapper`);
