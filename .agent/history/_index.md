@@ -4,6 +4,7 @@
 
 | Arquivo | Descrição | Última Atualização |
 | :--- | :--- | :--- |
+| [39-melhorias-calculadora-xp.md](./39-melhorias-calculadora-xp.md) | Inclusão de Select para a Calculadora de Experiência e padronização e refatoração de Traduções/Erros nos alertas do componente. | 10/03/2026 |
 | [38-lazy-load-fetch-repository.md](./38-lazy-load-fetch-repository.md) | Refatoração de Helpers para Lazy Load de Repositórios corrigindo renderização de i18n prematura em clientes/jogadores. | 10/03/2026 |
 | [37-correcao-bug-dialog-v1-html-element.md](./37-correcao-bug-dialog-v1-html-element.md) | Correção de passagem de jQuery no callback de botão dos Dialogs V12 aplicando normalização de HTMLElement em `v1.mjs` para evitar TypeErrors. | 09/03/2026 |
 | [36-limpeza-docs-v13.md](./36-limpeza-docs-v13.md) | Otimização e limpeza programada com script Node.js dos arquivos HTML baixados de documentação v13, reduzindo 104 MB para 78 MB, removendo css/js/svg desnecessários e poupando custos de contexto LLM. | 08/03/2026 |

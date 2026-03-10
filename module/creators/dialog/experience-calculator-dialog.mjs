@@ -5,6 +5,7 @@ import { TEMPLATES_PATH } from "../../constants.mjs";
 import { ActorExperienceUtils } from "../../core/actor/actor-experience-utils.mjs";
 import { ActorUpdater } from "../../base/updater/actor-updater.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
+import { OwnershipUtils } from "../../utils/ownership-utils.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -35,7 +36,7 @@ export class ExperienceCalculatorDialog extends HandlebarsApplicationMixin(Appli
         controls: []
       },
       position: {
-        width: 850,
+        width: 760,
         height: 560
       },
       actions: {
@@ -68,6 +69,12 @@ export class ExperienceCalculatorDialog extends HandlebarsApplicationMixin(Appli
     context.thresholdExpanded = this.thresholdExpanded;
     context.calculationMode = this.calculationMode;
 
+    const availableActors = game.actors
+      .filter(a => a.type === ActorType.PLAYER && OwnershipUtils.canDoSomething(a))
+      .map(a => ({ id: a.id, name: a.name, selected: this.actor?.id === a.id }));
+
+    context.availableActors = availableActors;
+
     const xp = this.xpData || {};
     context.xpList = [
       { label: localize("Atributos.Atributos"), value: xp.atributos ?? "-" },
@@ -78,7 +85,7 @@ export class ExperienceCalculatorDialog extends HandlebarsApplicationMixin(Appli
       { label: localize("Aprimoramentos"), value: xp.aprimoramentos ?? "-" },
       { label: localize("Tracos_Bons"), value: xp.tracos_bons ?? "-" },
       { label: localize("Tracos_Ruins"), value: xp.tracos_ruins ?? "-" },
-      { label: "Manobras", value: xp.manobras ?? "-" },
+      { label: localize("Manobras"), value: xp.manobras ?? "-" },
       { label: localize("Outros"), value: xp.outros ?? "-" }
     ];
 
@@ -96,6 +103,27 @@ export class ExperienceCalculatorDialog extends HandlebarsApplicationMixin(Appli
         this.thresholds[type] = parseInt(event.currentTarget.value) || 0;
       });
     });
+
+    const selectActor = this.element.querySelector("select[name='selectedActor']");
+    if (selectActor) {
+      selectActor.addEventListener("change", this._onSelectActor.bind(this));
+    }
+  }
+
+  setActor(actor) {
+    this.actor = actor;
+    this.xpData = null;
+    this.render();
+  }
+
+  async _onSelectActor(event) {
+    const actorId = event.currentTarget.value;
+    if (!actorId) return;
+
+    const actor = game.actors.get(actorId);
+    if (!actor) return;
+
+    this.setActor(actor);
   }
 
   _attachDragDropListeners(html) {
@@ -143,9 +171,7 @@ export class ExperienceCalculatorDialog extends HandlebarsApplicationMixin(Appli
       return;
     }
 
-    this.actor = actor;
-    this.xpData = null; // reset calculations
-    this.render();
+    this.setActor(actor);
   }
 
   async _onCalculateOptimized(event, target) {
@@ -161,13 +187,13 @@ export class ExperienceCalculatorDialog extends HandlebarsApplicationMixin(Appli
       this.render();
     } catch (error) {
       console.error(error);
-      NotificationsUtils.error("Erro ao calcular a experiência otimizada.");
+      NotificationsUtils.error(localize("S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Erro_Otimizada"));
     }
   }
 
   async _onCalculateApproximate(event, target) {
     if (!this.actor) {
-      NotificationsUtils.warning("Arraste um personagem primeiro!");
+      NotificationsUtils.warning(localize("S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.No_Actor_Warning"));
       return;
     }
 
@@ -178,7 +204,7 @@ export class ExperienceCalculatorDialog extends HandlebarsApplicationMixin(Appli
       this.render();
     } catch (error) {
       console.error(error);
-      NotificationsUtils.error("Erro ao calcular a experiência aproximada.");
+      NotificationsUtils.error(localize("S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Erro_Aproximada"));
     }
   }
 

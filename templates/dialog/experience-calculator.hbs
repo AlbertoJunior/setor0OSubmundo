@@ -26,10 +26,17 @@
 
   <!-- Coluna 2: Informações (Dropzone) -->
   <div class="S0-flex-1 S0-flex-col S0-row-gap-6 S0-h-full">
+    <select class="S0-select" name="selectedActor">
+      <option value="">{{localize "Players.CharSelect"}}</option>
+      {{#each availableActors}}
+      <option value="{{id}}" {{#if selected}}selected{{/if}}>{{name}}</option>
+      {{/each}}
+    </select>
+
     {{#if actor}}
     <h3 class="S0-m-0 S0-text-center">{{actor.name}}</h3>
     <div
-      class="S0-calculator-dropzone S0-bg-secondary-alpha-50 S0-overflow-hidden S0-border-primary S0-border-solid S0-border-2px S0-border-radius-30px-0px S0-max-h-430 S0-w-full S0-h-full">
+      class="S0-calculator-dropzone S0-bg-secondary-alpha-50 S0-overflow-hidden S0-border-primary S0-border-solid S0-border-2px S0-border-radius-30px-0px S0-max-h-390 S0-min-h-390 S0-w-full S0-h-full">
       <img class="S0-pointer-events-none S0-object-cover S0-w-full S0-h-full S0-object-position-top" src="{{actor.img}}"
         title="{{actor.name}}">
     </div>
@@ -38,9 +45,10 @@
     {{else}}
     <h3 class="S0-m-0 S0-text-center">{{localize 'S0.Personagem'}}</h3>
     <div
-      class="S0-calculator-dropzone S0-bg-secondary-alpha-50 S0-overflow-hidden S0-border-primary S0-border-solid S0-border-2px S0-border-radius-30px-0px S0-text-center S0-w-full S0-h-full S0-flex S0-items-center S0-justify-center">
-      <p class="S0-text-16 S0-pointer-events-none">{{localize
-        "S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Personagem_Aqui"}}</p>
+      class="S0-calculator-dropzone S0-bg-secondary-alpha-50 S0-overflow-hidden S0-border-primary S0-border-solid S0-border-2px S0-border-radius-30px-0px S0-max-h-390 S0-min-h-390 S0-w-full S0-h-full S0-text-center S0-flex S0-flex-col S0-items-center S0-justify-center S0-row-gap-4 S0-px-8">
+      <p class="S0-text-16 S0-pointer-events-none">
+        {{localize "S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Personagem_Aqui"}}
+      </p>
     </div>
     <h3 class="S0-m-0 S0-text-center">{{localize 'S0.Morfologia'}}</h3>
     {{/if}}

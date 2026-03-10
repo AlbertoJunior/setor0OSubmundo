@@ -215,6 +215,7 @@
     "Tracos_Ruins": "Bad Traits",
     "Adicionar_Traco": "Add Trait",
     "Ver_Informacoes": "View Information",
+    "Manobras": "Maneuvers",
     "Adicionar_Itens": "Add Items",
     "Desequipar_Itens": "Unequip Items",
     "Remover_Itens": "Remove Items",
@@ -441,7 +442,7 @@
         "XP_Otimizada_Desc": "The system attempts to allocate free starting points to the highest-level skills and attributes, spending experience points only on what remains, ensuring the lowest possible XP cost on the sheet.",
         "XP_Aproximada": "Approximate XP",
         "XP_Aproximada_Desc": "The natural (organic) calculation considers that very high proficiencies (by default, Skill Level 5+ and Attribute 4+) can only be acquired during play using experience. These levels will not consume free starting points, charging their cost directly.",
-        "Personagem_Aqui": "Drag and Drop a Character here",
+        "Personagem_Aqui": "Drag and Drop a Character here, or select above",
         "Gasto_Experiencia": "Experience Cost",
         "Otimizada": "Optimized",
         "Aproximada": "Approximate",
@@ -454,7 +455,9 @@
         "Aplicar_Exp": "Apply Experience to Character",
         "Exp_atribuida_ao_personagem": "Experience applied to character",
         "NPC_Warning": "This character's experience cannot be calculated",
-        "No_Actor_Warning": "Drag a character here first!"
+        "No_Actor_Warning": "Define a character first!",
+        "Erro_Otimizada": "Error calculating optimized experience.",
+        "Erro_Aproximada": "Error calculating approximate experience."
       }
     }
   },

@@ -216,6 +216,7 @@
     "Tracos_Ruins": "Traços Ruins",
     "Adicionar_Traco": "Adicionar Traço",
     "Ver_Informacoes": "Ver informações",
+    "Manobras": "Manobras",
     "Adicionar_Itens": "Adicionar Itens",
     "Desequipar_Itens": "Desequipar Itens",
     "Remover_Itens": "Remover Itens",
@@ -450,7 +451,7 @@
         "XP_Otimizada_Desc": "O sistema tenta alocar os pontos iniciais gratuitos do personagem nas habilidades e atributos de maior nível, gastando pontos de experiência apenas no que sobrar, garantindo o menor gasto de XP possível na ficha.",
         "XP_Aproximada": "XP - Aproximada",
         "XP_Aproximada_Desc": "O cálculo natural (orgânico) considera que proficiências muito altas (por padrão, Nível 5+ de Habilidade e 4+ de Atributo) só podem ser adquiridas durante o jogo por meio de experiência. Esses níveis não consumirão os pontos gratuitos da criação do personagem, cobrando o seu custo diretamente.",
-        "Personagem_Aqui": "Arraste e solte um Personagem aqui",
+        "Personagem_Aqui": "Arraste e solte um Personagem aqui, ou selecione acima",
         "Gasto_Experiencia": "Gasto de Experiência",
         "Otimizada": "Otimizada",
         "Aproximada": "Aproximada",
@@ -463,7 +464,9 @@
         "Aplicar_Exp": "Aplicar experiência ao personagem",
         "Exp_atribuida_ao_personagem": "Experiência atribuída ao personagem",
         "NPC_Warning": "Este personagem não pode ter a experiência calculada",
-        "No_Actor_Warning": "Arraste um personagem primeiro!"
+        "No_Actor_Warning": "Defina um personagem primeiro!",
+        "Erro_Otimizada": "Erro ao calcular a experiência otimizada.",
+        "Erro_Aproximada": "Erro ao calcular a experiência aproximada."
       }
     }
   },
