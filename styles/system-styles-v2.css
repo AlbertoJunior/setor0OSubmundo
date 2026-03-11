@@ -51,6 +51,13 @@
 
 .S0-V2.S0-content input {
   text-align: center;
+  color: var(--color-text-primary);
+  border-color: var(--tertiary-color-alpha);
+}
+
+.S0-V2.S0-content select {
+  color: var(--color-text-primary);
+  border-color: var(--tertiary-color-alpha);
 }
 
 .S0-V2.S0-content input[type="checkbox"] {
@@ -98,4 +105,12 @@
 
 .S0-V2 .S0-simulate-button.S0-marked h4 {
   color: var(--on-primary-color);
+}
+
+.S0-V2 .S0-actor-images-container {
+  border-color: var(--tertiary-color-alpha-50);
+}
+
+.S0-V2 .S0-actor-images-container:hover {
+  border-color: var(--tertiary-color-alpha);
 }

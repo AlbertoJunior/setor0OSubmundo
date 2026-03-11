@@ -73,6 +73,10 @@
   box-shadow: 0px 0px 3px 0px var(--tertiary-color);
 }
 
+.S0-page-transparent .S0-characteristic.S0-characteristic-temp.S0-clickable.S0-letal:hover {
+  background-color: var(--color-red-alpha);
+}
+
 .S0-page-transparent .S0-clickable.S0-characteristic {
   background-color: var(--alternate-black-color);
 }

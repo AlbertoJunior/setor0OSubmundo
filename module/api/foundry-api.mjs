@@ -146,10 +146,10 @@ export class FoundryApi {
     }
 
     let application = forcedApplication ?? CurrentVersion;
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-    if (isSafari) {
-      application = ApplicationV1;
-    }
+    // const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    // if (isSafari) {
+    //   application = ApplicationV1;
+    // }
 
     const {
       icon = null,

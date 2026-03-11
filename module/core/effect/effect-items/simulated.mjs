@@ -1,5 +1,5 @@
 import { StandardEffectChangeField } from "../../../data/field/effect-fields.mjs";
-import { COLORS, ICONS_PATH } from "../../../constants.mjs";
+import { COLORS } from "../../../constants.mjs";
 import { ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../../enums/active-effects-enums.mjs";
 import { CharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { EffectChangeValueType } from "../../../enums/enhancement-enums.mjs";
@@ -11,7 +11,7 @@ const simulated = ActiveEffectsUtils.createEffectData({
   id: id,
   name: "Cena Simulada",
   origin: `Aprimoramento: ${assimilationEnhancement.name}`,
-  img: `${ICONS_PATH}/user-ninja.svg`,
+  img: `${assimilationEnhancement.icon}`,
   duration: { startRound: 0, rounds: 99 },
   tint: COLORS.BASE.yellow,
   changes: [

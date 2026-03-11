@@ -212,6 +212,10 @@
   aspect-ratio: 1 / 1;
 }
 
+.S0-badge span {
+  color: var(--on-primary-color);
+}
+
 .S0-item-bag:hover :is(.S0-item-name, .S0-item-type) {
   opacity: 1;
 }
