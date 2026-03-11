@@ -20,8 +20,8 @@ export class ActorExperienceUtils {
     const aprimoramentosQtd = allEnhancements.map(e => Object.values(e.levels).filter(l => l.id !== "").length);
 
     // Repertorios
-    const aliados = ActorUtils.getAllies(actor).length;
-    const informantes = ActorUtils.getInformants(actor).length;
+    const aliados = Number(getObject(actor, CharacteristicType.REPERTORY.ALLIES)) || 0;
+    const informantes = Number(getObject(actor, CharacteristicType.REPERTORY.INFORMANTS)) || 0;
     const arsenal = Number(getObject(actor, CharacteristicType.REPERTORY.ARSENAL)) || 0;
     const recursos = Number(getObject(actor, CharacteristicType.REPERTORY.RESOURCES)) || 0;
     const superequipamento = Number(getObject(actor, CharacteristicType.REPERTORY.SUPEREQUIPMENTS)) || 0;

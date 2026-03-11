@@ -76,7 +76,6 @@ export class SceneControlButtonsHookHandle {
       onChange: async (event, active) => {
         if (active && this.firstRender) {
           this.firstRender = false;
-          NotificationsUtils.info(localize('CONTROL.HIDDEN_BUTTON.Info'));
         }
       }
     };
