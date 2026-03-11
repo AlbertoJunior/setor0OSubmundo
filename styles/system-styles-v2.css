@@ -6,6 +6,7 @@
   border-radius: 6px 6px 0px 0px;
 }
 
+.S0-V2.S0-dialog .window-header .window-icon,
 .S0-V2.S0-content .window-header .window-icon {
   color: var(--primary-color);
 }

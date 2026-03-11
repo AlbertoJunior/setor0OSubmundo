@@ -112,6 +112,7 @@
   box-shadow: 0px 0px 6px 0px var(--primary-color);
 }
 
+.S0-dialog .window-content,
 .S0-content .window-content {
   padding: 6px;
 }

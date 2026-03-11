@@ -4,7 +4,6 @@ import { ActorType, CharacteristicType } from "../../enums/characteristic-enums.
 import { TEMPLATES_PATH } from "../../constants.mjs";
 import { ActorExperienceUtils } from "../../core/actor/actor-experience-utils.mjs";
 import { ActorUpdater } from "../../base/updater/actor-updater.mjs";
-import { FoundryApi } from "../../api/foundry-api.mjs";
 import { OwnershipUtils } from "../../utils/ownership-utils.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
@@ -24,31 +23,28 @@ export class ExperienceCalculatorDialog extends HandlebarsApplicationMixin(Appli
     };
   }
 
-  static get DEFAULT_OPTIONS() {
-    return FoundryApi.mergeObject(super.DEFAULT_OPTIONS, {
-      id: `${randomId(10)}-experience-calculator-dialog`,
-      classes: ["S0-V2", "S0-content", "S0-dialog"],
-      tag: "form",
-      window: {
-        title: localize("CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Dialog_Title"),
-        icon: "fas fa-calculator",
-        resizable: true,
-        controls: []
-      },
-      position: {
-        width: 760,
-        height: 560
-      },
-      actions: {
-        calculateOptimized: ExperienceCalculatorDialog.prototype._onCalculateOptimized,
-        calculateApproximate: ExperienceCalculatorDialog.prototype._onCalculateApproximate,
-        recalculate: ExperienceCalculatorDialog.prototype._onRecalculate,
-        toggleThresholds: ExperienceCalculatorDialog.prototype._onToggleThresholds,
-        openSheet: ExperienceCalculatorDialog.prototype._onOpenSheet,
-        applyExperience: ExperienceCalculatorDialog.prototype._onApplyExperience
-      }
-    });
-  }
+  static DEFAULT_OPTIONS = {
+    classes: ["S0-V2", "S0-dialog"],
+    tag: "form",
+    window: {
+      title: "S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Dialog_Title",
+      icon: "fas fa-calculator",
+      resizable: true,
+      controls: []
+    },
+    position: {
+      width: 760,
+      height: 560
+    },
+    actions: {
+      calculateOptimized: ExperienceCalculatorDialog.prototype._onCalculateOptimized,
+      calculateApproximate: ExperienceCalculatorDialog.prototype._onCalculateApproximate,
+      recalculate: ExperienceCalculatorDialog.prototype._onRecalculate,
+      toggleThresholds: ExperienceCalculatorDialog.prototype._onToggleThresholds,
+      openSheet: ExperienceCalculatorDialog.prototype._onOpenSheet,
+      applyExperience: ExperienceCalculatorDialog.prototype._onApplyExperience
+    }
+  };
 
   static PARTS = {
     content: {
@@ -57,7 +53,7 @@ export class ExperienceCalculatorDialog extends HandlebarsApplicationMixin(Appli
   };
 
   static async open() {
-    new ExperienceCalculatorDialog().render(true);
+    new ExperienceCalculatorDialog({ id: `${randomId(10)}-experience-calculator-dialog` }).render(true);
   }
 
   async _prepareContext(options) {
