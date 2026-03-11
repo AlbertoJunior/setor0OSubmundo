@@ -6,12 +6,13 @@ import { ActorUtils } from "../core/actor/actor-utils.mjs";
 import { RollTestField } from "../data/field/roll-test-field.mjs";
 import { NpcSkill } from "../data/field/npc-fields.mjs";
 import { NpcQualityRepository } from "../repository/npc-quality-repository.mjs";
-import { getObject } from "../utils/utils.mjs";
+import { getObject, logDiffMigration } from "../utils/utils.mjs";
 import { BaseActorCharacteristicType } from "../enums/characteristic-enums.mjs";
 import { NpcUtils } from "../core/npc/npc-utils.mjs";
 import { MorphologyRepository } from "../repository/morphology-repository.mjs";
 import { DistrictRepository } from "../repository/district-repository.mjs";
 import { FameRepository } from "../repository/fame-repository.mjs";
+import { HardnessIdsMigration } from "../migration/migrations/migrate-hardness-ids.mjs";
 
 const { NumberField, SchemaField, StringField, ArrayField } = foundry.data.fields;
 
@@ -68,6 +69,12 @@ class BaseActorDataModel extends foundry.abstract.TypeDataModel {
 }
 
 class PlayerDataModel extends BaseActorDataModel {
+
+  static migrateData(source) {
+    super.migrateData(source);
+    HardnessIdsMigration.migrateDataModel(source);
+    return source;
+  }
 
   get actualPM() {
     return ActorUtils.getActualMovimentPoints(this.actor);

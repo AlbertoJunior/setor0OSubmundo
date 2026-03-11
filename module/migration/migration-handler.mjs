@@ -2,29 +2,28 @@ import { FoundryApi } from "../api/foundry-api.mjs";
 import { SYSTEM_ID, REGISTERED_MIGRATIONS } from "../constants.mjs";
 import "./migrations/index.mjs";
 
-
 export class MigrationHandler {
   /**
    * Run the migration process.
    * This should only run for the GM on the 'ready' hook.
    */
   static async runMigrations() {
-    // await game.settings.set(SYSTEM_ID, "systemMigrationVersion", "0.0.2");
-
     const currentSystemVersion = game.system.version;
     const lastMigratedVersion = game.settings.get(SYSTEM_ID, "systemMigrationVersion");
 
+    const hasForcedMigrations = Array.from(REGISTERED_MIGRATIONS).some(m => m.needsForceRun);
+
     // Check if migration is needed at all
-    if (!FoundryApi.Utils.isNewerVersion(currentSystemVersion, lastMigratedVersion))
+    if (!FoundryApi.Utils.isNewerVersion(currentSystemVersion, lastMigratedVersion) && !hasForcedMigrations)
       return;
 
     console.log(`-> Setor 0 - O Submundo | Iniciando Migração do Sistema (${lastMigratedVersion} -> ${currentSystemVersion})`);
     ui.notifications.info(`Setor 0 | Executando migrações de sistema para a versão ${currentSystemVersion}. Por favor, aguarde...`, { permanent: true });
 
     try {
-      // Pick all migrations where target version > lastMigratedVersion
+      // Pick all migrations where target version > lastMigratedVersion or are forced via instance checking
       const migrationsToRun = Array.from(REGISTERED_MIGRATIONS)
-        .filter(migration => FoundryApi.Utils.isNewerVersion(migration.version, lastMigratedVersion))
+        .filter(migration => FoundryApi.Utils.isNewerVersion(migration.version, lastMigratedVersion) || migration.needsForceRun)
         .sort((a, b) => FoundryApi.Utils.isNewerVersion(a.version, b.version) ? 1 : -1);
 
       if (migrationsToRun.length === 0) {

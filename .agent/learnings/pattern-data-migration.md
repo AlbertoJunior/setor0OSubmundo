@@ -7,11 +7,11 @@
 Ao criar novos `DataModels` ou alterar a Nomenclatura das Chaves Oficiais de Dados (ex: mudar o nome da variável de `change` para `changes`), o Foundry V13, ao instanciar as entidades para o jogo iniciar, **descarta sumariamente qualquer propriedade não existente no Schema**.
 Isso inviabiliza scripts convencionais em Hooks como o `ready` de migrarem os mundos antigos, pois quando o Hook rodar o script para tentar ler `.change`, essa variável já terá sido destruída na memória ram.
 
-## Solução Adotada (O Fluxo de Duas Vias)
+## Solução Adotada (O Fluxo de Duas Vias Modificado - Database-First)
 
-A migração oficial de mundos passados divide a responsabilidade em duas fases: a "Acomodação em Memória" e a "Persistência Física".
+A migração oficial de mundos passados divide a responsabilidade em duas fases: a *"Acomodação em Memória"* e a *"Persistência Física"*, operando estritamente através do mapeamento **Database-First** para contornar o loop infinito gerado por atualizações de delta "Vazio".
 
-### Via 1: Acomodação em Memória (O "Porteiro" DataModel)
+### Via 1: Acomodação em Memória (O Sensor DataModel)
 No próprio arquivo `DataModel` do Item respectivo (ex: `equipment-data-model.mjs`), declaramos uma interceptação via classe mãe `static migrateData(source)`:
 Esta função é executada para **cada ficha** sendo lida no HD do host *antes* do Schema ser criado.
 
@@ -27,8 +27,11 @@ class SubstanceDataModel extends BaseEquipmentDataModel {
 }
 ```
 
-Neste estágio, a lógica pega o valor de `.change`, injeta ele pro array de `.changes` recém lançado e destrói o velho. Quando o DataModel finalmente constrói o Personagem, o Foundry lê a nova ficha perfeitamente validada.
-O jogador poderia perfeitamente jogar uma sessão inteira, contudo, o banco de dados original (no Servidor) continua com a chave `.change` gravada e toda vez que abrissem o mundo essa mesma varredura seria forçada a ocorrer de novo.
+Neste estágio, a lógica **NÃO DEVE** limpar ou converter o dado para o novo modelo! Se o fizer, o Foundry assumirá que a ficha do banco que vai pro `.update()` na Via 2 já é idêntica à ficha em memória, cancelando a promessa do banco por "ausência de diferenças" (Empty Diff) causando um loop de migração infinita.
+Ao invés disso, o DataModel atua puramente como um **Sensor**: Ele recebe o Clone original, checa a existência da formatação suja, e se ela existir ele altera um sinalizador estático (Getter) chamado `_needsForceRun`, retornando o objeto original inalterado.
+
+### Por que `_needsForceRun`? (O Catch de Importações de Tela)
+O `MigrationHandler` tradicionalmente só inicia migrações cujas versões ultrapassem o `lastMigratedVersion` gravado em `game.settings`. Se o mestre importar um Ator ou Compêndio desatualizado da internet meses após o mundo já ter migrado, essa ficha antiga passaria despercebida e nunca mais seria corrigida. O `_needsForceRun` que acabamos de sinalizar na Via 1 funciona como um "Bypass", dizendo ao `MigrationHandler` no próximo Loading para re-rodar pontualmente aquela classe de migração e limpar as fichas intrusas.
 
 ### Via 2: A Persistência Física (Background Sync em Ready)
 Para oficializar e substituir as velharias do banco de dados (salvando recursos da CPU). Criou-se um construtor de Scripts Dinâmicos chamado **`MigrationHandler`** que roda apenas pelo GM na fase de **`ready`**.
@@ -43,12 +46,13 @@ export const ActiveEffectsMigration = Object.freeze({
 });
 ```
 
-Este Script olha a versão do Schema do mundo do Jogador (`game.settings.get`). Se a versão for **inferior** à da Migração a ser executada (ex: `0.0.3`), ele inicia o script assíncrono referenciado em `migrate`, varrendo todos os itens registrados e acionando o seguinte fluxo:
+Este Script é avaliado pelo `MigrationHandler`. Se a versão for inferior ou se a flag instância em memória local `needsForceRun` for verdadeira, ele inicia o script assíncrono referenciado em `migrate`:
 
-1. Checa a raiz original para ver se a chave velha obsoleta existia ( `item._source` tem `.change`? )
-2. Se sim, significa que o Item precisa ser atualizado fisicamente.
-3. Como `item.toObject()` já traz a versão modernizada em memória processada pelo Porteiro (Via 1), passamos ele direto para um update: `await item.update(item.toObject())`.
-4. Todos os mundos são limpos. Ele avança a flag para a versão mais recente e os Scripts nunca mais rodam naquele Mundo.  
+1. Checa a raiz usando a função `needsMigration(document._source)`, que varrerá os dados velhos, os quais **garantidamente estarão intocados** pela Via 1.
+2. Se sim, significa que a entidade precisa ser atualizada fisicamente.
+3. Como os dados estão puros de banco, a **PRÓPRIA FUNÇÃO `migrate()` constrói um `deepClone` do `_source` e efetua a varredura alteradora ativamente no payload.**
+4. Passamos este payload sujo modificado em memória profunda direto para um update: `await item.update(itemDataSourceModificado)`.
+5. O Foundry tomará um susto perante a diferença gritante entre o banco físico e o payload, e gravará permanentemente a alteração para todos, finalizando a cadeia.
 
 ## Onde os Padrões Residem
 - Classes estáticas (congeladas) das regras: `module/migration/migrations/[seu-script].mjs`

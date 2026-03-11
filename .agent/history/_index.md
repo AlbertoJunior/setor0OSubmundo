@@ -4,6 +4,7 @@
 
 | Arquivo | Descrição | Última Atualização |
 | :--- | :--- | :--- |
+| [41-migracao-ids-rigidez.md](./41-migracao-ids-rigidez.md) | Correção de temporal dead zone em migration, aperfeiçoamento estrito do mapper e finalização da persistência no DB para os IDs do aprimoramento rigidez (50 a 56 para >400). | 11/03/2026 |
 | [40-correcao-bug-poluicao-classes-css-appv2.md](./40-correcao-bug-poluicao-classes-css-appv2.md) | Correção de Poluição Global de Classes CSS em janelas do sistema ao usar getters `DEFAULT_OPTIONS` incorretamente na Calculadora XP, mutando permanentemente o prototype do `ApplicationV2`. | 10/03/2026 |
 | [39-melhorias-calculadora-xp.md](./39-melhorias-calculadora-xp.md) | Inclusão de Select para a Calculadora de Experiência e padronização e refatoração de Traduções/Erros nos alertas do componente. | 10/03/2026 |
 | [38-lazy-load-fetch-repository.md](./38-lazy-load-fetch-repository.md) | Refatoração de Helpers para Lazy Load de Repositórios corrigindo renderização de i18n prematura em clientes/jogadores. | 10/03/2026 |

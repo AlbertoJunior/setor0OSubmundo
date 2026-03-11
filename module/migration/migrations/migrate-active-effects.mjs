@@ -1,20 +1,29 @@
+import { FoundryApi } from "../../api/foundry-api.mjs";
 import { SYSTEM_HOOKS, SYSTEM_ID, REGISTERED_MIGRATIONS } from "../../constants.mjs";
-import { logDiffMigration } from "../../utils/utils.mjs";
+import { EquipmentCharacteristicType } from "../../enums/equipment-enums.mjs";
+import { getObject, logDiffMigration } from "../../utils/utils.mjs";
 
 // MIGRATION VERSION 0.0.3
+let _needsForceRun = false;
+
 export const ActiveEffectsMigration = Object.freeze({
   version: '0.0.3',
   description: "Migração para Active Effects ('Change' to 'Changes')",
+  get needsForceRun() { return _needsForceRun; },
   migrate: migrateActiveEffects,
   migrateDataModel: function (source) {
-    if (Array.isArray(source.effects)) {
-      for (const effect of source.effects) {
+    if (_needsForceRun) return source;
+
+    const effects = getObject(source, EquipmentCharacteristicType.SUBSTANCE.EFFECTS.id)
+    if (Array.isArray(effects)) {
+      for (const effect of effects) {
         if (effect.change && !Array.isArray(effect.change)) {
-          effect.changes = [effect.change];
-          effect.change = null; // Mark for deletion by Schema validation
+          _needsForceRun = true;
+          break;
         }
       }
     }
+    return source;
   }
 });
 
@@ -28,21 +37,19 @@ async function migrateActiveEffects() {
   await migrateWorldItems(diffLog);
   await migrateWorldActors(diffLog);
   await migrateCompendiums(diffLog);
-  logDiffMigration('0.0.3', diffLog);
+
+  if (diffLog.diffs.length > 0) {
+    logDiffMigration('0.0.3', diffLog);
+  }
 }
 
 async function migrateWorldItems(diffLog) {
   for (const item of game.items) {
     try {
-      const itemDataSource = item._source;
+      const itemDataSource = FoundryApi.deepClone(item._source);
       if (needsActiveEffectsMigration(itemDataSource)) {
-        const updateData = item.toObject(); // The DataModel has already converted change -> changes inside here
-        diffLog.diffs.push({
-          source: `WorldItem - ${item.name}`,
-          de: itemDataSource.system,
-          para: updateData.system
-        });
-        await item.update(updateData);
+        migrate(itemDataSource, item.name, "WorldItem", diffLog);
+        await item.update(itemDataSource);
       }
     } catch (e) {
       console.error(`Erro migrando Item do Mundo: ${item.name}`, e);
@@ -54,17 +61,12 @@ async function migrateWorldActors(diffLog) {
   for (const actor of game.actors) {
     try {
       const itemsToUpdate = [];
-      for (const item of actor.items) {
-        const itemDataSource = item._source;
-        if (needsActiveEffectsMigration(itemDataSource)) {
-          const updateData = item.toObject();
-          itemsToUpdate.push(updateData);
+      const actorDataSource = FoundryApi.deepClone(actor._source);
 
-          diffLog.diffs.push({
-            source: `WorldActor (${actor.name}) - Item ${item.name}`,
-            de: itemDataSource.system,
-            para: updateData.system
-          });
+      for (const itemDataSource of actorDataSource.items) {
+        if (needsActiveEffectsMigration(itemDataSource)) {
+          migrate(itemDataSource, itemDataSource.name, `WorldActor (${actor.name})`, diffLog);
+          itemsToUpdate.push(itemDataSource);
         }
       }
       if (itemsToUpdate.length > 0) {
@@ -81,6 +83,7 @@ async function migrateCompendiums(diffLog) {
     if (pack.metadata.type !== "Item" && pack.metadata.type !== "Actor") continue;
     if (pack.metadata.packageType !== "system" && pack.metadata.system !== SYSTEM_ID) continue;
 
+    const packCollection = `Compendium (${pack.collection})`;
     const wasLocked = pack.locked;
     try {
       await pack.configure({ locked: false });
@@ -88,29 +91,19 @@ async function migrateCompendiums(diffLog) {
 
       for (const doc of documents) {
         if (doc.documentName === "Item") {
-          const itemDataSource = doc._source;
+          const itemDataSource = FoundryApi.deepClone(doc._source);
           if (needsActiveEffectsMigration(itemDataSource)) {
-            const updateData = doc.toObject();
-            diffLog.diffs.push({
-              source: `Compendium (${pack.collection}) - Item ${doc.name}`,
-              de: itemDataSource.system,
-              para: updateData.system
-            });
-            await doc.update(updateData);
+            migrate(itemDataSource, doc.name, packCollection, diffLog);
+            await doc.update(itemDataSource);
           }
         } else if (doc.documentName === "Actor") {
           const itemsToUpdate = [];
-          for (const item of doc.items) {
-            const itemDataSource = item._source;
-            if (needsActiveEffectsMigration(itemDataSource)) {
-              const updateData = item.toObject();
-              itemsToUpdate.push(updateData);
+          const docDataSource = FoundryApi.deepClone(doc._source);
 
-              diffLog.diffs.push({
-                source: `Compendium (${pack.collection}) - Actor (${doc.name}) - Item ${item.name}`,
-                de: itemDataSource.system,
-                para: updateData.system
-              });
+          for (const itemDataSource of docDataSource.items) {
+            if (needsActiveEffectsMigration(itemDataSource)) {
+              migrate(itemDataSource, itemDataSource.name, `${packCollection} - Actor (${doc.name})`, diffLog);
+              itemsToUpdate.push(itemDataSource);
             }
           }
           if (itemsToUpdate.length > 0) {
@@ -126,10 +119,25 @@ async function migrateCompendiums(diffLog) {
   }
 }
 
-function needsActiveEffectsMigration(itemData) {
-  // If the item had effects, the migrateDataModel from DataModels already cleaned it up in memory. 
-  // We just need to check if the old "change" field still exists in the raw `_source` to know if we MUST save the new clean object to DB.
+function migrate(itemDataSource, itemName, source, diffLog) {
+  const effects = itemDataSource.system?.effects;
+  if (Array.isArray(effects)) {
+    for (const effect of effects) {
+      if (effect.change && !Array.isArray(effect.change)) {
+        effect.changes = [effect.change];
+        effect.change = null;
+      }
+    }
+  }
 
+  diffLog.diffs.push({
+    source: `${source} - Item (${itemName})`,
+    de: "change (Objeto literal)",
+    para: "changes (Array)"
+  });
+}
+
+function needsActiveEffectsMigration(itemData) {
   const effects = itemData.system?.effects;
   if (Array.isArray(effects)) {
     for (const effect of effects) {
@@ -138,6 +146,5 @@ function needsActiveEffectsMigration(itemData) {
       }
     }
   }
-
   return false;
 }

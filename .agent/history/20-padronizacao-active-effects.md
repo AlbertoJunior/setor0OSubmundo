@@ -19,7 +19,11 @@ A aplicação possuía um design despadronizado para criar instâncias de Active
 Optou-se por introduzir dois novos campos e refatorar as dependências para utilizá-los:
 1. `StandardEffectChangeField` assume a base de todos os sub-nós `changes` e estende os antigos valores com campos suportados para Aprimoramentos (`typeOfValue`).
 2. `StandardEffectField` substitui o antigo `SubstanceEffectField` e permite a utilização de uma Array de `changes` por Efeito ao invés de um objeto `change` solitário, unificando a forma como o `equipment-utils.mjs` processa os efeitos antes de empacotá-los em formato `ActiveEffect` e injetá-los no Foundry.
-3. **Sistema de Migração de Dados Nativo (Foundry):** Adicionou-se `MigrationHandler` invocado no hook `ready` caso a versão do mundo seja mais antiga que a versão (`0.0.4`) declarada no `system.json`. Ele fará a conversão automática das propriedades legado (`.change`) nos documentos antigos do compêndio e na aba de Itens/Actors dos mundos existentes para o novo padrão de array `.changes`.
+3. **Sistema de Migração de Dados Nativo (Foundry):** Adicionou-se `MigrationHandler` invocado no hook `ready` caso a versão do mundo seja mais antiga que a versão (`0.0.3`) declarada no `system.json`. Ele fará a conversão automática das propriedades legado (`.change`) nos documentos antigos do compêndio e na aba de Itens/Actors dos mundos existentes para o novo padrão de array `.changes`.
+
+> [!WARNING] ATUALIZAÇÃO DE ARQUITETURA
+> A lógica descrita no item 3 acima sobre o funcionamento do `MigrationHandler` com a *Via 1* alterando os dados ativamente (Acomodação em Memória Estrita) provou-se **falha** perante as travas do banco de dados do V13 (loop infinito por Diff Vazio).
+> Toda a arquitetura do `migrate-active-effects.mjs` foi posteriormente **re-escrita e desativada**. Consulte a documentação atualizada do *Database-First Approach* no registro **41-migracao-ids-rigidez.md** para entender a forma viável e definitiva atual!
 
 ## Testes sugeridos
 - Associar um Traço ao Ator e verificar se sua `particularity` e efeito são lidos e atrelados ao Painel de Efeitos.
