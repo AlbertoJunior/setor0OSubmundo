@@ -216,11 +216,11 @@ h4.divider {
 .chat-message {
   margin-inline: 0px;
   margin-block: 6px;
-  background: var(--secondary-color-alpha-50);
+  background: var(--secondary-color-alpha);
 }
 
 .chat-message.whisper {
-  background: var(--whisper-color-alpha-50);
+  background: var(--whisper-color-alpha);
 }
 
 .chat-message.blind {

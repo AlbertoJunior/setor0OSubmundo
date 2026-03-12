@@ -21,7 +21,12 @@ export class ReadyHookHandle {
     await this.#macro();
     await this.#config();
     this.#effects();
-    this.#loadOnlyForGm();
+
+    if (!game.user.isGM) {
+      console.log('-> Setor 0 - O Submundo | Sistema Pronto');
+      return;
+    }
+    await this.#loadOnlyForGm();
   }
 
   static async #repositories() {
@@ -53,11 +58,6 @@ export class ReadyHookHandle {
   }
 
   static async #loadOnlyForGm() {
-    if (!game.user.isGM) {
-      console.log('-> Setor 0 - O Submundo | Sistema Pronto');
-      return;
-    }
-
     await MacroInstaller.installDefaultMacrosOnGm();
     await CompendiumSync.syncDefaultCompendiums();
     await MigrationHandler.runMigrations();

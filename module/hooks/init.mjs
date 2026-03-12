@@ -13,7 +13,6 @@ import { FoundryApi } from "../api/foundry-api.mjs";
 import { MacroUtils } from "../core/macro/macro-utils.mjs";
 import { configureSetor0ActiveEffect } from "../base/document/Setor0ActiveEffect.mjs";
 import { TokenUtils } from "../core/token/token-utils.mjs";
-import { ActiveEffectHookHandle } from "./active-effects.mjs";
 import { configureSetor0ChatLog } from "../core/chat/Setor0ChatLog.mjs";
 import { PreCreateItemHookHandle } from "./pre-create-item.mjs";
 
@@ -41,11 +40,12 @@ export class InitHookHandle {
     // SETUP
     await loadHandlebarsHelpers();
     await registerTemplates();
-
-    // HOOKS
-    ActiveEffectHookHandle.register();
     await PreCreateItemHookHandle.validateDefaultIcons();
-    Hooks.callAll(SYSTEM_HOOKS.MIGRATIONS_INIT);
+
+    // GM HOOKS
+    if (game.user.isGM) {
+      Hooks.callAll(SYSTEM_HOOKS.GM_INIT);
+    }
   }
 
   static #presetGlobalSystemConfigs() {

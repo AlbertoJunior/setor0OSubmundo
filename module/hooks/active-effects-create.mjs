@@ -5,21 +5,11 @@ import { ActiveEffectsFlags } from "../enums/active-effects-enums.mjs";
 import { TokenUtils } from "../core/token/token-utils.mjs";
 import { FoundryApi } from "../api/foundry-api.mjs";
 
-export class ActiveEffectHookHandle {
-  static register() {
-    Hooks.on("createActiveEffect", ActiveEffectHookHandle.#onCreateActiveEffect);
-    Hooks.on("deleteActiveEffect", ActiveEffectHookHandle.#onDeleteActiveEffect);
-  }
+export class ActiveEffectCreateHookHandle {
 
-  static async #onCreateActiveEffect(effect, options, userId) {
-    if (game.user.isGM) {
-      await ActiveEffectHookHandle.#verifyRemoveChain(effect, options, userId)
-      await ActiveEffectHookHandle.#verifyChangeTokenTint(effect, options);
-    }
-  }
-
-  static async #onDeleteActiveEffect(effect, options, userId) {
-    await ActiveEffectHookHandle.#verifyRemoveTokenTint(effect);
+  static async handle(effect, options, userId) {
+    await ActiveEffectCreateHookHandle.#verifyRemoveChain(effect, options, userId)
+    await ActiveEffectCreateHookHandle.#verifyChangeTokenTint(effect, options);
   }
 
   static async #verifyRemoveChain(effect) {
@@ -51,8 +41,8 @@ export class ActiveEffectHookHandle {
       return;
     }
 
-    const hasMultipleTints = this.#hasMultipleTints(actor);
-    if (hasMultipleTints) {
+    const hasEffectsWithTint = ActiveEffectsUtils.hasEffectsWithTint(actor);
+    if (hasEffectsWithTint) {
       OscillatingTintManager.startOscillationForToken(token);
     } else {
       await TokenUtils.updateDocument(token, { [ActiveEffectsUtils.KEYS.TINT_TOKEN]: tintChange.value });
@@ -75,25 +65,5 @@ export class ActiveEffectHookHandle {
 
     console.warn("this object not have oscilating token tint")
     return;
-  }
-
-  static async #verifyRemoveTokenTint(effect) {
-    const actor = effect.parent;
-
-    const token = TokenUtils.getActorToken(actor);
-    if (!token) {
-      return;
-    }
-
-    const hasMultipleTints = this.#hasMultipleTints(actor);
-    if (hasMultipleTints) {
-      OscillatingTintManager.startOscillationForToken(token);
-    } else {
-      OscillatingTintManager.stopOscillationForToken(token);
-    }
-  }
-
-  static #hasMultipleTints(actor) {
-    return actor.effects.filter(e => e.changes.some(c => c.key === ActiveEffectsUtils.KEYS.TINT_TOKEN)).length > 1;
   }
 }

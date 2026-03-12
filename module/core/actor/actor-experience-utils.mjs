@@ -6,33 +6,67 @@ import { getObject } from "../../utils/utils.mjs";
 
 export class ActorExperienceUtils {
   static INITIAL_POINTS = {
-    attributes: { initial_value: 1, initial: 10, initial_sintetico: 11, cost: 4 },
-    repertory: { initial_value: 0, initial: 5, cost: 3 },
-    virtues: { initial_value: 1, initial: 4, cost: 3 },
-    abilities: { initial_value: 0, initial: 11, initial_androide: 15, cost: 2 },
-    core: { initial_value: 1, initial: 0, initial_human: 0, cost: 6 },
-    enhancements: { initial_value: 0, initial: 3, initial_ciborgue: 4, cost: 5 },
+    attributes: {
+      initial_value: 1,
+      initial: 10,
+      [MorphologyRepository.TYPES.SYNTHETIC.id]: 11,
+      cost: 4,
+    },
+    repertory: {
+      initial_value: 0,
+      initial: 5,
+      cost: 3
+    },
+    virtues: {
+      initial_value: 1,
+      initial: 4,
+      cost: 3
+    },
+    abilities: {
+      initial_value: 0,
+      initial: 11,
+      [MorphologyRepository.TYPES.ANDROID.id]: 15,
+      cost: 2
+    },
+    core: {
+      initial_value: 1,
+      initial: 0,
+      [MorphologyRepository.TYPES.HUMAN.id]: 0,
+      cost: 6
+    },
+    enhancements: {
+      initial_value: 0,
+      initial: 3,
+      [MorphologyRepository.TYPES.CYBORG.id]: 4,
+      cost: 5
+    },
   };
 
   static buildActorDataProxy(actor) {
     // Aprimoramentos
     const allEnhancements = ActorUtils.getAllEnhancements(actor);
-    const aprimoramentosQtd = allEnhancements.map(e => Object.values(e.levels).filter(l => l.id !== "").length);
+    const enhancementGroups = allEnhancements.map(e => {
+      const levels = Object.values(e.levels)
+        .filter(l => l.id !== "")
+        .map(l => Number(l.level) || 1)
+        .sort((a, b) => a - b);
+      return { id: e.id, levels };
+    });
 
     // Repertorios
-    const aliados = Number(getObject(actor, CharacteristicType.REPERTORY.ALLIES)) || 0;
-    const informantes = Number(getObject(actor, CharacteristicType.REPERTORY.INFORMANTS)) || 0;
+    const allies = Number(getObject(actor, CharacteristicType.REPERTORY.ALLIES)) || 0;
+    const informants = Number(getObject(actor, CharacteristicType.REPERTORY.INFORMANTS)) || 0;
     const arsenal = Number(getObject(actor, CharacteristicType.REPERTORY.ARSENAL)) || 0;
-    const recursos = Number(getObject(actor, CharacteristicType.REPERTORY.RESOURCES)) || 0;
-    const superequipamento = Number(getObject(actor, CharacteristicType.REPERTORY.SUPEREQUIPMENTS)) || 0;
+    const resources = Number(getObject(actor, CharacteristicType.REPERTORY.RESOURCES)) || 0;
+    const superequipment = Number(getObject(actor, CharacteristicType.REPERTORY.SUPEREQUIPMENTS)) || 0;
 
     // Outros campos customizáveis ou em compêndio normalmente no sistema Setor 0
-    const tracos_bons = getObject(actor, CharacteristicType.TRAIT.GOOD) || [];
-    const tracos_ruins = getObject(actor, CharacteristicType.TRAIT.BAD) || [];
+    const goodTraits = getObject(actor, CharacteristicType.TRAIT.GOOD) || [];
+    const badTraits = getObject(actor, CharacteristicType.TRAIT.BAD) || [];
 
     // Em Setor 0, manobras e formatações adicionadas via painel do ator. Se não houver array literal em system, adaptamos
-    const manobras = getObject(actor, 'system.manobras') || [];
-    const outros = getObject(actor, 'system.outros') || [];
+    const maneuvers = getObject(actor, 'system.manobras') || [];
+    const others = getObject(actor, 'system.outros') || [];
 
     return {
       morfologia: getObject(actor, BaseActorCharacteristicType.MORPHOLOGY),
@@ -65,15 +99,15 @@ export class ActorExperienceUtils {
         pilotagem: getObject(actor, CharacteristicType.SKILLS.PILOTING) || 0,
         quimica: getObject(actor, CharacteristicType.SKILLS.CHEMISTRY) || 0,
       },
-      repertorio: aliados + arsenal + informantes + recursos + superequipamento,
+      repertorio: allies + arsenal + informants + resources + superequipment,
       nucleo: getObject(actor, CharacteristicType.CORE) || 1,
-      aprimoramentos: aprimoramentosQtd,
+      aprimoramentos: enhancementGroups,
       tracos: {
-        bons: Object.values(tracos_bons), // Object.values se for guardado nativamente como obj/array de persistência
-        ruins: Object.values(tracos_ruins)
+        bons: Object.values(goodTraits), // Object.values se for guardado nativamente como obj/array de persistência
+        ruins: Object.values(badTraits)
       },
-      manobras: Array.isArray(manobras) ? manobras : Object.values(manobras),
-      outros: Array.isArray(outros) ? outros : Object.values(outros)
+      manobras: Array.isArray(maneuvers) ? maneuvers : Object.values(maneuvers),
+      outros: Array.isArray(others) ? others : Object.values(others)
     };
   }
 
@@ -88,49 +122,45 @@ export class ActorExperienceUtils {
   }
 
   static _performCalculation(data, isApproximate, thresholds) {
-    const morfologia = data.morfologia;
+    const morphology = data.morfologia;
 
-    let initAttr = MorphologyRepository.TYPES.SYNTHETIC.id === morfologia ? this.INITIAL_POINTS.attributes.initial_sintetico : this.INITIAL_POINTS.attributes.initial;
-    let initAbil = MorphologyRepository.TYPES.ANDROID.id === morfologia ? this.INITIAL_POINTS.abilities.initial_androide : this.INITIAL_POINTS.abilities.initial;
-    let initEnh = MorphologyRepository.TYPES.CYBORG.id === morfologia ? this.INITIAL_POINTS.enhancements.initial_ciborgue : this.INITIAL_POINTS.enhancements.initial;
+    let initAttr = this.INITIAL_POINTS.attributes[morphology] || this.INITIAL_POINTS.attributes.initial;
+    let initAbil = this.INITIAL_POINTS.abilities[morphology] || this.INITIAL_POINTS.abilities.initial;
+    let initEnh = this.INITIAL_POINTS.enhancements[morphology] || this.INITIAL_POINTS.enhancements.initial;
+    let initCore = this.INITIAL_POINTS.core[morphology] || this.INITIAL_POINTS.core.initial;
 
-    let initCore = MorphologyRepository.TYPES.HUMAN.id === morfologia ? this.INITIAL_POINTS.core.initial_human : this.INITIAL_POINTS.core.initial;
+    const attributesCost = this._countPoints(data.atributos, initAttr, this.INITIAL_POINTS.attributes.cost, this.INITIAL_POINTS.attributes.initial_value, isApproximate, thresholds?.attributes);
+    const skillsCost = this._countPoints(data.habilidades, initAbil, this.INITIAL_POINTS.abilities.cost, this.INITIAL_POINTS.abilities.initial_value, isApproximate, thresholds?.abilities);
 
-    const atributosCost = this._countPoints(data.atributos, initAttr, this.INITIAL_POINTS.attributes.cost, this.INITIAL_POINTS.attributes.initial_value, isApproximate, thresholds?.attributes);
-    const habilidadesCost = this._countPoints(data.habilidades, initAbil, this.INITIAL_POINTS.abilities.cost, this.INITIAL_POINTS.abilities.initial_value, isApproximate, thresholds?.abilities);
+    const repertoryCost = Math.max(0, data.repertorio - this.INITIAL_POINTS.repertory.initial) * this.INITIAL_POINTS.repertory.cost;
 
-    const repertorioCost = Math.max(0, data.repertorio - this.INITIAL_POINTS.repertory.initial) * this.INITIAL_POINTS.repertory.cost;
-
-    const virtudesCost = this._countPoints(data.virtudes, this.INITIAL_POINTS.virtues.initial, this.INITIAL_POINTS.virtues.cost, this.INITIAL_POINTS.virtues.initial_value, false, null);
+    const virtuesCost = this._countPoints(data.virtudes, this.INITIAL_POINTS.virtues.initial, this.INITIAL_POINTS.virtues.cost, this.INITIAL_POINTS.virtues.initial_value, false, null);
 
     // Core (Núcleo)
-    const nucleoCost = this._countPoints({ nucleo: data.nucleo }, initCore, this.INITIAL_POINTS.core.cost, this.INITIAL_POINTS.core.initial_value, false, null);
+    const coreCost = this._countPoints({ nucleo: data.nucleo }, initCore, this.INITIAL_POINTS.core.cost, this.INITIAL_POINTS.core.initial_value, false, null);
 
-    // Aprimoramento arrays convertizados em objeto pra uso na função _countPoints()
-    let objAprimoramento = {};
-    data.aprimoramentos.forEach((val, idx) => objAprimoramento[`aprim_${idx}`] = val);
     const enhCost = isApproximate && thresholds?.enhancements ? thresholds.enhancements : this.INITIAL_POINTS.enhancements.cost;
-    const aprimoramentosCost = this._countPoints(objAprimoramento, initEnh, enhCost, this.INITIAL_POINTS.enhancements.initial_value, false, null);
+    const enhancementsCost = this._countEnhancementPoints(data.aprimoramentos, initEnh, enhCost);
 
-    const tracos_bonsCost = this._countTraitPoints(data.tracos.bons, 'good');
-    const tracos_ruinsCost = this._countTraitPoints(data.tracos.ruins, 'bad');
-    const manobrasCost = this._countObjectFields(data.manobras, 'experiencia');
-    const outrosCost = this._countObjectFields(data.outros, 'experiencia');
+    const goodTraitsCost = this._countTraitPoints(data.tracos.bons, 'good');
+    const badTraitsCost = this._countTraitPoints(data.tracos.ruins, 'bad');
+    const maneuversCost = this._countObjectFields(data.manobras, 'experiencia');
+    const othersCost = this._countObjectFields(data.outros, 'experiencia');
 
     // Traits ruins não cobram pontos na totalização (geram pontos na ficha nativa)
-    const total = atributosCost + repertorioCost + virtudesCost + habilidadesCost + nucleoCost + aprimoramentosCost + tracos_bonsCost + manobrasCost + outrosCost;
+    const total = attributesCost + repertoryCost + virtuesCost + skillsCost + coreCost + enhancementsCost + goodTraitsCost + maneuversCost + othersCost;
 
     return {
-      atributos: atributosCost,
-      virtudes: virtudesCost,
-      habilidades: habilidadesCost,
-      repertorio: repertorioCost,
-      nucleo: nucleoCost,
-      aprimoramentos: aprimoramentosCost,
-      tracos_bons: tracos_bonsCost,
-      tracos_ruins: tracos_ruinsCost,
-      manobras: manobrasCost,
-      outros: outrosCost,
+      atributos: attributesCost,
+      virtudes: virtuesCost,
+      habilidades: skillsCost,
+      repertorio: repertoryCost,
+      nucleo: coreCost,
+      aprimoramentos: enhancementsCost,
+      tracos_bons: goodTraitsCost,
+      tracos_ruins: badTraitsCost,
+      manobras: maneuversCost,
+      outros: othersCost,
       total: total
     };
   }
@@ -160,6 +190,36 @@ export class ActorExperienceUtils {
       }
     }
     return experienceUsed;
+  }
+
+  static _countEnhancementPoints(aprimoramentos, initEnh, enhCost) {
+    let enhancementsCost = 0;
+
+    const branchCosts = aprimoramentos.map(group => {
+      const grossCost = group.levels.reduce((acc, level) => acc + (level * enhCost), 0);
+      return { ...group, grossCost };
+    });
+
+    branchCosts.sort((a, b) => b.grossCost - a.grossCost);
+
+    branchCosts.forEach((branch, index) => {
+      let initialEnhUsed = (index === 0) ? initEnh : 0;
+
+      for (const level of branch.levels) {
+        if (initialEnhUsed > 0) {
+          if (level <= initialEnhUsed) {
+            initialEnhUsed -= level;
+          } else {
+            enhancementsCost += (level - initialEnhUsed) * enhCost;
+            initialEnhUsed = 0;
+          }
+        } else {
+          enhancementsCost += (level * enhCost);
+        }
+      }
+    });
+
+    return enhancementsCost;
   }
 
   static _countObjectFields(arr, fieldName) {

@@ -15,7 +15,7 @@ export const REGISTERED_TEMPLATES = Object.freeze(new Set([
 export const REGISTERED_MIGRATIONS = Object.freeze(new Set());
 
 export const SYSTEM_HOOKS = Object.freeze({
-  MIGRATIONS_INIT: "setor0OSubmundo.migrationsInit"
+  GM_INIT: `${SYSTEM_ID}.gmInit`,
 });
 
 // DEPRECATED: Usar SystemFlags no lugar

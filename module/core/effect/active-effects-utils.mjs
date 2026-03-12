@@ -150,4 +150,10 @@ export class ActiveEffectsUtils {
 
     return map[type] || `<${localize('Erro')}>`;
   }
+
+  static hasEffectsWithTint(actor) {
+    return actor.effects
+      .filter(e => e.changes.some(c => c.key === ActiveEffectsUtils.KEYS.TINT_TOKEN) || e.tint !== null)
+      .length > 1;
+  }
 }
