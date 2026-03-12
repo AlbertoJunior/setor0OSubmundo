@@ -1,4 +1,4 @@
-import { ConfigDefaults } from "../setup/config-defaults.mjs";
+import { ConfigDefaults } from "../../setup/config-defaults.mjs";
 
 export class PreCreateTokenHookHandle {
   static handle(token, data, options, userId) {

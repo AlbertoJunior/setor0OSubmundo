@@ -3,15 +3,16 @@ import { ReadyHookHandle } from "./module/hooks/ready.mjs";
 import { CreateItemHookHandle } from "./module/hooks/create-item.mjs";
 import { CreateCombatHookHandle } from "./module/hooks/create-combat.mjs";
 import { UpdateActorHookHandle } from "./module/hooks/update-actor.mjs";
-import { UpdateTokenHookHandle } from "./module/hooks/update-token.mjs";
 import { SceneControlButtonsHookHandle } from "./module/hooks/scene-control-buttons.mjs";
 import { PreCreateItemHookHandle } from "./module/hooks/pre-create-item.mjs";
 import { PreCreateSceneHookHandle } from "./module/hooks/pre-create-scene.mjs";
-import { PreCreateTokenHookHandle } from "./module/hooks/pre-create-token.mjs";
 import { ConfigDefaults } from "./module/setup/config-defaults.mjs";
 import { ActiveEffectCreateHookHandle } from "./module/hooks/active-effects-create.mjs";
 import { ActiveEffectDeleteHookHandle } from "./module/hooks/active-effects-delete.mjs";
 import { SYSTEM_HOOKS } from "./module/constants.mjs";
+import { PreCreateTokenHookHandle } from "./module/hooks/token/pre-create-token.mjs";
+import { CreateTokenHookHandle } from "./module/hooks/token/create-token.mjs";
+import { UpdateTokenHookHandle } from "./module/hooks/token/update-token.mjs";
 
 // Life Cycle
 Hooks.once('init', async function () {
@@ -30,6 +31,10 @@ Hooks.once(SYSTEM_HOOKS.GM_INIT, async () => {
 
   Hooks.on("deleteActiveEffect", (effect, options, userId) => {
     ActiveEffectDeleteHookHandle.handle(effect, options, userId);
+  });
+
+  Hooks.on('createToken', (token) => {
+    CreateTokenHookHandle.handle(token);
   });
 });
 
@@ -64,10 +69,6 @@ Hooks.on('preCreateScene', (scene, data, options, userId) => {
 // Token
 Hooks.on('preCreateToken', (token, data, options, userId) => {
   PreCreateTokenHookHandle.handle(token, data, options, userId);
-});
-
-Hooks.on('createToken', (data) => {
-  console.log("create token")
 });
 
 Hooks.on('updateToken', (updatedToken, changes, options, userId) => {

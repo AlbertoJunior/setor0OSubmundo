@@ -1,3 +1,5 @@
+import { Setor0TokenDocument } from "../../base/document/Setor0TokenDocument.mjs";
+
 export class TokenUtils {
   static getTokensPlaceables() {
     return canvas.tokens.placeables;
@@ -75,6 +77,13 @@ export class TokenUtils {
       console.warn("Token is null");
       return;
     }
-    await token.document.update(change)
+
+    if (token instanceof Setor0TokenDocument) {
+      await token.update(change)
+    } else if (token.document && token.document instanceof Setor0TokenDocument) {
+      await token.document.update(change)
+    } else {
+      console.warn("Token is not a document");
+    }
   }
 }
