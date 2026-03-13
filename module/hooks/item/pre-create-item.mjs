@@ -1,12 +1,13 @@
-import { FoundryApi } from "../api/foundry-api.mjs";
-import { logTable } from "../utils/utils.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
+import { ICONS_PATH } from "../../constants.mjs";
+import { logTable } from "../../utils/utils.mjs";
 
 export class PreCreateItemHookHandle {
   static DEFAULT_ICONS = {
-    Melee: "icons/agility.svg",
+    Melee: `${ICONS_PATH}/melee.svg`,
     Projectile: "icons/svg/target.svg",
     Armor: "icons/svg/shield.svg",
-    Substance: "systems/setor0OSubmundo/icons/substance.svg",
+    Substance: `${ICONS_PATH}/substance.svg`,
     Vehicle: "icons/svg/tank.svg",
     Acessory: "icons/svg/clockwork.svg",
     Trait: "icons/svg/aura.svg",

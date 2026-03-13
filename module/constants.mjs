@@ -16,6 +16,8 @@ export const REGISTERED_MIGRATIONS = Object.freeze(new Set());
 
 export const SYSTEM_HOOKS = Object.freeze({
   GM_INIT: `${SYSTEM_ID}.gmInit`,
+  GM_READY: `${SYSTEM_ID}.gmReady`,
+  GM_REGISTER_MIGRATIONS: `${SYSTEM_ID}.gmRegisterMigrations`,
 });
 
 // DEPRECATED: Usar SystemFlags no lugar

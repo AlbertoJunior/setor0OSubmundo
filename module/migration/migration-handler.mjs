@@ -1,5 +1,6 @@
 import { FoundryApi } from "../api/foundry-api.mjs";
 import { SYSTEM_ID, REGISTERED_MIGRATIONS } from "../constants.mjs";
+import { NotificationsUtils } from "../creators/message/notifications.mjs";
 import "./migrations/index.mjs";
 
 export class MigrationHandler {
@@ -18,7 +19,7 @@ export class MigrationHandler {
       return;
 
     console.log(`-> Setor 0 - O Submundo | Iniciando Migração do Sistema (${lastMigratedVersion} -> ${currentSystemVersion})`);
-    ui.notifications.info(`Setor 0 | Executando migrações de sistema para a versão ${currentSystemVersion}. Por favor, aguarde...`, { permanent: true });
+    NotificationsUtils.info(`Setor 0 | Executando migrações de sistema para a versão ${currentSystemVersion}. Por favor, aguarde...`, { permanent: true });
 
     try {
       // Pick all migrations where target version > lastMigratedVersion or are forced via instance checking
@@ -40,7 +41,7 @@ export class MigrationHandler {
           lastMigratedVersionSuccessed = migration.version;
         } catch (e) {
           console.error(`-> Setor 0 - O Submundo | Erro crítico na migração:`, e);
-          ui.notifications.error(`Setor 0 | Ocorreu um erro durante a migração. Verifique o console.`);
+          NotificationsUtils.error(`Setor 0 | Ocorreu um erro durante a migração. Verifique o console.`);
           haveError = true;
           break;
         }
@@ -51,14 +52,14 @@ export class MigrationHandler {
 
       if (!haveError) {
         console.log(`-> Setor 0 - O Submundo | Migração finalizada com sucesso.`);
-        ui.notifications.info(`Setor 0 | Migrações concluídas com sucesso!`);
+        NotificationsUtils.info(`Setor 0 | Migrações concluídas com sucesso!`);
       } else {
         console.log(`-> Setor 0 - O Submundo | Migração finalizada com erros.`);
-        ui.notifications.error(`Setor 0 | Ocorreu um erro durante a migração. Verifique o console.`);
+        NotificationsUtils.error(`Setor 0 | Ocorreu um erro durante a migração. Verifique o console.`);
       }
     } catch (e) {
       console.error(`-> Setor 0 - O Submundo | Erro crítico na migração:`, e);
-      ui.notifications.error(`Setor 0 | Ocorreu um erro durante a migração. Verifique o console.`);
+      NotificationsUtils.error(`Setor 0 | Ocorreu um erro durante a migração. Verifique o console.`);
     }
   }
 }

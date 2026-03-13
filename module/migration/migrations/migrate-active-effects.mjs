@@ -27,7 +27,7 @@ export const ActiveEffectsMigration = Object.freeze({
   }
 });
 
-Hooks.once(SYSTEM_HOOKS.GM_INIT, async function () {
+Hooks.once(SYSTEM_HOOKS.GM_REGISTER_MIGRATIONS, () => {
   REGISTERED_MIGRATIONS.add(ActiveEffectsMigration);
 });
 

@@ -1,7 +1,7 @@
-import { EquipmentUtils } from "../core/equipment/equipment-utils.mjs";
-import { NotificationsUtils } from "../creators/message/notifications.mjs";
-import { EquipmentRepository } from "../repository/equipment-repository.mjs";
-import { localizeType } from "../utils/utils.mjs";
+import { EquipmentUtils } from "../../core/equipment/equipment-utils.mjs";
+import { NotificationsUtils } from "../../creators/message/notifications.mjs";
+import { EquipmentRepository } from "../../repository/equipment-repository.mjs";
+import { localizeType } from "../../utils/utils.mjs";
 
 export class CreateItemHookHandle {
   static async handle(item) {

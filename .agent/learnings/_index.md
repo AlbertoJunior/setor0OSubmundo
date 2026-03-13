@@ -2,6 +2,7 @@
 
 | Arquivo | Descrição | Contexto |
 | :--- | :--- | :--- |
+| [foundry-async-hooks-synchronization.md](./foundry-async-hooks-synchronization.md) | Padrão de trava de segurança (Promise synchronization) entre hooks síncronos e assíncronos no ciclo de vida do Foundry VTT. | Hooks / Lifecycle / Async-Await |
 | [foundry-v13-applicationv2-prototype-pollution.md](./foundry-v13-applicationv2-prototype-pollution.md) | Correção de poluição de classes global por uso de getter `DEFAULT_OPTIONS` no Foundry v13 (`mergeObject(super.DEFAULT_OPTIONS)` muta o prototype nativo). | UI / Hooks / ApplicationV2 |
 | [lazy-load-localization-helpers.md](./lazy-load-localization-helpers.md) | Adoção do padrão Lazy-Loading (Funções de Fechamento/Closures) em Dicionários estáticos exportados para a UI e Helpers a fim de combater Race-Conditions no recebimento assíncrono de Localizações (`game.i18n`) por clientes conectados. | UI / Performance de Renderização / Hooks |
 | [foundry-v13-scene-control-dummy-tool.md](./foundry-v13-scene-control-dummy-tool.md) | Limitação do v13 em gerenciar painéis apenas de botões sem propriedades `activeTool` gerando TypeError e exigindo uso de DummyTools no Hook getSceneControlButtons. | Hooks / Foundry VTT v13 |

@@ -1,3 +1,4 @@
+import { FoundryApi } from "../api/foundry-api.mjs";
 import { NotificationsUtils } from "../creators/message/notifications.mjs";
 
 function containClass(element, cls) {
@@ -5,7 +6,9 @@ function containClass(element, cls) {
 }
 
 function isCharacteristic(element) {
-  return containClass(element, 'S0-characteristic') || containClass(element, 'S0-characteristic-6') || containClass(element, 'S0-characteristic-temp');
+  return containClass(element, 'S0-characteristic')
+    || containClass(element, 'S0-characteristic-6')
+    || containClass(element, 'S0-characteristic-temp');
 }
 
 export function selectCharacteristic(element) {
@@ -125,7 +128,7 @@ export function randomId(maxString) {
 }
 
 export function convertToCollection(items) {
-  return new foundry.utils.Collection(items.map(item => [item.id, item]));
+  return new FoundryApi.Utils.Collection(items.map(item => [item.id, item]));
 }
 
 export function snakeToCamel(entries) {
@@ -162,5 +165,5 @@ export function logTable(title, table) {
 export function logDiffMigration(version, diffLog) {
   console.log(`================ MIGRATION DIFF ${version} ================`);
   console.log(JSON.stringify(diffLog, null, 2));
-  console.log("======================================================");
+  console.log("================================================================");
 }

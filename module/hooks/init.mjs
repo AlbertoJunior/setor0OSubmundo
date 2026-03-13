@@ -14,7 +14,7 @@ import { MacroUtils } from "../core/macro/macro-utils.mjs";
 import { configureSetor0ActiveEffect } from "../base/document/Setor0ActiveEffect.mjs";
 import { TokenUtils } from "../core/token/token-utils.mjs";
 import { configureSetor0ChatLog } from "../core/chat/Setor0ChatLog.mjs";
-import { PreCreateItemHookHandle } from "./pre-create-item.mjs";
+import { PreCreateItemHookHandle } from "./item/pre-create-item.mjs";
 
 export class InitHookHandle {
   static async handle() {
@@ -43,7 +43,7 @@ export class InitHookHandle {
     await PreCreateItemHookHandle.validateDefaultIcons();
 
     // GM HOOKS
-    if (game.user.isGM) {
+    if (game.user?.isGM) {
       Hooks.callAll(SYSTEM_HOOKS.GM_INIT);
     }
   }

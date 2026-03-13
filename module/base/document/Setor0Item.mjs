@@ -1,5 +1,5 @@
 import { FoundryApi } from "../../api/foundry-api.mjs";
-import { PreCreateItemHookHandle } from "../../hooks/pre-create-item.mjs";
+import { PreCreateItemHookHandle } from "../../hooks/item/pre-create-item.mjs";
 
 export function configureSetor0Item() {
   CONFIG.Item.documentClass = Setor0Item;

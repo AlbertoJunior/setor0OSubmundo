@@ -14,7 +14,7 @@ class Setor0CombatTracker extends FoundryApi.CombatTracker {
     this.#verifyUpdateName(turn, combatant);
     this.#verifyUpdateImg(turn, combatant);
 
-    if (game.user.isGM || combatant.actor.isOwner) {
+    if (game.user?.isGM || combatant.actor?.isOwner) {
       return turn
     } else {
       this.#removeSecretEffects(turn, combatant);

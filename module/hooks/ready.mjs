@@ -12,6 +12,7 @@ import { FoundryApi } from "../api/foundry-api.mjs";
 import { CompendiumSync } from "../core/pack/compendium-sync.mjs";
 import { Setor0TooltipManager } from "../base/ui/Setor0TooltipManager.mjs";
 import { ConfigDefaults } from "../setup/config-defaults.mjs";
+import { SYSTEM_HOOKS } from "../constants.mjs";
 
 export class ReadyHookHandle {
   static async handle() {
@@ -63,6 +64,7 @@ export class ReadyHookHandle {
     await MigrationHandler.runMigrations();
 
     OscillatingTintManager.verifyOscilatingTokens();
+    Hooks.callAll(SYSTEM_HOOKS.GM_READY);
     console.log('-> Setor 0 - O Submundo | Sistema Pronto');
   }
 }
