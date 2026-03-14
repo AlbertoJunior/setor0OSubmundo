@@ -1,4 +1,5 @@
-import { SYSTEM_FLAGS, SYSTEM_ID } from "../../constants.mjs";
+import { SYSTEM_ID } from "../../constants.mjs";
+import { SystemFlags } from "../../enums/flags-enums.mjs";
 import { logTable } from "../../utils/utils.mjs";
 
 export class CompendiumExport {
@@ -77,7 +78,7 @@ export class CompendiumExport {
     const jsonItem = item.toObject ? item.toObject() : { ...item };
     const baseFlags = jsonItem.flags ?? {};
     const systemFlags = baseFlags[SYSTEM_ID] ?? {};
-    const sourceId = systemFlags[SYSTEM_FLAGS.SOURCE_ID] ?? jsonItem._id;
+    const sourceId = systemFlags[SystemFlags.SOURCE.ID] ?? jsonItem._id;
 
     delete jsonItem._stats;
 
@@ -88,7 +89,7 @@ export class CompendiumExport {
         ...baseFlags,
         [SYSTEM_ID]: {
           ...systemFlags,
-          [SYSTEM_FLAGS.SOURCE_ID]: sourceId
+          [SystemFlags.SOURCE.ID]: sourceId
         }
       }
     };

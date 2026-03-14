@@ -1,5 +1,6 @@
 import { FoundryApi } from "../../api/foundry-api.mjs";
-import { SYSTEM_FLAGS, SYSTEM_ID } from "../../constants.mjs";
+import { SYSTEM_ID } from "../../constants.mjs";
+import { SystemFlags } from "../../enums/flags-enums.mjs";
 import { FlagsUtils } from "../../utils/flags-utils.mjs";
 import { logTable } from "../../utils/utils.mjs";
 
@@ -192,8 +193,8 @@ export class CompendiumSync {
   }
 
   static #filterCompendiumItems(pack, data) {
-    const inPackItems = pack.contents.map(item => FlagsUtils.getSystemFlag(item, SYSTEM_FLAGS.SOURCE_ID)).filter(i => Boolean(i));
-    const filteredData = data.elements.filter(item => !inPackItems.includes(FlagsUtils.getSystemFlag(item, SYSTEM_FLAGS.SOURCE_ID)));
+    const inPackItems = pack.contents.map(item => FlagsUtils.getSystemFlag(item, SystemFlags.SOURCE.ID)).filter(i => Boolean(i));
+    const filteredData = data.elements.filter(item => !inPackItems.includes(FlagsUtils.getSystemFlag(item, SystemFlags.SOURCE.ID)));
     return filteredData;
   }
 

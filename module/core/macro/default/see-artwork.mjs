@@ -1,11 +1,12 @@
-import { ICONS_PATH, SYSTEM_FLAGS, SYSTEM_ID } from "../../../constants.mjs";
+import { ICONS_PATH, SYSTEM_ID } from "../../../constants.mjs";
+import { SystemFlags } from "../../../enums/flags-enums.mjs";
 import { verifyAndReturnActor, verifyAndReturnSelectedToken } from "../commands/macro-utils-commands.mjs";
 
 export const seeArtWorkMacroData = {
   flags: {
     [SYSTEM_ID]: {
-      [SYSTEM_FLAGS.SOURCE_ID]: '4',
-      [SYSTEM_FLAGS.ROLE]: SYSTEM_FLAGS.ROLE_USER,
+      [SystemFlags.SOURCE.ID]: '4',
+      [SystemFlags.ROLE.ROLE]: SystemFlags.ROLE.USER,
     }
   },
   name: "Ver arte do Personagem",

@@ -1,5 +1,6 @@
 import { FoundryApi } from "../api/foundry-api.mjs";
-import { SYSTEM_ID, SYSTEM_FLAGS, COLORS } from "../constants.mjs";
+import { SYSTEM_ID, COLORS } from "../constants.mjs";
+import { SystemFlags } from "../enums/flags-enums.mjs";
 
 export class FolderUtils {
   static async getOrCreateMacroFolder(folderName) {
@@ -51,7 +52,7 @@ export class FolderUtils {
     let characterFolder = game.folders.find(f =>
       f.type === type &&
       f.folder?.id === playersFolder.id &&
-      f.flags?.[SYSTEM_ID]?.[SYSTEM_FLAGS.CHARACTER_ID] === actor.id
+      f.flags?.[SYSTEM_ID]?.[SystemFlags.CHARACTER.ID] === actor.id
     );
 
     if (!characterFolder) {
@@ -62,7 +63,7 @@ export class FolderUtils {
         color: this.getFolderColor(),
         flags: {
           [SYSTEM_ID]: {
-            [SYSTEM_FLAGS.CHARACTER_ID]: actor.id
+            [SystemFlags.CHARACTER.ID]: actor.id
           }
         },
         ownership: {

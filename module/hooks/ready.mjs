@@ -1,6 +1,5 @@
 import { RepositoriesUtils } from "../setup/repositories.mjs";
 import { MigrationHandler } from "../migration/migration-handler.mjs";
-import { OscillatingTintManager } from "../core/effect/oscilating-effect-manager.mjs";
 import { ActiveEffectRepository } from "../repository/active-effects-repository.mjs";
 import { MacroSync } from "../core/macro/macro-sync.mjs";
 import { MacroInstaller } from "../core/macro/macro-installer.mjs";
@@ -63,7 +62,6 @@ export class ReadyHookHandle {
     await CompendiumSync.syncDefaultCompendiums();
     await MigrationHandler.runMigrations();
 
-    OscillatingTintManager.verifyOscilatingTokens();
     Hooks.callAll(SYSTEM_HOOKS.GM_READY);
     console.log('-> Setor 0 - O Submundo | Sistema Pronto');
   }

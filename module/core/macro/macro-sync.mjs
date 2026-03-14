@@ -1,5 +1,6 @@
 import { FoundryApi } from "../../api/foundry-api.mjs";
-import { SYSTEM_ID, SYSTEM_FLAGS } from "../../constants.mjs";
+import { SYSTEM_ID } from "../../constants.mjs";
+import { SystemFlags } from "../../enums/flags-enums.mjs";
 import { FlagsUtils } from "../../utils/flags-utils.mjs";
 import { FolderUtils } from "../../utils/folder-utils.mjs";
 import { MacroUtils } from "./macro-utils.mjs";
@@ -19,7 +20,7 @@ export class MacroSync {
     }
 
     const roles = new Set(
-      missingMacros.map(macro => FlagsUtils.getSystemFlag(macro, SYSTEM_FLAGS.ROLE)?.toUpperCase()).filter(Boolean)
+      missingMacros.map(macro => FlagsUtils.getSystemFlag(macro, SystemFlags.ROLE.ROLE)?.toUpperCase()).filter(Boolean)
     );
     const folders = {};
 
@@ -36,7 +37,7 @@ export class MacroSync {
 
     for (const macroItem of missingMacros) {
       try {
-        const role = FlagsUtils.getSystemFlag(macroItem, SYSTEM_FLAGS.ROLE)?.toUpperCase();
+        const role = FlagsUtils.getSystemFlag(macroItem, SystemFlags.ROLE.ROLE)?.toUpperCase();
         const folder = folders[role];
 
         const macroDoc = await FoundryApi.Macro.create({

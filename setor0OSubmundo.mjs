@@ -13,6 +13,7 @@ import { SYSTEM_HOOKS } from "./module/constants.mjs";
 import { PreCreateTokenHookHandle } from "./module/hooks/token/pre-create-token.mjs";
 import { CreateTokenHookHandle } from "./module/hooks/token/create-token.mjs";
 import { UpdateTokenHookHandle } from "./module/hooks/token/update-token.mjs";
+import { OscillatingTintManager } from "./module/core/effect/oscilating-effect-manager.mjs";
 
 // Life Cycle
 Hooks.once('init', async () => {
@@ -40,6 +41,7 @@ Hooks.once(SYSTEM_HOOKS.GM_INIT, () => {
 });
 
 Hooks.once(SYSTEM_HOOKS.GM_READY, () => {
+  OscillatingTintManager.verifyOscilatingTokens();
 });
 
 // Item

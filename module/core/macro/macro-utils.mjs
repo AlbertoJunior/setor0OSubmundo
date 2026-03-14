@@ -1,7 +1,7 @@
 import { getObject, normalizeString } from "../../utils/utils.mjs";
 import { shortcutCustomRoll } from "../../base/sheet/actor/player/methods/shortcut-methods.mjs";
 import { rollByItemAndRollId } from "../../base/sheet/equipment/methods/equipment-item-roll-methods.mjs";
-import { SYSTEM_FLAGS, SYSTEM_ID } from "../../constants.mjs";
+import { SYSTEM_ID } from "../../constants.mjs";
 import { NotificationsUtils } from "../../creators/message/notifications.mjs";
 import { CharacteristicType } from "../../enums/characteristic-enums.mjs";
 import { EquipmentCharacteristicType } from "../../enums/equipment-enums.mjs";
@@ -19,6 +19,7 @@ import { FoundryApi } from "../../api/foundry-api.mjs";
 import { exportCompendiunsMacroData } from "./gm/export-compendium-json.mjs";
 import { CompendiumExport } from "../pack/compendium-export.mjs";
 import { CompendiumSync } from "../pack/compendium-sync.mjs";
+import { SystemFlags } from "../../enums/flags-enums.mjs";
 
 export class MacroUtils {
   static MacroMethods = {
@@ -124,8 +125,8 @@ export class MacroUtils {
   }
 
   static isTheSameMacro(macroA, macroB) {
-    const sourceIdA = FlagsUtils.getSystemFlag(macroA, SYSTEM_FLAGS.SOURCE_ID);
-    const sourceIdB = FlagsUtils.getSystemFlag(macroB, SYSTEM_FLAGS.SOURCE_ID);
+    const sourceIdA = FlagsUtils.getSystemFlag(macroA, SystemFlags.SOURCE.ID);
+    const sourceIdB = FlagsUtils.getSystemFlag(macroB, SystemFlags.SOURCE.ID);
 
     const sameName = normalizeString(macroA.name) === normalizeString(macroB.name);
     const sameCommand = normalizeString(macroA.command) === normalizeString(macroB.command);

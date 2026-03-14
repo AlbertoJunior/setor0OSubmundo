@@ -1,10 +1,11 @@
-import { SYSTEM_FLAGS, SYSTEM_ID } from "../../../constants.mjs";
+import { SYSTEM_ID } from "../../../constants.mjs";
+import { SystemFlags } from "../../../enums/flags-enums.mjs";
 
 export const exportCompendiunsMacroData = {
   flags: {
     [SYSTEM_ID]: {
-      [SYSTEM_FLAGS.SOURCE_ID]: '1004',
-      [SYSTEM_FLAGS.ROLE]: SYSTEM_FLAGS.ROLE_GM,
+      [SystemFlags.SOURCE.ID]: '1004',
+      [SystemFlags.ROLE.ROLE]: SystemFlags.ROLE.GM,
     }
   },
   name: "Exportar compendiuns",

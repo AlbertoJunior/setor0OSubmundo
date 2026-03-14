@@ -1,4 +1,3 @@
-// TODO: PASSAR A USAR ESSE AO INVÉS DE SYSTEM_FLAGS
 export const SystemFlags = Object.freeze({
   ORIGIN: {
     ID: "originId",
@@ -25,6 +24,7 @@ export const SystemFlags = Object.freeze({
     LAST_REFRESH: 'lastRefresh'
   },
   ROLE: {
+    ROLE: 'role',
     USER: 'user',
     GM: 'gm',
   },
