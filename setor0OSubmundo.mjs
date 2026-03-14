@@ -7,8 +7,8 @@ import { CreateItemHookHandle } from "./module/hooks/item/create-item.mjs";
 import { PreCreateItemHookHandle } from "./module/hooks/item/pre-create-item.mjs";
 import { PreCreateSceneHookHandle } from "./module/hooks/pre-create-scene.mjs";
 import { ConfigDefaults } from "./module/setup/config-defaults.mjs";
-import { ActiveEffectCreateHookHandle } from "./module/hooks/active-effects-create.mjs";
-import { ActiveEffectDeleteHookHandle } from "./module/hooks/active-effects-delete.mjs";
+import { CreateActiveEffectHookHandle } from "./module/hooks/active-effects/create-active-effect.mjs";
+import { DeleteActiveEffectHookHandle } from "./module/hooks/active-effects/delete-active-effect.mjs";
 import { SYSTEM_HOOKS } from "./module/constants.mjs";
 import { PreCreateTokenHookHandle } from "./module/hooks/token/pre-create-token.mjs";
 import { CreateTokenHookHandle } from "./module/hooks/token/create-token.mjs";
@@ -28,11 +28,11 @@ Hooks.once('ready', async () => {
 Hooks.once(SYSTEM_HOOKS.GM_INIT, () => {
   Hooks.callAll(SYSTEM_HOOKS.GM_REGISTER_MIGRATIONS);
   Hooks.on("createActiveEffect", (effect, options, userId) => {
-    ActiveEffectCreateHookHandle.handle(effect, options, userId);
+    CreateActiveEffectHookHandle.handle(effect, options, userId);
   });
 
   Hooks.on("deleteActiveEffect", (effect, options, userId) => {
-    ActiveEffectDeleteHookHandle.handle(effect, options, userId);
+    DeleteActiveEffectHookHandle.handle(effect, options, userId);
   });
 
   Hooks.on('createToken', (token) => {

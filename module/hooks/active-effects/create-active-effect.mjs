@@ -1,15 +1,15 @@
-import { ActiveEffectsUtils } from "../core/effect/active-effects-utils.mjs";
-import { OscillatingTintManager } from "../core/effect/oscilating-effect-manager.mjs";
-import { FlagsUtils } from "../utils/flags-utils.mjs";
-import { ActiveEffectsFlags } from "../enums/active-effects-enums.mjs";
-import { TokenUtils } from "../core/token/token-utils.mjs";
-import { FoundryApi } from "../api/foundry-api.mjs";
+import { ActiveEffectsUtils } from "../../core/effect/active-effects-utils.mjs";
+import { OscillatingTintManager } from "../../core/effect/oscilating-effect-manager.mjs";
+import { FlagsUtils } from "../../utils/flags-utils.mjs";
+import { ActiveEffectsFlags } from "../../enums/active-effects-enums.mjs";
+import { TokenUtils } from "../../core/token/token-utils.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
-export class ActiveEffectCreateHookHandle {
+export class CreateActiveEffectHookHandle {
 
   static async handle(effect, options, userId) {
-    await ActiveEffectCreateHookHandle.#verifyRemoveChain(effect, options, userId)
-    await ActiveEffectCreateHookHandle.#verifyChangeTokenTint(effect, options);
+    await CreateActiveEffectHookHandle.#verifyRemoveChain(effect, options, userId)
+    await CreateActiveEffectHookHandle.#verifyChangeTokenTint(effect, options);
   }
 
   static async #verifyRemoveChain(effect) {

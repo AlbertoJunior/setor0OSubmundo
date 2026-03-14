@@ -1,11 +1,11 @@
-import { ActiveEffectsUtils } from "../core/effect/active-effects-utils.mjs";
-import { OscillatingTintManager } from "../core/effect/oscilating-effect-manager.mjs";
-import { TokenUtils } from "../core/token/token-utils.mjs";
+import { ActiveEffectsUtils } from "../../core/effect/active-effects-utils.mjs";
+import { OscillatingTintManager } from "../../core/effect/oscilating-effect-manager.mjs";
+import { TokenUtils } from "../../core/token/token-utils.mjs";
 
-export class ActiveEffectDeleteHookHandle {
+export class DeleteActiveEffectHookHandle {
 
   static async handle(effect, options, userId) {
-    await ActiveEffectDeleteHookHandle.#verifyRemoveTokenTint(effect);
+    await DeleteActiveEffectHookHandle.#verifyRemoveTokenTint(effect);
   }
 
   static async #verifyRemoveTokenTint(effect) {
