@@ -401,12 +401,10 @@
 }
 
 .S0-h-marked {
-  width: 40px !important;
-  margin-inline: 4px !important;
   background-color: var(--secondary-color-alpha);
   border-radius: var(--border-radius-medium);
-  padding-block: 4px;
-  padding-inline: 8px;
+  padding-block: var(--space-small);
+  padding-inline: var(--space-medium);
 }
 
 /* #endregion */

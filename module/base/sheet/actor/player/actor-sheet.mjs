@@ -58,6 +58,7 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
       effects: SheetMethods.handleMethods.effects,
       temporary: SheetMethods.handleMethods.temporary,
       equipment: SheetMethods.handleMethods.equipment,
+      specialties: SheetMethods.handleMethods.specialties,
       shortcuts: SheetMethods.handleMethods.shortcuts,
       allies: SheetMethods.handleMethods.allies,
       informants: SheetMethods.handleMethods.informants,
@@ -70,6 +71,7 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
     this.filterBag = EquipmentType.UNKNOWM;
     this.isExpandedEffects = undefined;
     this.isExpandedShortcuts = undefined;
+    this.isExpandedSpecialties = undefined;
     this.defaultHeight = undefined;
   }
 
@@ -188,26 +190,36 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
   }
 
   #presetSheetExpandContainers(html) {
-    const effectsContainer = html.querySelector('#effects-container');
     const isExpandedEffects = this.isExpandedEffects;
-    this.#verifyAndExpandContainers(effectsContainer, isExpandedEffects, html);
+    const effectsContainer = html.querySelector('#effects-container');
+    if (effectsContainer) {
+      this.#verifyAndExpandContainers(effectsContainer, isExpandedEffects, html);
+    }
 
-    const shortcutsContainer = html.querySelector(`#shortcuts-container-${this.actor.id}`);
-    if (!shortcutsContainer) {
-      return
+    const isExpandedSpecialties = this.isExpandedSpecialties;
+    const specialtiesContainer = html.querySelector(`#specialties-container-${this.actor.id}`);
+    if (specialtiesContainer) {
+      this.#verifyAndExpandContainers(specialtiesContainer, isExpandedSpecialties, html);
     }
 
     const isExpandedShortcuts = this.isExpandedShortcuts;
-    this.#verifyAndExpandContainers(shortcutsContainer, isExpandedShortcuts, html);
+    const shortcutsContainer = html.querySelector(`#shortcuts-container-${this.actor.id}`);
+    if (shortcutsContainer) {
+      this.#verifyAndExpandContainers(shortcutsContainer, isExpandedShortcuts, html);
+    }
 
-    if (!this.defaultHeight || isExpandedEffects === undefined || isExpandedShortcuts == undefined) {
+    if (!this.defaultHeight ||
+      isExpandedEffects === undefined ||
+      isExpandedShortcuts === undefined ||
+      isExpandedSpecialties === undefined) {
       requestAnimationFrame(() => {
         const content = html.parentElement?.parentElement;
         const windowElem = content?.closest(`.${SYSTEM_CLASS_CSS}`);
         this.defaultHeight = windowElem?.offsetHeight;
 
-        this.isExpandedEffects = effectsContainer.classList.contains('S0-expanded');
-        this.isExpandedShortcuts = shortcutsContainer.classList.contains('S0-expanded');
+        this.isExpandedEffects = effectsContainer?.classList.contains('S0-expanded');
+        this.isExpandedShortcuts = shortcutsContainer?.classList.contains('S0-expanded');
+        this.isExpandedSpecialties = specialtiesContainer?.classList.contains('S0-expanded');
       });
     }
   }
@@ -215,8 +227,12 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
   #verifyAndExpandContainers(container, isExpanded, html) {
     if (typeof isExpanded === 'boolean') {
       container.classList.toggle('S0-expanded', isExpanded);
-      if (!isExpanded) {
-        HtmlJsUtils.flipClasses(html.querySelector('#effects-container-icon'), 'fa-chevron-up', 'fa-chevron-down');
+      const icon = container.parentElement.querySelector("[data-action=view] i");
+      if (icon) {
+        const hasUp = icon.classList.value.includes("fa-chevron-up");
+        if ((!hasUp && isExpanded) || (hasUp && !isExpanded)) {
+          HtmlJsUtils.flipClasses(icon, 'fa-chevron-up', 'fa-chevron-down');
+        }
       }
     }
   }

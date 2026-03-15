@@ -1,4 +1,4 @@
-import { localize, randomId, snakeToCamel } from "../../utils/utils.mjs"
+import { localize, randomId } from "../../utils/utils.mjs"
 import { SYSTEM_CLASS_DIALOG_CSS, TEMPLATES_PATH } from "../../constants.mjs";
 import { DialogUtils } from "../../utils/dialog-utils.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";

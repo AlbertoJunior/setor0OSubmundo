@@ -4,6 +4,7 @@ import { MorphologyRepository } from "../../repository/morphology-repository.mjs
 import { FlagsUtils } from "../../utils/flags-utils.mjs";
 import { ActiveEffectsUtils } from "../effect/active-effects-utils.mjs";
 import { DEFAULT_VALUES } from "../../constants.mjs";
+import { AbilityRepository } from "../../repository/ability-repository.mjs";
 
 export class ActorUtils {
   static getActor(actorId) {
@@ -283,5 +284,25 @@ export class ActorUtils {
 
   static calculateTotalEnhancements(actor) {
     return (getObject(actor, CharacteristicType.CORE) ?? 0) * DEFAULT_VALUES.ENHANCEMENT_SLOTS_PER_CORE;
+  }
+
+  /**
+   * Retorna as especialidades do ator com a label da habilidade já localizada.
+   * Ordena pelo nome localizado da habilidade para facilitar agrupamento visual.
+   *
+   * @returns {Array<{habilidade: string, label: string, descricao_curta: string, descricao_longa: string|null, custo: number}>}
+   */
+  static getSpecialties(actor) {
+    const specialties = getObject(actor, CharacteristicType.SPECIALTIES) || [];
+    return specialties
+      .map((specialty, index) => {
+        const abilityInfo = AbilityRepository.getItem(specialty.habilidade);
+        return {
+          ...specialty,
+          index,
+          label: abilityInfo ? localize(abilityInfo.label.replace('S0.', '')) : specialty.habilidade,
+        };
+      })
+      .sort((a, b) => a.label.localeCompare(b.label));
   }
 }

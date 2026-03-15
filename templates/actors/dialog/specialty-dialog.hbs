@@ -1,0 +1,44 @@
+<form class="S0-container S0-flex-col S0-gap-4">
+  <h3 class="S0-m-0">{{localize 'S0.Habilidade'}}</h3>
+  {{#if readOnly}}
+  <label class="S0-mt-0">{{abilityLabel}}</label>
+  {{else}}
+  <div class="form-group">
+    <select id="habilidade" class="S0-select" name="habilidade">
+      {{#each abilities}}
+      <option value="{{id}}" {{selectIfEq id ../selectedAbility}}>{{localize label}}</option>
+      {{/each}}
+    </select>
+  </div>
+  {{/if}}
+
+  <h3 class="S0-m-0">{{localize 'S0.Especialidade.Descricao_Curta'}}</h3>
+  {{#if readOnly}}
+  <label class="S0-mt-0">{{descricao_curta}}</label>
+  {{else}}
+  <div class="form-group">
+    <input class="S0-resize-none" type="text" maxlength="60" name="descricao_curta" value="{{descricao_curta}}"
+      placeholder="{{localize 'S0.Especialidade.Descricao_Curta_Placeholder'}}">
+  </div>
+  {{/if}}
+
+  {{#if (operators 'or' descricao_longa (operators 'not' readOnly))}}
+  <h3 class="S0-m-0">{{localize 'S0.Especialidade.Descricao_Longa'}}</h3>
+  {{#if readOnly}}
+  <label class="S0-mt-0">{{descricao_longa}}</label>
+  {{else}}
+  <textarea name="descricao_longa" rows="3"
+    placeholder="{{localize 'S0.Especialidade.Descricao_Longa_Placeholder'}}">{{#if descricao_longa}}{{descricao_longa}}{{/if}}</textarea>
+  {{/if}}
+  {{/if}}
+
+  {{#if readOnly}}
+  <h3 class="S0-m-0">{{localize 'S0.Custo'}}</h3>
+  <label>{{custo}}</label>
+  {{else}}
+  <div class="form-group">
+    <h3 class="S0-m-0">{{localize 'S0.Custo'}}</h3>
+    <input type="number" name="custo" value="{{custo}}" min="0" />
+  </div>
+  {{/if}}
+</form>

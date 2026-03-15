@@ -102,6 +102,14 @@ body {
   --border-medium: 2px;
   --border-large: 3px;
 
+  --space-x-small: 2px;
+  --space-small: 4px;
+  --space-medium: 6px;
+  --space-large: 8px;
+  --space-x-large: 12px;
+  --space-xx-large: 16px;
+
+  --border-radius-x-small: 2px;
   --border-radius-small: 4px;
   --border-radius-medium: 6px;
   --border-radius-large: 8px;

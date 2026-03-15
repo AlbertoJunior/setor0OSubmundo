@@ -1,8 +1,9 @@
-<div class="S0-dialog">
+<div class="S0-dialog S0-min-w-300">
   <form class="S0-container">
     <h3>{{localize 'S0.Nome'}}</h3>
     <div class="form-group">
-      <input class="S0-resize-none" type="text" maxlength="45" name="name" value="{{name}}" placeholder="{{localize 'S0.Atalho.Atalho_Nome'}}" {{#unless canEdit}}disabled{{/unless}}>
+      <input class="S0-resize-none" type="text" maxlength="45" name="name" value="{{name}}"
+        placeholder="{{localize 'S0.Atalho.Atalho_Nome'}}" {{#unless canEdit}}disabled{{/unless}}>
     </div>
 
     <h3>{{localize 'S0.Atributos.Atributos'}}</h3>
@@ -65,7 +66,4 @@
         canEdit}}disabled{{/unless}} />
     </div>
   </form>
-
-  {{> buttons-dialog buttons=buttons}}
-
 </div>

@@ -368,6 +368,19 @@
       "Destrocado2": "Shattered 2",
       "Destrocado3": "Shattered 3"
     },
+    "Especialidade": {
+      "Especialidades": "Specialties",
+      "Especialidade": "Specialty",
+      "Nenhuma_Adicionada": "No specialties added",
+      "Descricao_Curta": "Description",
+      "Descricao_Longa": "Details",
+      "Descricao_Curta_Placeholder": "Ex.: Knives, Swords, Polearms, etc...",
+      "Descricao_Longa_Placeholder": "Ex.: When using knives...",
+      "Habilidade_Minima": "Requires skill level 4+",
+      "Nenhuma_Habilidade_Elegivel": "No skills with level 4 or higher",
+      "Habilidade_Obrigatoria": "Skill is required",
+      "Descricao_Obrigatoria": "Description is required"
+    },
     "Atalho": {
       "Atalhos": "Shortcuts",
       "Atalho": "Shortcut",

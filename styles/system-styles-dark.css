@@ -129,6 +129,7 @@
 
 .S0-page-transparent .S0-h-marked {
   background-color: var(--tertiary-color-alpha);
+  color: var(--on-tertiary-alternate-color);
 }
 
 .S0-page-transparent .S0-image-npc {

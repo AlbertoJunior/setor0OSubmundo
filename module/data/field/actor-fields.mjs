@@ -74,6 +74,17 @@ class ActorVirtueField extends SchemaField {
   }
 }
 
+export class SpecialtyField extends SchemaField {
+  constructor() {
+    super({
+      habilidade: new StringField({ required: true }),
+      descricao_curta: new StringField({ required: true }),
+      descricao_longa: new StringField({ required: false, nullable: true }),
+      custo: new NumberField({ integer: true, min: 0, initial: 0 }),
+    });
+  }
+}
+
 export class ActorEnhancementField extends SchemaField {
   constructor(id, name) {
     super({

@@ -348,6 +348,19 @@
       "Destrocado2": "Destroçado 2",
       "Destrocado3": "Destroçado 3"
     },
+    "Especialidade": {
+      "Especialidades": "Especialidades",
+      "Especialidade": "Especialidade",
+      "Nenhuma_Adicionada": "Nenhuma especialidade adicionada",
+      "Descricao_Curta": "Descrição",
+      "Descricao_Longa": "Detalhes",
+      "Descricao_Curta_Placeholder": "Ex.: Facas, Espadas, Armas de haste, etc...",
+      "Descricao_Longa_Placeholder": "Ex.: Quando utilizando facas...",
+      "Habilidade_Minima": "Requer habilidade nível 4+",
+      "Nenhuma_Habilidade_Elegivel": "Nenhuma habilidade com nível 4 ou superior",
+      "Habilidade_Obrigatoria": "A habilidade é obrigatória",
+      "Descricao_Obrigatoria": "A descrição é obrigatória"
+    },
     "Atalho": {
       "Atalhos": "Atalhos",
       "Atalho": "Atalho",

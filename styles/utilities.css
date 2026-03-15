@@ -383,6 +383,10 @@
   width: 20px;
 }
 
+.S0-w-40 {
+  width: 40px;
+}
+
 .S0-w-128 {
   width: 128px;
 }
@@ -477,6 +481,10 @@
 
 .S0-min-w-85 {
   min-width: 85px;
+}
+
+.S0-min-w-300 {
+  min-width: 300px;
 }
 
 .S0-min-h-1 {

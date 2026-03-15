@@ -1,12 +1,12 @@
 import { ActorEquipmentUtils } from "../core/actor/actor-equipment-utils.mjs";
 import { Setor0TokenDocument } from "../base/document/Setor0TokenDocument.mjs";
-import { ActorCharacteristicField, ActorEnhancementField, ActorAttributes, ActorAbilities, ActorVirtues } from "../data/field/actor-fields.mjs";
+import { ActorCharacteristicField, ActorEnhancementField, ActorAttributes, ActorAbilities, ActorVirtues, SpecialtyField } from "../data/field/actor-fields.mjs";
 import { TraitField } from "../data/field/trait-field.mjs";
 import { ActorUtils } from "../core/actor/actor-utils.mjs";
 import { RollTestField } from "../data/field/roll-test-field.mjs";
 import { NpcSkill } from "../data/field/npc-fields.mjs";
 import { NpcQualityRepository } from "../repository/npc-quality-repository.mjs";
-import { getObject, logDiffMigration } from "../utils/utils.mjs";
+import { getObject } from "../utils/utils.mjs";
 import { BaseActorCharacteristicType } from "../enums/characteristic-enums.mjs";
 import { NpcUtils } from "../core/npc/npc-utils.mjs";
 import { MorphologyRepository } from "../repository/morphology-repository.mjs";
@@ -117,6 +117,7 @@ class PlayerDataModel extends BaseActorDataModel {
         usada: new NumberField({ required: false, integer: true, min: 0, initial: 0 }),
         atual: new NumberField({ required: false, integer: true, min: 0, initial: 30 })
       }),
+      especialidades: new ArrayField(new SpecialtyField()),
       atalhos: new ArrayField(new RollTestField()),
       bonus: new SchemaField({
         atributos: new ActorAttributes({ initial: 0 }),

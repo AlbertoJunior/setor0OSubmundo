@@ -148,6 +148,10 @@ export const CharacteristicType = Object.freeze({
     id: 'informantes',
     system: 'system.informantes',
   },
+  SPECIALTIES: {
+    id: 'especialidades',
+    system: 'system.especialidades',
+  },
   SHORTCUTS: {
     id: 'atalhos',
     system: 'system.atalhos',
