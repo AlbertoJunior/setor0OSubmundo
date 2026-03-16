@@ -67,6 +67,7 @@ export class ActorExperienceUtils {
     // Em Setor 0, manobras e formatações adicionadas via painel do ator. Se não houver array literal em system, adaptamos
     const maneuvers = getObject(actor, 'system.manobras') || [];
     const others = getObject(actor, 'system.outros') || [];
+    const specialties = getObject(actor, CharacteristicType.SPECIALTIES) || [];
 
     return {
       morfologia: getObject(actor, BaseActorCharacteristicType.MORPHOLOGY),
@@ -103,11 +104,14 @@ export class ActorExperienceUtils {
       nucleo: getObject(actor, CharacteristicType.CORE) || 1,
       aprimoramentos: enhancementGroups,
       tracos: {
-        bons: Object.values(goodTraits), // Object.values se for guardado nativamente como obj/array de persistência
+        bons: Object.values(goodTraits),
         ruins: Object.values(badTraits)
       },
       manobras: Array.isArray(maneuvers) ? maneuvers : Object.values(maneuvers),
-      outros: Array.isArray(others) ? others : Object.values(others)
+      outros: {
+        especialidades: specialties,
+        outros: Array.isArray(others) ? others : Object.values(others)
+      }
     };
   }
 
@@ -145,7 +149,7 @@ export class ActorExperienceUtils {
     const goodTraitsCost = this._countTraitPoints(data.tracos.bons, 'good');
     const badTraitsCost = this._countTraitPoints(data.tracos.ruins, 'bad');
     const maneuversCost = this._countObjectFields(data.manobras, 'experiencia');
-    const othersCost = this._countObjectFields(data.outros, 'experiencia');
+    const othersCost = this._countOthers(data.outros);
 
     // Traits ruins não cobram pontos na totalização (geram pontos na ficha nativa)
     const total = attributesCost + repertoryCost + virtuesCost + skillsCost + coreCost + enhancementsCost + goodTraitsCost + maneuversCost + othersCost;
@@ -223,29 +227,48 @@ export class ActorExperienceUtils {
   }
 
   static _countObjectFields(arr, fieldName) {
-    if (!Array.isArray(arr)) return 0;
-    return arr.reduce((acc, curr) => {
+    if (!Array.isArray(arr))
+      return 0;
+    return arr.reduce((acc, current) => {
       const keys = fieldName.split('.');
-      let val = curr;
+      let val = current;
       for (const k of keys) {
         if (val == null) break;
         val = val[k];
       }
+
       val = parseInt(val);
-      if (isNaN(val)) val = 0;
+      if (isNaN(val)) {
+        val = 0;
+      }
       return acc + val;
     }, 0);
   }
 
   static _countTraitPoints(arr, type) {
-    if (!Array.isArray(arr)) return 0;
-    return arr.reduce((acc, curr) => {
-      const sourceId = curr[CharacteristicType.TRAIT.SOURCE_ID];
+    if (!Array.isArray(arr))
+      return 0;
+    return arr.reduce((acc, current) => {
+      const sourceId = current[CharacteristicType.TRAIT.SOURCE_ID];
       const trait = TraitRepository.getItemByTypeAndId(type, sourceId);
       if (trait?.xp != null) {
         return acc + parseInt(trait.xp);
       }
       return acc;
     }, 0);
+  }
+
+  static _countOthers(others) {
+    let experienceUsed = 0;
+
+    if (others?.especialidades) {
+      experienceUsed += this._countObjectFields(others.especialidades, 'custo');
+    }
+
+    if (others?.outros) {
+      experienceUsed += this._countObjectFields(others.outros, 'experiencia');
+    }
+
+    return experienceUsed;
   }
 }

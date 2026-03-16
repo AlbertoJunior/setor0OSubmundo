@@ -540,6 +540,10 @@
   text-shadow: 0 0 6px var(--primary-color-alpha);
 }
 
+.S0-text-shadow-none {
+  text-shadow: none;
+}
+
 .S0-text-red {
   color: var(--color-red);
 }

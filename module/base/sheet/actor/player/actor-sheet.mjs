@@ -27,6 +27,7 @@ export async function actorTemplatesRegister() {
     { path: "actors/shortcut-default-partial", call: 'shortcutDefaultPartial' },
     { path: "actors/network", call: 'actorNetwork' },
     { path: "actors/network-partial", call: 'networkPartial' },
+    { path: "actors/extras", call: 'actorExtras' },
   ];
 
   return await loadAndRegisterTemplates(templates);

@@ -5,6 +5,7 @@ import { TEMPLATES_PATH } from "../../constants.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
 import { ActiveEffectsUtils } from "../../core/effect/active-effects-utils.mjs";
 import { CharacteristicType } from "../../enums/characteristic-enums.mjs";
+import { ActiveEffectsTypes } from "../../enums/active-effects-enums.mjs";
 
 export class EffectDialog {
   static async open(effect, actor) {
@@ -38,9 +39,10 @@ export class EffectDialog {
 
     const isBuff = ActiveEffectsUtils.isBuff(effect);
     const isDebuff = ActiveEffectsUtils.isDebuff(effect);
-    const effectTypeLabel = isBuff ? 'Buff' : isDebuff ? 'Debuff' : null;
+    const effectTypeLabel = isBuff ? ActiveEffectsTypes.BUFF : isDebuff ? ActiveEffectsTypes.DEBUFF : null;
 
     const changes = (effect.changes || [])
+      .filter(change => change.key !== ActiveEffectsUtils.KEYS.TINT_TOKEN)
       .map(change => ({
         label: this.#parseChangeKey(change.key),
         value: this.#parseChangeValue(change.key, change.value),
@@ -71,7 +73,7 @@ export class EffectDialog {
     if (key.startsWith(CharacteristicType.BONUS.SKILL.system)) {
       const skillNameKey = keyJsonToKeyLang(lastSegment);
       const skillName = gameLocalize(skillNameKey);
-      return `${gameLocalize('S0.Habilidade')} (${skillName !== skillNameKey ? skillName : lastSegment})`;
+      return `${localize('Habilidade')} (${skillName !== skillNameKey ? skillName : lastSegment})`;
     }
 
     try {

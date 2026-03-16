@@ -3,54 +3,6 @@
 
   <div class="S0-container">
     <h2>
-      {{localize 'S0.Especialidade.Especialidades'}}
-      <a class="S0-icon-expand" data-action="view" data-characteristic="specialties">
-        <i class="fas fa-chevron-down"></i>
-      </a>
-      {{#if editable}}
-      <a class="S0-icon-expand" data-action="add" data-characteristic="specialties" title="{{localize 'S0.Adicionar'}}">
-        <i class="fas fa-square-plus"></i>
-      </a>
-      {{/if}}
-    </h2>
-
-    {{#if (operators 'isEmpty' (actorLists actor 'specialties'))}}
-    <div id="specialties-container-{{actor.id}}" class="S0-container-contract">
-      <div class="S0-text-center S0-italic S0-my-4">
-        {{localize 'S0.Especialidade.Nenhuma_Adicionada'}}
-      </div>
-    </div>
-    {{else}}
-    <div id="specialties-container-{{actor.id}}"
-      class="S0-container-3-fixed-column S0-container-contract S0-row-gap-0 S0-col-gap-4">
-      {{#each (actorLists actor 'specialties') as |spec|}}
-      <div class="S0-container S0-flex S0-items-center S0-gap-4">
-        <div class="S0-flex-col S0-flex-1">
-          <label class="S0-text-start S0-pointer-events-none">
-            {{spec.label}}
-          </label>
-          <label class="S0-text-start S0-pointer-events-none S0-text-12">
-            {{spec.descricao_curta}}
-          </label>
-        </div>
-        {{#if ../editable}}
-        <a class="S0-icon-expand S0-centralized-icon" data-action="edit" data-characteristic="specialties"
-          data-item-id="{{spec.index}}" title="{{localize 'S0.Editar'}}">
-          <i class="fas fa-edit"></i>
-        </a>
-        {{/if}}
-        <a class="S0-icon-expand S0-centralized-icon" data-action="view" data-characteristic="specialties"
-          data-item-id="{{spec.index}}" title="{{localize 'S0.Ver_Informacoes'}}">
-          <i class="fas fa-eye"></i>
-        </a>
-      </div>
-      {{/each}}
-    </div>
-    {{/if}}
-  </div>
-
-  <div class="S0-container">
-    <h2>
       {{localize 'S0.Ofensivo'}}
     </h2>
 

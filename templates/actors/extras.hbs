@@ -1,0 +1,110 @@
+<section class="S0-page tab" data-group="menu-tabs" data-tab="extras" data-label="{{ localize 'S0.Player.Extras' }}"
+  id="extrasPage" data-icon="fas fa-star">
+
+  {{#if (operators 'isNotNull' (actorValues actor 'experience'))}}
+  <div class="S0-container">
+    <h2>
+      {{localize 'S0.Experiencia'}}
+    </h2>
+
+    <ul class="S0-ul-flex">
+      {{#if editable}}
+
+      {{#if (gameFunc 'isGm')}}
+      <li class="S0-container">
+        <h3>
+          <label for="experiencia.atual">{{localize 'S0.Disponivel'}}</label>
+        </h3>
+        <h4 class="S0-m-0">
+          <input id="experiencia.atual" name="system.experiencia.atual" type="number"
+            value="{{actorValues actor 'actual_experience'}}" placeholder="0" />
+        </h4>
+      </li>
+      {{else}}
+      <li class="S0-container">
+        <h3>{{localize 'S0.Disponivel'}}</h3>
+        <h4 class="S0-m-0">{{actorValues actor 'actual_experience'}}</h4>
+      </li>
+      {{/if}}
+
+      <li class="S0-container">
+        <h3>
+          <label for="experiencia.usada">{{localize 'S0.Usada'}}</label>
+        </h3>
+        <h4 class="S0-m-0">
+          <input id="experiencia.usada" name="system.experiencia.usada" type="number"
+            value="{{actorValues actor 'used_experience'}}" placeholder="0" />
+        </h4>
+      </li>
+
+      {{else}}
+
+      <li class="S0-container">
+        <h3>{{localize 'S0.Disponivel'}}</h3>
+        <h4 class="S0-m-0">{{actorValues actor 'actual_experience'}}</h4>
+      </li>
+      <li class="S0-container">
+        <h3>{{localize 'S0.Usada'}}</h3>
+        <h4 class="S0-m-0">{{actorValues actor 'used_experience'}}</h4>
+      </li>
+
+      {{/if}}
+
+      <li class="S0-container">
+        <div class="S0-h-full S0-flex-col S0-justify-center">
+          <h3>{{localize 'S0.Total'}}</h3>
+          <h4 class="S0-m-0">{{actorValues actor 'total_experience'}}</h4>
+        </div>
+      </li>
+    </ul>
+  </div>
+  {{/if}}
+
+  <div class="S0-container">
+    <h2>
+      {{localize 'S0.Especialidade.Especialidades'}}
+      <a class="S0-icon-expand" data-action="view" data-characteristic="specialties">
+        <i class="fas fa-chevron-up"></i>
+      </a>
+      {{#if editable}}
+      <a class="S0-icon-expand" data-action="add" data-characteristic="specialties" title="{{localize 'S0.Adicionar'}}">
+        <i class="fas fa-square-plus"></i>
+      </a>
+      {{/if}}
+    </h2>
+
+    {{#if (operators 'isEmpty' (actorLists actor 'specialties'))}}
+    <div id="specialties-container-{{actor.id}}" class="S0-container-contract">
+      <div class="S0-text-center S0-italic S0-my-4">
+        {{localize 'S0.Especialidade.Nenhuma_Adicionada'}}
+      </div>
+    </div>
+    {{else}}
+    <div id="specialties-container-{{actor.id}}"
+      class="S0-container-3-fixed-column S0-container-contract S0-row-gap-0 S0-col-gap-4 S0-expanded">
+      {{#each (actorLists actor 'specialties') as |spec|}}
+      <div class="S0-container S0-flex S0-items-center S0-gap-4">
+        <div class="S0-flex-col S0-flex-1">
+          <label class="S0-text-start S0-pointer-events-none">
+            {{spec.label}}
+          </label>
+          <label class="S0-text-start S0-pointer-events-none S0-text-12">
+            {{spec.descricao_curta}}
+          </label>
+        </div>
+        {{#if ../editable}}
+        <a class="S0-icon-expand S0-centralized-icon" data-action="edit" data-characteristic="specialties"
+          data-item-id="{{spec.index}}" title="{{localize 'S0.Editar'}}">
+          <i class="fas fa-edit"></i>
+        </a>
+        {{/if}}
+        <a class="S0-icon-expand S0-centralized-icon" data-action="view" data-characteristic="specialties"
+          data-item-id="{{spec.index}}" title="{{localize 'S0.Ver_Informacoes'}}">
+          <i class="fas fa-eye"></i>
+        </a>
+      </div>
+      {{/each}}
+    </div>
+    {{/if}}
+  </div>
+</section>

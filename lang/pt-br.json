@@ -262,6 +262,9 @@
       "Carisma": "Carisma",
       "Inteligencia": "Inteligência"
     },
+    "Player": {
+      "Extras": "Extras"
+    },
     "NPC": {
       "Ver_Ficha": "Ver Ficha",
       "Principais_Habilidades": "Principais Habilidades",

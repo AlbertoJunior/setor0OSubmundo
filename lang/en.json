@@ -261,6 +261,9 @@
       "Carisma": "Charisma",
       "Inteligencia": "Intelligence"
     },
+    "Player": {
+      "Extras": "Extras"
+    },
     "NPC": {
       "Ver_Ficha": "View Sheet",
       "Principais_Habilidades": "Main Skills",
