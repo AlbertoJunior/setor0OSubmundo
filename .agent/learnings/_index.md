@@ -2,6 +2,7 @@
 
 | Arquivo | Descrição | Contexto |
 | :--- | :--- | :--- |
+| [foundry-v13-html-sanitization-placeholders.md](./foundry-v13-html-sanitization-placeholders.md) | Sensibilidade do Foundry V13 (DialogV2) a estruturas de formulários aninhados, causando remoção automática de atributos `placeholder` via sanitização. | UI / Foundry VTT v13 / Sanitização |
 | [foundry-async-hooks-synchronization.md](./foundry-async-hooks-synchronization.md) | Padrão de trava de segurança (Promise synchronization) entre hooks síncronos e assíncronos no ciclo de vida do Foundry VTT. | Hooks / Lifecycle / Async-Await |
 | [foundry-v13-applicationv2-prototype-pollution.md](./foundry-v13-applicationv2-prototype-pollution.md) | Correção de poluição de classes global por uso de getter `DEFAULT_OPTIONS` no Foundry v13 (`mergeObject(super.DEFAULT_OPTIONS)` muta o prototype nativo). | UI / Hooks / ApplicationV2 |
 | [lazy-load-localization-helpers.md](./lazy-load-localization-helpers.md) | Adoção do padrão Lazy-Loading (Funções de Fechamento/Closures) em Dicionários estáticos exportados para a UI e Helpers a fim de combater Race-Conditions no recebimento assíncrono de Localizações (`game.i18n`) por clientes conectados. | UI / Performance de Renderização / Hooks |

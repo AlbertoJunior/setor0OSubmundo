@@ -1,4 +1,4 @@
-import { localize, randomId } from "../../utils/utils.mjs"
+import { localize, randomId, TODO } from "../../utils/utils.mjs"
 import { SYSTEM_CLASS_DIALOG_CSS, TEMPLATES_PATH } from "../../constants.mjs";
 import { DialogUtils } from "../../utils/dialog-utils.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
@@ -52,10 +52,11 @@ export class CreateFormDialog {
 
     const content = await this.#mountContent(fileHtml.replace(/\.[^/.]+$/, ''), options.presetForm);
 
-    if (!this.#verifyContentIsForm(content)) {
-      console.error('Content isn\'t a form')
-      return;
-    }
+    TODO("avaliar deleter o comentário")
+    // if (!this.#verifyContentIsForm(content)) {
+    //   console.error('Content isn\'t a form')
+    //   return;
+    // }
 
     FoundryApi.createDialog(
       {
@@ -120,6 +121,7 @@ export class CreateFormDialog {
   }
 
   static #verifyContentIsForm(content) {
+    TODO("avaliar deleter isso")
     return content.includes("<form");
   }
 }

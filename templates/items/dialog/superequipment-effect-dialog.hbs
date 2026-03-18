@@ -1,50 +1,48 @@
-<form class="S0-container">
-  <div class="S0-flex-col S0-row-gap-6">
-    <select class="S0-select" name="selectedTrait">
-      {{#each traits as |group|}}
+<div class="S0-container S0-flex-col S0-row-gap-6">
+  <select class="S0-select" name="selectedTrait">
+    {{#each traits as |group|}}
+    <optgroup label="{{ group.label }}">
+      {{#each group.options as |option|}}
+      <option value="{{ option.id }}" {{ option.isSelected }}>
+        {{ option.name }}
+      </option>
+      {{/each}}
+    </optgroup>
+    {{/each}}
+  </select>
+
+  <div>
+    <strong>{{localize 'S0.Custo'}}:</strong>
+    <label id="costValue"></label>
+  </div>
+
+  <div>
+    <strong>{{localize 'S0.Limite'}}:</strong>
+    <label id="limitValue"></label>
+  </div>
+
+  <div>
+    <strong class="S0-block">{{ localize 'S0.Descricao' }}:</strong>
+    <div class="S0-message-simple-text"></div>
+  </div>
+
+  <div id="particularityContainer">
+    <label for="{{uuid}}.particularity"><strong>{{localize 'S0.Particularidade'}}:</strong></label>
+    <input class="S0-mt-6" type="text" name="particularity" id="{{uuid}}.particularity" maxlength="55" />
+  </div>
+
+  <div id="selectedParticularityContainer">
+    <label for="{{uuid}}.selectedParticularity"><strong>{{localize 'S0.Caracteristica'}}:</strong></label>
+    <select class="S0-select S0-mt-6" id="{{uuid}}.selectedParticularity" name="selectedParticularity">
+      {{#each characteristic as |group|}}
       <optgroup label="{{ group.label }}">
         {{#each group.options as |option|}}
-        <option value="{{ option.id }}" {{ option.isSelected }}>
+        <option value="{{ option.id }}">
           {{ option.name }}
         </option>
         {{/each}}
       </optgroup>
       {{/each}}
     </select>
-
-    <div>
-      <strong>{{localize 'S0.Custo'}}:</strong>
-      <label id="costValue"></label>
-    </div>
-
-    <div>
-      <strong>{{localize 'S0.Limite'}}:</strong>
-      <label id="limitValue"></label>
-    </div>
-
-    <div>
-      <strong class="S0-block">{{ localize 'S0.Descricao' }}:</strong>
-      <div class="S0-message-simple-text"></div>
-    </div>
-
-    <div id="particularityContainer">
-      <label for="{{uuid}}.particularity"><strong>{{localize 'S0.Particularidade'}}:</strong></label>
-      <input class="S0-mt-6" type="text" name="particularity" id="{{uuid}}.particularity" maxlength="55" />
-    </div>
-
-    <div id="selectedParticularityContainer">
-      <label for="{{uuid}}.selectedParticularity"><strong>{{localize 'S0.Caracteristica'}}:</strong></label>
-      <select class="S0-select S0-mt-6" id="{{uuid}}.selectedParticularity" name="selectedParticularity">
-        {{#each characteristic as |group|}}
-        <optgroup label="{{ group.label }}">
-          {{#each group.options as |option|}}
-          <option value="{{ option.id }}">
-            {{ option.name }}
-          </option>
-          {{/each}}
-        </optgroup>
-        {{/each}}
-      </select>
-    </div>
   </div>
-</form>
+</div>

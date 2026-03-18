@@ -4,6 +4,7 @@
 
 | Arquivo | Descrição | Última Atualização |
 | :--- | :--- | :--- |
+| [44-correcao-placeholder-dialog-especialidades.md](./44-correcao-placeholder-dialog-especialidades.md) | Correção do placeholder sumindo no dialog de especialidade ao fornecer HTML válido (div em vez de form) para o DialogV2 do Foundry V13. | 15/03/2026 |
 | [43-feature-especialidades-player.md](./43-feature-especialidades-player.md) | Feature de Especialidades na ficha do Player: data model, UI (grid 3 colunas, container contraído), dialog de criação/visualização, helper keyLang, e localização. | 14/03/2026 |
 | [42-estudo-hooks-assincronos.md](./42-estudo-hooks-assincronos.md) | Estudo sobre o comportamento de Hooks assíncronos no Foundry VTT e implementação de trava de segurança entre `init` e `ready`. | 13/03/2026 |
 | [41-migracao-ids-rigidez.md](./41-migracao-ids-rigidez.md) | Correção de temporal dead zone em migration, aperfeiçoamento estrito do mapper e finalização da persistência no DB para os IDs do aprimoramento rigidez (50 a 56 para >400). | 11/03/2026 |

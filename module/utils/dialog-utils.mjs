@@ -18,8 +18,12 @@ export class DialogUtils {
 
   static getDialogFormData(html) {
     try {
-      const forms = html.querySelectorAll('form');
-      const form = forms[forms.length - 1];
+      // If html is the form itself, use it. Otherwise find the last form within it.
+      const form = html.tagName === 'FORM' ? html : html.querySelector('form:last-of-type') || html.querySelector('form');
+      if (!form) {
+        console.warn("[getDialogFormData] Nenhum formulário encontrado no HTML fornecido.");
+        return {};
+      }
       const formData = new FormData(form);
       const data = snakeToCamel(formData.entries());
       return data;

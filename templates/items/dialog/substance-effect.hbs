@@ -1,5 +1,6 @@
-<form class="S0-container">
-  <select class="S0-select" name="selectedEffect">
+<div class="S0-container">
+  <label for="substanceEffect.{{uuid}}" class="S0-block S0-mb-6">{{localize 'S0.Efeito'}}</label>
+  <select id="substanceEffect.{{uuid}}" class="S0-select" name="selectedEffect">
     {{#each effects as |group|}}
     <optgroup label="{{ group.label }}">
       {{#each group.options as |option|}}
@@ -8,4 +9,4 @@
     </optgroup>
     {{/each}}
   </select>
-</form>
+</div>

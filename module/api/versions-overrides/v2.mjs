@@ -202,8 +202,9 @@ async function createDialog(data, options) {
 
   let handleOnClose = true;
 
-  // this form will be automatically removed before full rendering
-  const modifiedContent = `<form></form>${content}`;
+  // Create a container and parse the content string into it
+  const container = document.createElement("div");
+  container.innerHTML = content;
 
   const normalizedClasses = normalizeArray([
     SYSTEM_CLASS_CSS,
@@ -227,7 +228,7 @@ async function createDialog(data, options) {
         height: options?.forcedHeight ?? 'auto',
       },
       classes: normalizedClasses,
-      content: modifiedContent,
+      content: container,
       buttons: dialogButons,
       submit: (result, dialog) => {
         const buttonAction = dialogButons.find(button => button.action == result);
