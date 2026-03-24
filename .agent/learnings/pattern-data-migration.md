@@ -54,7 +54,71 @@ Este Script é avaliado pelo `MigrationHandler`. Se a versão for inferior ou se
 4. Passamos este payload sujo modificado em memória profunda direto para um update: `await item.update(itemDataSourceModificado)`.
 5. O Foundry tomará um susto perante a diferença gritante entre o banco físico e o payload, e gravará permanentemente a alteração para todos, finalizando a cadeia.
 
+## ⚠️ Exceção Crítica: Propriedades Eliminadas pelo Schema
+
+> [!CAUTION]
+> O padrão "Sensor Puro" da Via 1 **NÃO funciona** quando a propriedade sendo migrada **não existe no schema atual** do DataModel.
+>
+> Exemplo: migrar `effect.change` (Object) → `effect.changes` (Array). O `StandardEffectField` define `changes` mas **não** `change`. Resultado: a Schema Validation do V13 **destrói** `change` de `_source` antes da Via 2 poder lê-la, gerando um loop infinito de re-migração.
+
+### Solução: Via 1 Transformadora
+Quando a propriedade antiga não sobrevive ao Schema Validation:
+1. **Via 1 (`migrateDataModel`)** deve **transformar** os dados (não apenas sinalizar)
+2. **Via 2 (`migrate`)** deve forçar `.update()` usando **deleção explícita** (ver abaixo)
+3. A Via 2 não busca mais pela propriedade antiga — ela envia os dados em memória como payload direto
+
+```javascript
+// PADRÃO: Via 1 Transformadora (para propriedades eliminadas pelo schema)
+migrateDataModel: function (source) {
+  const effects = getObject(source, EFFECTS_PATH);
+  if (Array.isArray(effects)) {
+    for (const effect of effects) {
+      if (effect.oldProp && !Array.isArray(effect.oldProp)) {
+        effect.newProp = [effect.oldProp]; // transforma AQUI
+        delete effect.oldProp;
+        _needsForceRun = true;
+      }
+    }
+  }
+  return source;
+}
+```
+
+### ⚠️ Merge Recursivo e Deleção Explícita (`-=key`)
+
+> [!CAUTION]
+> O `Document.update()` do Foundry faz **merge recursivo** por padrão. Isso significa que ao enviar um objeto/array sem determinada propriedade, o Foundry **NÃO remove** a propriedade ausente do banco — ele apenas adiciona/atualiza as presentes. Propriedades velhas sobrevivem indefinidamente ao merge, causando loop de re-migração.
+
+**Regra obrigatória para Via 2 de migrações que renomeiam/removem chaves:**
+Usar caminhos **dot-notated flat** com a sintaxe de deleção do Foundry `"-=chave": null` para cada índice do array.
+
+```javascript
+// PADRÃO: Via 2 com deleção explícita (OBRIGATÓRIO para remoção de chaves)
+function getEffectsUpdateData(item) {
+  const effects = getObject(item, EFFECTS_ENUM);
+  const payload = {};
+  effects.forEach((effect, index) => {
+    // SET: grava a nova propriedade
+    payload[`${EFFECTS_ENUM.system}.${index}.newProp`] = effect.newProp;
+    // DELETE: remove explicitamente a propriedade antiga do banco
+    payload[`${EFFECTS_ENUM.system}.${index}.-=oldProp`] = null;
+  });
+  return payload;
+}
+```
+
+> [!IMPORTANT]
+> **Nunca** envie o array inteiro (`"system.effects": [...]`) esperando que propriedades ausentes sejam removidas. Isso **não funciona** — o merge recursivo preserva propriedades do banco.
+
+### Quando usar cada padrão?
+| Cenário | Via 1 | Via 2 |
+| :--- | :--- | :--- |
+| Propriedade antiga **existe** no schema (ex: renomear valor dentro de um ObjectField) | Sensor Puro (só sinaliza) | Transforma e persiste |
+| Propriedade antiga **não existe** no schema (ex: `change` → `changes`) | **Transformadora** (converte dados) | Deleção explícita via `-=key` (dot-notated) |
+
 ## Onde os Padrões Residem
 - Classes estáticas (congeladas) das regras: `module/migration/migrations/[seu-script].mjs`
 - Exportação das classes: `module/migration/migrations/index.mjs`
 - Loop condicional do Foundry `MigrationHandler` (acionado internamente no hook): `module/migration/migration-handler.mjs`
+
+

@@ -62,7 +62,7 @@ async function migrateHardnessIds() {
   await migrateWorldActors(diffLog);
   await migrateCompendiums(diffLog);
   if (diffLog.diffs.length > 0) {
-    logDiffMigration(`${HardnessIdsMigration.description}`, diffLog);
+    logDiffMigration(HardnessIdsMigration, diffLog);
   }
 }
 
