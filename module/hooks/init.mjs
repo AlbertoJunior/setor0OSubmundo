@@ -18,7 +18,7 @@ import { PreCreateItemHookHandle } from "./item/pre-create-item.mjs";
 
 export class InitHookHandle {
   static async handle() {
-    console.log('-> Setor 0 - O Submundo | Inicializando sistema');
+    console.log('=> Setor 0 - Inicializando sistema');
 
     this.#presetGlobalSystemConfigs();
 

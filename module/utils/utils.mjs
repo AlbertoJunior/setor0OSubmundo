@@ -149,7 +149,8 @@ export function normalizeArray(array) {
 }
 
 export function logTable(title, table) {
-  console.log(`---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----\n-> ${title}`);
+  console.groupCollapsed(`=> Setor 0 - ${title}`);
+
   console.table(table);
 
   const errors = Object.values(table).filter(result => result.error != null);
@@ -159,11 +160,19 @@ export function logTable(title, table) {
     }
   }
 
-  console.log('---> ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- <---');
+  console.groupEnd();
 }
 
-export function logDiffMigration(version, diffLog) {
-  console.log(`================ MIGRATION DIFF ${version} ================`);
+export function logDiffMigration(migration, diffLog) {
+  const title = `=> Setor 0 - ===================== MIGRATION DIFF ${migration.version} =====================`;
+  const line = "=".repeat(title.length);
+
+  console.groupCollapsed(title);
+  console.log(`Description: ${migration.description}`);
+  console.log(`Items: ${diffLog.diffs.length}`);
+  console.groupCollapsed("Detalhes");
   console.log(JSON.stringify(diffLog, null, 2));
-  console.log("================================================================");
+  console.groupEnd();
+  console.log(line);
+  console.groupEnd();
 }

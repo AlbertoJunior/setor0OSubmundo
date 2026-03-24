@@ -1,7 +1,7 @@
 import { logTable } from "../utils/utils.mjs";
 
 export async function loadHandlebarsHelpers() {
-  console.log("-> Carregando helpers do Handlebars...");
+  console.log("=> Setor 0 - Carregando helpers do Handlebars...");
   const helpersPath = "module/helpers/";
   const helperFiles = [
     "selectIfEq.mjs",

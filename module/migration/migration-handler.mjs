@@ -15,10 +15,12 @@ export class MigrationHandler {
     const hasForcedMigrations = Array.from(REGISTERED_MIGRATIONS).some(m => m.needsForceRun);
 
     // Check if migration is needed at all
-    if (!FoundryApi.Utils.isNewerVersion(currentSystemVersion, lastMigratedVersion) && !hasForcedMigrations)
+    if (!FoundryApi.Utils.isNewerVersion(currentSystemVersion, lastMigratedVersion) && !hasForcedMigrations) {
+      console.log(`=> Setor 0 - Não é necessário rodar as migrações.`);
       return;
+    }
 
-    console.log(`-> Setor 0 - O Submundo | Iniciando Migração do Sistema (${lastMigratedVersion} -> ${currentSystemVersion})`);
+    console.log(`=> Setor 0 - Iniciando Migração do Sistema (${lastMigratedVersion} -> ${currentSystemVersion})`);
     NotificationsUtils.info(`Setor 0 | Executando migrações de sistema para a versão ${currentSystemVersion}. Por favor, aguarde...`, { permanent: true });
 
     try {
@@ -28,7 +30,7 @@ export class MigrationHandler {
         .sort((a, b) => FoundryApi.Utils.isNewerVersion(a.version, b.version) ? 1 : -1);
 
       if (migrationsToRun.length === 0) {
-        console.log(`-> Setor 0 - O Submundo | Nenhuma migração pendente encontrada.`);
+        console.log(`=> Setor 0 - Nenhuma migração pendente encontrada.`);
         return;
       }
 
@@ -36,11 +38,11 @@ export class MigrationHandler {
       let haveError = false;
       for (const migration of migrationsToRun) {
         try {
-          console.log(`-> Setor 0 - O Submundo | Executando migração: ${migration.description} (${migration.version})`);
+          console.log(`=> Setor 0 - Executando migração: ${migration.description} (${migration.version})`);
           await migration.migrate();
           lastMigratedVersionSuccessed = migration.version;
         } catch (e) {
-          console.error(`-> Setor 0 - O Submundo | Erro crítico na migração:`, e);
+          console.error(`=> Setor 0 - Erro crítico na migração:`, e);
           NotificationsUtils.error(`Setor 0 | Ocorreu um erro durante a migração. Verifique o console.`);
           haveError = true;
           break;
@@ -51,14 +53,14 @@ export class MigrationHandler {
       await game.settings.set(SYSTEM_ID, "systemMigrationVersion", lastMigratedVersionSuccessed);
 
       if (!haveError) {
-        console.log(`-> Setor 0 - O Submundo | Migração finalizada com sucesso.`);
+        console.log(`=> Setor 0 - Migração finalizada com sucesso.`);
         NotificationsUtils.info(`Setor 0 | Migrações concluídas com sucesso!`);
       } else {
-        console.log(`-> Setor 0 - O Submundo | Migração finalizada com erros.`);
+        console.log(`=> Setor 0 - Migração finalizada com erros.`);
         NotificationsUtils.error(`Setor 0 | Ocorreu um erro durante a migração. Verifique o console.`);
       }
     } catch (e) {
-      console.error(`-> Setor 0 - O Submundo | Erro crítico na migração:`, e);
+      console.error(`=> Setor 0 - Erro crítico na migração:`, e);
       NotificationsUtils.error(`Setor 0 | Ocorreu um erro durante a migração. Verifique o console.`);
     }
   }

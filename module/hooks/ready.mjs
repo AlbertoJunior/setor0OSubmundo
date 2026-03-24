@@ -23,7 +23,7 @@ export class ReadyHookHandle {
     this.#effects();
 
     if (!game.user.isGM) {
-      console.log('-> Setor 0 - O Submundo | Sistema Pronto');
+      console.log('=> Setor 0 - O Submundo | Sistema Pronto');
       return;
     }
     await this.#loadOnlyForGm();
@@ -63,6 +63,6 @@ export class ReadyHookHandle {
     await MigrationHandler.runMigrations();
 
     Hooks.callAll(SYSTEM_HOOKS.GM_READY);
-    console.log('-> Setor 0 - O Submundo | Sistema Pronto');
+    console.log('=> Setor 0 - O Submundo | Sistema Pronto');
   }
 }
