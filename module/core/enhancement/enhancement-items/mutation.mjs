@@ -222,6 +222,7 @@ export const mutationEnhancement = {
   id: '6',
   name: 'Mutação',
   value: 'mutacao',
+  maximumAllowed: 2,
   icon: `${ICONS_PATH}/mutation.svg`,
   effects: mutationEffects
 };

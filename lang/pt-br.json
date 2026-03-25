@@ -338,7 +338,7 @@
       "Nome_Plural": "Aprimoramentos",
       "Afetado_Aprimoramento": "Afetado por Aprimoramento",
       "Mensagens": {
-        "Ja_Possui_Aprimoramento": "O Personagem já possui esse Aprimoramento: <u>{aprimoramento}</u>",
+        "Ja_Possui_Aprimoramento": "O Personagem já possui o máximo permitido desse Aprimoramento: <u>{aprimoramento}</u>",
         "Ja_Possui_Efeito": "O Personagem já possui esse Efeito: <u>{efeito}</u>"
       }
     },

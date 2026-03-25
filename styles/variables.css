@@ -22,7 +22,7 @@ body {
   --color-warm-1: var(--primary-color);
   --color-warm-2: var(--primary-color);
 
-  --z-index-dropdown: 10;
+  --z-index-dropdown: 300;
   --z-index-tooltip: 99;
   --z-index-modal: 100;
 }

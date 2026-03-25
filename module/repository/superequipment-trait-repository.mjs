@@ -70,6 +70,18 @@ export class SuperEquipmentTraitRepository {
       description: 'Funciona como uma prótese.'
     }),
     SuperEquipmentTraitField.toJson({
+      id: 'good80',
+      name: '+2 Pontos de Movimento',
+      cost: 1,
+      limit: 2,
+      description: 'Aumenta em 2 os Pontos de Movimento.',
+      particularity: {
+        type: SuperEquipmentParticularityType.FIXED,
+        description: '+2 Pontos de Movimento',
+        change: StandardEffectChangeField.toJson({ key: CharacteristicType.BONUS.PM.system, value: 2 }),
+      }
+    }),
+    SuperEquipmentTraitField.toJson({
       id: 'good9',
       name: '+1 Aceleração ou Velocidade Máxima',
       cost: 2,

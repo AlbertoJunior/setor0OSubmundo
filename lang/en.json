@@ -358,7 +358,7 @@
       "Nome_Plural": "Enhancements",
       "Afetado_Aprimoramento": "Affected by Enhancement",
       "Mensagens": {
-        "Ja_Possui_Aprimoramento": "The character already has this Enhancement: <u>{aprimoramento}</u>",
+        "Ja_Possui_Aprimoramento": "The character already has the maximum allowed of this Enhancement: <u>{aprimoramento}</u>",
         "Ja_Possui_Efeito": "The character already has this Effect: <u>{efeito}</u>"
       }
     },

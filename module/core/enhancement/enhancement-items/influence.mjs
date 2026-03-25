@@ -129,6 +129,7 @@ export const influenceEnhancement = {
   id: '4',
   name: 'Indução',
   value: 'inducao',
+  maximumAllowed: 1,
   icon: `${ICONS_PATH}/influence.svg`,
   effects: influenceEffects
 };

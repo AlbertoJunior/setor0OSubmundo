@@ -119,6 +119,7 @@ export const hardnessEnhancement = {
   id: '7',
   name: 'Rigidez',
   value: 'rigidez',
+  maximumAllowed: 1,
   icon: `${ICONS_PATH}/hardness.svg`,
   effects: hardnessEffects
 };

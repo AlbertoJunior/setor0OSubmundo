@@ -302,5 +302,9 @@ h4.divider {
   border-color: var(--primary-color);
 }
 
+#prosemirror-dropdown {
+  z-index: var(--z-index-dropdown);
+}
+
 /* #endregion */
 /* #endregion */

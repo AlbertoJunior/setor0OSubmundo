@@ -33,8 +33,8 @@ export class ExperienceCalculatorDialog extends HandlebarsApplicationMixin(Appli
       controls: []
     },
     position: {
-      width: 760,
-      height: 560
+      width: 780,
+      height: 580
     },
     actions: {
       calculateOptimized: ExperienceCalculatorDialog.prototype._onCalculateOptimized,

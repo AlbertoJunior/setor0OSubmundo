@@ -201,6 +201,7 @@ export const assimilationEnhancement = {
   id: enhancementID,
   name: 'Assimilação',
   value: 'assimilacao',
+  maximumAllowed: 1,
   icon: `${ICONS_PATH}/assimilation.svg`,
   effects: assimilationEffects
 };

@@ -261,6 +261,7 @@ export class SuperEquipmentEffectsDialog {
         particularityObject.change = { key: key, value: characteristic.value }
       }
     }
+    debugger
     return particularityObject;
   }
 }

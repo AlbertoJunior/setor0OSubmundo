@@ -37,8 +37,9 @@
     <h4 class="S0-m-0 S0-text-center">{{actor.name}}</h4>
     <div
       class="S0-calculator-dropzone S0-bg-secondary-alpha-50 S0-overflow-hidden S0-border-primary S0-border-solid S0-border-2px S0-border-radius-30px-0px S0-max-h-370 S0-min-h-370 S0-w-full S0-h-full">
-      <img class="S0-pointer-events-none S0-object-cover S0-w-full S0-h-full S0-object-position-top" src="{{actor.img}}"
-        title="{{actor.name}}">
+      <img
+        class="S0-border-radius-30px-0px S0-pointer-events-none S0-object-cover S0-w-full S0-h-full S0-object-position-top"
+        src="{{actor.img}}" title="{{actor.name}}">
     </div>
     <h4 class="S0-m-0 S0-text-center">{{actor.system.morfologia}}</h4>
     {{else}}
@@ -70,12 +71,12 @@
 
     {{#if isApproximate}}
     <!-- Thresholds -->
-    <div class="S0-bg-secondary-alpha-50 S0-rounded-large S0-mb-4 S0-overflow-hidden">
+    <div class="S0-bg-secondary-alpha-50 S0-rounded-large S0-mb-4">
       <!-- Header -->
       <div class="S0-flex S0-items-center S0-justify-between S0-p-4 S0-clickable" data-action="toggleThresholds">
         <label class="S0-font-bold S0-flex-1 S0-text-center S0-pointer-events-none">{{localize
           "S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Configuracoes_Calculo_Aproximado"}}</label>
-        <a class="S0-icon-expand">
+        <a class="S0-icon-expand S0-mx-4">
           <i class="fas {{#if thresholdExpanded}}fa-chevron-up{{else}}fa-chevron-down{{/if}}"></i>
         </a>
       </div>

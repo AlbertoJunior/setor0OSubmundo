@@ -108,6 +108,7 @@ export const invisibilityEnhancement = {
   id: '5',
   name: 'Invisibilidade',
   value: 'invisibilidade',
+  maximumAllowed: 1,
   icon: `${ICONS_PATH}/invisibility.svg`,
   effects: invisibilityEffects
 };

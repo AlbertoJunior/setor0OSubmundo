@@ -109,6 +109,7 @@ export const brutalityEnhancement = {
   id: '3',
   name: 'Brutalidade',
   value: 'brutalidade',
+  maximumAllowed: 1,
   icon: `${ICONS_PATH}/brutality.svg`,
   effects: brutalityEffects
 };

@@ -89,6 +89,7 @@ export const agilityEnhancement = {
   id: '1',
   name: 'Aceleração',
   value: 'aceleracao',
+  maximumAllowed: 1,
   icon: `${ICONS_PATH}/agility.svg`,
   effects: agilityEffects
 };
