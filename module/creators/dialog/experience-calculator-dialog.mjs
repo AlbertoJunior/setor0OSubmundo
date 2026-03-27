@@ -66,8 +66,8 @@ export class ExperienceCalculatorDialog extends HandlebarsApplicationMixin(Appli
     context.calculationMode = this.calculationMode;
 
     const availableActors = game.actors
-      .filter(a => a.type === ActorType.PLAYER && OwnershipUtils.canDoSomething(a))
-      .map(a => ({ id: a.id, name: a.name, selected: this.actor?.id === a.id }));
+      .filter(actor => actor.type === ActorType.PLAYER && OwnershipUtils.canDoSomething(actor))
+      .map(actor => ({ id: actor.id, name: actor.name, selected: this.actor?.id === actor.id }));
 
     context.availableActors = availableActors;
 

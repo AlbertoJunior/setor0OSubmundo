@@ -45,12 +45,12 @@ export class ActorExperienceUtils {
   static buildActorDataProxy(actor) {
     // Aprimoramentos
     const allEnhancements = ActorUtils.getAllEnhancements(actor);
-    const enhancementGroups = allEnhancements.map(e => {
-      const levels = Object.values(e.levels)
+    const enhancementGroups = allEnhancements.map(enhancement => {
+      const levels = Object.values(enhancement.levels)
         .filter(l => l.id !== "")
         .map(l => Number(l.level) || 1)
         .sort((a, b) => a - b);
-      return { id: e.id, levels };
+      return { id: enhancement.id, levels };
     });
 
     // Repertorios
@@ -60,11 +60,11 @@ export class ActorExperienceUtils {
     const resources = Number(getObject(actor, CharacteristicType.REPERTORY.RESOURCES)) || 0;
     const superequipment = Number(getObject(actor, CharacteristicType.REPERTORY.SUPEREQUIPMENTS)) || 0;
 
-    // Outros campos customizáveis ou em compêndio normalmente no sistema Setor 0
+    // Traços
     const goodTraits = getObject(actor, CharacteristicType.TRAIT.GOOD) || [];
     const badTraits = getObject(actor, CharacteristicType.TRAIT.BAD) || [];
 
-    // Em Setor 0, manobras e formatações adicionadas via painel do ator. Se não houver array literal em system, adaptamos
+    // Manobras e outros
     const maneuvers = getObject(actor, 'system.manobras') || [];
     const others = getObject(actor, 'system.outros') || [];
     const specialties = getObject(actor, CharacteristicType.SPECIALTIES) || [];
@@ -204,19 +204,19 @@ export class ActorExperienceUtils {
       return { ...group, grossCost };
     });
 
-    branchCosts.sort((a, b) => b.grossCost - a.grossCost);
+    branchCosts.sort((a, b) => {
+      if (b.levels.length !== a.levels.length) {
+        return b.levels.length - a.levels.length;
+      }
+      return b.grossCost - a.grossCost;
+    });
 
-    branchCosts.forEach((branch, index) => {
-      let initialEnhUsed = (index === 0) ? initEnh : 0;
+    let initialEnhUsed = initEnh;
 
+    branchCosts.forEach((branch) => {
       for (const level of branch.levels) {
         if (initialEnhUsed > 0) {
-          if (level <= initialEnhUsed) {
-            initialEnhUsed -= level;
-          } else {
-            enhancementsCost += (level - initialEnhUsed) * enhCost;
-            initialEnhUsed = 0;
-          }
+          initialEnhUsed--;
         } else {
           enhancementsCost += (level * enhCost);
         }
