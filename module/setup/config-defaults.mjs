@@ -1,3 +1,4 @@
+import { FoundryApi } from "../api/foundry-api.mjs";
 import { SYSTEM_ID } from "../constants.mjs";
 import { SystemFlags } from "../enums/flags-enums.mjs";
 
@@ -24,11 +25,21 @@ export class ConfigDefaults {
       try {
         if (game.settings.settings.has("core.combatTrackerConfig")) {
           const config = game.settings.get("core", "combatTrackerConfig") ?? {};
-          const newConfig = foundry.utils.mergeObject(config, { turnMarker: { enabled: false } });
+          const newConfig = FoundryApi.mergeObject(
+            config,
+            {
+              resource: "actualVitality",
+              skipDefeated: true,
+              turnMarker: {
+                enabled: true,
+                src: "systems/setor0OSubmundo/imgs/setor0_ring.webp"
+              }
+            }
+          );
           await game.settings.set("core", "combatTrackerConfig", newConfig);
         }
       } catch (e) {
-        console.warn(`${SYSTEM_ID} | Failed to disable native combat marker:`, e);
+        console.warn(`=> ${SYSTEM_ID} | Falha ao configurar combat tracker:`, e);
       }
       await game.settings.set(SYSTEM_ID, SystemFlags.COMBAT.TRACKER_INITIALIZED, true);
     }
