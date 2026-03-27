@@ -22,8 +22,8 @@ class BaseActorDataModel extends foundry.abstract.TypeDataModel {
       morfologia: new StringField({ required: true, label: "S0.Morfologia", initial: MorphologyRepository.TYPES.HUMAN.id }),
       bairro: new StringField({ required: true, label: "S0.Bairro", initial: DistrictRepository.TYPES.ALFIRAN.id }),
       background: new SchemaField({
-        assignment: new StringField({ required: false, nullable: true }),
-        biography: new StringField({ required: false, nullable: true }),
+        assignment: new StringField({ required: false, nullable: true, initial: null }),
+        biography: new StringField({ required: false, nullable: true, initial: null }),
       }),
       vitalidade: new SchemaField({
         total: new NumberField({ integer: true, initial: 6 }),

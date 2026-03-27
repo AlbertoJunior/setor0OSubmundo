@@ -10,7 +10,7 @@ export class ActorUpdater {
     params.forEach(item => {
       const verifiedSystemCharacteristic = item.systemCharacteristic.system ? item.systemCharacteristic.system : item.systemCharacteristic;
 
-      if (getObject(actor, verifiedSystemCharacteristic) == undefined) {
+      if (getObject(actor, verifiedSystemCharacteristic) === undefined) {
         console.warn(`-> [${verifiedSystemCharacteristic}] não existe, impossível atualizar o Actor`);
       } else {
         keysToUpdate[verifiedSystemCharacteristic] = item.value;
