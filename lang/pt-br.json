@@ -330,7 +330,10 @@
         "Nenhum_item_adicionado": "Nenhum item adicionado, arraste e solte para adicionar",
         "Nao_Pode_Efeitos_Iguais": "Não pode ter dois efeitos iguais",
         "Aviso_Remocao_Itens_Mochila": "Essa ação irá remover todos os itens da mochila",
-        "Aviso_Desequipar_Itens": "Essa ação irá desequipar todos os itens equipados"
+        "Aviso_Desequipar_Itens": "Essa ação irá desequipar todos os itens equipados",
+        "Transferencia_Item": "Transferência de Item",
+        "Deu_Item": "deu o item",
+        "Para": "para"
       }
     },
     "Aprimoramento": {

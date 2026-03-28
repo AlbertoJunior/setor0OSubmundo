@@ -321,7 +321,10 @@
         "Nenhum_item_adicionado": "No items added, attractive and drop to add",
         "Nao_Pode_Efeitos_Iguais": "Cannot have duplicate effects",
         "Aviso_Remocao_Itens_Mochila": "This action will remove all items from the backpack",
-        "Aviso_Desequipar_Itens": "This action will unequip all equipped items"
+        "Aviso_Desequipar_Itens": "This action will unequip all equipped items",
+        "Transferencia_Item": "Item Transfer",
+        "Deu_Item": "gave the item",
+        "Para": "to"
       }
     },
     "Virtude": {

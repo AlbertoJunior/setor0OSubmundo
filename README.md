@@ -76,7 +76,7 @@ Caso você não possua um servidor para hospedar o Foundry e compartilhar o link
 * ✅ Atalhos customizados por Personagem.
 * ✅ Morfologia (Humano, Ciborgue, Androide, Sintético).
 * ✅ Fama e Influência.
-* 🚧 Transacionar itens entre personagens.
+* ✅ Transacionar itens entre personagens.
 * 🚧 Importar personagem do site.
 * ✅ Calculo de XP e pontos utilizados.
 

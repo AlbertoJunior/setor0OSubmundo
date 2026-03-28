@@ -6,6 +6,8 @@ import { NotificationsUtils } from "../../../../../creators/message/notification
 import { HtmlJsUtils } from "../../../../../utils/html-js-utils.mjs";
 import { EquipmentUtils } from "../../../../../core/equipment/equipment-utils.mjs";
 import { FoundryApi } from "../../../../../api/foundry-api.mjs";
+import { ChatCreator } from "../../../../../utils/chat-creator.mjs";
+import { TransferEquipmentMessageCreator } from "../../../../../creators/message/transfer-equipment-message.mjs";
 
 export class SheetActorDragabbleMethods {
   static async setup(html, actor) {
@@ -27,6 +29,11 @@ export class SheetActorDragabbleMethods {
   static #setupBagDrag(html, actor) {
     const containerBag = this.#findUsingActorId(html, 'bag', actor);
     if (!containerBag) return;
+
+    containerBag.addEventListener('dragover', (event) => {
+      event.preventDefault(); // Obrigatório para permitir o drop entre janelas do navegador
+      containerBag.classList.add("S0-drag-over");
+    });
 
     containerBag.addEventListener('drop', (event) => {
       containerBag.classList.remove("S0-drag-over");
@@ -90,7 +97,19 @@ export class SheetActorDragabbleMethods {
     }
 
     const sortableOptions = {
-      group: `equipment-move-inner-${actorId}`,
+      group: {
+        name: `equipment-move`,
+        put: (to, from) => {
+          const toActorId = to.el.id.split('-')[1];
+          const fromActorId = from.el.id.split('-')[1];
+
+          if (toActorId === fromActorId) return true;
+
+          const toSource = to.el.id.split('-')[0];
+          const fromSource = from.el.id.split('-')[0];
+          return toSource === "bag" && fromSource === "bag";
+        }
+      },
       animation: 150,
       swapThreshold: 0.65,
       emptyInsertThreshold: 20,
@@ -118,19 +137,51 @@ export class SheetActorDragabbleMethods {
         }
 
         const origin = evt.from.id;
-        const destination = evt.to.id;
+        const destination = evt.to?.id;
+
+        if (!destination) return;
 
         const originSource = origin.split('-')[0];
-        if (origin == destination) {
-          this.#sortEquipments(actor, originSource, bagList, equippedList);
+        const destSource = destination.split('-')[0];
+
+        const originActorId = origin.split('-')[1];
+        const destActorId = destination.split('-')[1];
+
+        const isTrade = originActorId !== destActorId;
+
+        if (isTrade) {
+          await this.#tradeEquipment(actor, destActorId, equipment);
+        } else if (originSource === destSource) {
+          await this.#sortEquipments(actor, originSource, bagList, equippedList);
         } else {
-          this.#equipOrUnequip(actor, originSource, equipment);
+          await this.#equipOrUnequip(actor, originSource, equipment);
         }
       }
     };
 
     window.Sortable.create(equippedList, sortableOptions);
     window.Sortable.create(bagList, sortableOptions);
+  }
+
+  static async #tradeEquipment(actor, destActorId, equipment) {
+    const targetActor = game.actors.get(destActorId);
+    if (!targetActor) return;
+
+    const itemData = ActorEquipmentUtils.createDataItem(equipment);
+    const createdItems = await ActorUpdater.addDocuments(targetActor, [itemData]);
+    await ActorUpdater.removeDocuments(actor, [equipment.id]);
+
+    const createdItem = createdItems && createdItems.length > 0 ? createdItems[0] : null;
+    const targetUuid = createdItem ? createdItem.uuid : equipment.uuid;
+
+    const contentMessage = await TransferEquipmentMessageCreator.mountContent({
+      sourceActorName: actor.name,
+      itemName: equipment.name,
+      targetActorName: targetActor.name,
+      targetUuid: targetUuid
+    });
+
+    await ChatCreator.sendToChat(actor, contentMessage);
   }
 
   static async #sortEquipments(actor, originSource, bagList, equippedList) {
@@ -166,7 +217,7 @@ export class SheetActorDragabbleMethods {
       sort: index * 100
     }));
 
-    ActorUpdater.updateDocuments(actor, finalItems);
+    await ActorUpdater.updateDocuments(actor, finalItems);
   }
 
   static async #equipOrUnequip(actor, originSource, equipment) {
@@ -219,7 +270,7 @@ export class SheetActorDragabbleMethods {
     }
 
     const itemData = ActorEquipmentUtils.createDataItem(item);
-    ActorUpdater.addDocuments(actor, [itemData]);
+    await ActorUpdater.addDocuments(actor, [itemData]);
   }
 
   static async #onDropOnAlliesInformants(actor, characteristic, event) {
