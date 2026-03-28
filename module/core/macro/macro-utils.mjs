@@ -13,13 +13,13 @@ import { openShortcutMacroData } from "./default/open-shortcut.mjs";
 import { rollOverloadMacroData } from "./default/roll-overload.mjs";
 import { openRollMacroData } from "./default/open-roll.mjs";
 import { ActorRollDialog } from "../../creators/dialog/actor-roll-dialog.mjs";
-import { cleanMacroHotbarUserMacroData } from "./gm/clean-macro-hotbar.mjs";
-import { resetUserFlagsMacroData } from "./gm/reset-user-flags.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
-import { exportCompendiunsMacroData } from "./gm/export-compendium-json.mjs";
 import { CompendiumExport } from "../pack/compendium-export.mjs";
 import { CompendiumSync } from "../pack/compendium-sync.mjs";
 import { SystemFlags } from "../../enums/flags-enums.mjs";
+import { cleanMacroHotbarUserMacroData } from "./gm/clean-macro-hotbar.mjs";
+import { resetUserFlagsMacroData } from "./gm/reset-user-flags.mjs";
+import { exportCompendiunsMacroData } from "./gm/export-compendium-json.mjs";
 
 export class MacroUtils {
   static MacroMethods = {
@@ -86,7 +86,7 @@ export class MacroUtils {
     return [
       cleanMacroHotbarUserMacroData,
       resetUserFlagsMacroData,
-      exportCompendiunsMacroData,
+      // exportCompendiunsMacroData, TODO verificar se vai ser usado
     ];
   }
 

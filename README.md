@@ -71,7 +71,6 @@ Caso você não possua um servidor para hospedar o Foundry e compartilhar o link
 ### Personagens
 
 #### Jogador (PJ)
-* 🚧 Bônus de Nível 6.
 * ✅ Aprimoramentos com efeitos passivos e ativos.
 * ✅ Sistema de inventário com mochila e itens equipados.
 * ✅ Atalhos customizados por Personagem.
@@ -79,7 +78,7 @@ Caso você não possua um servidor para hospedar o Foundry e compartilhar o link
 * ✅ Fama e Influência.
 * 🚧 Transacionar itens entre personagens.
 * 🚧 Importar personagem do site.
-* 🚧 Calculo de XP e pontos utilizados.
+* ✅ Calculo de XP e pontos utilizados.
 
 #### Não Jogáveis (PNJ)
 * ✅ Ficha.
@@ -242,7 +241,7 @@ O Setor 0 conta com um sistema de Macros pré-definidos para novos jogadores. To
 - ✅ Botões compactos na ficha de Personagem.
 - ✅ Botões compactos na ficha de Items.
 - ✅ Botões compactos nos cabeçalhos.
-- 🛠️ Tradução de alguns elementos do Foundry.
+- ✅ Tradução de alguns elementos do Foundry.
 - ✅ Suporte a Application V2 do Foundry.
 </details>
 
