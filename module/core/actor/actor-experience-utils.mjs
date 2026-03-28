@@ -65,8 +65,8 @@ export class ActorExperienceUtils {
     const badTraits = getObject(actor, CharacteristicType.TRAIT.BAD) || [];
 
     // Manobras e outros
-    const maneuvers = getObject(actor, 'system.manobras') || [];
-    const others = getObject(actor, 'system.outros') || [];
+    const maneuvers = getObject(actor, CharacteristicType.MANEUVERS) || [];
+    const others = getObject(actor, CharacteristicType.OTHERS) || [];
     const specialties = getObject(actor, CharacteristicType.SPECIALTIES) || [];
 
     return {

@@ -82,8 +82,7 @@
           {{shortcut.name}}
         </label>
 
-        <h3 class="S0-h-marked S0-w-40" {{#if shortcut.specialist}} title="{{localize 'S0.Especialista'}}" {{/if}}
-          style="{{#if shortcut.specialist}}border: 2px ridge var(--primary-color-alpha);{{/if}}">
+        <h3 class="S0-h-marked S0-w-40 {{#if shortcut.specialist}}S0-border-ridge S0-border-medium S0-border-primary-alpha{{/if}}" {{#if shortcut.specialist}} title="{{localize 'S0.Especialista'}}" {{/if}}>
           {{actorValues ../actor 'calculate_dice_pool' shortcut}}
           {{#if (operators 'gt' automatic 0)}}
           <span class="S0-block S0-text-10">{{automatic}}*</span>

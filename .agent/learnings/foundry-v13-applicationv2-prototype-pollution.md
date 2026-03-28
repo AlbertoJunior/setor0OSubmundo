@@ -43,5 +43,25 @@ static DEFAULT_OPTIONS = {
 
 ### Lidando com strings Dinâmicas (`game.i18n` e Constantes randomizadas)
 Como a propriedade estática é interpretada com o ambiente global no milissegundo em que o código-fonte `.js` carrega:
-- Múltiplas execuções dinâmicas engessam: Usar `id: randomId(10)` dentro do `DEFAULT_OPTIONS` fará com que o gerador só avalie uma única vez. Todas as janelas dessa classe compartilharão o mesmo ID na sessão. Se precisar criar um ID aleatório por nova janela, injete essa restrição no momento da inicialização: `new MeuDialog({ id: \`\${randomId(10)}-dialog\` }).render(true)`.
+- Múltiplas execuções dinâmicas engessam: Usar `id: randomId(10)` dentro do `DEFAULT_OPTIONS` fará com que o gerador só avalie uma única vez. Todas as janelas dessa classe compartilharão o mesmo ID na sessão. Se precisar criar um ID aleatório por nova janela, injete essa restrição no momento da inicialização: `new MeuDialog({ id: \`${randomId(10)}-dialog\` }).render(true)`.
 - Traduções: não recarregam com delays de carregamento do cliente. Use `title: "S0.MESA"` como string da chave,  para o `ApplicationV2` se encarregar de resolver internamente a tradução depois que o jogo já carregou.
+
+### Uso de Getters Reativos e Fachadas Dinâmicas (`v2.mjs`)
+Se a sua classe UI V2 estiver sendo forjada dinamicamente via fábrica de classes (como o módulo que intercepta a compatibilidade no _Facade V2_), não faz mal utilizar o accessor de métodos `static get DEFAULT_OPTIONS()`. Esse padrão só é nocivo quando usado em conjunto ao `.mergeObject()`.  
+
+A sintaxe continua **totalmente segura** e altamente recomendada caso você retorne apenas a forma literal explícita da expansão dessa classe nova:
+
+```javascript
+// CORRETO E COMPATÍVEL (Fachadas dinâmicas ou mixins V13+)
+static get DEFAULT_OPTIONS() {
+  return {
+    classes: ["S0-V2", SYSTEM_CLASS_CSS], // Opções da camada específica
+    form: { submitOnChange: true }
+  }; 
+  // Omissão completa de super.DEFAULT_OPTIONS ocorre de maneira intencional e planejada
+}
+```
+
+**Por que o `ApplicationV2` não perde as propriedades base da Foundry?**
+Mesmo que o getter ignore o pai, o core component da `ApplicationV2` vasculha inversamente a cadeia de heranças do JavaScript (o _prototype-chain_) no instante instanciador do Singleton inicial. A classe formadora do Foundry se encarrega de ler e fundir todos os objetos por nível, através de recursão imutável de escopo (*Deep Clone*).  
+Logo, **omitir `super.DEFAULT_OPTIONS` no retorno não gera perdas na interface real**, e isola integralmente nossa herança contra qualquer quebra arquitetural.
