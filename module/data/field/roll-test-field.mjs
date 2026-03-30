@@ -7,8 +7,8 @@ export class RollTestField extends SchemaField {
     super({
       id: new StringField({ required: true, blank: false, initial: '', label: "S0.Id" }),
       name: new StringField({ required: true, blank: false, initial: '', label: "S0.Nome" }),
-      primary_attribute: new StringField({ required: true, blank: false, initial: '', label: "S0.Atributo" }),
-      secondary_attribute: new StringField({ required: true, blank: false, initial: '', label: "S0.Atributo" }),
+      primary_attribute: new StringField({ required: true, blank: false, initial: '', label: "S0.Atributos.Atributo" }),
+      secondary_attribute: new StringField({ required: true, blank: false, initial: '', label: "S0.Atributos.Atributo" }),
       special_primary: new StringField({ required: false, blank: true, nullable: true, initial: '', label: "S0.Caracteristica" }),
       special_secondary: new StringField({ required: false, blank: true, nullable: true, initial: '', label: "S0.Caracteristica" }),
       ability: new StringField({ required: false, blank: true, nullable: true, initial: '', label: "S0.Habilidade" }),

@@ -19,6 +19,9 @@ export async function registerTemplates() {
 
 async function loadAuxiliaryTemplates() {
   const configTemplates = [
+    // EFFECTS
+    { call: "status-effects-partial", path: "effects/status-effects-partial" },
+    // OTHERS
     { call: "buttons-dialog", path: "others/buttons-dialog" },
     { call: "roll-chat-mode", path: "others/roll-chat-mode" },
     { call: "buttons-float-menu", path: "others/list-default-buttons-float-menu" },
