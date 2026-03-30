@@ -28,24 +28,10 @@ export class SheetActorDragabbleMethods {
 
   static #setupBagDrag(html, actor) {
     const containerBag = this.#findUsingActorId(html, 'bag', actor);
-    if (!containerBag) return;
-
-    containerBag.addEventListener('dragover', (event) => {
-      event.preventDefault(); // Obrigatório para permitir o drop entre janelas do navegador
-      containerBag.classList.add("S0-drag-over");
-    });
-
-    containerBag.addEventListener('drop', (event) => {
-      containerBag.classList.remove("S0-drag-over");
-      this.#onDropOnBag(actor, event);
-    });
-    containerBag.addEventListener('dragenter', (event) => {
-      containerBag.classList.add("S0-drag-over");
-    });
-
-    containerBag.addEventListener('dragleave', (event) => {
-      containerBag.classList.remove("S0-drag-over");
-    });
+    
+    HtmlJsUtils.presetAllDragEvents(
+      containerBag, actor, (actor, event) => { this.#onDropOnBag(actor, event); }
+    );
   }
 
   static async #setupNetworkDrag(html, actor) {

@@ -192,7 +192,6 @@ h4.divider {
 }
 
 #chat-controls {
-  min-height: 36px;
   justify-content: space-around;
   align-items: center;
   column-gap: 4px;

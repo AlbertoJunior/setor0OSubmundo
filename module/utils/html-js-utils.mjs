@@ -125,6 +125,7 @@ export class HtmlJsUtils {
     const removeClass = (el, cls) => el.classList.remove(cls);
 
     element.addEventListener('dragover', (event) => {
+      event.preventDefault();
       addClass(element, 'S0-drop-target-hover');
     });
 
