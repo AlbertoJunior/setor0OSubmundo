@@ -8,18 +8,21 @@ import { AttributeRepository } from "../../repository/attribute-repository.mjs";
 import { SuperEquipmentTraitRepository } from "../../repository/superequipment-trait-repository.mjs";
 import { NotificationsUtils } from "../message/notifications.mjs";
 import { CreateFormDialog } from "./create-dialog.mjs";
+import { TraitType } from "../../enums/trait-enums.mjs";
 
 export class SuperEquipmentEffectsDialog {
+  static #WIDTH = 400;
+
   static async open(type, onConfirm = (selectedEffect, characteristic) => { }) {
     let title;
     let listTraits;
     let characteristic;
 
-    if (type == 'good') {
+    if (type == TraitType.GOOD) {
       title = localize('Itens.Efeitos');
       listTraits = SuperEquipmentTraitRepository.getGoodTraits();
       characteristic = EquipmentCharacteristicType.SUPER_EQUIPMENT.EFFECTS;
-    } else if (type == 'bad') {
+    } else if (type == TraitType.BAD) {
       title = localize('Itens.Defeitos');
       listTraits = SuperEquipmentTraitRepository.getBadTraits();
       characteristic = EquipmentCharacteristicType.SUPER_EQUIPMENT.DEFECTS;
@@ -31,18 +34,62 @@ export class SuperEquipmentEffectsDialog {
     const listCharacteristics = this.#mapCharacteristicsToOptions();
     const uuid = randomId(10);
 
+    const traitsOptions = [
+      ...this.#mapTraitToOptions(listTraits),
+      {
+        label: localize('Outro'),
+        options: [{ id: 'custom', name: `[ ${localize('Criar_Customizado')} ]` }]
+      },
+    ];
+
     CreateFormDialog.open(
       title,
       'items/dialog/superequipment-effect-dialog',
       {
         presetForm: {
-          traits: this.#mapTraitToOptions(listTraits),
+          traits: traitsOptions,
           characteristic: listCharacteristics,
           uuid: uuid,
         },
         render: (html, renderedDialog, windowApp) => this.#render(windowApp, html, listTraits, listCharacteristics),
         onConfirm: (data) => {
-          const { selectedTrait, particularity, selectedParticularity } = data;
+          const { selectedTrait, particularity, selectedParticularity, description, cost, limit } = data;
+
+          if (selectedTrait === 'custom') {
+            if (!description?.trim()) {
+              NotificationsUtils.error('A Descrição é obrigatória');
+              return;
+            }
+
+            const isFixed = particularity?.trim().length > 0;
+            const particularityObject = (selectedParticularity || isFixed)
+              ? this.#mountTraitParticularity({ type: selectedParticularity ? null : SuperEquipmentParticularityType.FIXED, change: { value: 2 } }, particularity, selectedParticularity, true)
+              : null;
+
+            if (typeof onConfirm === 'function') {
+              const customTrait = {
+                id: randomId(),
+                name: description,
+                cost: Number(cost),
+                limit: Number(limit),
+                description: description,
+                particularity: particularityObject,
+              };
+
+              // Re-check characteristics to properly set particularity type
+              if (particularityObject && selectedParticularity) {
+                const charType = listCharacteristics.flatMap(g => g.options).find(c => c.id == selectedParticularity);
+                if (charType) {
+                  const particularityTypeName = charType.name;
+                  particularityObject.description = particularityTypeName;
+                }
+              }
+
+              onConfirm(customTrait, characteristic);
+            }
+            return;
+          }
+
           const trait = this.#findTrait(listTraits, selectedTrait);
 
           if (!trait) {
@@ -59,7 +106,7 @@ export class SuperEquipmentEffectsDialog {
           }
 
           const particularityObject = hasParticularity
-            ? this.#mountTraitParticularity(trait.particularity, particularity, selectedParticularity)
+            ? this.#mountTraitParticularity(trait.particularity, particularity, selectedParticularity, false)
             : null;
 
           if (typeof onConfirm === 'function') {
@@ -73,7 +120,7 @@ export class SuperEquipmentEffectsDialog {
           }
         },
         windowOptions: {
-          width: 400
+          width: this.#WIDTH
         },
       }
     );
@@ -134,6 +181,9 @@ export class SuperEquipmentEffectsDialog {
     const particularityContainer = html.querySelector('#particularityContainer');
     const inputParticularity = html.querySelector('input[name="particularity"]');
 
+    const customFormContainer = html.querySelector('#customFormContainer');
+    const defaultValuesContainer = html.querySelector('#defaultValuesContainer');
+
     const selectParticularityContainer = html.querySelector('#selectedParticularityContainer');
     const selectCharacteristicParticularity = html.querySelector('select[name="selectedParticularity"]');
 
@@ -143,7 +193,8 @@ export class SuperEquipmentEffectsDialog {
     const effectsElements = {
       selectEffect, description, cost, limit,
       particularityContainer, inputParticularity,
-      selectParticularityContainer, selectCharacteristicParticularity
+      selectParticularityContainer, selectCharacteristicParticularity,
+      customFormContainer, defaultValuesContainer
     };
     selectEffect.addEventListener('change', () => this.#onSelectEffectChange(windowApp, listTraits, effectsElements));
     this.#onSelectEffectChange(windowApp, listTraits, effectsElements);
@@ -167,10 +218,25 @@ export class SuperEquipmentEffectsDialog {
       particularityContainer,
       inputParticularity,
       selectParticularityContainer,
-      selectCharacteristicParticularity: selectCharacteristic
+      selectCharacteristicParticularity: selectCharacteristic,
+      customFormContainer,
+      defaultValuesContainer
     } = jElements;
 
     const selectedId = selectEffect.value;
+
+    if (selectedId === 'custom') {
+      customFormContainer.style.display = '';
+      defaultValuesContainer.style.display = 'none';
+      particularityContainer.style.display = '';
+      selectParticularityContainer.style.display = '';
+      windowApp.style.height = 'auto';
+      return;
+    } else {
+      customFormContainer.style.display = 'none';
+      defaultValuesContainer.style.display = '';
+    }
+
     const trait = this.#findTrait(listTraits, selectedId);
 
     if (!trait) {
@@ -234,7 +300,7 @@ export class SuperEquipmentEffectsDialog {
     return listTraits.find(trait => trait.id == id);
   }
 
-  static #mountTraitParticularity(particularity, inputParticularity, selectedParticularity) {
+  static #mountTraitParticularity(particularity, inputParticularity, selectedParticularity, isCustom = false) {
     const particularityObject = SuperEquipmentParticularityField.toJson(
       {
         ...particularity,
@@ -242,7 +308,19 @@ export class SuperEquipmentEffectsDialog {
       }
     );
 
-    const particularityType = particularity.type;
+    let particularityType = particularity.type;
+
+    if (isCustom && selectedParticularity) {
+      if (selectedParticularity.includes('attribute')) {
+        particularityType = SuperEquipmentParticularityType.ATTRIBUTE;
+      } else if (selectedParticularity.includes('skill')) {
+        particularityType = SuperEquipmentParticularityType.SKILL;
+      } else {
+        particularityType = SuperEquipmentParticularityType.DAMAGE_TYPE;
+      }
+      particularityObject.type = particularityType;
+    }
+
     if (particularityType != SuperEquipmentParticularityType.FIXED) {
       const mappedCharacteristic = {
         [SuperEquipmentParticularityType.ATTRIBUTE]: {
@@ -252,16 +330,28 @@ export class SuperEquipmentEffectsDialog {
         [SuperEquipmentParticularityType.SKILL]: {
           path: CharacteristicType.BONUS.SKILL,
           value: particularity.change?.value || 1
-        },
+        }
       };
 
       const characteristic = mappedCharacteristic[particularityType];
       if (characteristic && selectedParticularity) {
-        const key = `${characteristic.path.system}.${selectedParticularity}`
-        particularityObject.change = { key: key, value: characteristic.value }
+        let key = selectedParticularity;
+
+        // Em traits normais, a chave muitas vezes é preenchida pelo Enum base
+        if (!isCustom) {
+          key = `${characteristic.path.system}.${selectedParticularity}`;
+        }
+
+        particularityObject.change = { key: key, value: characteristic.value };
       }
     }
-    debugger
+
+    // Resolve issue: (nome) instead of (modificador)
+    // Only in regular traits we passed the name into inputParticularity instead of the dropdown val
+    if (!isCustom) {
+      particularityObject.description = inputParticularity.trim();
+    }
+
     return particularityObject;
   }
 }

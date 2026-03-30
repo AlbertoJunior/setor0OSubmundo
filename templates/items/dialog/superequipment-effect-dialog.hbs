@@ -11,19 +11,37 @@
     {{/each}}
   </select>
 
-  <div>
-    <strong>{{localize 'S0.Custo'}}:</strong>
-    <label id="costValue"></label>
+  <div id="defaultValuesContainer">
+    <div>
+      <strong>{{localize 'S0.Custo'}}:</strong>
+      <label id="costValue"></label>
+    </div>
+
+    <div>
+      <strong>{{localize 'S0.Limite'}}:</strong>
+      <label id="limitValue"></label>
+    </div>
+
+    <div>
+      <strong class="S0-block">{{ localize 'S0.Descricao' }}:</strong>
+      <div class="S0-message-simple-text"></div>
+    </div>
   </div>
 
-  <div>
-    <strong>{{localize 'S0.Limite'}}:</strong>
-    <label id="limitValue"></label>
-  </div>
+  <div id="customFormContainer" style="display: none;" class="S0-pt-8">
+    <label class="S0-block S0-mb-6" for="traitDescription">{{localize 'S0.Descricao'}}</label>
+    <textarea class="S0-input S0-mb-6" id="traitDescription" name="description" rows="3"></textarea>
 
-  <div>
-    <strong class="S0-block">{{ localize 'S0.Descricao' }}:</strong>
-    <div class="S0-message-simple-text"></div>
+    <div class="S0-flex S0-gap-8 S0-mb-6">
+      <div class="S0-flex-1">
+        <label class="S0-block S0-mb-6" for="traitCost">{{localize 'S0.Custo'}}</label>
+        <input id="traitCost" type="number" name="cost" value="1" min="1" />
+      </div>
+      <div class="S0-flex-1">
+        <label class="S0-block S0-mb-6" for="traitLimit">{{localize 'Limite'}}</label>
+        <input id="traitLimit" type="number" name="limit" value="1" min="1" />
+      </div>
+    </div>
   </div>
 
   <div id="particularityContainer">

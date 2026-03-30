@@ -2,11 +2,46 @@
   <label for="substanceEffect.{{uuid}}" class="S0-block S0-mb-6">{{localize 'S0.Efeito'}}</label>
   <select id="substanceEffect.{{uuid}}" class="S0-select" name="selectedEffect">
     {{#each effects as |group|}}
-    <optgroup label="{{ group.label }}">
+    <optgroup label="{{group.label}}">
       {{#each group.options as |option|}}
-      <option value="{{ option.id }}"> {{ option.description }} </option>
+      <option value="{{option.id}}">{{option.description}}</option>
       {{/each}}
     </optgroup>
     {{/each}}
   </select>
+
+  <div id="customFormContainer" style="display: none;" class="S0-mt-8 S0-pt-6">
+    <label class="S0-block S0-mb-6" for="effectDescription">{{localize 'S0.Descricao'}}</label>
+    <textarea class="S0-input S0-mb-6" id="effectDescription" name="description" rows="3"></textarea>
+
+    <label class="S0-block S0-mb-6" for="effectType">{{localize 'S0.Tipo'}}</label>
+    <select id="effectType" name="type" class="S0-select S0-mb-6">
+      <option value="Buff">{{localize 'S0.Buff'}}</option>
+      <option value="Debuff">{{localize 'S0.Debuff'}}</option>
+    </select>
+
+    <hr class="S0-my-6">
+    <h4>{{localize 'S0.Modificador'}}</h4>
+
+    <label class="S0-block S0-mb-6" for="effectKey">
+      {{localize 'S0.Atributos.Atributo'}} / {{localize 'S0.Habilidade'}}
+    </label>
+    <select id="effectKey" name="key" class="S0-select S0-mb-6">
+      {{selectOptions effectsOptions}}
+    </select>
+
+    <div id="particularityContainer" class="S0-mb-6" style="display: none;">
+      <label class="S0-block S0-mb-6" for="skillKey">{{localize 'S0.Habilidade'}}</label>
+      <select id="skillKey" name="skillKey" class="S0-select">
+        {{selectOptions skillsOptions valueAttr="id" labelAttr="name"}}
+      </select>
+    </div>
+
+    <label class="S0-block S0-mb-6" for="effectValue">{{localize 'S0.Valor'}}</label>
+    <input class="S0-mb-6" id="effectValue" type="number" name="value" value="1" />
+    <ul class="S0-list-disclosure-closed S0-pl-16 S0-my-0 S0-max-w-200">
+      <li class="S0-text-x-small">{{localize 'S0.Traco.Valor_Explicacao'}}</li>
+      <li class="S0-text-x-small">{{localize 'S0.Traco.Valor_Explicacao_Fator'}}</li>
+    </ul>
+  </div>
 </div>

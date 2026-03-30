@@ -4,6 +4,7 @@
 
 | Arquivo | Descrição | Última Atualização |
 | :--- | :--- | :--- |
+| [49-construtor-de-efeitos.md](./49-construtor-de-efeitos.md) | Implementação da UI Embutida (Dialog Builder) para parametrização dinâmica de Efeitos Customizados dentro das fichas de Substâncias e SuperEquipamentos. | 30/03/2026 |
 | [48-implementacao-troca-item-personagem.md](./48-implementacao-troca-item-personagem.md) | Implementação da troca de itens entre múltiplos inventários arrastando e notificação no chat no formato 'Personagem A deu o item X para Personagem B'. | 28/03/2026 |
 | [47-refatoracao-padroes-arquiteturais.md](./47-refatoracao-padroes-arquiteturais.md) | Padronização contínua de CSS Layers e erradicação de hardcoded paths no motor de atributos e calculadoras. Reanálise positiva da V13 AppV2. | 28/03/2026 |
 | [46-correcao-bug-experiencia-aprimoramentos.md](./46-correcao-bug-experiencia-aprimoramentos.md) | Correção lógica na dedução de Pontos Iniciais de aprimoramentos para uso em instâncias e critérios de desempate. | 27/03/2026 |
