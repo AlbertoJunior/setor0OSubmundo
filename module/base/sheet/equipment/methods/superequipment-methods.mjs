@@ -5,6 +5,7 @@ import { SuperEquipmentEffectsDialog } from "../../../../creators/dialog/supereq
 import { EquipmentCharacteristicType } from "../../../../enums/equipment-enums.mjs";
 import { OnEventType } from "../../../../enums/on-event-type.mjs";
 import { EquipmentUpdater } from "../../../updater/equipment-updater.mjs";
+import { TraitType } from "../../../../enums/trait-enums.mjs";
 
 export const handlerSuperEquipmentEvents = {
   [OnEventType.ADD]: async (item, event) => SuperEquipmentSheeHandle.add(item, event),
@@ -34,7 +35,7 @@ class SuperEquipmentSheeHandle {
       ];
 
       await EquipmentUpdater.updateEquipmentData(item, changes);
-      this.#verifyActiveEffects(item);
+      await this.#verifyActiveEffects(item);
     });
   }
 
@@ -50,7 +51,7 @@ class SuperEquipmentSheeHandle {
       return;
     }
 
-    const isGood = type == 'good';
+    const isGood = type == TraitType.GOOD;
 
     const characteristic = isGood
       ? EquipmentCharacteristicType.SUPER_EQUIPMENT.EFFECTS
@@ -69,14 +70,14 @@ class SuperEquipmentSheeHandle {
       ];
 
       await EquipmentUpdater.updateEquipmentData(item, changes);
-      this.#verifyActiveEffects(item);
+      await this.#verifyActiveEffects(item);
     }
   }
 
   static async check(item, event) {
     const isActive = getObject(item, EquipmentCharacteristicType.SUPER_EQUIPMENT.ACTIVE) || false;
     await EquipmentUpdater.updateEquipment(item, EquipmentCharacteristicType.SUPER_EQUIPMENT.ACTIVE, !isActive);
-    this.#verifyActiveEffects(item);
+    await this.#verifyActiveEffects(item);
   }
 
   static async #verifyActiveEffects(item) {

@@ -1,4 +1,5 @@
 import { StandardEffectChangeField } from "../data/field/effect-fields.mjs";
+import { TraitType } from "../enums/trait-enums.mjs";
 
 const { NumberField, StringField, BooleanField, ArrayField } = foundry.data.fields;
 
@@ -9,7 +10,7 @@ class TraitDataModel extends foundry.abstract.TypeDataModel {
       description: new StringField({ required: false, nullable: true, initial: null, label: "S0.Descricao" }),
       requirement: new StringField({ required: false, nullable: true, initial: null, label: "S0.Requisito" }),
       morph: new StringField({ required: false, nullable: true, initial: null, label: "S0.Morfologia" }),
-      type: new StringField({ required: true, nullable: false, initial: 'good', label: "S0.Tipo" }),
+      type: new StringField({ required: true, nullable: false, initial: TraitType.GOOD, label: "S0.Tipo" }),
       haveParticularity: new BooleanField({ required: true, nullable: false, initial: false, label: "S0.Particularidade" }),
       effects: new ArrayField(new StandardEffectChangeField()),
     };

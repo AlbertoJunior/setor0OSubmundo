@@ -7,3 +7,8 @@ export const TraitCharacteristicType = Object.freeze({
   HAVE_PARTICULARITY: { id: 'haveParticularity', system: `system.haveParticularity` },
   EFFECTS: { id: 'effects', system: `system.effects` },
 });
+
+export const TraitType = Object.freeze({
+  GOOD: 'good',
+  BAD: 'bad',
+});

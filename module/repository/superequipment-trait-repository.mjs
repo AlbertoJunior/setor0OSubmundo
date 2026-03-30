@@ -3,6 +3,7 @@ import { CharacteristicType } from "../enums/characteristic-enums.mjs";
 import { SuperEquipmentParticularityType } from "../enums/equipment-enums.mjs";
 import { StandardEffectChangeField } from "../data/field/effect-fields.mjs";
 import { SuperEquipmentTraitField } from "../data/field/equipment-field.mjs";
+import { TraitType } from "../enums/trait-enums.mjs";
 
 export class SuperEquipmentTraitRepository {
   static #goodTrait = [
@@ -389,9 +390,9 @@ export class SuperEquipmentTraitRepository {
       const { id, name, cost, limit, description, particularity, type } = item;
       const trait = { id, name, cost, limit, description, particularity };
 
-      if (type === 'good') {
+      if (type === TraitType.GOOD) {
         good.push(trait);
-      } else if (type === 'bad') {
+      } else if (type === TraitType.BAD) {
         bad.push(trait);
       }
     }
@@ -415,7 +416,7 @@ export class SuperEquipmentTraitRepository {
   }
 
   static getItemsByType(type) {
-    const items = type === 'good' ? this.getGoodTraits() : this.getBadTraits();
+    const items = type === TraitType.GOOD ? this.getGoodTraits() : this.getBadTraits();
     return items.sort((a, b) => a.cost - b.cost || a.name.localeCompare(b.name));
   }
 

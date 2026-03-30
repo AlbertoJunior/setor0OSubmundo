@@ -10,9 +10,10 @@ import { ActorUpdater } from "../../../../updater/actor-updater.mjs";
 import { NotificationsUtils } from "../../../../../creators/message/notifications.mjs";
 import { ActiveEffectsUtils } from "../../../../../core/effect/active-effects-utils.mjs";
 import { ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../../../../enums/active-effects-enums.mjs";
+import { TraitType } from "../../../../../enums/trait-enums.mjs";
 
 function getCharacteristic(type) {
-  return type == 'good' ? CharacteristicType.TRAIT.GOOD : CharacteristicType.TRAIT.BAD;
+  return type == TraitType.GOOD ? CharacteristicType.TRAIT.GOOD : CharacteristicType.TRAIT.BAD;
 }
 
 function getItemIndex(target) {

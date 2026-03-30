@@ -3,6 +3,7 @@ import { BaseActorCharacteristicType, CharacteristicType } from "../enums/charac
 import { EffectChangeValueType } from "../enums/enhancement-enums.mjs";
 import { TraitUtils } from "../core/trait/trait-utils.mjs";
 import { localize } from "../utils/utils.mjs";
+import { TraitType } from "../enums/trait-enums.mjs";
 
 export class TraitRepository {
   static #goodTrait = [
@@ -599,8 +600,8 @@ export class TraitRepository {
         return convertedItem;
       });
 
-      TraitRepository.#loadedGoodFromPack = allTraits.filter(item => item.type === 'good');
-      TraitRepository.#loadedBadFromPack = allTraits.filter(item => item.type === 'bad');
+      TraitRepository.#loadedGoodFromPack = allTraits.filter(item => item.type === TraitType.GOOD);
+      TraitRepository.#loadedBadFromPack = allTraits.filter(item => item.type === TraitType.BAD);
     }
   }
 
@@ -619,7 +620,7 @@ export class TraitRepository {
   }
 
   static getItemsByType(type) {
-    const items = type === 'good' ? this.getGoodTraits() : this.getBadTraits();
+    const items = type === TraitType.GOOD ? this.getGoodTraits() : this.getBadTraits();
     return items.sort((a, b) => a.xp - b.xp || a.name.localeCompare(b.name));
   }
 

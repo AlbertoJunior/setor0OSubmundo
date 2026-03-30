@@ -7,6 +7,7 @@ import { handlerTraitCharacteristicsEvents } from "./methods/trait-effects-metho
 import { localize } from "../../../utils/utils.mjs";
 import { TraitUpdater } from "../../updater/trait-updater.mjs";
 import { SystemFlags } from "../../../enums/flags-enums.mjs";
+import { TraitType } from "../../../enums/trait-enums.mjs";
 
 export async function traitTemplatesRegister() {
   const templates = [
@@ -62,8 +63,8 @@ export class TraitSheet extends FoundryApi.ItemSheet {
     data.system = this.item.system;
 
     data.traitTypes = {
-      'good': localize('Traco.Bom'),
-      'bad': localize('Traco.Ruim')
+      [TraitType.GOOD]: localize('Traco.Bom'),
+      [TraitType.BAD]: localize('Traco.Ruim')
     };
 
     data.morphologies = {

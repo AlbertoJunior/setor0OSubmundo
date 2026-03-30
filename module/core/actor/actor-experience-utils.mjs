@@ -3,6 +3,7 @@ import { CharacteristicType, BaseActorCharacteristicType } from "../../enums/cha
 import { MorphologyRepository } from "../../repository/morphology-repository.mjs";
 import { TraitRepository } from "../../repository/trait-repository.mjs";
 import { getObject } from "../../utils/utils.mjs";
+import { TraitType } from "../../enums/trait-enums.mjs";
 
 export class ActorExperienceUtils {
   static INITIAL_POINTS = {
@@ -146,8 +147,8 @@ export class ActorExperienceUtils {
     const enhCost = isApproximate && thresholds?.enhancements ? thresholds.enhancements : this.INITIAL_POINTS.enhancements.cost;
     const enhancementsCost = this._countEnhancementPoints(data.aprimoramentos, initEnh, enhCost);
 
-    const goodTraitsCost = this._countTraitPoints(data.tracos.bons, 'good');
-    const badTraitsCost = this._countTraitPoints(data.tracos.ruins, 'bad');
+    const goodTraitsCost = this._countTraitPoints(data.tracos.bons, TraitType.GOOD);
+    const badTraitsCost = this._countTraitPoints(data.tracos.ruins, TraitType.BAD);
     const maneuversCost = this._countObjectFields(data.manobras, 'experiencia');
     const othersCost = this._countOthers(data.outros);
 
