@@ -4,6 +4,9 @@
 
 | Arquivo | Descrição | Última Atualização |
 | :--- | :--- | :--- |
+| [52-limpeza-docs-v12.md](./52-limpeza-docs-v12.md) | Execução da skill de limpeza na documentação da versão 12, otimizando mais de 2400 arquivos HTML in-place e reduzindo custo de contexto. | 16/04/2026 |
+| [51-skill-clean-documentation.md](./51-skill-clean-documentation.md) | Recriação da skill e script local (Node.js) para processamento em larga escala e limpeza de conteúdo inútil (SVG/HTML) de documentações (ex: V13), visando otimização do IA context e criação dinâmica de índices. | 15/04/2026 |
+| [50-criacao-index-release-notes.md](./50-criacao-index-release-notes.md) | Criação do índice de navegação em documentações de release notes (v12-v14). | 15/04/2026 |
 | [49-construtor-de-efeitos.md](./49-construtor-de-efeitos.md) | Implementação da UI Embutida (Dialog Builder) para parametrização dinâmica de Efeitos Customizados dentro das fichas de Substâncias e SuperEquipamentos. | 30/03/2026 |
 | [48-implementacao-troca-item-personagem.md](./48-implementacao-troca-item-personagem.md) | Implementação da troca de itens entre múltiplos inventários arrastando e notificação no chat no formato 'Personagem A deu o item X para Personagem B'. | 28/03/2026 |
 | [47-refatoracao-padroes-arquiteturais.md](./47-refatoracao-padroes-arquiteturais.md) | Padronização contínua de CSS Layers e erradicação de hardcoded paths no motor de atributos e calculadoras. Reanálise positiva da V13 AppV2. | 28/03/2026 |
