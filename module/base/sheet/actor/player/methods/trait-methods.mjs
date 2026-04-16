@@ -12,7 +12,7 @@ import { ActiveEffectsUtils } from "../../../../../core/effect/active-effects-ut
 import { ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../../../../enums/active-effects-enums.mjs";
 import { TraitType } from "../../../../../enums/trait-enums.mjs";
 
-function getCharacteristic(type) {
+function getCharacteristicByTraitType(type) {
   return type == TraitType.GOOD ? CharacteristicType.TRAIT.GOOD : CharacteristicType.TRAIT.BAD;
 }
 
@@ -37,7 +37,7 @@ export const traitMethods = {
     const traitType = getTraitType(event);
 
     TraitDialog.open(traitType, async (trait) => {
-      const characteristic = getCharacteristic(traitType);
+      const characteristic = getCharacteristicByTraitType(traitType);
       const actorTraits = getObject(actor, characteristic) || [];
 
       const objectTrait = TraitField.toJson({
@@ -81,7 +81,7 @@ export const traitMethods = {
     }
 
     const traitType = getTraitType(event);
-    const characteristic = getCharacteristic(traitType);
+    const characteristic = getCharacteristicByTraitType(traitType);
     const actorTraits = getObject(actor, characteristic) || [];
 
     const trait = actorTraits[itemIndex];
@@ -101,7 +101,7 @@ export const traitMethods = {
     }
 
     const traitType = getTraitType(event);
-    const characteristic = getCharacteristic(traitType);
+    const characteristic = getCharacteristicByTraitType(traitType);
     const actorTraits = getObject(actor, characteristic) || [];
 
     const updatedTraits = [...actorTraits];
@@ -121,7 +121,7 @@ export const traitMethods = {
     const traitType = getTraitType(event);
     const traitId = getItemId(event);
 
-    const fetchedActorTrait = getObject(actor, getCharacteristic(traitType)).find(trait => trait.id == traitId);
+    const fetchedActorTrait = getObject(actor, getCharacteristicByTraitType(traitType)).find(trait => trait.id == traitId);
     const sourceId = getObject(fetchedActorTrait, CharacteristicType.TRAIT.SOURCE_ID);
     if (!sourceId) {
       NotificationsUtils.error(localize("Aviso.Erro.Traco_Invalido"));
@@ -145,7 +145,7 @@ export const traitMethods = {
     }
 
     const traitType = getTraitType(event);
-    const characteristic = getCharacteristic(traitType);
+    const characteristic = getCharacteristicByTraitType(traitType);
     const trait = getObject(actor, characteristic)?.[itemIndex];
 
     TraitDialog.openByTrait(trait, traitType, actor, undefined);
