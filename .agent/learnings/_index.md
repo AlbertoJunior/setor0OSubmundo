@@ -2,6 +2,7 @@
 
 | Arquivo | Descrição | Contexto |
 | :--- | :--- | :--- |
+| [foundry-v14-active-effect-changes-migration.md](./foundry-v14-active-effect-changes-migration.md) | Adaptação para o Breaking Change da propriedade `.changes` de Efeitos Ativos (migrando para `system.changes`) usando detecção em tempo de execução (`game?.release?.generation`). | Hooks / Document Data / Foundry VTT v14 |
 | [xp-calculator-enhancement-logic.md](./xp-calculator-enhancement-logic.md) | Correção de lógica na dedução de Pontos Iniciais de Aprimoramentos baseando-se por instâncias e peso de níveis, abandonando deduções numéricas errôneas. | Core / Regras e Calculadora XP |
 | [foundry-v13-html-sanitization-placeholders.md](./foundry-v13-html-sanitization-placeholders.md) | Sensibilidade do Foundry V13 (DialogV2) a estruturas de formulários aninhados, causando remoção automática de atributos `placeholder` via sanitização. | UI / Foundry VTT v13 / Sanitização |
 | [foundry-async-hooks-synchronization.md](./foundry-async-hooks-synchronization.md) | Padrão de trava de segurança (Promise synchronization) entre hooks síncronos e assíncronos no ciclo de vida do Foundry VTT. | Hooks / Lifecycle / Async-Await |

@@ -7,7 +7,7 @@ trigger: always_on
 ## Sempre que for pedido para implementar ou corrigir algo voce deve:
 - **Primeiro:** Consultar .agent/learnings/_index.md para ver se possui alguma informação relevante.
 - **Segundo:** Verificar no projeto se já tem algo próximo do que foi pedido para tomar como base.
-- **Terceiro:** Consultar o índice em .agent/docs/v13/_index.md e a documentação correspondente.
+- **Terceiro:** Consultar o índice da versão mais recente em uso, como por exemplo .agent/docs/v13/_index.md e a documentação correspondente.
 - **Quarto:** Explore soluções modernas fora das bases locais, consultando obrigatoriamente a [Foundry VTT Wiki (Resources)](https://foundryvtt.wiki/en/development/guides) e outras fontes web.
   1. **Filtro de Validação:** Considere estritamente conteúdos validados e compatíveis com a arquitetura atual (v12+). Ignore guias obsoletos ou padrões depreciados (ex: actor.data).
   2. **Análise Comparativa:** Compare a solução externa com o conhecimento interno (.agent/learnings) baseando-se em performance, manutenção e legibilidade.

@@ -3,11 +3,13 @@ import { createApplication } from "./create-application.mjs";
 
 const ApplicationV1 = createApplication("v1");
 const ApplicationV2 = createApplication("v2", ["v1"]);
+const ApplicationV3 = createApplication("v3", ["v2", "v1"]);
 
 const Versions = {
   current: Object.freeze(ApplicationV2),
   v1: Object.freeze(ApplicationV1),
   v2: Object.freeze(ApplicationV2),
+  v3: Object.freeze(ApplicationV3),
 };
 
 const CurrentVersion = Object.freeze(Versions.current);
@@ -80,6 +82,14 @@ export class FoundryApi {
   static FilePicker = convertToClass(this.Apps.FilePicker);
 
   static TooltipManager = convertToClass(CurrentVersion.TooltipManager);
+
+  static formatActiveEffectData(data) {
+    const isV14 = game?.release?.generation >= 14 || (game?.version && foundry.utils.isNewerVersion(game.version, "13.999"));
+    if (isV14) {
+      return Versions.v3.formatActiveEffectData(data);
+    }
+    return Versions.v2.formatActiveEffectData(data);
+  }
 
   static async renderTemplate(path, data) {
     return this.Handlebars.renderTemplate(path, data);

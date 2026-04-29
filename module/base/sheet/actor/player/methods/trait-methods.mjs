@@ -52,7 +52,6 @@ export const traitMethods = {
         const effect = ActiveEffectsUtils.createEffectData({
           origin: localize(isGood ? "Traco.Tracos_Bons" : "Traco.Tracos_Ruins"),
           name: trait.name,
-          statuses: [trait.id],
           changes: trait.effects.map(effect => ({
             key: effect.key,
             value: effect.value,
@@ -111,9 +110,10 @@ export const traitMethods = {
     const originalTrait = TraitRepository.getItemByTypeAndId(traitType, sourceId);
     if (originalTrait?.effects && originalTrait?.effects.length > 0) {
       const itemId = originalTrait.id;
-      const effect = actor.effects.find(effect => effect.statuses.has(itemId));
-      if (effect)
-        await ActiveEffectsUtils.removeActorEffect(actor, ActiveEffectsUtils.getOriginId(effect));
+      const effect = ActiveEffectsUtils.getActorEffect(actor, itemId);
+      if (effect) {
+        await ActiveEffectsUtils.removeActorEffect(actor, itemId);
+      }
     }
     await ActorUpdater.verifyAndUpdateActor(actor, characteristic, updatedTraits);
   },

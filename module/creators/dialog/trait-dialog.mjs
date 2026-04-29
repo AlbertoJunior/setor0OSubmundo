@@ -19,6 +19,7 @@ export class TraitDialog {
           {
             label: localize("Adicionar"),
             default: true,
+            closeDialog: false,
             onClick: (html) => {
               const objectTrait = this.#mountTraitObject(html, traits);
               callback(objectTrait);

@@ -3,6 +3,7 @@ import { ActorUpdater } from "../../base/updater/actor-updater.mjs";
 import { SYSTEM_ID } from "../../constants.mjs";
 import { ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../enums/active-effects-enums.mjs";
 import { SystemFlags } from "../../enums/flags-enums.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
 export class ActiveEffectsUtils {
   static KEYS = {
@@ -51,7 +52,7 @@ export class ActiveEffectsUtils {
       }
     };
 
-    return activeEffectData;
+    return FoundryApi.formatActiveEffectData(activeEffectData);
   }
 
   static getFlags(activeEffect) {

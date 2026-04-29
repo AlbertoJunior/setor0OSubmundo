@@ -11,6 +11,7 @@ export const v2Overrides = Object.freeze(
     Sheets: foundry.applications.sheets,
     makeSheetClass,
     createDialog,
+    formatActiveEffectData
   }
 );
 
@@ -373,4 +374,8 @@ function parseHeaderToControls(header) {
     });
 
   return controls;
+}
+
+function formatActiveEffectData(data) {
+  return data;
 }

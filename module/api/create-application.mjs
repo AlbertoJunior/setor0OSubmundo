@@ -1,6 +1,7 @@
 import { randomId } from "../utils/utils.mjs";
 import { v1Overrides } from "./versions-overrides/v1.mjs";
 import { v2Overrides } from "./versions-overrides/v2.mjs";
+import { v3Overrides } from "./versions-overrides/v3.mjs";
 
 // base config for applications
 const baseApplicationConfig = Object.freeze({
@@ -23,7 +24,8 @@ const baseApplicationConfig = Object.freeze({
 // versions
 const applicationOverrides = {
   v1: v1Overrides,
-  v2: v2Overrides
+  v2: v2Overrides,
+  v3: v3Overrides
 };
 const createdVersions = new Set();
 
