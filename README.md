@@ -1,5 +1,5 @@
 # Setor 0 RPG para o Foundry VTT
-[🌐 Site oficial do Setor 0](https://setor0rpg.com.br)
+[🌐 Site oficial do Setor 0](https://setor0rpg.com.br) | [📖 Manual do Sistema](./SYSTEM-MANUAL.md)
 
 ![Status: Alpha](https://img.shields.io/badge/status-alpha-orange)
 ![Foundry v13](https://img.shields.io/badge/foundry-v13-orange)

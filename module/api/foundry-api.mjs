@@ -84,7 +84,7 @@ export class FoundryApi {
   static TooltipManager = convertToClass(CurrentVersion.TooltipManager);
 
   static formatActiveEffectData(data) {
-    const isV14 = game?.release?.generation >= 14 || (game?.version && foundry.utils.isNewerVersion(game.version, "13.999"));
+    const isV14 = game?.release?.generation >= 14 || (game?.version && this.Utils.isNewerVersion(game.version, "13.999"));
     if (isV14) {
       return Versions.v3.formatActiveEffectData(data);
     }
@@ -155,11 +155,7 @@ export class FoundryApi {
       return;
     }
 
-    let application = forcedApplication ?? CurrentVersion;
-    // const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-    // if (isSafari) {
-    //   application = ApplicationV1;
-    // }
+    const application = forcedApplication ?? CurrentVersion;
 
     const {
       icon = null,
@@ -193,6 +189,23 @@ export class FoundryApi {
       return sorted.length;
     }
     return 0;
+  }
+
+  /**
+   * Registra um TextEditor Enricher customizado no sistema.
+   * Na V12+, a callback deve retornar um HTMLElement (ex: um <a>).
+   * @param {RegExp} pattern A expressão regular para o matcher (ex: /@Traco\[(.*?)\]/g)
+   * @param {Function} enricherCallback A função que processa o RegExpMatchArray e retorna o elemento.
+   */
+  static registerCustomEnricher(pattern, enricherCallback) {
+    if (CONFIG.TextEditor && CONFIG.TextEditor.enrichers) {
+      CONFIG.TextEditor.enrichers.push({
+        pattern: pattern,
+        enricher: enricherCallback
+      });
+    } else {
+      console.warn("[FoundryApi] Não foi possível registrar Text Enrichers (API não suportada)");
+    }
   }
 
 }

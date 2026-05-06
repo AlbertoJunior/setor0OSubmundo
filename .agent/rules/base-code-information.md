@@ -35,5 +35,5 @@ trigger: always_on
 - Se a pergunta for sobre código, priorize a performance.
 
 ## Proibições
-- Não é permitido inserir novos bugs ou métodos mágicos.
+- Não é permitido inserir novos métodos mágicos.
 - Não pode remover arquivos sem perguntar.

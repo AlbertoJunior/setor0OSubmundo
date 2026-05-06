@@ -15,6 +15,7 @@ import { configureSetor0ActiveEffect } from "../base/document/Setor0ActiveEffect
 import { TokenUtils } from "../core/token/token-utils.mjs";
 import { configureSetor0ChatLog } from "../core/chat/Setor0ChatLog.mjs";
 import { PreCreateItemHookHandle } from "./item/pre-create-item.mjs";
+import { EnrichersHookHandle } from "./enrichers/enrichers-hook.mjs";
 
 export class InitHookHandle {
   static async handle() {
@@ -41,6 +42,7 @@ export class InitHookHandle {
     await loadHandlebarsHelpers();
     await registerTemplates();
     await PreCreateItemHookHandle.validateDefaultIcons();
+    EnrichersHookHandle.handle();
 
     // GM HOOKS
     if (game.user?.isGM) {
