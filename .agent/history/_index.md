@@ -4,6 +4,7 @@
 
 | Arquivo | Descrição | Última Atualização |
 | :--- | :--- | :--- |
+| [52-compartilhamento-fichas-sockets.md](./52-compartilhamento-fichas-sockets.md) | Implementação do "Mostrar para jogadores" usando game.socket e window.controls (V13 API). | 09/05/2026 |
 | [51-text-enrichers-e-data-models.md](./51-text-enrichers-e-data-models.md) | Implementação de TextEditor Enrichers para Traços com Global Event Delegation nativa e DataModels de Efeitos Ativos (V13+) isolando o Fallback legado na V12. | 05/05/2026 |
 | [50-camada-compatibilidade-v3-e-ux.md](./50-camada-compatibilidade-v3-e-ux.md) | Implementação da Camada V3 (`formatActiveEffectData`) para compatibilidade V14 de Efeitos Ativos e adição de `closeDialog` contínuo em interfaces. | 28/04/2026 |
 | [49-construtor-de-efeitos.md](./49-construtor-de-efeitos.md) | Implementação da UI Embutida (Dialog Builder) para parametrização dinâmica de Efeitos Customizados dentro das fichas de Substâncias e SuperEquipamentos. | 30/03/2026 |

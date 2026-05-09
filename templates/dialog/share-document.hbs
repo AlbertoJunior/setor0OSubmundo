@@ -1,0 +1,11 @@
+<form style="margin-bottom: 10px;">
+  <p>{{localize "S0.SOCKET.SELECT_USERS_TO_SHARE"}}</p>
+  <div style="display: flex; flex-direction: column; gap: 5px;">
+    {{#each selectableUsers as |user|}}
+    <label style="display: flex; align-items: center; gap: 5px;">
+      <input type="checkbox" name="users" value="{{user.id}}" {{#if ../isGM}}checked{{/if}}> 
+      {{user.name}} {{#if user.isGM}}(GM){{/if}} <i class="{{user.icon}} {{user.iconClass}}" title="{{user.title}}"></i>
+    </label>
+    {{/each}}
+  </div>
+</form>

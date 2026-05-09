@@ -8,27 +8,22 @@ import { ActiveEffectsFlags } from "../../enums/active-effects-enums.mjs";
 export class ActiveEffectsUtilsV12 {
 
   static getFlags(activeEffect) {
-    debugger
     return activeEffect.flags[SYSTEM_ID] || {};
   }
 
   static getOriginId(activeEffect) {
-    debugger
     return this.getFlags(activeEffect)[ActiveEffectsFlags.ORIGIN_ID];
   }
 
   static getOriginType(activeEffect) {
-    debugger
     return this.getFlags(activeEffect)[ActiveEffectsFlags.ORIGIN_TYPE];
   }
 
   static getType(activeEffect) {
-    debugger
     return this.getFlags(activeEffect)[ActiveEffectsFlags.TYPE];
   }
 
   static canRemoveEffect(activeEffect) {
-    debugger
     return this.getFlags(activeEffect)[ActiveEffectsFlags.CAN_REMOVE] ?? true;
   }
 }

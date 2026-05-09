@@ -254,6 +254,15 @@
     "Nenhum_variavel_Cadastrado": "No {type} registered, drag and drop a Character onto this box.",
     "Teste_Customizado": "Custom Test",
     "Voce_Usou_Nome": "You used {name}",
+    "SOCKET": {
+      "SHARED_WITH_ALL_PLAYERS": "Sheet shown to all players.",
+      "NO_USERS_ONLINE": "There are no other users online.",
+      "SELECT_USERS_TO_SHARE": "Select users:",
+      "SHARE_DOCUMENT_TITLE": "Share Sheet",
+      "SHARED_SUCCESS": "Sheet successfully shared.",
+      "SHOW_PLAYERS": "Show to Players",
+      "SHOW_TO": "Show to..."
+    },
     "Atributos": {
       "Atributo": "Attribute",
       "Atributos": "Attributes",

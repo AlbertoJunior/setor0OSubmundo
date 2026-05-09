@@ -12,6 +12,7 @@ import { CompendiumSync } from "../core/pack/compendium-sync.mjs";
 import { Setor0TooltipManager } from "../base/ui/Setor0TooltipManager.mjs";
 import { ConfigDefaults } from "../setup/config-defaults.mjs";
 import { SYSTEM_HOOKS } from "../constants.mjs";
+import { SocketHandler } from "../core/socket/socket-handler.mjs";
 
 export class ReadyHookHandle {
   static async handle() {
@@ -21,6 +22,7 @@ export class ReadyHookHandle {
     await this.#macro();
     await this.#config();
     this.#effects();
+    SocketHandler.init();
 
     if (!game.user.isGM) {
       console.log('=> Setor 0 - O Submundo | Sistema Pronto');

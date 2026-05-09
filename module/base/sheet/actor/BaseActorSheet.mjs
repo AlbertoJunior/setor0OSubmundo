@@ -7,12 +7,31 @@ import { HtmlJsUtils } from "../../../utils/html-js-utils.mjs";
 import { FoundryApi } from "../../../api/foundry-api.mjs";
 import { ActorUpdater } from "../../updater/actor-updater.mjs";
 import { OwnershipUtils } from "../../../utils/ownership-utils.mjs";
+import { SocketUtils } from "../../../core/socket/socket-utils.mjs";
 
 export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
   static SHEET_CONFIG = {
     templates: [],
     classes: ['actor'],
     resizable: false,
+    actions: {
+      showPlayers: {
+        enabled: () => game.user.isGM,
+        icon: "fas fa-eye",
+        label: "SOCKET.SHOW_PLAYERS",
+        action: function () {
+          SocketUtils.showDocumentToPlayers(this.document.uuid);
+        }
+      },
+      showTo: {
+        enabled: () => true,
+        icon: "fas fa-users",
+        label: "SOCKET.SHOW_TO",
+        action: function () {
+          SocketUtils.showDocumentToSpecificUsers(this.document.uuid);
+        }
+      }
+    }
   };
 
   constructor(...args) {

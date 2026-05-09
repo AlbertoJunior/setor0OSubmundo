@@ -2,7 +2,8 @@
 
 | Arquivo | Descrição | Contexto |
 | :--- | :--- | :--- |
-| [pattern-text-enricher-listeners.md](./pattern-text-enricher-listeners.md) | Padrão arquitetural de Event Delegation global para listeners de elementos gerados dinamicamente via Text Enrichers (que são convertidos para String no Foundry). | Hooks / UI / Foundry VTT v12+ |
+| [pattern-system-sockets-v13.md](./pattern-system-sockets-v13.md) | Padrão arquitetural de System Sockets via SocketHandler e injeção assíncrona de Window Controls (`_initializeApplicationOptions`). | Web Sockets / Foundry VTT v13 |
+| [pattern-text-enrichers-listeners.md](./pattern-text-enricher-listeners.md) | Padrão arquitetural de Event Delegation global para listeners de elementos gerados dinamicamente via Text Enrichers (que são convertidos para String no Foundry). | Hooks / UI / Foundry VTT v12+ |
 | [foundry-v14-active-effect-changes-migration.md](./foundry-v14-active-effect-changes-migration.md) | Adaptação para o Breaking Change da propriedade `.changes` de Efeitos Ativos (migrando para `system.changes`) usando detecção em tempo de execução (`game?.release?.generation`). | Hooks / Document Data / Foundry VTT v14 |
 | [xp-calculator-enhancement-logic.md](./xp-calculator-enhancement-logic.md) | Correção de lógica na dedução de Pontos Iniciais de Aprimoramentos baseando-se por instâncias e peso de níveis, abandonando deduções numéricas errôneas. | Core / Regras e Calculadora XP |
 | [foundry-v13-html-sanitization-placeholders.md](./foundry-v13-html-sanitization-placeholders.md) | Sensibilidade do Foundry V13 (DialogV2) a estruturas de formulários aninhados, causando remoção automática de atributos `placeholder` via sanitização. | UI / Foundry VTT v13 / Sanitização |

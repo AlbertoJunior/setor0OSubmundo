@@ -257,6 +257,15 @@
     "Nenhum_variavel_Cadastrado": "Nenhum {tipo} cadastrado, arraste e solte um Personagem em cima dessa caixa.",
     "Teste_Customizado": "Teste Customizado",
     "Voce_Usou_Nome": "Você usou {nome}",
+    "SOCKET": {
+      "SHARED_WITH_ALL_PLAYERS": "Ficha exibida para todos os jogadores.",
+      "NO_USERS_ONLINE": "Não há outros usuários online.",
+      "SELECT_USERS_TO_SHARE": "Selecione os usuários:",
+      "SHARE_DOCUMENT_TITLE": "Compartilhar Ficha",
+      "SHARED_SUCCESS": "Ficha compartilhada com sucesso.",
+      "SHOW_PLAYERS": "Mostrar para Jogadores",
+      "SHOW_TO": "Mostrar para..."
+    },
     "Atributos": {
       "Atributo": "Atributo",
       "Atributos": "Atributos",

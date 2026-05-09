@@ -187,7 +187,7 @@
       "Enhancement": {}
     }
   },
-  "socket": false,
+  "socket": true,
   "initiative": "1d10",
   "grid": {
     "type": 0,

@@ -1,4 +1,4 @@
-import { normalizeArray, randomId, toKeyLang } from "../../utils/utils.mjs";
+import { normalizeArray, randomId, toKeyLang, localize } from "../../utils/utils.mjs";
 import { SYSTEM_CLASS_CSS } from "../../constants.mjs";
 import { HtmlJsUtils } from "../../utils/html-js-utils.mjs";
 import { Setor0BaseSheet } from "../../base/sheet/Setor0BaseSheet.mjs";
@@ -72,6 +72,32 @@ function makeSheetClass(BaseClass) {
         }
         if (config.forcedHeight) {
           options.position.height = Number(config.forcedHeight);
+        }
+
+        let mergedActions = {};
+        let currentClass = this.constructor;
+        while (currentClass && currentClass.name && currentClass.name !== 'Function' && currentClass.name !== 'Object') {
+          if (currentClass.SHEET_CONFIG && currentClass.SHEET_CONFIG.actions) {
+            mergedActions = { ...currentClass.SHEET_CONFIG.actions, ...mergedActions };
+          }
+          currentClass = Object.getPrototypeOf(currentClass);
+        }
+
+        if (Object.keys(mergedActions).length > 0) {
+          options.window.controls = options.window.controls || [];
+          options.actions = options.actions || {};
+
+          for (const [key, def] of Object.entries(mergedActions)) {
+            const isEnabled = typeof def.enabled === "function" ? def.enabled() : (def.enabled !== false);
+            if (isEnabled) {
+              options.window.controls.unshift({
+                action: key,
+                icon: def.icon,
+                label: localize(def.label)
+              });
+              options.actions[key] = def.action;
+            }
+          }
         }
 
         return options;
