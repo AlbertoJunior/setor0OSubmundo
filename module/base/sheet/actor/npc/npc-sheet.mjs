@@ -1,4 +1,5 @@
 import { Setor0BaseActorSheet } from "../BaseActorSheet.mjs";
+import { SocketUtils } from "../../../../core/socket/socket-utils.mjs";
 import { selectCharacteristic } from "../../../../utils/utils.mjs";
 import { SYSTEM_ID, TEMPLATES_PATH } from "../../../../constants.mjs";
 import { BaseActorCharacteristicType, CharacteristicType } from "../../../../enums/characteristic-enums.mjs";
@@ -44,7 +45,8 @@ class Setor0NpcSheet extends Setor0BaseActorSheet {
     ],
     width: NpcSheetSize.width,
     height: NpcSheetSize.height,
-    classes: []
+    classes: [],
+    actions: SocketUtils.shareDocumentActions
   };
 
   get mapEvents() {

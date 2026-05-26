@@ -1,4 +1,5 @@
 import { SYSTEM_ID, TEMPLATES_PATH, SYSTEM_CLASS_CSS } from "../../../constants.mjs";
+import { SocketUtils } from "../../../core/socket/socket-utils.mjs";
 import { FlagsUtils } from "../../../utils/flags-utils.mjs";
 import { FoundryApi } from "../../../api/foundry-api.mjs";
 import { HtmlJsUtils } from "../../../utils/html-js-utils.mjs";
@@ -52,7 +53,8 @@ class EquipmentSheet extends FoundryApi.ItemSheet {
     ],
     width: 340,
     resizable: false,
-    classes: []
+    classes: [],
+    actions: SocketUtils.shareDocumentActions
   };
 
   constructor(...args) {

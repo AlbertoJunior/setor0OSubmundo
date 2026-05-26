@@ -74,28 +74,32 @@ function makeSheetClass(BaseClass) {
           options.position.height = Number(config.forcedHeight);
         }
 
-        let mergedActions = {};
+        let mergedActions = new Map();
         let currentClass = this.constructor;
         while (currentClass && currentClass.name && currentClass.name !== 'Function' && currentClass.name !== 'Object') {
-          if (currentClass.SHEET_CONFIG && currentClass.SHEET_CONFIG.actions) {
-            mergedActions = { ...currentClass.SHEET_CONFIG.actions, ...mergedActions };
+          if (currentClass.SHEET_CONFIG && Array.isArray(currentClass.SHEET_CONFIG.actions)) {
+            for (const def of currentClass.SHEET_CONFIG.actions) {
+              if (def && def.id && !mergedActions.has(def.id)) {
+                mergedActions.set(def.id, def);
+              }
+            }
           }
           currentClass = Object.getPrototypeOf(currentClass);
         }
 
-        if (Object.keys(mergedActions).length > 0) {
+        if (mergedActions.size > 0) {
           options.window.controls = options.window.controls || [];
           options.actions = options.actions || {};
 
-          for (const [key, def] of Object.entries(mergedActions)) {
+          for (const def of mergedActions.values()) {
             const isEnabled = typeof def.enabled === "function" ? def.enabled() : (def.enabled !== false);
             if (isEnabled) {
               options.window.controls.unshift({
-                action: key,
+                action: def.id,
                 icon: def.icon,
                 label: localize(def.label)
               });
-              options.actions[key] = def.action;
+              options.actions[def.id] = def.action;
             }
           }
         }

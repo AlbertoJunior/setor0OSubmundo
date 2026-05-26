@@ -1,11 +1,12 @@
 import { SYSTEM_ID } from "../../constants.mjs";
 import { SocketUtils } from "./socket-utils.mjs";
+import { SocketEvent } from "../../enums/socket-enums.mjs";
 
 export class SocketHandler {
   static SOCKET_NAME = `system.${SYSTEM_ID}`;
 
   static #actions = {
-    "showDocument": SocketUtils.handleShowDocument
+    [SocketEvent.SHOW_DOCUMENT]: SocketUtils.handleShowDocument
   };
 
   static init() {

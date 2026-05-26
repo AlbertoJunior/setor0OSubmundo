@@ -1,4 +1,5 @@
 import { SYSTEM_ID, TEMPLATES_PATH } from "../../../constants.mjs";
+import { SocketUtils } from "../../../core/socket/socket-utils.mjs";
 import { FlagsUtils } from "../../../utils/flags-utils.mjs";
 import { FoundryApi } from "../../../api/foundry-api.mjs";
 import { loadAndRegisterTemplates } from "../../../setup/templates.mjs";
@@ -31,7 +32,8 @@ export class TraitSheet extends FoundryApi.ItemSheet {
     ],
     width: 340,
     resizable: true,
-    classes: ['S0-trait-sheet']
+    classes: ['S0-trait-sheet'],
+    actions: SocketUtils.shareDocumentActions
   };
 
   get mapEvents() {

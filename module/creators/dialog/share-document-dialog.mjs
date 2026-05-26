@@ -1,4 +1,5 @@
 import { FoundryApi } from "../../api/foundry-api.mjs";
+import { SocketEvent } from "../../enums/socket-enums.mjs";
 import { localize, gameLocalize } from "../../utils/utils.mjs";
 import { NotificationsUtils } from "../message/notifications.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
@@ -73,7 +74,7 @@ export class ShareDocumentDialog {
 
             if (selectedUsers.length > 0) {
               const { SocketHandler } = await import("../../core/socket/socket-handler.mjs");
-              SocketHandler.emit("showDocument", { uuid: uuid, users: selectedUsers });
+              SocketHandler.emit(SocketEvent.SHOW_DOCUMENT, { uuid: uuid, users: selectedUsers });
               NotificationsUtils.info(localize("SOCKET.SHARED_SUCCESS"));
             }
           }
