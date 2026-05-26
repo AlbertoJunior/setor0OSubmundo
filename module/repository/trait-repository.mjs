@@ -210,6 +210,12 @@ export class TraitRepository {
       xp: 12,
       description: 'De alguma forma estranha, seu corpo reagiu bem à ideia de operar 4 braços simultaneamente; mesmo que estes não respondam com a mesma agilidade que seus braços originais, são totalmente funcionais. A iniciativa deles é equivalente à metade da sua e você pode usá-los para tudo o que seus outros membros idênticos conseguiriam fazer, além de ganhar +4 dados (2 para cada) para usar os braços extras em qualquer teste.<br>Eles podem ser utilizados em combate, possuindo seu próprio turno em que podem realizar ou uma ação Ofensiva, ou Defensiva. Estes braços possuem 4 dados para realizar a ação.'
     },
+    {
+      id: '30',
+      name: 'Primor',
+      xp: 12,
+      description: 'Seu corpo e sua mente foram lapidados ao mais alto grau de excelência, alcançando um estado de perfeição raramente visto, mesmo entre os maiores prodígios do Setor 0. Ao adquirir este Traço, você aumenta em 1 a quantidade máxima de Atributos que podem alcançar o nível 6, somando-se ao limite natural da sua Morfologia. Este Traço não concede pontos automaticamente, mas permite que você evolua um Atributo adicional até o nível 6 futuramente.'
+    },
   ];
 
   static #badTrait = [
