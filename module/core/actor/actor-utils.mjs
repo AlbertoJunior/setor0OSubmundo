@@ -32,7 +32,7 @@ export class ActorUtils {
   }
 
   static getVirtueValue(actor, virtue) {
-    const base = this.getVirtueLevel(actor, virtue);
+    const base = ActorUtils.getVirtueLevel(actor, virtue);
     const bonus = getObject(actor, CharacteristicType.BONUS.VIRTUES)[virtue];
     return base + bonus;
   }
@@ -54,8 +54,8 @@ export class ActorUtils {
 
   static getEnhancementLevel(actor, enhancement) {
     const enhancements = getObject(actor, CharacteristicType.ENHANCEMENT_ALL);
-    const enhancementOnActor = this.#findEnhancementOnActorById(enhancement.id, enhancements);
-    const levelsOnActor = this.#findEnhancementLevelsWithId(enhancementOnActor);
+    const enhancementOnActor = ActorUtils.#findEnhancementOnActorById(enhancement.id, enhancements);
+    const levelsOnActor = ActorUtils.#findEnhancementLevelsWithId(enhancementOnActor);
     return levelsOnActor.length;
   }
 
@@ -77,7 +77,7 @@ export class ActorUtils {
     const stamina = getObject(actor, CharacteristicType.ATTRIBUTES.STAMINA) || 0;
     const letalDamage = getObject(actor, BaseActorCharacteristicType.VITALITY.LETAL_DAMAGE) || 0;
     const bonusPenalty = getObject(actor, CharacteristicType.BONUS.DAMAGE_PENALTY) || 0;
-    const syntheticBonus = this.isSynthetic(actor) ? DEFAULT_VALUES.SYNTHETIC_PENALTY_BONUS : 0;
+    const syntheticBonus = ActorUtils.isSynthetic(actor) ? DEFAULT_VALUES.SYNTHETIC_PENALTY_BONUS : 0;
 
     const calculateTotal = letalDamage - (stamina + syntheticBonus) + bonusPenalty;
     const safeMinValue = Math.max(calculateTotal, 0);
@@ -93,23 +93,23 @@ export class ActorUtils {
   }
 
   static calculateDices(actor, attr1, attr2, ability) {
-    const attr1Value = this.getAttributeValue(actor, attr1);
-    const attr2Value = this.getAttributeValue(actor, attr2);
-    const abilityValue = this.getAbilityValue(actor, ability);
+    const attr1Value = ActorUtils.getAttributeValue(actor, attr1);
+    const attr2Value = ActorUtils.getAttributeValue(actor, attr2);
+    const abilityValue = ActorUtils.getAbilityValue(actor, ability);
     return Math.floor((attr1Value + attr2Value) / 2) + abilityValue;
   }
 
   static calculateMovimentPoints(actor) {
-    const dexValue = this.getAttributeValue(actor, CharacteristicType.ATTRIBUTES.DEXTERITY.id);
-    const athleticsValue = this.getAbilityValue(actor, CharacteristicType.SKILLS.ATHLETICS.id);
+    const dexValue = ActorUtils.getAttributeValue(actor, CharacteristicType.ATTRIBUTES.DEXTERITY.id);
+    const athleticsValue = ActorUtils.getAbilityValue(actor, CharacteristicType.SKILLS.ATHLETICS.id);
     const bonusPM = getObject(actor, CharacteristicType.BONUS.PM) || 0;
     const calculated = DEFAULT_VALUES.BASE_MOVIMENT_POINTS + athleticsValue + bonusPM + Math.floor(dexValue / 2);
     return Math.max(calculated, 0);
   }
 
   static calculateInitiative(actor) {
-    const dexValue = this.getAttributeValue(actor, CharacteristicType.ATTRIBUTES.DEXTERITY.id);
-    const perValue = this.getAttributeValue(actor, CharacteristicType.ATTRIBUTES.PERCEPTION.id);
+    const dexValue = ActorUtils.getAttributeValue(actor, CharacteristicType.ATTRIBUTES.DEXTERITY.id);
+    const perValue = ActorUtils.getAttributeValue(actor, CharacteristicType.ATTRIBUTES.PERCEPTION.id);
     const bonusInitiative = getObject(actor, CharacteristicType.BONUS.INITIATIVE) || 0;
     return bonusInitiative + Math.floor((dexValue + perValue) / 2);
   }
@@ -201,12 +201,12 @@ export class ActorUtils {
 
   static getAllies(actor) {
     const allies = getObject(actor, CharacteristicType.ALLIES) || [];
-    return this.#getNetworkByList(allies);
+    return ActorUtils.#getNetworkByList(allies);
   }
 
   static getInformants(actor) {
     const informants = getObject(actor, CharacteristicType.INFORMANTS) || [];
-    return this.#getNetworkByList(informants);
+    return ActorUtils.#getNetworkByList(informants);
   }
 
   static #getNetworkByList(list) {
@@ -233,7 +233,7 @@ export class ActorUtils {
   }
 
   static getEffectsSorted(actor) {
-    const effects = this.getEffects(actor);
+    const effects = ActorUtils.getEffects(actor);
     const enhancementLabel = localize('Aprimoramento.Nome');
 
     effects.sort((a, b) => {
@@ -275,7 +275,7 @@ export class ActorUtils {
   }
 
   static getActualEnhancementAmount(actor) {
-    const total = this.getAllEnhancements(actor)
+    const total = ActorUtils.getAllEnhancements(actor)
       .flatMap(enhancement => Object.values(enhancement.levels).flatMap(level => level.id))
       .filter(id => Boolean(id))
       .length;
