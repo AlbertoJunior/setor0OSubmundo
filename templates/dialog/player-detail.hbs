@@ -1,0 +1,163 @@
+<div class="S0-flex-col S0-gap-8 S0-p-4">
+  {{!-- Cabeçalho do jogador --}}
+  <div class="S0-player-detail-header S0-flex S0-items-center S0-gap-8 S0-p-6">
+    <img class="S0-player-detail-avatar" src="{{player.avatar}}" alt="{{player.name}}" />
+    <div class="S0-flex-col S0-flex-1">
+      <h3 class="S0-m-0">{{player.name}}</h3>
+      <div class="S0-flex S0-justify-between S0-items-center S0-gap-4">
+        <div>
+          <i
+            class="fas fa-circle S0-text-10 {{#if player.isActive}}S0-online{{else}}S0-offline{{/if}} S0-text-shadow-none"></i>
+          <span class="S0-text-small">
+            {{#if player.isActive}}
+            {{localize "S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.Online"}}
+            {{else}}
+            {{localize "S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.Offline"}}
+            {{/if}}
+          </span>
+        </div>
+        <div>
+          <i class="fas fa-circle S0-text-10 S0-text-shadow-none" style="color: {{player.color}};"></i>
+          {{#if player.isGM}}<span class="S0-text-x-small S0-italic">(GM)</span>{{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{!-- Personagem Padrão --}}
+  <div class="S0-player-detail-section">
+    <h4 class="S0-mt-0 S0-mb-4">{{localize "S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.Character"}}</h4>
+    {{#if player.character}}
+    <div class="S0-player-actor-row S0-flex S0-items-center S0-gap-6 S0-p-4" data-action="openSheet"
+      data-actor-id="{{player.character.id}}">
+      <img class="S0-player-actor-img" src="{{player.character.img}}" alt="{{player.character.name}}" />
+      <span class="S0-font-bold">{{player.character.name}}</span>
+      <i class="fas fa-crown S0-text-small"
+        title="{{localize 'S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.Permission_Owner'}}"></i>
+    </div>
+    {{else}}
+    <span class="S0-text-small S0-italic">{{localize "S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.No_Character"}}</span>
+    {{/if}}
+  </div>
+
+  {{!-- Personagens com Acesso --}}
+  <div class="S0-player-detail-section">
+    <h4 class="S0-mt-0 S0-mb-4">{{localize "S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.Accessible_Actors"}}</h4>
+    {{#if accessibleActors.length}}
+    <div class="S0-flex-col S0-gap-4">
+      {{#each accessibleActors}}
+      <div class="S0-player-actor-row S0-flex S0-items-center S0-gap-6 S0-p-4" data-action="openSheet"
+        data-actor-id="{{this.id}}">
+        <img class="S0-player-actor-img" src="{{this.img}}" alt="{{this.name}}" />
+        <span class="S0-flex-1 S0-truncate">{{this.name}}</span>
+        <i class="{{this.permissionIcon}}" title="{{this.permissionLabel}}"></i>
+        <span class="S0-text-x-small S0-italic">{{this.permissionLabel}}</span>
+      </div>
+      {{/each}}
+    </div>
+    {{else}}
+    <span class="S0-text-small S0-italic">{{localize
+      "S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.No_Accessible_Actors"}}</span>
+    {{/if}}
+  </div>
+
+  {{!-- Flags do Sistema (Destaque) --}}
+  <div class="S0-player-detail-section S0-flag-group" data-namespace="setor0OSubmundo">
+    <div class="S0-flex S0-items-center S0-justify-between S0-mb-4">
+      <h4 class="S0-m-0">{{localize "S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.System_Flags"}}</h4>
+      <button type="button" class="S0-flag-action-btn S0-flag-add-group-btn" data-action="addFlag"
+        data-namespace="setor0OSubmundo" title="{{localize 'S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.Flag_Add'}}">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+
+    {{#if systemFlags.length}}
+    <table class="S0-flags-table">
+      <thead>
+        <tr>
+          <th>{{localize "S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.Flag_Key"}}</th>
+          <th>{{localize "S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.Flag_Value"}}</th>
+          <th class="S0-flags-table-actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each systemFlags}}
+        <tr class="S0-flag-row">
+          <td class="S0-font-monospace S0-text-x-small">{{this.key}}</td>
+          <td class="S0-flag-value-cell" data-action="editFlag" data-namespace="setor0OSubmundo"
+            data-flag-key="{{this.key}}" title="Clique para editar">
+            <span class="S0-font-monospace S0-text-x-small S0-flag-value-display">{{this.value}}</span>
+          </td>
+          <td class="S0-flag-actions-cell">
+            <button type="button" class="S0-flag-action-btn S0-flag-delete-btn" data-action="deleteFlag"
+              data-namespace="setor0OSubmundo" data-flag-key="{{this.key}}"
+              title="{{localize 'S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.Flag_Delete'}}">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{else}}
+    <span class="S0-text-small S0-italic">{{localize "S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.No_Flags"}}</span>
+    <table class="S0-flags-table S0-mt-4">
+      <tbody>
+        <!-- Area for new flags to be appended -->
+      </tbody>
+    </table>
+    {{/if}}
+  </div>
+
+  {{!-- Outras Flags (Agrupadas por namespace) --}}
+  <div class="S0-player-detail-section">
+    <h4 class="S0-mt-0 S0-mb-4">{{localize "S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.Other_Flags"}}</h4>
+
+    {{#if flagGroups.length}}
+    <div class="S0-flex-col S0-gap-8 S0-overflow-y-auto S0-max-h-370">
+      {{#each flagGroups}}
+      <details class="S0-flag-group-details S0-flag-group" data-namespace="{{this.namespace}}">
+        <summary class="S0-flag-group-summary S0-flex S0-items-center S0-justify-between">
+          <h5 class="S0-m-0 S0-inline S0-font-monospace">{{this.namespace}}</h5>
+          <button type="button" class="S0-flag-action-btn S0-flag-add-group-btn" data-action="addFlag"
+            data-namespace="{{this.namespace}}" title="{{localize 'S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.Flag_Add'}}">
+            <i class="fas fa-plus"></i>
+          </button>
+        </summary>
+
+        <table class="S0-flags-table S0-mt-4">
+          <thead>
+            <tr>
+              <th>{{localize "S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.Flag_Key"}}</th>
+              <th>{{localize "S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.Flag_Value"}}</th>
+              <th class="S0-flags-table-actions"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each this.flags}}
+            <tr class="S0-flag-row">
+              <td class="S0-font-monospace S0-text-x-small">{{this.key}}</td>
+              <td class="S0-flag-value-cell" data-action="editFlag" data-namespace="{{../namespace}}"
+                data-flag-key="{{this.key}}" title="Clique para editar">
+                <span class="S0-font-monospace S0-text-x-small S0-flag-value-display">{{this.value}}</span>
+              </td>
+              <td class="S0-flag-actions-cell">
+                <button type="button" class="S0-flag-action-btn S0-flag-delete-btn" data-action="deleteFlag"
+                  data-namespace="{{../namespace}}" data-flag-key="{{this.key}}"
+                  title="{{localize 'S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.Flag_Delete'}}">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </details>
+      {{/each}}
+    </div>
+    {{else}}
+    <span class="S0-text-small S0-italic S0-block">{{localize "S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.No_Flags"}}</span>
+    {{/if}}
+  </div>
+
+</div>

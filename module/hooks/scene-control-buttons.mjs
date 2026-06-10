@@ -6,7 +6,8 @@ import { FoundryApi } from "../api/foundry-api.mjs";
 import { CompendiumExport } from "../core/pack/compendium-export.mjs";
 import { CompendiumSync } from "../core/pack/compendium-sync.mjs";
 import { RemoveTokensEffectsDialog } from "../creators/dialog/remove-tokens-effects-dialog.mjs";
-import { ExperienceCalculatorDialog } from "../creators/dialog/experience-calculator-dialog.mjs";
+import { ExperienceCalculatorDialog } from "../creators/dialog/v2/experience-calculator-dialog.mjs";
+import { PlayerInformationsDialog } from "../creators/dialog/v2/player-informations-dialog.mjs";
 import { localize, localizeFormat } from "../utils/utils.mjs";
 
 export class SceneControlButtonsHookHandle {
@@ -23,6 +24,7 @@ export class SceneControlButtonsHookHandle {
 
     if (game.user.isGM) {
       tools.removeTokensEffects = this.#mountRemoveTokensEffectsButton('removeTokensEffects');
+      tools.playerInformations = this.#mountPlayerInformationsButton('playerInformations');
       tools.exportCompendiums = this.#mountExportCompendiumsButton('exportCompendiums');
       tools.importCompendiums = this.#mountImportCompendiumsButton('importCompendiums');
     }
@@ -222,6 +224,22 @@ export class SceneControlButtonsHookHandle {
             setTimeout(() => window.location.reload(), 1000);
           }
         });
+      }
+    };
+  }
+
+  static #mountPlayerInformationsButton(name) {
+    return {
+      name: name,
+      title: localize('CONTROL.PLAYER_INFORMATIONS_BUTTON.Title'),
+      icon: "fas fa-users",
+      order: 500,
+      button: true,
+      toggle: false,
+      active: false,
+      visible: true,
+      onChange: async (event, active) => {
+        PlayerInformationsDialog.open();
       }
     };
   }

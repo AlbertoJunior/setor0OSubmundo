@@ -1,10 +1,10 @@
-import { NotificationsUtils } from "../message/notifications.mjs";
-import { localize, randomId } from "../../utils/utils.mjs";
-import { ActorType, CharacteristicType } from "../../enums/characteristic-enums.mjs";
-import { TEMPLATES_PATH } from "../../constants.mjs";
-import { ActorExperienceUtils } from "../../core/actor/actor-experience-utils.mjs";
-import { ActorUpdater } from "../../base/updater/actor-updater.mjs";
-import { OwnershipUtils } from "../../utils/ownership-utils.mjs";
+import { NotificationsUtils } from "../../message/notifications.mjs";
+import { localize, randomId } from "../../../utils/utils.mjs";
+import { ActorType, CharacteristicType } from "../../../enums/characteristic-enums.mjs";
+import { TEMPLATES_PATH } from "../../../constants.mjs";
+import { ActorExperienceUtils } from "../../../core/actor/actor-experience-utils.mjs";
+import { ActorUpdater } from "../../../base/updater/actor-updater.mjs";
+import { OwnershipUtils } from "../../../utils/ownership-utils.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
