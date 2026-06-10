@@ -14,6 +14,7 @@ import { SheetActorDragabbleMethods } from "../player/methods/dragabble-methods.
 import { handleStatusMethods } from "../player/methods/status-methods.mjs";
 import { FoundryApi } from "../../../../api/foundry-api.mjs";
 import { effectsHandleEvents } from "../player/methods/effects-methods.mjs";
+import { handlerNoteEvents } from "../player/methods/note-methods.mjs";
 
 export async function npcTemplatesRegister() {
   const templates = [
@@ -21,6 +22,7 @@ export async function npcTemplatesRegister() {
     { path: "npc/informations", call: "npcInformations" },
     { path: "npc/status", call: "npcStatus" },
     { path: "npc/bag", call: "npcBag" },
+    { path: "npc/notes", call: "npcNotes" },
   ];
 
   return await loadAndRegisterTemplates(templates);
@@ -84,7 +86,8 @@ class Setor0NpcSheet extends Setor0BaseActorSheet {
         ...handlerEquipmentEvents,
         [OnEventType.ROLL]: async (actor, event) => npcRollHandle.rollEquipment(actor, event),
       },
-      effects: effectsHandleEvents
+      effects: effectsHandleEvents,
+      notes: handlerNoteEvents,
     };
   }
 

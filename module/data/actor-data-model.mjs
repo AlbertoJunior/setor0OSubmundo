@@ -1,6 +1,6 @@
 import { ActorEquipmentUtils } from "../core/actor/actor-equipment-utils.mjs";
 import { Setor0TokenDocument } from "../base/document/Setor0TokenDocument.mjs";
-import { ActorCharacteristicField, ActorEnhancementField, ActorAttributes, ActorAbilities, ActorVirtues, SpecialtyField } from "../data/field/actor-fields.mjs";
+import { ActorCharacteristicField, ActorEnhancementField, ActorAttributes, ActorAbilities, ActorVirtues, SpecialtyField, NoteField } from "../data/field/actor-fields.mjs";
 import { TraitField } from "../data/field/trait-field.mjs";
 import { ActorUtils } from "../core/actor/actor-utils.mjs";
 import { RollTestField } from "../data/field/roll-test-field.mjs";
@@ -32,6 +32,7 @@ class BaseActorDataModel extends foundry.abstract.TypeDataModel {
       }),
       nivel_de_procurado: new ActorCharacteristicField("S0.NivelProcurado", FameRepository.TYPES.BOUNTY.initialLevel, FameRepository.TYPES.BOUNTY.maxLevel),
       influencia: new ActorCharacteristicField("S0.Influencia", FameRepository.TYPES.INFLUENCE.initialLevel, FameRepository.TYPES.INFLUENCE.maxLevel),
+      anotacoes: new ArrayField(new NoteField()),
     }
   }
 

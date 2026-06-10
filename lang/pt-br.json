@@ -383,6 +383,16 @@
       "Habilidade_Obrigatoria": "A habilidade é obrigatória",
       "Descricao_Obrigatoria": "A descrição é obrigatória"
     },
+    "Anotacao": {
+      "Anotacoes": "Anotações",
+      "Anotacao": "Anotação",
+      "Nenhuma_Adicionada": "Nenhuma anotação adicionada",
+      "Descricao_Curta": "Descrição Curta",
+      "Descricao_Longa": "Descrição Longa",
+      "Descricao_Curta_Placeholder": "Ex.: Lembrete importante...",
+      "Descricao_Longa_Placeholder": "Detalhes adicionais sobre esta anotação...",
+      "Descricao_Obrigatoria": "A descrição curta é obrigatória"
+    },
     "Atalho": {
       "Atalhos": "Atalhos",
       "Atalho": "Atalho",

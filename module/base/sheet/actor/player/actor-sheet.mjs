@@ -60,6 +60,7 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
       temporary: SheetMethods.handleMethods.temporary,
       equipment: SheetMethods.handleMethods.equipment,
       specialties: SheetMethods.handleMethods.specialties,
+      notes: SheetMethods.handleMethods.notes,
       shortcuts: SheetMethods.handleMethods.shortcuts,
       allies: SheetMethods.handleMethods.allies,
       informants: SheetMethods.handleMethods.informants,
@@ -73,6 +74,7 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
     this.isExpandedEffects = undefined;
     this.isExpandedShortcuts = undefined;
     this.isExpandedSpecialties = undefined;
+    this.isExpandedNotes = undefined;
     this.defaultHeight = undefined;
   }
 
@@ -209,10 +211,17 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
       this.#verifyAndExpandContainers(shortcutsContainer, isExpandedShortcuts, html);
     }
 
+    const isExpandedNotes = this.isExpandedNotes;
+    const notesContainer = html.querySelector(`#notes-container-${this.actor.id}`);
+    if (notesContainer) {
+      this.#verifyAndExpandContainers(notesContainer, isExpandedNotes, html);
+    }
+
     if (!this.defaultHeight ||
       isExpandedEffects === undefined ||
       isExpandedShortcuts === undefined ||
-      isExpandedSpecialties === undefined) {
+      isExpandedSpecialties === undefined ||
+      isExpandedNotes === undefined) {
       requestAnimationFrame(() => {
         const content = html.parentElement?.parentElement;
         const windowElem = content?.closest(`.${SYSTEM_CLASS_CSS}`);
@@ -221,6 +230,7 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
         this.isExpandedEffects = effectsContainer?.classList.contains('S0-expanded');
         this.isExpandedShortcuts = shortcutsContainer?.classList.contains('S0-expanded');
         this.isExpandedSpecialties = specialtiesContainer?.classList.contains('S0-expanded');
+        this.isExpandedNotes = notesContainer?.classList.contains('S0-expanded');
       });
     }
   }

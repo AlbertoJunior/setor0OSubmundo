@@ -16,6 +16,7 @@ const map = {
   'effects': (actor) => ActorUtils.getEffectsSorted(actor),
   'shortcuts': (actor) => getObject(actor, CharacteristicType.SHORTCUTS),
   'specialties': (actor) => ActorUtils.getSpecialties(actor),
+  'notes': (actor) => ActorUtils.getNotes(actor),
 }
 
 export default function actorLists(actor, value) {

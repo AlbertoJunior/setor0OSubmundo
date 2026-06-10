@@ -4,6 +4,8 @@
 
 | Arquivo | Descrição | Última Atualização |
 | :--- | :--- | :--- |
+| [56-anotacoes-enviar-chat.md](./56-anotacoes-enviar-chat.md) | Botão Enviar no Chat no dialog de visualização de anotações (Player e NPC) refatorado para o padrão MessageCreator com template Handlebars. | 10/06/2026 |
+| [55-feature-anotacoes.md](./55-feature-anotacoes.md) | Feature "Anotações" para Player (aba Extras) e NPC (nova aba): data model, dialog, handler, templates e localização. | 10/06/2026 |
 | [54-feature-player-informations.md](./54-feature-player-informations.md) | Feature "Player Informations" no menu Setor 0: listagem de jogadores (online/offline), detalhes com ownership, flags do sistema e outras flags. | 26/05/2026 |
 | [53-refatoracao-share-document-enums-css.md](./53-refatoracao-share-document-enums-css.md) | Refatoração do socket de compartilhamento com Enums, CSS utilitário, e padronização de actions em formato de lista (array) de objetos. | 26/05/2026 |
 | [52-compartilhamento-fichas-sockets.md](./52-compartilhamento-fichas-sockets.md) | Implementação do "Mostrar para jogadores" usando game.socket e window.controls (V13 API). | 09/05/2026 |

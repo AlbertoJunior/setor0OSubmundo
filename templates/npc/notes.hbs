@@ -1,0 +1,43 @@
+<div class="S0-page tab" data-group="menu-tabs" data-tab="notes" data-label="{{ localize 'S0.Anotacao.Anotacoes' }}"
+  data-icon="fas fa-note-sticky">
+  <div class="S0-flex-col S0-gap-6">
+    <div class="S0-container S0-m-0">
+      <h3>
+        {{localize 'S0.Anotacao.Anotacoes'}}
+        {{#if editable}}
+        <a class="S0-icon-expand" data-action="add" data-characteristic="notes" title="{{localize 'S0.Adicionar'}}">
+          <i class="fas fa-square-plus"></i>
+        </a>
+        {{/if}}
+      </h3>
+
+      {{#if (operators 'isEmpty' (actorLists actor 'notes'))}}
+      <div class="S0-text-center S0-italic S0-my-4">
+        {{localize 'S0.Anotacao.Nenhuma_Adicionada'}}
+      </div>
+      {{else}}
+      <div class="S0-flex-col S0-row-gap-0">
+        {{#each (actorLists actor 'notes') as |note|}}
+        <div class="S0-container S0-flex S0-items-center S0-gap-4 S0-my-2">
+          <div class="S0-flex-col S0-flex-1">
+            <label class="S0-text-start S0-pointer-events-none">
+              {{note.descricao_curta}}
+            </label>
+          </div>
+          {{#if ../editable}}
+          <a class="S0-icon-expand S0-centralized-icon" data-action="edit" data-characteristic="notes"
+            data-item-id="{{note.index}}" title="{{localize 'S0.Editar'}}">
+            <i class="fas fa-edit"></i>
+          </a>
+          {{/if}}
+          <a class="S0-icon-expand S0-centralized-icon" data-action="view" data-characteristic="notes"
+            data-item-id="{{note.index}}" title="{{localize 'S0.Ver_Informacoes'}}">
+            <i class="fas fa-eye"></i>
+          </a>
+        </div>
+        {{/each}}
+      </div>
+      {{/if}}
+    </div>
+  </div>
+</div>

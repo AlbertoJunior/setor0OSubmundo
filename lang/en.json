@@ -401,6 +401,16 @@
       "Habilidade_Obrigatoria": "Skill is required",
       "Descricao_Obrigatoria": "Description is required"
     },
+    "Anotacao": {
+      "Anotacoes": "Notes",
+      "Anotacao": "Note",
+      "Nenhuma_Adicionada": "No notes added",
+      "Descricao_Curta": "Short Description",
+      "Descricao_Longa": "Long Description",
+      "Descricao_Curta_Placeholder": "Ex.: Important reminder...",
+      "Descricao_Longa_Placeholder": "Additional details about this note...",
+      "Descricao_Obrigatoria": "Short description is required"
+    },
     "Atalho": {
       "Atalhos": "Shortcuts",
       "Atalho": "Shortcut",

@@ -85,6 +85,19 @@ export class SpecialtyField extends SchemaField {
   }
 }
 
+/**
+ * Campo de dados para uma anotação do ator.
+ * Contém apenas descrição curta (obrigatória) e descrição longa (opcional).
+ */
+export class NoteField extends SchemaField {
+  constructor() {
+    super({
+      descricao_curta: new StringField({ required: true }),
+      descricao_longa: new StringField({ required: false, nullable: true }),
+    });
+  }
+}
+
 export class ActorEnhancementField extends SchemaField {
   constructor(id, name) {
     super({

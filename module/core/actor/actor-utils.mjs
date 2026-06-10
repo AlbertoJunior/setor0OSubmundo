@@ -305,4 +305,9 @@ export class ActorUtils {
       })
       .sort((a, b) => a.label.localeCompare(b.label));
   }
+
+  static getNotes(actor) {
+    const notes = getObject(actor, CharacteristicType.NOTES) || [];
+    return notes.map((note, index) => ({ ...note, index }));
+  }
 }
