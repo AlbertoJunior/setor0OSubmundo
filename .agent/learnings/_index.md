@@ -30,3 +30,4 @@
 | [foundry-v13-hybrid-utils.md](./foundry-v13-hybrid-utils.md) | Padrão Híbrido jQuery/DOM para Utilitários de Migração | Foundry VTT v13 |
 | [dynamic-imports-limitations.md](./dynamic-imports-limitations.md) | Limitações de importação dinâmica de arquivos sem build step | Foundry VTT v13 |
 | [foundry-v13-tooltip-and-scrolling-text.md](./foundry-v13-tooltip-and-scrolling-text.md) | Personalização avançada e override do TooltipManager e ScrollingText via CONFIG e Hooks em ambiente encapsulado. | Foundry VTT v13 / UI |
+| [embedded-document-hook-parent-access.md](./embedded-document-hook-parent-access.md) | Em hooks de Embedded Documents (`createActiveEffect`, etc.), o parent está em `effect.parent`, não em `options.parent`. | Hooks / Foundry VTT v12+ |

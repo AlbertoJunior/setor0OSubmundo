@@ -4,6 +4,7 @@
 
 | Arquivo | Descrição | Última Atualização |
 | :--- | :--- | :--- |
+| [57-correcao-bug-token-tint-enhancement.md](./57-correcao-bug-token-tint-enhancement.md) | Correção de bug onde efeitos de Enhancement com TINT_TOKEN não pintavam o token — `options.parent` → `effect.parent` no hook createActiveEffect. | 11/06/2026 |
 | [56-anotacoes-enviar-chat.md](./56-anotacoes-enviar-chat.md) | Botão Enviar no Chat no dialog de visualização de anotações (Player e NPC) refatorado para o padrão MessageCreator com template Handlebars. | 10/06/2026 |
 | [55-feature-anotacoes.md](./55-feature-anotacoes.md) | Feature "Anotações" para Player (aba Extras) e NPC (nova aba): data model, dialog, handler, templates e localização. | 10/06/2026 |
 | [54-feature-player-informations.md](./54-feature-player-informations.md) | Feature "Player Informations" no menu Setor 0: listagem de jogadores (online/offline), detalhes com ownership, flags do sistema e outras flags. | 26/05/2026 |

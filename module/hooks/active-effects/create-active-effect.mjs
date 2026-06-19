@@ -29,7 +29,7 @@ export class CreateActiveEffectHookHandle {
       return
     }
 
-    const token = this.#getToken(options);
+    const token = this.#getToken(effect);
     if (!token) {
       console.warn("this object not have a token")
       return;
@@ -49,8 +49,8 @@ export class CreateActiveEffectHookHandle {
     }
   }
 
-  static #getToken(options) {
-    const parent = options.parent;
+  static #getToken(effect) {
+    const parent = effect.parent;
     if (parent instanceof Actor) {
       return TokenUtils.getActorToken(parent);
     }
@@ -59,7 +59,7 @@ export class CreateActiveEffectHookHandle {
       return TokenUtils.getActorDeltaToken(parent);
     }
 
-    if (parent.parent instanceof FoundryApi.TokenDocument) {
+    if (parent?.parent instanceof FoundryApi.TokenDocument) {
       return TokenUtils.getTokenById(parent.parent.id);
     }
 

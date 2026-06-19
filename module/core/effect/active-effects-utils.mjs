@@ -154,9 +154,13 @@ export class ActiveEffectsUtils {
     return map[type] || `<${localize('Erro')}>`;
   }
 
+  /**
+   * Verifica se o ator tem 2+ efeitos que alteram a tint do TOKEN (texture.tint).
+   * Nota: effect.tint é a cor da borda do ícone do efeito (cosmético), NÃO a tint do token.
+   */
   static hasEffectsWithTint(actor) {
     return actor.effects
-      .filter(e => e.changes.some(c => c.key === ActiveEffectsUtils.KEYS.TINT_TOKEN) || e.tint !== null)
+      .filter(e => e.changes.some(c => c.key === ActiveEffectsUtils.KEYS.TINT_TOKEN))
       .length > 1;
   }
 }
