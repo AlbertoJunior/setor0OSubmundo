@@ -4,6 +4,7 @@ import { EffectChangeValueType } from "../enums/enhancement-enums.mjs";
 import { TraitUtils } from "../core/trait/trait-utils.mjs";
 import { localize } from "../utils/utils.mjs";
 import { TraitType } from "../enums/trait-enums.mjs";
+import { FoundryApi } from "../api/foundry-api.mjs";
 
 export class TraitRepository {
   static #goodTrait = [
@@ -631,7 +632,8 @@ export class TraitRepository {
   }
 
   static getItemByTypeAndId(type, traitId) {
-    return this.getItemsByType(type).find(element => element.id == traitId);
+    const item = this.getItemsByType(type).find(element => element.id == traitId);
+    return item ? FoundryApi.deepClone(item) : undefined;
   }
 
   static getBonusOptionsMap() {

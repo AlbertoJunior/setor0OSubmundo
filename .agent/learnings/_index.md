@@ -2,6 +2,7 @@
 
 | Arquivo | Descrição | Contexto |
 | :--- | :--- | :--- |
+| [repository-immutability-deepclone.md](./repository-immutability-deepclone.md) | Padrão defensivo de imutabilidade em repositórios estáticos: `deepClone` em retornos individuais para evitar mutação de estado compartilhado. | Arquitetura / Repositórios |
 | [pattern-system-sockets-v13.md](./pattern-system-sockets-v13.md) | Padrão arquitetural de System Sockets via SocketHandler e injeção assíncrona de Window Controls (`_initializeApplicationOptions`). | Web Sockets / Foundry VTT v13 |
 | [pattern-text-enrichers-listeners.md](./pattern-text-enricher-listeners.md) | Padrão arquitetural de Event Delegation global para listeners de elementos gerados dinamicamente via Text Enrichers (que são convertidos para String no Foundry). | Hooks / UI / Foundry VTT v12+ |
 | [foundry-v14-active-effect-changes-migration.md](./foundry-v14-active-effect-changes-migration.md) | Adaptação para o Breaking Change da propriedade `.changes` de Efeitos Ativos (migrando para `system.changes`) usando detecção em tempo de execução (`game?.release?.generation`). | Hooks / Document Data / Foundry VTT v14 |

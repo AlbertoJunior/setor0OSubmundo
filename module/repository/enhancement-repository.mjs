@@ -46,7 +46,7 @@ export class EnhancementRepository {
     if (enhancementId) {
       const fetchedEnhancement = this.getItems().filter(item => item.id == enhancementId)[0];
       if (fetchedEnhancement) {
-        return fetchedEnhancement;
+        return FoundryApi.deepClone(fetchedEnhancement);
       }
     }
     return undefined;
@@ -66,13 +66,17 @@ export class EnhancementRepository {
     if (!effectId)
       return null;
 
+    let effect = null;
+
     if (enhancementId) {
-      return this.getEnhancementById(enhancementId)?.effects.find(ef => ef.id == effectId) || null;
+      effect = this.getEnhancementById(enhancementId)?.effects.find(ef => ef.id == effectId) || null;
+    } else {
+      effect = this.getItems()
+        .flatMap(enhancement => enhancement.effects)
+        .find(ef => ef.id == effectId) || null;
     }
 
-    return this.getItems()
-      .flatMap(enhancement => enhancement.effects)
-      .find(ef => ef.id == effectId) || null;
+    return effect ? FoundryApi.deepClone(effect) : null;
   }
 
   static getEnhancementFamilyByEffectId(effectId) {

@@ -75,6 +75,7 @@ export class TraitDialog {
 
   static async #mountContent(traits, enableChangeTrait, enableChangeParticularity, trait) {
     const selectedTrait = traits.find(element => element.id == trait?.sourceId);
+    const selectedTraitHaveParticularity = selectedTrait?.particularity != undefined;
 
     const data = {
       title: localize('Traco.Traco'),
@@ -82,7 +83,7 @@ export class TraitDialog {
       isEnabledChangeTrait: enableChangeTrait ? '' : 'disabled',
       particularity: localize('Particularidade'),
       isEnabledChangeParticularity: enableChangeParticularity ? '' : 'disabled',
-      particularityValue: selectedTrait?.particularity || '',
+      particularityValue: selectedTraitHaveParticularity ? trait.particularity : '',
       morph: localize('Morfologia'),
       morphValue: selectedTrait?.morph || '',
       requirement: localize('Requisito'),
@@ -144,7 +145,8 @@ export class TraitDialog {
 
   static #mountTraitObject(html, traits) {
     const traitId = html.querySelector('#trait').value;
-    const objectTrait = this.#findTrait(traits, traitId);
+    const foundTrait = this.#findTrait(traits, traitId);
+    const objectTrait = { ...foundTrait };
     if (objectTrait.particularity != undefined) {
       const particularity = html.querySelector('#particularity').value;
       objectTrait['particularity'] = particularity;

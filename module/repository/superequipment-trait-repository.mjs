@@ -4,6 +4,7 @@ import { SuperEquipmentParticularityType } from "../enums/equipment-enums.mjs";
 import { StandardEffectChangeField } from "../data/field/effect-fields.mjs";
 import { SuperEquipmentTraitField } from "../data/field/equipment-field.mjs";
 import { TraitType } from "../enums/trait-enums.mjs";
+import { FoundryApi } from "../api/foundry-api.mjs";
 
 export class SuperEquipmentTraitRepository {
   static #goodTrait = [
@@ -421,7 +422,8 @@ export class SuperEquipmentTraitRepository {
   }
 
   static getItemByTypeAndId(type, traitId) {
-    return this.getItemsByType(type).find(element => element.id == traitId);
+    const item = this.getItemsByType(type).find(element => element.id == traitId);
+    return item ? FoundryApi.deepClone(item) : undefined;
   }
 
   static getTraitsNeedActivate() {

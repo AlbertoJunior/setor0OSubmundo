@@ -4,6 +4,7 @@
 
 | Arquivo | Descrição | Última Atualização |
 | :--- | :--- | :--- |
+| [58-correcao-mutacao-repositorios.md](./58-correcao-mutacao-repositorios.md) | Correção de bug de mutação de estado compartilhado nos repositórios: `deepClone` nos métodos de busca individual + spread copy no `TraitDialog`. | 19/06/2026 |
 | [57-correcao-bug-token-tint-enhancement.md](./57-correcao-bug-token-tint-enhancement.md) | Correção de bug onde efeitos de Enhancement com TINT_TOKEN não pintavam o token — `options.parent` → `effect.parent` no hook createActiveEffect. | 11/06/2026 |
 | [56-anotacoes-enviar-chat.md](./56-anotacoes-enviar-chat.md) | Botão Enviar no Chat no dialog de visualização de anotações (Player e NPC) refatorado para o padrão MessageCreator com template Handlebars. | 10/06/2026 |
 | [55-feature-anotacoes.md](./55-feature-anotacoes.md) | Feature "Anotações" para Player (aba Extras) e NPC (nova aba): data model, dialog, handler, templates e localização. | 10/06/2026 |
