@@ -43,7 +43,15 @@ export class FoundryApi {
   static ChatMessage = Object.freeze({
     getWhisperRecipients: (recipient) => CurrentVersion.ChatMessage.getWhisperRecipients(recipient),
     getSpeaker: (actor) => {
-      const speaker = CurrentVersion.ChatMessage.getSpeaker({ actor: actor });
+      const alias = actor.isToken ? actor.token.name : actor.name;
+      const speakerOptions = { actor: actor, alias: alias };
+
+      if (actor.isToken) {
+        speakerOptions.token = actor.token;
+      }
+
+      const speaker = CurrentVersion.ChatMessage.getSpeaker(speakerOptions);
+
       if (!speaker.actor && actor._id) {
         speaker.actor = actor._id;
       }

@@ -2,6 +2,7 @@
 
 | Arquivo | Descrição | Contexto |
 | :--- | :--- | :--- |
+| [foundry-chat-message-speaker-alias.md](./foundry-chat-message-speaker-alias.md) | Correção do fallback da API do Foundry que sobrescreve o alias de mensagens de chat pelo nome de tokens controlados no canvas. | Core / ChatMessage / API |
 | [repository-immutability-deepclone.md](./repository-immutability-deepclone.md) | Padrão defensivo de imutabilidade em repositórios estáticos: `deepClone` em retornos individuais para evitar mutação de estado compartilhado. | Arquitetura / Repositórios |
 | [pattern-system-sockets-v13.md](./pattern-system-sockets-v13.md) | Padrão arquitetural de System Sockets via SocketHandler e injeção assíncrona de Window Controls (`_initializeApplicationOptions`). | Web Sockets / Foundry VTT v13 |
 | [pattern-text-enrichers-listeners.md](./pattern-text-enricher-listeners.md) | Padrão arquitetural de Event Delegation global para listeners de elementos gerados dinamicamente via Text Enrichers (que são convertidos para String no Foundry). | Hooks / UI / Foundry VTT v12+ |

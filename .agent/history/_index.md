@@ -4,6 +4,7 @@
 
 | Arquivo | Descrição | Última Atualização |
 | :--- | :--- | :--- |
+| [59-correcao-bug-nome-speaker-chat.md](./59-correcao-bug-nome-speaker-chat.md) | Correção de bug onde o Foundry usava o nome de tokens controlados para preencher o alias de mensagens de chat roladas por outras fichas de Ator. | 03/07/2026 |
 | [58-correcao-mutacao-repositorios.md](./58-correcao-mutacao-repositorios.md) | Correção de bug de mutação de estado compartilhado nos repositórios: `deepClone` nos métodos de busca individual + spread copy no `TraitDialog`. | 19/06/2026 |
 | [57-correcao-bug-token-tint-enhancement.md](./57-correcao-bug-token-tint-enhancement.md) | Correção de bug onde efeitos de Enhancement com TINT_TOKEN não pintavam o token — `options.parent` → `effect.parent` no hook createActiveEffect. | 11/06/2026 |
 | [56-anotacoes-enviar-chat.md](./56-anotacoes-enviar-chat.md) | Botão Enviar no Chat no dialog de visualização de anotações (Player e NPC) refatorado para o padrão MessageCreator com template Handlebars. | 10/06/2026 |

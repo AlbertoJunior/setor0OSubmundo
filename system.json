@@ -19,7 +19,7 @@
   "readme": "README.md",
   "compatibility": {
     "minimum": "12",
-    "verified": "13.346"
+    "verified": "13"
   },
   "esmodules": [
     "setor0OSubmundo.mjs"
@@ -159,7 +159,7 @@
   ],
   "languages": [
     {
-      "lang": "pt-br",
+      "lang": "pt-BR",
       "name": "Português (Brasil)",
       "path": "lang/pt-br.json",
       "system": "setor0OSubmundo"

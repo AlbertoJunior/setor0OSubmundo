@@ -465,7 +465,7 @@ export class TraitRepository {
     },
     {
       id: '66',
-      name: 'Incapaz de acessar a Rede',
+      name: 'Dificuldade de acessar a Rede',
       xp: 4,
       description: 'Sua mente não consegue transpor a barreira da <i>Transferência</i> de consciência para a <i>Rede</i> e, sempre que tentava, acabava por ser um evento traumático. Você não pode acessar a Rede, a menos que seja bem-sucedido num teste de Consciência + Quietude (Dificuldade 8).'
     },
