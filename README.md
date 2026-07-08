@@ -125,7 +125,7 @@ Caso você não possua um servidor para hospedar o Foundry e compartilhar o link
 * ✅ Rolagens considerando as penalidades e todos os bônus.
 
 ### Tokens
-* 🚧 Ocultar efeitos ativos de Tokens inimigos (implementar a classe BasePlaceableHUD).
+* ✅ Ocultar efeitos ativos de Tokens inimigos (implementar a classe BasePlaceableHUD).
 
 ### Compêndio
 * ✅ Carregar compêndio.
@@ -281,6 +281,9 @@ Este é um projeto com direitos reservados.
 Sugestões, correções e contribuições são bem-vindas, mas devem ser discutidas e aprovadas previamente.  
 Se você deseja contribuir, entre em contato pelos canais oficiais ou abra uma issue neste repositório.
 Consulte o arquivo [`CONTRIBUTING`](./CONTRIBUTING.md) para mais detalhes.
+
+> **🤖 Contribuindo com Inteligência Artificial (Agentes)**  
+> Se você utiliza um assistente de IA (como o Gemini, Cline, Cursor, etc.) para analisar o código ou auxiliar no desenvolvimento, recomendamos fortemente baixar o repositório auxiliar de documentação de IA. Basta cloná-lo ou extraí-lo em uma pasta chamada `.agent` na raiz deste projeto. Essa base de conhecimento contém o histórico do sistema, padrões arquiteturais (learnings) e regras do código, fornecendo contexto imediato para que o seu agente entenda exatamente como ele deve operar e siga os nossos padrões!
 
 ---
 ## ⚠️ P.S.
