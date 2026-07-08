@@ -21,6 +21,12 @@ export class TokenUtils {
     }
   }
 
+  static getCanvasActorTokens() {
+    return this.getTokensPlaceables()
+      .map(token => token.actor)
+      .filter(actor => actor != null);
+  }
+
   static getTokenById(tokenId) {
     if (!tokenId) {
       console.warn("tokenId is null");

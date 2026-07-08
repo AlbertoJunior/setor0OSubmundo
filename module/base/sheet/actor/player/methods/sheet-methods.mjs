@@ -14,6 +14,7 @@ import { effectsHandleEvents } from "./effects-methods.mjs";
 import { characteristicOnClick } from "./characteristics-methods.mjs";
 import { handlerSpecialtyEvents } from "./specialty-methods.mjs";
 import { handlerNoteEvents } from "./note-methods.mjs";
+import { maneuverHandleEvents } from "./maneuver-methods.mjs";
 
 export class SheetMethods {
   static handleMethods = {
@@ -60,6 +61,7 @@ export class SheetMethods {
     informants: informantsHandleEvents,
     specialties: handlerSpecialtyEvents,
     notes: handlerNoteEvents,
-    shortcuts: handlerShortcutEvents
+    shortcuts: handlerShortcutEvents,
+    maneuvers: maneuverHandleEvents
   }
 }

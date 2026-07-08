@@ -5,6 +5,7 @@ import { UpdateActorHookHandle } from "./module/hooks/update-actor.mjs";
 import { SceneControlButtonsHookHandle } from "./module/hooks/scene-control-buttons.mjs";
 import { CreateItemHookHandle } from "./module/hooks/item/create-item.mjs";
 import { PreCreateItemHookHandle } from "./module/hooks/item/pre-create-item.mjs";
+import { UpdateItemHookHandle } from "./module/hooks/item/update-item.mjs";
 import { PreCreateSceneHookHandle } from "./module/hooks/pre-create-scene.mjs";
 import { ConfigDefaults } from "./module/setup/config-defaults.mjs";
 import { CreateActiveEffectHookHandle } from "./module/hooks/active-effects/create-active-effect.mjs";
@@ -51,6 +52,10 @@ Hooks.on('preCreateItem', (item, data, options, userId) => {
 
 Hooks.on('createItem', (item) => {
   CreateItemHookHandle.handle(item);
+});
+
+Hooks.on('updateItem', (item, changes, options, userId) => {
+  UpdateItemHookHandle.handle(item, changes, options, userId);
 });
 
 // Combat

@@ -36,6 +36,11 @@
   background-color: var(--tertiary-color-alpha-50);
 }
 
+:is(.S0-dialog, .S0-dialog .S0-container) .S0-weapon-option.S0-marked {
+  border-color: var(--primary-color-alpha-50);
+  box-shadow: 0px 0px 6px 0px var(--primary-color-alpha-50);
+}
+
 .S0-dialog label {
   margin-block: 0.3em;
 }

@@ -7,6 +7,7 @@ import { registerEquipment } from "../base/sheet/equipment/equipment-sheet.mjs";
 import { registerActor } from "../base/sheet/actor/player/actor-sheet.mjs";
 import { registerNpc } from "../base/sheet/actor/npc/npc-sheet.mjs";
 import { registerTrait } from "../base/sheet/trait/trait-sheet.mjs";
+import { registerManeuver } from "../base/sheet/maneuver/maneuver-sheet.mjs";
 import { FoundryApi } from "../api/foundry-api.mjs";
 import { CompendiumSync } from "../core/pack/compendium-sync.mjs";
 import { Setor0TooltipManager } from "../base/ui/Setor0TooltipManager.mjs";
@@ -44,6 +45,7 @@ export class ReadyHookHandle {
     await registerActor();
     await registerNpc();
     await registerTrait();
+    await registerManeuver();
   }
 
   static #effects() {

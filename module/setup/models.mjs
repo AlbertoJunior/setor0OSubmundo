@@ -3,6 +3,7 @@ import { createActorDataModels } from "../data/actor-data-model.mjs";
 import { createEquipmentDataModels } from "../data/equipment-data-model.mjs";
 import { createTraitDataModels } from "../data/trait-data-model.mjs";
 import { createActiveEffectDataModels } from "../data/active-effect-data-model.mjs";
+import { createManeuverDataModels } from "../data/maneuver-data-model.mjs";
 
 export async function createDataModels() {
   const models = [
@@ -10,6 +11,7 @@ export async function createDataModels() {
     { model: "Trait", method: createTraitDataModels() },
     { model: "Equipment", method: createEquipmentDataModels() },
     { model: "ActiveEffect", method: createActiveEffectDataModels() },
+    { model: "Maneuver", method: createManeuverDataModels() },
   ];
 
   const results = await Promise.all(

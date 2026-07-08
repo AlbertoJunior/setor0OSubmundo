@@ -3,6 +3,7 @@ import { actorTemplatesRegister } from "../base/sheet/actor/player/actor-sheet.m
 import { equipmentTemplatesRegister } from "../base/sheet/equipment/equipment-sheet.mjs";
 import { npcTemplatesRegister } from "../base/sheet/actor/npc/npc-sheet.mjs";
 import { traitTemplatesRegister } from "../base/sheet/trait/trait-sheet.mjs";
+import { maneuverTemplatesRegister } from "../base/sheet/maneuver/maneuver-sheet.mjs";
 import { REGISTERED_TEMPLATES, TEMPLATES_PATH } from "../constants.mjs";
 import { FoundryApi } from "../api/foundry-api.mjs";
 
@@ -39,6 +40,7 @@ async function loadAuxiliaryTemplates() {
     { call: "roll-dialog-custom", path: "rolls/roll-dialog-custom" },
     { call: "roll-dialog-simple", path: "rolls/roll-dialog-simple" },
     { call: "roll-dialog-virtue", path: "rolls/roll-dialog-virtue" },
+    { call: "weapon-select-partial", path: "rolls/weapon-select-partial" },
   ];
 
   const loadedAuxiliaryTemplates = await loadAndRegisterTemplates(configTemplates);
@@ -54,6 +56,7 @@ async function loadSheetTemplates() {
     { model: 'Npc', method: npcTemplatesRegister() },
     { model: 'Items', method: equipmentTemplatesRegister() },
     { model: 'Traits', method: traitTemplatesRegister() },
+    { model: 'Maneuvers', method: maneuverTemplatesRegister() },
   ];
 
   const results = await Promise.all(sheetTemplates.map(async (template) => {

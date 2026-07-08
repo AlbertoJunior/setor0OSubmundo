@@ -28,6 +28,7 @@ export async function actorTemplatesRegister() {
     { path: "actors/network", call: 'actorNetwork' },
     { path: "actors/network-partial", call: 'networkPartial' },
     { path: "actors/extras", call: 'actorExtras' },
+    { path: "actors/extras-maneuver-partial", call: 'extrasManeuverPartial' },
   ];
 
   return await loadAndRegisterTemplates(templates);
@@ -64,6 +65,7 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
       shortcuts: SheetMethods.handleMethods.shortcuts,
       allies: SheetMethods.handleMethods.allies,
       informants: SheetMethods.handleMethods.informants,
+      maneuvers: SheetMethods.handleMethods.maneuvers,
       group: SheetMethods.handleMethods.characteristic,
     };
   }
@@ -75,6 +77,7 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
     this.isExpandedShortcuts = undefined;
     this.isExpandedSpecialties = undefined;
     this.isExpandedNotes = undefined;
+    this.isExpandedManeuvers = undefined;
     this.defaultHeight = undefined;
   }
 
@@ -217,11 +220,18 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
       this.#verifyAndExpandContainers(notesContainer, isExpandedNotes, html);
     }
 
+    const isExpandedManeuvers = this.isExpandedManeuvers;
+    const maneuversContainer = html.querySelector(`#maneuvers-container-${this.actor.id}`);
+    if (maneuversContainer) {
+      this.#verifyAndExpandContainers(maneuversContainer, isExpandedManeuvers, html);
+    }
+
     if (!this.defaultHeight ||
       isExpandedEffects === undefined ||
       isExpandedShortcuts === undefined ||
       isExpandedSpecialties === undefined ||
-      isExpandedNotes === undefined) {
+      isExpandedNotes === undefined ||
+      isExpandedManeuvers === undefined) {
       requestAnimationFrame(() => {
         const content = html.parentElement?.parentElement;
         const windowElem = content?.closest(`.${SYSTEM_CLASS_CSS}`);
@@ -231,6 +241,7 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
         this.isExpandedShortcuts = shortcutsContainer?.classList.contains('S0-expanded');
         this.isExpandedSpecialties = specialtiesContainer?.classList.contains('S0-expanded');
         this.isExpandedNotes = notesContainer?.classList.contains('S0-expanded');
+        this.isExpandedManeuvers = maneuversContainer?.classList.contains('S0-expanded');
       });
     }
   }

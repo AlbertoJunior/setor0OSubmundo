@@ -184,7 +184,8 @@
       "Substance": {},
       "Vehicle": {},
       "Trait": {},
-      "Enhancement": {}
+      "Enhancement": {},
+      "Maneuver": {}
     }
   },
   "socket": true,

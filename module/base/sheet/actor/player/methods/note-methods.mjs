@@ -113,16 +113,12 @@ class NoteHandleEvents {
     CreateNoteDialog.view(note, actor);
   }
 
-  /**
-   * Expande ou contrai o container de anotações e inverte o ícone chevron.
-   */
   static #toggleExpand(actor, event) {
     const minHeight = actor.sheet.defaultHeight;
     const container = event.currentTarget.parentElement.parentElement.querySelector(`#notes-container-${actor.id}`);
     if (container) {
       const resultExpand = HtmlJsUtils.expandOrContractElement(container, { minHeight });
       HtmlJsUtils.flipClasses(event.currentTarget.children[0], 'fa-chevron-down', 'fa-chevron-up');
-
       actor.sheet.isExpandedNotes = resultExpand.isExpanded;
     }
   }

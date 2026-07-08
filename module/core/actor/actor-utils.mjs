@@ -5,6 +5,7 @@ import { FlagsUtils } from "../../utils/flags-utils.mjs";
 import { ActiveEffectsUtils } from "../effect/active-effects-utils.mjs";
 import { DEFAULT_VALUES } from "../../constants.mjs";
 import { AbilityRepository } from "../../repository/ability-repository.mjs";
+import { ItemType } from "../../enums/item-type-enums.mjs";
 
 export class ActorUtils {
   static getActor(actorId) {
@@ -309,5 +310,23 @@ export class ActorUtils {
   static getNotes(actor) {
     const notes = getObject(actor, CharacteristicType.NOTES) || [];
     return notes.map((note, index) => ({ ...note, index }));
+  }
+
+  static getManeuvers(actor) {
+    const maneuvers = actor.items.filter(i => i.type === ItemType.MANEUVER);
+    const grouped = {};
+    for (const maneuver of maneuvers) {
+      const skillId = maneuver.system.skill;
+      if (!grouped[skillId]) {
+        const abilityInfo = AbilityRepository.getItem(skillId);
+        grouped[skillId] = {
+          skill: skillId,
+          label: abilityInfo ? localize(abilityInfo.label.replace('S0.', '')) : skillId,
+          items: []
+        };
+      }
+      grouped[skillId].items.push(maneuver);
+    }
+    return Object.values(grouped).sort((a, b) => a.label.localeCompare(b.label));
   }
 }

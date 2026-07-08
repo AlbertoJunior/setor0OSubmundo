@@ -338,7 +338,16 @@
         "Aviso_Desequipar_Itens": "This action will unequip all equipped items",
         "Transferencia_Item": "Item Transfer",
         "Deu_Item": "gave the item",
-        "Para": "to"
+        "Para": "to",
+        "Nao_Pode_Manobras_Iguais": "Cannot have two maneuvers with the same name"
+      },
+      "Tipos": {
+        "Corpo_a_Corpo": "Melee",
+        "Arma_Projecao": "Projectile Weapon",
+        "Armadura": "Armor",
+        "Veiculo": "Vehicle",
+        "Substancia": "Substance",
+        "Acessorio": "Accessory"
       }
     },
     "Virtude": {
@@ -367,7 +376,9 @@
       "Erro": {
         "Ator_Invalido": "Invalid actor.",
         "Efeito_Invalido": "Invalid effect.",
-        "Traco_Invalido": "Invalid or not founded Trait."
+        "Traco_Invalido": "Invalid or not founded Trait.",
+        "Atributos_Iguais": "Attributes cannot be equal.",
+        "Drag_Aceita_Manobras": "This field only accepts Maneuvers."
       }
     },
     "Aprimoramento": {
@@ -417,6 +428,14 @@
       "Outros_Atalhos": "Other Shortcuts",
       "Atalho_Nome": "Precise Attack",
       "Nenhum_Atalho_Adicionado": "No Shortcuts added"
+    },
+    "Manobra": {
+      "Manobra": "Maneuver",
+      "Manobras": "Maneuvers",
+      "Custo_PM": "PM Cost",
+      "Custo_XP": "XP Cost",
+      "Arma_Obrigatoria": "This maneuver can only be performed if you have a weapon equipped.",
+      "Selecione_Arma": "Select a weapon to perform this maneuver."
     },
     "Traco": {
       "Traco": "Trait",
@@ -532,7 +551,13 @@
         "Flag_Error_Empty_Key": "Flag key cannot be empty",
         "Flag_Confirm_Delete": "Are you sure you want to delete this flag?"
       }
-    }
+    },
+    "Generico": {
+      "Somente_Leitura": "Read Only"
+    },
+    "Efeito": "Effect",
+    "Atributo_Primario": "Primary Attribute",
+    "Atributo_Secundario": "Secondary Attribute"
   },
   "TYPES": {
     "Actor": {
@@ -547,7 +572,8 @@
       "Substance": "Substance",
       "Vehicle": "Vehicle",
       "Acessory": "Acessory",
-      "Trait": "Trait"
+      "Trait": "Trait",
+      "Maneuver": "Maneuver"
     }
   }
 }

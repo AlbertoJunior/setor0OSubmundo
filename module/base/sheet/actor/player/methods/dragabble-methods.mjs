@@ -1,4 +1,4 @@
-import { getObject } from "../../../../../utils/utils.mjs";
+import { getObject, localize } from "../../../../../utils/utils.mjs";
 import { ActorEquipmentUtils } from "../../../../../core/actor/actor-equipment-utils.mjs";
 import { ActorUpdater } from "../../../../updater/actor-updater.mjs";
 import { CharacteristicType } from "../../../../../enums/characteristic-enums.mjs"
@@ -6,13 +6,15 @@ import { NotificationsUtils } from "../../../../../creators/message/notification
 import { HtmlJsUtils } from "../../../../../utils/html-js-utils.mjs";
 import { EquipmentUtils } from "../../../../../core/equipment/equipment-utils.mjs";
 import { FoundryApi } from "../../../../../api/foundry-api.mjs";
-import { ChatCreator } from "../../../../../utils/chat-creator.mjs";
-import { TransferEquipmentMessageCreator } from "../../../../../creators/message/transfer-equipment-message.mjs";
+import { ItemType } from "../../../../../enums/item-type-enums.mjs";
+import { SYSTEM_ID } from "../../../../../constants.mjs";
+import { SystemFlags } from "../../../../../enums/flags-enums.mjs";
 
 export class SheetActorDragabbleMethods {
   static async setup(html, actor) {
     this.#setupBagDrag(html, actor);
     this.#setupNetworkDrag(html, actor);
+    this.#setupManeuverDrag(html, actor);
 
     if (!window.Sortable) {
       return;
@@ -28,7 +30,7 @@ export class SheetActorDragabbleMethods {
 
   static #setupBagDrag(html, actor) {
     const containerBag = this.#findUsingActorId(html, 'bag', actor);
-    
+
     HtmlJsUtils.presetAllDragEvents(
       containerBag, actor, (actor, event) => { this.#onDropOnBag(actor, event); }
     );
@@ -44,6 +46,50 @@ export class SheetActorDragabbleMethods {
     HtmlJsUtils.presetAllDragEvents(
       containerInformants, actor, (actor, event) => { this.#onDropOnAlliesInformants(actor, CharacteristicType.INFORMANTS, event); }
     );
+  }
+
+  static #setupManeuverDrag(html, actor) {
+    const containerManeuvers = this.#findUsingActorId(html, 'maneuvers', actor);
+    HtmlJsUtils.presetAllDragEvents(
+      containerManeuvers, actor, (actor, event) => { this.#onDropOnManeuvers(actor, event); }
+    );
+  }
+
+  static async #onDropOnManeuvers(actor, event) {
+    const data = this.#verifyDropAndReturnData(actor, event);
+    if (!data) {
+      return;
+    }
+
+    if (data.type !== "Item") {
+      NotificationsUtils.warning(localize("Aviso.Erro.Drag_Aceita_Manobras"));
+      return;
+    }
+
+    event.preventDefault();
+    if (event.originalEvent) event.originalEvent.preventDefault();
+
+    const item = await FoundryApi.Item.implementation.fromDropData(data);
+    if (!item) {
+      console.warn("-> possível erro ao criar o Item");
+      return;
+    }
+
+    if (item.type !== ItemType.MANEUVER) {
+      NotificationsUtils.warning(localize("Aviso.Erro.Drag_Aceita_Manobras"));
+      return;
+    }
+
+    const itemData = item.toObject();
+    delete itemData._id;
+    itemData.system.isReadOnly = true;
+    itemData.flags = {
+      [SYSTEM_ID]: {
+        [SystemFlags.SOURCE.ID]: item.uuid
+      }
+    };
+
+    await ActorUpdater.addDocuments(actor, [itemData]);
   }
 
   static #setupShortcutDragSortable(html, actor) {

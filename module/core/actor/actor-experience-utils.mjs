@@ -4,6 +4,7 @@ import { MorphologyRepository } from "../../repository/morphology-repository.mjs
 import { TraitRepository } from "../../repository/trait-repository.mjs";
 import { getObject } from "../../utils/utils.mjs";
 import { TraitType } from "../../enums/trait-enums.mjs";
+import { ItemType } from "../../enums/item-type-enums.mjs";
 
 export class ActorExperienceUtils {
   static INITIAL_POINTS = {
@@ -66,7 +67,7 @@ export class ActorExperienceUtils {
     const badTraits = getObject(actor, CharacteristicType.TRAIT.BAD) || [];
 
     // Manobras e outros
-    const maneuvers = getObject(actor, CharacteristicType.MANEUVERS) || [];
+    const maneuvers = actor.items.filter(i => i.type === ItemType.MANEUVER).map(i => i.system);
     const others = getObject(actor, CharacteristicType.OTHERS) || [];
     const specialties = getObject(actor, CharacteristicType.SPECIALTIES) || [];
 
@@ -149,7 +150,7 @@ export class ActorExperienceUtils {
 
     const goodTraitsCost = this._countTraitPoints(data.tracos.bons, TraitType.GOOD);
     const badTraitsCost = this._countTraitPoints(data.tracos.ruins, TraitType.BAD);
-    const maneuversCost = this._countObjectFields(data.manobras, 'experiencia');
+    const maneuversCost = this._countObjectFields(data.manobras, 'experience');
     const othersCost = this._countOthers(data.outros);
 
     // Traits ruins não cobram pontos na totalização (geram pontos na ficha nativa)
