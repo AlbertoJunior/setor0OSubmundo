@@ -1,4 +1,6 @@
 import { getObject, normalizeString } from "../../utils/utils.mjs";
+import { ItemType } from "../../enums/item-type-enums.mjs";
+import { RollManeuver } from "../actor/roll-maneuver.mjs";
 import { shortcutCustomRoll } from "../../base/sheet/actor/player/methods/shortcut-methods.mjs";
 import { rollByItemAndRollId } from "../../base/sheet/equipment/methods/equipment-item-roll-methods.mjs";
 import { SYSTEM_ID } from "../../constants.mjs";
@@ -53,6 +55,12 @@ export class MacroUtils {
           } else {
             NotificationsUtils.info(`O Item [${item.name}] precisa estar equipado`);
           }
+          return;
+        }
+
+        const maneuver = actor.items.get(id);
+        if (maneuver && maneuver.type === ItemType.MANEUVER) {
+          await RollManeuver.roll(actor, maneuver);
           return;
         }
 

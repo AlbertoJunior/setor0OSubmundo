@@ -3,7 +3,11 @@ import { OnEventType } from "../../../../../enums/on-event-type.mjs";
 import { ItemType } from "../../../../../enums/item-type-enums.mjs";
 import { RollManeuver } from "../../../../../core/actor/roll-maneuver.mjs";
 import { HtmlJsUtils } from "../../../../../utils/html-js-utils.mjs";
-import { localize } from "../../../../../utils/utils.mjs";
+import { localize, getObject } from "../../../../../utils/utils.mjs";
+import { ManeuverType } from "../../../../../enums/maneuver-enums.mjs";
+import { ManeuverMessageCreator } from "../../../../../creators/message/maneuver-message.mjs";
+import { ChatCreator } from "../../../../../utils/chat-creator.mjs";
+import { OwnershipUtils } from "../../../../../utils/ownership-utils.mjs";
 
 export const maneuverHandleEvents = {
   [OnEventType.ADD]: async (actor, event) => ManeuverHandleEvents.handleAdd(actor, event),
@@ -11,6 +15,7 @@ export const maneuverHandleEvents = {
   [OnEventType.REMOVE]: async (actor, event) => ManeuverHandleEvents.handleRemove(actor, event),
   [OnEventType.VIEW]: async (actor, event) => ManeuverHandleEvents.handleView(actor, event),
   [OnEventType.ROLL]: async (actor, event) => ManeuverHandleEvents.handleRoll(actor, event),
+  [OnEventType.CHAT]: async (actor, event) => ManeuverHandleEvents.handleChat(actor, event),
 }
 
 class ManeuverHandleEvents {
@@ -28,7 +33,22 @@ class ManeuverHandleEvents {
   static async handleEdit(actor, event) {
     const itemId = event.currentTarget.dataset.itemId;
     const item = actor.items.get(itemId);
-    if (item) item.sheet.render(true);
+    if (!item) return;
+
+    let editable = false;
+    const isManeuverReadOnly = getObject(item, ManeuverType.IS_READ_ONLY) || false;
+
+    if (isManeuverReadOnly) {
+      if (game.user.isGM || OwnershipUtils.canEdit(item)) {
+        editable = true;
+      }
+    } else {
+      if (OwnershipUtils.canEdit(actor)) {
+        editable = true;
+      }
+    }
+
+    item.sheet.render(true, { editable });
   }
 
   static async handleRemove(actor, event) {
@@ -73,5 +93,14 @@ class ManeuverHandleEvents {
     if (item) {
       RollManeuver.roll(actor, item);
     }
+  }
+
+  static async handleChat(actor, event) {
+    const itemId = event.currentTarget.dataset.itemId;
+    const item = actor.items.get(itemId);
+    if (!item) return;
+
+    const messageContent = await ManeuverMessageCreator.mountContent(item);
+    ChatCreator.sendToChat(actor, messageContent);
   }
 }

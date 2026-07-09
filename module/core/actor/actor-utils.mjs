@@ -6,6 +6,7 @@ import { ActiveEffectsUtils } from "../effect/active-effects-utils.mjs";
 import { DEFAULT_VALUES } from "../../constants.mjs";
 import { AbilityRepository } from "../../repository/ability-repository.mjs";
 import { ItemType } from "../../enums/item-type-enums.mjs";
+import { ManeuverType } from "../../enums/maneuver-enums.mjs";
 
 export class ActorUtils {
   static getActor(actorId) {
@@ -316,7 +317,7 @@ export class ActorUtils {
     const maneuvers = actor.items.filter(i => i.type === ItemType.MANEUVER);
     const grouped = {};
     for (const maneuver of maneuvers) {
-      const skillId = maneuver.system.skill;
+      const skillId = getObject(maneuver, ManeuverType.SKILL);
       if (!grouped[skillId]) {
         const abilityInfo = AbilityRepository.getItem(skillId);
         grouped[skillId] = {

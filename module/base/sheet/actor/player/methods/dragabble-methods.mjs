@@ -9,6 +9,8 @@ import { FoundryApi } from "../../../../../api/foundry-api.mjs";
 import { ItemType } from "../../../../../enums/item-type-enums.mjs";
 import { SYSTEM_ID } from "../../../../../constants.mjs";
 import { SystemFlags } from "../../../../../enums/flags-enums.mjs";
+import { TransferEquipmentMessageCreator } from "../../../../../creators/message/transfer-equipment-message.mjs";
+import { ChatCreator } from "../../../../../utils/chat-creator.mjs";
 
 export class SheetActorDragabbleMethods {
   static async setup(html, actor) {
@@ -82,7 +84,9 @@ export class SheetActorDragabbleMethods {
 
     const itemData = item.toObject();
     delete itemData._id;
-    itemData.system.isReadOnly = true;
+
+    FoundryApi.Utils.setProperty(itemData, ManeuverType.IS_READ_ONLY.system, true);
+
     itemData.flags = {
       [SYSTEM_ID]: {
         [SystemFlags.SOURCE.ID]: item.uuid

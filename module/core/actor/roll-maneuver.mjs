@@ -3,18 +3,9 @@ import { NotificationsUtils } from "../../creators/message/notifications.mjs";
 import { localize, getObject } from "../../utils/utils.mjs";
 import { CreateFormDialog } from "../../creators/dialog/create-dialog.mjs";
 import { playerRollHandle } from "../../base/sheet/actor/player/methods/player-roll-methods.mjs";
-import { CharacteristicType } from "../../enums/characteristic-enums.mjs";
-import { ItemType } from "../../enums/item-type-enums.mjs";
 import { ManeuverType } from "../../enums/maneuver-enums.mjs";
-
-/**
- * Mapeamento entre skill id da manobra e o tipo de equipamento que ela exige.
- * Apenas habilidades que demandam arma equipada devem constar aqui.
- */
-const SKILL_WEAPON_MAP = Object.freeze({
-  [CharacteristicType.SKILLS.MELEE.id]: ItemType.MELEE,
-  [CharacteristicType.SKILLS.PROJECTILE.id]: ItemType.PROJECTILE,
-});
+import { EquipmentCharacteristicType } from "../../enums/equipment-enums.mjs";
+import { ManeuverUtils } from "../../utils/maneuver-utils.mjs";
 
 export class RollManeuver {
 
@@ -28,7 +19,7 @@ export class RollManeuver {
    */
   static async roll(actor, maneuver) {
     const skill = getObject(maneuver, ManeuverType.SKILL);
-    const requiredWeaponType = SKILL_WEAPON_MAP[skill];
+    const requiredWeaponType = ManeuverUtils.getRequiredWeaponType(skill);
 
     let availableWeapons = [];
 
@@ -115,8 +106,8 @@ export class RollManeuver {
             const weapon = availableWeapons.find(w => w.id === selectedWeaponId);
             if (weapon) {
               inputParams.weaponName = weapon.name;
-              inputParams.weaponDamage = weapon.system.damage || 0;
-              inputParams.weaponTrueDamage = weapon.system.true_damage || 0;
+              inputParams.weaponDamage = getObject(weapon, EquipmentCharacteristicType.DAMAGE) || 0;
+              inputParams.weaponTrueDamage = getObject(weapon, EquipmentCharacteristicType.TRUE_DAMAGE) || 0;
             }
           }
 

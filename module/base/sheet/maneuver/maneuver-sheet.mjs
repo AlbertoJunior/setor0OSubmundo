@@ -1,4 +1,5 @@
 import { SYSTEM_ID, TEMPLATES_PATH } from "../../../constants.mjs";
+import { RollTestUtils } from "../../../core/rolls/roll-test-utils.mjs";
 import { SocketUtils } from "../../../core/socket/socket-utils.mjs";
 import { FlagsUtils } from "../../../utils/flags-utils.mjs";
 import { FoundryApi } from "../../../api/foundry-api.mjs";
@@ -9,6 +10,7 @@ import { AttributeRepository } from "../../../repository/attribute-repository.mj
 import { AbilityRepository } from "../../../repository/ability-repository.mjs";
 import { ItemType } from "../../../enums/item-type-enums.mjs";
 import { ManeuverUpdater } from "../../updater/maneuver-updater.mjs";
+import { OwnershipUtils } from "../../../utils/ownership-utils.mjs";
 
 export async function maneuverTemplatesRegister() {
   const templates = [
@@ -33,7 +35,20 @@ export class ManeuverSheet extends FoundryApi.ItemSheet {
     width: 400,
     resizable: true,
     classes: ['S0-maneuver-sheet'],
-    actions: SocketUtils.shareDocumentActions
+    actions: [
+      ...SocketUtils.shareDocumentActions,
+      {
+        id: "createMacro",
+        enabled: () => true,
+        icon: "fas fa-code",
+        label: "Criar_Macro",
+        action: async function () {
+          await RollTestUtils.createMacroByRollTestData(this.document, {
+            img: this.document.img
+          });
+        }
+      }
+    ]
   };
 
   get mapEvents() {
@@ -55,7 +70,10 @@ export class ManeuverSheet extends FoundryApi.ItemSheet {
   }
 
   get canEdit() {
-    return game.user.isGM || this.item.getFlag(SYSTEM_ID, SystemFlags.MANAGER.CAN_EDIT);
+    if (this.options.editable === false) return false;
+    return game.user.isGM
+      || OwnershipUtils.canEdit(this.item)
+      || this.item.getFlag(SYSTEM_ID, SystemFlags.MANAGER.CAN_EDIT);
   }
 
   getData() {
