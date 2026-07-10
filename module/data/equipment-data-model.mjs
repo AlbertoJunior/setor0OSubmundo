@@ -3,6 +3,7 @@ import { SuperEquipmentField } from "../data/field/equipment-field.mjs";
 import { StandardEffectField } from "../data/field/effect-fields.mjs";
 import { RollTestField } from "../data/field/roll-test-field.mjs";
 import { ActiveEffectsMigration } from "../migration/migrations/migrate-active-effects.mjs";
+import { ItemType } from "../enums/item-type-enums.mjs";
 
 const { StringField, NumberField, BooleanField, ArrayField } = foundry.data.fields;
 
@@ -141,11 +142,11 @@ class ProjectileDataModel extends WeaponDataModel {
 
 export async function createEquipmentDataModels() {
   Object.assign(CONFIG.Item.dataModels, {
-    Melee: MeleeDataModel,
-    Projectile: ProjectileDataModel,
-    Armor: ArmorDataModel,
-    Vehicle: VehicleDataModel,
-    Substance: SubstanceDataModel,
-    Acessory: AcessoryDataModel,
+    [ItemType.MELEE]: MeleeDataModel,
+    [ItemType.PROJECTILE]: ProjectileDataModel,
+    [ItemType.ARMOR]: ArmorDataModel,
+    [ItemType.VEHICLE]: VehicleDataModel,
+    [ItemType.SUBSTANCE]: SubstanceDataModel,
+    [ItemType.ACESSORY]: AcessoryDataModel,
   });
 }

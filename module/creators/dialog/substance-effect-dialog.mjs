@@ -70,7 +70,7 @@ export class SubstanceEffectDialog {
 
           if (data.selectedEffect === 'custom') {
             if (!data.description?.trim()) {
-              NotificationsUtils.error("Descrição é obrigatória");
+              NotificationsUtils.error(localize("S0.Aviso.Erro.Descricao_Obrigatoria"));
               return;
             }
 

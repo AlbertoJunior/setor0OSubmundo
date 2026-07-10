@@ -74,7 +74,7 @@ export class SuperEquipmentEffectsDialog {
 
           if (selectedTrait === 'custom') {
             if (!description?.trim()) {
-              NotificationsUtils.error('A Descrição é obrigatória');
+              NotificationsUtils.error(localize("S0.Aviso.Erro.Descricao_Obrigatoria"));
               return;
             }
 
@@ -128,7 +128,7 @@ export class SuperEquipmentEffectsDialog {
           const trait = this.#findTrait(listTraits, selectedTrait);
 
           if (!trait) {
-            NotificationsUtils.error('Erro ao selecionar Traço');
+            NotificationsUtils.error(localize("S0.Aviso.Erro.Selecionar_Traco"));
             return;
           }
 
@@ -136,7 +136,7 @@ export class SuperEquipmentEffectsDialog {
           const hasParticularity = particularity?.trim().length > 0;
 
           if (requireParticularity && !hasParticularity) {
-            NotificationsUtils.error('Esse Traço precisa do campo Particularidade preenchido');
+            NotificationsUtils.error(localize("S0.Aviso.Erro.Traco_Particularidade_Preenchida"));
             return;
           }
 

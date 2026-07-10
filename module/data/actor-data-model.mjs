@@ -7,7 +7,7 @@ import { RollTestField } from "../data/field/roll-test-field.mjs";
 import { NpcSkill } from "../data/field/npc-fields.mjs";
 import { NpcQualityRepository } from "../repository/npc-quality-repository.mjs";
 import { getObject } from "../utils/utils.mjs";
-import { BaseActorCharacteristicType } from "../enums/characteristic-enums.mjs";
+import { BaseActorCharacteristicType, ActorType } from "../enums/characteristic-enums.mjs";
 import { NpcUtils } from "../core/npc/npc-utils.mjs";
 import { MorphologyRepository } from "../repository/morphology-repository.mjs";
 import { DistrictRepository } from "../repository/district-repository.mjs";
@@ -210,18 +210,18 @@ export async function createActorDataModels() {
   ];
 
   CONFIG.Actor.trackableAttributes = {
-    Player: {
+    [ActorType.PLAYER]: {
       bar: commonBars,
       value: [...commonValues, "sobrecarga"]
     },
-    NPC: {
+    [ActorType.NPC]: {
       bar: commonBars,
       value: commonValues
     }
   };
 
   Object.assign(CONFIG.Actor.dataModels, {
-    Player: PlayerDataModel,
-    NPC: NPCDataModel
+    [ActorType.PLAYER]: PlayerDataModel,
+    [ActorType.NPC]: NPCDataModel
   });
 }

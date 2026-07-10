@@ -333,6 +333,7 @@
       },
       "Mensagens": {
         "Nenhum_item_adicionado": "No items added, attractive and drop to add",
+        "Nenhum_item_equipado": "No items equipped, drag and drop from the backpack to equip",
         "Nao_Pode_Efeitos_Iguais": "Cannot have duplicate effects",
         "Aviso_Remocao_Itens_Mochila": "This action will remove all items from the backpack",
         "Aviso_Desequipar_Itens": "This action will unequip all equipped items",
@@ -378,7 +379,19 @@
         "Efeito_Invalido": "Invalid effect.",
         "Traco_Invalido": "Invalid or not founded Trait.",
         "Atributos_Iguais": "Attributes cannot be equal.",
-        "Drag_Aceita_Manobras": "This field only accepts Maneuvers."
+        "Drag_Aceita_Manobras": "This field only accepts Maneuvers.",
+        "Sem_Permissao": "You don't have permission to execute this with this character.",
+        "Executar_Teste": "Error executing roll",
+        "Exibir_Arte_Token": "Error displaying Token art",
+        "Item_Nao_Equipavel": "This item cannot be equipped",
+        "Drag_Aceita_Equipamentos": "This field only accepts Equipments",
+        "Drag_Aceita_Personagens": "This field only accepts Characters",
+        "Nao_Pode_Adicionar_Personagem": "Could not add this Character.",
+        "Personagem_Proprio_Aliado": "The character cannot add itself as an Ally or Informant.",
+        "Descricao_Obrigatoria": "Description is mandatory",
+        "Selecionar_Traco": "Error selecting Trait",
+        "Traco_Particularidade_Preenchida": "This Trait requires the Particularity field to be filled",
+        "Tipo_Invalido": "Invalid type"
       }
     },
     "Aprimoramento": {

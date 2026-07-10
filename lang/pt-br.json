@@ -347,6 +347,7 @@
       },
       "Mensagens": {
         "Nenhum_item_adicionado": "Nenhum item adicionado, arraste e solte para adicionar",
+        "Nenhum_item_equipado": "Nenhum item equipado, arraste e solte da mochila para equipar",
         "Nao_Pode_Efeitos_Iguais": "Não pode ter dois efeitos iguais",
         "Nao_Pode_Manobras_Iguais": "Não pode ter duas manobras com o mesmo nome",
         "Aviso_Remocao_Itens_Mochila": "Essa ação irá remover todos os itens da mochila",
@@ -455,7 +456,19 @@
         "Efeito_Invalido": "Efeito inválido.",
         "Traco_Invalido": "Traço inválido ou não encontrado.",
         "Atributos_Iguais": "Atributos não podem ser iguais.",
-        "Drag_Aceita_Manobras": "Este campo só aceita Manobras"
+        "Drag_Aceita_Manobras": "Este campo só aceita Manobras",
+        "Sem_Permissao": "Você não tem permissão para executar isso com esse personagem.",
+        "Executar_Teste": "Erro ao executar o teste",
+        "Exibir_Arte_Token": "Erro ao exibir arte do Token",
+        "Item_Nao_Equipavel": "Este Item não pode ser equipado",
+        "Drag_Aceita_Equipamentos": "Este campo só aceita Equipamentos",
+        "Drag_Aceita_Personagens": "Este campo só aceita Personagens",
+        "Nao_Pode_Adicionar_Personagem": "Não foi possível adicionar este Personagem.",
+        "Personagem_Proprio_Aliado": "O personagem não pode se adicionar como Aliado ou Informante.",
+        "Descricao_Obrigatoria": "Descrição é obrigatória",
+        "Selecionar_Traco": "Erro ao selecionar Traço",
+        "Traco_Particularidade_Preenchida": "Esse Traço precisa do campo Particularidade preenchido",
+        "Tipo_Invalido": "Tipo inválido"
       }
     },
     "CONTROL": {

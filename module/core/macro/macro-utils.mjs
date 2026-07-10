@@ -1,4 +1,4 @@
-import { getObject, normalizeString } from "../../utils/utils.mjs";
+import { getObject, normalizeString, localize } from "../../utils/utils.mjs";
 import { ItemType } from "../../enums/item-type-enums.mjs";
 import { RollManeuver } from "../actor/roll-maneuver.mjs";
 import { shortcutCustomRoll } from "../../base/sheet/actor/player/methods/shortcut-methods.mjs";
@@ -40,7 +40,7 @@ export class MacroUtils {
         }
 
         if (!actor?.sheet.canRollOrEdit) {
-          NotificationsUtils.warning('Você não tem permissão para executar isso com esse personagem.');
+          NotificationsUtils.warning(localize("S0.Aviso.Erro.Sem_Permissao"));
           return
         }
 
@@ -70,7 +70,7 @@ export class MacroUtils {
           return;
         }
 
-        NotificationsUtils.warning('Erro ao executar o teste');
+        NotificationsUtils.warning(localize("S0.Aviso.Erro.Executar_Teste"));
       }
     },
     exportCompendium: async () => {

@@ -3,7 +3,7 @@ import { getObject, selectCharacteristic } from "../../../../utils/utils.mjs";
 import { SheetMethods } from "./methods/sheet-methods.mjs";
 import { selectLevelOnOptions, updateEnhancementLevelsOptions } from "./methods/enhancement-methods.mjs";
 import { EquipmentType } from "../../../../enums/equipment-enums.mjs";
-import { CharacteristicType } from "../../../../enums/characteristic-enums.mjs";
+import { CharacteristicType, ActorType } from "../../../../enums/characteristic-enums.mjs";
 import { HtmlJsUtils } from "../../../../utils/html-js-utils.mjs";
 import { loadAndRegisterTemplates } from "../../../../setup/templates.mjs";
 import { SYSTEM_CLASS_CSS, SYSTEM_ID, TEMPLATES_PATH } from "../../../../constants.mjs";
@@ -19,6 +19,9 @@ export async function actorTemplatesRegister() {
     { path: "actors/biography", call: 'actorBiography' },
     { path: "actors/biography-trait-partial", call: 'traitPartialContainer' },
     { path: "actors/status", call: 'actorStatus' },
+    { path: "actors/status-basic-partial", call: 'statusBasicPartial' },
+    { path: "actors/status-virtues-partial", call: 'statusVirtuesPartial' },
+    { path: "actors/status-health-partial", call: 'statusHealthPartial' },
     { path: "actors/status-overload", call: 'actorOverload' },
     { path: "actors/enhancement", call: 'actorEnhancement' },
     { path: "actors/enhancement-partial", call: 'enhancementPartial' },
@@ -28,6 +31,9 @@ export async function actorTemplatesRegister() {
     { path: "actors/network", call: 'actorNetwork' },
     { path: "actors/network-partial", call: 'networkPartial' },
     { path: "actors/extras", call: 'actorExtras' },
+    { path: "actors/extras-experience-partial", call: 'extrasExperiencePartial' },
+    { path: "actors/extras-specialties-partial", call: 'extrasSpecialtiesPartial' },
+    { path: "actors/extras-notes-partial", call: 'extrasNotesPartial' },
     { path: "actors/extras-maneuver-partial", call: 'extrasManeuverPartial' },
   ];
 
@@ -36,7 +42,7 @@ export async function actorTemplatesRegister() {
 
 export async function registerActor() {
   await FoundryApi.Actors.registerSheet(SYSTEM_ID, Setor0ActorSheet, {
-    types: ["Player"],
+    types: [ActorType.PLAYER],
     makeDefault: true
   });
 }

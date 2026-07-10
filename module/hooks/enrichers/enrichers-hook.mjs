@@ -1,6 +1,7 @@
 import { TraitRepository } from "../../repository/trait-repository.mjs";
 import { TraitDialog } from "../../creators/dialog/trait-dialog.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
+import { ItemType } from "../../enums/item-type-enums.mjs";
 
 export class EnrichersHookHandle {
   static handle() {
@@ -30,7 +31,7 @@ export class EnrichersHookHandle {
       a.innerHTML = `<i class="fas fa-bookmark"></i> ${displayName}`;
 
       if (trait) {
-        a.dataset.customLink = "Trait";
+        a.dataset.customLink = ItemType.TRAIT;
         a.dataset.id = trait.id;
         a.dataset.type = trait.type;
       } else {
@@ -50,7 +51,7 @@ export class EnrichersHookHandle {
 
     const customLinkType = a.dataset.customLink;
 
-    if (customLinkType === "Trait") {
+    if (customLinkType === ItemType.TRAIT) {
       event.preventDefault();
       event.stopPropagation();
 

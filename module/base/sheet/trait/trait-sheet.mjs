@@ -9,6 +9,7 @@ import { localize } from "../../../utils/utils.mjs";
 import { TraitUpdater } from "../../updater/trait-updater.mjs";
 import { SystemFlags } from "../../../enums/flags-enums.mjs";
 import { TraitType } from "../../../enums/trait-enums.mjs";
+import { ItemType } from "../../../enums/item-type-enums.mjs";
 
 export async function traitTemplatesRegister() {
   const templates = [
@@ -20,7 +21,7 @@ export async function traitTemplatesRegister() {
 
 export async function registerTrait() {
   await FoundryApi.Items.registerSheet(SYSTEM_ID, TraitSheet, {
-    types: ["Trait"],
+    types: [ItemType.TRAIT],
     makeDefault: true
   });
 }

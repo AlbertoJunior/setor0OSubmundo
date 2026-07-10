@@ -1,0 +1,21 @@
+<ul class="S0-ul-flex">
+  <li class="S0-container">
+    <h3>{{ localize 'S0.Movimento'}}</h3>
+    <h4 class="S0-m-0">{{actorValues actor 'pm'}}</h4>
+  </li>
+  <li class="S0-container">
+    <h3>
+      {{ localize 'S0.Iniciativa'}}
+      {{#if canEdit}}
+      <a class="S0-icon-rotate" data-action="roll" data-characteristic="temporary" data-type="initiative">
+        <i class="fas fa-dice-d10"></i>
+      </a>
+      {{/if}}
+    </h3>
+    <h4 class="S0-m-0">{{actorValues actor 'initiative'}}</h4>
+  </li>
+  <li class="S0-container">
+    <h3>{{ localize 'S0.Penalidade'}}</h3>
+    <h4 class="S0-m-0">{{actorValues actor 'penalty'}}</h4>
+  </li>
+</ul>

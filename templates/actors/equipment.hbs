@@ -31,9 +31,15 @@
     <hr>
 
     <ul id="equipped-{{actor.id}}" class="S0-container-5-column S0-drop-container S0-row-gap-10">
+      {{#if (operators 'isEmpty' (actorLists actor 'equipment_equipped'))}}
+      <li class="S0-label-drop-container">
+        {{localize 'S0.Itens.Mensagens.Nenhum_item_equipado'}}
+      </li>
+      {{else}}
       {{#each (actorLists actor 'equipment_equipped') as |item|}}
       <li>{{> equipamentEquippedItem item }}</li>
       {{/each}}
+      {{/if}}
     </ul>
   </div>
 

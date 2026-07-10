@@ -1,7 +1,7 @@
 import { getObject, onArrayRemove } from "../../../../../utils/utils.mjs";
 import { NpcConversor } from "../../../../../core/npc/npc-conversor.mjs";
 import { NpcDialog } from "../../../../../creators/dialog/npc-dialog.mjs";
-import { CharacteristicType } from "../../../../../enums/characteristic-enums.mjs";
+import { CharacteristicType, ActorType } from "../../../../../enums/characteristic-enums.mjs";
 import { OnEventType } from "../../../../../enums/on-event-type.mjs";
 import { ActorUpdater } from "../../../../updater/actor-updater.mjs";
 import { ActorUtils } from "../../../../../core/actor/actor-utils.mjs";
@@ -31,7 +31,7 @@ class NetworkHandleEvents {
       return;
     }
 
-    if (fetchedActor.type == "Player") {
+    if (fetchedActor.type == ActorType.PLAYER) {
       const npcFromActor = NpcConversor.actorToNpc(fetchedActor);
       NpcDialog.open(npcFromActor);
     } else {

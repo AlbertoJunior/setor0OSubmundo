@@ -2,7 +2,7 @@ import { Setor0BaseActorSheet } from "../BaseActorSheet.mjs";
 import { SocketUtils } from "../../../../core/socket/socket-utils.mjs";
 import { selectCharacteristic } from "../../../../utils/utils.mjs";
 import { SYSTEM_ID, TEMPLATES_PATH } from "../../../../constants.mjs";
-import { BaseActorCharacteristicType, CharacteristicType } from "../../../../enums/characteristic-enums.mjs";
+import { BaseActorCharacteristicType, CharacteristicType, ActorType } from "../../../../enums/characteristic-enums.mjs";
 import { OnEventType } from "../../../../enums/on-event-type.mjs";
 import { DialogUtils } from "../../../../utils/dialog-utils.mjs";
 import { loadAndRegisterTemplates } from "../../../../setup/templates.mjs";
@@ -30,7 +30,7 @@ export async function npcTemplatesRegister() {
 
 export async function registerNpc() {
   await FoundryApi.Actors.registerSheet(SYSTEM_ID, Setor0NpcSheet, {
-    types: ["NPC"],
+    types: [ActorType.NPC],
     makeDefault: true
   });
 }

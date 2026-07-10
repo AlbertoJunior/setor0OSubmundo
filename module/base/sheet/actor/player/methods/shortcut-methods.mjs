@@ -54,7 +54,7 @@ class ShortcutHandleEvents {
   static async handleAdd(actor, event) {
     const onConfirm = async (rollable) => {
       if (!rollable.name) {
-        NotificationsUtils.error("O Teste precisa de um nome");
+        NotificationsUtils.error(localize("S0.Aviso.Teste.Erro_Sem_Nome"));
         return;
       }
 
@@ -73,7 +73,7 @@ class ShortcutHandleEvents {
 
     const onConfirm = async (rollable) => {
       if (!rollable.name) {
-        NotificationsUtils.error("O Teste precisa de um nome");
+        NotificationsUtils.error(localize("S0.Aviso.Teste.Erro_Sem_Nome"));
         return;
       }
 
@@ -131,13 +131,13 @@ class ShortcutHandleEvents {
 
           const presetMap = isOffensive ? this.#presetsCombatOffensiveShortcuts : this.#presetsCombatDefensiveShortcuts;
           if (!presetMap) {
-            NotificationsUtils.error('Tipo inválido');
+            NotificationsUtils.error(localize("S0.Aviso.Erro.Tipo_Invalido"));
             return;
           }
 
           const key = Object.keys(presetMap).find(presetKey => type.includes(presetKey));
           if (!key) {
-            NotificationsUtils.error('Tipo inválido');
+            NotificationsUtils.error(localize("S0.Aviso.Erro.Tipo_Invalido"));
             return;
           }
 

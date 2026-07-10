@@ -102,6 +102,10 @@ export class SheetActorDragabbleMethods {
       return;
     }
 
+    containerShortcut.addEventListener('change', (event) => {
+      if (event.target === event.currentTarget) event.stopPropagation();
+    });
+
     window.Sortable.create(containerShortcut, {
       animation: 150,
       handle: ".draggable",
@@ -131,6 +135,12 @@ export class SheetActorDragabbleMethods {
     if (!equippedList || !bagList) {
       return;
     }
+
+    const stopSortableChange = (event) => {
+      if (event.target === event.currentTarget) event.stopPropagation();
+    };
+    equippedList.addEventListener('change', stopSortableChange);
+    bagList.addEventListener('change', stopSortableChange);
 
     const sortableOptions = {
       group: {
@@ -261,7 +271,7 @@ export class SheetActorDragabbleMethods {
       if (EquipmentUtils.canEquip(equipment)) {
         await ActorEquipmentUtils.equip(actor, equipment);
       } else {
-        NotificationsUtils.warning("Este Item não pode ser equipado");
+        NotificationsUtils.warning(localize("Aviso.Erro.Item_Nao_Equipavel"));
         actor.sheet.render();
       }
     } else if (originSource == 'equipped') {
@@ -292,7 +302,7 @@ export class SheetActorDragabbleMethods {
     }
 
     if (data.type !== "Item") {
-      NotificationsUtils.warning("Este campo só aceita Equipamentos");
+      NotificationsUtils.warning(localize("Aviso.Erro.Drag_Aceita_Equipamentos"));
       return;
     }
 
@@ -319,19 +329,19 @@ export class SheetActorDragabbleMethods {
     if (event.originalEvent) event.originalEvent.preventDefault();
 
     if (data.type !== "Actor") {
-      NotificationsUtils.warning("Este campo só aceita Personagens");
+      NotificationsUtils.warning(localize("Aviso.Erro.Drag_Aceita_Personagens"));
       return;
     }
 
     const actorCreated = await FoundryApi.Actor.implementation.fromDropData(data);
     if (!actorCreated || !characteristic) {
       console.warn("-> possível erro ao criar o Actor ou na Characteristic");
-      NotificationsUtils.warning("Não foi possível adicionar este Personagem.");
+      NotificationsUtils.warning(localize("Aviso.Erro.Nao_Pode_Adicionar_Personagem"));
       return;
     }
 
     if (actorCreated.id == actor.id) {
-      NotificationsUtils.error("O personagem não pode se adicionar como Aliado ou Informante.")
+      NotificationsUtils.error(localize("Aviso.Erro.Personagem_Proprio_Aliado"));
       return;
     }
 

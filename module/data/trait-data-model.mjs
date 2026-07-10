@@ -1,4 +1,5 @@
 import { StandardEffectChangeField } from "../data/field/effect-fields.mjs";
+import { ItemType } from "../enums/item-type-enums.mjs";
 import { TraitType } from "../enums/trait-enums.mjs";
 
 const { NumberField, StringField, BooleanField, ArrayField } = foundry.data.fields;
@@ -19,6 +20,6 @@ class TraitDataModel extends foundry.abstract.TypeDataModel {
 
 export async function createTraitDataModels() {
   Object.assign(CONFIG.Item.dataModels, {
-    Trait: TraitDataModel
+    [ItemType.TRAIT]: TraitDataModel
   });
 }

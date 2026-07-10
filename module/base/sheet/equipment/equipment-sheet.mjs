@@ -11,6 +11,7 @@ import { handlerEquipmentMenuRollEvents } from "./methods/equipment-menu-roll-me
 import { handlerSuperEquipmentEvents } from "./methods/superequipment-methods.mjs";
 import { EquipmentUpdater } from "../../updater/equipment-updater.mjs";
 import { SystemFlags } from "../../../enums/flags-enums.mjs";
+import { ItemType } from "../../../enums/item-type-enums.mjs";
 
 export async function equipmentTemplatesRegister() {
   const templates = [
@@ -35,7 +36,7 @@ export async function equipmentTemplatesRegister() {
 
 export async function registerEquipment() {
   await FoundryApi.Items.registerSheet(SYSTEM_ID, EquipmentSheet, {
-    types: ["Melee", "Projectile", "Armor", "Vehicle", "Substance", "Acessory"],
+    types: [ItemType.MELEE, ItemType.PROJECTILE, ItemType.ARMOR, ItemType.VEHICLE, ItemType.SUBSTANCE, ItemType.ACESSORY],
     makeDefault: true
   });
 }
