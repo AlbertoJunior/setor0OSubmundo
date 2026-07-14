@@ -19,6 +19,9 @@ export class ManeuverMessageCreator {
       formattedWeaponRequirement = localize("Itens.Tipos.Arma_Projecao");
     }
 
+    const useDamageWeapon = getObject(item, ManeuverType.USE_DAMAGE_WEAPON) ?? false;
+    const formattedUseDamageWeapon = useDamageWeapon ? localize('Sim') : localize('Nao');
+
     const data = {
       name: item.name,
       formattedPrimaryAttribute: primaryAttr ? localize(`Atributos.${toKeyLang(primaryAttr)}`) : '',
@@ -31,7 +34,9 @@ export class ManeuverMessageCreator {
       experience: getObject(item, ManeuverType.EXPERIENCE) || 0,
       damage: getObject(item, ManeuverType.DAMAGE) || 0,
       automatic_damage: getObject(item, ManeuverType.AUTOMATIC_DAMAGE) || 0,
+      formattedUseDamageWeapon,
       description: getObject(item, ManeuverType.DESCRIPTION) || '',
+      itemUuid: item.uuid
     };
     return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/messages/maneuvers/maneuver.hbs`, data);
   }

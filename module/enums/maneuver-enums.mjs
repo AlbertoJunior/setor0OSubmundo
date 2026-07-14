@@ -9,6 +9,7 @@ export const ManeuverType = Object.freeze({
   EXPERIENCE: { id: 'experience', system: 'system.experience', label: 'S0.Manobra.Custo_XP' },
   DAMAGE: { id: 'damage', system: 'system.damage', label: 'S0.Dano' },
   AUTOMATIC_DAMAGE: { id: 'automatic_damage', system: 'system.automatic_damage', label: 'S0.Dano_Automatico' },
+  USE_DAMAGE_WEAPON: { id: 'useDamageWeapon', system: 'system.useDamageWeapon', label: 'S0.Manobra.Usa_Dano_Arma' },
   DESCRIPTION: { id: 'description', system: 'system.description', label: 'S0.Descricao' },
   IS_READ_ONLY: { id: 'isReadOnly', system: 'system.isReadOnly', label: 'S0.Generico.Somente_Leitura' },
 });

@@ -57,7 +57,7 @@ export class PreCreateItemHookHandle {
   static #handleManeuverCreation(item, data) {
     const existing = item.actor.items.find(i => i.type === ItemType.MANEUVER && i.name === item.name);
     if (existing) {
-      NotificationsUtils.warning(localize('S0.Itens.Mensagens.Nao_Pode_Manobras_Iguais'));
+      NotificationsUtils.warning(localize('Itens.Mensagens.Nao_Pode_Manobras_Iguais'));
       return false;
     }
 

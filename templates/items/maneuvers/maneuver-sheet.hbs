@@ -79,6 +79,12 @@
       <label class="S0-block" for="{{item.id}}.automatic_damage">{{localize 'S0.Automatico'}}:</label>
       <input id="{{item.id}}.automatic_damage" type="number" name="system.automatic_damage"
         value="{{maneuverValues item 'automatic_damage'}}" min="0" {{#unless canEdit}}disabled{{/unless}} />
+
+      <label class="S0-block" for="{{item.id}}.useDamageWeapon">{{localize 'S0.Manobra.Usa_Dano_Arma'}}:</label>
+      <div class="S0-flex S0-justify-center S0-items-center">
+        <input id="{{item.id}}.useDamageWeapon" type="checkbox" name="system.useDamageWeapon" {{checked (maneuverValues
+          item 'useDamageWeapon' )}} {{#unless canEdit}}disabled{{/unless}}>
+      </div>
     </div>
   </div>
 

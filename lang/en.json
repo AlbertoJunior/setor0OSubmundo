@@ -9,6 +9,8 @@
     "Erro": "Error",
     "Usar": "Use",
     "Confirmar": "Confirm",
+    "Sim": "Yes",
+    "Nao": "No",
     "Cancelar": "Cancel",
     "Criar_Customizado": "Create Custom",
     "Opcional": "Optional",
@@ -448,6 +450,7 @@
       "Custo_PM": "PM Cost",
       "Custo_XP": "XP Cost",
       "Exige_Arma": "Requires Weapon",
+      "Usa_Dano_Arma": "Uses Weapon Damage",
       "Arma_Obrigatoria": "This maneuver can only be performed if you have a weapon equipped.",
       "Selecione_Arma": "Select a weapon to perform this maneuver."
     },

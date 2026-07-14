@@ -15,11 +15,18 @@
   {{#if automatic_damage}}
   <label class="S0-block"><strong>{{localize 'S0.Dano_Automatico'}}:</strong> {{automatic_damage}}</label>
   {{/if}}
+  <label class="S0-block"><strong>{{localize 'S0.Manobra.Usa_Dano_Arma'}}:</strong> {{formattedUseDamageWeapon}}</label>
 
   {{#if description}}
   <label class="S0-block S0-font-bold">{{localize 'S0.Descricao'}}:</label>
   <div class="S0-message-simple-text">
     {{{description}}}
   </div>
+  {{/if}}
+
+  {{#if itemUuid}}
+  <button class="S0-roll-result" data-action="view" data-type="open-sheet" data-uuid="{{itemUuid}}">
+    <i class="fas fa-file-lines"></i> {{localize 'S0.Ficha'}}
+  </button>
   {{/if}}
 </div>

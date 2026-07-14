@@ -71,6 +71,18 @@
 
   <hr>
 
+  {{#if maneuver}}
+  <div class="S0-container S0-mb-4">
+    <h4 class="S0-my-2">{{localize 'S0.Manobra.Manobra'}}: {{maneuver.name}}</h4>
+    <div class="S0-flex S0-flex-col S0-gap-1">
+      <div id="maneuver-damage-info">{{localize 'S0.Dano'}}: {{maneuver.damage}}{{#if maneuver.useDamageWeapon}} + <span class="weapon-value">{{localize 'S0.Arma'}}</span>{{/if}}</div>
+      <div id="maneuver-automatic-info">{{localize 'S0.Automatico'}}: {{maneuver.automaticDamage}}{{#if maneuver.useDamageWeapon}} + <span class="weapon-value">{{localize 'S0.Arma'}}</span>{{/if}}</div>
+      <div>{{localize 'S0.Manobra.Usa_Dano_Arma'}}: {{#if maneuver.useDamageWeapon}}{{localize 'S0.Sim'}}{{else}}{{localize 'S0.Nao'}}{{/if}}</div>
+    </div>
+  </div>
+  <hr>
+  {{/if}}
+
   {{#if needsWeapon}}
   {{> weapon-select-partial}}
   {{/if}}

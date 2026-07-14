@@ -17,6 +17,7 @@ export class ManeuverDataModel extends foundry.abstract.TypeDataModel {
       experience: new NumberField({ required: true, nullable: false, initial: 0, min: 0, label: "S0.Manobra.Custo_XP" }),
       damage: new NumberField({ required: true, nullable: false, initial: 0, label: "S0.Dano" }),
       automatic_damage: new NumberField({ integer: true, initial: 0, label: "S0.Dano_Automatico" }),
+      useDamageWeapon: new BooleanField({ required: true, nullable: false, initial: false, label: "S0.Manobra.Usa_Dano_Arma" }),
       isReadOnly: new BooleanField({ required: true, nullable: false, initial: false, label: "S0.Generico.Somente_Leitura" }),
     };
   }

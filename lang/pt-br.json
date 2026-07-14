@@ -12,6 +12,8 @@
     "Erro": "Erro",
     "Usar": "Usar",
     "Confirmar": "Confirmar",
+    "Sim": "Sim",
+    "Nao": "Não",
     "Cancelar": "Cancelar",
     "Criar_Customizado": "Criar Customizado",
     "Opcional": "Opcional",
@@ -411,6 +413,7 @@
       "Custo_PM": "Custo de PM",
       "Custo_XP": "Custo de XP",
       "Exige_Arma": "Exige Arma",
+      "Usa_Dano_Arma": "Usa Dano da Arma",
       "Arma_Obrigatoria": "Esta manobra só pode ser realizada se estiver com uma arma equipada.",
       "Selecione_Arma": "Selecione uma arma para realizar esta manobra."
     },

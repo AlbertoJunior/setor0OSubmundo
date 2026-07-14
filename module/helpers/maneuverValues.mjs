@@ -12,6 +12,7 @@ const map = {
   'experience': (item) => getObject(item, ManeuverType.EXPERIENCE) || 0,
   'damage': (item) => getObject(item, ManeuverType.DAMAGE) || 0,
   'automatic_damage': (item) => getObject(item, ManeuverType.AUTOMATIC_DAMAGE) || 0,
+  'useDamageWeapon': (item) => getObject(item, ManeuverType.USE_DAMAGE_WEAPON) ?? false,
   'description': (item) => getObject(item, ManeuverType.DESCRIPTION) || '',
   'isReadOnly': (item) => getObject(item, ManeuverType.IS_READ_ONLY) || false,
 };
