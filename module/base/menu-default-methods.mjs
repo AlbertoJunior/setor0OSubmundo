@@ -49,7 +49,7 @@ export const menuHandleMethods = {
           return;
         }
 
-        NotificationsUtils.error(localize("S0.Aviso.Erro.Exibir_Arte_Token"));
+        NotificationsUtils.error(localize("Aviso.Erro.Exibir_Arte_Token"));
         return;
       }
     }

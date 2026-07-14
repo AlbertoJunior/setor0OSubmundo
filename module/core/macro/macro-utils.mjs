@@ -40,7 +40,7 @@ export class MacroUtils {
         }
 
         if (!actor?.sheet.canRollOrEdit) {
-          NotificationsUtils.warning(localize("S0.Aviso.Erro.Sem_Permissao"));
+          NotificationsUtils.warning(localize("Aviso.Erro.Sem_Permissao"));
           return
         }
 
@@ -70,7 +70,7 @@ export class MacroUtils {
           return;
         }
 
-        NotificationsUtils.warning(localize("S0.Aviso.Erro.Executar_Teste"));
+        NotificationsUtils.warning(localize("Aviso.Erro.Executar_Teste"));
       }
     },
     exportCompendium: async () => {
