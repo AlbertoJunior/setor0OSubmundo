@@ -98,60 +98,9 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
   }
 
   #presetSheet(html) {
-    const actor = this.actor;
-    [
-      {
-        container: html.querySelector('#atributosContainer'),
-        systemCharacteristic: getObject(actor, CharacteristicType.ATTRIBUTES)
-      },
-      {
-        container: html.querySelector('#repertorioContainer'),
-        systemCharacteristic: getObject(actor, CharacteristicType.REPERTORY)
-      },
-      {
-        container: html.querySelector('#skillsContainer'),
-        systemCharacteristic: getObject(actor, CharacteristicType.SKILLS)
-      },
-      {
-        container: html.querySelector('#fameContainer'),
-        systemCharacteristic: getObject(actor, CharacteristicType.SIMPLE)
-      }
-    ].forEach(({ container, systemCharacteristic }) => {
-      let hasNext = container?.firstElementChild;
-      while (hasNext) {
-        const children = hasNext.querySelectorAll('.S0-characteristic');
-        const level = systemCharacteristic[hasNext.id];
-        selectCharacteristic(children[Math.min(level - 1, children.length - 1)]);
-        hasNext = hasNext.nextElementSibling;
-      }
-    });
-
-    const virtueContainer = html.querySelector('#virtudesContainer');
-    let virtueElementChild = virtueContainer.firstElementChild;
-    while (virtueElementChild) {
-      const virtueLevel = ActorUtils.getVirtueLevel(actor, virtueElementChild.id);
-      selectCharacteristic(virtueElementChild.children[virtueLevel]);
-      virtueElementChild = virtueElementChild.nextElementSibling;
-    }
-
-    this.#presetLanguages(html);
     this.#presetEnhancement(html);
     this.#presetStatus(html);
     this.#presetSheetExpandContainers(html);
-  }
-
-  #presetLanguages(html) {
-    const langContainer = html.querySelector('#linguasContainer').children;
-    const langElements = Array.from(langContainer);
-
-    getObject(this.actor, CharacteristicType.LANGUAGE)
-      .forEach(language => {
-        const langElement = langElements.find(el => el.id === language)?.querySelector('.S0-characteristic');
-
-        if (langElement) {
-          selectCharacteristic(langElement);
-        }
-      });
   }
 
   #presetEnhancement(html) {

@@ -19,6 +19,9 @@ const operators = {
   ternary: (values) => {
     return values[0] ? values[1] : values[2];
   },
+  includes: (values) => {
+    return Array.isArray(values[0]) ? values[0].includes(values[1]) : false;
+  }
 };
 
 export default function operator(op, ...params) {

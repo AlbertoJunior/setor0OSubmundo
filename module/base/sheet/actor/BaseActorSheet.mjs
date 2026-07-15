@@ -1,6 +1,6 @@
 import { getObject, selectCharacteristic, TODO } from "../../../utils/utils.mjs";
 import { ActorEquipmentUtils } from "../../../core/actor/actor-equipment-utils.mjs";
-import { BaseActorCharacteristicType } from "../../../enums/characteristic-enums.mjs";
+import { BaseActorCharacteristicType, CharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { EquipmentCharacteristicType } from "../../../enums/equipment-enums.mjs";
 import { FlagsUtils } from "../../../utils/flags-utils.mjs";
 import { HtmlJsUtils } from "../../../utils/html-js-utils.mjs";
@@ -55,6 +55,8 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
     data.canRoll = this.canRoll;
     data.canEdit = this.canEdit;
     data.uuid = this.actor.uuid;
+    data.CharacteristicType = CharacteristicType;
+    data.BaseActorCharacteristicType = BaseActorCharacteristicType;
     return data;
   }
 

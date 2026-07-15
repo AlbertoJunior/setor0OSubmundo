@@ -7,11 +7,20 @@ import { NpcUtils } from "../../module/core/npc/npc-utils.mjs";
 import { CustomRoll } from "../../module/core/rolls/custom-roll.mjs";
 
 const map = {
+  'raw_characteristic': (actor, params) => {
+    const sysObj = getObject(actor, params[0]);
+    return sysObj ? (sysObj[params[1]] || 0) : 0;
+  },
+
+  'raw_property': (actor, params) => getObject(actor, params[0]) || [],
+
   'district': (actor) => getObject(actor, BaseActorCharacteristicType.DISTRICT),
   'morphology': (actor) => getObject(actor, BaseActorCharacteristicType.MORPHOLOGY),
   'biography': (actor) => getObject(actor, BaseActorCharacteristicType.BACKGROUND.BIOGRAPHY) || null,
   'assignment': (actor) => getObject(actor, BaseActorCharacteristicType.BACKGROUND.ASSIGNMENT),
   'core': (actor) => getObject(actor, CharacteristicType.CORE),
+
+  'virtue_level': (actor, params) => ActorUtils.getVirtueLevel(actor, params[0]),
 
   'penalty': (actor) => ActorUtils.calculatePenalty(actor),
   'pm': (actor) => ActorUtils.calculateMovimentPoints(actor),

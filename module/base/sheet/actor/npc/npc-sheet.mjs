@@ -91,8 +91,6 @@ class Setor0NpcSheet extends Setor0BaseActorSheet {
     };
   }
 
-
-
   configureSheet(html) {
     super.configureSheet(html);
     SheetActorDragabbleMethods.setup(html, this.actor);

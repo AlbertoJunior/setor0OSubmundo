@@ -43,16 +43,18 @@
       </label>
     </h2>
     <div id="linguasContainer" class="S0-container-4-fixed-column">
+      {{#lett languages=(actorValues actor 'raw_property' CharacteristicType.LANGUAGE)}}
       {{#each (fetchRepository 'language')}}
       <div class="S0-characteristic-container S0-language-container" id="{{id}}">
         <label title="{{district}}">
           {{label}}
         </label>
-        <div class="S0-characteristic {{#if ../editable}}S0-clickable{{/if}}" data-action="add"
+        <div class="S0-characteristic {{#if ../editable}}S0-clickable{{/if}} {{#if (operators 'includes' ../languages id)}}S0-selected{{/if}}" data-action="add"
           data-characteristic="language">
         </div>
       </div>
       {{/each}}
+      {{/lett}}
     </div>
   </div>
 
