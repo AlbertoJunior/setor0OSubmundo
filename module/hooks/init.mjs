@@ -16,6 +16,8 @@ import { TokenUtils } from "../core/token/token-utils.mjs";
 import { configureSetor0ChatLog } from "../core/chat/Setor0ChatLog.mjs";
 import { PreCreateItemHookHandle } from "./item/pre-create-item.mjs";
 import { EnrichersHookHandle } from "./enrichers/enrichers-hook.mjs";
+import { getObject } from "../utils/utils.mjs";
+import { CharacteristicType } from "../enums/characteristic-enums.mjs";
 
 export class InitHookHandle {
   static async handle() {
@@ -57,7 +59,13 @@ export class InitHookHandle {
       MacroMethods: MacroUtils.MacroMethods,
       FoundryApi: FoundryApi,
       TokenUtils: TokenUtils,
-      DEFAULT_VALUES: DEFAULT_VALUES
+      DEFAULT_VALUES: DEFAULT_VALUES,
+      Utils: {
+        getObject: getObject
+      },
+      Enums: {
+        CharacteristicType: CharacteristicType
+      }
     };
     Setor0Settings.register();
   }

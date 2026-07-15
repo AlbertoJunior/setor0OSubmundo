@@ -400,36 +400,65 @@ export class SuperEquipmentTraitRepository {
 
     SuperEquipmentTraitRepository.#loadedGoodFromPack = good;
     SuperEquipmentTraitRepository.#loadedBadFromPack = bad;
+    SuperEquipmentTraitRepository.#cachedGoodTraits = null;
+    SuperEquipmentTraitRepository.#cachedBadTraits = null;
+    SuperEquipmentTraitRepository.#cachedAllTraits = null;
+  }
+
+  static #cachedGoodTraits = null;
+  static #cachedBadTraits = null;
+  static #cachedAllTraits = null;
+
+  static #getGoodTraits() {
+    if (!this.#cachedGoodTraits) {
+      this.#cachedGoodTraits = [
+        ...SuperEquipmentTraitRepository.#goodTrait,
+        ...SuperEquipmentTraitRepository.#loadedGoodFromPack
+      ];
+    }
+    return this.#cachedGoodTraits;
+  }
+
+  static #getBadTraits() {
+    if (!this.#cachedBadTraits) {
+      this.#cachedBadTraits = [
+        ...SuperEquipmentTraitRepository.#badTrait,
+        ...SuperEquipmentTraitRepository.#loadedBadFromPack
+      ];
+    }
+    return this.#cachedBadTraits;
   }
 
   static getGoodTraits() {
-    return [
-      ...SuperEquipmentTraitRepository.#goodTrait,
-      ...SuperEquipmentTraitRepository.#loadedGoodFromPack
-    ];
+    return FoundryApi.deepClone(this.#getGoodTraits());
   }
 
   static getBadTraits() {
-    return [
-      ...SuperEquipmentTraitRepository.#badTrait,
-      ...SuperEquipmentTraitRepository.#loadedBadFromPack
-    ];
+    return FoundryApi.deepClone(this.#getBadTraits());
+  }
+
+  static #getAllTraitsCache() {
+    if (!this.#cachedAllTraits) {
+      this.#cachedAllTraits = [
+        ...this.#getGoodTraits(),
+        ...this.#getBadTraits(),
+      ];
+    }
+    return this.#cachedAllTraits;
   }
 
   static getItemsByType(type) {
-    const items = type === TraitType.GOOD ? this.getGoodTraits() : this.getBadTraits();
-    return items.sort((a, b) => a.cost - b.cost || a.name.localeCompare(b.name));
+    const items = type === TraitType.GOOD ? this.#getGoodTraits() : this.#getBadTraits();
+    return FoundryApi.deepClone(items.sort((a, b) => a.cost - b.cost || a.name.localeCompare(b.name)));
   }
 
   static getItemByTypeAndId(type, traitId) {
-    const item = this.getItemsByType(type).find(element => element.id == traitId);
+    const items = type === TraitType.GOOD ? this.#getGoodTraits() : this.#getBadTraits();
+    const item = items.find(element => element.id == traitId);
     return item ? FoundryApi.deepClone(item) : undefined;
   }
 
   static getTraitsNeedActivate() {
-    return [
-      ...this.getGoodTraits(),
-      ...this.getBadTraits(),
-    ].filter(trait => trait.need_activate);
+    return FoundryApi.deepClone(this.#getAllTraitsCache().filter(trait => trait.need_activate));
   }
 }

@@ -609,30 +609,50 @@ export class TraitRepository {
 
       TraitRepository.#loadedGoodFromPack = allTraits.filter(item => item.type === TraitType.GOOD);
       TraitRepository.#loadedBadFromPack = allTraits.filter(item => item.type === TraitType.BAD);
+      TraitRepository.#cachedGoodTraits = null;
+      TraitRepository.#cachedBadTraits = null;
     }
   }
 
+  static #cachedGoodTraits = null;
+  static #cachedBadTraits = null;
+
+  static #getGoodTraits() {
+    if (!this.#cachedGoodTraits) {
+      this.#cachedGoodTraits = [
+        ...TraitRepository.#goodTrait,
+        ...TraitRepository.#loadedGoodFromPack
+      ];
+    }
+    return this.#cachedGoodTraits;
+  }
+
+  static #getBadTraits() {
+    if (!this.#cachedBadTraits) {
+      this.#cachedBadTraits = [
+        ...TraitRepository.#badTrait,
+        ...TraitRepository.#loadedBadFromPack
+      ];
+    }
+    return this.#cachedBadTraits;
+  }
+
   static getGoodTraits() {
-    return [
-      ...TraitRepository.#goodTrait,
-      ...TraitRepository.#loadedGoodFromPack
-    ];
+    return FoundryApi.deepClone(this.#getGoodTraits());
   }
 
   static getBadTraits() {
-    return [
-      ...TraitRepository.#badTrait,
-      ...TraitRepository.#loadedBadFromPack
-    ];
+    return FoundryApi.deepClone(this.#getBadTraits());
   }
 
   static getItemsByType(type) {
-    const items = type === TraitType.GOOD ? this.getGoodTraits() : this.getBadTraits();
-    return items.sort((a, b) => a.xp - b.xp || a.name.localeCompare(b.name));
+    const items = type === TraitType.GOOD ? this.#getGoodTraits() : this.#getBadTraits();
+    return FoundryApi.deepClone(items.sort((a, b) => a.xp - b.xp || a.name.localeCompare(b.name)));
   }
 
   static getItemByTypeAndId(type, traitId) {
-    const item = this.getItemsByType(type).find(element => element.id == traitId);
+    const items = type === TraitType.GOOD ? this.#getGoodTraits() : this.#getBadTraits();
+    const item = items.find(element => element.id == traitId);
     return item ? FoundryApi.deepClone(item) : undefined;
   }
 

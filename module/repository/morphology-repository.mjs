@@ -1,5 +1,6 @@
 import { localize } from "../utils/utils.mjs";
 import { SYSTEM_ID } from "../constants.mjs";
+import { FoundryApi } from "../api/foundry-api.mjs";
 
 export class MorphologyRepository {
   static TYPES = Object.freeze({
@@ -23,6 +24,7 @@ export class MorphologyRepository {
           description: item.description
         };
       });
+      MorphologyRepository.#cachedItems = null;
     }
   }
 
@@ -35,7 +37,19 @@ export class MorphologyRepository {
     });
   }
 
+  static #cachedItems = null;
+
+  static #getAllItems() {
+    if (!this.#cachedItems) {
+      this.#cachedItems = [
+        ...this.#getBaseItems(),
+        ...this.#loadedFromPack
+      ].sort((a, b) => a.label.localeCompare(b.label));
+    }
+    return this.#cachedItems;
+  }
+
   static getItems() {
-    return [... this.#getBaseItems(), ... this.#loadedFromPack].sort((a, b) => a.label.localeCompare(b.label));
+    return FoundryApi.deepClone(this.#getAllItems());
   }
 }

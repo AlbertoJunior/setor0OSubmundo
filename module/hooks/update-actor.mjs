@@ -38,6 +38,8 @@ export class UpdateActorHookHandle {
   static async #refreshRenderSheetIfHasAlliesInformants(updatedActorId) {
     const startRefreshTime = new Date().getTime();
     game.actors.forEach(actor => {
+      if (!actor.sheet?.rendered) return;
+      
       const allies = getObject(actor, CharacteristicType.ALLIES) || [];
       const informants = getObject(actor, CharacteristicType.INFORMANTS) || [];
       const all = new Set([...allies, ...informants]);

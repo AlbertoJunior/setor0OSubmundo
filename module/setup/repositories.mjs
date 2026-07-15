@@ -1,4 +1,5 @@
 import { logTable } from "../utils/utils.mjs";
+import { clearFetchRepositoryCache } from "../helpers/fetchRepository.mjs";
 import { DistrictRepository } from "../repository/district-repository.mjs";
 import { EnhancementRepository } from "../repository/enhancement-repository.mjs";
 import { EquipmentRepository } from "../repository/equipment-repository.mjs";
@@ -34,6 +35,7 @@ export class RepositoriesUtils {
       )
     );
 
+    clearFetchRepositoryCache();
     logTable('Todos os pacotes foram processados!', results);
   }
 
@@ -55,6 +57,7 @@ export class RepositoriesUtils {
       )
     );
 
+    clearFetchRepositoryCache();
     logTable('Todos os objetos do Jogo foram processados!', results);
   }
 }

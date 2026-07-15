@@ -39,10 +39,22 @@ const repositoryMap = {
   'superequipment-bad-traits': () => SuperEquipmentTraitRepository.getBadTraits(),
 }
 
+let uiCache = {};
+
+export function clearFetchRepositoryCache() {
+  uiCache = {};
+}
+
 export default function fetchRepository(repositoryName) {
+  if (uiCache[repositoryName]) {
+    return uiCache[repositoryName];
+  }
+
   const resolver = repositoryMap[repositoryName];
   if (resolver) {
-    return typeof resolver === 'function' ? resolver() : resolver;
+    const data = typeof resolver === 'function' ? resolver() : resolver;
+    uiCache[repositoryName] = data;
+    return data;
   }
 
   console.warn(`-> [${repositoryName}] não existe no mapper`);

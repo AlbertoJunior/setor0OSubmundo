@@ -113,11 +113,11 @@ export class SubstanceEffectRepository {
   ];
 
   static getItems() {
-    return [...SubstanceEffectRepository.#items];
+    return FoundryApi.deepClone(SubstanceEffectRepository.#items);
   }
 
   static getItem(id) {
-    const item = this.getItems().find(item => item.id == id);
+    const item = SubstanceEffectRepository.#items.find(item => item.id == id);
     return item ? FoundryApi.deepClone(item) : null;
   }
 }

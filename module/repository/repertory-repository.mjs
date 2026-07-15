@@ -1,5 +1,6 @@
 import { SYSTEM_ID } from "../constants.mjs";
 import { CharacteristicType } from "../enums/characteristic-enums.mjs";
+import { FoundryApi } from "../api/foundry-api.mjs";
 
 export class RepertoryRepository {
   static items = [
@@ -22,10 +23,23 @@ export class RepertoryRepository {
           description: item.description
         };
       });
+      RepertoryRepository.#cachedItems = null;
     }
   }
 
+  static #cachedItems = null;
+
+  static #getAllItems() {
+    if (!this.#cachedItems) {
+      this.#cachedItems = [
+        ...this.items,
+        ...this.#loadedFromPack
+      ].sort((a, b) => a.label.localeCompare(b.label));
+    }
+    return this.#cachedItems;
+  }
+
   static getItems() {
-    return [... this.items, ...this.#loadedFromPack].sort((a, b) => a.label.localeCompare(b.label));
+    return FoundryApi.deepClone(this.#getAllItems());
   }
 }

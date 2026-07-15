@@ -18,7 +18,8 @@ ${verifyAndReturnSelectedToken.trim()}
 ${verifyAndReturnActor.trim()}
 actor.sheet.render(true);
 setTimeout(() => {
-  const targetPage = actor.system.nucleo > 0 ? 4 : 3;
+  const coreLevel = setor0OSubmundo.Utils.getObject(actor, setor0OSubmundo.Enums.CharacteristicType.CORE) || 0;
+  const targetPage = coreLevel > 0 ? 4 : 3;
   if (actor.sheet.currentPage !== undefined) {
     actor.sheet.currentPage = targetPage;
     actor.sheet.render(false);
