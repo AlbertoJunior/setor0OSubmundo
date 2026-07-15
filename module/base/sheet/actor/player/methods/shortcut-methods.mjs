@@ -8,6 +8,7 @@ import { ActorCombatUtils } from "../../../../../core/actor/actor-combat-utils.m
 import { HtmlJsUtils } from "../../../../../utils/html-js-utils.mjs";
 import { ActorUpdater } from "../../../../updater/actor-updater.mjs";
 import { playerRollHandle } from "./player-roll-methods.mjs";
+import { MacroTypesEnum } from "../../../../../enums/macro-enums.mjs";
 
 export const handlerShortcutEvents = {
   [OnEventType.ADD]: async (actor, event) => ShortcutHandleEvents.handleAdd(actor, event),
@@ -64,7 +65,7 @@ class ShortcutHandleEvents {
       await ActorUpdater.verifyAndUpdateActor(actor, CharacteristicType.SHORTCUTS, current);
     };
 
-    CreateRollableTestDialog.open(null, onConfirm);
+    CreateRollableTestDialog.open(null, onConfirm, undefined, actor, MacroTypesEnum.ATALHOS);
   }
 
   static async handleEdit(actor, event) {
@@ -90,7 +91,7 @@ class ShortcutHandleEvents {
       await ActorUpdater.verifyAndUpdateActor(actor, CharacteristicType.SHORTCUTS, shortcuts);
     };
 
-    CreateRollableTestDialog.open(selectedTest, onConfirm, onDelete, true);
+    CreateRollableTestDialog.open(selectedTest, onConfirm, onDelete, actor, MacroTypesEnum.ATALHOS);
   }
 
   static async handleView(actor, event) {

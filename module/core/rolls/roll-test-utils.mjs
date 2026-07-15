@@ -4,7 +4,7 @@ import { FolderUtils } from "../../utils/folder-utils.mjs";
 
 export class RollTestUtils {
   static async createMacroByRollTestData(rollTestData, params = {}) {
-    const { img, parentName, actor } = params
+    const { img, parentName, actor, type } = params
     const safeParentName = parentName ? `${parentName}: ` : '';
 
     const name = `${safeParentName}${rollTestData.name}`;
@@ -15,7 +15,7 @@ export class RollTestUtils {
 
     let folderId = null;
     if (actor) {
-      folderId = await FolderUtils.getCharacterMacroFolderId(actor);
+      folderId = await FolderUtils.getCharacterMacroFolderId(actor, type);
     }
 
     await MacroUtils.createMacro({ name, command, img, flags, folder: folderId, toHotbar: true });

@@ -15,6 +15,7 @@ import { RollTestMessageCreator } from "../../../../creators/message/roll-test-m
 import { ChatCreator } from "../../../../utils/chat-creator.mjs";
 import { AttributeRepository } from "../../../../repository/attribute-repository.mjs";
 import { AbilityRepository } from "../../../../repository/ability-repository.mjs";
+import { MacroTypesEnum } from "../../../../enums/macro-enums.mjs";
 
 export const handlerEquipmentItemRollEvents = {
   [OnEventType.ADD]: async (item, event) => EquipmentSheetItemRollHandle.add(item, event),
@@ -40,7 +41,7 @@ class EquipmentSheetItemRollHandle {
 
     const addType = event.currentTarget.dataset.type;
     if (addType == 'macro') {
-      await RollTestUtils.createMacroByRollTestData(rollTest, { parentName: item.name, img: item.img, actor: item.actor });
+      await RollTestUtils.createMacroByRollTestData(rollTest, { parentName: item.name, img: item.img, actor: item.actor, type: MacroTypesEnum.EQUIPAMENTO });
     } else if (addType == 'clone') {
       const cloneTest = {
         ...rollTest,
@@ -58,7 +59,7 @@ class EquipmentSheetItemRollHandle {
       possibleTests[possibleTests.indexOf(rollTest)] = newRollTest;
       await EquipmentUpdater.updateEquipment(item, EquipmentCharacteristicType.POSSIBLE_TESTS, possibleTests)
     }
-    CreateRollableTestDialog.open(rollTest, onConfirm);
+    CreateRollableTestDialog.open(rollTest, onConfirm, undefined, item.actor, MacroTypesEnum.EQUIPAMENTO);
   }
 
   static async remove(item, event) {
@@ -219,7 +220,7 @@ class EquipmentSheetItemRollHandle {
     if (!rollTest) {
       return;
     }
-    CreateRollableTestDialog.view(rollTest);
+    CreateRollableTestDialog.view(rollTest, item.actor, MacroTypesEnum.EQUIPAMENTO);
   }
 
   static #getItemRollTestId(event) {

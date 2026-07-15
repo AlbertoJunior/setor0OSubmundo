@@ -11,6 +11,7 @@ import { AbilityRepository } from "../../../repository/ability-repository.mjs";
 import { ItemType } from "../../../enums/item-type-enums.mjs";
 import { ManeuverUpdater } from "../../updater/maneuver-updater.mjs";
 import { OwnershipUtils } from "../../../utils/ownership-utils.mjs";
+import { MacroTypesEnum } from "../../../enums/macro-enums.mjs";
 
 export async function maneuverTemplatesRegister() {
   const templates = [
@@ -44,7 +45,9 @@ export class ManeuverSheet extends FoundryApi.ItemSheet {
         label: "Criar_Macro",
         action: async function () {
           await RollTestUtils.createMacroByRollTestData(this.document, {
-            img: this.document.img
+            img: this.document.img,
+            actor: this.document.actor,
+            type: MacroTypesEnum.MANOBRA
           });
         }
       }

@@ -8,18 +8,18 @@ import { FoundryApi } from "../../api/foundry-api.mjs";
 import { DialogUtils } from "../../utils/dialog-utils.mjs";
 
 export class CreateRollableTestDialog {
-  static async view(rollTestData) {
-    this.open(rollTestData);
+  static async view(rollTestData, actor, type) {
+    this.open(rollTestData, undefined, undefined, actor, type);
   }
 
-  static async open(rollTestData, onConfirm, onDelete) {
+  static async open(rollTestData, onConfirm, onDelete, actor, type) {
     const needConfirmation = onConfirm !== undefined;
     const isCreate = rollTestData == undefined;
 
     const buttons = this.#createButtons(rollTestData, { confirm: onConfirm, delete: onDelete });
     const content = await this.#mountContent(rollTestData, needConfirmation);
     const mode = this.#getDialogMode(isCreate, needConfirmation);
-    const header = this.#setupParamsHeader(isCreate, rollTestData);
+    const header = this.#setupParamsHeader(isCreate, rollTestData, actor, type);
 
     FoundryApi.createDialog(
       {
@@ -120,7 +120,7 @@ export class CreateRollableTestDialog {
     return mode;
   }
 
-  static #setupParamsHeader(isCreate, rollTestData) {
+  static #setupParamsHeader(isCreate, rollTestData, actor, type) {
     const headerButtons = [];
 
     if (!isCreate) {
@@ -129,7 +129,7 @@ export class CreateRollableTestDialog {
           label: localize("Criar_Macro"),
           icon: 'fas fa-code',
           onClick: async () => {
-            await RollTestUtils.createMacroByRollTestData(rollTestData);
+            await RollTestUtils.createMacroByRollTestData(rollTestData, { actor, type });
           }
         }
       );

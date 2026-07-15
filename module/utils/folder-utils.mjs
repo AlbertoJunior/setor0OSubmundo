@@ -1,6 +1,7 @@
 import { FoundryApi } from "../api/foundry-api.mjs";
 import { SYSTEM_ID, COLORS } from "../constants.mjs";
 import { SystemFlags } from "../enums/flags-enums.mjs";
+import { MacroRoleEnum } from "../enums/macro-enums.mjs";
 
 export class FolderUtils {
   static async getOrCreateMacroFolder(folderName) {
@@ -19,9 +20,32 @@ export class FolderUtils {
     return folder;
   }
 
-  static async getCharacterMacroFolderId(actor) {
+  static async getGmFolderId(type = "Macro") {
+    let gmFolder = game.folders.find(f => f.type === type && f.name === MacroRoleEnum.GM);
+    if (!gmFolder) {
+      gmFolder = await FoundryApi.Documents.Folder.create({
+        name: MacroRoleEnum.GM,
+        type: type,
+        color: this.getFolderColor(MacroRoleEnum.GM)
+      });
+    }
+    return gmFolder.id;
+  }
+
+  static async getPlayersFolderId(type = "Macro") {
+    const folder = await this.#getOrCreatePlayersFolder(type);
+    return folder.id;
+  }
+
+  static async getCharacterMacroFolderId(actor, subFolderName) {
     const playersFolder = await FolderUtils.#getOrCreatePlayersFolder("Macro");
-    return await FolderUtils.#getOrCreateCharacterFolder(actor, playersFolder, "Macro");
+    const characterFolderId = await FolderUtils.#getOrCreateCharacterFolder(actor, playersFolder, "Macro");
+
+    if (subFolderName) {
+      return await FolderUtils.#getOrCreateSubFolder(subFolderName, characterFolderId, "Macro");
+    }
+
+    return characterFolderId;
   }
 
   static async getCharacterJournalFolderId(actor) {
@@ -34,11 +58,12 @@ export class FolderUtils {
       throw new Error("Tipo de pasta não especificado.");
     }
 
-    let playersFolder = game.folders.find(f => f.type === type && f.name === "Jogadores");
+    let playersFolder = game.folders.find(f => f.type === type && f.name === MacroRoleEnum.PLAYERS);
     if (!playersFolder) {
       playersFolder = await FoundryApi.Documents.Folder.create({
-        name: "Jogadores",
-        type: type
+        name: MacroRoleEnum.PLAYERS,
+        type: type,
+        color: this.getFolderColor(MacroRoleEnum.PLAYERS)
       });
     }
     return playersFolder;
@@ -47,6 +72,9 @@ export class FolderUtils {
   static async #getOrCreateCharacterFolder(actor, playersFolder, type) {
     if (!type) {
       throw new Error("Tipo de pasta não especificado.");
+    }
+    if (!actor || !actor.name) {
+      throw new Error("Ator inválido ou sem nome.");
     }
 
     let characterFolder = game.folders.find(f =>
@@ -75,14 +103,33 @@ export class FolderUtils {
     return characterFolder.id;
   }
 
+  static async #getOrCreateSubFolder(subFolderName, parentFolderId, type) {
+    if (!subFolderName || !parentFolderId || !type) {
+      throw new Error("Parâmetros incompletos para subpasta.");
+    }
+
+    let subFolder = game.folders.find(f => f.type === type && f.name === subFolderName && f.folder?.id === parentFolderId);
+    if (!subFolder) {
+      subFolder = await FoundryApi.Documents.Folder.create({
+        name: subFolderName,
+        type: type,
+        folder: parentFolderId,
+        color: this.getFolderColor()
+      });
+    }
+    return subFolder.id;
+  }
+
   static getFolderColor(role = "") {
     const safeRole = typeof role === "string" ? role : "";
     const upperRole = safeRole.toUpperCase();
 
     switch (upperRole) {
-      case "GM":
+      case SystemFlags.ROLE.GM.toUpperCase():
+      case MacroRoleEnum.GM.toUpperCase():
         return COLORS.BASE.red;
-      case "USER":
+      case SystemFlags.ROLE.USER.toUpperCase():
+      case MacroRoleEnum.PLAYERS.toUpperCase():
         return COLORS.BASE.blue;
       default:
         return `#${Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, "0")}`;

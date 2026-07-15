@@ -4,23 +4,25 @@ import { NotificationsUtils } from "../../creators/message/notifications.mjs";
 import { SystemFlags } from "../../enums/flags-enums.mjs";
 import { FlagsUtils } from "../../utils/flags-utils.mjs";
 import { MacroUtils } from "./macro-utils.mjs";
+import { FolderUtils } from "../../utils/folder-utils.mjs";
+import { MacroRoleEnum } from "../../enums/macro-enums.mjs";
 
 export class MacroInstaller {
   static async installDefaultMacrosOnUser() {
-    await this.installList(MacroUtils.getDefaultMacroUsers());
+    await this.installList(MacroUtils.getDefaultMacroUsers(), MacroRoleEnum.PLAYERS);
   }
 
   static async installDefaultMacrosOnGm() {
-    await this.installList(MacroUtils.getDefaultGmMacro());
+    await this.installList(MacroUtils.getDefaultGmMacro(), MacroRoleEnum.GM);
   }
 
-  static async installList(list) {
+  static async installList(list, role) {
     for (const macro of list) {
-      await this.installMacroOnce(macro.name, FlagsUtils.getSystemFlag(macro, SystemFlags.SOURCE.ID));
+      await this.installMacroOnce(macro.name, FlagsUtils.getSystemFlag(macro, SystemFlags.SOURCE.ID), role);
     }
   }
 
-  static async installMacroOnce(macroName, sourceId) {
+  static async installMacroOnce(macroName, sourceId, role) {
     const user = game.user;
     const installedMacros = FlagsUtils.getItemFlag(user, SystemFlags.MACRO.INSTALLED) || [];
     const macroKey = `${macroName}_${sourceId}`;
@@ -45,7 +47,13 @@ export class MacroInstaller {
 
     let worldMacro = game.macros.find(macroB => MacroUtils.isTheSameMacro(macro, macroB));
     if (!worldMacro) {
-      worldMacro = await FoundryApi.Macro.create(macro.toObject());
+      const macroData = macro.toObject();
+      if (role === MacroRoleEnum.GM) {
+        macroData.folder = await FolderUtils.getGmFolderId();
+      } else if (role === MacroRoleEnum.PLAYERS) {
+        macroData.folder = await FolderUtils.getPlayersFolderId();
+      }
+      worldMacro = await FoundryApi.Macro.create(macroData);
     }
 
     await user.assignHotbarMacro(worldMacro);
