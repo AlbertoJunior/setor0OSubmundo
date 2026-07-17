@@ -1,0 +1,21 @@
+<div class="S0-page S0-container S0-max-w-250">
+  <label class="S0-block S0-mb-6" for="effectKey">{{localize 'Efeito'}}</label>
+  <select id="effectKey" name="key" class="S0-select S0-mb-6">
+    {{selectOptions effectsOptions}}
+  </select>
+
+  <div id="particularityContainer" class="S0-mb-6 S0-hidden">
+    <label class="S0-block S0-mb-6" for="skillKey">{{localize 'Habilidade'}}</label>
+    <select id="skillKey" name="skillKey" class="S0-select">
+      {{selectOptions skillsOptions valueAttr="id" labelAttr="name"}}
+    </select>
+  </div>
+
+  <label class="S0-block S0-mb-6" for="effectValue">{{localize 'Valor'}}</label>
+  <input class="S0-mb-6" id="effectValue" type="number" name="value" value="1" required />
+
+  <ul class="S0-list-disclosure-closed S0-pl-16">
+    <li class="S0-text-x-small">{{localize 'S0.Traco.Valor_Explicacao'}}</li>
+    <li class="S0-text-x-small">{{localize 'S0.Traco.Valor_Explicacao_Fator'}}</li>
+  </ul>
+</div>

@@ -3,8 +3,7 @@
   <div class="S0-container">
     <h3> {{localize 'S0.Equipados'}} </h3>
 
-    <div
-      style="display: flex; align-items: center; column-gap: 10px; justify-content: center; margin-top: 2px; margin-bottom: 4px">
+    <div class="S0-flex S0-items-center S0-justify-center S0-mt-2 S0-mb-4 S0-col-gap-10">
 
       {{#if (gameFunc 'isGm')}}
       <a class="S0-icon-swaper" data-characteristic="equipment" data-sub-characteristic="menu" data-type="equipped"
@@ -31,17 +30,22 @@
 
     <hr>
 
-    <ul id="equipped-{{actor.id}}" class="S0-container-5-column S0-drop-container" style="row-gap: 10px;">
+    <ul id="equipped-{{actor.id}}" class="S0-container-5-column S0-drop-container S0-row-gap-10">
+      {{#if (operators 'isEmpty' (actorLists actor 'equipment_equipped'))}}
+      <li class="S0-label-drop-container">
+        {{localize 'S0.Itens.Mensagens.Nenhum_item_equipado'}}
+      </li>
+      {{else}}
       {{#each (actorLists actor 'equipment_equipped') as |item|}}
       <li>{{> equipamentEquippedItem item }}</li>
       {{/each}}
+      {{/if}}
     </ul>
   </div>
 
   <div class="S0-container">
     <h3> {{localize 'S0.Mochila'}} </h3>
-    <div
-      style="display: flex; align-items: center; column-gap: 10px; justify-content: center; margin-top: 2px; margin-bottom: 4px">
+    <div class="S0-flex S0-items-center S0-justify-center S0-mt-2 S0-mb-4 S0-col-gap-10">
       {{#if (gameFunc 'isGm')}}
       <a class="S0-icon-swaper" data-characteristic="equipment" data-sub-characteristic="menu" data-type="bag"
         data-action="check" data-item-type="unlock" title="{{localize 'S0.Permitir_Edicao'}}">
@@ -81,7 +85,7 @@
 
     <hr>
 
-    <ul id="bag-{{actor.id}}" class="S0-container-5-column S0-drop-container" style="row-gap: 10px;">
+    <ul id="bag-{{actor.id}}" class="S0-container-5-column S0-drop-container S0-row-gap-10">
       {{#if (operators 'isEmpty' (actorLists actor 'equipment_filtered'))}}
       <li class="S0-label-drop-container">
         {{localize 'S0.Itens.Mensagens.Nenhum_item_adicionado'}}

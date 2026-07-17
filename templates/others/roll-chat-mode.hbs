@@ -1,6 +1,6 @@
-<div class="form-group" style="display: flex;">
-  <label for="chat_select" style="flex:1;">{{localize 'S0.Enviar_No_Chat'}}:</label>
-  <select id="chat_select" name="chat_select" class="S0-select" style="flex:1; text-align: start;">
+<div class="form-group S0-flex">
+  <label class="S0-flex-1" for="chat_select">{{localize 'S0.Enviar_No_Chat'}}:</label>
+  <select id="chat_select" name="chat_select" class="S0-select S0-flex-1 S0-text-start">
     <optgroup label="{{localize 'S0.Rolagens_Player'}}">
       {{#each (gameFunc 'players-roll-mode')}}
       <option value="{{value}}">{{label}}</option>

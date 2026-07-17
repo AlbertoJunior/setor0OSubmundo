@@ -1,7 +1,7 @@
-<form autocomplete="off">
+<form class="S0-equipment-sheet" autocomplete="off">
   {{> itemCommon this}}
 
-  <div class="S0-page S0-container S0-container-2-fixed-column" style="align-items: center;">
+  <div class="S0-page S0-container S0-container-2-fixed-column S0-items-center">
     {{> itemCommonWeapon this}}
 
     <label for="{{item.id}}.cadence">{{localize 'S0.Cadencia'}}:</label>
@@ -24,7 +24,7 @@
     {{/with}}
 
     <label for="{{item.id}}.special">{{localize 'S0.Especial'}}?</label>
-    <div style="width: 100%; padding-inline: 6px; display: flex; justify-content: center; align-items: center; ">
+    <div class="S0-w-full S0-flex S0-justify-center S0-items-center S0-px-6">
       <input id="{{item.id}}.special" type="checkbox" name="system.special" {{#if (itemValues item 'special'
         )}}checked{{/if}} />
     </div>

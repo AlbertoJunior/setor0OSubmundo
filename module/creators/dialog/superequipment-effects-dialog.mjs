@@ -2,24 +2,29 @@ import { gameLocalize, localize, randomId } from "../../utils/utils.mjs";
 import { EquipmentInfoParser } from "../../core/equipment/equipment-info.mjs";
 import { CharacteristicType } from "../../enums/characteristic-enums.mjs";
 import { EquipmentCharacteristicType, SuperEquipmentParticularityType } from "../../enums/equipment-enums.mjs";
-import { SuperEquipmentParticularityField } from "../../field/equipment-field.mjs";
+import { SuperEquipmentParticularityField } from "../../data/field/equipment-field.mjs";
 import { AbilityRepository } from "../../repository/ability-repository.mjs";
 import { AttributeRepository } from "../../repository/attribute-repository.mjs";
 import { SuperEquipmentTraitRepository } from "../../repository/superequipment-trait-repository.mjs";
+import { TraitRepository } from "../../repository/trait-repository.mjs";
 import { NotificationsUtils } from "../message/notifications.mjs";
 import { CreateFormDialog } from "./create-dialog.mjs";
+import { TraitType } from "../../enums/trait-enums.mjs";
+import { EffectChangeValueType } from "../../enums/enhancement-enums.mjs";
 
 export class SuperEquipmentEffectsDialog {
+  static #WIDTH = 400;
+
   static async open(type, onConfirm = (selectedEffect, characteristic) => { }) {
     let title;
     let listTraits;
     let characteristic;
 
-    if (type == 'good') {
+    if (type == TraitType.GOOD) {
       title = localize('Itens.Efeitos');
       listTraits = SuperEquipmentTraitRepository.getGoodTraits();
       characteristic = EquipmentCharacteristicType.SUPER_EQUIPMENT.EFFECTS;
-    } else if (type == 'bad') {
+    } else if (type == TraitType.BAD) {
       title = localize('Itens.Defeitos');
       listTraits = SuperEquipmentTraitRepository.getBadTraits();
       characteristic = EquipmentCharacteristicType.SUPER_EQUIPMENT.DEFECTS;
@@ -31,22 +36,99 @@ export class SuperEquipmentEffectsDialog {
     const listCharacteristics = this.#mapCharacteristicsToOptions();
     const uuid = randomId(10);
 
+    const traitsOptions = [
+      ...this.#mapTraitToOptions(listTraits),
+      {
+        label: localize('Outro'),
+        options: [{ id: 'custom', name: `[ ${localize('Criar_Customizado')} ]` }]
+      },
+    ];
+
     CreateFormDialog.open(
       title,
       'items/dialog/superequipment-effect-dialog',
       {
         presetForm: {
-          traits: this.#mapTraitToOptions(listTraits),
+          traits: traitsOptions,
+          effectsOptions: TraitRepository.getBonusOptionsMap(),
+          skillsOptions: AbilityRepository.getItems().map(opt => ({
+            ...opt,
+            name: gameLocalize(opt.label),
+          })),
           characteristic: listCharacteristics,
           uuid: uuid,
         },
         render: (html, renderedDialog, windowApp) => this.#render(windowApp, html, listTraits, listCharacteristics),
         onConfirm: (data) => {
-          const { selectedTrait, particularity, selectedParticularity } = data;
+          const {
+            selectedTrait,
+            particularity,
+            selectedParticularity,
+            description,
+            cost,
+            limit,
+            key,
+            skillKey,
+            value
+          } = data;
+
+          if (selectedTrait === 'custom') {
+            if (!description?.trim()) {
+              NotificationsUtils.error(localize("Aviso.Erro.Descricao_Obrigatoria"));
+              return;
+            }
+
+            let effectKey = key;
+            let partType = SuperEquipmentParticularityType.FIXED;
+
+            if (effectKey === CharacteristicType.BONUS.SKILL.system && skillKey) {
+              effectKey = `${effectKey}.${skillKey}`;
+              partType = SuperEquipmentParticularityType.SKILL;
+            } else {
+              partType = SuperEquipmentParticularityType.ATTRIBUTE;
+            }
+
+            const change = {
+              key: effectKey,
+              value: Number(value),
+              typeOfValue: EffectChangeValueType.FIXED,
+              mode: CONST.ACTIVE_EFFECT_MODES.ADD
+            };
+
+            const particularityObject = {
+              type: partType,
+              description: description,
+              change: change
+            };
+
+            if (partType === SuperEquipmentParticularityType.SKILL) {
+              const matchedSkill = AbilityRepository.getItems().find(o => o.id === skillKey);
+              if (matchedSkill) particularityObject.description = gameLocalize(matchedSkill.label);
+            } else {
+              const effectsOptions = TraitRepository.getBonusOptionsMap();
+              const matchedOption = effectsOptions.flatMap(g => g.options).find(o => o.id === key);
+              if (matchedOption) particularityObject.description = matchedOption.description;
+            }
+
+            if (typeof onConfirm === 'function') {
+              const customTrait = {
+                id: randomId(),
+                name: description,
+                cost: Number(cost),
+                limit: Number(limit),
+                description: description,
+                particularity: particularityObject,
+              };
+
+              onConfirm(customTrait, characteristic);
+            }
+            return;
+          }
+
           const trait = this.#findTrait(listTraits, selectedTrait);
 
           if (!trait) {
-            NotificationsUtils.error('Erro ao selecionar Traço');
+            NotificationsUtils.error(localize("Aviso.Erro.Selecionar_Traco"));
             return;
           }
 
@@ -54,12 +136,12 @@ export class SuperEquipmentEffectsDialog {
           const hasParticularity = particularity?.trim().length > 0;
 
           if (requireParticularity && !hasParticularity) {
-            NotificationsUtils.error('Esse Traço precisa do campo Particularidade preenchido');
+            NotificationsUtils.error(localize("Aviso.Erro.Traco_Particularidade_Preenchida"));
             return;
           }
 
           const particularityObject = hasParticularity
-            ? this.#mountTraitParticularity(trait.particularity, particularity, selectedParticularity)
+            ? this.#mountTraitParticularity(trait.particularity, particularity, selectedParticularity, false)
             : null;
 
           if (typeof onConfirm === 'function') {
@@ -73,7 +155,7 @@ export class SuperEquipmentEffectsDialog {
           }
         },
         windowOptions: {
-          width: 400
+          width: this.#WIDTH
         },
       }
     );
@@ -81,7 +163,7 @@ export class SuperEquipmentEffectsDialog {
 
   static #mapCharacteristicsToOptions() {
     const groups = {
-      [localize('Atributos')]: AttributeRepository.getItems(),
+      [localize('Atributos.Atributos')]: AttributeRepository.getItems(),
       [localize('Habilidades')]: AbilityRepository.getItems(),
       [localize('Tipo_Dano')]: EquipmentInfoParser.getDamageTypes(),
     };
@@ -134,16 +216,35 @@ export class SuperEquipmentEffectsDialog {
     const particularityContainer = html.querySelector('#particularityContainer');
     const inputParticularity = html.querySelector('input[name="particularity"]');
 
+    const customFormContainer = html.querySelector('#customFormContainer');
+    const defaultValuesContainer = html.querySelector('#defaultValuesContainer');
+
     const selectParticularityContainer = html.querySelector('#selectedParticularityContainer');
     const selectCharacteristicParticularity = html.querySelector('select[name="selectedParticularity"]');
 
     const characteristicElements = { selectCharacteristicParticularity, inputParticularity };
     selectCharacteristicParticularity.addEventListener('change', () => this.#onSelectCharacteristicChange(characteristics, characteristicElements));
 
+    const selectEffectKey = html.querySelector('#effectKey');
+    const customParticularityContainer = html.querySelector('#customParticularityContainer');
+
+    const checkSkillSelection = () => {
+      if (selectEffectKey && selectEffectKey.value === CharacteristicType.BONUS.SKILL.system) {
+        if (customParticularityContainer) customParticularityContainer.style.display = 'block';
+      } else {
+        if (customParticularityContainer) customParticularityContainer.style.display = 'none';
+      }
+      windowApp.style.height = 'auto';
+    };
+
+    if (selectEffectKey) selectEffectKey.addEventListener('change', checkSkillSelection);
+    checkSkillSelection();
+
     const effectsElements = {
       selectEffect, description, cost, limit,
       particularityContainer, inputParticularity,
-      selectParticularityContainer, selectCharacteristicParticularity
+      selectParticularityContainer, selectCharacteristicParticularity,
+      customFormContainer, defaultValuesContainer
     };
     selectEffect.addEventListener('change', () => this.#onSelectEffectChange(windowApp, listTraits, effectsElements));
     this.#onSelectEffectChange(windowApp, listTraits, effectsElements);
@@ -160,12 +261,32 @@ export class SuperEquipmentEffectsDialog {
 
   static #onSelectEffectChange(windowApp, listTraits, jElements) {
     const {
-      selectEffect, description, cost, limit,
-      particularityContainer, inputParticularity,
-      selectParticularityContainer, selectCharacteristicParticularity: selectCharacteristic
+      selectEffect,
+      description,
+      cost,
+      limit,
+      particularityContainer,
+      inputParticularity,
+      selectParticularityContainer,
+      selectCharacteristicParticularity: selectCharacteristic,
+      customFormContainer,
+      defaultValuesContainer
     } = jElements;
 
     const selectedId = selectEffect.value;
+
+    if (selectedId === 'custom') {
+      customFormContainer.style.display = '';
+      defaultValuesContainer.style.display = 'none';
+      particularityContainer.style.display = 'none';
+      selectParticularityContainer.style.display = 'none';
+      windowApp.style.height = 'auto';
+      return;
+    } else {
+      customFormContainer.style.display = 'none';
+      defaultValuesContainer.style.display = '';
+    }
+
     const trait = this.#findTrait(listTraits, selectedId);
 
     if (!trait) {
@@ -229,7 +350,7 @@ export class SuperEquipmentEffectsDialog {
     return listTraits.find(trait => trait.id == id);
   }
 
-  static #mountTraitParticularity(particularity, inputParticularity, selectedParticularity) {
+  static #mountTraitParticularity(particularity, inputParticularity, selectedParticularity, isCustom = false) {
     const particularityObject = SuperEquipmentParticularityField.toJson(
       {
         ...particularity,
@@ -237,7 +358,19 @@ export class SuperEquipmentEffectsDialog {
       }
     );
 
-    const particularityType = particularity.type;
+    let particularityType = particularity.type;
+
+    if (isCustom && selectedParticularity) {
+      if (selectedParticularity.includes('attribute')) {
+        particularityType = SuperEquipmentParticularityType.ATTRIBUTE;
+      } else if (selectedParticularity.includes('skill')) {
+        particularityType = SuperEquipmentParticularityType.SKILL;
+      } else {
+        particularityType = SuperEquipmentParticularityType.DAMAGE_TYPE;
+      }
+      particularityObject.type = particularityType;
+    }
+
     if (particularityType != SuperEquipmentParticularityType.FIXED) {
       const mappedCharacteristic = {
         [SuperEquipmentParticularityType.ATTRIBUTE]: {
@@ -247,15 +380,28 @@ export class SuperEquipmentEffectsDialog {
         [SuperEquipmentParticularityType.SKILL]: {
           path: CharacteristicType.BONUS.SKILL,
           value: particularity.change?.value || 1
-        },
+        }
       };
 
       const characteristic = mappedCharacteristic[particularityType];
       if (characteristic && selectedParticularity) {
-        const key = `${characteristic.path.system}.${selectedParticularity}`
-        particularityObject.change = { key: key, value: characteristic.value }
+        let key = selectedParticularity;
+
+        // Em traits normais, a chave muitas vezes é preenchida pelo Enum base
+        if (!isCustom) {
+          key = `${characteristic.path.system}.${selectedParticularity}`;
+        }
+
+        particularityObject.change = { key: key, value: characteristic.value };
       }
     }
+
+    // Resolve issue: (nome) instead of (modificador)
+    // Only in regular traits we passed the name into inputParticularity instead of the dropdown val
+    if (!isCustom) {
+      particularityObject.description = inputParticularity.trim();
+    }
+
     return particularityObject;
   }
 }

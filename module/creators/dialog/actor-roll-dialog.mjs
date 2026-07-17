@@ -55,6 +55,7 @@ export class ActorRollDialog {
 
     FoundryApi.createDialog(
       {
+        icon: "fas fa-dice-d10",
         title: localize("Realizar_Teste"),
         content: content,
         buttons: buttons,
@@ -113,7 +114,7 @@ export class ActorRollDialog {
     const allCharacteristicOptionsGroup = [];
     allCharacteristicOptionsGroup.push(
       {
-        group_label: localize('Atributos'),
+        group_label: localize('Atributos.Atributos'),
         group_items: attributesOptions
       }
     );
@@ -125,7 +126,7 @@ export class ActorRollDialog {
     );
     allCharacteristicOptionsGroup.push(
       {
-        group_label: localize('Virtudes'),
+        group_label: localize('Virtude.Virtudes'),
         group_items: virtueOptions
       }
     );
@@ -188,7 +189,7 @@ export class ActorRollDialog {
       uuid: uuid,
       ...dataOptions
     }
-    return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/rolls/default-roll-dialog.hbs`, data);
+    return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/rolls/roll-dialog.hbs`, data);
   }
 
   static #changePage(page, pages, buttons) {

@@ -1,3 +1,4 @@
+import { FoundryApi } from "../api/foundry-api.mjs";
 import { COLORS, SYSTEM_ID } from "../constants.mjs";
 
 export class DistrictRepository {
@@ -16,6 +17,8 @@ export class DistrictRepository {
 
   static #loadedFromPack = [];
 
+  static #cachedItems = null;
+
   static async _loadFromPack() {
     const compendium = await game.packs.get(`${SYSTEM_ID}.districts`)?.getDocuments();
     if (compendium) {
@@ -26,14 +29,25 @@ export class DistrictRepository {
           description: item.description
         };
       });
+      DistrictRepository.#cachedItems = null;
     }
   }
 
   static #getBaseItems() {
-    return [... this.#items].filter(district => district != DistrictRepository.TYPES.COLMEIA);
+    return DistrictRepository.#items.filter(district => district != DistrictRepository.TYPES.COLMEIA);
+  }
+
+  static #getAllItems() {
+    if (!this.#cachedItems) {
+      this.#cachedItems = [
+        ...this.#getBaseItems(),
+        ...this.#loadedFromPack
+      ].sort((a, b) => a.label.localeCompare(b.label));
+    }
+    return this.#cachedItems;
   }
 
   static getItems() {
-    return [... this.#getBaseItems(), ...this.#loadedFromPack].sort((a, b) => a.label.localeCompare(b.label));
+    return FoundryApi.deepClone(this.#getAllItems());
   }
 }

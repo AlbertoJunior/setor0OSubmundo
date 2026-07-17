@@ -1,8 +1,8 @@
 import { ICONS_PATH } from "../../../constants.mjs";
-import { RollTestField } from "../../../field/roll-test-field.mjs";
+import { RollTestField } from "../../../data/field/roll-test-field.mjs";
 import { CharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { EnhancementDuration, EnhancementOverload } from "../../../enums/enhancement-enums.mjs";
-import { EnhancementEffectField } from "../../../field/enhancement-field.mjs";
+import { EnhancementEffectField } from "../../../data/field/enhancement-field.mjs";
 
 const mutationEffects = [
   EnhancementEffectField.toJson(
@@ -222,6 +222,7 @@ export const mutationEnhancement = {
   id: '6',
   name: 'Mutação',
   value: 'mutacao',
+  maximumAllowed: 2,
   icon: `${ICONS_PATH}/mutation.svg`,
   effects: mutationEffects
 };

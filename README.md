@@ -1,5 +1,5 @@
 # Setor 0 RPG para o Foundry VTT
-[🌐 Site oficial do Setor 0](https://setor0rpg.com.br)
+[🌐 Site oficial do Setor 0](https://setor0rpg.com.br) | [📖 Manual do Sistema](./SYSTEM-MANUAL.md)
 
 ![Status: Alpha](https://img.shields.io/badge/status-alpha-orange)
 ![Foundry v13](https://img.shields.io/badge/foundry-v13-orange)
@@ -27,7 +27,9 @@ Este é o sistema oficial de RPG **Setor 0**, totalmente integrado ao **Foundry 
 4. Se não aparecer, reinicie o Foundry.
 5. Crie um novo mundo com o sistema.
 
-  > 🚧 Ainda será disponibilizado um manifesto para instalação direta via URL.
+> 🚧 Ainda será disponibilizado um manifesto para instalação direta via URL dentro do próprio Foundry VTT.
+
+---
 
 ### Compartilhando com seus jogadores
 Caso você não possua um servidor para hospedar o Foundry e compartilhar o link, você pode criar um `QuickTunnel` com o `CloudFlare`. Da seguinte maneira:
@@ -44,6 +46,7 @@ Caso você não possua um servidor para hospedar o Foundry e compartilhar o link
 
 ## Legenda de ícones
 <details>
+  <summary>Ícones</summary>
 
     🧩 Instalação
     🧬 Funcionalidades
@@ -68,13 +71,14 @@ Caso você não possua um servidor para hospedar o Foundry e compartilhar o link
 ### Personagens
 
 #### Jogador (PJ)
-* 🚧 Bônus de Nível 6.
 * ✅ Aprimoramentos com efeitos passivos e ativos.
 * ✅ Sistema de inventário com mochila e itens equipados.
 * ✅ Atalhos customizados por Personagem.
-* 🚧 Transacionar itens entre personagens.
+* ✅ Morfologia (Humano, Ciborgue, Androide, Sintético).
+* ✅ Fama e Influência.
+* ✅ Transacionar itens entre personagens.
 * 🚧 Importar personagem do site.
-* 🚧 Calculo de XP e pontos utilizados.
+* ✅ Calculo de XP e pontos utilizados.
 
 #### Não Jogáveis (PNJ)
 * ✅ Ficha.
@@ -93,7 +97,7 @@ Caso você não possua um servidor para hospedar o Foundry e compartilhar o link
 ### Efeitos
 * ✅ Efeitos específicos do Setor 0.
 * ✅ Efeitos ativos baseado em Aprimoramentos.
-* 🛠️ Efeitos ativos baseado em Traços.
+* ✅ Efeitos ativos baseado em Traços.
 * ✅ Efeitos ativos baseado em Equipamentos.
 * ✅ Efeitos que são ativados durante um combate são desativados automaticamente ao final dele.
 
@@ -103,6 +107,7 @@ Caso você não possua um servidor para hospedar o Foundry e compartilhar o link
 * ✅ Rolagem pelo Equipamento.
 * ✅ Rolagem dividida pelo Equipamento.
 * ✅ Atalhos customizados por Equipamento.
+* ✅ Exibição detalhada no chat com acesso rápido á Ficha.
 
 ### Rolagens
 * ✅ Padrão (Atributos + Habilidade).
@@ -120,18 +125,20 @@ Caso você não possua um servidor para hospedar o Foundry e compartilhar o link
 * ✅ Rolagens considerando as penalidades e todos os bônus.
 
 ### Tokens
-* 🚧 Ocultar efeitos ativos de Tokens inimigos (implementar a classe BasePlaceableHUD).
+* ✅ Ocultar efeitos ativos de Tokens inimigos (implementar a classe BasePlaceableHUD).
 
 ### Compêndio
 * ✅ Carregar compêndio.
-* 🚧 Imagens.
+* ✅ Imagens.
 * 🚧 Compêndio base do sistema.
 * 🚧 Inimigos.
+* 🚧 Personagens.
 * ✅ Armas (Armas Brancas e Armas de Projeção).
   * ✅ Armas Brancas.
   * ✅ Armas de Projeção.
 * ✅ Veículos.
 * ✅ Substâncias.
+* 🚧 Traços de SuperEquipamentos.
 
 <details>
   <summary>Como exportar</summary>
@@ -142,24 +149,34 @@ Caso você não possua um servidor para hospedar o Foundry e compartilhar o link
   ```
   
   Após executar o código, será perguntando onde você deseja salvar o Zip que contém todos os elementos que estavam nos compêndios.
+
+  Ou então, como GM, clicando no botão do Setor 0 no menu de Sistemas e selecionando a opção de Exportar Compêndio.
 </details>
 
 <details>
   <summary>Como importar</summary>
 
-Por padrão o sistema sempre vai tentar buscar os compêndios que estão na pasta do sistema: `./packs/src/*`, o Zip que é gerado  já vem com a estrutura de pastas correta para ser extraido dentro de `src`.
+  Por padrão o sistema sempre vai tentar buscar os compêndios que estão na pasta do sistema: `./packs/src/*`, o Zip que é gerado  já vem com a estrutura de pastas correta para ser extraido dentro de `src`.
 
-```text
-systems/
-└── setor0OSubmundo/
-    └── packs/
-        └── src/
-            ├── enhancements/
-            ├── inimigos/
-            ├── itens/
-            ├── macros/
-            └── traits/
-```
+  ```text
+  systems/
+  └── setor0OSubmundo/
+      └── packs/
+          └── src/
+              ├── enhancements/
+              ├── inimigos/
+              ├── itens/
+              ├── macros/
+              ├── personagens/
+              └── tracos/
+  ```
+  
+</details>
+
+<details>
+  <summary>Como resetar</summary>
+
+  Caso queira resetar o compendium já carregado, como GM, clicando no botão do Setor 0 no menu de Sistemas e selecionando a opção de apagar e Recarregar Compêndios.
 
 </details>
 
@@ -184,6 +201,7 @@ O Setor 0 conta com um sistema de Macros pré-definidos para novos jogadores. To
             // recebe um Actor e um id referente a um RollTestData e realiza a rolagem (enviando no chat)
         }
      }
+     ...
   }
   ```
 </details>
@@ -223,10 +241,11 @@ O Setor 0 conta com um sistema de Macros pré-definidos para novos jogadores. To
 - ✅ Botões compactos na ficha de Personagem.
 - ✅ Botões compactos na ficha de Items.
 - ✅ Botões compactos nos cabeçalhos.
-- 🛠️ Tradução de alguns elementos do Foundry.
+- ✅ Tradução de alguns elementos do Foundry.
+- ✅ Suporte a Application V2 do Foundry.
 </details>
 
-### Telas
+### Telas (v12)
 <details>
     <summary>Ficha de Personagem</summary>
 
@@ -262,6 +281,9 @@ Este é um projeto com direitos reservados.
 Sugestões, correções e contribuições são bem-vindas, mas devem ser discutidas e aprovadas previamente.  
 Se você deseja contribuir, entre em contato pelos canais oficiais ou abra uma issue neste repositório.
 Consulte o arquivo [`CONTRIBUTING`](./CONTRIBUTING.md) para mais detalhes.
+
+> **🤖 Contribuindo com Inteligência Artificial (Agentes)**  
+> Se você utiliza um assistente de IA (como o Gemini, Cline, Cursor, etc.) para analisar o código ou auxiliar no desenvolvimento, recomendamos fortemente baixar o repositório auxiliar de documentação de IA. Basta cloná-lo ou extraí-lo em uma pasta chamada `.agent` na raiz deste projeto. Essa base de conhecimento contém o histórico do sistema, padrões arquiteturais (learnings) e regras do código, fornecendo contexto imediato para que o seu agente entenda exatamente como ele deve operar e siga os nossos padrões!
 
 ---
 ## ⚠️ P.S.

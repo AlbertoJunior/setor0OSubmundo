@@ -1,3 +1,4 @@
+import { StandardEffectChangeField } from "../../../data/field/effect-fields.mjs";
 import { COLORS } from "../../../constants.mjs";
 import { ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../../enums/active-effects-enums.mjs";
 import { CharacteristicType } from "../../../enums/characteristic-enums.mjs";
@@ -16,12 +17,12 @@ const shattered1 = ActiveEffectsUtils.createEffectData({
   duration: { startRound: 0, rounds: 99 },
   tint: COLORS.BASE.yellow,
   changes: [
-    {
+    StandardEffectChangeField.toJson({
       key: CharacteristicType.BONUS.DAMAGE_PENALTY_FLAT.system,
       value: 3,
       mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
       priority: 100
-    },
+    }),
   ],
   flags: {
     [ActiveEffectsFlags.ORIGIN_ID]: shattered1Id,
@@ -40,12 +41,12 @@ const shattered2 = ActiveEffectsUtils.createEffectData({
   duration: { startRound: 0, rounds: 99 },
   tint: COLORS.BASE.orange,
   changes: [
-    {
+    StandardEffectChangeField.toJson({
       key: CharacteristicType.BONUS.DAMAGE_PENALTY_FLAT.system,
       value: 4,
       mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
       priority: 200
-    },
+    }),
   ],
   flags: {
     [ActiveEffectsFlags.ORIGIN_ID]: shattered2Id,
@@ -64,12 +65,12 @@ const shattered3 = ActiveEffectsUtils.createEffectData({
   duration: { startRound: 0, rounds: 99 },
   tint: COLORS.BASE.red,
   changes: [
-    {
+    StandardEffectChangeField.toJson({
       key: CharacteristicType.BONUS.DAMAGE_PENALTY_FLAT.system,
       value: 5,
       mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
       priority: 300
-    },
+    }),
   ],
   flags: {
     [ActiveEffectsFlags.ORIGIN_ID]: shattered3Id,

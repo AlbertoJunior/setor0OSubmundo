@@ -32,21 +32,31 @@ export class EnhancementRepository {
           effects: item.effects
         };
       });
+      EnhancementRepository.#cachedItems = null;
     }
   }
 
+  static #cachedItems = null;
+
+  static #getAllItems() {
+    if (!this.#cachedItems) {
+      this.#cachedItems = [
+        ...EnhancementRepository.#enhancements,
+        ...EnhancementRepository.#loadedFromPack
+      ].sort((a, b) => a.name.localeCompare(b.name));
+    }
+    return this.#cachedItems;
+  }
+
   static getItems() {
-    return [
-      ...EnhancementRepository.#enhancements,
-      ...EnhancementRepository.#loadedFromPack
-    ].sort((a, b) => a.name.localeCompare(b.name));
+    return FoundryApi.deepClone(this.#getAllItems());
   }
 
   static getEnhancementById(enhancementId) {
     if (enhancementId) {
-      const fetchedEnhancement = this.getItems().filter(item => item.id == enhancementId)[0];
+      const fetchedEnhancement = this.#getAllItems().find(item => item.id == enhancementId);
       if (fetchedEnhancement) {
-        return fetchedEnhancement;
+        return FoundryApi.deepClone(fetchedEnhancement);
       }
     }
     return undefined;
@@ -54,9 +64,10 @@ export class EnhancementRepository {
 
   static getEnhancementEffectsByEnhancementId(enhancementId) {
     if (enhancementId) {
-      const fetchedLevels = this.getEnhancementById(enhancementId)?.effects;
+      const fetchedEnhancement = this.#getAllItems().find(item => item.id == enhancementId);
+      const fetchedLevels = fetchedEnhancement?.effects;
       if (fetchedLevels) {
-        return [...fetchedLevels];
+        return FoundryApi.deepClone(fetchedLevels);
       }
     }
     return [];
@@ -66,17 +77,22 @@ export class EnhancementRepository {
     if (!effectId)
       return null;
 
+    let effect = null;
+
     if (enhancementId) {
-      return this.getEnhancementById(enhancementId)?.effects.find(ef => ef.id == effectId) || null;
+      const fetchedEnhancement = this.#getAllItems().find(item => item.id == enhancementId);
+      effect = fetchedEnhancement?.effects.find(ef => ef.id == effectId) || null;
+    } else {
+      effect = this.#getAllItems()
+        .flatMap(enhancement => enhancement.effects)
+        .find(ef => ef.id == effectId) || null;
     }
 
-    return this.getItems()
-      .flatMap(enhancement => enhancement.effects)
-      .find(ef => ef.id == effectId) || null;
+    return effect ? FoundryApi.deepClone(effect) : null;
   }
 
   static getEnhancementFamilyByEffectId(effectId) {
-    const effect = this.getItems().find(enhancement => enhancement.effects?.some(effect => effect.id == effectId));
+    const effect = this.#getAllItems().find(enhancement => enhancement.effects?.some(effect => effect.id == effectId));
     return effect ? FoundryApi.deepClone(effect) : null;
   }
 

@@ -2,12 +2,12 @@
   "id": "setor0OSubmundo",
   "title": "Setor 0 - O Submundo",
   "description": "Jogue Setor 0 - O Submundo no Foundry VTT",
-  "url": "https://www.set0rpg.com.br",
-  "version": "0.0.2",
-  "background": "/systems/setor0OSubmundo/imgs/banner.png",
-  "manifest": "https://raw.githubusercontent.com/AlbertoJunior/RPG-fvtt-sector-0/master/system.json",
-  "download": "https://github.com/AlbertoJunior/RPG-fvtt-sector-0/download/archive.zip",
-  "bugs": "https://github.com/AlbertoJunior/RPG-fvtt-sector-0/issues",
+  "version": "0.0.3",
+  "background": "/systems/setor0OSubmundo/imgs/banner.webp",
+  "url": "https://github.com/AlbertoJunior/setor0OSubmundo",
+  "manifest": "https://github.com/AlbertoJunior/setor0OSubmundo/releases/latest/download/system.json",
+  "download": "https://github.com/AlbertoJunior/setor0OSubmundo/releases/latest/download/setor0OSubmundo.zip",
+  "bugs": "https://github.com/AlbertoJunior/setor0OSubmundo/issues",
   "authors": [
     {
       "name": "Alberto Junior",
@@ -18,8 +18,8 @@
   "license": "LICENSE",
   "readme": "README.md",
   "compatibility": {
-    "minimum": 12,
-    "verified": 13
+    "minimum": "12",
+    "verified": "13"
   },
   "esmodules": [
     "setor0OSubmundo.mjs"
@@ -29,10 +29,14 @@
     "scripts/libs/jszip.min.js"
   ],
   "styles": [
-    "styles/variables.css",
+    {
+      "src": "styles/variables.css",
+      "layer": "variables"
+    },
     "styles/edit-foundry-styles.css",
     "styles/styles-base.css",
     "styles/components/styles-actor.css",
+    "styles/components/styles-equipment.css",
     "styles/components/styles-items.css",
     "styles/components/styles-chat.css",
     "styles/components/styles-dialog.css",
@@ -40,23 +44,38 @@
     "styles/system-styles-v2.css",
     "styles/system-styles-dark.css",
     "styles/system-styles-id.css",
-    "styles/system-created-styles.css"
+    "styles/system-created-styles.css",
+    {
+      "src": "styles/utilities.css",
+      "layer": null
+    }
   ],
   "packs": [
     {
-      "name": "inimigos",
-      "label": "Inimigos conhecidos",
+      "name": "characters",
+      "label": "Personagens",
       "system": "setor0OSubmundo",
-      "path": "packs/inimigos",
+      "path": "packs/personagens",
       "type": "Actor",
+      "banner": "/systems/setor0OSubmundo/imgs/banner_actors.webp",
       "private": false
     },
     {
-      "name": "itens",
-      "label": "Itens conhecidos",
+      "name": "enemies",
+      "label": "Inimigos",
+      "system": "setor0OSubmundo",
+      "path": "packs/inimigos",
+      "type": "Actor",
+      "banner": "/systems/setor0OSubmundo/imgs/banner_enemies.webp",
+      "private": false
+    },
+    {
+      "name": "items",
+      "label": "Itens",
       "system": "setor0OSubmundo",
       "path": "packs/itens",
       "type": "Item",
+      "banner": "/systems/setor0OSubmundo/imgs/banner_equipments.webp",
       "private": false,
       "flags": {
         "filter": {
@@ -79,6 +98,7 @@
       "system": "setor0OSubmundo",
       "path": "packs/tracos",
       "type": "Item",
+      "banner": "/systems/setor0OSubmundo/imgs/banner_traits.webp",
       "private": false,
       "flags": {
         "filter": {
@@ -96,6 +116,7 @@
       "label": "Novos Aprimoramentos",
       "system": "setor0OSubmundo",
       "path": "packs/aprimoramentos",
+      "banner": "/systems/setor0OSubmundo/imgs/banner_enhancements.webp",
       "type": "Item",
       "flags": {
         "filter": {
@@ -113,6 +134,7 @@
       "label": "Macros",
       "system": "setor0OSubmundo",
       "path": "packs/macros",
+      "banner": "/systems/setor0OSubmundo/imgs/banner_macros.webp",
       "type": "Macro",
       "ownership": {
         "PLAYER": "OBSERVER"
@@ -121,13 +143,14 @@
   ],
   "packFolders": [
     {
-      "name": "Setor 0",
+      "name": "Setor0",
       "label": "Setor 0",
       "color": "#ffdc00",
       "sorting": "m",
       "packs": [
-        "inimigos",
-        "itens",
+        "characters",
+        "enemies",
+        "items",
         "traits",
         "enhancements",
         "macros"
@@ -136,8 +159,8 @@
   ],
   "languages": [
     {
-      "lang": "pt-br",
-      "name": "Portugês Brasil",
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
       "path": "lang/pt-br.json",
       "system": "setor0OSubmundo"
     },
@@ -161,12 +184,14 @@
       "Substance": {},
       "Vehicle": {},
       "Trait": {},
-      "Enhancement": {}
+      "Enhancement": {},
+      "Maneuver": {}
     }
   },
-  "socket": false,
+  "socket": true,
   "initiative": "1d10",
   "grid": {
+    "type": 0,
     "distance": 1,
     "units": "PM"
   },

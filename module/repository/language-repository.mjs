@@ -1,5 +1,6 @@
 import { SYSTEM_ID } from "../constants.mjs";
 import { DistrictRepository } from "./district-repository.mjs";
+import { FoundryApi } from "../api/foundry-api.mjs";
 
 export class LanguageRepository {
   static #languages = [
@@ -29,10 +30,23 @@ export class LanguageRepository {
           checked: item.default
         };
       });
+      LanguageRepository.#cachedItems = null;
     }
   }
 
+  static #cachedItems = null;
+
+  static #getAllItems() {
+    if (!this.#cachedItems) {
+      this.#cachedItems = [
+        ...this.#languages,
+        ...this.#loadedFromPack
+      ];
+    }
+    return this.#cachedItems;
+  }
+
   static getItems() {
-    return [... this.#languages, ... this.#loadedFromPack];
+    return FoundryApi.deepClone(this.#getAllItems());
   }
 }

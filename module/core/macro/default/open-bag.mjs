@@ -1,11 +1,12 @@
-import { SYSTEM_FLAGS, SYSTEM_ID } from "../../../constants.mjs";
+import { SYSTEM_ID } from "../../../constants.mjs";
+import { SystemFlags } from "../../../enums/flags-enums.mjs";
 import { verifyAndReturnActor, verifyAndReturnSelectedToken } from "../commands/macro-utils-commands.mjs";
 
 export const openBagMacroData = {
   flags: {
     [SYSTEM_ID]: {
-      [SYSTEM_FLAGS.SOURCE_ID]: '1',
-      [SYSTEM_FLAGS.ROLE]: 'user',
+      [SystemFlags.SOURCE.ID]: '1',
+      [SystemFlags.ROLE.ROLE]: SystemFlags.ROLE.USER,
     }
   },
   name: "Abrir Mochila",
@@ -13,11 +14,12 @@ export const openBagMacroData = {
     default: CONST.USER_ROLES.PLAYER
   },
   command: `
-const targetPage = 4;
-${verifyAndReturnSelectedToken}
-${verifyAndReturnActor}
+${verifyAndReturnSelectedToken.trim()}
+${verifyAndReturnActor.trim()}
 actor.sheet.render(true);
 setTimeout(() => {
+  const coreLevel = setor0OSubmundo.Utils.getObject(actor, setor0OSubmundo.Enums.CharacteristicType.CORE) || 0;
+  const targetPage = coreLevel > 0 ? 4 : 3;
   if (actor.sheet.currentPage !== undefined) {
     actor.sheet.currentPage = targetPage;
     actor.sheet.render(false);

@@ -27,8 +27,8 @@
 
 :is(.S0-page-transparent, .S0-dialog, .S0-message-content) hr {
   margin-block: 4px;
-  border-top: 1px solid var(--tertiary-color-alpha-50);
-  border-bottom: 1px solid var(--tertiary-color-alpha);
+  border-top: var(--border-thin) solid var(--tertiary-color-alpha-50);
+  border-bottom: var(--border-thin) solid var(--tertiary-color-alpha);
   box-shadow: 0px 0px 3px 0px var(--tertiary-color-alpha-50);
 }
 
@@ -71,6 +71,10 @@
 .S0-page-transparent .S0-clickable.S0-characteristic.S0-superficial {
   background-color: var(--tertiary-color-alpha);
   box-shadow: 0px 0px 3px 0px var(--tertiary-color);
+}
+
+.S0-page-transparent .S0-characteristic.S0-characteristic-temp.S0-clickable.S0-letal:hover {
+  background-color: var(--color-red-alpha);
 }
 
 .S0-page-transparent .S0-clickable.S0-characteristic {
@@ -125,6 +129,7 @@
 
 .S0-page-transparent .S0-h-marked {
   background-color: var(--tertiary-color-alpha);
+  color: var(--on-tertiary-alternate-color);
 }
 
 .S0-page-transparent .S0-image-npc {
@@ -156,7 +161,7 @@
 
 .S0-page-transparent .S0-language-container {
   height: auto;
-  border-bottom: 1px solid var(--primary-color);
+  border-bottom: var(--border-thin) solid var(--primary-color);
 }
 
 .S0-page-transparent :is(input[type=text],
@@ -169,6 +174,7 @@
   input[type=file],
   select,
   textarea) {
+  color: var(--primary-color);
   background: var(--alternate-black-color);
 }
 

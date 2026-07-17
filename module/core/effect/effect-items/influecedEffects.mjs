@@ -1,3 +1,4 @@
+import { StandardEffectChangeField } from "../../../data/field/effect-fields.mjs";
 import { COLORS } from "../../../constants.mjs";
 import { ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../../enums/active-effects-enums.mjs";
 import { CharacteristicType } from "../../../enums/characteristic-enums.mjs";
@@ -16,11 +17,11 @@ const addicted = ActiveEffectsUtils.createEffectData({
   img: `${influenceEnhancement.icon}`,
   tint: COLORS.BASE.yellow,
   changes: [
-    {
+    StandardEffectChangeField.toJson({
       key: CharacteristicType.BONUS.VIRTUES.PERSEVERANCE.system,
       value: -1,
       mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-    },
+    }),
   ],
   flags: {
     [ActiveEffectsFlags.ORIGIN_ID]: addictedId,
@@ -38,11 +39,11 @@ const mesmerized = ActiveEffectsUtils.createEffectData({
   duration: { rounds: 99, startTime: 0 },
   tint: COLORS.BASE.yellow,
   changes: [
-    {
+    StandardEffectChangeField.toJson({
       key: CharacteristicType.BONUS.VIRTUES.CONSCIOUSNESS.system,
       value: -1,
       mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-    },
+    }),
   ],
   flags: {
     [ActiveEffectsFlags.ORIGIN_ID]: mesmerizedId,
@@ -76,11 +77,11 @@ const fascinated = ActiveEffectsUtils.createEffectData({
   duration: { rounds: 99, startTime: 0 },
   tint: COLORS.BASE.yellow,
   changes: [
-    {
+    StandardEffectChangeField.toJson({
       key: CharacteristicType.BONUS.VIRTUES.QUIETNESS.system,
       value: -1,
       mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-    },
+    }),
   ],
   flags: {
     [ActiveEffectsFlags.ORIGIN_ID]: fascinatedId,

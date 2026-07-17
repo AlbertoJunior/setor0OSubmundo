@@ -1,8 +1,8 @@
-<form class="S0-container">
-  <h3 style="margin-block: 3px">{{localize 'S0.Modificadores'}}</h3>
+<div class="S0-container">
+  <h3 class="S0-my-4">{{localize 'S0.Modificadores'}}</h3>
   <div class="form-group">
-    <label for="{{uuid}}.difficulty" style="flex:1;">{{localize 'S0.Dificuldade'}}:</label>
-    <select class="S0-select" id="{{uuid}}.difficulty" name="difficulty" style="flex:1">
+    <label class="S0-flex-1" for="{{uuid}}.difficulty">{{localize 'S0.Dificuldade'}}:</label>
+    <select class="S0-select S0-flex-1" id="{{uuid}}.difficulty" name="difficulty">
       {{#with (operators 'orValue' values.difficulty 6) as |selected|}}
       {{#forLoop 5 11}}
       <option value="{{index}}" {{selectIfEq index selected}}>{{index}}</option>
@@ -12,8 +12,8 @@
   </div>
 
   <div class="form-group">
-    <label for="{{uuid}}.critic" style="flex:1;">{{localize 'S0.Critico'}}:</label>
-    <select class="S0-select" id="{{uuid}}.critic" name="critic" style="flex:1">
+    <label class="S0-flex-1" for="{{uuid}}.critic">{{localize 'S0.Critico'}}:</label>
+    <select class="S0-select S0-flex-1" id="{{uuid}}.critic" name="critic">
       {{#with (operators 'orValue' values.critic 10) as |selected|}}
       {{#forLoop 5 11}}
       <option value="{{index}}" {{selectIfEq index selected}}>{{index}}</option>
@@ -24,45 +24,45 @@
 
   {{#if canBeOverload}}
   <div class="form-group">
-    <label for="{{uuid}}.overload" style="flex:1;">{{localize 'S0.Sobrecarga'}}:</label>
-    <input id="{{uuid}}.overload" name="overload" type="number" style="flex:1;" value="{{values.overload}}" max="5"
+    <label class="S0-flex-1" for="{{uuid}}.overload">{{localize 'S0.Sobrecarga'}}:</label>
+    <input class="S0-flex-1" id="{{uuid}}.overload" name="overload" type="number" value="{{values.overload}}" max="5"
       min="0">
   </div>
   {{/if}}
 
   {{#if canBePenalty}}
   <div class="form-group">
-    <label for="{{uuid}}.penalty" style="flex:1;">{{localize 'S0.Penalidade'}}:</label>
-    <input id="{{uuid}}.penalty" name="penalty" type="number" style="flex:1;" value="{{values.penalty}}" min="0">
+    <label class="S0-flex-1" for="{{uuid}}.penalty">{{localize 'S0.Penalidade'}}:</label>
+    <input class="S0-flex-1" id="{{uuid}}.penalty" name="penalty" type="number" value="{{values.penalty}}" min="0">
   </div>
   {{/if}}
 
   <div class="form-group">
     {{#with (operators 'orValue' values.bonus 0) as |value|}}
-    <label for="{{uuid}}.bonus" style="flex:1;">{{localize 'S0.Bonus'}}:</label>
-    <input id="{{uuid}}.bonus" name="bonus" type="number" style="flex:1;" value="{{value}}">
+    <label class="S0-flex-1" for="{{uuid}}.bonus">{{localize 'S0.Bonus'}}:</label>
+    <input class="S0-flex-1" id="{{uuid}}.bonus" name="bonus" type="number" value="{{value}}">
     {{/with}}
   </div>
 
   <div class="form-group">
     {{#with (operators 'orValue' values.automatic 0) as |value|}}
-    <label for="{{uuid}}.automatic" style="flex:1;">{{localize 'S0.Automatico'}}:</label>
-    <input id="{{uuid}}.automatic" name="automatic" type="number" style="flex:1;" value="{{value}}" min="0">
+    <label class="S0-flex-1" for="{{uuid}}.automatic">{{localize 'S0.Automatico'}}:</label>
+    <input class="S0-flex-1" id="{{uuid}}.automatic" name="automatic" type="number" value="{{value}}" min="0">
     {{/with}}
   </div>
 
   {{#if (operators 'or' canBeHalf canBeSpecialist)}}
   <div class="form-group">
     {{#if canBeHalf}}
-    <div style="display: flex; flex: 1; align-items: center; justify-content: space-between;">
-      <label for="{{uuid}}.isHalf" style="flex:1;">{{localize 'S0.Dividido'}}:</label>
+    <div class="S0-flex S0-flex-1 S0-items-center S0-justify-between">
+      <label class="S0-flex-1" for="{{uuid}}.isHalf">{{localize 'S0.Dividido'}}:</label>
       <input id="{{uuid}}.isHalf" name="half" type="checkbox">
     </div>
     {{/if}}
 
     {{#if canBeSpecialist}}
-    <div style="display: flex; flex: 1; align-items: center; justify-content: space-between;">
-      <label for="{{uuid}}.specialist" style="flex:1;">{{localize 'S0.Especialista'}}:</label>
+    <div class="S0-flex S0-flex-1 S0-items-center S0-justify-between">
+      <label class="S0-flex-1" for="{{uuid}}.specialist">{{localize 'S0.Especialista'}}:</label>
       <input id="{{uuid}}.specialist" name="specialist" type="checkbox" {{#if values.specialist}}checked{{/if}}>
     </div>
     {{/if}}
@@ -71,5 +71,21 @@
 
   <hr>
 
+  {{#if maneuver}}
+  <div class="S0-container S0-mb-4">
+    <h4 class="S0-my-2">{{localize 'S0.Manobra.Manobra'}}: {{maneuver.name}}</h4>
+    <div class="S0-flex S0-flex-col S0-gap-1">
+      <div id="maneuver-damage-info">{{localize 'S0.Dano'}}: {{maneuver.damage}}{{#if maneuver.useDamageWeapon}} + <span class="weapon-value">{{localize 'S0.Arma'}}</span>{{/if}}</div>
+      <div id="maneuver-automatic-info">{{localize 'S0.Automatico'}}: {{maneuver.automaticDamage}}{{#if maneuver.useDamageWeapon}} + <span class="weapon-value">{{localize 'S0.Arma'}}</span>{{/if}}</div>
+      <div>{{localize 'S0.Manobra.Usa_Dano_Arma'}}: {{#if maneuver.useDamageWeapon}}{{localize 'S0.Sim'}}{{else}}{{localize 'S0.Nao'}}{{/if}}</div>
+    </div>
+  </div>
+  <hr>
+  {{/if}}
+
+  {{#if needsWeapon}}
+  {{> weapon-select-partial}}
+  {{/if}}
+
   {{> roll-chat-mode}}
-</form>
+</div>

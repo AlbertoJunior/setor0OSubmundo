@@ -20,13 +20,12 @@ export class AbilityRepository {
   ];
 
   static getItems() {
-    return [
-      ...AbilityRepository.#characteristics
-    ].sort((a, b) => a.label.localeCompare(b.label));
+    return FoundryApi.deepClone(AbilityRepository.#characteristics)
+      .sort((a, b) => a.label.localeCompare(b.label));
   }
 
   static getItem(id) {
-    const item = this.getItems().find(item => item.id == id);
+    const item = AbilityRepository.#characteristics.find(item => item.id == id);
     return item ? FoundryApi.deepClone(item) : null;
   }
 }

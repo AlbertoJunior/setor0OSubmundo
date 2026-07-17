@@ -2,7 +2,8 @@
   "title": "Novos Aprimoramentos",
   "banner": "ui/banners/item-banner.webp",
   "documentName": "Item",
+  "stats": {},
+  "sortingMode": "a",
   "elements": [],
-  "folders": [],
-  "sortingMode": "a"
+  "folders": []
 }

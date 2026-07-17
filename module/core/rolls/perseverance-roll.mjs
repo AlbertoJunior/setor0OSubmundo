@@ -2,13 +2,14 @@ import { RollPerseveranceMessageCreator } from "../../creators/message/persevera
 import { ChatCreator } from "../../utils/chat-creator.mjs";
 import { ActorUtils } from "../actor/actor-utils.mjs";
 import { CoreRollMethods } from "./core-roll-methods.mjs";
+import { RollUtils } from "../../utils/roll-utils.mjs";
 
 export class RollPerseverance {
   static async operateMessage(message) {
     const actorOnMessage = ActorUtils.getActor(message.speaker.actor);
 
-    const overloadRollsOnMessage = message.rolls.filter(roll => roll.options.isOverload == true);
-    const defaultRollsOnMessage = message.rolls.filter(roll => roll.options.isOverload == false);
+    const overloadRollsOnMessage = message.rolls.filter(roll => RollUtils.isOverloadRoll(roll));
+    const defaultRollsOnMessage = message.rolls.filter(roll => !RollUtils.isOverloadRoll(roll));
 
     if (!defaultRollsOnMessage || defaultRollsOnMessage.length < 1) {
       console.warn(`-> Nenhuma rolagem encontrada`);

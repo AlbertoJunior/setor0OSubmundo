@@ -28,19 +28,19 @@ function rollModes() {
   return parsedModes;
 }
 
-export default function gameFunc(func) {
-  const funcMap = {
-    isGm: () => game.user.isGM,
-    isOwner: () => game.user.isOwner,
-    inDarkMode: () => FlagsUtils.getItemFlag(game.user, SystemFlags.MODE.DARK),
-    isCompactedSheet: () => FlagsUtils.getItemFlag(game.user, SystemFlags.MODE.COMPACT),
-    'players-roll-mode': () => {
-      return rollModes().filter(mode => mode.value != ChatCreator.MODE_SELF);
-    },
-    'gm-roll-mode': () => {
-      return rollModes().filter(mode => mode.value == ChatCreator.MODE_SELF);
-    }
-  };
+const funcMap = {
+  isGm: () => game.user.isGM,
+  isOwner: () => game.user.isOwner,
+  inDarkMode: () => FlagsUtils.getItemFlag(game.user, SystemFlags.MODE.DARK),
+  isCompactedSheet: () => FlagsUtils.getItemFlag(game.user, SystemFlags.MODE.COMPACT),
+  'players-roll-mode': () => {
+    return rollModes().filter(mode => mode.value != ChatCreator.MODE_SELF);
+  },
+  'gm-roll-mode': () => {
+    return rollModes().filter(mode => mode.value == ChatCreator.MODE_SELF);
+  }
+};
 
+export default function gameFunc(func) {
   return funcMap[func]?.() || false;
 }

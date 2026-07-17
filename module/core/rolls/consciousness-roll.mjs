@@ -1,42 +1,63 @@
-import { RollQuietnessMessageCreator } from "../../creators/message/quietness-roll.mjs";
+import { RollConsciousnessMessageCreator } from "../../creators/message/consciousness-roll.mjs";
 import { ChatCreator } from "../../utils/chat-creator.mjs";
 import { ActorUtils } from "../actor/actor-utils.mjs";
 import { CoreRollMethods } from "./core-roll-methods.mjs";
+import { RollUtils } from "../../utils/roll-utils.mjs";
 
 export class RollConsciousness {
   static async operateMessage(message) {
-    TODO('implementar');
-    return null
-
-    const defaultRoll = message.rolls.filter(roll => roll.options.isOverload == false);
-
-    if (!defaultRoll || defaultRoll.length < 1) {
+    const defaultRollsOnMessage = message.rolls.filter(roll => !RollUtils.isOverloadRoll(roll));
+    if (!defaultRollsOnMessage || defaultRollsOnMessage.length < 1) {
       console.warn(`-> Nenhuma rolagem encontrada`);
       return null;
     }
 
     const actorOnMessage = ActorUtils.getActor(message.speaker.actor);
 
-    const overloadRollResult = overloadRoll[0];
-    const defaultRollResult = defaultRoll[0];
+    const defaultRollResult = defaultRollsOnMessage[0];
+
+    const values = CoreRollMethods.getValuesOnRoll(defaultRollResult);
+    const resultRoll = await CoreRollMethods.rollDice(values.length);
 
     const optionsRoll = defaultRollResult.options;
-    const newValues = {
-      roll: defaultRollResult,
-      values: CoreRollMethods.getValuesOnRoll(defaultRollResult),
-      removedValues: CoreRollMethods.getValuesOnRoll(overloadRollResult),
+    const params = {
+      values: values,
+      newValues: resultRoll.values,
       difficulty: optionsRoll.difficulty || 6,
-      critic: optionsRoll.critic || 10,
-      specialist: optionsRoll.specialist || false,
-      automatic: (optionsRoll.automatic || 0) + (optionsRoll?.weapon?.true_damage || 0),
-      canUsePerseverance: ActorUtils.havePerseverance(actorOnMessage),
-      canUseQuietness: false
+      automatic: (optionsRoll.automatic || 0)
     };
 
-    const messageContent = await RollQuietnessMessageCreator.mountContent(newValues);
+    params.successes = this.#calculateSuccesses(values, resultRoll.values, params)
 
-    await ChatCreator.sendToChatTypeRoll(actorOnMessage, messageContent, [newValues.roll]);
+    const messageContent = await RollConsciousnessMessageCreator.mountContent(params);
 
-    return newValues;
+    const newRoll = resultRoll.roll;
+    Object.assign(newRoll.options, optionsRoll);
+
+    await ChatCreator.sendToChatTypeRoll(actorOnMessage, messageContent, [newRoll]);
+
+    return params;
+  }
+
+  static #calculateSuccesses(firstRoll, secondRoll, params) {
+    const { difficulty, automatic } = params
+    const first = this.#calculate(firstRoll, difficulty)
+    const second = this.#calculate(secondRoll, difficulty)
+    return {
+      first: first,
+      second: second,
+      automatic: automatic,
+      total: first + second + automatic
+    }
+  }
+
+  static #calculate(values, difficulty) {
+    let result = 0;
+    for (const element of values) {
+      if (element >= difficulty) {
+        result++;
+      }
+    }
+    return result;
   }
 }

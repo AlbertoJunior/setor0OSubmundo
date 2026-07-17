@@ -1,0 +1,86 @@
+import { SYSTEM_ID, TEMPLATES_PATH } from "../../../constants.mjs";
+import { SocketUtils } from "../../../core/socket/socket-utils.mjs";
+import { FlagsUtils } from "../../../utils/flags-utils.mjs";
+import { FoundryApi } from "../../../api/foundry-api.mjs";
+import { loadAndRegisterTemplates } from "../../../setup/templates.mjs";
+import { menuHandleMethods } from "../../menu-default-methods.mjs";
+import { handlerTraitCharacteristicsEvents } from "./methods/trait-effects-methods.mjs";
+import { localize } from "../../../utils/utils.mjs";
+import { TraitUpdater } from "../../updater/trait-updater.mjs";
+import { SystemFlags } from "../../../enums/flags-enums.mjs";
+import { TraitType } from "../../../enums/trait-enums.mjs";
+import { ItemType } from "../../../enums/item-type-enums.mjs";
+
+export async function traitTemplatesRegister() {
+  const templates = [
+    { path: "traits/trait-sheet" }
+  ];
+
+  return await loadAndRegisterTemplates(templates);
+}
+
+export async function registerTrait() {
+  await FoundryApi.Items.registerSheet(SYSTEM_ID, TraitSheet, {
+    types: [ItemType.TRAIT],
+    makeDefault: true
+  });
+}
+
+export class TraitSheet extends FoundryApi.ItemSheet {
+  static SHEET_CONFIG = {
+    templates: [
+      { name: 'trait', template: `${TEMPLATES_PATH}/traits/trait-sheet.hbs` }
+    ],
+    width: 340,
+    resizable: true,
+    classes: ['S0-trait-sheet'],
+    actions: SocketUtils.shareDocumentActions
+  };
+
+  get mapEvents() {
+    return {
+      menu: menuHandleMethods,
+      characteristic: handlerTraitCharacteristicsEvents,
+    };
+  }
+
+  get thisDocument() {
+    return this.item;
+  }
+
+  get isEditable() {
+    return FlagsUtils.getItemFlag(this.item, 'editable', false);
+  }
+
+  get isDisabled() {
+    return !this.isEditable;
+  }
+
+  get canEdit() {
+    return game.user.isGM || this.item.getFlag(SYSTEM_ID, SystemFlags.MANAGER.CAN_EDIT);
+  }
+
+  getData() {
+    const data = super.getData();
+    data.canEdit = this.canEdit
+    data.system = this.item.system;
+
+    data.traitTypes = {
+      [TraitType.GOOD]: localize('Traco.Bom'),
+      [TraitType.BAD]: localize('Traco.Ruim')
+    };
+
+    data.morphologies = {
+      '': localize('Todas'),
+      'Androide': localize('Androide'),
+      'Ciborgue': localize('Ciborgue'),
+      'Sintético': localize('Sintetico'),
+    };
+
+    return data;
+  }
+
+  async updateDocument(document, keyToUpdate, value) {
+    await TraitUpdater.updateTrait(document, keyToUpdate, value);
+  }
+}

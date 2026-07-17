@@ -37,10 +37,21 @@ export class ConfirmationDialog {
    *   onClose: () => console.log("Janela fechada")
    * });
   */
-  static async open(params = { onConfirm: () => { }, onCancel: () => { }, onClose: () => { } }) {
-    const { titleDialog, cancelButtonText, confirmButtonText, message, titleMessage, onConfirm, onCancel, onClose } = params;
+  static async open(params = { onConfirm: () => { }, onCancel: () => { }, onClose: () => { } }, options) {
+    const {
+      titleDialog,
+      cancelButtonText,
+      confirmButtonText,
+      message,
+      titleMessage,
+      onConfirm,
+      onCancel,
+      onClose,
+      isDanger = false
+    } = params;
 
     const content = await this.#mountContent(message, titleMessage);
+
     const buttons = [
       {
         label: cancelButtonText ?? localize("Cancelar"),
@@ -52,7 +63,7 @@ export class ConfirmationDialog {
       },
       {
         label: confirmButtonText ?? localize("Confirmar"),
-        default: true,
+        default: !isDanger,
         onClick: (html) => {
           if (typeof onConfirm === 'function') {
             onConfirm();
@@ -61,8 +72,13 @@ export class ConfirmationDialog {
       }
     ];
 
+    if (isDanger) {
+      buttons[1].class = ['S0-button-delete'];
+    }
+
     FoundryApi.createDialog(
       {
+        classes: ['S0-max-width-50'],
         title: titleDialog ?? localize("Confirmar"),
         content: content,
         buttons: buttons,
@@ -71,7 +87,8 @@ export class ConfirmationDialog {
             onClose();
           }
         }
-      }
+      },
+      options
     );
   }
 

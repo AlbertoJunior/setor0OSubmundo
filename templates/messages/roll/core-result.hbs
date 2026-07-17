@@ -1,20 +1,13 @@
 <!-- #region ROLLS -->
 {{#if (operators 'isNotEmpty' overloadValues)}}
 <p>{{localize 'S0.Sobrecarga'}}:</p>
-<ol class="dice-rolls">
-  {{#each overloadValues}}
-  <li class="S0-d10 roll die d10 S0-d10-overload">{{ this }}</li>
-  {{/each}}
-</ol>
+
+{{> overload-dices values=overloadValues}}
 {{/if}}
 
 {{#if (operators 'isNotEmpty' defaultValues)}}
 <p>{{localize 'S0.Rolagem'}}:</p>
-<ol class="dice-rolls">
-  {{#each defaultValues }}
-  <li class="S0-d10 roll die d10">{{ this }}</li>
-  {{/each}}
-</ol>
+{{> default-dices values=defaultValues}}
 {{/if}}
 
 <hr>
@@ -87,13 +80,13 @@
 <!-- #region WEAPON -->
 {{#if (operators 'isNotNull' weapon)}}
 <div class="S0-message-weapon-container">
-  <label style="margin-block: 4px;" class="S0-hide-long-text">
+  <label class="S0-hide-long-text S0-my-4">
     {{weapon.name}}
   </label>
 
   <hr>
 
-  <ul style="padding: 0px; margin: 5px 10px;">
+  <ul class="S0-p-0 S0-my-6 S0-mx-10">
     {{#each weapon.changes as |change|}}
     <label>{{change}}</label>
     {{/each}}
@@ -104,29 +97,5 @@
 {{/if}}
 <!-- #endregion -->
 
-<!-- #region CAN USE CONSCIOUSNESS -->
-{{#if canUseConsciousness}}
-<button class="S0-roll-result S0-blue" data-action="check" data-type="consciousness">
-  {{localize 'S0.Usar_Consciencia'}}
-  ( <i class="fas fa-comments-question-check"></i> )
-</button>
-{{/if}}
-<!-- #endregion -->
-
-<!-- #region CAN USE QUIETNESS -->
-{{#if canUseQuietness}}
-<button class="S0-roll-result S0-orange" data-action="check" data-type="quietness">
-  {{localize 'S0.Usar_Quietude'}}
-  ( <i class="fas fa-bolt-slash"></i> )
-</button>
-{{/if}}
-<!-- #endregion -->
-
-<!-- #region CAN USE PERSEVERANCE -->
-{{#if canUsePerseverance}}
-<button class="S0-roll-result" data-action="check" data-type="perseverance">
-  {{localize 'S0.Usar_Perseveranca'}}
-  ( <i class="fas fa-check-double"></i> )
-</button>
-{{/if}}
-<!-- #endregion -->
+{{> button-quietness canUseQuietness=canUseQuietness}}
+{{> button-perseverance canUsePerseverance=canUsePerseverance}}

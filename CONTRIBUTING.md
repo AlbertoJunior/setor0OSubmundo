@@ -71,39 +71,41 @@ Se você pretende contribuir com o código, aqui estão alguns pontos importante
    * templates/ – Todos os elementos .hbs ou .html devem estar nessa pasta, separado em subpasta por tema.
 </details>
 
-### Padrões
-O projeto segue as boas práticas do `Clean Code`, com foco em reduzir repetições de código (seguindo o princípio `DRY - Don't Repeat Yourself`) e mantendo a separação de responsabilidades de forma clara, organizando o código em arquivos específicos, evitando exposições desnecessárias.
+### Padrões e Boas Práticas (Arquitetura V13)
+O projeto segue as práticas de arquitetura `Clean Code` mantendo a separação de responsabilidades e, fundamentalmente, aderindo as seguintes regras **obrigatórias**, em função da transição contínua para o Foundry V13:
 
-Esse padrão é aplicado de forma consistente em várias partes do projeto. Seja ao atualizar elementos do personagem, criar `dialogs`, exibir mensagens no chat ou até mesmo nas rolagens de dados, é fácil identificar trechos de código responsáveis por ações específicas, como `add`, `remove`, `roll`, `open`, etc.
+#### 1. Proibição de Caminhos Fixos (No-Hardcoded)
+É estritamente proibido o uso de caminhos textuais fixos (como `'system.atributos.forca'`) espalhados pelo código. Toda e qualquer alteração de dados *Actor* ou *Item* deve ser mapeada em enumeradores de domínio (ex: `CharacteristicType` ou `ItemType`).
 
-O principal objetivo é garantir que a manutenção do código seja **simples e eficiente**, com o mínimo de impacto possível em outros arquivos ao realizar alterações.
+- Usamos funções extratoras híbridas, como o utilitário `getObject()`, que recupera as instâncias a partir dos Enums de controle, prevenindo que pequenas refatorações do Data Model quebrem toda a base lógica.
 
-Um exemplo desse padrão em ação é o uso do script `getObject` (localizado em `utils`). Esse script é responsável por recuperar elementos do sistema Foundry, como a ficha do personagem. O `getObject` é utilizado em conjunto com um enum que representa a característica desejada. Com esse padrão, é possível modificar os nomes das características no DataModel do personagem sem precisar alterar os arquivos de código em múltiplos lugares. Basta ajustar o enum e o próprio DataModel, com exceção apenas para os arquivos .hbs (template de interface).
-
+Exemplo arquitetural:
 ```mjs
-static async handleAdd(actor, event) {
-   export const CharacteristicType = Object.freeze({
-      SHORTCUTS: {
-         id: 'atalhos',
-         system: 'system.atalhos',
-      },
-   });
-   ...
-   const onConfirm = async (rollable) => {
-      if (!rollable.name) {
-            NotificationsUtils.error("O Teste precisa de um nome");
-            return;
-      }
+export const CharacteristicType = Object.freeze({
+   SHORTCUTS: {
+      id: 'atalhos',
+      system: 'system.atalhos',
+   },
+});
 
-      const current = getObject(actor, CharacteristicType.SHORTCUTS) || [];
-      current.push(rollable);
-
-      await ActorUpdater.verifyAndUpdateActor(actor, CharacteristicType.SHORTCUTS, current);
-   };
-
-   CreateRollableTestDialog.open(null, onConfirm);
-}
+const current = getObject(actor, CharacteristicType.SHORTCUTS) || [];
+current.push(rollable);
+await ActorUpdater.verifyAndUpdateActor(actor, CharacteristicType.SHORTCUTS, current);
 ```
+
+#### 2. Interface, Estilos (S0-) e Application V2
+Priorizamos a performance e a arquitetura visual na migração para o Foundry V13:
+- **Estilos Inline restritos**: Substitua atributos de estilo (`<div style="...">`) por **Classes Utilitárias (Utility Classes)** predefinidas no sistema. Elas utilizam o prefixo `S0-` (ex: `S0-w-full`, `S0-text-center`, `S0-d-flex`).
+- **Cascade Layers CSS**:  No Foundry V13, o motor de CSS está organizado através do encapsulamento em `@layer`. Siga essas declarações nativas para prevenir que a especificidade fuja do controle.
+- **ApplicationV2 e Prototype Pollution**: Componentes migrados para o Application V2 do v13 **nunca** devem utilizar propriedades iterativas nativas como `foundry.utils.mergeObject(super.DEFAULT_OPTIONS)` diretamente nos Object Filters ou getters se isso gerar mutação, pois isso causa poluição (prototype pollution) nas classes bases do Foundry. 
+
+#### 3. Registros de Conhecimento, Agentes e Histórico
+Toda IA colaborativa, agente automático ou engenheiro responsável por manter código nesse sistema deve participar do fluxo de **Gestão do Conhecimento**. Ao resolver problemas complexos ou estabelecer um novo padrão:
+1. Documente e crie um artigo técnico breve na pasta estrita `.agent/learnings/`.
+2. Adicione-o imediatamente ao índice em `.agent/learnings/_index.md`.
+3. Ao finalizar a rotina ou pull request, atualize e centralize suas referências operacionais em `.agent/history/`. 
+
+Com este padrão, toda e qualquer IA consultará previamente essas fontes de aprendizado, evitando assim aplicar metodologias que já fracassaram na nossa infraestrutura ou que conflitem com o Foundry V13.
 
 ---
 

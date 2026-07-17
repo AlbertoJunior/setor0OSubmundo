@@ -1,0 +1,13 @@
+<div class="S0-message-content">
+  <h4 class="S0-text-center">{{localize 'S0.Nucleo'}} [ {{ core }} ]</h4>
+  <hr>
+  <div class="dice-tooltip S0-container-contract">
+    {{> overload-dices values=diceValues}}
+
+    <label class="S0-block S0-my-6">{{localize 'S0.Sucessos'}}: {{ resultValue }}</label>
+  </div>
+
+  <button class="S0-roll-result {{ resultMessageClasses }}" data-action="view" data-type="toggle-tooltip">
+    {{ resultMessage }} ( {{ resultValue }} )
+  </button>
+</div>

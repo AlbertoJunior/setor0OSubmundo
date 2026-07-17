@@ -1,0 +1,45 @@
+<form>
+  <div data-characteristic="page" data-item="1">
+    <h3>{{localize 'S0.Virtude.Virtudes'}}</h3>
+
+    <div class="form-group">
+      <select class="S0-select S0-mx-4" id="{{uuid}}.virtue_virtue1" name="virtue1">
+        {{#each virtues}}
+        <option value="{{id}}">{{label}}</option>
+        {{/each}}
+      </select>
+
+      <select class="S0-select S0-mx-4" id="{{uuid}}.virtue_virtue2" name="virtue2">
+        {{#each virtues}}
+        <option value="{{id}}">{{label}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <h3 class="S0-mt-10">{{localize 'S0.Outros'}}</h3>
+
+    <div class="form-group">
+      <label class="S0-flex-1" for="{{uuid}}.virtue_difficulty">{{localize 'S0.Dificuldade'}}:</label>
+      <select class="S0-select S0-flex-1" id="{{uuid}}.virtue_difficulty" name="difficulty">
+        {{#forLoop 5 11}}
+        <option value="{{index}}" {{selectIfEq index 6}}>{{index}}</option>
+        {{/forLoop}}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="S0-flex-1" for="{{uuid}}.virtue_bonus">{{localize 'S0.Bonus'}}:</label>
+      <input class="S0-flex-1" id="{{uuid}}.virtue_bonus" name="bonus" type="number" value="0">
+    </div>
+
+    <div class="form-group">
+      <label class="S0-flex-1" for="{{uuid}}.virtue_penalty">{{localize 'S0.Penalidade'}}:</label>
+      <input class="S0-flex-1" id="{{uuid}}.virtue_penalty" name="penalty" type="number" value="0">
+    </div>
+
+    <div class="form-group">
+      <label class="S0-flex-1" for="{{uuid}}.virtue_automatic">{{localize 'S0.Automatico'}}:</label>
+      <input class="S0-flex-1" id="{{uuid}}.virtue_automatic" name="automatic" type="number" min="0" value="0">
+    </div>
+  </div>
+</form>

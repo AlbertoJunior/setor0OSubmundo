@@ -1,4 +1,5 @@
 import { OnEventType, OnEventTypeClickableEvents, OnEventTypeContextualEvents, OnMethod, verifyAndParseOnEventType } from "../../enums/on-event-type.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
 
 export function Setor0BaseSheet(BaseClass) {
   class Setor0BaseSheet extends BaseClass {
@@ -13,8 +14,29 @@ export function Setor0BaseSheet(BaseClass) {
     //#endregion 
 
     //#region GETTERS
+    get defaultMapEvents() {
+      return {
+        img: {
+          [OnEventType.EDIT]: async (document, event, html) => {
+            const current = document.img;
+            new FoundryApi.FilePicker({
+              type: "image",
+              current: current,
+              displayMode: "thumbs",
+              callback: async (path) => {
+                await this.updateDocument(document, "img", path);
+              }
+            }).browse();
+          }
+        }
+      };
+    }
+
     getMapEvents() {
-      return this.mapEvents;
+      if (!this._cachedMapEvents) {
+        this._cachedMapEvents = FoundryApi.mergeObject(this.defaultMapEvents, this.mapEvents);
+      }
+      return this._cachedMapEvents;
     }
 
     getThisDocument() {

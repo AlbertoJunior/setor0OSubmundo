@@ -109,8 +109,7 @@ export class AddEquipmentDialog {
     img.alt = item.name;
 
     const divName = document.createElement('div');
-    divName.className = 'S0-item-legend';
-    divName.style.paddingInline = '4px';
+    divName.className = 'S0-item-legend S0-px-4';
 
     const name = document.createElement('span');
     name.className = 'S0-hide-long-text';

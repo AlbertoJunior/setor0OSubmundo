@@ -1,4 +1,3 @@
-/* #region HTML ITEMS */
 body {
   --font-size-9: 0.5063rem;
   --font-size-10: 0.5625rem;
@@ -23,8 +22,7 @@ body {
   --color-warm-1: var(--primary-color);
   --color-warm-2: var(--primary-color);
 
-  /* Z-Index Layers */
-  --z-index-dropdown: 10;
+  --z-index-dropdown: 300;
   --z-index-tooltip: 99;
   --z-index-modal: 100;
 }
@@ -93,12 +91,25 @@ body {
   --focus-color: rgba(255, 255, 150, 1);
   --sheet-color: rgba(255, 255, 255, 1);
 
-  --whisper-color-alpha-50: rgba(20, 20, 60, 0.5);
+  --whisper-color-alpha: rgba(20, 20, 20, 0.8);
+  --whisper-color-alpha-50: rgba(20, 20, 20, 0.5);
 
   --shadow-glow-strong: 0px 0px 6px var(--primary-color-alpha);
   --shadow-glow-soft: 0px 0px 3px var(--primary-color-alpha);
   --shadow-text: 0px 1px 4px var(--color-black-alpha-50);
 
+  --border-thin: 1px;
+  --border-medium: 2px;
+  --border-large: 3px;
+
+  --space-x-small: 2px;
+  --space-small: 4px;
+  --space-medium: 6px;
+  --space-large: 8px;
+  --space-x-large: 12px;
+  --space-xx-large: 16px;
+
+  --border-radius-x-small: 2px;
   --border-radius-small: 4px;
   --border-radius-medium: 6px;
   --border-radius-large: 8px;
@@ -108,7 +119,5 @@ body {
   --d10-size-small: 32px;
   --d10-small-line-height: 38px;
 
-  --border-def: 2px solid var(--secondary-color-alpha-50);
+  --border-def: var(--border-medium) solid var(--secondary-color-alpha-50);
 }
-
-/* #endregion */

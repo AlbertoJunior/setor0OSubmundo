@@ -1,10 +1,11 @@
 import { Setor0BaseActorSheet } from "../BaseActorSheet.mjs";
+import { SocketUtils } from "../../../../core/socket/socket-utils.mjs";
 import { selectCharacteristic } from "../../../../utils/utils.mjs";
 import { SYSTEM_ID, TEMPLATES_PATH } from "../../../../constants.mjs";
-import { BaseActorCharacteristicType, CharacteristicType } from "../../../../enums/characteristic-enums.mjs";
+import { BaseActorCharacteristicType, CharacteristicType, ActorType } from "../../../../enums/characteristic-enums.mjs";
 import { OnEventType } from "../../../../enums/on-event-type.mjs";
 import { DialogUtils } from "../../../../utils/dialog-utils.mjs";
-import { loadAndRegisterTemplates } from "../../../../utils/templates.mjs";
+import { loadAndRegisterTemplates } from "../../../../setup/templates.mjs";
 import { menuHandleMethods } from "../../../menu-default-methods.mjs";
 import { ActorUpdater } from "../../../updater/actor-updater.mjs";
 import { handlerEquipmentEvents } from "../player/methods/equipment-methods.mjs";
@@ -13,6 +14,7 @@ import { SheetActorDragabbleMethods } from "../player/methods/dragabble-methods.
 import { handleStatusMethods } from "../player/methods/status-methods.mjs";
 import { FoundryApi } from "../../../../api/foundry-api.mjs";
 import { effectsHandleEvents } from "../player/methods/effects-methods.mjs";
+import { handlerNoteEvents } from "../player/methods/note-methods.mjs";
 
 export async function npcTemplatesRegister() {
   const templates = [
@@ -20,6 +22,7 @@ export async function npcTemplatesRegister() {
     { path: "npc/informations", call: "npcInformations" },
     { path: "npc/status", call: "npcStatus" },
     { path: "npc/bag", call: "npcBag" },
+    { path: "npc/notes", call: "npcNotes" },
   ];
 
   return await loadAndRegisterTemplates(templates);
@@ -27,27 +30,25 @@ export async function npcTemplatesRegister() {
 
 export async function registerNpc() {
   await FoundryApi.Actors.registerSheet(SYSTEM_ID, Setor0NpcSheet, {
-    types: ["NPC"],
+    types: [ActorType.NPC],
     makeDefault: true
   });
 }
 
 export const NpcSheetSize = {
   width: 680,
-  height: 460,
+  height: 470,
 }
 
 class Setor0NpcSheet extends Setor0BaseActorSheet {
-  static DEFAULT_OPTIONS = {
-    position: {
-      width: NpcSheetSize.width,
-    },
-  };
-
-  static PARTS = {
-    sheet: {
-      template: `${TEMPLATES_PATH}/npc/npc-sheet.hbs`,
-    },
+  static SHEET_CONFIG = {
+    templates: [
+      { name: 'sheet', template: `${TEMPLATES_PATH}/npc/npc-sheet.hbs` }
+    ],
+    width: NpcSheetSize.width,
+    height: NpcSheetSize.height,
+    classes: [],
+    actions: SocketUtils.shareDocumentActions
   };
 
   get mapEvents() {
@@ -85,18 +86,9 @@ class Setor0NpcSheet extends Setor0BaseActorSheet {
         ...handlerEquipmentEvents,
         [OnEventType.ROLL]: async (actor, event) => npcRollHandle.rollEquipment(actor, event),
       },
-      effects: effectsHandleEvents
+      effects: effectsHandleEvents,
+      notes: handlerNoteEvents,
     };
-  }
-
-  /* Only run on Application V1 */
-  static get defaultOptions() {
-    return FoundryApi.mergeObject(super.defaultOptions, {
-      template: this.PARTS.sheet.template,
-      resizable: super.DEFAULT_OPTIONS.window.resizable,
-      width: this.DEFAULT_OPTIONS.position.width,
-      height: NpcSheetSize.height,
-    });
   }
 
   configureSheet(html) {

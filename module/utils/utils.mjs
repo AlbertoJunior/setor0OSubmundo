@@ -1,3 +1,4 @@
+import { FoundryApi } from "../api/foundry-api.mjs";
 import { NotificationsUtils } from "../creators/message/notifications.mjs";
 
 function containClass(element, cls) {
@@ -5,7 +6,9 @@ function containClass(element, cls) {
 }
 
 function isCharacteristic(element) {
-  return containClass(element, 'S0-characteristic') || containClass(element, 'S0-characteristic-6') || containClass(element, 'S0-characteristic-temp');
+  return containClass(element, 'S0-characteristic')
+    || containClass(element, 'S0-characteristic-6')
+    || containClass(element, 'S0-characteristic-temp');
 }
 
 export function selectCharacteristic(element) {
@@ -125,7 +128,7 @@ export function randomId(maxString) {
 }
 
 export function convertToCollection(items) {
-  return new foundry.utils.Collection(items.map(item => [item.id, item]));
+  return new FoundryApi.Utils.Collection(items.map(item => [item.id, item]));
 }
 
 export function snakeToCamel(entries) {
@@ -141,8 +144,13 @@ export function normalizeString(str) {
   return str.replace(/\s+/g, ' ').trim();
 }
 
+export function normalizeArray(array) {
+  return [...new Set(array)];
+}
+
 export function logTable(title, table) {
-  console.log(`---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----\n-> ${title}`);
+  console.groupCollapsed(`=> Setor 0 - ${title}`);
+
   console.table(table);
 
   const errors = Object.values(table).filter(result => result.error != null);
@@ -152,5 +160,19 @@ export function logTable(title, table) {
     }
   }
 
-  console.log('---> ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- <---');
+  console.groupEnd();
+}
+
+export function logDiffMigration(migration, diffLog) {
+  const title = `=> Setor 0 - ===================== MIGRATION DIFF ${migration.version} =====================`;
+  const line = "=".repeat(title.length);
+
+  console.groupCollapsed(title);
+  console.log(`Description: ${migration.description}`);
+  console.log(`Items: ${diffLog.diffs.length}`);
+  console.groupCollapsed("Detalhes");
+  console.log(JSON.stringify(diffLog, null, 2));
+  console.groupEnd();
+  console.log(line);
+  console.groupEnd();
 }

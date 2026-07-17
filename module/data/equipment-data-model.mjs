@@ -1,6 +1,9 @@
 import { DamageType, EquipmentHand, EquipmentHidding, EquipmentType, MeleeSize, SubstanceType } from "../enums/equipment-enums.mjs";
-import { SubstanceEffectField, SuperEquipmentField } from "../field/equipment-field.mjs";
-import { RollTestField } from "../field/roll-test-field.mjs";
+import { SuperEquipmentField } from "../data/field/equipment-field.mjs";
+import { StandardEffectField } from "../data/field/effect-fields.mjs";
+import { RollTestField } from "../data/field/roll-test-field.mjs";
+import { ActiveEffectsMigration } from "../migration/migrations/migrate-active-effects.mjs";
+import { ItemType } from "../enums/item-type-enums.mjs";
 
 const { StringField, NumberField, BooleanField, ArrayField } = foundry.data.fields;
 
@@ -17,6 +20,12 @@ class BaseEquipmentDataModel extends foundry.abstract.TypeDataModel {
 }
 
 class SubstanceDataModel extends BaseEquipmentDataModel {
+  static migrateData(source) {
+    super.migrateData(source);
+    ActiveEffectsMigration.migrateDataModel(source);
+    return source;
+  }
+
   prepareDerivedData() {
     super.prepareDerivedData();
     const data = this;
@@ -33,7 +42,7 @@ class SubstanceDataModel extends BaseEquipmentDataModel {
       quantity: new NumberField({ integer: true, initial: 1, minValue: 0, label: "S0.Quantidade" }),
       range: new NumberField({ integer: true, initial: 0, minValue: 0, label: "S0.Alcance" }),
       damage: new NumberField({ integer: true, initial: 0, label: "S0.Dano" }),
-      effects: new ArrayField(new SubstanceEffectField()),
+      effects: new ArrayField(new StandardEffectField()),
     };
   }
 }
@@ -132,12 +141,12 @@ class ProjectileDataModel extends WeaponDataModel {
 }
 
 export async function createEquipmentDataModels() {
-  CONFIG.Item.dataModels = {
-    Melee: MeleeDataModel,
-    Projectile: ProjectileDataModel,
-    Armor: ArmorDataModel,
-    Vehicle: VehicleDataModel,
-    Substance: SubstanceDataModel,
-    Acessory: AcessoryDataModel,
-  };
+  Object.assign(CONFIG.Item.dataModels, {
+    [ItemType.MELEE]: MeleeDataModel,
+    [ItemType.PROJECTILE]: ProjectileDataModel,
+    [ItemType.ARMOR]: ArmorDataModel,
+    [ItemType.VEHICLE]: VehicleDataModel,
+    [ItemType.SUBSTANCE]: SubstanceDataModel,
+    [ItemType.ACESSORY]: AcessoryDataModel,
+  });
 }

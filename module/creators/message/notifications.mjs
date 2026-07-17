@@ -1,4 +1,8 @@
 export class NotificationsUtils {
+  static async success(message) {
+    ui.notifications.success(message);
+  }
+
   static async info(message) {
     ui.notifications.info(message);
   }

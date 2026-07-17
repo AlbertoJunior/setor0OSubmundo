@@ -1,4 +1,6 @@
-import { getObject, normalizeString } from "../../utils/utils.mjs";
+import { getObject, normalizeString, localize } from "../../utils/utils.mjs";
+import { ItemType } from "../../enums/item-type-enums.mjs";
+import { RollManeuver } from "../actor/roll-maneuver.mjs";
 import { shortcutCustomRoll } from "../../base/sheet/actor/player/methods/shortcut-methods.mjs";
 import { rollByItemAndRollId } from "../../base/sheet/equipment/methods/equipment-item-roll-methods.mjs";
 import { SYSTEM_ID } from "../../constants.mjs";
@@ -11,15 +13,21 @@ import { ActorEquipmentUtils } from "../actor/actor-equipment-utils.mjs";
 import { openBagMacroData } from "./default/open-bag.mjs";
 import { openShortcutMacroData } from "./default/open-shortcut.mjs";
 import { rollOverloadMacroData } from "./default/roll-overload.mjs";
-import { cleanMacroHotbarUserMacroData } from "./gm/clean-macro-hotbar.mjs";
-import { resetUserFlagsMacroData } from "./gm/reset-user-flags.mjs";
+import { openRollMacroData } from "./default/open-roll.mjs";
+import { ActorRollDialog } from "../../creators/dialog/actor-roll-dialog.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
-import { exportCompendiunsMacroData } from "./gm/export-compendium-json.mjs";
 import { CompendiumExport } from "../pack/compendium-export.mjs";
 import { CompendiumSync } from "../pack/compendium-sync.mjs";
+import { SystemFlags } from "../../enums/flags-enums.mjs";
+import { cleanMacroHotbarUserMacroData } from "./gm/clean-macro-hotbar.mjs";
+import { resetUserFlagsMacroData } from "./gm/reset-user-flags.mjs";
+import { exportCompendiunsMacroData } from "./gm/export-compendium-json.mjs";
 
 export class MacroUtils {
   static MacroMethods = {
+    rollDialog: async (actor) => {
+      ActorRollDialog.open(actor);
+    },
     overload: async (actor) => {
       await DefaultActions.processOverloadRoll(actor);
     },
@@ -32,7 +40,7 @@ export class MacroUtils {
         }
 
         if (!actor?.sheet.canRollOrEdit) {
-          NotificationsUtils.warning('Você não tem permissão para executar isso com esse personagem.');
+          NotificationsUtils.warning(localize("Aviso.Erro.Sem_Permissao"));
           return
         }
 
@@ -50,13 +58,19 @@ export class MacroUtils {
           return;
         }
 
+        const maneuver = actor.items.get(id);
+        if (maneuver && maneuver.type === ItemType.MANEUVER) {
+          await RollManeuver.roll(actor, maneuver);
+          return;
+        }
+
         const actorTestShortcut = getObject(actor, CharacteristicType.SHORTCUTS).find(test => test.id == id);
         if (actorTestShortcut) {
           await shortcutCustomRoll(actor, id);
           return;
         }
 
-        NotificationsUtils.warning('Erro ao executar o teste');
+        NotificationsUtils.warning(localize("Aviso.Erro.Executar_Teste"));
       }
     },
     exportCompendium: async () => {
@@ -69,9 +83,10 @@ export class MacroUtils {
 
   static getDefaultMacroUsers() {
     return [
+      openRollMacroData,
+      rollOverloadMacroData,
       openBagMacroData,
       openShortcutMacroData,
-      rollOverloadMacroData
     ];
   }
 
@@ -79,11 +94,13 @@ export class MacroUtils {
     return [
       cleanMacroHotbarUserMacroData,
       resetUserFlagsMacroData,
-      exportCompendiunsMacroData,
+      // exportCompendiunsMacroData, TODO verificar se vai ser usado
     ];
   }
 
-  static async createMacro({ name, command, img, toHotbar = true, flags } = {}) {
+  static async createMacro(params = {}) {
+    const { name, command, img, toHotbar = false, flags, folder } = params;
+
     const normalizedName = normalizeString(name);
     const normalizedCommand = normalizeString(command);
     let macro = game.macros.find(m => normalizeString(m.name) === normalizedName && normalizeString(m.command) === normalizedCommand);
@@ -98,6 +115,7 @@ export class MacroUtils {
         type: "script",
         command,
         img,
+        folder: folder,
       });
 
       if (toHotbar) {
@@ -115,8 +133,8 @@ export class MacroUtils {
   }
 
   static isTheSameMacro(macroA, macroB) {
-    const sourceIdA = FlagsUtils.getMacroFlag(macroA, 'sourceId');
-    const sourceIdB = FlagsUtils.getMacroFlag(macroB, 'sourceId');
+    const sourceIdA = FlagsUtils.getSystemFlag(macroA, SystemFlags.SOURCE.ID);
+    const sourceIdB = FlagsUtils.getSystemFlag(macroB, SystemFlags.SOURCE.ID);
 
     const sameName = normalizeString(macroA.name) === normalizeString(macroB.name);
     const sameCommand = normalizeString(macroA.command) === normalizeString(macroB.command);

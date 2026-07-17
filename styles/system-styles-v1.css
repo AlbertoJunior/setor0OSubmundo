@@ -1,11 +1,9 @@
-.S0-V1.S0-content.sheet .window-content {
-  margin: 0px;
-  padding: 0px 2px 0px 12px;
-  overflow-y: scroll;
+.S0-V1.S0-content.sheet {
+  overflow: visible;
 }
 
 .S0-V1.S0-content.sheet .window-header {
-  border-bottom: 1px solid var(--secondary-color-alpha);
+  border-bottom: var(--border-thin) solid var(--secondary-color-alpha);
 }
 
 .S0-V1.S0-content:is(.sheet, .dialog) .window-header :is(h1, h2, h3, h4, a) {
@@ -36,4 +34,8 @@
 
 .S0-V1 .S0-simulate-button.S0-marked h4 {
   color: var(--on-primary-color);
+}
+
+.S0-V1 .S0-page-transparent .window-content {
+  padding: 4px;
 }

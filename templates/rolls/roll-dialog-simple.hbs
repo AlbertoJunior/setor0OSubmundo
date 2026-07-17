@@ -1,0 +1,41 @@
+<form>
+  <div data-characteristic="page" data-item="2">
+    <h3>{{localize 'S0.Valores'}}</h3>
+    <div class="form-group">
+      <label class="S0-flex-1" for="{{uuid}}.simple_value">{{localize 'S0.Quantidade'}}:</label>
+      <input class="S0-flex-1" id="{{uuid}}.simple_value" name="value" type="number" value="0">
+    </div>
+
+    <div class="form-group">
+      <label class="S0-flex-1" for="{{uuid}}.simple_automatic">{{localize 'S0.Automatico'}}:</label>
+      <input class="S0-flex-1" id="{{uuid}}.simple_automatic" name="automatic" type="number" min="0" value="0">
+    </div>
+
+    <div class="form-group">
+      <div class="S0-flex S0-flex-1 S0-items-center S0-justify-between">
+        <label class="S0-flex-1" for="{{uuid}}.simple_specialist">{{localize
+          'S0.Especialista'}}:</label>
+        <input id="{{uuid}}.simple_specialist" name="specialist" type="checkbox">
+      </div>
+    </div>
+
+    <h3 class="S0-mt-10">{{localize 'S0.Dificuldades'}}</h3>
+    <div class="form-group">
+      <label class="S0-flex-1" for="{{uuid}}.simple_difficulty">{{localize 'S0.Dificuldade'}}:</label>
+      <select class="S0-select S0-flex-1" id="{{uuid}}.simple_difficulty" name="difficulty">
+        {{#forLoop 5 11}}
+        <option value="{{index}}" {{selectIfEq index 6}}>{{index}}</option>
+        {{/forLoop}}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="S0-flex-1" for="{{uuid}}.simple_critic">{{localize 'S0.Critico'}}:</label>
+      <select class="S0-select S0-flex-1" id="{{uuid}}.simple_critic" name="critic">
+        {{#forLoop 5 11}}
+        <option value="{{index}}" {{selectIfEq index 10}}>{{index}}</option>
+        {{/forLoop}}
+      </select>
+    </div>
+  </div>
+</form>

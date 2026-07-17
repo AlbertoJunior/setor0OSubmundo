@@ -1,14 +1,17 @@
-import { SYSTEM_ID, REGISTERED_TEMPLATES, TEMPLATES_PATH, SYSTEM_CLASS_CSS } from "../../../constants.mjs";
+import { SYSTEM_ID, TEMPLATES_PATH, SYSTEM_CLASS_CSS } from "../../../constants.mjs";
+import { SocketUtils } from "../../../core/socket/socket-utils.mjs";
 import { FlagsUtils } from "../../../utils/flags-utils.mjs";
 import { FoundryApi } from "../../../api/foundry-api.mjs";
 import { HtmlJsUtils } from "../../../utils/html-js-utils.mjs";
-import { loadAndRegisterTemplates } from "../../../utils/templates.mjs";
+import { loadAndRegisterTemplates } from "../../../setup/templates.mjs";
 import { menuHandleMethods } from "../../menu-default-methods.mjs";
 import { handlerEquipmentCharacteristicsEvents } from "./methods/equipment-characteristics-methods.mjs";
 import { handlerEquipmentItemRollEvents } from "./methods/equipment-item-roll-methods.mjs";
 import { handlerEquipmentMenuRollEvents } from "./methods/equipment-menu-roll-methods.mjs";
 import { handlerSuperEquipmentEvents } from "./methods/superequipment-methods.mjs";
 import { EquipmentUpdater } from "../../updater/equipment-updater.mjs";
+import { SystemFlags } from "../../../enums/flags-enums.mjs";
+import { ItemType } from "../../../enums/item-type-enums.mjs";
 
 export async function equipmentTemplatesRegister() {
   const templates = [
@@ -32,43 +35,27 @@ export async function equipmentTemplatesRegister() {
 }
 
 export async function registerEquipment() {
-  await FoundryApi.Items.unregisterSheet("core", FoundryApi.ItemSheet);
   await FoundryApi.Items.registerSheet(SYSTEM_ID, EquipmentSheet, {
-    types: ["Melee", "Projectile", "Armor", "Vehicle", "Substance", "Acessory"],
+    types: [ItemType.MELEE, ItemType.PROJECTILE, ItemType.ARMOR, ItemType.VEHICLE, ItemType.SUBSTANCE, ItemType.ACESSORY],
     makeDefault: true
   });
 }
 
 class EquipmentSheet extends FoundryApi.ItemSheet {
-  static DEFAULT_OPTIONS = {
-    classes: ['S0-sheet-item'],
-    position: {
-      width: 340,
-    },
-    window: {
-      resizable: true,
-    }
-  };
-
-  static PARTS = {
-    acessory: {
-      template: `${TEMPLATES_PATH}/items/sheet/acessory.hbs`,
-    },
-    armor: {
-      template: `${TEMPLATES_PATH}/items/sheet/armor.hbs`,
-    },
-    melee: {
-      template: `${TEMPLATES_PATH}/items/sheet/melee.hbs`,
-    },
-    projectile: {
-      template: `${TEMPLATES_PATH}/items/sheet/projectile.hbs`,
-    },
-    substance: {
-      template: `${TEMPLATES_PATH}/items/sheet/substance.hbs`,
-    },
-    vehicle: {
-      template: `${TEMPLATES_PATH}/items/sheet/vehicle.hbs`,
-    },
+  static SHEET_CONFIG = {
+    templates: [
+      { name: 'acessory', template: `${TEMPLATES_PATH}/items/sheet/acessory.hbs` },
+      { name: 'armor', template: `${TEMPLATES_PATH}/items/sheet/armor.hbs` },
+      { name: 'melee', template: `${TEMPLATES_PATH}/items/sheet/melee.hbs` },
+      { name: 'projectile', template: `${TEMPLATES_PATH}/items/sheet/projectile.hbs` },
+      { name: 'substance', template: `${TEMPLATES_PATH}/items/sheet/substance.hbs` },
+      { name: 'vehicle', template: `${TEMPLATES_PATH}/items/sheet/vehicle.hbs` },
+      { name: 'default', template: `${TEMPLATES_PATH}/items/default.hbs` }
+    ],
+    width: 340,
+    resizable: false,
+    classes: [],
+    actions: SocketUtils.shareDocumentActions
   };
 
   constructor(...args) {
@@ -77,34 +64,6 @@ class EquipmentSheet extends FoundryApi.ItemSheet {
     this.defaultHeight = undefined;
     this.newHeight = undefined;
   }
-
-  //#region APPLICATION V1
-  /* Only run on Application V1 */
-  static get defaultOptions() {
-    return FoundryApi.mergeObject(super.defaultOptions, {
-      template: `${TEMPLATES_PATH}/items/default.hbs`,
-      width: this.DEFAULT_OPTIONS.position.width,
-    });
-  }
-
-  get template() {
-    const type = this.item.type.toLowerCase();
-    const path = `${TEMPLATES_PATH}/items/sheet/${type}.hbs`;
-
-    if (REGISTERED_TEMPLATES.has(path)) {
-      return path;
-    }
-
-    return `${TEMPLATES_PATH}/items/default.hbs`
-  }
-  //#endregion
-
-  //#region APPLICATION V2
-  /* Only run on Application V2 */
-  _operateMultiParts(document, parts) {
-    return parts.filter(part => part == document.type.toLocaleLowerCase());
-  }
-  //#endregion
 
   get mapEvents() {
     return {
@@ -128,9 +87,13 @@ class EquipmentSheet extends FoundryApi.ItemSheet {
     return !this.isEditable;
   }
 
+  get canEdit() {
+    return game.user.isGM || this.item.getFlag(SYSTEM_ID, SystemFlags.MANAGER.CAN_EDIT)
+  }
+
   getData() {
     const data = super.getData();
-    data.canEdit = game.user.isGM || this.item.getFlag(SYSTEM_ID, 'canEdit');
+    data.canEdit = this.canEdit;
     return data;
   }
 

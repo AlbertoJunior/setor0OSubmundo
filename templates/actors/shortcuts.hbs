@@ -1,5 +1,6 @@
 <section class="S0-page tab" data-group="menu-tabs" data-tab="shortcuts" data-label="{{localize 'S0.Atalho.Atalhos'}}"
   id="shortcutPage" data-icon="fas fa-bolt-auto">
+
   <div class="S0-container">
     <h2>
       {{localize 'S0.Ofensivo'}}
@@ -50,7 +51,7 @@
     <h2>
       {{localize 'S0.Atalho.Outros_Atalhos'}}
       <a class="S0-icon-expand" data-action="view" data-characteristic="shortcuts">
-        <i id="shortcuts-container-icon" class="fas fa-chevron-up"></i>
+        <i class="fas fa-chevron-up"></i>
       </a>
       {{#if editable}}
       <a class="S0-icon-expand" data-characteristic="shortcuts" data-action="add" title="{{localize 'S0.Adicionar'}}">
@@ -61,41 +62,39 @@
 
     {{#if (operators 'isEmpty' (actorLists actor 'shortcuts'))}}
     <div id="shortcuts-container-{{actor.id}}" class="S0-container-contract S0-drop-container S0-expanded">
-      <li class="S0-label-drop-container" style="margin-block: 4px;">
+      <li class="S0-label-drop-container S0-my-4">
         {{localize 'S0.Atalho.Nenhum_Atalho_Adicionado'}}
       </li>
     </div>
     {{else}}
     <div id="shortcuts-container-{{actor.id}}"
-      class="S0-container-2-fixed-column S0-container-contract S0-drop-container S0-expanded"
-      style="overflow-y: scroll; padding-left: 4px; grid-row-gap: 0px; grid-column-gap: 4px;">
-
+      class="S0-container-2-fixed-column S0-container-contract S0-drop-container S0-expanded S0-overflow-y-scroll S0-pl-4 S0-row-gap-0 S0-col-gap-4">
       {{#each (actorLists actor 'shortcuts') as |shortcut|}}
-      <div class="S0-container S0-shortcut-item {{#if ../editable}}draggable{{/if}}">
+      <div class="S0-container S0-shortcut-item S0-gap-6 {{#if ../editable}}draggable{{/if}}">
         {{#if ../editable}}
-        <a class="S0-icon-expand" title="{{localize 'S0.Editar'}}" data-action="edit" data-characteristic="shortcuts"
-          data-item-id="{{shortcut.id}}" style="text-align: center; width: 20px; margin-right: 4px">
+        <a class="S0-icon-expand S0-text-center S0-w-20" title="{{localize 'S0.Editar'}}" data-action="edit"
+          data-characteristic="shortcuts" data-item-id="{{shortcut.id}}">
           <i class="fas fa-edit"></i>
         </a>
         {{/if}}
 
-        <label class="S0-max-2-line-text"
-          style="pointer-events: none; text-align: start; flex: 1; max-width: 160px; margin-right: 4px;">
+        <label class="S0-max-2-line-text S0-text-start S0-flex-1 S0-pointer-events-none S0-max-w-160">
           {{shortcut.name}}
         </label>
 
-        <h3 class="S0-h-marked" {{#if shortcut.specialist}} title="{{localize 'S0.Especialista'}}" {{/if}}
-          style="{{#if shortcut.specialist}}border: 2px ridge var(--primary-color-alpha);{{/if}}">
+        <h3 class="S0-h-marked S0-w-40 {{#if shortcut.specialist}}S0-border-ridge S0-border-medium S0-border-primary-alpha{{/if}}" {{#if shortcut.specialist}} title="{{localize 'S0.Especialista'}}" {{/if}}>
           {{actorValues ../actor 'calculate_dice_pool' shortcut}}
           {{#if (operators 'gt' automatic 0)}}
-          <span style="display: block; font-size: var(--font-size-10);">{{automatic}}*</span>
+          <span class="S0-block S0-text-10">{{automatic}}*</span>
           {{/if}}
         </h3>
 
-        <a class="S0-icon-rotate" title="{{localize 'S0.Rolar'}}" data-action="roll" data-characteristic="shortcuts"
-          data-item-id="{{shortcut.id}}" style="text-align: center; width: 20px;">
+        {{#if ../canRoll}}
+        <a class="S0-icon-rotate S0-text-center S0-w-20" title="{{localize 'S0.Rolar'}}" data-action="roll"
+          data-characteristic="shortcuts" data-item-id="{{shortcut.id}}">
           <i class="fas fa-dice-d10"></i>
         </a>
+        {{/if}}
       </div>
       {{/each}}
     </div>

@@ -1,4 +1,4 @@
-import { getObject } from "../../../../../utils/utils.mjs";
+import { getObject, localize } from "../../../../../utils/utils.mjs";
 import { ActorEquipmentUtils } from "../../../../../core/actor/actor-equipment-utils.mjs";
 import { ActorUpdater } from "../../../../updater/actor-updater.mjs";
 import { CharacteristicType } from "../../../../../enums/characteristic-enums.mjs"
@@ -6,11 +6,17 @@ import { NotificationsUtils } from "../../../../../creators/message/notification
 import { HtmlJsUtils } from "../../../../../utils/html-js-utils.mjs";
 import { EquipmentUtils } from "../../../../../core/equipment/equipment-utils.mjs";
 import { FoundryApi } from "../../../../../api/foundry-api.mjs";
+import { ItemType } from "../../../../../enums/item-type-enums.mjs";
+import { SYSTEM_ID } from "../../../../../constants.mjs";
+import { SystemFlags } from "../../../../../enums/flags-enums.mjs";
+import { TransferEquipmentMessageCreator } from "../../../../../creators/message/transfer-equipment-message.mjs";
+import { ChatCreator } from "../../../../../utils/chat-creator.mjs";
 
 export class SheetActorDragabbleMethods {
   static async setup(html, actor) {
     this.#setupBagDrag(html, actor);
     this.#setupNetworkDrag(html, actor);
+    this.#setupManeuverDrag(html, actor);
 
     if (!window.Sortable) {
       return;
@@ -26,16 +32,10 @@ export class SheetActorDragabbleMethods {
 
   static #setupBagDrag(html, actor) {
     const containerBag = this.#findUsingActorId(html, 'bag', actor);
-    if (!containerBag) return;
 
-    containerBag.addEventListener('drop', this.#onDropOnBag.bind(this, actor));
-    containerBag.addEventListener('dragenter', (event) => {
-      containerBag.style.backgroundColor = "var(--tertiary-color-alpha)";
-    });
-
-    containerBag.addEventListener('dragleave', (event) => {
-      containerBag.style.backgroundColor = "";
-    });
+    HtmlJsUtils.presetAllDragEvents(
+      containerBag, actor, (actor, event) => { this.#onDropOnBag(actor, event); }
+    );
   }
 
   static async #setupNetworkDrag(html, actor) {
@@ -50,11 +50,61 @@ export class SheetActorDragabbleMethods {
     );
   }
 
+  static #setupManeuverDrag(html, actor) {
+    const containerManeuvers = this.#findUsingActorId(html, 'maneuvers', actor);
+    HtmlJsUtils.presetAllDragEvents(
+      containerManeuvers, actor, (actor, event) => { this.#onDropOnManeuvers(actor, event); }
+    );
+  }
+
+  static async #onDropOnManeuvers(actor, event) {
+    const data = this.#verifyDropAndReturnData(actor, event);
+    if (!data) {
+      return;
+    }
+
+    if (data.type !== "Item") {
+      NotificationsUtils.warning(localize("Aviso.Erro.Drag_Aceita_Manobras"));
+      return;
+    }
+
+    event.preventDefault();
+    if (event.originalEvent) event.originalEvent.preventDefault();
+
+    const item = await FoundryApi.Item.implementation.fromDropData(data);
+    if (!item) {
+      console.warn("-> possível erro ao criar o Item");
+      return;
+    }
+
+    if (item.type !== ItemType.MANEUVER) {
+      NotificationsUtils.warning(localize("Aviso.Erro.Drag_Aceita_Manobras"));
+      return;
+    }
+
+    const itemData = item.toObject();
+    delete itemData._id;
+
+    FoundryApi.Utils.setProperty(itemData, ManeuverType.IS_READ_ONLY.system, true);
+
+    itemData.flags = {
+      [SYSTEM_ID]: {
+        [SystemFlags.SOURCE.ID]: item.uuid
+      }
+    };
+
+    await ActorUpdater.addDocuments(actor, [itemData]);
+  }
+
   static #setupShortcutDragSortable(html, actor) {
     const containerShortcut = this.#findUsingActorId(html, `shortcuts-container`, actor);
     if (!containerShortcut) {
       return;
     }
+
+    containerShortcut.addEventListener('change', (event) => {
+      if (event.target === event.currentTarget) event.stopPropagation();
+    });
 
     window.Sortable.create(containerShortcut, {
       animation: 150,
@@ -86,8 +136,26 @@ export class SheetActorDragabbleMethods {
       return;
     }
 
+    const stopSortableChange = (event) => {
+      if (event.target === event.currentTarget) event.stopPropagation();
+    };
+    equippedList.addEventListener('change', stopSortableChange);
+    bagList.addEventListener('change', stopSortableChange);
+
     const sortableOptions = {
-      group: `equipment-move-inner-${actorId}`,
+      group: {
+        name: `equipment-move`,
+        put: (to, from) => {
+          const toActorId = to.el.id.split('-')[1];
+          const fromActorId = from.el.id.split('-')[1];
+
+          if (toActorId === fromActorId) return true;
+
+          const toSource = to.el.id.split('-')[0];
+          const fromSource = from.el.id.split('-')[0];
+          return toSource === "bag" && fromSource === "bag";
+        }
+      },
       animation: 150,
       swapThreshold: 0.65,
       emptyInsertThreshold: 20,
@@ -115,19 +183,51 @@ export class SheetActorDragabbleMethods {
         }
 
         const origin = evt.from.id;
-        const destination = evt.to.id;
+        const destination = evt.to?.id;
+
+        if (!destination) return;
 
         const originSource = origin.split('-')[0];
-        if (origin == destination) {
-          this.#sortEquipments(actor, originSource, bagList, equippedList);
+        const destSource = destination.split('-')[0];
+
+        const originActorId = origin.split('-')[1];
+        const destActorId = destination.split('-')[1];
+
+        const isTrade = originActorId !== destActorId;
+
+        if (isTrade) {
+          await this.#tradeEquipment(actor, destActorId, equipment);
+        } else if (originSource === destSource) {
+          await this.#sortEquipments(actor, originSource, bagList, equippedList);
         } else {
-          this.#equipOrUnequip(actor, originSource, equipment);
+          await this.#equipOrUnequip(actor, originSource, equipment);
         }
       }
     };
 
     window.Sortable.create(equippedList, sortableOptions);
     window.Sortable.create(bagList, sortableOptions);
+  }
+
+  static async #tradeEquipment(actor, destActorId, equipment) {
+    const targetActor = game.actors.get(destActorId);
+    if (!targetActor) return;
+
+    const itemData = ActorEquipmentUtils.createDataItem(equipment);
+    const createdItems = await ActorUpdater.addDocuments(targetActor, [itemData]);
+    await ActorUpdater.removeDocuments(actor, [equipment.id]);
+
+    const createdItem = createdItems && createdItems.length > 0 ? createdItems[0] : null;
+    const targetUuid = createdItem ? createdItem.uuid : equipment.uuid;
+
+    const contentMessage = await TransferEquipmentMessageCreator.mountContent({
+      sourceActorName: actor.name,
+      itemName: equipment.name,
+      targetActorName: targetActor.name,
+      targetUuid: targetUuid
+    });
+
+    await ChatCreator.sendToChat(actor, contentMessage);
   }
 
   static async #sortEquipments(actor, originSource, bagList, equippedList) {
@@ -163,7 +263,7 @@ export class SheetActorDragabbleMethods {
       sort: index * 100
     }));
 
-    ActorUpdater.updateDocuments(actor, finalItems);
+    await ActorUpdater.updateDocuments(actor, finalItems);
   }
 
   static async #equipOrUnequip(actor, originSource, equipment) {
@@ -171,7 +271,7 @@ export class SheetActorDragabbleMethods {
       if (EquipmentUtils.canEquip(equipment)) {
         await ActorEquipmentUtils.equip(actor, equipment);
       } else {
-        NotificationsUtils.warning("Este Item não pode ser equipado");
+        NotificationsUtils.warning(localize("Aviso.Erro.Item_Nao_Equipavel"));
         actor.sheet.render();
       }
     } else if (originSource == 'equipped') {
@@ -202,7 +302,7 @@ export class SheetActorDragabbleMethods {
     }
 
     if (data.type !== "Item") {
-      NotificationsUtils.warning("Este campo só aceita Equipamentos");
+      NotificationsUtils.warning(localize("Aviso.Erro.Drag_Aceita_Equipamentos"));
       return;
     }
 
@@ -216,7 +316,7 @@ export class SheetActorDragabbleMethods {
     }
 
     const itemData = ActorEquipmentUtils.createDataItem(item);
-    ActorUpdater.addDocuments(actor, [itemData]);
+    await ActorUpdater.addDocuments(actor, [itemData]);
   }
 
   static async #onDropOnAlliesInformants(actor, characteristic, event) {
@@ -229,19 +329,19 @@ export class SheetActorDragabbleMethods {
     if (event.originalEvent) event.originalEvent.preventDefault();
 
     if (data.type !== "Actor") {
-      NotificationsUtils.warning("Este campo só aceita Personagens");
+      NotificationsUtils.warning(localize("Aviso.Erro.Drag_Aceita_Personagens"));
       return;
     }
 
     const actorCreated = await FoundryApi.Actor.implementation.fromDropData(data);
     if (!actorCreated || !characteristic) {
       console.warn("-> possível erro ao criar o Actor ou na Characteristic");
-      NotificationsUtils.warning("Não foi possível adicionar este Personagem.");
+      NotificationsUtils.warning(localize("Aviso.Erro.Nao_Pode_Adicionar_Personagem"));
       return;
     }
 
     if (actorCreated.id == actor.id) {
-      NotificationsUtils.error("O personagem não pode se adicionar como Aliado ou Informante.")
+      NotificationsUtils.error(localize("Aviso.Erro.Personagem_Proprio_Aliado"));
       return;
     }
 
