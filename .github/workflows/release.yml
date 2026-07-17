@@ -1,0 +1,41 @@
+name: Release System
+
+on:
+  push:
+    tags:
+      - 'v*' # Trigger ao criar tags como v1.0.0, v1.2.3, etc.
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Tests
+        run: npm run test
+
+      - name: Build Zip File
+        run: |
+          zip -r setor0OSubmundo.zip module templates lang imgs icons scripts packs styles system.json setor0OSubmundo.mjs README.md LICENSE SYSTEM-MANUAL.md
+          
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Release ${{ github.ref_name }}
+          files: setor0OSubmundo.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

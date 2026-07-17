@@ -23,3 +23,6 @@ scripts/test-scripts
 
 # Ignorar o diretório .agent, pois ele possui seu próprio repositório Git
 .agent/
+
+# Dependências de desenvolvimento
+node_modules/
