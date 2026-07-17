@@ -3,7 +3,7 @@ import { CharacteristicType } from "../../enums/characteristic-enums.mjs";
 import { CoreRollMethods } from "./core-roll-methods.mjs";
 
 export class RollLife {
-  static async roll(actor, amountOverloadTest = 1) {
+  static async roll(actor, amount = 1) {
     const life = getObject(actor, CharacteristicType.LIFE);
     const resultRoll = await CoreRollMethods.rollDice(1);
     const success = this.#calculateSuccess(resultRoll.values, life);
@@ -12,7 +12,7 @@ export class RollLife {
       roll: resultRoll.roll,
       values: resultRoll.values,
       success: success,
-      missed: Math.max(amountOverloadTest - success, 0)
+      missed: Math.max(amount - success, 0)
     }
   }
 

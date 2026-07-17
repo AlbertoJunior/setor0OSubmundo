@@ -1,12 +1,12 @@
 import { describe, it, expect, vi } from 'vitest';
 import { ActiveEffectsUtils } from '../../../module/core/effect/active-effects-utils.mjs';
-import { ActiveEffectsSystem, ActiveEffectsTypes, ActiveEffectType, ActiveEffectsOriginTypes } from '../../../module/enums/active-effects-enums.mjs';
+import { ActiveEffectsTypes, ActiveEffectType, ActiveEffectsOriginTypes } from '../../../module/enums/active-effects-enums.mjs';
 import { SYSTEM_ID } from '../../../module/constants.mjs';
 import { ActiveEffectUpdater } from '../../../module/base/updater/active-effect-updater.mjs';
 
 describe('ActiveEffectsUtils', () => {
 
-  it('deve usar o enum ActiveEffectsSystem e ler propriedades de sistema corretamente via getObject (Anti-Hardcode)', () => {
+  it('deve usar o enum ActiveEffectsTypes e ler propriedades de sistema corretamente via getObject (Anti-Hardcode)', () => {
     // Efeito mockado com estrutura V13 (DataModel)
     const mockEffect = {
       system: {
@@ -61,7 +61,7 @@ describe('ActiveEffectsUtils', () => {
     // O tipo do Efeito Ativo criado deve ser o do nosso DataModel
     expect(result.type).toBe(ActiveEffectType.DEFAULT);
     expect(result.name).toBe('Super Força');
-    
+
     // As injeções V13 (System) e V12 (Flags) devem estar simultaneamente corretas
     expect(result.system.originId).toBe('origin-123');
     expect(result.flags[SYSTEM_ID].originId).toBe('origin-123');
@@ -80,7 +80,7 @@ describe('ActiveEffectsUtils', () => {
 
     await ActiveEffectsUtils.disableEffect(mockEffect);
     expect(spySetDisabledStatus).toHaveBeenCalledWith(mockEffect, true);
-    
+
     spySetDisabledStatus.mockRestore();
   });
 });
