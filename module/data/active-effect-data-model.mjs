@@ -1,4 +1,5 @@
 import { FoundryApi } from "../api/foundry-api.mjs";
+import { ActiveEffectType } from "../enums/active-effects-enums.mjs";
 
 const { NumberField, StringField, ArrayField, BooleanField } = foundry.data.fields;
 
@@ -27,7 +28,11 @@ export async function createActiveEffectDataModels() {
     if (!CONFIG.ActiveEffect.dataModels) {
       CONFIG.ActiveEffect.dataModels = {};
     }
-    // No Foundry V13+, a classe de ActiveEffect pode ter subtypes, sendo "base" o tipo genérico.
-    CONFIG.ActiveEffect.dataModels.base = SystemActiveEffectModel;
+    // No Foundry V13+, a classe de ActiveEffect pode ter subtypes.
+    // Usamos "base" para fallbacks de efeitos criados sem tipo e "Default" como nosso tipo customizado no manifesto.
+    Object.assign(CONFIG.ActiveEffect.dataModels, {
+      [ActiveEffectType.BASE]: SystemActiveEffectModel,
+      [ActiveEffectType.DEFAULT]: SystemActiveEffectModel
+    });
   }
 }

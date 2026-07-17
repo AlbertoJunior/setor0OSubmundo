@@ -52,8 +52,10 @@ export class ExperienceCalculatorDialog extends HandlebarsApplicationMixin(Appli
     }
   };
 
-  static async open() {
-    new ExperienceCalculatorDialog({ id: `${randomId(10)}-experience-calculator-dialog` }).render(true);
+  static async open(actor = null) {
+    const app = new ExperienceCalculatorDialog({ id: `${randomId(10)}-experience-calculator-dialog` });
+    if (actor) app.actor = actor;
+    app.render(true);
   }
 
   async _prepareContext(options) {

@@ -11,6 +11,8 @@ import { SheetActorDragabbleMethods } from "./methods/dragabble-methods.mjs";
 import { ActorUtils } from "../../../../core/actor/actor-utils.mjs";
 import { ActiveEffectsUtils } from "../../../../core/effect/active-effects-utils.mjs";
 import { FoundryApi } from "../../../../api/foundry-api.mjs";
+import { ExperienceCalculatorDialog } from "../../../../creators/dialog/v2/experience-calculator-dialog.mjs";
+import { OwnershipUtils } from "../../../../utils/ownership-utils.mjs";
 
 export async function actorTemplatesRegister() {
   const templates = [
@@ -54,7 +56,17 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
     ],
     width: 600,
     height: 890,
-    classes: []
+    classes: [],
+    actions: [
+      ...Setor0BaseActorSheet.SHEET_CONFIG.actions,
+      {
+        id: "experienceCalculator",
+        enabled: (options) => OwnershipUtils.canEdit(options?.document),
+        icon: "fas fa-calculator",
+        label: "CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Title",
+        action: () => ExperienceCalculatorDialog.open(this.document)
+      }
+    ]
   };
 
   get mapEvents() {

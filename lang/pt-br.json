@@ -591,6 +591,10 @@
       "Acessory": "Acessório",
       "Trait": "Traço",
       "Maneuver": "Manobra"
+    },
+    "ActiveEffect": {
+      "Default": "Padrão",
+      "base": "Base"
     }
   },
   "DOCUMENT": {

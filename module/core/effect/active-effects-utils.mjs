@@ -1,9 +1,11 @@
 import { localize, randomId } from "../../utils/utils.mjs";
 import { ActorUpdater } from "../../base/updater/actor-updater.mjs";
 import { SYSTEM_ID } from "../../constants.mjs";
-import { ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../enums/active-effects-enums.mjs";
+import { ActiveEffectsOriginTypes, ActiveEffectsTypes, ActiveEffectsSystem, ActiveEffectType } from "../../enums/active-effects-enums.mjs";
 import { SystemFlags } from "../../enums/flags-enums.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
+import { getObject } from "../../utils/utils.mjs";
+import { ActiveEffectUpdater } from "../../base/updater/active-effect-updater.mjs";
 import { ActiveEffectsUtilsV12 } from "./active-effects-utils-v12.mjs";
 
 export class ActiveEffectsUtils {
@@ -12,6 +14,7 @@ export class ActiveEffectsUtils {
   }
 
   static createEffectData(params) {
+    debugger
     const {
       id,
       name = "",
@@ -39,6 +42,7 @@ export class ActiveEffectsUtils {
 
     const activeEffectData = {
       id: id || randomId(10),
+      type: ActiveEffectType.DEFAULT,
       name: name,
       description: description,
       origin: origin,
@@ -62,11 +66,11 @@ export class ActiveEffectsUtils {
   }
 
   static getOriginId(activeEffect) {
-    return activeEffect.system?.originId ?? ActiveEffectsUtilsV12.getOriginId(activeEffect);
+    return getObject(activeEffect, ActiveEffectsSystem.ORIGIN_ID) ?? ActiveEffectsUtilsV12.getOriginId(activeEffect);
   }
 
   static getOriginType(activeEffect) {
-    return activeEffect.system?.originType ?? ActiveEffectsUtilsV12.getOriginType(activeEffect);
+    return getObject(activeEffect, ActiveEffectsSystem.ORIGIN_TYPE) ?? ActiveEffectsUtilsV12.getOriginType(activeEffect);
   }
 
   static async addActorEffect(actor, activeEffectData) {
@@ -112,34 +116,30 @@ export class ActiveEffectsUtils {
   }
 
   static hasType(effect) {
-    const effectType = effect.system?.type ?? ActiveEffectsUtilsV12.getType(effect);
+    const effectType = getObject(effect, ActiveEffectsSystem.TYPE) ?? ActiveEffectsUtilsV12.getType(effect);
     return effectType != undefined;
   }
 
   static isBuff(effect) {
-    const effectType = effect.system?.type ?? ActiveEffectsUtilsV12.getType(effect);
+    const effectType = getObject(effect, ActiveEffectsSystem.TYPE) ?? ActiveEffectsUtilsV12.getType(effect);
     return effectType == ActiveEffectsTypes.BUFF;
   }
 
   static isDebuff(effect) {
-    const effectType = effect.system?.type ?? ActiveEffectsUtilsV12.getType(effect);
+    const effectType = getObject(effect, ActiveEffectsSystem.TYPE) ?? ActiveEffectsUtilsV12.getType(effect);
     return effectType == ActiveEffectsTypes.DEBUFF;
   }
 
   static async enableEffect(effect) {
-    if (effect) {
-      await effect.update({ disabled: false });
-    }
+    await ActiveEffectUpdater.setDisabledStatus(effect, false);
   }
 
   static async disableEffect(effect) {
-    if (effect) {
-      await effect.update({ disabled: true });
-    }
+    await ActiveEffectUpdater.setDisabledStatus(effect, true);
   }
 
   static canRemoveEffect(effect) {
-    return effect.system?.canRemove ?? ActiveEffectsUtilsV12.canRemoveEffect(effect);
+    return getObject(effect, ActiveEffectsSystem.CAN_REMOVE) ?? ActiveEffectsUtilsV12.canRemoveEffect(effect);
   }
 
   static activeEffectOriginTypeLabel(type) {

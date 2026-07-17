@@ -92,7 +92,7 @@ function makeSheetClass(BaseClass) {
           options.actions = options.actions || {};
 
           for (const def of mergedActions.values()) {
-            const isEnabled = typeof def.enabled === "function" ? def.enabled() : (def.enabled !== false);
+            const isEnabled = typeof def.enabled === "function" ? def.enabled.call(this, options) : (def.enabled !== false);
             if (isEnabled) {
               options.window.controls.unshift({
                 action: def.id,

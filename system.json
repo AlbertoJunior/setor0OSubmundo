@@ -186,6 +186,9 @@
       "Trait": {},
       "Enhancement": {},
       "Maneuver": {}
+    },
+    "ActiveEffect": {
+      "Default": {}
     }
   },
   "socket": true,

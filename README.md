@@ -65,7 +65,7 @@ Caso você não possua um servidor para hospedar o Foundry e compartilhar o link
   <summary>Idiomas suportados</summary>
   
     ✅ Português
-    🚧 English
+    ✅ English
 </details>
 
 ### Personagens
