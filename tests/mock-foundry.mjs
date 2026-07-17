@@ -76,6 +76,13 @@ vi.mock('../module/api/foundry-api.mjs', () => {
       formatActiveEffectData: (data) => data,
       Utils: {
         Collection: class Collection extends Map { }
+      },
+      TokenCanvas: class {},
+      TokenDocument: class {},
+      Documents: {
+        Folder: {
+          create: vi.fn()
+        }
       }
     }
   };
