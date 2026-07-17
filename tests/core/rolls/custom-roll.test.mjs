@@ -3,7 +3,7 @@ import { CustomRoll } from '../../../module/core/rolls/custom-roll.mjs';
 import { ActorUtils } from '../../../module/core/actor/actor-utils.mjs';
 import { CoreRollMethods } from '../../../module/core/rolls/core-roll-methods.mjs';
 import { EnhancementRepository } from '../../../module/repository/enhancement-repository.mjs';
-import { BaseActorCharacteristicType, CharacteristicType } from '../../../module/enums/characteristic-enums.mjs';
+import { CharacteristicType } from '../../../module/enums/characteristic-enums.mjs';
 
 // Usaremos spyOn em métodos isolados ao invés de mockar o arquivo de utils que possui dependências circulares.
 import * as utils from '../../../module/utils/utils.mjs';

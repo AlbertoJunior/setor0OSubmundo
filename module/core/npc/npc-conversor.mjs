@@ -83,20 +83,20 @@ export class NpcConversor {
     const idName = NpcCharacteristicType.SKILLS.SKILL_NAME.id;
     return {
       [NpcCharacteristicType.SKILLS.PRIMARY.id]: {
-        [idValue]: skills[0][1] || 0,
-        [idName]: skills[0][0] || ''
+        [idValue]: skills[0]?.[1] || 0,
+        [idName]: skills[0]?.[0] || ''
       },
       [NpcCharacteristicType.SKILLS.SECONDARY.id]: {
-        [idValue]: skills[1][1] || 0,
-        [idName]: skills[1][0] || ''
+        [idValue]: skills[1]?.[1] || 0,
+        [idName]: skills[1]?.[0] || ''
       },
       [NpcCharacteristicType.SKILLS.TERTIARY.id]: {
-        [idValue]: skills[2][1] || 0,
-        [idName]: skills[2][0] || ''
+        [idValue]: skills[2]?.[1] || 0,
+        [idName]: skills[2]?.[0] || ''
       },
       [NpcCharacteristicType.SKILLS.QUATERNARY.id]: {
-        [idValue]: skills[3][1] || 0,
-        [idName]: skills[3][0] || ''
+        [idValue]: skills[3]?.[1] || 0,
+        [idName]: skills[3]?.[0] || ''
       },
     }
   }
