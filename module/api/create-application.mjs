@@ -1,6 +1,7 @@
 import { randomId } from "../utils/utils.mjs";
 import { v1Overrides } from "./versions-overrides/v1.mjs";
 import { v2Overrides } from "./versions-overrides/v2.mjs";
+import { v3Overrides } from "./versions-overrides/v3.mjs";
 
 // base config for applications
 const baseApplicationConfig = Object.freeze({
@@ -13,6 +14,7 @@ const baseApplicationConfig = Object.freeze({
   Apps: foundry.applications.apps,
   Documents: foundry.documents,
   Collections: foundry.documents.collections,
+  Canvas: foundry.canvas,
   Placeables: foundry.canvas.placeables,
   Utils: foundry.utils,
   ChatMessage: ChatMessage,
@@ -22,7 +24,8 @@ const baseApplicationConfig = Object.freeze({
 // versions
 const applicationOverrides = {
   v1: v1Overrides,
-  v2: v2Overrides
+  v2: v2Overrides,
+  v3: v3Overrides
 };
 const createdVersions = new Set();
 
@@ -60,7 +63,7 @@ const createdVersions = new Set();
  *   ChatMessage: ...,
  *   Sheets: ...,
  *   ...,
- *   makeClass: function,
+ *   makeSheetClass: function,
  *   createDialog: function,
  *   VersionName: "S0-V1"
  * }
@@ -107,7 +110,7 @@ export function createApplication(versionKey, fallbackChain = []) {
 function validateOverride(override, versionKey) {
   const requiredFields = {
     Sheets: 'object',
-    makeClass: 'function',
+    makeSheetClass: 'function',
     createDialog: 'function',
     VersionName: 'string'
   };

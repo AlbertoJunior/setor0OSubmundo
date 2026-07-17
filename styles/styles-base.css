@@ -20,8 +20,8 @@
 .S0-page hr {
   margin-block: 4px;
   border: none;
-  border-top: 1px solid var(--secondary-color-alpha-50);
-  border-bottom: 1px solid var(--secondary-color-alpha);
+  border-top: var(--border-thin) solid var(--secondary-color-alpha-50);
+  border-bottom: var(--border-thin) solid var(--secondary-color-alpha);
   box-shadow: 0px 0px 3px 0px var(--secondary-color-alpha-50);
 }
 
@@ -32,18 +32,7 @@
   font-size: var(--font-size-15);
 }
 
-.S0-content textarea[readonly] {
-  background: none;
-  cursor: default;
-}
-
-.S0-content img {
-  cursor: default;
-  border-width: 0px;
-}
-
-.S0-content .S0-clickable>*,
-.S0-content img.S0-clickable {
+.S0-clickable {
   cursor: pointer;
 }
 
@@ -96,7 +85,16 @@
 }
 
 .S0-content :is(h1, h2, h3, h4) input {
-  letter-spacing: 0.1em;
+  letter-spacing: 0.1rem;
+}
+
+.S0-content button {
+  width: 100%;
+}
+
+.S0-content button:disabled {
+  color: var(--on-color-gray);
+  background-color: var(--color-gray-alpha-50);
 }
 
 .S0-content button,
@@ -106,7 +104,7 @@
   outline: none;
 }
 
-.S0-content :is(select,
+.S0-content :is(select, textarea,
   input[type=datetime-local], input[type=text], input[type=number],
   input[type=password], input[type=date], input[type=time], input[type=search],
   input[type=file]):focus {
@@ -114,23 +112,9 @@
   box-shadow: 0px 0px 6px 0px var(--primary-color);
 }
 
-.S0-content button {
-  width: 100%;
-}
-
-.S0-content.actor {
-  overflow: visible;
-}
-
-.S0-content.actor .window-content {
-  padding-inline: 6px;
-  padding-block: 2px;
-  overflow: visible;
-}
-
+.S0-dialog .window-content,
 .S0-content .window-content {
-  padding-inline: 6px;
-  padding-block: 8px;
+  padding: 6px;
 }
 
 .S0-content .window-content .standard-form {
@@ -169,7 +153,7 @@
 .S0-container {
   margin-block: 6px;
   padding: 6px;
-  border: 2px solid var(--secondary-color-alpha);
+  border: var(--border-medium) solid var(--secondary-color-alpha);
   border-radius: var(--border-radius-large);
   background-color: var(--secondary-color-alpha-50);
   box-shadow: 0px 1px 4px 0px var(--secondary-color-alpha-50);
@@ -252,6 +236,10 @@
   padding: 6px;
 }
 
+.S0-content textarea[readonly] {
+  background: none;
+}
+
 .S0-container :not(.form-group)>input {
   padding: 2px 6px;
 }
@@ -274,7 +262,7 @@
 }
 
 .S0-container :is(input:enabled:not([type="checkbox"]), textarea:not(:read-only)):is(:hover, :focus) {
-  border: 2px solid var(--primary-color) !important;
+  border: var(--border-medium) solid var(--primary-color) !important;
   color: var(--primary-color);
   background: var(--secondary-color-alpha-50);
   box-shadow: 0px 0px 6px 0px var(--primary-color-alpha);
@@ -289,7 +277,7 @@
   border: none;
   background-color: transparent;
   box-shadow: none;
-  border-bottom: 1px solid;
+  border-bottom: var(--border-thin) solid;
   border-radius: 0px;
   appearance: none;
 }
@@ -302,6 +290,30 @@
   display: flex;
   flex-direction: column;
   row-gap: 4px;
+}
+
+.S0-overflow-visible {
+  overflow: visible;
+}
+
+.S0-width-100 {
+  width: 100%;
+}
+
+.S0-width-50 {
+  width: 50%;
+}
+
+.S0-width-25 {
+  width: 25%;
+}
+
+.S0-max-width-50 {
+  max-width: 50%;
+}
+
+.S0-max-width-25 {
+  max-width: 25%;
 }
 
 /* #endregion */
@@ -320,6 +332,7 @@
   margin: 4px;
   list-style-type: none;
   padding: 0;
+  z-index: 200;
 }
 
 .S0-simulate-button {
@@ -330,7 +343,7 @@
   background-color: var(--secondary-color-alpha);
   color: var(--on-secondary-color);
   border-radius: var(--border-radius-small);
-  border: 1px ridge transparent;
+  border: var(--border-thin) ridge transparent;
   text-shadow: none;
   transition: width 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, height 0.2s ease;
 }
@@ -359,7 +372,9 @@
   text-shadow: none;
 }
 
-.S0-marked {
+.S0-marked,
+.S0-button-confirm.active,
+.S0-simulate-button.active {
   background-color: var(--primary-color);
   color: var(--on-primary-color);
 }
@@ -407,12 +422,6 @@
 
 .S0-infinity-horizontal-menu .S0-simulate-button h4 {
   font-size: var(--font-size-13);
-}
-
-.S0-flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .S0-buff-color {

@@ -19,6 +19,7 @@ export class TraitDialog {
           {
             label: localize("Adicionar"),
             default: true,
+            closeDialog: false,
             onClick: (html) => {
               const objectTrait = this.#mountTraitObject(html, traits);
               callback(objectTrait);
@@ -34,7 +35,7 @@ export class TraitDialog {
   static async openByTrait(trait, type, actor, callback) {
     const traits = TraitRepository.getItemsByType(type);
     const content = await this.#mountContent(traits, false, callback != undefined, trait);
-    const title = `${callback ? `${localize('Editar')} ` : ''}${localize('Traco')}`;
+    const title = `${callback ? `${localize('Editar')} ` : ''}${localize('Traco.Traco')}`;
 
     const buttons = [];
     if (callback != undefined) {
@@ -74,14 +75,15 @@ export class TraitDialog {
 
   static async #mountContent(traits, enableChangeTrait, enableChangeParticularity, trait) {
     const selectedTrait = traits.find(element => element.id == trait?.sourceId);
+    const selectedTraitHaveParticularity = selectedTrait?.particularity != undefined;
 
     const data = {
-      title: localize('Traco'),
+      title: localize('Traco.Traco'),
       options: this.#mapOptions(traits, selectedTrait),
       isEnabledChangeTrait: enableChangeTrait ? '' : 'disabled',
       particularity: localize('Particularidade'),
       isEnabledChangeParticularity: enableChangeParticularity ? '' : 'disabled',
-      particularityValue: selectedTrait?.particularity || '',
+      particularityValue: selectedTraitHaveParticularity ? trait.particularity : '',
       morph: localize('Morfologia'),
       morphValue: selectedTrait?.morph || '',
       requirement: localize('Requisito'),
@@ -143,7 +145,8 @@ export class TraitDialog {
 
   static #mountTraitObject(html, traits) {
     const traitId = html.querySelector('#trait').value;
-    const objectTrait = this.#findTrait(traits, traitId);
+    const foundTrait = this.#findTrait(traits, traitId);
+    const objectTrait = { ...foundTrait };
     if (objectTrait.particularity != undefined) {
       const particularity = html.querySelector('#particularity').value;
       objectTrait['particularity'] = particularity;

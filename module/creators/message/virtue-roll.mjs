@@ -1,4 +1,4 @@
-import { keyJsonToKeyLang, localize, TODO } from "../../utils/utils.mjs";
+import { keyJsonToKeyLang, localize } from "../../utils/utils.mjs";
 import { TEMPLATES_PATH } from "../../constants.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
 import { CharacteristicType } from "../../enums/characteristic-enums.mjs";
@@ -19,9 +19,7 @@ export class RollVirtueMessageCreator {
     }
 
     const isConsciousnessTest = virtue1.label == CharacteristicType.VIRTUES.CONSCIOUSNESS.id || virtue2.label == CharacteristicType.VIRTUES.CONSCIOUSNESS.id;
-    TODO('receber se o personagem tem consciência para utilizar');
-    const haveConsciousness = true;
-    debugger
+    const haveConsciousness = params.haveConsciousness || false;
 
     const data = {
       virtue1: keyJsonToKeyLang(virtue1.label),

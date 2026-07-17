@@ -3,10 +3,18 @@ import { getObject, localize } from "../../utils/utils.mjs";
 import { MorphologyRepository } from "../../repository/morphology-repository.mjs";
 import { FlagsUtils } from "../../utils/flags-utils.mjs";
 import { ActiveEffectsUtils } from "../effect/active-effects-utils.mjs";
+import { DEFAULT_VALUES } from "../../constants.mjs";
+import { AbilityRepository } from "../../repository/ability-repository.mjs";
+import { ItemType } from "../../enums/item-type-enums.mjs";
+import { ManeuverType } from "../../enums/maneuver-enums.mjs";
 
 export class ActorUtils {
   static getActor(actorId) {
     return game.actors.get(actorId);
+  }
+
+  static isSynthetic(actor) {
+    return getObject(actor, BaseActorCharacteristicType.MORPHOLOGY) == MorphologyRepository.TYPES.SYNTHETIC.id;
   }
 
   static getAttributeValue(actor, attr) {
@@ -26,7 +34,7 @@ export class ActorUtils {
   }
 
   static getVirtueValue(actor, virtue) {
-    const base = this.getVirtueLevel(actor, virtue);
+    const base = ActorUtils.getVirtueLevel(actor, virtue);
     const bonus = getObject(actor, CharacteristicType.BONUS.VIRTUES)[virtue];
     return base + bonus;
   }
@@ -40,10 +48,16 @@ export class ActorUtils {
     return getObject(actor, CharacteristicType.OVERLOAD) || 0;
   }
 
+  static getOverloadLimit(actor) {
+    const actorDefaultLimitOverload = DEFAULT_VALUES.OVERLOAD_LIMIT;
+    const buffOrDebuff = getObject(actor, CharacteristicType.BONUS.OVERLOAD_LIMIT) || 0;
+    return Math.max(actorDefaultLimitOverload + buffOrDebuff, 0);
+  }
+
   static getEnhancementLevel(actor, enhancement) {
     const enhancements = getObject(actor, CharacteristicType.ENHANCEMENT_ALL);
-    const enhancementOnActor = this.#findEnhancementOnActorById(enhancement.id, enhancements);
-    const levelsOnActor = this.#findEnhancementLevelsWithId(enhancementOnActor);
+    const enhancementOnActor = ActorUtils.#findEnhancementOnActorById(enhancement.id, enhancements);
+    const levelsOnActor = ActorUtils.#findEnhancementLevelsWithId(enhancementOnActor);
     return levelsOnActor.length;
   }
 
@@ -65,9 +79,9 @@ export class ActorUtils {
     const stamina = getObject(actor, CharacteristicType.ATTRIBUTES.STAMINA) || 0;
     const letalDamage = getObject(actor, BaseActorCharacteristicType.VITALITY.LETAL_DAMAGE) || 0;
     const bonusPenalty = getObject(actor, CharacteristicType.BONUS.DAMAGE_PENALTY) || 0;
-    const sintheticBonus = getObject(actor, BaseActorCharacteristicType.MORPHOLOGY) == MorphologyRepository.TYPES.SYNTHETIC.id ? 1 : 0;
+    const syntheticBonus = ActorUtils.isSynthetic(actor) ? DEFAULT_VALUES.SYNTHETIC_PENALTY_BONUS : 0;
 
-    const calculateTotal = letalDamage - (stamina + sintheticBonus) + bonusPenalty;
+    const calculateTotal = letalDamage - (stamina + syntheticBonus) + bonusPenalty;
     const safeMinValue = Math.max(calculateTotal, 0);
 
     const fixedPenalty = getObject(actor, CharacteristicType.BONUS.DAMAGE_PENALTY_FLAT) || 0;
@@ -77,27 +91,27 @@ export class ActorUtils {
   static calculateVitalityByUpAttribute(actor, level) {
     const value = level;
     const bonus = getObject(actor, CharacteristicType.BONUS.VITALITY);
-    return 5 + value + bonus;
+    return DEFAULT_VALUES.BASE_VITALITY + value + bonus;
   }
 
   static calculateDices(actor, attr1, attr2, ability) {
-    const attr1Value = this.getAttributeValue(actor, attr1);
-    const attr2Value = this.getAttributeValue(actor, attr2);
-    const abilityValue = this.getAbilityValue(actor, ability);
+    const attr1Value = ActorUtils.getAttributeValue(actor, attr1);
+    const attr2Value = ActorUtils.getAttributeValue(actor, attr2);
+    const abilityValue = ActorUtils.getAbilityValue(actor, ability);
     return Math.floor((attr1Value + attr2Value) / 2) + abilityValue;
   }
 
   static calculateMovimentPoints(actor) {
-    const dexValue = this.getAttributeValue(actor, CharacteristicType.ATTRIBUTES.DEXTERITY.id);
-    const athleticsValue = this.getAbilityValue(actor, CharacteristicType.SKILLS.ATHLETICS.id);
+    const dexValue = ActorUtils.getAttributeValue(actor, CharacteristicType.ATTRIBUTES.DEXTERITY.id);
+    const athleticsValue = ActorUtils.getAbilityValue(actor, CharacteristicType.SKILLS.ATHLETICS.id);
     const bonusPM = getObject(actor, CharacteristicType.BONUS.PM) || 0;
-    const calculated = 1 + athleticsValue + bonusPM + Math.floor(dexValue / 2);
+    const calculated = DEFAULT_VALUES.BASE_MOVIMENT_POINTS + athleticsValue + bonusPM + Math.floor(dexValue / 2);
     return Math.max(calculated, 0);
   }
 
   static calculateInitiative(actor) {
-    const dexValue = this.getAttributeValue(actor, CharacteristicType.ATTRIBUTES.DEXTERITY.id);
-    const perValue = this.getAttributeValue(actor, CharacteristicType.ATTRIBUTES.PERCEPTION.id);
+    const dexValue = ActorUtils.getAttributeValue(actor, CharacteristicType.ATTRIBUTES.DEXTERITY.id);
+    const perValue = ActorUtils.getAttributeValue(actor, CharacteristicType.ATTRIBUTES.PERCEPTION.id);
     const bonusInitiative = getObject(actor, CharacteristicType.BONUS.INITIATIVE) || 0;
     return bonusInitiative + Math.floor((dexValue + perValue) / 2);
   }
@@ -148,6 +162,18 @@ export class ActorUtils {
     return used < level;
   }
 
+  static haveQuietness(actor) {
+    const level = getObject(actor, CharacteristicType.VIRTUES.QUIETNESS.LEVEL);
+    const used = getObject(actor, CharacteristicType.VIRTUES.QUIETNESS.USED);
+    return used < level;
+  }
+
+  static haveConsciousness(actor) {
+    const level = getObject(actor, CharacteristicType.VIRTUES.CONSCIOUSNESS.LEVEL);
+    const used = getObject(actor, CharacteristicType.VIRTUES.CONSCIOUSNESS.USED);
+    return used < level;
+  }
+
   static getAllEnhancements(actor) {
     const allEnhancements = getObject(actor, CharacteristicType.ENHANCEMENT_ALL) || [];
     return Object.values(allEnhancements).filter(enhancement => enhancement.id !== '');
@@ -177,12 +203,12 @@ export class ActorUtils {
 
   static getAllies(actor) {
     const allies = getObject(actor, CharacteristicType.ALLIES) || [];
-    return this.#getNetworkByList(allies);
+    return ActorUtils.#getNetworkByList(allies);
   }
 
   static getInformants(actor) {
     const informants = getObject(actor, CharacteristicType.INFORMANTS) || [];
-    return this.#getNetworkByList(informants);
+    return ActorUtils.#getNetworkByList(informants);
   }
 
   static #getNetworkByList(list) {
@@ -209,14 +235,13 @@ export class ActorUtils {
   }
 
   static getEffectsSorted(actor) {
-    const effects = this.getEffects(actor);
+    const effects = ActorUtils.getEffects(actor);
     const enhancementLabel = localize('Aprimoramento.Nome');
 
     effects.sort((a, b) => {
       if (ActiveEffectsUtils.getOriginId(a) === 'dead') {
         return -1;
-      }
-      if (ActiveEffectsUtils.getOriginId(b) === 'dead') {
+      } else if (ActiveEffectsUtils.getOriginId(b) === 'dead') {
         return 1;
       }
 
@@ -252,7 +277,7 @@ export class ActorUtils {
   }
 
   static getActualEnhancementAmount(actor) {
-    const total = this.getAllEnhancements(actor)
+    const total = ActorUtils.getAllEnhancements(actor)
       .flatMap(enhancement => Object.values(enhancement.levels).flatMap(level => level.id))
       .filter(id => Boolean(id))
       .length;
@@ -260,6 +285,49 @@ export class ActorUtils {
   }
 
   static calculateTotalEnhancements(actor) {
-    return (getObject(actor, CharacteristicType.CORE) ?? 0) * 4;
+    return (getObject(actor, CharacteristicType.CORE) ?? 0) * DEFAULT_VALUES.ENHANCEMENT_SLOTS_PER_CORE;
+  }
+
+  /**
+   * Retorna as especialidades do ator com a label da habilidade já localizada.
+   * Ordena pelo nome localizado da habilidade para facilitar agrupamento visual.
+   *
+   * @returns {Array<{habilidade: string, label: string, descricao_curta: string, descricao_longa: string|null, custo: number}>}
+   */
+  static getSpecialties(actor) {
+    const specialties = getObject(actor, CharacteristicType.SPECIALTIES) || [];
+    return specialties
+      .map((specialty, index) => {
+        const abilityInfo = AbilityRepository.getItem(specialty.habilidade);
+        return {
+          ...specialty,
+          index,
+          label: abilityInfo ? localize(abilityInfo.label.replace('S0.', '')) : specialty.habilidade,
+        };
+      })
+      .sort((a, b) => a.label.localeCompare(b.label));
+  }
+
+  static getNotes(actor) {
+    const notes = getObject(actor, CharacteristicType.NOTES) || [];
+    return notes.map((note, index) => ({ ...note, index }));
+  }
+
+  static getManeuvers(actor) {
+    const maneuvers = actor.items.filter(i => i.type === ItemType.MANEUVER);
+    const grouped = {};
+    for (const maneuver of maneuvers) {
+      const skillId = getObject(maneuver, ManeuverType.SKILL);
+      if (!grouped[skillId]) {
+        const abilityInfo = AbilityRepository.getItem(skillId);
+        grouped[skillId] = {
+          skill: skillId,
+          label: abilityInfo ? localize(abilityInfo.label.replace('S0.', '')) : skillId,
+          items: []
+        };
+      }
+      grouped[skillId].items.push(maneuver);
+    }
+    return Object.values(grouped).sort((a, b) => a.label.localeCompare(b.label));
   }
 }

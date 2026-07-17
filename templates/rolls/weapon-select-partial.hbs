@@ -1,0 +1,11 @@
+<h3>{{localize 'S0.Arma'}}</h3>
+<div class="S0-flex S0-gap-4 S0-flex-wrap" id="weapon-select">
+  {{#each weapons}}
+  <div class="S0-container S0-flex-col S0-items-center S0-p-4 S0-clickable S0-weapon-option S0-item-bag"
+    data-weapon-id="{{this.id}}" title="{{this.name}}">
+    <img src="{{this.img}}" width="64" height="64" />
+    <label class="S0-text-center S0-pointer-events-none S0-text-sm">{{this.name}}</label>
+  </div>
+  {{/each}}
+</div>
+<hr>

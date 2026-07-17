@@ -4,7 +4,7 @@
   background-color: var(--secondary-color-alpha-50);
   padding: 5px;
   box-shadow: 0px 1px 2px 0px var(--color-black-alpha-50);
-  border: 1px solid var(--secondary-color-alpha-50);
+  border: var(--border-thin) solid var(--secondary-color-alpha-50);
 }
 
 :is(.S0-select, .S0-enhancement) option {
@@ -40,7 +40,7 @@
 
 :is(.S0-select, .S0-inner-select) {
   width: 100%;
-  border: 2px solid;
+  border: var(--border-medium) solid;
   transition: background-color 0.2s ease-in-out, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
 }
 
@@ -69,7 +69,7 @@
 :is(.S0-select, .S0-inner-select):enabled:is(:hover, :focus) {
   color: var(--on-secondary-alternate-color);
   background-color: var(--secondary-color-alpha-50) !important;
-  border: 2px solid var(--primary-color) !important;
+  border: var(--border-medium) solid var(--primary-color) !important;
   box-shadow: 0px 0px 6px 0px var(--primary-color) !important;
 }
 
@@ -100,7 +100,7 @@
   justify-content: center;
   width: 100px;
   margin: 0 auto;
-  border: 2px solid var(--secondary-color-alpha);
+  border: var(--border-medium) solid var(--secondary-color-alpha);
   border-radius: var(--border-radius-large);
   box-shadow: 0px 0px 6px 0px var(--secondary-color-alpha);
 }
@@ -113,7 +113,7 @@
   color: var(--on-secondary-color);
   text-shadow: 0px 0px 4px var(--secondary-color-alpha-50);
   background: var(--secondary-color-alpha-50);
-  border-top: 1px solid var(--secondary-color-alpha);
+  border-top: var(--border-thin) solid var(--secondary-color-alpha);
   border-radius: 0px 0px var(--border-radius-medium) var(--border-radius-medium);
 }
 
@@ -147,7 +147,7 @@
   color: var(--on-primary-color);
   background-color: var(--primary-color-alpha);
   border-radius: 6px 6px 0px 0px;
-  border-bottom: solid 1px var(--secondary-color-alpha);
+  border-bottom: solid var(--border-thin) var(--secondary-color-alpha);
   font-size: var(--font-size-10);
   padding-top: 3px;
   padding-bottom: 2px;
@@ -166,7 +166,7 @@
   font-weight: bold;
   text-align: center;
   text-shadow: 0px 0px 6px var(--primary-color-alpha);
-  border: 1px ridge var(--secondary-color-alpha);
+  border: var(--border-thin) ridge var(--secondary-color-alpha);
   border-radius: 6px 6px 0px 0px;
   bottom: 0px;
   opacity: 0;
@@ -210,6 +210,10 @@
   background: var(--primary-color);
   transition: bottom 0.2s ease-in-out, opacity 0.2s ease-in-out;
   aspect-ratio: 1 / 1;
+}
+
+.S0-badge span {
+  color: var(--on-primary-color);
 }
 
 .S0-item-bag:hover :is(.S0-item-name, .S0-item-type) {

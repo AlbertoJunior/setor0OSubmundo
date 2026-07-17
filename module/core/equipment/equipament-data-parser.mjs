@@ -1,4 +1,4 @@
-import { getObject, localize } from "../../utils/utils.mjs";
+import { getObject } from "../../utils/utils.mjs";
 import { EquipmentCharacteristicType, EquipmentType } from "../../enums/equipment-enums.mjs";
 import { EquipmentInfoParser } from "./equipment-info.mjs";
 import { EquipmentUtils } from "./equipment-utils.mjs";
@@ -93,17 +93,17 @@ export class EquipamentDataParser {
     const effects = getObject(item, EquipmentCharacteristicType.SUPER_EQUIPMENT.EFFECTS) || [];
     const defects = getObject(item, EquipmentCharacteristicType.SUPER_EQUIPMENT.DEFECTS) || [];
 
-    data.superEffects = effects.map(e => ({
-      cost: e.cost,
-      name: e.name,
-      particularity: e.particularity?.description || null,
+    data.superEffects = effects.map(effect => ({
+      cost: effect.cost,
+      name: effect.name,
+      particularity: effect.particularity?.description || null,
     }));
     data.hasSuperEffects = data.superEffects.length > 0;
 
-    data.superDefects = defects.map(d => ({
-      cost: d.cost,
-      name: d.name,
-      particularity: d.particularity?.description || null,
+    data.superDefects = defects.map(defect => ({
+      cost: defect.cost,
+      name: defect.name,
+      particularity: defect.particularity?.description || null,
     }));
     data.hasSuperDefects = data.superDefects.length > 0;
   }

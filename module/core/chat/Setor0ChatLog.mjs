@@ -2,6 +2,7 @@ import { FoundryApi } from "../../api/foundry-api.mjs";
 import { OnEventType } from "../../enums/on-event-type.mjs";
 import { MessageRepository } from "../../repository/message-repository.mjs";
 import { HtmlJsUtils } from "../../utils/html-js-utils.mjs";
+import { OwnershipUtils } from "../../utils/ownership-utils.mjs";
 import { localize } from "../../utils/utils.mjs";
 import { RollConsciousness } from "../rolls/consciousness-roll.mjs";
 import { RollPerseverance } from "../rolls/perseverance-roll.mjs";
@@ -90,7 +91,7 @@ class Setor0ChatLog extends FoundryApi.ChatLog {
       return;
     }
 
-    if (!game.user.isGM && !message.speakerActor?.isOwner) {
+    if (!game.user.isGM && !OwnershipUtils.canDoSomething(message.speakerActor)) {
       console.warn(`User: ${game.user.name} isn't the owner of this message`);
       return;
     }

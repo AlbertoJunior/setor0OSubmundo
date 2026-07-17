@@ -1,9 +1,9 @@
 {{#unless (operators 'isNull' this.buttons)}}
-<div class="S0-flex-center" style="column-gap: 4px; margin-block: 6px">
+<div class="S0-flex-center S0-col-gap-4 S0-my-6">
   {{#each this.buttons}}
   <button class="S0-flex-center {{classes}}" data-action="{{key}}">{{label}}
     {{#unless (operators 'isNull' icon)}}
-    <i style="margin: 0px; margin-left: 4px;" class="fas {{icon}}"></i>
+    <i class="fas {{icon}} S0-m-0 S0-ml-4"></i>
     {{/unless}}
   </button>
   {{/each}}

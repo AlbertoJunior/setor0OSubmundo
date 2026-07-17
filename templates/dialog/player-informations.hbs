@@ -1,0 +1,26 @@
+<div class="S0-flex-col S0-gap-8 S0-p-4">
+  {{#each players}}
+  <div class="S0-player-item S0-flex S0-items-center S0-gap-8 S0-p-6" data-action="selectPlayer"
+    data-user-id="{{this.id}}">
+    <i class="fas fa-circle S0-text-10 {{#if this.isActive}}S0-online{{else}}S0-offline{{/if}} S0-text-shadow-none"
+      title="{{#if this.isActive}}{{localize 'S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.Online'}}{{else}}{{localize 'S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.Offline'}}{{/if}}">
+    </i>
+
+    <img class="S0-player-avatar" src="{{this.avatar}}" alt="{{this.name}}" />
+
+    <div class="S0-flex-col S0-flex-1">
+      <span class="S0-font-bold">
+        {{this.name}}
+        {{#if this.isGM}}<span class="S0-text-x-small S0-italic">(GM)</span>{{/if}}
+      </span>
+      {{#if this.characterName}}
+      <span class="S0-text-small S0-italic">{{this.characterName}}</span>
+      {{else}}
+      <span class="S0-text-x-small S0-italic">{{localize "S0.CONTROL.PLAYER_INFORMATIONS_BUTTON.No_Character"}}</span>
+      {{/if}}
+    </div>
+
+    <i class="fas fa-circle S0-text-10 S0-text-shadow-none" style="color: {{this.color}};"></i>
+  </div>
+  {{/each}}
+</div>

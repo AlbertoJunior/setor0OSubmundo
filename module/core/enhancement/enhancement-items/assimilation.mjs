@@ -1,8 +1,8 @@
 import { ICONS_PATH } from "../../../constants.mjs";
-import { RollTestField } from "../../../field/roll-test-field.mjs";
+import { RollTestField } from "../../../data/field/roll-test-field.mjs";
 import { CharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { EffectChangeValueType, EnhancementDuration, EnhancementOverload } from "../../../enums/enhancement-enums.mjs";
-import { EnhancementEffectField } from "../../../field/enhancement-field.mjs";
+import { EnhancementEffectField } from "../../../data/field/enhancement-field.mjs";
 
 const enhancementID = '2';
 
@@ -201,6 +201,7 @@ export const assimilationEnhancement = {
   id: enhancementID,
   name: 'Assimilação',
   value: 'assimilacao',
+  maximumAllowed: 1,
   icon: `${ICONS_PATH}/assimilation.svg`,
   effects: assimilationEffects
 };

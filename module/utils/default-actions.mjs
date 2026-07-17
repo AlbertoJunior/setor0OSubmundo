@@ -36,7 +36,12 @@ export class DefaultActions {
   }
 
   static async processVirtueRoll(actor, resultRoll, difficulty, mode) {
-    const contentMessage = await RollVirtueMessageCreator.mountContent({ resultRoll, difficulty });
+    const params = {
+      resultRoll,
+      difficulty,
+      haveConsciousness: ActorUtils.haveConsciousness(actor)
+    };
+    const contentMessage = await RollVirtueMessageCreator.mountContent(params);
     await ChatCreator.sendToChatTypeRoll(actor, contentMessage, [resultRoll.roll.roll], mode);
   }
 
@@ -52,6 +57,8 @@ export class DefaultActions {
       difficulty: rollInformation.difficulty,
       critic: rollInformation.critic,
       havePerseverance: true,
+      haveQuietness: ActorUtils.haveQuietness(actor),
+      haveConsciousness: ActorUtils.haveConsciousness(actor),
       half: isHalf
     };
 
@@ -72,6 +79,8 @@ export class DefaultActions {
       difficulty: rollInformation.difficulty,
       critic: rollInformation.critic,
       havePerseverance: ActorUtils.havePerseverance(actor),
+      haveQuietness: ActorUtils.haveQuietness(actor),
+      haveConsciousness: ActorUtils.haveConsciousness(actor),
       half: false
     };
 
@@ -92,6 +101,8 @@ export class DefaultActions {
       critic: inputParams.critic,
       messageTest: rollMessage,
       havePerseverance: ActorUtils.havePerseverance(actor),
+      haveQuietness: ActorUtils.haveQuietness(actor),
+      haveConsciousness: ActorUtils.haveConsciousness(actor),
       half: inputParams.half
     }
 
@@ -110,6 +121,8 @@ export class DefaultActions {
       critic: Number(critic),
       messageTest: rollMessage,
       havePerseverance: ActorUtils.havePerseverance(actor),
+      haveQuietness: ActorUtils.haveQuietness(actor),
+      haveConsciousness: ActorUtils.haveConsciousness(actor),
     }
 
     const rolls = this.#prepareRolls(params.rolls, params);

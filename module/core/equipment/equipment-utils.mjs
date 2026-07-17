@@ -1,6 +1,6 @@
-import { getObject, localize, TODO } from "../../utils/utils.mjs";
+import { getObject, localize } from "../../utils/utils.mjs";
 import { ActiveEffectsFlags, ActiveEffectsOriginTypes } from "../../enums/active-effects-enums.mjs";
-import { EquipmentCharacteristicType, SubstanceType, validEquipmentTypes } from "../../enums/equipment-enums.mjs";
+import { EquipmentCharacteristicType, EquipmentType, SubstanceType, validEquipmentTypes } from "../../enums/equipment-enums.mjs";
 import { SuperEquipmentTraitRepository } from "../../repository/superequipment-trait-repository.mjs";
 import { ActiveEffectsUtils } from "../effect/active-effects-utils.mjs";
 import { EquipmentInfoParser } from "./equipment-info.mjs";
@@ -137,7 +137,7 @@ export class EquipmentUtils {
         {
           key: particularity.change.key,
           value: particularity.change.value,
-          mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+          mode: particularity.change.mode ?? CONST.ACTIVE_EFFECT_MODES.ADD,
         },
       )
     }
@@ -197,13 +197,11 @@ export class EquipmentUtils {
         description: effect.description,
         statuses: [`${itemId}`],
         duration: { startRound: 0, rounds: 99 },
-        changes: [
-          {
-            key: effect.change.key,
-            value: effect.change.value,
-            mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-          },
-        ],
+        changes: effect.changes.map(change => ({
+          key: change.key,
+          value: change.value,
+          mode: change.mode ?? CONST.ACTIVE_EFFECT_MODES.ADD,
+        })),
         flags: {
           [ActiveEffectsFlags.ORIGIN_ID]: itemId,
           [ActiveEffectsFlags.ORIGIN_TYPE]: ActiveEffectsOriginTypes.ITEM,
@@ -251,12 +249,80 @@ export class EquipmentUtils {
   }
 
   static #getEquipmentRollInformation(item, base) {
-    TODO('implementar as informações do item')
+    const changes = [...base.changes];
+    const type = getObject(item, EquipmentCharacteristicType.TYPE);
+
+    this.#parseResistanceRollInfo(item, changes);
+
+    if (type === EquipmentType.VEHICLE) {
+      this.#parseVehicleRollInfo(item, changes);
+    } else if (type === EquipmentType.SUBSTANCE) {
+      this.#parseSubstanceRollInfo(item, changes);
+    }
+
+    if (this.isSuperEquipment(item)) {
+      this.#parseSuperEquipmentRollInfo(item, changes);
+    }
+
     return {
       ...base,
-      changes: [
-        ...base.changes,
-      ]
+      changes: changes
+    }
+  }
+
+  static #parseResistanceRollInfo(item, changes) {
+    const resistance = getObject(item, EquipmentCharacteristicType.RESISTANCE);
+    if (resistance != null && resistance !== undefined) {
+      changes.push(`${localize('Resistencia')}: ${resistance}`);
+    }
+  }
+
+  static #parseVehicleRollInfo(item, changes) {
+    const vehicleType = getObject(item, EquipmentCharacteristicType.VEHICLE.TYPE);
+    if (vehicleType != null) {
+      changes.push(`${localize('Tipo_Veiculo')}: ${EquipmentInfoParser.parseVehicle(vehicleType)}`);
+    }
+    const acceleration = getObject(item, EquipmentCharacteristicType.ACCELERATION);
+    if (acceleration != null) {
+      changes.push(`${localize('Aceleracao')}: ${acceleration}`);
+    }
+    const speed = getObject(item, EquipmentCharacteristicType.SPEED);
+    if (speed != null) {
+      changes.push(`${localize('Velocidade')}: ${speed}`);
+    }
+  }
+
+  static #parseSubstanceRollInfo(item, changes) {
+    const substanceType = getObject(item, EquipmentCharacteristicType.SUBSTANCE.TYPE);
+    if (substanceType != null) {
+      changes.push(`${localize('Tipo')}: ${EquipmentInfoParser.parseSubstance(substanceType)}`);
+    }
+
+    const effects = getObject(item, EquipmentCharacteristicType.SUBSTANCE.EFFECTS) || [];
+    if (effects.length > 0) {
+      const effectsDescriptions = effects.map(e => e.description).join(', ');
+      changes.push(`${localize('Efeitos')}: ${effectsDescriptions}`);
+    }
+  }
+
+  static #parseSuperEquipmentRollInfo(item, changes) {
+    const level = this.getSuperEquipmentLevel(item);
+    changes.push(`${localize('Nivel')}: ${level}`);
+
+    const superEffects = getObject(item, EquipmentCharacteristicType.SUPER_EQUIPMENT.EFFECTS) || [];
+    if (superEffects.length > 0) {
+      changes.push(`${localize('Efeitos')}: ${superEffects.map(effect => {
+        const particularity = effect.particularity?.description;
+        return particularity ? `${effect.name} (${particularity})` : effect.name;
+      }).join(', ')}`);
+    }
+
+    const superDefects = getObject(item, EquipmentCharacteristicType.SUPER_EQUIPMENT.DEFECTS) || [];
+    if (superDefects.length > 0) {
+      changes.push(`${localize('Defeitos')}: ${superDefects.map(defect => {
+        const particularity = defect.particularity?.description;
+        return particularity ? `${defect.name} (${particularity})` : defect.name;
+      }).join(', ')}`);
     }
   }
 }

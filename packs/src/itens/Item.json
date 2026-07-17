@@ -2,1130 +2,14 @@
   "title": "Itens conhecidos",
   "banner": "ui/banners/item-banner.webp",
   "documentName": "Item",
+  "stats": {
+    "coreVersion": "13.346",
+    "systemId": "setor0OSubmundo",
+    "modifiedTime": 1771709312034,
+    "lastModifiedBy": "tK2FsBNKL3Za9iXa"
+  },
+  "sortingMode": "a",
   "elements": [
-    {
-      "name": "Grande",
-      "type": "Melee",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "resistance": 1,
-        "equipped": false,
-        "default_test": "76e71461f30145fb8dd0915cec273693",
-        "possible_tests": [
-          {
-            "id": "76e71461f30145fb8dd0915cec273693",
-            "name": "Atacar (2 mãos)",
-            "primary_attribute": "forca",
-            "secondary_attribute": "destreza",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_brancas",
-            "bonus": 0,
-            "automatic": 1,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "02fcbf5cfd7b468b91a0a896b4a4cab1",
-            "name": "Atacar (1 mão)",
-            "primary_attribute": "forca",
-            "secondary_attribute": "destreza",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_brancas",
-            "bonus": 0,
-            "automatic": 0,
-            "difficulty": 7,
-            "critic": 10,
-            "specialist": false
-          }
-        ],
-        "hand": 2,
-        "damage": 2,
-        "true_damage": 0,
-        "damage_type": 1,
-        "occultability": 1,
-        "type": 2,
-        "size": 2,
-        "actual_resistance": 1,
-        "super_equipment": null
-      },
-      "sort": 600000,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "0ajS6bX7rEh0cJCm"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770162598301,
-        "modifiedTime": 1770323067380,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "compendiumSource": "Compendium.setor0OSubmundo.itens.Item.0ajS6bX7rEh0cJCm",
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "QEtaXX4oOUD0lCMZ"
-    },
-    {
-      "name": "Rifle PtV-G2A1",
-      "type": "Projectile",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "equipped": false,
-        "resistance": 4,
-        "actual_resistance": 4,
-        "super_equipment": null,
-        "default_test": "04667a11f5464587855bd972936e2154",
-        "possible_tests": [
-          {
-            "id": "04667a11f5464587855bd972936e2154",
-            "name": "Atirar X1",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 0,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "ab37cbfaab5441ef80dbc53be8c19d10",
-            "name": "Mirar e Atirar X1",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 1,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "8c9ccef3c7e54be4b94a97bdc9db9493",
-            "name": "Atirar X2",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 0,
-            "difficulty": 8,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "1e0120ace630489fab36e9db0fa805d9",
-            "name": "Mirar e Atirar X2",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 1,
-            "difficulty": 8,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "3c7bdf9c577f41a1a10db7b9bd8a27dd",
-            "name": "Atirar X3",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 0,
-            "difficulty": 10,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "05409436531a4fb8a412ce1948190f9d",
-            "name": "Mirar e Atirar X3",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 1,
-            "difficulty": 10,
-            "critic": 10,
-            "specialist": false,
-            "special_primary": "",
-            "special_secondary": ""
-          }
-        ],
-        "hand": 2,
-        "damage": 2,
-        "true_damage": 1,
-        "damage_type": 1,
-        "occultability": 2,
-        "type": 3,
-        "capacity": 3,
-        "cadence": 1,
-        "range": 30,
-        "max_range": 3,
-        "special": false
-      },
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "2DBj3OrWNfOifUFW"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770162609698,
-        "modifiedTime": 1770162609698,
-        "lastModifiedBy": "SBjs9YpFzq0R5Gi2",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "pzU0gmXR8aC76lvY"
-    },
-    {
-      "name": "Lata",
-      "type": "Vehicle",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "equipped": false,
-        "resistance": 5,
-        "actual_resistance": 5,
-        "super_equipment": null,
-        "default_test": "",
-        "possible_tests": [],
-        "type": 4,
-        "acceleration": 0,
-        "speed": 0,
-        "vehicle_type": 0
-      },
-      "sort": -100000,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": true,
-          "sourceId": "2TZDCyNZcexKCjNy"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770163837628,
-        "modifiedTime": 1770323027580,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "compendiumSource": "Compendium.setor0OSubmundo.itens.Item.2TZDCyNZcexKCjNy",
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "etafivQ7tU8pxLQu"
-    },
-    {
-      "name": "Analgésico",
-      "type": "Substance",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "type": 5,
-        "substance_type": 0,
-        "quantity": 1,
-        "effects": [
-          {
-            "id": "7",
-            "type": "Buff",
-            "description": "-1 de Penalidade por Dano",
-            "change": {
-              "key": "system.bonus.penalidade_dano",
-              "value": -1,
-              "mode": 2
-            }
-          }
-        ],
-        "range": 0,
-        "damage": 0
-      },
-      "sort": 200000,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "5ZNb7Yy6LQEa4f83"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770163825559,
-        "modifiedTime": 1770322710943,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "compendiumSource": "Compendium.setor0OSubmundo.itens.Item.5ZNb7Yy6LQEa4f83",
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "KdNlNgRtMldVEtCj"
-    },
-    {
-      "name": "Rifle Al-GA3",
-      "type": "Projectile",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "equipped": false,
-        "resistance": 5,
-        "actual_resistance": 4,
-        "super_equipment": null,
-        "default_test": "04667a11f5464587855bd972936e2154",
-        "possible_tests": [
-          {
-            "id": "04667a11f5464587855bd972936e2154",
-            "name": "Atirar X1",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 0,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "ab37cbfaab5441ef80dbc53be8c19d10",
-            "name": "Mirar e Atirar X1",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 1,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "8c9ccef3c7e54be4b94a97bdc9db9493",
-            "name": "Atirar X2",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 0,
-            "difficulty": 8,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "1e0120ace630489fab36e9db0fa805d9",
-            "name": "Mirar e Atirar X2",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 1,
-            "difficulty": 8,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "3c7bdf9c577f41a1a10db7b9bd8a27dd",
-            "name": "Atirar X3",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 0,
-            "difficulty": 10,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "05409436531a4fb8a412ce1948190f9d",
-            "name": "Mirar e Atirar X3",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 1,
-            "difficulty": 10,
-            "critic": 10,
-            "specialist": false,
-            "special_primary": "",
-            "special_secondary": ""
-          }
-        ],
-        "hand": 2,
-        "damage": 0,
-        "true_damage": 3,
-        "damage_type": 1,
-        "occultability": 2,
-        "type": 3,
-        "capacity": 5,
-        "cadence": 1,
-        "range": 40,
-        "max_range": 3,
-        "special": false
-      },
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "7YKo5q1ASCwnkzns"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770162609698,
-        "modifiedTime": 1770162609698,
-        "lastModifiedBy": "SBjs9YpFzq0R5Gi2",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "GsDLKmqtKxxR7zrF"
-    },
-    {
-      "name": "Rifle Al-G1A2",
-      "type": "Projectile",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "equipped": false,
-        "resistance": 4,
-        "actual_resistance": 4,
-        "super_equipment": null,
-        "default_test": "04667a11f5464587855bd972936e2154",
-        "possible_tests": [
-          {
-            "id": "04667a11f5464587855bd972936e2154",
-            "name": "Atirar X1",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 0,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "ab37cbfaab5441ef80dbc53be8c19d10",
-            "name": "Mirar e Atirar X1",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 1,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "8c9ccef3c7e54be4b94a97bdc9db9493",
-            "name": "Atirar X2",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 0,
-            "difficulty": 8,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "1e0120ace630489fab36e9db0fa805d9",
-            "name": "Mirar e Atirar X2",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 1,
-            "difficulty": 8,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "3c7bdf9c577f41a1a10db7b9bd8a27dd",
-            "name": "Atirar X3",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 0,
-            "difficulty": 10,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "05409436531a4fb8a412ce1948190f9d",
-            "name": "Mirar e Atirar X3",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 1,
-            "difficulty": 10,
-            "critic": 10,
-            "specialist": false,
-            "special_primary": "",
-            "special_secondary": ""
-          }
-        ],
-        "hand": 2,
-        "damage": 1,
-        "true_damage": 2,
-        "damage_type": 1,
-        "occultability": 2,
-        "type": 3,
-        "capacity": 4,
-        "cadence": 1,
-        "range": 40,
-        "max_range": 3,
-        "special": false
-      },
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "9EFLiX6k9rgMnHBO"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770162609698,
-        "modifiedTime": 1770162609698,
-        "lastModifiedBy": "SBjs9YpFzq0R5Gi2",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "Ml1w5KRPvLQvDcvW"
-    },
-    {
-      "name": "Escopeta AlP-G2A2",
-      "type": "Projectile",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "equipped": false,
-        "resistance": 4,
-        "actual_resistance": 4,
-        "super_equipment": null,
-        "default_test": "d4bc7f9c9b0741baaa39926d5c7970d4",
-        "possible_tests": [
-          {
-            "id": "d4bc7f9c9b0741baaa39926d5c7970d4",
-            "name": "Atirar",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 0,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false,
-            "special_primary": "",
-            "special_secondary": ""
-          },
-          {
-            "id": "218e830ce8f044ea97d473b7dce50c68",
-            "name": "Mirar e Atirar",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 1,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false
-          }
-        ],
-        "hand": 2,
-        "damage": 2,
-        "true_damage": 2,
-        "damage_type": 1,
-        "occultability": 2,
-        "type": 3,
-        "capacity": 5,
-        "cadence": 1,
-        "range": 7,
-        "max_range": 2,
-        "special": false
-      },
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "A73WzlLo6xdd29hB"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770162609698,
-        "modifiedTime": 1770162609698,
-        "lastModifiedBy": "SBjs9YpFzq0R5Gi2",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "Ml1w5KRPvLQvDcvW"
-    },
-    {
-      "name": "Pistola To-G2",
-      "type": "Projectile",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "equipped": false,
-        "resistance": 2,
-        "actual_resistance": 2,
-        "super_equipment": null,
-        "default_test": "d4bc7f9c9b0741baaa39926d5c7970d4",
-        "possible_tests": [
-          {
-            "id": "d4bc7f9c9b0741baaa39926d5c7970d4",
-            "name": "Atirar",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 0,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false,
-            "special_primary": "",
-            "special_secondary": ""
-          },
-          {
-            "id": "218e830ce8f044ea97d473b7dce50c68",
-            "name": "Mirar e Atirar",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 1,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false
-          }
-        ],
-        "hand": 0,
-        "damage": 2,
-        "true_damage": 0,
-        "damage_type": 1,
-        "occultability": 1,
-        "type": 3,
-        "capacity": 5,
-        "cadence": 2,
-        "range": 11,
-        "max_range": 2,
-        "special": false
-      },
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "D2SkfmaZ0hPjmsS0"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770162609698,
-        "modifiedTime": 1770162609698,
-        "lastModifiedBy": "SBjs9YpFzq0R5Gi2",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "NcVqYFQdPRfzK8sz"
-    },
-    {
-      "name": "Pistola de Gauss",
-      "type": "Projectile",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "equipped": false,
-        "resistance": 1,
-        "actual_resistance": 1,
-        "super_equipment": null,
-        "default_test": "d4bc7f9c9b0741baaa39926d5c7970d4",
-        "possible_tests": [
-          {
-            "id": "d4bc7f9c9b0741baaa39926d5c7970d4",
-            "name": "Atirar",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 0,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false,
-            "special_primary": "",
-            "special_secondary": ""
-          },
-          {
-            "id": "218e830ce8f044ea97d473b7dce50c68",
-            "name": "Mirar e Atirar",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 1,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false
-          }
-        ],
-        "hand": 0,
-        "damage": 0,
-        "true_damage": 0,
-        "damage_type": 1,
-        "occultability": 0,
-        "type": 3,
-        "capacity": 4,
-        "cadence": 1,
-        "range": 9,
-        "max_range": 2,
-        "special": false
-      },
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": true,
-          "sourceId": "F9s2mmN4gLfW1RgD"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770162609698,
-        "modifiedTime": 1770162609698,
-        "lastModifiedBy": "SBjs9YpFzq0R5Gi2",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "5kRsy25qWrR8z5Qt"
-    },
-    {
-      "name": "Confiança Liquida",
-      "type": "Substance",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "+1 de Perseverança",
-        "type": 5,
-        "substance_type": 0,
-        "quantity": 1,
-        "range": 0,
-        "damage": 0,
-        "effects": []
-      },
-      "sort": 150000,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "GAtrKm0Z5QM2VJTy"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770163825559,
-        "modifiedTime": 1770322711869,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "compendiumSource": "Compendium.setor0OSubmundo.itens.Item.GAtrKm0Z5QM2VJTy",
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "KdNlNgRtMldVEtCj"
-    },
-    {
-      "name": "Exótico",
-      "type": "Vehicle",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "equipped": false,
-        "resistance": 10,
-        "actual_resistance": 10,
-        "super_equipment": null,
-        "default_test": "",
-        "possible_tests": [],
-        "type": 4,
-        "acceleration": 2,
-        "speed": 3,
-        "vehicle_type": 0
-      },
-      "sort": 400000,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "GkIkv3F7KgfrmokX"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770163837628,
-        "modifiedTime": 1770323025157,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "etafivQ7tU8pxLQu"
-    },
-    {
-      "name": "Escopeta Ar-G3",
-      "type": "Projectile",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "equipped": false,
-        "resistance": 2,
-        "actual_resistance": 2,
-        "super_equipment": null,
-        "default_test": "d4bc7f9c9b0741baaa39926d5c7970d4",
-        "possible_tests": [
-          {
-            "id": "d4bc7f9c9b0741baaa39926d5c7970d4",
-            "name": "Atirar",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 0,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false,
-            "special_primary": "",
-            "special_secondary": ""
-          },
-          {
-            "id": "218e830ce8f044ea97d473b7dce50c68",
-            "name": "Mirar e Atirar",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 1,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false
-          }
-        ],
-        "hand": 0,
-        "damage": 3,
-        "true_damage": 0,
-        "damage_type": 1,
-        "occultability": 1,
-        "type": 3,
-        "capacity": 2,
-        "cadence": 1,
-        "range": 4,
-        "max_range": 2,
-        "special": false
-      },
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "HMbdOdefynXcjiST"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770162609698,
-        "modifiedTime": 1770162609698,
-        "lastModifiedBy": "SBjs9YpFzq0R5Gi2",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "NcVqYFQdPRfzK8sz"
-    },
-    {
-      "name": "Curta",
-      "type": "Melee",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "resistance": 1,
-        "equipped": false,
-        "default_test": "330c5892255e4171a61f8fc3dd65afb4",
-        "possible_tests": [
-          {
-            "id": "330c5892255e4171a61f8fc3dd65afb4",
-            "name": "Atacar",
-            "primary_attribute": "forca",
-            "secondary_attribute": "destreza",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_brancas",
-            "bonus": 0,
-            "automatic": 0,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "af135214e1b443d2bd420d04ea98243a",
-            "name": "Arremessar",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "atletismo",
-            "bonus": 0,
-            "automatic": 0,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "fbcffd9668024e4e82691be2c87291ef",
-            "name": "Mirar e Arremesar",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "ability": "atletismo",
-            "bonus": 0,
-            "automatic": 1,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false,
-            "special_primary": "",
-            "special_secondary": ""
-          }
-        ],
-        "hand": 0,
-        "damage": 0,
-        "true_damage": 0,
-        "damage_type": 1,
-        "occultability": 0,
-        "type": 2,
-        "actual_resistance": 1,
-        "super_equipment": null,
-        "size": 0
-      },
-      "sort": 400000,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "HoyKURGN38mvN0Gr"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770162598301,
-        "modifiedTime": 1770323061650,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "compendiumSource": "Compendium.setor0OSubmundo.itens.Item.HoyKURGN38mvN0Gr",
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "QEtaXX4oOUD0lCMZ"
-    },
-    {
-      "name": "Bruto",
-      "type": "Vehicle",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "equipped": false,
-        "resistance": 11,
-        "actual_resistance": 11,
-        "super_equipment": null,
-        "default_test": "",
-        "possible_tests": [],
-        "type": 4,
-        "acceleration": 2,
-        "speed": 1,
-        "vehicle_type": 0
-      },
-      "sort": 175000,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "IXK8HKxq9cxFTlCB"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770163837628,
-        "modifiedTime": 1770323039016,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "compendiumSource": "Compendium.setor0OSubmundo.itens.Item.IXK8HKxq9cxFTlCB",
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "etafivQ7tU8pxLQu"
-    },
-    {
-      "name": "Focus",
-      "type": "Substance",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "type": 5,
-        "substance_type": 0,
-        "quantity": 1,
-        "effects": [
-          {
-            "id": "1",
-            "type": "Buff",
-            "description": "-1 na Dificuldade para resistir à persuasão",
-            "change": {
-              "key": "system.bonus.virtudes.consciencia",
-              "value": 0,
-              "mode": 2
-            }
-          }
-        ],
-        "range": 0,
-        "damage": 0
-      },
-      "sort": 125000,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": true,
-          "sourceId": "KctmewfGhe80vPOy"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770163825559,
-        "modifiedTime": 1770322712813,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "compendiumSource": "Compendium.setor0OSubmundo.itens.Item.KctmewfGhe80vPOy",
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "KdNlNgRtMldVEtCj"
-    },
     {
       "name": "Fuzil ArT-G2A1*",
       "type": "Projectile",
@@ -1193,10 +77,10 @@
         "max_range": 2,
         "special": true
       },
-      "sort": 0,
       "ownership": {
         "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
       },
       "flags": {
         "setor0OSubmundo": {
@@ -1204,21 +88,13 @@
           "sourceId": "NZnjjRz3S7Xm4rkn"
         }
       },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770162609698,
-        "modifiedTime": 1770162609698,
-        "lastModifiedBy": "SBjs9YpFzq0R5Gi2",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "Ml1w5KRPvLQvDcvW"
+      "folder": "hzOJZUteuZoE8PyK",
+      "effects": [],
+      "_id": "2PFJuC4h7z8oBm7K",
+      "sort": 0
     },
     {
-      "name": "Escopeta AlT-G4",
+      "name": "Escopeta AlP-G2A2",
       "type": "Projectile",
       "img": "icons/svg/item-bag.svg",
       "system": {
@@ -1259,88 +135,89 @@
           }
         ],
         "hand": 2,
-        "damage": 4,
-        "true_damage": 0,
+        "damage": 2,
+        "true_damage": 2,
         "damage_type": 1,
         "occultability": 2,
         "type": 3,
-        "capacity": 4,
+        "capacity": 5,
         "cadence": 1,
-        "range": 6,
+        "range": 7,
         "max_range": 2,
         "special": false
       },
-      "sort": 0,
       "ownership": {
         "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
       },
       "flags": {
         "setor0OSubmundo": {
           "editable": false,
-          "sourceId": "SrFMn4JZraL77Ael"
+          "sourceId": "A73WzlLo6xdd29hB"
         }
       },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770162609698,
-        "modifiedTime": 1770162609698,
-        "lastModifiedBy": "SBjs9YpFzq0R5Gi2",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "pzU0gmXR8aC76lvY"
+      "folder": "hzOJZUteuZoE8PyK",
+      "effects": [],
+      "_id": "7EFacu4FFGHtWro1",
+      "sort": 0
     },
     {
-      "name": "Resfriador",
+      "name": "Quimera",
       "type": "Substance",
       "img": "icons/svg/item-bag.svg",
       "system": {
-        "description": "Reduzir 1 de Sobrecarga",
+        "description": "",
         "type": 5,
+        "substance_type": 2,
         "quantity": 1,
-        "effects": [
-          {
-            "id": "9",
-            "type": "Buff",
-            "description": "-1 de Sobrecarga",
-            "change": {
-              "key": "system.sobrecarga",
-              "value": -1,
-              "mode": 2
-            }
-          }
-        ],
-        "substance_type": 0,
         "range": 0,
-        "damage": 0
+        "damage": 1,
+        "effects": []
       },
-      "sort": 112500,
       "ownership": {
         "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
+        "tK2FsBNKL3Za9iXa": 3
       },
       "flags": {
         "setor0OSubmundo": {
-          "editable": true,
-          "sourceId": "Wafk538HvfPWqE58"
+          "editable": false,
+          "sourceId": "3uw1CUadc0eTK8Df"
         }
       },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770163825559,
-        "modifiedTime": 1770322713973,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "compendiumSource": "Compendium.setor0OSubmundo.itens.Item.Wafk538HvfPWqE58",
-        "duplicateSource": null,
-        "exportSource": null
+      "folder": "xVYQ63TN9jWQj5qj",
+      "effects": [],
+      "_id": "CnuQnXfv5ODYDV20",
+      "sort": 0
+    },
+    {
+      "name": "Confiança Liquida",
+      "type": "Substance",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "+1 de Perseverança",
+        "type": 5,
+        "substance_type": 0,
+        "quantity": 1,
+        "range": 0,
+        "damage": 0,
+        "effects": []
       },
-      "folder": "KdNlNgRtMldVEtCj"
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "GAtrKm0Z5QM2VJTy"
+        }
+      },
+      "folder": "2gbyNrBLy2g1jAVS",
+      "effects": [],
+      "_id": "Dodyrcm0FZXSWyGr",
+      "sort": 0
     },
     {
       "name": "Fuzil AlT-G1A2*",
@@ -1409,10 +286,10 @@
         "max_range": 2,
         "special": true
       },
-      "sort": 0,
       "ownership": {
         "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
       },
       "flags": {
         "setor0OSubmundo": {
@@ -1420,598 +297,10 @@
           "sourceId": "XeMMgJuW5piWnBSO"
         }
       },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770162609698,
-        "modifiedTime": 1770162609698,
-        "lastModifiedBy": "SBjs9YpFzq0R5Gi2",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "GsDLKmqtKxxR7zrF"
-    },
-    {
-      "name": "Popular",
-      "type": "Vehicle",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "equipped": false,
-        "resistance": 7,
-        "actual_resistance": 7,
-        "super_equipment": null,
-        "default_test": "",
-        "possible_tests": [],
-        "type": 4,
-        "acceleration": 1,
-        "speed": 1,
-        "vehicle_type": 0
-      },
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "YjX92tmFy4CJykm1"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770163837628,
-        "modifiedTime": 1770323026385,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "compendiumSource": "Compendium.setor0OSubmundo.itens.Item.YjX92tmFy4CJykm1",
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "etafivQ7tU8pxLQu"
-    },
-    {
-      "name": "Super-Esportivo",
-      "type": "Vehicle",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "equipped": false,
-        "resistance": 8,
-        "actual_resistance": 8,
-        "super_equipment": null,
-        "default_test": "",
-        "possible_tests": [],
-        "type": 4,
-        "acceleration": 3,
-        "speed": 3,
-        "vehicle_type": 0
-      },
-      "sort": 187500,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "hLaL8VlJtiUl5cib"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770163837628,
-        "modifiedTime": 1770323042683,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "compendiumSource": "Compendium.setor0OSubmundo.itens.Item.hLaL8VlJtiUl5cib",
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "etafivQ7tU8pxLQu"
-    },
-    {
-      "name": "Utilitário",
-      "type": "Vehicle",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "equipped": false,
-        "resistance": 9,
-        "actual_resistance": 9,
-        "super_equipment": null,
-        "default_test": "",
-        "possible_tests": [],
-        "type": 4,
-        "acceleration": 0,
-        "speed": 0,
-        "vehicle_type": 0
-      },
-      "sort": 100000,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "jUTMfMprfOk34RiB"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770163837628,
-        "modifiedTime": 1770323031655,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "compendiumSource": "Compendium.setor0OSubmundo.itens.Item.jUTMfMprfOk34RiB",
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "etafivQ7tU8pxLQu"
-    },
-    {
-      "name": "Pistola AlP-G2*",
-      "type": "Projectile",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "equipped": false,
-        "resistance": 3,
-        "actual_resistance": 3,
-        "super_equipment": null,
-        "default_test": "d4bc7f9c9b0741baaa39926d5c7970d4",
-        "possible_tests": [
-          {
-            "id": "d4bc7f9c9b0741baaa39926d5c7970d4",
-            "name": "Atirar",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 0,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "218e830ce8f044ea97d473b7dce50c68",
-            "name": "Mirar e Atirar",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 1,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "770217a67d454ca79d14a66f2d86059a",
-            "name": "Rajada",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "ability": "armas_de_projecao",
-            "bonus": 2,
-            "automatic": 0,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false,
-            "special_primary": "",
-            "special_secondary": ""
-          }
-        ],
-        "hand": 0,
-        "damage": 2,
-        "true_damage": 0,
-        "damage_type": 1,
-        "occultability": 1,
-        "type": 3,
-        "capacity": 6,
-        "cadence": 2,
-        "range": 12,
-        "max_range": 2,
-        "special": true
-      },
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": true,
-          "sourceId": "lD2cdZ93nufl8khT"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770162609698,
-        "modifiedTime": 1770162609698,
-        "lastModifiedBy": "SBjs9YpFzq0R5Gi2",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "gxP08MFQpQBxn6Yl"
-    },
-    {
-      "name": "Pistola Ar-G1",
-      "type": "Projectile",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "equipped": false,
-        "resistance": 2,
-        "actual_resistance": 2,
-        "super_equipment": null,
-        "default_test": "d4bc7f9c9b0741baaa39926d5c7970d4",
-        "possible_tests": [
-          {
-            "id": "d4bc7f9c9b0741baaa39926d5c7970d4",
-            "name": "Atirar",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 0,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false,
-            "special_primary": "",
-            "special_secondary": ""
-          },
-          {
-            "id": "218e830ce8f044ea97d473b7dce50c68",
-            "name": "Mirar e Atirar",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 1,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false
-          }
-        ],
-        "hand": 0,
-        "damage": 1,
-        "true_damage": 0,
-        "damage_type": 1,
-        "occultability": 0,
-        "type": 3,
-        "capacity": 5,
-        "cadence": 1,
-        "range": 10,
-        "max_range": 2,
-        "special": false
-      },
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "lbXYuw5xHZ8bKBEA"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770162609698,
-        "modifiedTime": 1770162609698,
-        "lastModifiedBy": "SBjs9YpFzq0R5Gi2",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "fYVWGiwm9z5I9roy"
-    },
-    {
-      "name": "Escopeta AmA-G3",
-      "type": "Projectile",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "equipped": false,
-        "resistance": 3,
-        "actual_resistance": 3,
-        "super_equipment": null,
-        "default_test": "d4bc7f9c9b0741baaa39926d5c7970d4",
-        "possible_tests": [
-          {
-            "id": "d4bc7f9c9b0741baaa39926d5c7970d4",
-            "name": "Atirar",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 0,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false,
-            "special_primary": "",
-            "special_secondary": ""
-          },
-          {
-            "id": "218e830ce8f044ea97d473b7dce50c68",
-            "name": "Mirar e Atirar",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 1,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false
-          }
-        ],
-        "hand": 2,
-        "damage": 3,
-        "true_damage": 0,
-        "damage_type": 1,
-        "occultability": 2,
-        "type": 3,
-        "capacity": 3,
-        "cadence": 1,
-        "range": 5,
-        "max_range": 2,
-        "special": false
-      },
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "m9pfHCTrgx8dkQQm"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770162609698,
-        "modifiedTime": 1770162609698,
-        "lastModifiedBy": "SBjs9YpFzq0R5Gi2",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "gxP08MFQpQBxn6Yl"
-    },
-    {
-      "name": "Média",
-      "type": "Melee",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "resistance": 1,
-        "equipped": false,
-        "default_test": "9346cb36192c46f99b09bce3e93e30d4",
-        "possible_tests": [
-          {
-            "id": "9346cb36192c46f99b09bce3e93e30d4",
-            "name": "Atacar (1 mão)",
-            "primary_attribute": "forca",
-            "secondary_attribute": "destreza",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_brancas",
-            "bonus": 0,
-            "automatic": 0,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "30b0fe3955214122990d50ad3b0436ad",
-            "name": "Atacar (2 mãos)",
-            "primary_attribute": "forca",
-            "secondary_attribute": "destreza",
-            "ability": "armas_brancas",
-            "bonus": 1,
-            "automatic": 0,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false,
-            "special_primary": "",
-            "special_secondary": ""
-          }
-        ],
-        "hand": 1,
-        "damage": 1,
-        "true_damage": 0,
-        "damage_type": 1,
-        "occultability": 1,
-        "type": 2,
-        "size": 1,
-        "actual_resistance": 1,
-        "super_equipment": null
-      },
-      "sort": 500000,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "oDRFv72Bdo5I0I5W"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770162598301,
-        "modifiedTime": 1770323065717,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "compendiumSource": "Compendium.setor0OSubmundo.itens.Item.oDRFv72Bdo5I0I5W",
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "QEtaXX4oOUD0lCMZ"
-    },
-    {
-      "name": "Adrenalina",
-      "type": "Substance",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "type": 5,
-        "substance_type": 0,
-        "quantity": 1,
-        "effects": [
-          {
-            "id": "3",
-            "type": "Buff",
-            "description": "+2 Pontos de Movimento",
-            "change": {
-              "key": "system.bonus.movimento",
-              "value": 2,
-              "mode": 2
-            }
-          }
-        ],
-        "range": 0,
-        "damage": 0
-      },
-      "sort": 100000,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "pM3EslBwwdGrSLwC"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770163825559,
-        "modifiedTime": 1770322709966,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "compendiumSource": "Compendium.setor0OSubmundo.itens.Item.pM3EslBwwdGrSLwC",
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "KdNlNgRtMldVEtCj"
-    },
-    {
-      "name": "Fuzil PtV-G3*",
-      "type": "Projectile",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "equipped": false,
-        "resistance": 4,
-        "actual_resistance": 4,
-        "super_equipment": null,
-        "default_test": "d4bc7f9c9b0741baaa39926d5c7970d4",
-        "possible_tests": [
-          {
-            "id": "d4bc7f9c9b0741baaa39926d5c7970d4",
-            "name": "Atirar",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 0,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "218e830ce8f044ea97d473b7dce50c68",
-            "name": "Mirar e Atirar",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "special_primary": "",
-            "special_secondary": "",
-            "ability": "armas_de_projecao",
-            "bonus": 0,
-            "automatic": 1,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false
-          },
-          {
-            "id": "770217a67d454ca79d14a66f2d86059a",
-            "name": "Rajada",
-            "primary_attribute": "destreza",
-            "secondary_attribute": "percepcao",
-            "ability": "armas_de_projecao",
-            "bonus": 3,
-            "automatic": 0,
-            "difficulty": 6,
-            "critic": 10,
-            "specialist": false,
-            "special_primary": "",
-            "special_secondary": ""
-          }
-        ],
-        "hand": 2,
-        "damage": 3,
-        "true_damage": 0,
-        "damage_type": 1,
-        "occultability": 2,
-        "type": 3,
-        "capacity": 9,
-        "cadence": 3,
-        "range": 13,
-        "max_range": 2,
-        "special": true
-      },
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "tgiELvdnQZT1cvcs"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770162609698,
-        "modifiedTime": 1770162609698,
-        "lastModifiedBy": "SBjs9YpFzq0R5Gi2",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "pzU0gmXR8aC76lvY"
+      "folder": "pxMECKuxuBsFT068",
+      "effects": [],
+      "_id": "FkNj55qWTnK7BgzW",
+      "sort": 0
     },
     {
       "name": "Rifle ToA-G3",
@@ -2122,10 +411,10 @@
         "max_range": 3,
         "special": false
       },
-      "sort": 0,
       "ownership": {
         "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
       },
       "flags": {
         "setor0OSubmundo": {
@@ -2133,18 +422,833 @@
           "sourceId": "y6USX13fP1rqYOzg"
         }
       },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770162609698,
-        "modifiedTime": 1770162609698,
-        "lastModifiedBy": "SBjs9YpFzq0R5Gi2",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
+      "folder": "wR8zKcTaacrz3JHM",
+      "effects": [],
+      "_id": "GzYg9FeTtBDJTlY0",
+      "sort": 0
+    },
+    {
+      "name": "Pistola To-G2",
+      "type": "Projectile",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "equipped": false,
+        "resistance": 2,
+        "actual_resistance": 2,
+        "super_equipment": null,
+        "default_test": "d4bc7f9c9b0741baaa39926d5c7970d4",
+        "possible_tests": [
+          {
+            "id": "d4bc7f9c9b0741baaa39926d5c7970d4",
+            "name": "Atirar",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 0,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false,
+            "special_primary": "",
+            "special_secondary": ""
+          },
+          {
+            "id": "218e830ce8f044ea97d473b7dce50c68",
+            "name": "Mirar e Atirar",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 1,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false
+          }
+        ],
+        "hand": 0,
+        "damage": 2,
+        "true_damage": 0,
+        "damage_type": 1,
+        "occultability": 1,
+        "type": 3,
+        "capacity": 5,
+        "cadence": 2,
+        "range": 11,
+        "max_range": 2,
+        "special": false
       },
-      "folder": "gxP08MFQpQBxn6Yl"
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "D2SkfmaZ0hPjmsS0"
+        }
+      },
+      "folder": "vFhVzIMFj1KhWUAL",
+      "effects": [],
+      "_id": "Iz6vqFJctVZTBSlF",
+      "sort": 0
+    },
+    {
+      "name": "Utilitário",
+      "type": "Vehicle",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "equipped": false,
+        "resistance": 9,
+        "actual_resistance": 9,
+        "super_equipment": null,
+        "default_test": "",
+        "possible_tests": [],
+        "type": 4,
+        "acceleration": 0,
+        "speed": 0,
+        "vehicle_type": 0
+      },
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "jUTMfMprfOk34RiB"
+        }
+      },
+      "folder": "QJcZDq2sKuFG1Ydz",
+      "effects": [],
+      "_id": "IzsPJelnZen3rclt",
+      "sort": 0
+    },
+    {
+      "name": "Pistola Ar-G1",
+      "type": "Projectile",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "equipped": false,
+        "resistance": 2,
+        "actual_resistance": 2,
+        "super_equipment": null,
+        "default_test": "d4bc7f9c9b0741baaa39926d5c7970d4",
+        "possible_tests": [
+          {
+            "id": "d4bc7f9c9b0741baaa39926d5c7970d4",
+            "name": "Atirar",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 0,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false,
+            "special_primary": "",
+            "special_secondary": ""
+          },
+          {
+            "id": "218e830ce8f044ea97d473b7dce50c68",
+            "name": "Mirar e Atirar",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 1,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false
+          }
+        ],
+        "hand": 0,
+        "damage": 1,
+        "true_damage": 0,
+        "damage_type": 1,
+        "occultability": 0,
+        "type": 3,
+        "capacity": 5,
+        "cadence": 1,
+        "range": 10,
+        "max_range": 2,
+        "special": false
+      },
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "lbXYuw5xHZ8bKBEA"
+        }
+      },
+      "folder": "d2aQFznH7c0YDkbd",
+      "effects": [],
+      "_id": "JTATEJSs3Bj8Y0c5",
+      "sort": 0
+    },
+    {
+      "name": "Rifle Al-GA3",
+      "type": "Projectile",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "equipped": false,
+        "resistance": 5,
+        "actual_resistance": 4,
+        "super_equipment": null,
+        "default_test": "04667a11f5464587855bd972936e2154",
+        "possible_tests": [
+          {
+            "id": "04667a11f5464587855bd972936e2154",
+            "name": "Atirar X1",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 0,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "ab37cbfaab5441ef80dbc53be8c19d10",
+            "name": "Mirar e Atirar X1",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 1,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "8c9ccef3c7e54be4b94a97bdc9db9493",
+            "name": "Atirar X2",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 0,
+            "difficulty": 8,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "1e0120ace630489fab36e9db0fa805d9",
+            "name": "Mirar e Atirar X2",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 1,
+            "difficulty": 8,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "3c7bdf9c577f41a1a10db7b9bd8a27dd",
+            "name": "Atirar X3",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 0,
+            "difficulty": 10,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "05409436531a4fb8a412ce1948190f9d",
+            "name": "Mirar e Atirar X3",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 1,
+            "difficulty": 10,
+            "critic": 10,
+            "specialist": false,
+            "special_primary": "",
+            "special_secondary": ""
+          }
+        ],
+        "hand": 2,
+        "damage": 0,
+        "true_damage": 3,
+        "damage_type": 1,
+        "occultability": 2,
+        "type": 3,
+        "capacity": 5,
+        "cadence": 1,
+        "range": 40,
+        "max_range": 3,
+        "special": false
+      },
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "7YKo5q1ASCwnkzns"
+        }
+      },
+      "folder": "pxMECKuxuBsFT068",
+      "effects": [],
+      "_id": "JgLtwzcJKkjiMYe0",
+      "sort": 0
+    },
+    {
+      "name": "Exótico",
+      "type": "Vehicle",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "equipped": false,
+        "resistance": 10,
+        "actual_resistance": 10,
+        "super_equipment": null,
+        "default_test": "",
+        "possible_tests": [],
+        "type": 4,
+        "acceleration": 2,
+        "speed": 3,
+        "vehicle_type": 0
+      },
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "GkIkv3F7KgfrmokX"
+        }
+      },
+      "folder": "QJcZDq2sKuFG1Ydz",
+      "effects": [],
+      "_id": "JnMIOqwU8qJGuvbD",
+      "sort": 0
+    },
+    {
+      "name": "Rifle PtV-G2A1",
+      "type": "Projectile",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "equipped": false,
+        "resistance": 4,
+        "actual_resistance": 4,
+        "super_equipment": null,
+        "default_test": "04667a11f5464587855bd972936e2154",
+        "possible_tests": [
+          {
+            "id": "04667a11f5464587855bd972936e2154",
+            "name": "Atirar X1",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 0,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "ab37cbfaab5441ef80dbc53be8c19d10",
+            "name": "Mirar e Atirar X1",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 1,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "8c9ccef3c7e54be4b94a97bdc9db9493",
+            "name": "Atirar X2",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 0,
+            "difficulty": 8,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "1e0120ace630489fab36e9db0fa805d9",
+            "name": "Mirar e Atirar X2",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 1,
+            "difficulty": 8,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "3c7bdf9c577f41a1a10db7b9bd8a27dd",
+            "name": "Atirar X3",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 0,
+            "difficulty": 10,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "05409436531a4fb8a412ce1948190f9d",
+            "name": "Mirar e Atirar X3",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 1,
+            "difficulty": 10,
+            "critic": 10,
+            "specialist": false,
+            "special_primary": "",
+            "special_secondary": ""
+          }
+        ],
+        "hand": 2,
+        "damage": 2,
+        "true_damage": 1,
+        "damage_type": 1,
+        "occultability": 2,
+        "type": 3,
+        "capacity": 3,
+        "cadence": 1,
+        "range": 30,
+        "max_range": 3,
+        "special": false
+      },
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "2DBj3OrWNfOifUFW"
+        }
+      },
+      "folder": "4AAoQrmKb1aSkwGn",
+      "effects": [],
+      "_id": "NIrNCIHlhMhcbsxK",
+      "sort": 0
+    },
+    {
+      "name": "Normal",
+      "type": "Substance",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "Dificuldade: 8.\nDuração: 4 Dias.",
+        "type": 5,
+        "substance_type": 1,
+        "quantity": 1,
+        "range": 0,
+        "damage": 0,
+        "effects": []
+      },
+      "ownership": {
+        "default": 0,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "l4MjqITB1QeHWz7p"
+        }
+      },
+      "folder": "aezVdOnuZBS6yBio",
+      "effects": [],
+      "_id": "O7Qm7JscBuQ7VRYM",
+      "sort": 0
+    },
+    {
+      "name": "Raro",
+      "type": "Substance",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "Dificuldade: 10.\nDuração: 16 Dias.\nPara Vigor 2 ou menor, o Dano é dobrado.",
+        "type": 5,
+        "substance_type": 1,
+        "quantity": 1,
+        "range": 0,
+        "damage": 0,
+        "effects": []
+      },
+      "ownership": {
+        "default": 0,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "sQZUtnkWWHrNXNhS"
+        }
+      },
+      "folder": "aezVdOnuZBS6yBio",
+      "effects": [],
+      "_id": "OVcQgcIGues9wkoh",
+      "sort": 0
+    },
+    {
+      "name": "Analgésico",
+      "type": "Substance",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "type": 5,
+        "substance_type": 0,
+        "quantity": 1,
+        "effects": [
+          {
+            "id": "7",
+            "type": "Buff",
+            "description": "-1 de Penalidade por Dano",
+            "change": {
+              "key": "system.bonus.penalidade_dano",
+              "value": -1,
+              "mode": 2
+            }
+          }
+        ],
+        "range": 0,
+        "damage": 0
+      },
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "5ZNb7Yy6LQEa4f83"
+        }
+      },
+      "folder": "2gbyNrBLy2g1jAVS",
+      "effects": [],
+      "_id": "PFoI96HHVvTBljaP",
+      "sort": 0
+    },
+    {
+      "name": "Escopeta AmA-G3",
+      "type": "Projectile",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "equipped": false,
+        "resistance": 3,
+        "actual_resistance": 3,
+        "super_equipment": null,
+        "default_test": "d4bc7f9c9b0741baaa39926d5c7970d4",
+        "possible_tests": [
+          {
+            "id": "d4bc7f9c9b0741baaa39926d5c7970d4",
+            "name": "Atirar",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 0,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false,
+            "special_primary": "",
+            "special_secondary": ""
+          },
+          {
+            "id": "218e830ce8f044ea97d473b7dce50c68",
+            "name": "Mirar e Atirar",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 1,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false
+          }
+        ],
+        "hand": 2,
+        "damage": 3,
+        "true_damage": 0,
+        "damage_type": 1,
+        "occultability": 2,
+        "type": 3,
+        "capacity": 3,
+        "cadence": 1,
+        "range": 5,
+        "max_range": 2,
+        "special": false
+      },
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "m9pfHCTrgx8dkQQm"
+        }
+      },
+      "folder": "wR8zKcTaacrz3JHM",
+      "effects": [],
+      "_id": "QRl7XmySMwXRnU1W",
+      "sort": 0
+    },
+    {
+      "name": "Bomba Ácida",
+      "type": "Substance",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "type": 5,
+        "substance_type": 2,
+        "quantity": 1,
+        "range": 0,
+        "damage": 2,
+        "effects": []
+      },
+      "ownership": {
+        "default": 0,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "O2h5IdqIojBBlbOi"
+        }
+      },
+      "folder": "xVYQ63TN9jWQj5qj",
+      "effects": [],
+      "_id": "RoQfldYhuOYxUQ4q",
+      "sort": 0
+    },
+    {
+      "name": "Média",
+      "type": "Melee",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "resistance": 1,
+        "equipped": false,
+        "default_test": "9346cb36192c46f99b09bce3e93e30d4",
+        "possible_tests": [
+          {
+            "id": "9346cb36192c46f99b09bce3e93e30d4",
+            "name": "Atacar (1 mão)",
+            "primary_attribute": "forca",
+            "secondary_attribute": "destreza",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_brancas",
+            "bonus": 0,
+            "automatic": 0,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "30b0fe3955214122990d50ad3b0436ad",
+            "name": "Atacar (2 mãos)",
+            "primary_attribute": "forca",
+            "secondary_attribute": "destreza",
+            "ability": "armas_brancas",
+            "bonus": 1,
+            "automatic": 0,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false,
+            "special_primary": "",
+            "special_secondary": ""
+          }
+        ],
+        "hand": 1,
+        "damage": 1,
+        "true_damage": 0,
+        "damage_type": 1,
+        "occultability": 1,
+        "type": 2,
+        "size": 1,
+        "actual_resistance": 1,
+        "super_equipment": null
+      },
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "oDRFv72Bdo5I0I5W"
+        }
+      },
+      "folder": "h3MORmWKCUmt7tit",
+      "effects": [],
+      "_id": "UglnYGjOvDWtMy2m",
+      "sort": 0
+    },
+    {
+      "name": "Pistola AlP-G2*",
+      "type": "Projectile",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "equipped": false,
+        "resistance": 3,
+        "actual_resistance": 3,
+        "super_equipment": null,
+        "default_test": "d4bc7f9c9b0741baaa39926d5c7970d4",
+        "possible_tests": [
+          {
+            "id": "d4bc7f9c9b0741baaa39926d5c7970d4",
+            "name": "Atirar",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 0,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "218e830ce8f044ea97d473b7dce50c68",
+            "name": "Mirar e Atirar",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 1,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "770217a67d454ca79d14a66f2d86059a",
+            "name": "Rajada",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "ability": "armas_de_projecao",
+            "bonus": 2,
+            "automatic": 0,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false,
+            "special_primary": "",
+            "special_secondary": ""
+          }
+        ],
+        "hand": 0,
+        "damage": 2,
+        "true_damage": 0,
+        "damage_type": 1,
+        "occultability": 1,
+        "type": 3,
+        "capacity": 6,
+        "cadence": 2,
+        "range": 12,
+        "max_range": 2,
+        "special": true
+      },
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": true,
+          "sourceId": "lD2cdZ93nufl8khT"
+        }
+      },
+      "folder": "wR8zKcTaacrz3JHM",
+      "effects": [],
+      "_id": "WUOq9hUnxF1vzGDq",
+      "sort": 0
+    },
+    {
+      "name": "Potente",
+      "type": "Substance",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "Dificuldade: 9.\nDuração: 8 Dias.",
+        "type": 5,
+        "substance_type": 1,
+        "quantity": 1,
+        "range": 0,
+        "damage": 0,
+        "effects": []
+      },
+      "ownership": {
+        "default": 0,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "S0QU9Ha2G3mEbUUS"
+        }
+      },
+      "folder": "aezVdOnuZBS6yBio",
+      "effects": [],
+      "_id": "ZTPVKYl91sHt2FHu",
+      "sort": 0
     },
     {
       "name": "Esportivo",
@@ -2163,10 +1267,10 @@
         "speed": 2,
         "vehicle_type": 0
       },
-      "sort": 150000,
       "ownership": {
         "default": 0,
-        "SBjs9YpFzq0R5Gi2": 3
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
       },
       "flags": {
         "setor0OSubmundo": {
@@ -2174,92 +1278,10 @@
           "sourceId": "zT4OOsMVx6uDrWer"
         }
       },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770163837628,
-        "modifiedTime": 1770323035496,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "compendiumSource": "Compendium.setor0OSubmundo.itens.Item.zT4OOsMVx6uDrWer",
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "etafivQ7tU8pxLQu"
-    },
-    {
-      "name": "Quimera",
-      "type": "Substance",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "type": 5,
-        "substance_type": 2,
-        "quantity": 1,
-        "range": 0,
-        "damage": 1,
-        "effects": []
-      },
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "tK2FsBNKL3Za9iXa": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "3uw1CUadc0eTK8Df"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770322622904,
-        "modifiedTime": 1770322635771,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "lGMN5gXQWj91TcFa"
-    },
-    {
-      "name": "Bomba Ácida",
-      "type": "Substance",
-      "img": "icons/svg/item-bag.svg",
-      "system": {
-        "description": "",
-        "type": 5,
-        "substance_type": 2,
-        "quantity": 1,
-        "range": 0,
-        "damage": 2,
-        "effects": []
-      },
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "tK2FsBNKL3Za9iXa": 3
-      },
-      "flags": {
-        "setor0OSubmundo": {
-          "editable": false,
-          "sourceId": "O2h5IdqIojBBlbOi"
-        }
-      },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770322647679,
-        "modifiedTime": 1770322653624,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "lGMN5gXQWj91TcFa"
+      "folder": "QJcZDq2sKuFG1Ydz",
+      "effects": [],
+      "_id": "ZmGEmGDD4QOb1t3C",
+      "sort": 0
     },
     {
       "name": "Simples",
@@ -2274,7 +1296,6 @@
         "damage": 0,
         "effects": []
       },
-      "sort": -100000,
       "ownership": {
         "default": 0,
         "tK2FsBNKL3Za9iXa": 3
@@ -2285,195 +1306,834 @@
           "sourceId": "25s8aXdFgH1BpGDT"
         }
       },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770322743880,
-        "modifiedTime": 1770322903994,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "compendiumSource": "Compendium.setor0OSubmundo.itens.Item.25s8aXdFgH1BpGDT",
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "tHzni3LYEklJ5vLQ"
+      "folder": "aezVdOnuZBS6yBio",
+      "effects": [],
+      "_id": "Zz333m8IdD1u6eg7",
+      "sort": 0
     },
     {
-      "name": "Normal",
-      "type": "Substance",
+      "name": "Bruto",
+      "type": "Vehicle",
       "img": "icons/svg/item-bag.svg",
       "system": {
-        "description": "Dificuldade: 8.\nDuração: 4 Dias.",
-        "type": 5,
-        "substance_type": 1,
-        "quantity": 1,
-        "range": 0,
-        "damage": 0,
-        "effects": []
+        "description": "",
+        "equipped": false,
+        "resistance": 11,
+        "actual_resistance": 11,
+        "super_equipment": null,
+        "default_test": "",
+        "possible_tests": [],
+        "type": 4,
+        "acceleration": 2,
+        "speed": 1,
+        "vehicle_type": 0
       },
-      "sort": 0,
       "ownership": {
         "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
         "tK2FsBNKL3Za9iXa": 3
       },
       "flags": {
         "setor0OSubmundo": {
           "editable": false,
-          "sourceId": "l4MjqITB1QeHWz7p"
+          "sourceId": "IXK8HKxq9cxFTlCB"
         }
       },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770322888404,
-        "modifiedTime": 1770322919083,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "tHzni3LYEklJ5vLQ"
+      "folder": "QJcZDq2sKuFG1Ydz",
+      "effects": [],
+      "_id": "aPYQoBT07dd0mQLI",
+      "sort": 0
     },
     {
-      "name": "Potente",
-      "type": "Substance",
+      "name": "Super-Esportivo",
+      "type": "Vehicle",
       "img": "icons/svg/item-bag.svg",
       "system": {
-        "description": "Dificuldade: 9.\nDuração: 8 Dias.",
-        "type": 5,
-        "substance_type": 1,
-        "quantity": 1,
-        "range": 0,
-        "damage": 0,
-        "effects": []
+        "description": "",
+        "equipped": false,
+        "resistance": 8,
+        "actual_resistance": 8,
+        "super_equipment": null,
+        "default_test": "",
+        "possible_tests": [],
+        "type": 4,
+        "acceleration": 3,
+        "speed": 3,
+        "vehicle_type": 0
       },
-      "sort": 0,
       "ownership": {
         "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
         "tK2FsBNKL3Za9iXa": 3
       },
       "flags": {
         "setor0OSubmundo": {
           "editable": false,
-          "sourceId": "S0QU9Ha2G3mEbUUS"
+          "sourceId": "hLaL8VlJtiUl5cib"
         }
       },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770322987843,
-        "modifiedTime": 1770322998899,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "folder": "tHzni3LYEklJ5vLQ"
+      "folder": "QJcZDq2sKuFG1Ydz",
+      "effects": [],
+      "_id": "aYXQor138RuLWfud",
+      "sort": 0
     },
     {
-      "name": "Raro",
+      "name": "Resfriador",
       "type": "Substance",
       "img": "icons/svg/item-bag.svg",
       "system": {
-        "description": "Dificuldade: 10.\nDuração: 16 Dias.\nPara Vigor 2 ou menor, o Dano é dobrado.",
+        "description": "Reduzir 1 de Sobrecarga",
         "type": 5,
-        "substance_type": 1,
         "quantity": 1,
+        "effects": [
+          {
+            "id": "9",
+            "type": "Buff",
+            "description": "-1 de Sobrecarga",
+            "change": {
+              "key": "system.sobrecarga",
+              "value": -1,
+              "mode": 2
+            }
+          }
+        ],
+        "substance_type": 0,
         "range": 0,
-        "damage": 0,
-        "effects": []
+        "damage": 0
       },
-      "sort": 0,
       "ownership": {
         "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": true,
+          "sourceId": "Wafk538HvfPWqE58"
+        }
+      },
+      "folder": "2gbyNrBLy2g1jAVS",
+      "effects": [],
+      "_id": "dzXqT7ShMf7Ayio8",
+      "sort": 0
+    },
+    {
+      "name": "Fuzil PtV-G3*",
+      "type": "Projectile",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "equipped": false,
+        "resistance": 4,
+        "actual_resistance": 4,
+        "super_equipment": null,
+        "default_test": "d4bc7f9c9b0741baaa39926d5c7970d4",
+        "possible_tests": [
+          {
+            "id": "d4bc7f9c9b0741baaa39926d5c7970d4",
+            "name": "Atirar",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 0,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "218e830ce8f044ea97d473b7dce50c68",
+            "name": "Mirar e Atirar",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 1,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "770217a67d454ca79d14a66f2d86059a",
+            "name": "Rajada",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "ability": "armas_de_projecao",
+            "bonus": 3,
+            "automatic": 0,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false,
+            "special_primary": "",
+            "special_secondary": ""
+          }
+        ],
+        "hand": 2,
+        "damage": 3,
+        "true_damage": 0,
+        "damage_type": 1,
+        "occultability": 2,
+        "type": 3,
+        "capacity": 9,
+        "cadence": 3,
+        "range": 13,
+        "max_range": 2,
+        "special": true
+      },
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
         "tK2FsBNKL3Za9iXa": 3
       },
       "flags": {
         "setor0OSubmundo": {
           "editable": false,
-          "sourceId": "sQZUtnkWWHrNXNhS"
+          "sourceId": "tgiELvdnQZT1cvcs"
         }
       },
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770322989547,
-        "modifiedTime": 1770322989547,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
+      "folder": "4AAoQrmKb1aSkwGn",
+      "effects": [],
+      "_id": "fGruFQfwb4gzPorp",
+      "sort": 0
+    },
+    {
+      "name": "Curta",
+      "type": "Melee",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "resistance": 1,
+        "equipped": false,
+        "default_test": "330c5892255e4171a61f8fc3dd65afb4",
+        "possible_tests": [
+          {
+            "id": "330c5892255e4171a61f8fc3dd65afb4",
+            "name": "Atacar",
+            "primary_attribute": "forca",
+            "secondary_attribute": "destreza",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_brancas",
+            "bonus": 0,
+            "automatic": 0,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "af135214e1b443d2bd420d04ea98243a",
+            "name": "Arremessar",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "atletismo",
+            "bonus": 0,
+            "automatic": 0,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "fbcffd9668024e4e82691be2c87291ef",
+            "name": "Mirar e Arremesar",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "ability": "atletismo",
+            "bonus": 0,
+            "automatic": 1,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false,
+            "special_primary": "",
+            "special_secondary": ""
+          }
+        ],
+        "hand": 0,
+        "damage": 0,
+        "true_damage": 0,
+        "damage_type": 1,
+        "occultability": 0,
+        "type": 2,
+        "actual_resistance": 1,
+        "super_equipment": null,
+        "size": 0
       },
-      "folder": "tHzni3LYEklJ5vLQ"
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "HoyKURGN38mvN0Gr"
+        }
+      },
+      "folder": "h3MORmWKCUmt7tit",
+      "effects": [],
+      "_id": "fVoo6OTwIFQ1Ydqw",
+      "sort": 0
+    },
+    {
+      "name": "Adrenalina",
+      "type": "Substance",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "type": 5,
+        "substance_type": 0,
+        "quantity": 1,
+        "effects": [
+          {
+            "id": "3",
+            "type": "Buff",
+            "description": "+2 Pontos de Movimento",
+            "change": {
+              "key": "system.bonus.movimento",
+              "value": 2,
+              "mode": 2
+            }
+          }
+        ],
+        "range": 0,
+        "damage": 0
+      },
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "pM3EslBwwdGrSLwC"
+        }
+      },
+      "folder": "2gbyNrBLy2g1jAVS",
+      "effects": [],
+      "_id": "jEmSITHY2u1saxam",
+      "sort": 0
+    },
+    {
+      "name": "Focus",
+      "type": "Substance",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "type": 5,
+        "substance_type": 0,
+        "quantity": 1,
+        "effects": [
+          {
+            "id": "1",
+            "type": "Buff",
+            "description": "-1 na Dificuldade para resistir à persuasão",
+            "change": {
+              "key": "system.bonus.virtudes.consciencia",
+              "value": 0,
+              "mode": 2
+            }
+          }
+        ],
+        "range": 0,
+        "damage": 0
+      },
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": true,
+          "sourceId": "KctmewfGhe80vPOy"
+        }
+      },
+      "folder": "2gbyNrBLy2g1jAVS",
+      "effects": [],
+      "_id": "k6AmGMQ4R1oqhnAi",
+      "sort": 0
+    },
+    {
+      "name": "Grande",
+      "type": "Melee",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "resistance": 1,
+        "equipped": false,
+        "default_test": "76e71461f30145fb8dd0915cec273693",
+        "possible_tests": [
+          {
+            "id": "76e71461f30145fb8dd0915cec273693",
+            "name": "Atacar (2 mãos)",
+            "primary_attribute": "forca",
+            "secondary_attribute": "destreza",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_brancas",
+            "bonus": 0,
+            "automatic": 1,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "02fcbf5cfd7b468b91a0a896b4a4cab1",
+            "name": "Atacar (1 mão)",
+            "primary_attribute": "forca",
+            "secondary_attribute": "destreza",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_brancas",
+            "bonus": 0,
+            "automatic": 0,
+            "difficulty": 7,
+            "critic": 10,
+            "specialist": false
+          }
+        ],
+        "hand": 2,
+        "damage": 2,
+        "true_damage": 0,
+        "damage_type": 1,
+        "occultability": 1,
+        "type": 2,
+        "size": 2,
+        "actual_resistance": 1,
+        "super_equipment": null
+      },
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "0ajS6bX7rEh0cJCm"
+        }
+      },
+      "folder": "h3MORmWKCUmt7tit",
+      "effects": [],
+      "_id": "mwL8Lq9i4RsPV8u7",
+      "sort": 0
+    },
+    {
+      "name": "Rifle Al-G1A2",
+      "type": "Projectile",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "equipped": false,
+        "resistance": 4,
+        "actual_resistance": 4,
+        "super_equipment": null,
+        "default_test": "04667a11f5464587855bd972936e2154",
+        "possible_tests": [
+          {
+            "id": "04667a11f5464587855bd972936e2154",
+            "name": "Atirar X1",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 0,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "ab37cbfaab5441ef80dbc53be8c19d10",
+            "name": "Mirar e Atirar X1",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 1,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "8c9ccef3c7e54be4b94a97bdc9db9493",
+            "name": "Atirar X2",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 0,
+            "difficulty": 8,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "1e0120ace630489fab36e9db0fa805d9",
+            "name": "Mirar e Atirar X2",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 1,
+            "difficulty": 8,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "3c7bdf9c577f41a1a10db7b9bd8a27dd",
+            "name": "Atirar X3",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 0,
+            "difficulty": 10,
+            "critic": 10,
+            "specialist": false
+          },
+          {
+            "id": "05409436531a4fb8a412ce1948190f9d",
+            "name": "Mirar e Atirar X3",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 1,
+            "difficulty": 10,
+            "critic": 10,
+            "specialist": false,
+            "special_primary": "",
+            "special_secondary": ""
+          }
+        ],
+        "hand": 2,
+        "damage": 1,
+        "true_damage": 2,
+        "damage_type": 1,
+        "occultability": 2,
+        "type": 3,
+        "capacity": 4,
+        "cadence": 1,
+        "range": 40,
+        "max_range": 3,
+        "special": false
+      },
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "9EFLiX6k9rgMnHBO"
+        }
+      },
+      "folder": "hzOJZUteuZoE8PyK",
+      "effects": [],
+      "_id": "o8Aa1AsV2Cv9r52n",
+      "sort": 0
+    },
+    {
+      "name": "Popular",
+      "type": "Vehicle",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "equipped": false,
+        "resistance": 7,
+        "actual_resistance": 7,
+        "super_equipment": null,
+        "default_test": "",
+        "possible_tests": [],
+        "type": 4,
+        "acceleration": 1,
+        "speed": 1,
+        "vehicle_type": 0
+      },
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "YjX92tmFy4CJykm1"
+        }
+      },
+      "folder": "QJcZDq2sKuFG1Ydz",
+      "effects": [],
+      "_id": "pBF0Yfl0u4B9iquc",
+      "sort": 0
+    },
+    {
+      "name": "Escopeta AlT-G4",
+      "type": "Projectile",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "equipped": false,
+        "resistance": 4,
+        "actual_resistance": 4,
+        "super_equipment": null,
+        "default_test": "d4bc7f9c9b0741baaa39926d5c7970d4",
+        "possible_tests": [
+          {
+            "id": "d4bc7f9c9b0741baaa39926d5c7970d4",
+            "name": "Atirar",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 0,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false,
+            "special_primary": "",
+            "special_secondary": ""
+          },
+          {
+            "id": "218e830ce8f044ea97d473b7dce50c68",
+            "name": "Mirar e Atirar",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 1,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false
+          }
+        ],
+        "hand": 2,
+        "damage": 4,
+        "true_damage": 0,
+        "damage_type": 1,
+        "occultability": 2,
+        "type": 3,
+        "capacity": 4,
+        "cadence": 1,
+        "range": 6,
+        "max_range": 2,
+        "special": false
+      },
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "SrFMn4JZraL77Ael"
+        }
+      },
+      "folder": "4AAoQrmKb1aSkwGn",
+      "effects": [],
+      "_id": "pOB613JwXyC0AYnM",
+      "sort": 0
+    },
+    {
+      "name": "Lata",
+      "type": "Vehicle",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "equipped": false,
+        "resistance": 5,
+        "actual_resistance": 5,
+        "super_equipment": null,
+        "default_test": "",
+        "possible_tests": [],
+        "type": 4,
+        "acceleration": 0,
+        "speed": 0,
+        "vehicle_type": 0
+      },
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": true,
+          "sourceId": "2TZDCyNZcexKCjNy"
+        }
+      },
+      "folder": "QJcZDq2sKuFG1Ydz",
+      "effects": [],
+      "_id": "sq2XKXuhB4NpcJeg",
+      "sort": 0
+    },
+    {
+      "name": "Pistola de Gauss",
+      "type": "Projectile",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "equipped": false,
+        "resistance": 1,
+        "actual_resistance": 1,
+        "super_equipment": null,
+        "default_test": "d4bc7f9c9b0741baaa39926d5c7970d4",
+        "possible_tests": [
+          {
+            "id": "d4bc7f9c9b0741baaa39926d5c7970d4",
+            "name": "Atirar",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 0,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false,
+            "special_primary": "",
+            "special_secondary": ""
+          },
+          {
+            "id": "218e830ce8f044ea97d473b7dce50c68",
+            "name": "Mirar e Atirar",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 1,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false
+          }
+        ],
+        "hand": 0,
+        "damage": 0,
+        "true_damage": 0,
+        "damage_type": 1,
+        "occultability": 0,
+        "type": 3,
+        "capacity": 4,
+        "cadence": 1,
+        "range": 9,
+        "max_range": 2,
+        "special": false
+      },
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": true,
+          "sourceId": "F9s2mmN4gLfW1RgD"
+        }
+      },
+      "folder": "02juKEqMIuUu0cG1",
+      "effects": [],
+      "_id": "tlbFgqwvXLTcEEfp",
+      "sort": 0
+    },
+    {
+      "name": "Escopeta Ar-G3",
+      "type": "Projectile",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "description": "",
+        "equipped": false,
+        "resistance": 2,
+        "actual_resistance": 2,
+        "super_equipment": null,
+        "default_test": "d4bc7f9c9b0741baaa39926d5c7970d4",
+        "possible_tests": [
+          {
+            "id": "d4bc7f9c9b0741baaa39926d5c7970d4",
+            "name": "Atirar",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 0,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false,
+            "special_primary": "",
+            "special_secondary": ""
+          },
+          {
+            "id": "218e830ce8f044ea97d473b7dce50c68",
+            "name": "Mirar e Atirar",
+            "primary_attribute": "destreza",
+            "secondary_attribute": "percepcao",
+            "special_primary": "",
+            "special_secondary": "",
+            "ability": "armas_de_projecao",
+            "bonus": 0,
+            "automatic": 1,
+            "difficulty": 6,
+            "critic": 10,
+            "specialist": false
+          }
+        ],
+        "hand": 0,
+        "damage": 3,
+        "true_damage": 0,
+        "damage_type": 1,
+        "occultability": 1,
+        "type": 3,
+        "capacity": 2,
+        "cadence": 1,
+        "range": 4,
+        "max_range": 2,
+        "special": false
+      },
+      "ownership": {
+        "default": 0,
+        "SBjs9YpFzq0R5Gi2": 3,
+        "tK2FsBNKL3Za9iXa": 3
+      },
+      "flags": {
+        "setor0OSubmundo": {
+          "editable": false,
+          "sourceId": "HMbdOdefynXcjiST"
+        }
+      },
+      "folder": "vFhVzIMFj1KhWUAL",
+      "effects": [],
+      "_id": "zIXdkCExjla2ivgm",
+      "sort": 0
     }
   ],
   "folders": [
     {
       "type": "Item",
       "folder": null,
-      "name": "Substâncias",
-      "color": "#64cb20",
+      "name": "Armas",
+      "color": "#f00a0a",
       "sorting": "a",
-      "_id": "3iTdVjzkZJeI6kJN",
+      "_id": "E57QtLM82Rhh8FGv",
       "description": "",
       "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770163804710,
-        "modifiedTime": 1770163804710,
-        "lastModifiedBy": "SBjs9YpFzq0R5Gi2"
-      }
-    },
-    {
-      "name": "Drogas",
-      "sorting": "a",
-      "folder": "3iTdVjzkZJeI6kJN",
-      "type": "Item",
-      "_id": "IrpfYZMcbWQcSKnZ",
-      "description": "",
-      "sort": 0,
-      "color": "#282828",
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "modifiedTime": 1770322595386
-      }
-    },
-    {
-      "type": "Item",
-      "folder": "3iTdVjzkZJeI6kJN",
-      "name": "Gases",
-      "color": "#282828",
-      "sorting": "a",
-      "_id": "VNj3N4n1IvLbKg8k",
-      "description": "",
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "modifiedTime": 1770322601209
-      }
+      "flags": {}
     },
     {
       "type": "Item",
@@ -2481,316 +2141,186 @@
       "name": "Veículos",
       "color": "#410082",
       "sorting": "a",
-      "_id": "etafivQ7tU8pxLQu",
+      "_id": "QJcZDq2sKuFG1Ydz",
       "description": "",
       "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770163813764,
-        "modifiedTime": 1770323103554,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa"
-      }
+      "flags": {}
     },
     {
       "type": "Item",
       "folder": null,
-      "name": "Armas",
-      "color": "#f00a0a",
+      "name": "Substâncias",
+      "color": "#64cb20",
       "sorting": "a",
-      "_id": "iVUV4zulowpaQbh1",
+      "_id": "WriFTE6UHiFw4CIr",
       "description": "",
       "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "createdTime": 1770162573787,
-        "modifiedTime": 1770321810442,
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa"
-      }
+      "flags": {}
     },
     {
       "type": "Item",
-      "folder": "3iTdVjzkZJeI6kJN",
-      "name": "Ácidos",
+      "folder": "xzUlG9yT7qItcdoW",
+      "name": "Enfraquecimento",
+      "color": "#505050",
+      "sorting": "a",
+      "_id": "95MBkC1KNWVO0d7d",
+      "description": "",
+      "sort": 100000,
+      "flags": {}
+    },
+    {
+      "type": "Item",
+      "folder": "WriFTE6UHiFw4CIr",
+      "name": "Gases",
       "color": "#282828",
       "sorting": "a",
-      "_id": "lGMN5gXQWj91TcFa",
+      "_id": "Gqva5qaZj85aD8BV",
       "description": "",
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "modifiedTime": 1770322591881
-      }
+      "sort": 100000,
+      "flags": {}
     },
     {
       "type": "Item",
-      "folder": "3iTdVjzkZJeI6kJN",
-      "name": "Venenos",
-      "color": "#282828",
-      "sorting": "a",
-      "_id": "tHzni3LYEklJ5vLQ",
-      "description": "",
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "modifiedTime": 1770323101235
-      }
-    },
-    {
-      "type": "Item",
-      "folder": "iVUV4zulowpaQbh1",
+      "folder": "E57QtLM82Rhh8FGv",
       "name": "Armas de Projeção",
       "color": "#282828",
       "sorting": "a",
-      "_id": "s1V2vHElE9KyMsn1",
+      "_id": "hsiiPtbE18o9K3F4",
       "description": "",
       "sort": 100000,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "modifiedTime": 1770322572866
-      }
+      "flags": {}
     },
     {
       "type": "Item",
-      "folder": "iVUV4zulowpaQbh1",
+      "folder": "xzUlG9yT7qItcdoW",
+      "name": "Melhoria",
+      "color": "#505050",
+      "sorting": "a",
+      "_id": "2gbyNrBLy2g1jAVS",
+      "description": "",
+      "sort": 200000,
+      "flags": {}
+    },
+    {
+      "type": "Item",
+      "folder": "E57QtLM82Rhh8FGv",
       "name": "Armas Brancas",
       "color": "#282828",
       "sorting": "a",
-      "_id": "QEtaXX4oOUD0lCMZ",
+      "_id": "h3MORmWKCUmt7tit",
       "description": "",
       "sort": 200000,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "modifiedTime": 1770323080241
-      }
+      "flags": {}
+    },
+    {
+      "type": "Item",
+      "folder": "WriFTE6UHiFw4CIr",
+      "name": "Ácidos",
+      "color": "#282828",
+      "sorting": "a",
+      "_id": "xVYQ63TN9jWQj5qj",
+      "description": "",
+      "sort": 200000,
+      "flags": {}
+    },
+    {
+      "type": "Item",
+      "folder": "WriFTE6UHiFw4CIr",
+      "name": "Venenos",
+      "color": "#282828",
+      "sorting": "a",
+      "_id": "aezVdOnuZBS6yBio",
+      "description": "",
+      "sort": 300000,
+      "flags": {}
+    },
+    {
+      "name": "Drogas",
+      "sorting": "a",
+      "folder": "WriFTE6UHiFw4CIr",
+      "type": "Item",
+      "_id": "xzUlG9yT7qItcdoW",
+      "description": "",
+      "sort": 500000,
+      "color": "#282828",
+      "flags": {}
     },
     {
       "name": "Leves",
       "sorting": "m",
-      "folder": "s1V2vHElE9KyMsn1",
+      "folder": "hsiiPtbE18o9K3F4",
       "type": "Item",
-      "_id": "NcVqYFQdPRfzK8sz",
+      "_id": "vFhVzIMFj1KhWUAL",
       "description": "",
       "sort": 600000,
       "color": "#505050",
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "modifiedTime": 1770322543965
-      }
+      "flags": {}
     },
     {
       "name": "Pequenas",
       "sorting": "m",
-      "folder": "s1V2vHElE9KyMsn1",
+      "folder": "hsiiPtbE18o9K3F4",
       "type": "Item",
-      "_id": "fYVWGiwm9z5I9roy",
+      "_id": "d2aQFznH7c0YDkbd",
       "description": "",
       "sort": 800000,
       "color": "#505050",
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "modifiedTime": 1770322550678
-      }
+      "flags": {}
     },
     {
       "name": "Médias",
       "sorting": "m",
-      "folder": "s1V2vHElE9KyMsn1",
+      "folder": "hsiiPtbE18o9K3F4",
       "type": "Item",
-      "_id": "gxP08MFQpQBxn6Yl",
+      "_id": "wR8zKcTaacrz3JHM",
       "description": "",
       "sort": 900000,
       "color": "#505050",
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "modifiedTime": 1770322546088
-      }
+      "flags": {}
     },
     {
       "name": "Pesadas",
       "sorting": "m",
-      "folder": "s1V2vHElE9KyMsn1",
+      "folder": "hsiiPtbE18o9K3F4",
       "type": "Item",
-      "_id": "pzU0gmXR8aC76lvY",
+      "_id": "4AAoQrmKb1aSkwGn",
       "description": "",
       "sort": 1000000,
       "color": "#505050",
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "modifiedTime": 1770322553138
-      }
+      "flags": {}
     },
     {
       "name": "Combate",
       "sorting": "a",
-      "folder": "s1V2vHElE9KyMsn1",
+      "folder": "hsiiPtbE18o9K3F4",
       "type": "Item",
-      "_id": "Ml1w5KRPvLQvDcvW",
+      "_id": "hzOJZUteuZoE8PyK",
       "description": "",
       "sort": 1100000,
       "color": "#505050",
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "modifiedTime": 1770322541466
-      }
+      "flags": {}
     },
     {
       "name": "Militares",
       "sorting": "a",
-      "folder": "s1V2vHElE9KyMsn1",
+      "folder": "hsiiPtbE18o9K3F4",
       "type": "Item",
-      "_id": "GsDLKmqtKxxR7zrF",
+      "_id": "pxMECKuxuBsFT068",
       "description": "",
       "sort": 1200000,
       "color": "#505050",
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "modifiedTime": 1770322548147
-      }
+      "flags": {}
     },
     {
       "name": "Portáteis",
       "sorting": "m",
-      "folder": "s1V2vHElE9KyMsn1",
+      "folder": "hsiiPtbE18o9K3F4",
       "type": "Item",
-      "_id": "5kRsy25qWrR8z5Qt",
+      "_id": "02juKEqMIuUu0cG1",
       "description": "",
       "sort": 1300000,
       "color": "#505050",
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "modifiedTime": 1770322555269
-      }
-    },
-    {
-      "type": "Item",
-      "folder": "IrpfYZMcbWQcSKnZ",
-      "name": "Enfraquecimento",
-      "color": "#505050",
-      "sorting": "a",
-      "_id": "FW8hnaVufxUWOFKr",
-      "description": "",
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "lastModifiedBy": "tK2FsBNKL3Za9iXa",
-        "modifiedTime": 1770322697811
-      }
-    },
-    {
-      "type": "Item",
-      "folder": "IrpfYZMcbWQcSKnZ",
-      "name": "Melhoria",
-      "color": "#505050",
-      "sorting": "a",
-      "_id": "KdNlNgRtMldVEtCj",
-      "description": "",
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "setor0OSubmundo",
-        "systemVersion": "0.0.2",
-        "lastModifiedBy": null
-      }
+      "flags": {}
     }
-  ],
-  "sortingMode": "a"
+  ]
 }

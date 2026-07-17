@@ -1,8 +1,8 @@
 import { ICONS_PATH } from "../../../constants.mjs";
-import { RollTestField } from "../../../field/roll-test-field.mjs";
+import { RollTestField } from "../../../data/field/roll-test-field.mjs";
 import { CharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { EffectChangeValueType, EnhancementDuration, EnhancementOverload } from "../../../enums/enhancement-enums.mjs";
-import { EnhancementEffectField } from "../../../field/enhancement-field.mjs";
+import { EnhancementEffectField } from "../../../data/field/enhancement-field.mjs";
 
 const brutalityEffects = [
   EnhancementEffectField.toJson(
@@ -109,6 +109,7 @@ export const brutalityEnhancement = {
   id: '3',
   name: 'Brutalidade',
   value: 'brutalidade',
+  maximumAllowed: 1,
   icon: `${ICONS_PATH}/brutality.svg`,
   effects: brutalityEffects
 };

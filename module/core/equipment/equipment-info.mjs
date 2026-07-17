@@ -1,15 +1,16 @@
-import { gameLocalize, getObject, labelError, localize } from "../../utils/utils.mjs";
+import { gameLocalize, getObject, labelError, localize, localizeType } from "../../utils/utils.mjs";
 import { ActiveEffectsTypes } from "../../enums/active-effects-enums.mjs";
-import { DamageType, EquipmentCharacteristicType, EquipmentHand, EquipmentHidding, EquipmentType, MeleeSize, SubstanceType, VehicleType } from "../../enums/equipment-enums.mjs";
+import { DamageType, EquipmentCharacteristicType, EquipmentHand, EquipmentHidding, EquipmentType, MeleeSize, SubstanceType, validEquipmentTypes, VehicleType } from "../../enums/equipment-enums.mjs";
+import { ItemType } from "../../enums/item-type-enums.mjs";
 
 export class EquipmentInfoParser {
   static mappedEquipmentTypes = {
-    [EquipmentType.MELEE]: 'Melee',
-    [EquipmentType.PROJECTILE]: 'Projectile',
-    [EquipmentType.ARMOR]: 'Armor',
-    [EquipmentType.VEHICLE]: 'Vehicle',
-    [EquipmentType.SUBSTANCE]: 'Substance',
-    [EquipmentType.ACESSORY]: 'Acessory',
+    [EquipmentType.MELEE]: ItemType.MELEE,
+    [EquipmentType.PROJECTILE]: ItemType.PROJECTILE,
+    [EquipmentType.ARMOR]: ItemType.ARMOR,
+    [EquipmentType.VEHICLE]: ItemType.VEHICLE,
+    [EquipmentType.SUBSTANCE]: ItemType.SUBSTANCE,
+    [EquipmentType.ACESSORY]: ItemType.ACESSORY,
   }
 
   static equipmentTypeIdToTypeString(type) {
@@ -95,6 +96,17 @@ export class EquipmentInfoParser {
       return {
         id: type,
         label: EquipmentInfoParser.parseHand(type)
+      }
+    });
+  }
+
+  static getActorEquipmentTypes() {
+    return validEquipmentTypes().map(item => {
+      const type = EquipmentInfoParser.equipmentTypeIdToTypeString(item);
+      return {
+        id: item,
+        label: localizeType(`Item.${type}`),
+        type: type.toLowerCase(),
       }
     });
   }

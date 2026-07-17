@@ -1,11 +1,12 @@
 import { getObject } from "../../utils/utils.mjs";
 import { EquipmentUpdater } from "../../base/updater/equipment-updater.mjs";
-import { SYSTEM_FLAGS, SYSTEM_ID } from "../../constants.mjs";
+import { SYSTEM_ID } from "../../constants.mjs";
 import { EquipmentCharacteristicType, EquipmentType, validEquipmentTypes } from "../../enums/equipment-enums.mjs";
 import { ActiveEffectsUtils } from "../effect/active-effects-utils.mjs";
 import { EquipmentInfoParser } from "../equipment/equipment-info.mjs";
 import { EquipmentUtils } from "../equipment/equipment-utils.mjs";
 import { FoundryApi } from "../../api/foundry-api.mjs";
+import { SystemFlags } from "../../enums/flags-enums.mjs";
 
 export class ActorEquipmentUtils {
   static #allowedTypes = validEquipmentTypes().map(EquipmentInfoParser.equipmentTypeIdToTypeString).filter(Boolean);
@@ -60,7 +61,7 @@ export class ActorEquipmentUtils {
       img: itemData.img,
       flags: {
         [SYSTEM_ID]: {
-          [SYSTEM_FLAGS.SOURCE_ID]: itemData._id,
+          [SystemFlags.SOURCE.ID]: itemData._id,
           ...flags
         }
       },

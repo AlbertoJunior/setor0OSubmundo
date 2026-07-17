@@ -9,7 +9,13 @@
     "Erro": "Error",
     "Usar": "Use",
     "Confirmar": "Confirm",
+    "Sim": "Yes",
+    "Nao": "No",
     "Cancelar": "Cancel",
+    "Criar_Customizado": "Create Custom",
+    "Opcional": "Optional",
+    "Buff": "Buff",
+    "Debuff": "Debuff",
     "Ativar": "Activate",
     "Desativar": "Deactivate",
     "Nivel": "Level",
@@ -40,6 +46,7 @@
     "Esquivar": "Dodge",
     "Aparar": "Parry",
     "Bloquear": "Block",
+    "Modificador": "Modifier",
     "Modificadores": "Modifiers",
     "Atuacao": "Acting",
     "Qualidade": "Quality",
@@ -51,6 +58,8 @@
     "Realizar_Teste": "Perform Test",
     "Rolagens_Player": "Rolling Mode",
     "Rolagem": "Roll",
+    "Rolagem_Anterior": "Previous Roll",
+    "Nova_Rolagem": "Reroll",
     "Rolar": "Roll",
     "Rolar_Dividido": "Split Roll",
     "Rolagem_Publica": "Public",
@@ -69,7 +78,6 @@
     "Ciborgue": "Cyborg",
     "Sintetico": "Synthetic",
     "Humano": "Human",
-    "Atributos": "Attributes",
     "Forca": "Strength",
     "Destreza": "Dexterity",
     "Vigor": "Stamina",
@@ -102,7 +110,6 @@
     "Recursos": "Resources",
     "SuperEquipamento": "SuperEquipment",
     "SuperEquipamentos": "SuperEquipments",
-    "Virtudes": "Virtues",
     "Consciencia": "Conscience",
     "Perseveranca": "Perseverance",
     "Quietude": "Quietness",
@@ -110,6 +117,7 @@
     "Influencia": "Influence",
     "Nucleo": "Core",
     "Sobrecarga": "Overload",
+    "Sobrecarga_Limite": "Overload Limit",
     "Aprimoramentos": "Enhancements",
     "Reiniciar_Efeitos_Passivos": "Reset Passive Effects",
     "Remover_Efeito": "Remove Effect",
@@ -119,8 +127,6 @@
     "Vida": "Health",
     "Vitalidade": "Vitality",
     "Experiencia": "Experience",
-    "Traco": "Trait",
-    "Tracos": "Traits",
     "Mochila": "Backpack",
     "Equipados": "Equipped",
     "Equipado": "Equipped",
@@ -164,6 +170,8 @@
     "Cena": "Scene",
     "Uso": "Usage",
     "Tempo": "Time",
+    "Todas": "All",
+    "Todos": "All",
     "Nenhum": "None",
     "Automatico": "Automatic",
     "Letal": "Lethal",
@@ -195,7 +203,6 @@
     "Habilitar_Desabilitar_Modo_Compacto": "Enable/Disable Compact Mode",
     "Modo_Compacto": "Compact Mode",
     "Enviar_No_Chat": "Send to Chat",
-    "Outros_Atalhos": "Other Shortcuts",
     "Habilitar_Desabilitar_Edicao": "Enable/Disable Editing",
     "Permitir_Edicao": "Allow Editing",
     "Bloquear_Edicao": "Lock Editing",
@@ -206,6 +213,7 @@
     "Nao_Possui": "Not Available",
     "Expandir_Contrair": "Expand/Collapse",
     "Contrair_Expandir": "Collapse/Expand",
+    "Consciencia_Utilizada": "Consciousness used",
     "Perseveranca_Utilizada": "Perseverance used",
     "Quietude_Utilizada": "Quietness used",
     "Nenhum_Teste_Cadastrado": "No test registered",
@@ -214,6 +222,7 @@
     "Tracos_Ruins": "Bad Traits",
     "Adicionar_Traco": "Add Trait",
     "Ver_Informacoes": "View Information",
+    "Manobras": "Maneuvers",
     "Adicionar_Itens": "Add Items",
     "Desequipar_Itens": "Unequip Items",
     "Remover_Itens": "Remove Items",
@@ -231,8 +240,6 @@
     "Clique_Direito": "Right Click",
     "Testes_Possiveis": "Possible Tests",
     "Teste_Nao_Realizado": "Test not performed due to lack of Dice",
-    "Atributo_Primario": "Primary Attribute",
-    "Atributo_Secundario": "Secondary Attribute",
     "Sucesso_Explosivo": "Explosive Success",
     "Falha_Critica": "Critical Failure",
     "Falha_Caotica": "Chaotic Failure",
@@ -249,6 +256,30 @@
     "Nenhum_variavel_Cadastrado": "No {type} registered, drag and drop a Character onto this box.",
     "Teste_Customizado": "Custom Test",
     "Voce_Usou_Nome": "You used {name}",
+    "SOCKET": {
+      "SHARED_WITH_ALL_PLAYERS": "Sheet shown to all players.",
+      "NO_USERS_ONLINE": "There are no other users online.",
+      "SELECT_USERS_TO_SHARE": "Select users:",
+      "SHARE_DOCUMENT_TITLE": "Share Sheet",
+      "SHARED_SUCCESS": "Sheet successfully shared.",
+      "SHOW_PLAYERS": "Show to Players",
+      "SHOW_TO": "Show to..."
+    },
+    "Atributos": {
+      "Atributo": "Attribute",
+      "Atributos": "Attributes",
+      "Atributo_Primario": "Primary Attribute",
+      "Atributo_Secundario": "Secondary Attribute",
+      "Forca": "Strength",
+      "Destreza": "Dexterity",
+      "Vigor": "Stamina",
+      "Percepcao": "Perception",
+      "Carisma": "Charisma",
+      "Inteligencia": "Intelligence"
+    },
+    "Player": {
+      "Extras": "Extras"
+    },
     "NPC": {
       "Ver_Ficha": "View Sheet",
       "Principais_Habilidades": "Main Skills",
@@ -304,9 +335,32 @@
       },
       "Mensagens": {
         "Nenhum_item_adicionado": "No items added, attractive and drop to add",
+        "Nenhum_item_equipado": "No items equipped, drag and drop from the backpack to equip",
         "Nao_Pode_Efeitos_Iguais": "Cannot have duplicate effects",
         "Aviso_Remocao_Itens_Mochila": "This action will remove all items from the backpack",
-        "Aviso_Desequipar_Itens": "This action will unequip all equipped items"
+        "Aviso_Desequipar_Itens": "This action will unequip all equipped items",
+        "Transferencia_Item": "Item Transfer",
+        "Deu_Item": "gave the item",
+        "Para": "to",
+        "Nao_Pode_Manobras_Iguais": "Cannot have two maneuvers with the same name"
+      },
+      "Tipos": {
+        "Corpo_a_Corpo": "Melee",
+        "Arma_Projecao": "Projectile Weapon",
+        "Armadura": "Armor",
+        "Veiculo": "Vehicle",
+        "Substancia": "Substance",
+        "Acessorio": "Accessory"
+      }
+    },
+    "Virtude": {
+      "Virtude": "Virtue",
+      "Virtudes": "Virtues",
+      "Consciencia": "Consciousness",
+      "Perseveranca": "Perseverance",
+      "Quietude": "Quietness",
+      "Placeholder": {
+        "Requisito": "No requirements"
       }
     },
     "Pergunta": {
@@ -325,7 +379,21 @@
       "Erro": {
         "Ator_Invalido": "Invalid actor.",
         "Efeito_Invalido": "Invalid effect.",
-        "Traco_Invalido": "Invalid or not founded Trait."
+        "Traco_Invalido": "Invalid or not founded Trait.",
+        "Atributos_Iguais": "Attributes cannot be equal.",
+        "Drag_Aceita_Manobras": "This field only accepts Maneuvers.",
+        "Sem_Permissao": "You don't have permission to execute this with this character.",
+        "Executar_Teste": "Error executing roll",
+        "Exibir_Arte_Token": "Error displaying Token art",
+        "Item_Nao_Equipavel": "This item cannot be equipped",
+        "Drag_Aceita_Equipamentos": "This field only accepts Equipments",
+        "Drag_Aceita_Personagens": "This field only accepts Characters",
+        "Nao_Pode_Adicionar_Personagem": "Could not add this Character.",
+        "Personagem_Proprio_Aliado": "The character cannot add itself as an Ally or Informant.",
+        "Descricao_Obrigatoria": "Description is mandatory",
+        "Selecionar_Traco": "Error selecting Trait",
+        "Traco_Particularidade_Preenchida": "This Trait requires the Particularity field to be filled",
+        "Tipo_Invalido": "Invalid type"
       }
     },
     "Aprimoramento": {
@@ -333,7 +401,7 @@
       "Nome_Plural": "Enhancements",
       "Afetado_Aprimoramento": "Affected by Enhancement",
       "Mensagens": {
-        "Ja_Possui_Aprimoramento": "The character already has this Enhancement: <u>{aprimoramento}</u>",
+        "Ja_Possui_Aprimoramento": "The character already has the maximum allowed of this Enhancement: <u>{aprimoramento}</u>",
         "Ja_Possui_Efeito": "The character already has this Effect: <u>{efeito}</u>"
       }
     },
@@ -346,13 +414,167 @@
       "Destrocado2": "Shattered 2",
       "Destrocado3": "Shattered 3"
     },
+    "Especialidade": {
+      "Especialidades": "Specialties",
+      "Especialidade": "Specialty",
+      "Nenhuma_Adicionada": "No specialties added",
+      "Descricao_Curta": "Description",
+      "Descricao_Longa": "Details",
+      "Descricao_Curta_Placeholder": "Ex.: Knives, Swords, Polearms, etc...",
+      "Descricao_Longa_Placeholder": "Ex.: When using knives...",
+      "Habilidade_Minima": "Requires skill level 4+",
+      "Nenhuma_Habilidade_Elegivel": "No skills with level 4 or higher",
+      "Habilidade_Obrigatoria": "Skill is required",
+      "Descricao_Obrigatoria": "Description is required"
+    },
+    "Anotacao": {
+      "Anotacoes": "Notes",
+      "Anotacao": "Note",
+      "Nenhuma_Adicionada": "No notes added",
+      "Descricao_Curta": "Short Description",
+      "Descricao_Longa": "Long Description",
+      "Descricao_Curta_Placeholder": "Ex.: Important reminder...",
+      "Descricao_Longa_Placeholder": "Additional details about this note...",
+      "Descricao_Obrigatoria": "Short description is required"
+    },
     "Atalho": {
       "Atalhos": "Shortcuts",
       "Atalho": "Shortcut",
       "Outros_Atalhos": "Other Shortcuts",
       "Atalho_Nome": "Precise Attack",
       "Nenhum_Atalho_Adicionado": "No Shortcuts added"
-    }
+    },
+    "Manobra": {
+      "Manobra": "Maneuver",
+      "Manobras": "Maneuvers",
+      "Custo_PM": "PM Cost",
+      "Custo_XP": "XP Cost",
+      "Exige_Arma": "Requires Weapon",
+      "Usa_Dano_Arma": "Uses Weapon Damage",
+      "Arma_Obrigatoria": "This maneuver can only be performed if you have a weapon equipped.",
+      "Selecione_Arma": "Select a weapon to perform this maneuver."
+    },
+    "Traco": {
+      "Traco": "Trait",
+      "Tracos": "Traits",
+      "Bom": "Good",
+      "Ruim": "Bad",
+      "Tracos_Bons": "Good Traits",
+      "Tracos_Ruins": "Bad Traits",
+      "Adicionar_Efeito": "Add Effect",
+      "Valor_Explicacao": "The value is fixed, and can be negative or positive.",
+      "Valor_Explicacao_Fator": "The value of a factor is a multiplier, it is recommended to use values between -1 and 1.",
+      "Placeholder": {
+        "Requisito": "No requirement"
+      }
+    },
+    "CONTROL": {
+      "HIDDEN_BUTTON": {
+        "Info": "You can change settings like 'Theme' and 'Layout'"
+      },
+      "THEME_BUTTON": {
+        "Title": "Toggle Dark/Light Theme ({state})",
+        "Dark": "Dark",
+        "Light": "Light",
+        "Activated": "{state} theme activated."
+      },
+      "LAYOUT_BUTTON": {
+        "Title": "Toggle Expanded/Compact Layout ({state})",
+        "Compact": "Compact",
+        "Expanded": "Expanded",
+        "Activated": "{state} layout activated."
+      },
+      "LANGUAGE_BUTTON": {
+        "Title": "Change language"
+      },
+      "EXPORT_COMPENDIUMS_BUTTON": {
+        "Title": "Export System Compendiums"
+      },
+      "IMPORT_COMPENDIUMS_BUTTON": {
+        "Title": "Delete & Reload Compendiums",
+        "Dialog_Title": "Attention: Compendium Deletion",
+        "Dialog_Message": "<p>This action will <b>DELETE</b> all items and folders from all your current system compendiums in this world and replace them with the original content shipped with this package version.</p><p>There is no way to undo this. Are you sure you want to proceed?</p>",
+        "Notify_Start": "Starting compendium deletion, please wait...",
+        "Notify_End": "Deletion complete. The world will be reloaded in a moment to apply the changes."
+      },
+      "REMOVE_TOKENS_EFFECTS_BUTTON": {
+        "Title": "Remove Effects",
+        "Label": "Remove Tokens Effects",
+        "Tokens_Selected": "Selected tokens",
+        "Choose_Action": "Choose how you would like to remove the active effects:",
+        "Content_Simple_Title": "Remove Simple Effects:",
+        "Content_Simple_Desc": "Removes removable effects (preserves native/locked project effects, such as passives).",
+        "Content_All_Title": "Remove ALL Effects:",
+        "Content_All_Desc": "Forces the removal of absolutely all effects from the selected tokens.",
+        "Remove_Simple": "Remove Simple",
+        "Remove_All": "Remove All",
+        "No_Tokens_Selected": "No tokens selected for effect removal.",
+        "Removed_Simple_Success": "Simple effects removed from {qtd} token(s).",
+        "Removed_All_Success": "ALL effects removed from {qtd} token(s)."
+      },
+      "EXPERIENCE_CALCULATOR_BUTTON": {
+        "Title": "Experience Calculator",
+        "Dialog_Title": "Experience Calculator",
+        "Como_Utilizar": "How to use the Calculator",
+        "Ajuda_Texto1": "After dragging the character to the center of the screen, click on one of the two calculation modes in the <strong>Experience Cost</strong> column.",
+        "XP_Otimizada": "Optimized XP",
+        "XP_Otimizada_Desc": "The system attempts to allocate free starting points to the highest-level skills and attributes, spending experience points only on what remains, ensuring the lowest possible XP cost on the sheet.",
+        "XP_Aproximada": "Approximate XP",
+        "XP_Aproximada_Desc": "The natural (organic) calculation considers that very high proficiencies (by default, Skill Level 5+ and Attribute 4+) can only be acquired during play using experience. These levels will not consume free starting points, charging their cost directly.",
+        "Personagem_Aqui": "Drag and Drop a Character here, or select above",
+        "Gasto_Experiencia": "Experience Cost",
+        "Otimizada": "Optimized",
+        "Aproximada": "Approximate",
+        "Configuracoes_Calculo_Aproximado": "Approximate Calculation Settings",
+        "Atributos_Ajuda": "Defines from which level the attribute will be charged in experience points (Approximate). Default is 4+",
+        "Habilidades_Ajuda": "Defines from which level the skill will be charged in experience points (Approximate). Default is 5+",
+        "Aprimoramentos_Ajuda": "Defines the base cost used to multiply by the possessed Enhancements level (Approximate). Default is 4.",
+        "Recalcular": "Recalculate",
+        "Abrir_Ficha": "Open Character Sheet",
+        "Aplicar_Exp": "Apply Experience to Character",
+        "Exp_atribuida_ao_personagem": "Experience applied to character",
+        "NPC_Warning": "This character's experience cannot be calculated",
+        "No_Actor_Warning": "Define a character first!",
+        "Erro_Otimizada": "Error calculating optimized experience.",
+        "Erro_Aproximada": "Error calculating approximate experience."
+      },
+      "PLAYER_INFORMATIONS_BUTTON": {
+        "Title": "Player Informations",
+        "Dialog_Title": "Player Informations",
+        "Online": "Online",
+        "Offline": "Offline",
+        "Character": "Default Character",
+        "No_Character": "No character assigned",
+        "Accessible_Actors": "Accessible Characters",
+        "No_Accessible_Actors": "No accessible characters",
+        "System_Flags": "System Flags",
+        "Other_Flags": "Other Flags",
+        "No_Flags": "No flags registered",
+        "Permission_Owner": "Owner",
+        "Permission_Observer": "Observer",
+        "Permission_Limited": "Limited",
+        "Open_Sheet": "Open Sheet",
+        "Flag_Key": "Key",
+        "Flag_Value": "Value",
+        "Flag_Save": "Save",
+        "Flag_Cancel": "Cancel",
+        "Flag_Add": "Add Flag",
+        "Flag_Delete": "Delete Flag",
+        "Flag_New_Key_Placeholder": "new.key",
+        "Flag_New_Value_Placeholder": "value",
+        "Flag_Saved": "Flag saved successfully",
+        "Flag_Added": "Flag added successfully",
+        "Flag_Deleted": "Flag deleted successfully",
+        "Flag_Error_Empty_Key": "Flag key cannot be empty",
+        "Flag_Confirm_Delete": "Are you sure you want to delete this flag?"
+      }
+    },
+    "Generico": {
+      "Somente_Leitura": "Read Only"
+    },
+    "Efeito": "Effect",
+    "Atributo_Primario": "Primary Attribute",
+    "Atributo_Secundario": "Secondary Attribute"
   },
   "TYPES": {
     "Actor": {
@@ -367,7 +589,8 @@
       "Substance": "Substance",
       "Vehicle": "Vehicle",
       "Acessory": "Acessory",
-      "Trait": "Trait"
+      "Trait": "Trait",
+      "Maneuver": "Maneuver"
     }
   }
 }

@@ -16,12 +16,14 @@ export class OscillatingTintManager {
     }
 
     const interval = setInterval(async () => {
+      const haveActiveToken = !!TokenUtils.getTokenById(token.id)
+
       const activeTints = actor.effects
         .map(e => e.changes).flat()
         .filter(c => c.key === ActiveEffectsUtils.KEYS.TINT_TOKEN)
         .map(c => c.value);
 
-      if (activeTints.length < 2) {
+      if (!haveActiveToken || activeTints.length < 2) {
         clearInterval(interval);
         this.#TOKENS.delete(token.id);
         return;

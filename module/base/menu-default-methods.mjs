@@ -1,3 +1,4 @@
+import { localize } from "../utils/utils.mjs";
 import { NotificationsUtils } from "../creators/message/notifications.mjs";
 import { SystemFlags } from "../enums/flags-enums.mjs";
 import { OnEventType } from "../enums/on-event-type.mjs";
@@ -48,7 +49,7 @@ export const menuHandleMethods = {
           return;
         }
 
-        NotificationsUtils.error("Erro ao exibir arte do Token");
+        NotificationsUtils.error(localize("Aviso.Erro.Exibir_Arte_Token"));
         return;
       }
     }

@@ -15,6 +15,9 @@ const map = {
   'bad_traits': (actor) => getObject(actor, CharacteristicType.TRAIT.BAD),
   'effects': (actor) => ActorUtils.getEffectsSorted(actor),
   'shortcuts': (actor) => getObject(actor, CharacteristicType.SHORTCUTS),
+  'specialties': (actor) => ActorUtils.getSpecialties(actor),
+  'notes': (actor) => ActorUtils.getNotes(actor),
+  'maneuvers': (actor) => ActorUtils.getManeuvers(actor),
 }
 
 export default function actorLists(actor, value) {

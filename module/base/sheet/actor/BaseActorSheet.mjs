@@ -1,19 +1,20 @@
-import { getObject, selectCharacteristic } from "../../../utils/utils.mjs";
+import { getObject, selectCharacteristic, TODO } from "../../../utils/utils.mjs";
 import { ActorEquipmentUtils } from "../../../core/actor/actor-equipment-utils.mjs";
-import { BaseActorCharacteristicType } from "../../../enums/characteristic-enums.mjs";
+import { BaseActorCharacteristicType, CharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { EquipmentCharacteristicType } from "../../../enums/equipment-enums.mjs";
 import { FlagsUtils } from "../../../utils/flags-utils.mjs";
 import { HtmlJsUtils } from "../../../utils/html-js-utils.mjs";
 import { FoundryApi } from "../../../api/foundry-api.mjs";
 import { ActorUpdater } from "../../updater/actor-updater.mjs";
+import { OwnershipUtils } from "../../../utils/ownership-utils.mjs";
+import { SocketUtils } from "../../../core/socket/socket-utils.mjs";
 
 export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
-  static DEFAULT_OPTIONS = {
+  static SHEET_CONFIG = {
+    templates: [],
     classes: ['actor'],
-    window: {
-      resizable: false,
-      controls: []
-    }
+    resizable: false,
+    actions: SocketUtils.shareDocumentActions
   };
 
   constructor(...args) {
@@ -26,11 +27,19 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
   }
 
   get isEditable() {
-    return FlagsUtils.getActorFlag(this.actor, "editable") && this.canRollOrEdit;
+    return FlagsUtils.getActorFlag(this.actor, "editable");
+  }
+
+  get canRoll() {
+    return OwnershipUtils.canRoll(this.actor)
+  }
+
+  get canEdit() {
+    return OwnershipUtils.canEdit(this.actor);
   }
 
   get canRollOrEdit() {
-    return game.user.isGM || this.actor.isOwner;
+    return this.canRoll || this.canEdit;
   }
 
   get isDisabled() {
@@ -40,12 +49,14 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
   getData() {
     const data = super.getData();
     if (data.options) {
-      data.options.sheetConfig = Setor0BaseActorSheet.DEFAULT_OPTIONS.sheetConfig;
+      data.options.sheetConfig = Setor0BaseActorSheet.SHEET_CONFIG;
     }
-    data.editable = this.isEditable;
-    data.canRoll = this.canRollOrEdit;
-    data.canEdit = this.canRollOrEdit;
+    data.editable = this.isEditable && this.canEdit;
+    data.canRoll = this.canRoll;
+    data.canEdit = this.canEdit;
     data.uuid = this.actor.uuid;
+    data.CharacteristicType = CharacteristicType;
+    data.BaseActorCharacteristicType = BaseActorCharacteristicType;
     return data;
   }
 
@@ -92,6 +103,7 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
   }
 
   static setupTabs(html, currentPage) {
+    TODO("esse método esta duplicado e existe apenas para fazer funcionar o dialog de PLAYER -> NPC, verificar forma de não precisar duplicar")
     const group = "menu-tabs";
     const contentSelector = `.S0-nav-content`;
 

@@ -1,17 +1,18 @@
 import { ActorEquipmentUtils } from "../core/actor/actor-equipment-utils.mjs";
-import { Setor0TokenDocument } from "../core/token/Setor0TokenDocument.mjs";
-import { ActorCharacteristicField, ActorEnhancementField, ActorAttributes, ActorAbilities, ActorVirtues } from "../field/actor-fields.mjs";
-import { TraitField } from "../field/trait-field.mjs";
+import { Setor0TokenDocument } from "../base/document/Setor0TokenDocument.mjs";
+import { ActorCharacteristicField, ActorEnhancementField, ActorAttributes, ActorAbilities, ActorVirtues, SpecialtyField, NoteField } from "../data/field/actor-fields.mjs";
+import { TraitField } from "../data/field/trait-field.mjs";
 import { ActorUtils } from "../core/actor/actor-utils.mjs";
-import { RollTestField } from "../field/roll-test-field.mjs";
-import { NpcSkill } from "../field/npc-fields.mjs";
+import { RollTestField } from "../data/field/roll-test-field.mjs";
+import { NpcSkill } from "../data/field/npc-fields.mjs";
 import { NpcQualityRepository } from "../repository/npc-quality-repository.mjs";
 import { getObject } from "../utils/utils.mjs";
-import { BaseActorCharacteristicType } from "../enums/characteristic-enums.mjs";
+import { BaseActorCharacteristicType, ActorType } from "../enums/characteristic-enums.mjs";
 import { NpcUtils } from "../core/npc/npc-utils.mjs";
 import { MorphologyRepository } from "../repository/morphology-repository.mjs";
 import { DistrictRepository } from "../repository/district-repository.mjs";
 import { FameRepository } from "../repository/fame-repository.mjs";
+import { HardnessIdsMigration } from "../migration/migrations/migrate-hardness-ids.mjs";
 
 const { NumberField, SchemaField, StringField, ArrayField } = foundry.data.fields;
 
@@ -21,8 +22,8 @@ class BaseActorDataModel extends foundry.abstract.TypeDataModel {
       morfologia: new StringField({ required: true, label: "S0.Morfologia", initial: MorphologyRepository.TYPES.HUMAN.id }),
       bairro: new StringField({ required: true, label: "S0.Bairro", initial: DistrictRepository.TYPES.ALFIRAN.id }),
       background: new SchemaField({
-        assignment: new StringField({ required: false, nullable: true }),
-        biography: new StringField({ required: false, nullable: true }),
+        assignment: new StringField({ required: false, nullable: true, initial: null }),
+        biography: new StringField({ required: false, nullable: true, initial: null }),
       }),
       vitalidade: new SchemaField({
         total: new NumberField({ integer: true, initial: 6 }),
@@ -31,6 +32,7 @@ class BaseActorDataModel extends foundry.abstract.TypeDataModel {
       }),
       nivel_de_procurado: new ActorCharacteristicField("S0.NivelProcurado", FameRepository.TYPES.BOUNTY.initialLevel, FameRepository.TYPES.BOUNTY.maxLevel),
       influencia: new ActorCharacteristicField("S0.Influencia", FameRepository.TYPES.INFLUENCE.initialLevel, FameRepository.TYPES.INFLUENCE.maxLevel),
+      anotacoes: new ArrayField(new NoteField()),
     }
   }
 
@@ -68,6 +70,12 @@ class BaseActorDataModel extends foundry.abstract.TypeDataModel {
 }
 
 class PlayerDataModel extends BaseActorDataModel {
+
+  static migrateData(source) {
+    super.migrateData(source);
+    HardnessIdsMigration.migrateDataModel(source);
+    return source;
+  }
 
   get actualPM() {
     return ActorUtils.getActualMovimentPoints(this.actor);
@@ -110,6 +118,7 @@ class PlayerDataModel extends BaseActorDataModel {
         usada: new NumberField({ required: false, integer: true, min: 0, initial: 0 }),
         atual: new NumberField({ required: false, integer: true, min: 0, initial: 30 })
       }),
+      especialidades: new ArrayField(new SpecialtyField()),
       atalhos: new ArrayField(new RollTestField()),
       bonus: new SchemaField({
         atributos: new ActorAttributes({ initial: 0 }),
@@ -128,6 +137,7 @@ class PlayerDataModel extends BaseActorDataModel {
         ofensivo_longo_alcance: new NumberField({ integer: true, initial: 0 }),
         defensivo: new NumberField({ integer: true, initial: 0 }),
         defensivo_multiplo: new NumberField({ integer: true, initial: 0 }),
+        sobrecarga_limite: new NumberField({ integer: true, initial: 0 }),
       })
     };
   }
@@ -200,18 +210,18 @@ export async function createActorDataModels() {
   ];
 
   CONFIG.Actor.trackableAttributes = {
-    Player: {
+    [ActorType.PLAYER]: {
       bar: commonBars,
       value: [...commonValues, "sobrecarga"]
     },
-    NPC: {
+    [ActorType.NPC]: {
       bar: commonBars,
       value: commonValues
     }
   };
 
-  CONFIG.Actor.dataModels = {
-    Player: PlayerDataModel,
-    NPC: NPCDataModel
-  };
+  Object.assign(CONFIG.Actor.dataModels, {
+    [ActorType.PLAYER]: PlayerDataModel,
+    [ActorType.NPC]: NPCDataModel
+  });
 }

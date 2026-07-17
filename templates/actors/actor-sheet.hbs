@@ -6,57 +6,18 @@
     </li>
   </ul>
 
-  <header class="S0-container">
-    {{#if editable}}
-    <h2 style="display: flex; align-items: center;">
-      <label for="name" style="flex: 1">{{ localize 'S0.Nome' }}:</label>
-      <input id="name" name="name" style="margin-left: 6px;" type="text" value="{{actor.name}}"
-        placeholder="{{ localize 'S0.Nome' }}" />
-    </h2>
-    <ul style="columns: 2; padding: 0px; margin: 0px;">
-      <li style="display: flex; align-items: center;">
-        <label for="morfologia" style="flex: 1;">{{ localize 'S0.Morfologia' }}:</label>
-        <select class="S0-select" id="morfologia" name="system.morfologia" style="flex: 2;">
-          {{#with (actorValues actor 'morphology' ) as |morphology|}}
-          {{#each (fetchRepository 'morphology')}}
-          <option value="{{id}}" {{selectIfEq morphology id }}>
-            {{label}}
-          </option>
-          {{/each}}
-          {{/with}}
-        </select>
-      </li>
-
-      <li style="display: flex; align-items: center;">
-        <label for="bairro" style="flex: 1;">{{ localize 'S0.Bairro' }}:</label>
-        <select class="S0-select" id="bairro" name="system.bairro" style="flex: 2;">
-          {{#with (actorValues actor 'district' ) as |district|}}
-          {{#each (fetchRepository 'district')}}
-          <option value="{{id}}" {{selectIfEq district id }}>
-            {{label}}
-          </option>
-          {{/each}}
-          {{/with}}
-        </select>
-      </li>
-    </ul>
-    {{else}}
-    <h1 style="text-align: center;">{{actor.name}}</h1>
-    <div style="display: flex; align-items: stretch; justify-content: center; gap: 4px;">
-      <h3 style="flex: 1; text-align: end;">{{actorValues actor 'morphology'}}</h3>
-      <div class="S0-vertical-divider "></div>
-      <h3 style="flex: 1; text-align: start;">{{actorValues actor 'district'}}</h3>
-    </div>
-    {{/if}}
-  </header>
+  {{> actorHeader}}
 
   <div class="S0-nav-content">
-    {{> "systems/setor0OSubmundo/templates/actors/characteristics.hbs"}}
-    {{> "systems/setor0OSubmundo/templates/actors/biography.hbs"}}
-    {{> "systems/setor0OSubmundo/templates/actors/enhancement.hbs"}}
-    {{> "systems/setor0OSubmundo/templates/actors/equipment.hbs"}}
-    {{> "systems/setor0OSubmundo/templates/actors/network.hbs"}}
-    {{> "systems/setor0OSubmundo/templates/actors/status.hbs"}}
-    {{> "systems/setor0OSubmundo/templates/actors/shortcuts.hbs"}}
+    {{> actorCharacteristic}}
+    {{> actorBiography}}
+    {{#if (operators 'gt' (actorValues actor 'core') 0)}}
+    {{> actorEnhancement}}
+    {{/if}}
+    {{> actorEquipment}}
+    {{> actorNetwork}}
+    {{> actorStatus}}
+    {{> actorShortcuts}}
+    {{> actorExtras}}
   </div>
 </form>

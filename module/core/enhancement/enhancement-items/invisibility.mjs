@@ -1,8 +1,8 @@
 import { ICONS_PATH } from "../../../constants.mjs";
-import { RollTestField } from "../../../field/roll-test-field.mjs";
+import { RollTestField } from "../../../data/field/roll-test-field.mjs";
 import { CharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { EffectChangeValueType, EnhancementDuration, EnhancementOverload } from "../../../enums/enhancement-enums.mjs";
-import { EnhancementEffectField } from "../../../field/enhancement-field.mjs";
+import { EnhancementEffectField } from "../../../data/field/enhancement-field.mjs";
 import { ActiveEffectsUtils } from "../../effect/active-effects-utils.mjs";
 
 const invisibilityEffects = [
@@ -108,6 +108,7 @@ export const invisibilityEnhancement = {
   id: '5',
   name: 'Invisibilidade',
   value: 'invisibilidade',
+  maximumAllowed: 1,
   icon: `${ICONS_PATH}/invisibility.svg`,
   effects: invisibilityEffects
 };

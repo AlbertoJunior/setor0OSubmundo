@@ -1,11 +1,12 @@
-import { ICONS_PATH, SYSTEM_FLAGS, SYSTEM_ID } from "../../../constants.mjs";
+import { ICONS_PATH, SYSTEM_ID } from "../../../constants.mjs";
+import { SystemFlags } from "../../../enums/flags-enums.mjs";
 import { verifyAndReturnActor, verifyAndReturnSelectedToken } from "../commands/macro-utils-commands.mjs";
 
 export const rollOverloadMacroData = {
   flags: {
     [SYSTEM_ID]: {
-      [SYSTEM_FLAGS.SOURCE_ID]: '3',
-      [SYSTEM_FLAGS.ROLE]: 'user',
+      [SystemFlags.SOURCE.ID]: '3',
+      [SystemFlags.ROLE.ROLE]: SystemFlags.ROLE.USER,
     }
   },
   name: "Teste de Sobrecarga",
@@ -17,6 +18,6 @@ ${verifyAndReturnSelectedToken}
 ${verifyAndReturnActor}
 await globalThis.${SYSTEM_ID}.MacroMethods.overload(actor);
 `,
-  img: `${ICONS_PATH}/overload.svg`,
+  img: `${ICONS_PATH}/s10.webp`,
   type: "script"
 }

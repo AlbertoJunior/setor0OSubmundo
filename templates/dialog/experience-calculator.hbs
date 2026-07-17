@@ -1,0 +1,147 @@
+<div class="S0-container S0-flex S0-items-start S0-col-gap-10 S0-h-full S0-m-0">
+  <!-- Coluna 1: Instruções e Como Utilizar -->
+  <div class="S0-flex-1 S0-flex-col S0-row-gap-6 S0-h-full S0-overflow-y-auto S0-px-4">
+    <div class="S0-text-center S0-flex-col S0-row-gap-4">
+      <h4 class="S0-font-bold">{{localize "S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Como_Utilizar"}}</h4>
+      <p class="S0-italic S0-text-12">{{{localize "S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Ajuda_Texto1"}}}
+      </p>
+
+      <div class="S0-text-start S0-bg-secondary-alpha-50 S0-p-8 S0-rounded-large">
+        <p class="S0-font-bold S0-m-2">
+          <i class="fas fa-magic S0-mr-4"></i>
+          {{localize "S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.XP_Otimizada"}}
+        </p>
+        <p class="S0-text-small S0-m-2">{{localize "S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.XP_Otimizada_Desc"}}</p>
+      </div>
+
+      <div class="S0-text-start S0-bg-secondary-alpha-50 S0-p-8 S0-rounded-large">
+        <p class="S0-font-bold S0-m-2">
+          <i class="fas fa-chart-line S0-mr-4"></i>
+          {{localize "S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.XP_Aproximada"}}
+        </p>
+        <p class="S0-text-small S0-m-2">{{localize "S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.XP_Aproximada_Desc"}}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Coluna 2: Informações (Dropzone) -->
+  <div class="S0-flex-1 S0-flex-col S0-row-gap-6 S0-h-full">
+    <select class="S0-select" name="selectedActor">
+      <option value="">{{localize "PLAYERS.CharSelect"}}</option>
+      {{#each availableActors}}
+      <option value="{{id}}" {{#if selected}}selected{{/if}}>{{name}}</option>
+      {{/each}}
+    </select>
+
+    {{#if actor}}
+    <h4 class="S0-m-0 S0-text-center">{{actor.name}}</h4>
+    <div
+      class="S0-calculator-dropzone S0-bg-secondary-alpha-50 S0-overflow-hidden S0-border-primary S0-border-solid S0-border-medium S0-border-radius-30px-0px S0-max-h-370 S0-min-h-370 S0-w-full S0-h-full">
+      <img
+        class="S0-border-radius-30px-0px S0-pointer-events-none S0-object-cover S0-w-full S0-h-full S0-object-position-top"
+        src="{{actor.img}}" title="{{actor.name}}">
+    </div>
+    <h4 class="S0-m-0 S0-text-center">{{actor.system.morfologia}}</h4>
+    {{else}}
+    <h4 class="S0-m-0 S0-text-center">{{localize 'S0.Personagem'}}</h4>
+    <div
+      class="S0-calculator-dropzone S0-bg-secondary-alpha-50 S0-overflow-hidden S0-border-primary S0-border-solid S0-border-medium S0-border-radius-30px-0px S0-max-h-370 S0-min-h-370 S0-w-full S0-h-full S0-text-center S0-flex S0-flex-col S0-items-center S0-justify-center S0-row-gap-4 S0-px-8">
+      <p class="S0-text-16 S0-pointer-events-none">
+        {{localize "S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Personagem_Aqui"}}
+      </p>
+    </div>
+    <h4 class="S0-m-0 S0-text-center">{{localize 'S0.Morfologia'}}</h4>
+    {{/if}}
+  </div>
+
+  <!-- Coluna 3: Resultados -->
+  <div class="S0-flex-1 S0-flex-col S0-row-gap-6 S0-h-full S0-overflow-y-auto S0-px-4">
+    <h4 class="S0-text-center S0-mb-4">{{localize "S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Gasto_Experiencia"}}</h4>
+
+    <div class="S0-flex S0-items-center S0-justify-center S0-col-gap-4 S0-mb-4">
+      <button type="button" class="S0-button S0-flex-1 S0-px-4" data-action="calculateOptimized" {{#unless
+        actor}}disabled{{/unless}}>
+        <i class="fas fa-magic S0-mr-4"></i> {{localize "S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Otimizada"}}
+      </button>
+      <button type="button" class="S0-button S0-flex-1 S0-px-4" data-action="calculateApproximate" {{#unless
+        actor}}disabled{{/unless}}>
+        <i class="fas fa-chart-line S0-mr-4"></i> {{localize "S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Aproximada"}}
+      </button>
+    </div>
+
+    {{#if isApproximate}}
+    <!-- Thresholds -->
+    <div class="S0-bg-secondary-alpha-50 S0-rounded-large S0-mb-4">
+      <!-- Header -->
+      <div class="S0-flex S0-items-center S0-justify-between S0-p-4 S0-clickable" data-action="toggleThresholds">
+        <label class="S0-font-bold S0-flex-1 S0-text-center S0-pointer-events-none">{{localize
+          "S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Configuracoes_Calculo_Aproximado"}}</label>
+        <a class="S0-icon-expand S0-mx-4">
+          <i class="fas {{#if thresholdExpanded}}fa-chevron-up{{else}}fa-chevron-down{{/if}}"></i>
+        </a>
+      </div>
+
+      <!-- Content Animated -->
+      <div class="S0-container-contract S0-calculator-thresholds-container {{#if thresholdExpanded}}S0-expanded{{/if}}">
+        <div class="S0-flex-col S0-row-gap-4 S0-p-4 S0-pt-0">
+          <div class="S0-flex S0-items-center S0-justify-between">
+            <label class="S0-flex-2 S0-flex S0-items-center S0-col-gap-4">{{localize "S0.Atributos.Atributos"}} <i
+                class="fas fa-info-circle S0-text-12"
+                title="{{localize 'S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Atributos_Ajuda'}}"></i>:</label>
+            <input class="S0-flex-1 S0-text-center S0-input S0-x-small-input-height" type="number"
+              data-threshold="attributes" value="{{thresholds.attributes}}" />
+          </div>
+          <div class="S0-flex S0-items-center S0-justify-between">
+            <label class="S0-flex-2 S0-flex S0-items-center S0-col-gap-4">{{localize "S0.Habilidades"}} <i
+                class="fas fa-info-circle S0-text-12"
+                title="{{localize 'S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Habilidades_Ajuda'}}"></i>:</label>
+            <input class="S0-flex-1 S0-text-center S0-input S0-x-small-input-height" type="number"
+              data-threshold="abilities" value="{{thresholds.abilities}}" />
+          </div>
+          <div class="S0-flex S0-items-center S0-justify-between">
+            <label class="S0-flex-2 S0-flex S0-items-center S0-col-gap-4">{{localize "S0.Aprimoramentos"}} <i
+                class="fas fa-info-circle S0-text-12"
+                title="{{localize 'S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Aprimoramentos_Ajuda'}}"></i>:</label>
+            <input class="S0-flex-1 S0-text-center S0-input S0-x-small-input-height" type="number"
+              data-threshold="enhancements" value="{{thresholds.enhancements}}" />
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/if}}
+
+    <div class="S0-flex-col S0-row-gap-2 S0-p-4 S0-bg-secondary-alpha-50 S0-rounded-large">
+      {{#each xpList}}
+      <div class="S0-flex S0-justify-between S0-border-b-secondary-alpha">
+        <span class="S0-font-bold">{{label}}</span>
+        <span>{{value}}</span>
+      </div>
+      {{/each}}
+    </div>
+
+    <div class="S0-bg-secondary-alpha-50 S0-rounded-large S0-p-4">
+      <div class="S0-flex S0-justify-between S0-py-2">
+        <span class="S0-font-bold S0-text-16">{{localize "S0.Total"}}</span>
+        <span class="S0-font-bold S0-text-16">{{#if xpData}}{{xpData.total}}{{else}}-{{/if}}</span>
+      </div>
+
+      {{#if xpData}}
+      <div class="S0-flex S0-justify-content-flex-end">
+        <button type="button" class="S0-button S0-max-w-max" data-action="recalculate">
+          <i class="fas fa-sync-alt S0-mr-4"></i> {{localize "S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Recalcular"}}
+        </button>
+      </div>
+      {{/if}}
+    </div>
+
+    {{#if actor}}
+    <button type="button" class="S0-button S0-mt-6" data-action="openSheet">
+      <i class="fas fa-file-alt S0-mr-4"></i> {{localize "S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Abrir_Ficha"}}
+    </button>
+
+    <button type="button" class="S0-button S0-mt-6" data-action="applyExperience">
+      <i class="fas fa-file-alt S0-mr-4"></i> {{localize "S0.CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Aplicar_Exp"}}
+    </button>
+    {{/if}}
+  </div>
+</div>

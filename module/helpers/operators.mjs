@@ -9,6 +9,7 @@ const operators = {
   isNotNull: ([value]) => !operators['isNull']([value]),
   isEmpty: (collection) => Array.isArray(collection) && collection.length === 0,
   isNotEmpty: (collection) => Array.isArray(collection) && collection.length > 0,
+  and: (values) => values.every(Boolean),
   or: (values) => values.some(Boolean),
   orValue: (values) => {
     const a = values[0];
@@ -18,6 +19,9 @@ const operators = {
   ternary: (values) => {
     return values[0] ? values[1] : values[2];
   },
+  includes: (values) => {
+    return Array.isArray(values[0]) ? values[0].includes(values[1]) : false;
+  }
 };
 
 export default function operator(op, ...params) {

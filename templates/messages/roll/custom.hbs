@@ -1,15 +1,15 @@
 <div class="S0-message-content">
-  <h4 style="text-align: center;">{{ localize attr1 }} + {{ localize attr2 }}</h4>
+  <h4 class="S0-text-center">{{ localize attr1 }} + {{ localize attr2 }}</h4>
   <hr>
 
   {{#if (operators 'or' (operators 'isNotNull' messageTestTitle) (operators 'isNotNull' messageTestSubtitle))}}
 
   {{#if (operators 'isNotNull' messageTestTitle)}}
-  <p class="S0-hide-long-text" style="text-align: center;">{{ messageTestTitle }}</p>
+  <p class="S0-hide-long-text S0-text-center">{{ messageTestTitle }}</p>
   {{/if}}
 
   {{#if (operators 'isNotNull' messageTestSubtitle)}}
-  <p class="S0-hide-long-text" style="text-align: center;">{{ messageTestSubtitle }}</p>
+  <p class="S0-hide-long-text S0-text-center">{{ messageTestSubtitle }}</p>
   {{/if}}
 
   <hr>

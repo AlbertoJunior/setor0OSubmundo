@@ -1,7 +1,10 @@
 import { localize, randomId } from "../../utils/utils.mjs";
 import { ActorUpdater } from "../../base/updater/actor-updater.mjs";
-import { SYSTEM_FLAGS, SYSTEM_ID } from "../../constants.mjs";
-import { ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../enums/active-effects-enums.mjs";
+import { SYSTEM_ID } from "../../constants.mjs";
+import { ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../enums/active-effects-enums.mjs";
+import { SystemFlags } from "../../enums/flags-enums.mjs";
+import { FoundryApi } from "../../api/foundry-api.mjs";
+import { ActiveEffectsUtilsV12 } from "./active-effects-utils-v12.mjs";
 
 export class ActiveEffectsUtils {
   static KEYS = {
@@ -24,12 +27,12 @@ export class ActiveEffectsUtils {
     } = params;
 
     const fullFlags = {
-      [SYSTEM_FLAGS.ORIGIN_ID]: "",
-      [SYSTEM_FLAGS.ORIGIN_TYPE]: "",
+      [SystemFlags.ORIGIN.ID]: "",
+      [SystemFlags.ORIGIN.TYPE]: "",
       ...flags
     };
 
-    if (!fullFlags[SYSTEM_FLAGS.ORIGIN_ID]?.trim()) {
+    if (!fullFlags[SystemFlags.ORIGIN.ID]?.trim()) {
       console.warn('Origin ID é OBRIGATÓRIO')
       return null;
     }
@@ -45,24 +48,25 @@ export class ActiveEffectsUtils {
       duration: duration,
       statuses: new Set(statuses),
       changes: changes,
+      system: fullFlags,
       flags: {
         [SYSTEM_ID]: fullFlags
       }
     };
 
-    return activeEffectData;
+    return FoundryApi.formatActiveEffectData(activeEffectData);
   }
 
   static getFlags(activeEffect) {
-    return activeEffect.flags[SYSTEM_ID] || {};
+    return ActiveEffectsUtilsV12.getFlags(activeEffect);
   }
 
   static getOriginId(activeEffect) {
-    return this.getFlags(activeEffect)[ActiveEffectsFlags.ORIGIN_ID];
+    return activeEffect.system?.originId ?? ActiveEffectsUtilsV12.getOriginId(activeEffect);
   }
 
   static getOriginType(activeEffect) {
-    return this.getFlags(activeEffect)[ActiveEffectsFlags.ORIGIN_TYPE];
+    return activeEffect.system?.originType ?? ActiveEffectsUtilsV12.getOriginType(activeEffect);
   }
 
   static async addActorEffect(actor, activeEffectData) {
@@ -88,22 +92,37 @@ export class ActiveEffectsUtils {
     await Promise.all(effectsToRemove.map(effect => effect.delete()));
   }
 
+  static async removeAllRemovableActorEffects(actor) {
+    if (!actor) return;
+    const effectsId = actor.effects
+      .filter(effect => this.canRemoveEffect(effect))
+      .map(effect => this.getOriginId(effect));
+
+    await this.removeActorEffects(actor, effectsId);
+  }
+
+  static async removeAllActorEffects(actor) {
+    if (!actor) return;
+    const effectsId = actor.effects.map(effect => this.getOriginId(effect));
+    await this.removeActorEffects(actor, effectsId);
+  }
+
   static isPassive(effect) {
     return effect.duration.type == 'none';
   }
 
   static hasType(effect) {
-    const effectType = this.getFlags(effect)[ActiveEffectsFlags.TYPE];
+    const effectType = effect.system?.type ?? ActiveEffectsUtilsV12.getType(effect);
     return effectType != undefined;
   }
 
   static isBuff(effect) {
-    const effectType = this.getFlags(effect)[ActiveEffectsFlags.TYPE];
+    const effectType = effect.system?.type ?? ActiveEffectsUtilsV12.getType(effect);
     return effectType == ActiveEffectsTypes.BUFF;
   }
 
   static isDebuff(effect) {
-    const effectType = this.getFlags(effect)[ActiveEffectsFlags.TYPE];
+    const effectType = effect.system?.type ?? ActiveEffectsUtilsV12.getType(effect);
     return effectType == ActiveEffectsTypes.DEBUFF;
   }
 
@@ -120,19 +139,28 @@ export class ActiveEffectsUtils {
   }
 
   static canRemoveEffect(effect) {
-    const canRemove = this.getFlags(effect)[ActiveEffectsFlags.CAN_REMOVE] ?? true
-    return canRemove;
+    return effect.system?.canRemove ?? ActiveEffectsUtilsV12.canRemoveEffect(effect);
   }
 
   static activeEffectOriginTypeLabel(type) {
     const map = {
       [ActiveEffectsOriginTypes.ITEM]: localize('Item'),
       [ActiveEffectsOriginTypes.ENHANCEMENT]: localize('Aprimoramento.Nome'),
-      [ActiveEffectsOriginTypes.TRAIT]: localize('Traco'),
+      [ActiveEffectsOriginTypes.TRAIT]: localize('Traco.Traco'),
       [ActiveEffectsOriginTypes.OTHER]: localize('Outro'),
       [ActiveEffectsOriginTypes.AFFECTED_ENHANCEMENT]: localize('Aprimoramento.Afetado_Aprimoramento'),
     }
 
     return map[type] || `<${localize('Erro')}>`;
+  }
+
+  /**
+   * Verifica se o ator tem 2+ efeitos que alteram a tint do TOKEN (texture.tint).
+   * Nota: effect.tint é a cor da borda do ícone do efeito (cosmético), NÃO a tint do token.
+   */
+  static hasEffectsWithTint(actor) {
+    return actor.effects
+      .filter(e => e.changes.some(c => c.key === ActiveEffectsUtils.KEYS.TINT_TOKEN))
+      .length > 1;
   }
 }

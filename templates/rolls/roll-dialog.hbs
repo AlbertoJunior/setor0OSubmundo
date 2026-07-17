@@ -1,0 +1,18 @@
+<div class="S0-dialog">
+  <div class="S0-flex S0-items-center S0-col-gap-4">
+    <button data-action="check" data-item="0">{{localize 'S0.Padrao'}}</button>
+    <button data-action="check" data-item="1">{{localize 'S0.Virtude.Virtudes'}}</button>
+    <button data-action="check" data-item="2">{{localize 'S0.Simples'}}</button>
+    <button data-action="check" data-item="3">{{localize 'S0.Customizado'}}</button>
+  </div>
+
+  <div class="S0-container">
+    {{> roll-dialog-default}}
+    {{> roll-dialog-virtue}}
+    {{> roll-dialog-simple}}
+    {{> roll-dialog-custom}}
+  </div>
+
+  <hr>
+  {{> roll-chat-mode}}
+</div>

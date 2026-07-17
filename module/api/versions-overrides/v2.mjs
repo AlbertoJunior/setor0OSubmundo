@@ -1,6 +1,5 @@
-import { randomId, toKeyLang } from "../../utils/utils.mjs";
+import { normalizeArray, randomId, toKeyLang, localize } from "../../utils/utils.mjs";
 import { SYSTEM_CLASS_CSS } from "../../constants.mjs";
-import { FoundryApi } from "../foundry-api.mjs";
 import { HtmlJsUtils } from "../../utils/html-js-utils.mjs";
 import { Setor0BaseSheet } from "../../base/sheet/Setor0BaseSheet.mjs";
 
@@ -10,34 +9,102 @@ export const v2Overrides = Object.freeze(
   {
     VersionName: VERSION_NAME,
     Sheets: foundry.applications.sheets,
-    makeClass,
+    makeSheetClass,
     createDialog,
+    formatActiveEffectData
   }
 );
 
-function makeClass(BaseClass) {
+function makeSheetClass(BaseClass) {
   const { HandlebarsApplicationMixin } = this.Api;
   const name = BaseClass.name;
 
   const Cls = {
     [name]: class extends HandlebarsApplicationMixin(BaseClass) {
-      static DEFAULT_OPTIONS = {
-        // viewPermission: CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED,
-        // editPermission: CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER,
-        sheetConfig: false,
-        classes: [SYSTEM_CLASS_CSS, VERSION_NAME],
-        window: {
-          resizable: false,
-          controls: []
-        },
-        form: {
-          closeOnSubmit: false,
-          submitOnChange: true, // In ApplicationV2 with submitOnChange: true, the 'submit' event is triggered.
-          handler: this.#onSubmitDocumentForm
-        },
-        actions: {
-          img: this.#selectImg
+      static get DEFAULT_OPTIONS() {
+        return {
+          sheetConfig: false,
+          classes: [SYSTEM_CLASS_CSS, VERSION_NAME],
+          window: {
+            resizable: false,
+            controls: []
+          },
+          position: {
+            width: 600,
+            height: 'auto',
+          },
+          form: {
+            closeOnSubmit: false,
+            submitOnChange: true,
+            handler: this.#onSubmitDocumentForm
+          }
+        };
+      }
+
+      static get PARTS() {
+        const config = this.SHEET_CONFIG || {};
+        const partsDef = {};
+        if (config.templates) {
+          config.templates.forEach(t => {
+            partsDef[t.name] = { template: t.template };
+          });
         }
+        return partsDef;
+      }
+
+      _initializeApplicationOptions(options) {
+        options = super._initializeApplicationOptions(options);
+        const config = this.constructor.SHEET_CONFIG || {};
+
+        if (config.classes && Array.isArray(config.classes)) {
+          const newClasses = config.classes.filter(cssClass => !options.classes.includes(cssClass));
+          if (newClasses.length) {
+            options.classes.push(...newClasses);
+          }
+        }
+
+        if (config.resizable !== undefined) {
+          options.window.resizable = config.resizable;
+        }
+
+        if (config.width) {
+          options.position.width = Number(config.width);
+        }
+        if (config.forcedHeight) {
+          options.position.height = Number(config.forcedHeight);
+        }
+
+        let mergedActions = new Map();
+        let currentClass = this.constructor;
+        while (currentClass && currentClass.name && currentClass.name !== 'Function' && currentClass.name !== 'Object') {
+          if (currentClass.SHEET_CONFIG && Array.isArray(currentClass.SHEET_CONFIG.actions)) {
+            for (const def of currentClass.SHEET_CONFIG.actions) {
+              if (def && def.id && !mergedActions.has(def.id)) {
+                mergedActions.set(def.id, def);
+              }
+            }
+          }
+          currentClass = Object.getPrototypeOf(currentClass);
+        }
+
+        if (mergedActions.size > 0) {
+          options.window.controls = options.window.controls || [];
+          options.actions = options.actions || {};
+
+          for (const def of mergedActions.values()) {
+            const isEnabled = typeof def.enabled === "function" ? def.enabled() : (def.enabled !== false);
+            if (isEnabled) {
+              options.window.controls.unshift({
+                action: def.id,
+                icon: def.icon,
+                label: localize(def.label)
+              });
+              options.actions[def.id] = def.action;
+            }
+          }
+        }
+
+        return options;
       }
 
       static async #onSubmitDocumentForm(event, form, formData, options = {}) {
@@ -80,20 +147,6 @@ function makeClass(BaseClass) {
         return target.value;
       }
 
-      static async #selectImg() {
-        const document = this.document;
-        const img = document.img;
-        new FoundryApi.FilePicker.implementation({
-          type: 'image',
-          current: img,
-          displayMode: "thumbs",
-          // allowUpload: game.user.isGM,
-          callback: async (path, event) => {
-            await this.updateDocument(document, 'img', path);
-          }
-        }).browse();
-      }
-
       async updateDocument(document, keyToUpdate, value) {
         console.warn(`[${document.documentName}]: you need to implement this method (async updateDocument). There was an attempt to update field [${keyToUpdate}] with value [${value}]`);
       }
@@ -115,6 +168,13 @@ function makeClass(BaseClass) {
       }
 
       _operateMultiParts(document, parts) {
+        const docTypePart = document?.type?.toLowerCase();
+        if (docTypePart && parts.includes(docTypePart)) {
+          return [docTypePart];
+        }
+        if (parts.includes('default')) {
+          return ['default'];
+        }
         return parts;
       }
 
@@ -154,14 +214,16 @@ function makeClass(BaseClass) {
 
 async function createDialog(data, options) {
   const {
+    classes,
+    icon,
     title,
     header,
     content,
-    buttons = [],
-    minimizable = true,
-    resizable = false,
-    render = (html, renderedDialog, window) => { },
-    onClose = () => { }
+    buttons,
+    minimizable,
+    resizable,
+    render,
+    onClose
   } = data;
 
   const parsedButtons = parseDialogButtons(buttons);
@@ -171,12 +233,22 @@ async function createDialog(data, options) {
 
   let handleOnClose = true;
 
-  // this form will be automatically removed before full rendering
-  const modifiedContent = `<form></form>${content}`;
+  // Create a container and parse the content string into it
+  const container = document.createElement("div");
+  container.innerHTML = content;
+
+  const normalizedClasses = normalizeArray([
+    SYSTEM_CLASS_CSS,
+    VERSION_NAME,
+    'S0-dialog',
+    ...(options?.classes || []),
+    ...classes
+  ]);
 
   const dialog = new this.Api.DialogV2(
     {
       window: {
+        icon: icon,
         title: title,
         minimizable: minimizable,
         resizable: resizable,
@@ -184,10 +256,10 @@ async function createDialog(data, options) {
       },
       position: {
         width: options?.width ?? 'auto',
-        height: options?.height ?? 'auto',
+        height: options?.forcedHeight ?? 'auto',
       },
-      classes: [SYSTEM_CLASS_CSS, VERSION_NAME, 'S0-dialog'],
-      content: modifiedContent,
+      classes: normalizedClasses,
+      content: container,
       buttons: dialogButons,
       submit: (result, dialog) => {
         const buttonAction = dialogButons.find(button => button.action == result);
@@ -332,4 +404,8 @@ function parseHeaderToControls(header) {
     });
 
   return controls;
+}
+
+function formatActiveEffectData(data) {
+  return data;
 }

@@ -3,13 +3,10 @@ import { EquipmentUtils } from "../../../../core/equipment/equipment-utils.mjs";
 import { ConfirmationDialog } from "../../../../creators/dialog/confirmation-dialog.mjs";
 import { EquipmentCharacteristicType } from "../../../../enums/equipment-enums.mjs";
 import { OnEventType } from "../../../../enums/on-event-type.mjs";
-import { SuperEquipmentField } from "../../../../field/equipment-field.mjs";
+import { SuperEquipmentField } from "../../../../data/field/equipment-field.mjs";
 import { EquipmentUpdater } from "../../../updater/equipment-updater.mjs";
-import { CreateFormDialog } from "../../../../creators/dialog/create-dialog.mjs";
-import { SubstanceEffectRepository } from "../../../../repository/substance-effect-repository.mjs";
-import { NotificationsUtils } from "../../../../creators/message/notifications.mjs";
-import { EquipmentInfoParser } from "../../../../core/equipment/equipment-info.mjs";
 import { DialogUtils } from "../../../../utils/dialog-utils.mjs";
+import { SubstanceEffectDialog } from "../../../../creators/dialog/substance-effect-dialog.mjs";
 
 export const handlerEquipmentCharacteristicsEvents = {
   [OnEventType.CHECK]: async (item, event) => EquipmentSheetCharacteristicsHandle.check(item, event),
@@ -23,75 +20,26 @@ class EquipmentSheetCharacteristicsHandle {
     const target = event.currentTarget;
     const type = target.dataset.type;
 
-    const mapCheck = {
+    const mapAdd = {
       'substance': (item, target) => this.#addSubstanceEffect(item),
     }
 
-    await mapCheck[type]?.(item, target);
+    await mapAdd[type]?.(item, target);
   }
 
   static async #addSubstanceEffect(item) {
-    CreateFormDialog.open(
-      localize('Itens.Adicionar_Efeito'),
-      'items/dialog/substance-effect',
-      {
-        presetForm: {
-          effects: this.#mapOptions(SubstanceEffectRepository.getItems())
-        },
-        onConfirm: async (data) => {
-          const actualList = getObject(item, EquipmentCharacteristicType.SUBSTANCE.EFFECTS) || [];
-          const selectedEffect = SubstanceEffectRepository.getItem(data.selectedEffect);
-
-          if (actualList.some(item => item.id == selectedEffect.id)) {
-            NotificationsUtils.error(localize('Itens.Mensagens.Nao_Pode_Efeitos_Iguais'));
-            return;
-          }
-
-          if (selectedEffect) {
-            EquipmentUpdater.updateEquipment(item, EquipmentCharacteristicType.SUBSTANCE.EFFECTS, new Set([...actualList, selectedEffect]));
-          }
-        },
-      }
-    );
-  }
-
-  static #mapOptions(list) {
-    const groups = {};
-
-    list.forEach((item, index) => {
-      const groupLabel = EquipmentInfoParser.parseSubstanceEffectType(item.type);
-
-      if (!groups[groupLabel]) {
-        groups[groupLabel] = [];
-      }
-
-      groups[groupLabel].push({
-        ...item,
-        index,
-      });
-    });
-
-    return Object.entries(groups)
-      .sort(([labelA], [labelB]) => {
-        return labelA.localeCompare(labelB);
-      })
-      .map(([label, options]) => (
-        {
-          label,
-          options
-        }
-      ));
+    SubstanceEffectDialog.open(item);
   }
 
   static async remove(item, event) {
     const target = event.currentTarget;
     const type = target.dataset.type;
 
-    const mapCheck = {
+    const mapRemove = {
       'substance': (item, target) => this.#removeSubstance(item, target.dataset.itemId),
     }
 
-    await mapCheck[type]?.(item, target);
+    await mapRemove[type]?.(item, target);
   }
 
   static async #removeSubstance(item, itemId) {

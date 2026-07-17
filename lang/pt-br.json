@@ -1,5 +1,8 @@
 {
   "S0": {
+    "Generico": {
+      "Somente_Leitura": "Somente Leitura"
+    },
     "Title": "Setor 0 - O Submundo",
     "Fechar": "Fechar",
     "Editar": "Editar",
@@ -9,7 +12,13 @@
     "Erro": "Erro",
     "Usar": "Usar",
     "Confirmar": "Confirmar",
+    "Sim": "Sim",
+    "Nao": "Não",
     "Cancelar": "Cancelar",
+    "Criar_Customizado": "Criar Customizado",
+    "Opcional": "Opcional",
+    "Buff": "Buff",
+    "Debuff": "Debuff",
     "Ativar": "Ativar",
     "Desativar": "Desativar",
     "Nivel": "Nível",
@@ -40,6 +49,7 @@
     "Esquivar": "Esquivar",
     "Aparar": "Aparar",
     "Bloquear": "Bloquear",
+    "Modificador": "Modificador",
     "Modificadores": "Modificadores",
     "Atuacao": "Atuação",
     "Qualidade": "Qualidade",
@@ -51,6 +61,8 @@
     "Realizar_Teste": "Realizar Teste",
     "Rolagens_Player": "Modo de Rolagem",
     "Rolagem": "Rolagem",
+    "Rolagem_Anterior": "Rolagem Anterior",
+    "Nova_Rolagem": "Nova Rolagem",
     "Rolar": "Rolar",
     "Rolar_Dividido": "Rolar Dividido",
     "Rolagem_Publica": "Público",
@@ -69,7 +81,6 @@
     "Ciborgue": "Ciborgue",
     "Sintetico": "Sintético",
     "Humano": "Humano",
-    "Atributos": "Atributos",
     "Forca": "Força",
     "Destreza": "Destreza",
     "Vigor": "Vigor",
@@ -102,7 +113,6 @@
     "Recursos": "Recursos",
     "SuperEquipamento": "SuperEquipamento",
     "SuperEquipamentos": "SuperEquipamentos",
-    "Virtudes": "Virtudes",
     "Consciencia": "Consciência",
     "Perseveranca": "Perseverança",
     "Quietude": "Quietude",
@@ -110,6 +120,7 @@
     "Influencia": "Influência",
     "Nucleo": "Núcleo",
     "Sobrecarga": "Sobrecarga",
+    "Sobrecarga_Limite": "Limite de Sobrecarga",
     "Aprimoramentos": "Aprimoramentos",
     "Reiniciar_Efeitos_Passivos": "Reiniciar Efeitos Passivos",
     "Remover_Efeito": "Remover Efeito",
@@ -119,8 +130,6 @@
     "Vida": "Vida",
     "Vitalidade": "Vitalidade",
     "Experiencia": "Experiência",
-    "Traco": "Traço",
-    "Tracos": "Traços",
     "Mochila": "Mochila",
     "Equipados": "Equipados",
     "Equipado": "Equipado",
@@ -166,6 +175,8 @@
     "Uso": "Uso",
     "Tempo": "Tempo",
     "Nenhum": "Nenhum",
+    "Todas": "Todas",
+    "Todos": "Todos",
     "Automatico": "Automático",
     "Letal": "Letal",
     "Superficial": "Superficial",
@@ -215,6 +226,7 @@
     "Tracos_Ruins": "Traços Ruins",
     "Adicionar_Traco": "Adicionar Traço",
     "Ver_Informacoes": "Ver informações",
+    "Manobras": "Manobras",
     "Adicionar_Itens": "Adicionar Itens",
     "Desequipar_Itens": "Desequipar Itens",
     "Remover_Itens": "Remover Itens",
@@ -250,6 +262,30 @@
     "Nenhum_variavel_Cadastrado": "Nenhum {tipo} cadastrado, arraste e solte um Personagem em cima dessa caixa.",
     "Teste_Customizado": "Teste Customizado",
     "Voce_Usou_Nome": "Você usou {nome}",
+    "SOCKET": {
+      "SHARED_WITH_ALL_PLAYERS": "Ficha exibida para todos os jogadores.",
+      "NO_USERS_ONLINE": "Não há outros usuários online.",
+      "SELECT_USERS_TO_SHARE": "Selecione os usuários:",
+      "SHARE_DOCUMENT_TITLE": "Compartilhar Ficha",
+      "SHARED_SUCCESS": "Ficha compartilhada com sucesso.",
+      "SHOW_PLAYERS": "Mostrar para Jogadores",
+      "SHOW_TO": "Mostrar para..."
+    },
+    "Atributos": {
+      "Atributo": "Atributo",
+      "Atributos": "Atributos",
+      "Atributo_Primario": "Atributo Primário",
+      "Atributo_Secundario": "Atributo Secundário",
+      "Forca": "Força",
+      "Destreza": "Destreza",
+      "Vigor": "Vigor",
+      "Percepcao": "Percepção",
+      "Carisma": "Carisma",
+      "Inteligencia": "Inteligência"
+    },
+    "Player": {
+      "Extras": "Extras"
+    },
     "NPC": {
       "Ver_Ficha": "Ver Ficha",
       "Principais_Habilidades": "Principais Habilidades",
@@ -298,6 +334,14 @@
       "Gas": "Gás",
       "Melhoria": "Melhoria",
       "Enfraquecimento": "Enfraquecimento",
+      "Tipos": {
+        "Corpo_a_Corpo": "Corpo a Corpo",
+        "Arma_Projecao": "Arma de Projeção",
+        "Armadura": "Armadura",
+        "Veiculo": "Veiculo",
+        "Substancia": "Substância",
+        "Acessorio": "Acessório"
+      },
       "Pergunta": {
         "Usar_Item": "Usar o Item?",
         "Excluir_SuperEquipamento": "Excluir SuperEquipamento?",
@@ -305,9 +349,96 @@
       },
       "Mensagens": {
         "Nenhum_item_adicionado": "Nenhum item adicionado, arraste e solte para adicionar",
+        "Nenhum_item_equipado": "Nenhum item equipado, arraste e solte da mochila para equipar",
         "Nao_Pode_Efeitos_Iguais": "Não pode ter dois efeitos iguais",
+        "Nao_Pode_Manobras_Iguais": "Não pode ter duas manobras com o mesmo nome",
         "Aviso_Remocao_Itens_Mochila": "Essa ação irá remover todos os itens da mochila",
-        "Aviso_Desequipar_Itens": "Essa ação irá desequipar todos os itens equipados"
+        "Aviso_Desequipar_Itens": "Essa ação irá desequipar todos os itens equipados",
+        "Transferencia_Item": "Transferência de Item",
+        "Deu_Item": "deu o item",
+        "Para": "para"
+      }
+    },
+    "Aprimoramento": {
+      "Nome": "Aprimoramento",
+      "Nome_Plural": "Aprimoramentos",
+      "Afetado_Aprimoramento": "Afetado por Aprimoramento",
+      "Mensagens": {
+        "Ja_Possui_Aprimoramento": "O Personagem já possui o máximo permitido desse Aprimoramento: <u>{aprimoramento}</u>",
+        "Ja_Possui_Efeito": "O Personagem já possui esse Efeito: <u>{efeito}</u>"
+      }
+    },
+    "Efeito_Ativo": {
+      "Viciado": "Viciado",
+      "Mesmerizado": "Mesmerizado",
+      "Racionalizando": "Racionalizando",
+      "Fascinado": "Fascinado",
+      "Destrocado1": "Destroçado 1",
+      "Destrocado2": "Destroçado 2",
+      "Destrocado3": "Destroçado 3"
+    },
+    "Especialidade": {
+      "Especialidades": "Especialidades",
+      "Especialidade": "Especialidade",
+      "Nenhuma_Adicionada": "Nenhuma especialidade adicionada",
+      "Descricao_Curta": "Descrição",
+      "Descricao_Longa": "Detalhes",
+      "Descricao_Curta_Placeholder": "Ex.: Facas, Espadas, Armas de haste, etc...",
+      "Descricao_Longa_Placeholder": "Ex.: Quando utilizando facas...",
+      "Habilidade_Minima": "Requer habilidade nível 4+",
+      "Nenhuma_Habilidade_Elegivel": "Nenhuma habilidade com nível 4 ou superior",
+      "Habilidade_Obrigatoria": "A habilidade é obrigatória",
+      "Descricao_Obrigatoria": "A descrição é obrigatória"
+    },
+    "Anotacao": {
+      "Anotacoes": "Anotações",
+      "Anotacao": "Anotação",
+      "Nenhuma_Adicionada": "Nenhuma anotação adicionada",
+      "Descricao_Curta": "Descrição Curta",
+      "Descricao_Longa": "Descrição Longa",
+      "Descricao_Curta_Placeholder": "Ex.: Lembrete importante...",
+      "Descricao_Longa_Placeholder": "Detalhes adicionais sobre esta anotação...",
+      "Descricao_Obrigatoria": "A descrição curta é obrigatória"
+    },
+    "Atalho": {
+      "Atalhos": "Atalhos",
+      "Atalho": "Atalho",
+      "Outros_Atalhos": "Outros Atalhos",
+      "Atalho_Nome": "Ataque preciso",
+      "Nenhum_Atalho_Adicionado": "Nenhum Atalho adicionado"
+    },
+    "Manobra": {
+      "Manobra": "Manobra",
+      "Manobras": "Manobras",
+      "Custo_PM": "Custo de PM",
+      "Custo_XP": "Custo de XP",
+      "Exige_Arma": "Exige Arma",
+      "Usa_Dano_Arma": "Usa Dano da Arma",
+      "Arma_Obrigatoria": "Esta manobra só pode ser realizada se estiver com uma arma equipada.",
+      "Selecione_Arma": "Selecione uma arma para realizar esta manobra."
+    },
+    "Traco": {
+      "Traco": "Traço",
+      "Tracos": "Traços",
+      "Bom": "Bom",
+      "Ruim": "Ruim",
+      "Tracos_Bons": "Traços Bons",
+      "Tracos_Ruins": "Traços Ruins",
+      "Adicionar_Efeito": "Adicionar Efeito",
+      "Valor_Explicacao": "O valor é fixo, e pode ser negativo ou positivo.",
+      "Valor_Explicacao_Fator": "O valor de um fator é um multiplicador, é recomendado utilizar valores entre -1 e 1.",
+      "Placeholder": {
+        "Requisito": "Nenhum requisito"
+      }
+    },
+    "Virtude": {
+      "Virtude": "Virtude",
+      "Virtudes": "Virtudes",
+      "Consciencia": "Consciência",
+      "Perseveranca": "Perseverança",
+      "Quietude": "Quietude",
+      "Placeholder": {
+        "Requisito": "Nenhum requisito"
       }
     },
     "Pergunta": {
@@ -326,33 +457,123 @@
       "Erro": {
         "Ator_Invalido": "Ator inválido.",
         "Efeito_Invalido": "Efeito inválido.",
-        "Traco_Invalido": "Traço inválido ou não encontrado."
+        "Traco_Invalido": "Traço inválido ou não encontrado.",
+        "Atributos_Iguais": "Atributos não podem ser iguais.",
+        "Drag_Aceita_Manobras": "Este campo só aceita Manobras",
+        "Sem_Permissao": "Você não tem permissão para executar isso com esse personagem.",
+        "Executar_Teste": "Erro ao executar o teste",
+        "Exibir_Arte_Token": "Erro ao exibir arte do Token",
+        "Item_Nao_Equipavel": "Este Item não pode ser equipado",
+        "Drag_Aceita_Equipamentos": "Este campo só aceita Equipamentos",
+        "Drag_Aceita_Personagens": "Este campo só aceita Personagens",
+        "Nao_Pode_Adicionar_Personagem": "Não foi possível adicionar este Personagem.",
+        "Personagem_Proprio_Aliado": "O personagem não pode se adicionar como Aliado ou Informante.",
+        "Descricao_Obrigatoria": "Descrição é obrigatória",
+        "Selecionar_Traco": "Erro ao selecionar Traço",
+        "Traco_Particularidade_Preenchida": "Esse Traço precisa do campo Particularidade preenchido",
+        "Tipo_Invalido": "Tipo inválido"
       }
     },
-    "Aprimoramento": {
-      "Nome": "Aprimoramento",
-      "Nome_Plural": "Aprimoramentos",
-      "Afetado_Aprimoramento": "Afetado por Aprimoramento",
-      "Mensagens": {
-        "Ja_Possui_Aprimoramento": "O Personagem já possui esse Aprimoramento: <u>{aprimoramento}</u>",
-        "Ja_Possui_Efeito": "O Personagem já possui esse Efeito: <u>{efeito}</u>"
+    "CONTROL": {
+      "HIDDEN_BUTTON": {
+        "Info": "Você pode alterar configurações como 'Tema' e 'Layout'"
+      },
+      "THEME_BUTTON": {
+        "Title": "Alternar Tema Claro e Escuro ({state})",
+        "Dark": "Escuro",
+        "Light": "Claro",
+        "Activated": "Tema {state} ativado."
+      },
+      "LAYOUT_BUTTON": {
+        "Title": "Alternar Layout Expandido e Compacto ({state})",
+        "Compact": "Compacto",
+        "Expanded": "Expandido",
+        "Activated": "Layout {state} ativado."
+      },
+      "LANGUAGE_BUTTON": {
+        "Title": "Alterar idioma"
+      },
+      "EXPORT_COMPENDIUMS_BUTTON": {
+        "Title": "Exportar Compêndios do Sistema"
+      },
+      "IMPORT_COMPENDIUMS_BUTTON": {
+        "Title": "Apagar & Recarregar Compêndios",
+        "Dialog_Title": "Atenção: Exclusão de Compêndios",
+        "Dialog_Message": "<p>Esta ação irá <b>APAGAR</b> todos os itens e pastas de todos os seus compêndios atuais do mundo referentes ao sistema e irá substituí-los pelo conteúdo original incluído com a versão do pacote.</p><p>Não há como reverter isso, tem certeza que deseja prosseguir?</p>",
+        "Notify_Start": "Iniciando exclusão dos compêndios, por favor aguarde...",
+        "Notify_End": "Exclusão completa. O mundo será recarregado em instantes para que possa carregar as informações."
+      },
+      "REMOVE_TOKENS_EFFECTS_BUTTON": {
+        "Title": "Remover Efeitos",
+        "Label": "Remover Efeitos dos Tokens",
+        "Tokens_Selected": "Tokens selecionados",
+        "Choose_Action": "Escolha como deseja remover os efeitos ativos:",
+        "Content_Simple_Title": "Remover Efeitos Simples:",
+        "Content_Simple_Desc": "Remove os efeitos removíveis (preserva efeitos nativos/bloqueados do projeto, como de passivas).",
+        "Content_All_Title": "Remover TODOS os Efeitos:",
+        "Content_All_Desc": "Força a remoção de absolutamente todos os efeitos dos tokens selecionados.",
+        "Remove_Simple": "Remover Simples",
+        "Remove_All": "Remover Todos",
+        "No_Tokens_Selected": "Nenhum token selecionado para remoção de efeitos.",
+        "Removed_Simple_Success": "Efeitos simples removidos de {qtd} token(s).",
+        "Removed_All_Success": "TODOS os efeitos removidos de {qtd} token(s)."
+      },
+      "EXPERIENCE_CALCULATOR_BUTTON": {
+        "Title": "Calculadora de Experiência",
+        "Dialog_Title": "Calculadora de Experiência",
+        "Como_Utilizar": "Como utilizar a Calculadora",
+        "Ajuda_Texto1": "Após arrastar o personagem para o centro da tela, clique em um dos dois modos de cálculo na coluna de <strong>Gasto de Experiência</strong>.",
+        "XP_Otimizada": "XP - Otimizada",
+        "XP_Otimizada_Desc": "O sistema tenta alocar os pontos iniciais gratuitos do personagem nas habilidades e atributos de maior nível, gastando pontos de experiência apenas no que sobrar, garantindo o menor gasto de XP possível na ficha.",
+        "XP_Aproximada": "XP - Aproximada",
+        "XP_Aproximada_Desc": "O cálculo natural (orgânico) considera que proficiências muito altas (por padrão, Nível 5+ de Habilidade e 4+ de Atributo) só podem ser adquiridas durante o jogo por meio de experiência. Esses níveis não consumirão os pontos gratuitos da criação do personagem, cobrando o seu custo diretamente.",
+        "Personagem_Aqui": "Arraste e solte um Personagem aqui, ou selecione acima",
+        "Gasto_Experiencia": "Gasto de Experiência",
+        "Otimizada": "Otimizada",
+        "Aproximada": "Aproximada",
+        "Configuracoes_Calculo_Aproximado": "Configurações de Cálculo Aproximado",
+        "Atributos_Ajuda": "Define a partir de qual nível o atributo será cobrado em pontos de experiência (Aproximada). O padrão é 4+",
+        "Habilidades_Ajuda": "Define a partir de qual nível a habilidade será cobrada em pontos de experiência (Aproximada). O padrão é 5+",
+        "Aprimoramentos_Ajuda": "Define o custo base utilizado para multiplicar pelo nível de Aprimoramentos possuídos (Aproximada). O padrão é 4.",
+        "Recalcular": "Recalcular",
+        "Abrir_Ficha": "Abrir Ficha do Personagem",
+        "Aplicar_Exp": "Aplicar experiência ao personagem",
+        "Exp_atribuida_ao_personagem": "Experiência atribuída ao personagem",
+        "NPC_Warning": "Este personagem não pode ter a experiência calculada",
+        "No_Actor_Warning": "Defina um personagem primeiro!",
+        "Erro_Otimizada": "Erro ao calcular a experiência otimizada.",
+        "Erro_Aproximada": "Erro ao calcular a experiência aproximada."
+      },
+      "PLAYER_INFORMATIONS_BUTTON": {
+        "Title": "Informações dos Jogadores",
+        "Dialog_Title": "Informações dos Jogadores",
+        "Online": "Online",
+        "Offline": "Offline",
+        "Character": "Personagem Padrão",
+        "No_Character": "Nenhum personagem atribuído",
+        "Accessible_Actors": "Personagens com Acesso",
+        "No_Accessible_Actors": "Nenhum personagem com acesso",
+        "System_Flags": "Flags do Sistema",
+        "Other_Flags": "Outras Flags",
+        "No_Flags": "Nenhuma flag registrada",
+        "Permission_Owner": "Dono",
+        "Permission_Observer": "Observador",
+        "Permission_Limited": "Limitado",
+        "Open_Sheet": "Abrir Ficha",
+        "Flag_Key": "Chave",
+        "Flag_Value": "Valor",
+        "Flag_Save": "Salvar",
+        "Flag_Cancel": "Cancelar",
+        "Flag_Add": "Adicionar Flag",
+        "Flag_Delete": "Remover Flag",
+        "Flag_New_Key_Placeholder": "nova.chave",
+        "Flag_New_Value_Placeholder": "valor",
+        "Flag_Saved": "Flag salva com sucesso",
+        "Flag_Added": "Flag adicionada com sucesso",
+        "Flag_Deleted": "Flag removida com sucesso",
+        "Flag_Error_Empty_Key": "A chave da flag não pode estar vazia",
+        "Flag_Confirm_Delete": "Tem certeza que deseja remover esta flag?"
       }
-    },
-    "Efeito_Ativo": {
-      "Viciado": "Viciado",
-      "Mesmerizado": "Mesmerizado",
-      "Racionalizando": "Racionalizando",
-      "Fascinado": "Fascinado",
-      "Destrocado1": "Destroçado 1",
-      "Destrocado2": "Destroçado 2",
-      "Destrocado3": "Destroçado 3"
-    },
-    "Atalho": {
-      "Atalhos": "Atalhos",
-      "Atalho": "Atalho",
-      "Outros_Atalhos": "Outros Atalhos",
-      "Atalho_Nome": "Ataque preciso",
-      "Nenhum_Atalho_Adicionado": "Nenhum Atalho adicionado"
     }
   },
   "TYPES": {
@@ -368,7 +589,8 @@
       "Substance": "Substância",
       "Vehicle": "Veículo",
       "Acessory": "Acessório",
-      "Trait": "Traço"
+      "Trait": "Traço",
+      "Maneuver": "Manobra"
     }
   },
   "DOCUMENT": {
@@ -461,7 +683,7 @@
     "NotStarted": "Não Iniciado",
     "Linked": "Conectado à Cena, clique para Desconectar",
     "Unlinked": "Combate Desconectado, clique para Conectar à cena",
-    "Round": "Turno",
+    "Round": "Turno {round}",
     "Rounds": "Turnos",
     "RoundPrev": "Voltar Turno",
     "RoundNext": "Próximo Turno",
@@ -500,7 +722,7 @@
     "CombatantStatus": "Status",
     "CombatantScene": "Cena do Combatente",
     "CombatantClearMovementHistory": "Limpar histórico de movimentação",
-    "CombatantMovementHistoryCleared": "Histórico de movimentação apagado"
+    "CombatantMovementHistoryCleared": "Histórico de movimentação apagado para o Token \"{name}\""
   },
   "COMPENDIUM": {
     "ClearFilters": "Limpar Filtros",
@@ -561,19 +783,19 @@
     "MOVEMENT": {
       "ACTIONS": {
         "blink": {
-          "label": "Teleport (Blink)"
+          "label": "Teletransportar (Piscar)"
         },
         "burrow": {
-          "label": "Burrow"
+          "label": "Escavar"
         },
         "climb": {
           "label": "Escalar"
         },
         "crawl": {
-          "label": "Crawl"
+          "label": "Rastejar"
         },
         "displace": {
-          "label": "Teleport (Displace)"
+          "label": "Teletransportar (Deslocar)"
         },
         "jump": {
           "label": "Pular"
@@ -652,7 +874,7 @@
       "numb": "Entorpecido",
       "optimistic": "Otimista",
       "overwhelmed": "Sobrecarregado",
-      "painful": "Doloroso",
+      "painful": "Com dor",
       "panicked": "Em pânico",
       "pensive": "Pensativo",
       "perplexed": "Perplexo",
@@ -709,7 +931,7 @@
     "NONE": "Nenhum",
     "OBSERVER": "Observador",
     "OWNER": "Dono",
-    "Title": "Configuração de Propriedade"
+    "Title": "Configuração de Propriedade: {object}"
   },
   "PACKAGE": {
     "Locked": "Bloqueado",
@@ -810,8 +1032,14 @@
     "JumpToBottom": "Ir para o fim",
     "PrivateRollContent": "{user} rolou dados em segredo"
   },
-  "SCENES": {
-    "Configure": "Configurar"
+  "SCENE": {
+    "Configure": "Configurar",
+    "FIELDS": {
+      "tokenVision": {
+        "label": "Visão do Token",
+        "hint": "Restringe a visibilidade dentro desta Cena à visão dos Tokens controlados. Se desabilitado, a Cena inteira fica visível."
+      }
+    }
   },
   "ITEM": {
     "ViewArt": "Ver arte do Item"

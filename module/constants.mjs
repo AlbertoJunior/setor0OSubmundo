@@ -9,13 +9,23 @@ export const SYSTEM_CLASS_CSS = Object.freeze("S0-content");
 export const SYSTEM_CLASS_DIALOG_CSS = Object.freeze("S0-dialog");
 export const SYSTEM_CLASS_DARK_CSS = Object.freeze("S0-page-transparent");
 
-export const REGISTERED_TEMPLATES = Object.freeze(new Set());
+export const REGISTERED_TEMPLATES = Object.freeze(new Set([
+  `${TEMPLATES_PATH}/others/remove-tokens-effects-dialog.hbs`
+]));
+export const REGISTERED_MIGRATIONS = Object.freeze(new Set());
 
-export const SYSTEM_FLAGS = Object.freeze({
-  ORIGIN_ID: "originId",
-  ORIGIN_TYPE: "originType",
-  SOURCE_ID: "sourceId",
-  ROLE: "role"
+export const SYSTEM_HOOKS = Object.freeze({
+  GM_INIT: `${SYSTEM_ID}.gmInit`,
+  GM_READY: `${SYSTEM_ID}.gmReady`,
+  GM_REGISTER_MIGRATIONS: `${SYSTEM_ID}.gmRegisterMigrations`,
+});
+
+export const DEFAULT_VALUES = Object.freeze({
+  BASE_VITALITY: 5,
+  OVERLOAD_LIMIT: 5,
+  SYNTHETIC_PENALTY_BONUS: 1,
+  BASE_MOVIMENT_POINTS: 1,
+  ENHANCEMENT_SLOTS_PER_CORE: 4,
 });
 
 export const COLORS = {

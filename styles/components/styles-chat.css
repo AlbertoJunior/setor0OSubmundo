@@ -20,7 +20,7 @@
 }
 
 .S0-message-content p {
-  margin-block: 0.4em;
+  margin-block: 0.4rem;
 }
 
 .S0-message-content .S0-container-2-column label {
@@ -33,7 +33,7 @@
   text-align: justify;
   margin: 4px;
   padding: 6px;
-  border: 2px solid var(--color-black-alpha-50);
+  border: var(--border-medium) solid var(--color-black-alpha-50);
   border-radius: 4px;
   background: var(--secondary-color-alpha);
   text-shadow: none;
@@ -44,7 +44,7 @@
   background-color: var(--secondary-color-alpha-50);
   margin: 10px;
   padding: 2px 6px;
-  border: 1px solid var(--primary-color-alpha-50);
+  border: var(--border-thin) solid var(--primary-color-alpha-50);
   border-radius: 6px;
   box-shadow: 0px 0px 3px 0px var(--primary-color);
 }
@@ -66,12 +66,16 @@
 }
 
 .S0-d10-overload {
-  filter: sepia(1) hue-rotate(330deg);
+  filter: drop-shadow(0px 0px 3px var(--color-black)) sepia(1) hue-rotate(330deg);
+}
+
+.S0-d10-life {
+  filter: drop-shadow(0px 0px 3px var(--color-black)) sepia(1) hue-rotate(70deg);
 }
 
 .S0-roll-result {
   font-family: var(--S0-font-family);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.1rem;
   width: 100%;
   margin: 2px 0px;
   color: var(--on-tertiary-color);
@@ -129,12 +133,12 @@
 
 .S0-roll-result.S0-overload {
   color: var(--primary-color);
-  border: dashed 2px var(--primary-color-alpha);
+  border: dashed var(--border-medium) var(--primary-color-alpha);
 }
 
 .S0-roll-result.S0-overload:hover {
   color: var(--primary-color);
-  border: dashed 2px var(--primary-color);
+  border: dashed var(--border-medium) var(--primary-color);
 }
 
 .S0-roll-result.S0-blue {
@@ -159,6 +163,18 @@
   color: var(--on-color-orange);
   background-color: var(--color-orange-alpha);
   border-color: var(--color-orange);
+}
+
+.S0-roll-result.S0-red {
+  color: var(--on-color-red);
+  background-color: var(--color-red-alpha-50);
+  border-color: var(--color-red-alpha);
+}
+
+.S0-roll-result:enabled.S0-red:hover {
+  color: var(--on-color-red);
+  background-color: var(--color-red-alpha);
+  border-color: var(--color-red);
 }
 
 /* #endregion */

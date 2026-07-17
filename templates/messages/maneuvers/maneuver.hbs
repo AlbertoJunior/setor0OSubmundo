@@ -1,0 +1,32 @@
+<div class="S0-message-content">
+  <h4>{{localize 'S0.Manobra.Manobra'}}: {{name}}</h4>
+  <hr>
+
+  <label class="S0-block"><strong>{{localize 'S0.Atributos.Atributos'}}:</strong> {{formattedPrimaryAttribute}} + {{formattedSecondaryAttribute}}</label>
+  <label class="S0-block"><strong>{{localize 'S0.Habilidade'}}:</strong> {{formattedSkill}}</label>
+  {{#if formattedWeaponRequirement}}
+  <label class="S0-block"><strong>{{localize 'S0.Manobra.Exige_Arma'}}:</strong> {{formattedWeaponRequirement}}</label>
+  {{/if}}
+  <label class="S0-block"><strong>{{localize 'S0.Dificuldade'}}:</strong> {{difficulty}}</label>
+  <label class="S0-block"><strong>{{localize 'S0.Critico'}}:</strong> {{critic}}</label>
+  <label class="S0-block"><strong>{{localize 'S0.Manobra.Custo_PM'}}:</strong> {{pm}}</label>
+  <label class="S0-block"><strong>{{localize 'S0.Manobra.Custo_XP'}}:</strong> {{experience}}</label>
+  <label class="S0-block"><strong>{{localize 'S0.Dano'}}:</strong> {{damage}}</label>
+  {{#if automatic_damage}}
+  <label class="S0-block"><strong>{{localize 'S0.Dano_Automatico'}}:</strong> {{automatic_damage}}</label>
+  {{/if}}
+  <label class="S0-block"><strong>{{localize 'S0.Manobra.Usa_Dano_Arma'}}:</strong> {{formattedUseDamageWeapon}}</label>
+
+  {{#if description}}
+  <label class="S0-block S0-font-bold">{{localize 'S0.Descricao'}}:</label>
+  <div class="S0-message-simple-text">
+    {{{description}}}
+  </div>
+  {{/if}}
+
+  {{#if itemUuid}}
+  <button class="S0-roll-result" data-action="view" data-type="open-sheet" data-uuid="{{itemUuid}}">
+    <i class="fas fa-file-lines"></i> {{localize 'S0.Ficha'}}
+  </button>
+  {{/if}}
+</div>

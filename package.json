@@ -1,0 +1,24 @@
+{
+  "name": "setor0osubmundo",
+  "version": "0.0.3",
+  "description": "[🌐 Site oficial do Setor 0](https://setor0rpg.com.br) | [📖 Manual do Sistema](./SYSTEM-MANUAL.md)",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlbertoJunior/RPG-fvtt-sector-0.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AlbertoJunior/RPG-fvtt-sector-0/issues"
+  },
+  "homepage": "https://github.com/AlbertoJunior/RPG-fvtt-sector-0#readme",
+  "devDependencies": {
+    "vitest": "^4.1.10"
+  }
+}

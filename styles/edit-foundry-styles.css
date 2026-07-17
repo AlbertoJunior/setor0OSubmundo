@@ -128,7 +128,7 @@ h4.divider {
 }
 
 .combat-sidebar li.combatant .roll {
-  background: url(../icons/d10.png) no-repeat 50% 50%;
+  background: url(../icons/d10.webp) no-repeat 50% 50%;
   background-size: 32px;
   transition: background-size 0.2s ease-in-out;
 }
@@ -178,7 +178,7 @@ h4.divider {
 
 /* #region MESSAGES CHAT */
 #chat-message {
-  border: 2px solid var(--primary-color-alpha);
+  border: var(--border-medium) solid var(--primary-color-alpha);
   --input-placeholder-color: var(--primary-color);
 }
 
@@ -192,8 +192,7 @@ h4.divider {
 }
 
 #chat-controls {
-  min-height: 36px;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   column-gap: 4px;
 }
@@ -216,11 +215,11 @@ h4.divider {
 .chat-message {
   margin-inline: 0px;
   margin-block: 6px;
-  background: var(--secondary-color-alpha-50);
+  background: var(--secondary-color-alpha);
 }
 
 .chat-message.whisper {
-  background: var(--whisper-color-alpha-50);
+  background: var(--whisper-color-alpha);
 }
 
 .chat-message.blind {
@@ -300,6 +299,10 @@ h4.divider {
 
 .placeable-hud .control-icon:focus {
   border-color: var(--primary-color);
+}
+
+#prosemirror-dropdown {
+  z-index: var(--z-index-dropdown);
 }
 
 /* #endregion */

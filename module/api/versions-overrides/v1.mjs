@@ -1,7 +1,7 @@
 import { Setor0BaseSheet } from "../../base/sheet/Setor0BaseSheet.mjs";
 import { SYSTEM_CLASS_CSS, SYSTEM_CLASS_DARK_CSS, SYSTEM_CLASS_DIALOG_CSS } from "../../constants.mjs";
 import { HtmlJsUtils } from "../../utils/html-js-utils.mjs";
-import { onArrayRemove } from "../../utils/utils.mjs";
+import { onArrayRemove, normalizeArray } from "../../utils/utils.mjs";
 import { createA } from "../../creators/element/element-creator-jscript.mjs";
 
 const VERSION_NAME = 'S0-V1';
@@ -9,16 +9,15 @@ const VERSION_NAME = 'S0-V1';
 class S0DialogV1 extends Dialog {
   static get defaultOptions() {
     const options = super.defaultOptions;
-    return {
-      ...options,
-      classes: [
-        ...(options.classes || []),
-        SYSTEM_CLASS_CSS,
-        SYSTEM_CLASS_DARK_CSS,
-        SYSTEM_CLASS_DIALOG_CSS,
-        VERSION_NAME,
-      ]
-    };
+    const classes = normalizeArray([
+      ...(options?.classes || []),
+      SYSTEM_CLASS_CSS,
+      SYSTEM_CLASS_DARK_CSS,
+      SYSTEM_CLASS_DIALOG_CSS,
+      VERSION_NAME,
+    ]);
+    options.classes = classes;
+    return options;
   }
 
   submit(button, event) {
@@ -102,25 +101,61 @@ class S0DialogV1 extends Dialog {
 export const v1Overrides = Object.freeze({
   VersionName: VERSION_NAME,
   Sheets: foundry.appv1.sheets,
-  makeClass,
+  makeSheetClass,
   createDialog,
 });
 
-function makeClass(BaseClass) {
+function makeSheetClass(BaseClass) {
   const name = BaseClass.name;
 
   const Cls = {
     [name]: class extends BaseClass {
       static get defaultOptions() {
         const options = super.defaultOptions;
+        const config = this.SHEET_CONFIG || {};
+
+        let baseTemplate = options.template;
+        if (config.templates && config.templates.length > 0) {
+          baseTemplate = config.templates[0].template;
+        }
+
+        const classes = normalizeArray([
+          ...(options?.classes || []),
+          ...(config?.classes || []),
+          SYSTEM_CLASS_CSS,
+          VERSION_NAME,
+        ]);
+
         return {
           ...options,
-          classes: [
-            ...(options.classes || []),
-            SYSTEM_CLASS_CSS,
-            VERSION_NAME,
-          ]
+          classes: classes,
+          width: config.width || options.width,
+          height: config.height || options.height,
+          resizable: config.resizable ?? options.resizable,
+          template: baseTemplate
         };
+      }
+
+      get template() {
+        const config = this.constructor.SHEET_CONFIG;
+        if (config && config.templates) {
+          const doc = this.document || this.item || this.actor;
+          const type = doc?.type?.toLowerCase();
+
+          if (type) {
+            const match = config.templates.find(t => t.name === type);
+            if (match) return match.template;
+          }
+
+          const defMatch = config.templates.find(t => t.name === 'default');
+          if (defMatch) return defMatch.template;
+
+          if (config.templates.length > 0) {
+            return config.templates[0].template;
+          }
+        }
+
+        return super.template;
       }
 
       activateListeners(html) {
@@ -143,15 +178,22 @@ function makeClass(BaseClass) {
 
 async function createDialog(data, options) {
   const {
+    classes,
     title,
     header,
     content,
-    buttons = [],
-    minimizable = true,
-    resizable = false,
-    render = (html, renderedDialog, window) => { },
-    onClose = () => { }
+    buttons,
+    minimizable,
+    resizable,
+    render,
+    onClose
   } = data;
+
+  if (classes.length > 0) {
+    const optionsClasses = options?.classes ?? [];
+    const dialogDefaultClasses = S0DialogV1.defaultOptions.classes;
+    options.classes = normalizeArray([...optionsClasses, ...classes, ...dialogDefaultClasses]);
+  }
 
   const parsedButtons = parseButtons(buttons);
 
@@ -224,7 +266,8 @@ function parseButtons(buttons) {
       class: Array.isArray(bt.class) ? bt.class : [],
       closeDialog: bt.closeDialog,
       callback: (dialog, html, event) => {
-        bt.onClick?.(html, dialog);
+        const element = html instanceof HTMLElement ? html : html[0];
+        bt.onClick?.(element, dialog);
       }
     }
     if (bt.default == true) {

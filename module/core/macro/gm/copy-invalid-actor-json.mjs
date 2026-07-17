@@ -1,10 +1,11 @@
-import { SYSTEM_FLAGS, SYSTEM_ID } from "../../../constants.mjs";
+import { SYSTEM_ID } from "../../../constants.mjs";
+import { SystemFlags } from "../../../enums/flags-enums.mjs";
 
 export const getInvalidActorJsonMacroData = {
   flags: {
     [SYSTEM_ID]: {
-      [SYSTEM_FLAGS.SOURCE_ID]: '1002',
-      [SYSTEM_FLAGS.ROLE]: 'gm',
+      [SystemFlags.SOURCE.ID]: '1002',
+      [SystemFlags.ROLE.ROLE]: SystemFlags.ROLE.GM,
     }
   },
   name: "Pegar Json de Ator com erro",

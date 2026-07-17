@@ -1,8 +1,10 @@
 import { SYSTEM_ID } from "../constants.mjs";
 import { CharacteristicType } from "../enums/characteristic-enums.mjs";
 import { SuperEquipmentParticularityType } from "../enums/equipment-enums.mjs";
-import { ChangeField } from "../field/change-field.mjs";
-import { SuperEquipmentTraitField } from "../field/equipment-field.mjs";
+import { StandardEffectChangeField } from "../data/field/effect-fields.mjs";
+import { SuperEquipmentTraitField } from "../data/field/equipment-field.mjs";
+import { TraitType } from "../enums/trait-enums.mjs";
+import { FoundryApi } from "../api/foundry-api.mjs";
 
 export class SuperEquipmentTraitRepository {
   static #goodTrait = [
@@ -14,7 +16,7 @@ export class SuperEquipmentTraitRepository {
       description: 'Para alguma Habilidade não combativa.',
       particularity: {
         type: SuperEquipmentParticularityType.SKILL,
-        change: ChangeField.toJson({ value: 1 }),
+        change: StandardEffectChangeField.toJson({ value: 1 }),
       }
     }),
     SuperEquipmentTraitField.toJson({
@@ -68,6 +70,18 @@ export class SuperEquipmentTraitRepository {
       cost: 1,
       limit: 1,
       description: 'Funciona como uma prótese.'
+    }),
+    SuperEquipmentTraitField.toJson({
+      id: 'good80',
+      name: '+2 Pontos de Movimento',
+      cost: 1,
+      limit: 2,
+      description: 'Aumenta em 2 os Pontos de Movimento.',
+      particularity: {
+        type: SuperEquipmentParticularityType.FIXED,
+        description: '+2 Pontos de Movimento',
+        change: StandardEffectChangeField.toJson({ key: CharacteristicType.BONUS.PM.system, value: 2 }),
+      }
     }),
     SuperEquipmentTraitField.toJson({
       id: 'good9',
@@ -142,7 +156,7 @@ export class SuperEquipmentTraitRepository {
       description: 'Temporariamente aumenta em 2 um Atributo escolhido.',
       particularity: {
         type: SuperEquipmentParticularityType.ATTRIBUTE,
-        change: ChangeField.toJson({ value: 2 }),
+        change: StandardEffectChangeField.toJson({ value: 2 }),
       }
     }),
     SuperEquipmentTraitField.toJson({
@@ -235,7 +249,7 @@ export class SuperEquipmentTraitRepository {
       particularity: {
         type: SuperEquipmentParticularityType.FIXED,
         description: '-2 no Ataque (Corpo-a-Corpo)',
-        change: ChangeField.toJson({ key: CharacteristicType.BONUS.OFENSIVE_MELEE.system, value: -2 }),
+        change: StandardEffectChangeField.toJson({ key: CharacteristicType.BONUS.OFENSIVE_MELEE.system, value: -2 }),
       }
     }),
     SuperEquipmentTraitField.toJson({
@@ -247,7 +261,7 @@ export class SuperEquipmentTraitRepository {
       particularity: {
         type: SuperEquipmentParticularityType.FIXED,
         description: '-2 no Ataque (Armas de Projeção)',
-        change: ChangeField.toJson({ key: CharacteristicType.BONUS.OFENSIVE_PROJECTILE.system, value: -2 }),
+        change: StandardEffectChangeField.toJson({ key: CharacteristicType.BONUS.OFENSIVE_PROJECTILE.system, value: -2 }),
       }
     }),
     SuperEquipmentTraitField.toJson({
@@ -259,7 +273,7 @@ export class SuperEquipmentTraitRepository {
       particularity: {
         type: SuperEquipmentParticularityType.FIXED,
         description: '-2 na Defesa',
-        change: ChangeField.toJson({ key: CharacteristicType.BONUS.DEFENSIVE.system, value: -2 }),
+        change: StandardEffectChangeField.toJson({ key: CharacteristicType.BONUS.DEFENSIVE.system, value: -2 }),
       }
     }),
     SuperEquipmentTraitField.toJson({
@@ -306,7 +320,7 @@ export class SuperEquipmentTraitRepository {
       particularity: {
         type: SuperEquipmentParticularityType.FIXED,
         description: '-4 no Ataque (Corpo-a-Corpo)',
-        change: ChangeField.toJson({ key: CharacteristicType.BONUS.OFENSIVE_MELEE.system, value: -4 }),
+        change: StandardEffectChangeField.toJson({ key: CharacteristicType.BONUS.OFENSIVE_MELEE.system, value: -4 }),
       }
     }),
     SuperEquipmentTraitField.toJson({
@@ -318,7 +332,7 @@ export class SuperEquipmentTraitRepository {
       particularity: {
         type: SuperEquipmentParticularityType.FIXED,
         description: '-4 no Ataque (Armas de Projeção)',
-        change: ChangeField.toJson({ key: CharacteristicType.BONUS.OFENSIVE_PROJECTILE.system, value: -4 }),
+        change: StandardEffectChangeField.toJson({ key: CharacteristicType.BONUS.OFENSIVE_PROJECTILE.system, value: -4 }),
       }
     }),
     SuperEquipmentTraitField.toJson({
@@ -330,7 +344,7 @@ export class SuperEquipmentTraitRepository {
       particularity: {
         type: SuperEquipmentParticularityType.FIXED,
         description: '-4 na Defesa',
-        change: ChangeField.toJson({ key: CharacteristicType.BONUS.DEFENSIVE.system, value: -4 }),
+        change: StandardEffectChangeField.toJson({ key: CharacteristicType.BONUS.DEFENSIVE.system, value: -4 }),
       }
     }),
     SuperEquipmentTraitField.toJson({
@@ -377,44 +391,74 @@ export class SuperEquipmentTraitRepository {
       const { id, name, cost, limit, description, particularity, type } = item;
       const trait = { id, name, cost, limit, description, particularity };
 
-      if (type === 'good') {
+      if (type === TraitType.GOOD) {
         good.push(trait);
-      } else if (type === 'bad') {
+      } else if (type === TraitType.BAD) {
         bad.push(trait);
       }
     }
 
     SuperEquipmentTraitRepository.#loadedGoodFromPack = good;
     SuperEquipmentTraitRepository.#loadedBadFromPack = bad;
+    SuperEquipmentTraitRepository.#cachedGoodTraits = null;
+    SuperEquipmentTraitRepository.#cachedBadTraits = null;
+    SuperEquipmentTraitRepository.#cachedAllTraits = null;
+  }
+
+  static #cachedGoodTraits = null;
+  static #cachedBadTraits = null;
+  static #cachedAllTraits = null;
+
+  static #getGoodTraits() {
+    if (!this.#cachedGoodTraits) {
+      this.#cachedGoodTraits = [
+        ...SuperEquipmentTraitRepository.#goodTrait,
+        ...SuperEquipmentTraitRepository.#loadedGoodFromPack
+      ];
+    }
+    return this.#cachedGoodTraits;
+  }
+
+  static #getBadTraits() {
+    if (!this.#cachedBadTraits) {
+      this.#cachedBadTraits = [
+        ...SuperEquipmentTraitRepository.#badTrait,
+        ...SuperEquipmentTraitRepository.#loadedBadFromPack
+      ];
+    }
+    return this.#cachedBadTraits;
   }
 
   static getGoodTraits() {
-    return [
-      ...SuperEquipmentTraitRepository.#goodTrait,
-      ...SuperEquipmentTraitRepository.#loadedGoodFromPack
-    ];
+    return FoundryApi.deepClone(this.#getGoodTraits());
   }
 
   static getBadTraits() {
-    return [
-      ...SuperEquipmentTraitRepository.#badTrait,
-      ...SuperEquipmentTraitRepository.#loadedBadFromPack
-    ];
+    return FoundryApi.deepClone(this.#getBadTraits());
+  }
+
+  static #getAllTraitsCache() {
+    if (!this.#cachedAllTraits) {
+      this.#cachedAllTraits = [
+        ...this.#getGoodTraits(),
+        ...this.#getBadTraits(),
+      ];
+    }
+    return this.#cachedAllTraits;
   }
 
   static getItemsByType(type) {
-    const items = type === 'good' ? this.getGoodTraits() : this.getBadTraits();
-    return items.sort((a, b) => a.cost - b.cost || a.name.localeCompare(b.name));
+    const items = type === TraitType.GOOD ? this.#getGoodTraits() : this.#getBadTraits();
+    return FoundryApi.deepClone(items.sort((a, b) => a.cost - b.cost || a.name.localeCompare(b.name)));
   }
 
   static getItemByTypeAndId(type, traitId) {
-    return this.getItemsByType(type).find(element => element.id == traitId);
+    const items = type === TraitType.GOOD ? this.#getGoodTraits() : this.#getBadTraits();
+    const item = items.find(element => element.id == traitId);
+    return item ? FoundryApi.deepClone(item) : undefined;
   }
 
   static getTraitsNeedActivate() {
-    return [
-      ...this.getGoodTraits(),
-      ...this.getBadTraits(),
-    ].filter(trait => trait.need_activate);
+    return FoundryApi.deepClone(this.#getAllTraitsCache().filter(trait => trait.need_activate));
   }
 }

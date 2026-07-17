@@ -1,3 +1,4 @@
+import { FoundryApi } from "../api/foundry-api.mjs";
 import { CharacteristicType } from "../enums/characteristic-enums.mjs";
 
 export class AttributeRepository {
@@ -11,6 +12,6 @@ export class AttributeRepository {
   ];
 
   static getItems() {
-    return [...AttributeRepository.#characteristics];
+    return FoundryApi.deepClone(AttributeRepository.#characteristics);
   }
 }

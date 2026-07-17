@@ -1,6 +1,10 @@
 import { SYSTEM_ID } from "../constants.mjs";
 import { BaseActorCharacteristicType, CharacteristicType } from "../enums/characteristic-enums.mjs";
 import { EffectChangeValueType } from "../enums/enhancement-enums.mjs";
+import { TraitUtils } from "../core/trait/trait-utils.mjs";
+import { localize } from "../utils/utils.mjs";
+import { TraitType } from "../enums/trait-enums.mjs";
+import { FoundryApi } from "../api/foundry-api.mjs";
 
 export class TraitRepository {
   static #goodTrait = [
@@ -206,6 +210,12 @@ export class TraitRepository {
       name: 'Quatro-braços',
       xp: 12,
       description: 'De alguma forma estranha, seu corpo reagiu bem à ideia de operar 4 braços simultaneamente; mesmo que estes não respondam com a mesma agilidade que seus braços originais, são totalmente funcionais. A iniciativa deles é equivalente à metade da sua e você pode usá-los para tudo o que seus outros membros idênticos conseguiriam fazer, além de ganhar +4 dados (2 para cada) para usar os braços extras em qualquer teste.<br>Eles podem ser utilizados em combate, possuindo seu próprio turno em que podem realizar ou uma ação Ofensiva, ou Defensiva. Estes braços possuem 4 dados para realizar a ação.'
+    },
+    {
+      id: '30',
+      name: 'Primor',
+      xp: 12,
+      description: 'Seu corpo e sua mente foram lapidados ao mais alto grau de excelência, alcançando um estado de perfeição raramente visto, mesmo entre os maiores prodígios do Setor 0. Ao adquirir este Traço, você aumenta em 1 a quantidade máxima de Atributos que podem alcançar o nível 6, somando-se ao limite natural da sua Morfologia. Este Traço não concede pontos automaticamente, mas permite que você evolua um Atributo adicional até o nível 6 futuramente.'
     },
   ];
 
@@ -455,7 +465,7 @@ export class TraitRepository {
     },
     {
       id: '66',
-      name: 'Incapaz de acessar a Rede',
+      name: 'Dificuldade de acessar a Rede',
       xp: 4,
       description: 'Sua mente não consegue transpor a barreira da <i>Transferência</i> de consciência para a <i>Rede</i> e, sempre que tentava, acabava por ser um evento traumático. Você não pode acessar a Rede, a menos que seja bem-sucedido num teste de Consciência + Quietude (Dificuldade 8).'
     },
@@ -550,8 +560,8 @@ export class TraitRepository {
       description: 'As melhorias que você tanto buscou para o seu corpo se mostraram um pesadelo e sofrimento. Talvez as peças que tenha utilizado não eram as melhores ou a combinação de sistemas distintos não funcionou bem, pode ser até que tenham implantado de forma errada; infelizmente, nada disso importa agora, pois as únicas coisas que você consegue pensar são nos efeitos colaterais que seus Aprimoramentos lhe causam.<br>Um MedTec habilidoso pode ser capaz de fazer algo para ajudar, se tiver uma oportunidade de te operar com tempo suficiente para trabalhar com calma e precisão. Se alguém puder consertá-los, você poderá anular este traço e devolver a XP recebida.<br>Seu núcleo não suporta os Aprimoramentos conectados a ele, esquentando facilmente e lhe deixando inconsciente com frequência. Diminua em 1 a quantia máxima de <i>Sobrecarga</i> suportada, totalizando 4.',
       effects: [
         {
-          key: CharacteristicType.OVERLOAD.system,
-          value: -11,
+          key: CharacteristicType.BONUS.OVERLOAD_LIMIT.system,
+          value: -1,
           mode: CONST.ACTIVE_EFFECT_MODES.ADD,
           typeOfValue: EffectChangeValueType.FIXED
         },
@@ -561,6 +571,7 @@ export class TraitRepository {
 
   static #loadedGoodFromPack = [];
   static #loadedBadFromPack = [];
+  static #traitEffectsOptionsMapCache = null;
 
   static async _loadFromPack() {
     const compendium = (await game.packs.get(`${SYSTEM_ID}.traits`)?.getDocuments());
@@ -569,46 +580,104 @@ export class TraitRepository {
         const convertedItem = {
           id: item._id,
           name: item.name,
-          xp: item.system.xp,
-          description: item.system.description
+          xp: TraitUtils.getXp(item),
+          description: TraitUtils.getDescription(item),
+          type: TraitUtils.getType(item)
         };
 
-        if (item.haveParticularity) {
-          convertedItem[particularity] = '';
+        if (TraitUtils.getHaveParticularity(item)) {
+          convertedItem['particularity'] = '';
         }
 
-        if (item.requirement && item.requirement !== '') {
-          convertedItem[requirement] = item.requirement;
+        const requirement = TraitUtils.getRequirement(item);
+        if (requirement && requirement !== '') {
+          convertedItem['requirement'] = requirement;
+        }
+
+        const morph = TraitUtils.getMorph(item);
+        if (morph && morph !== '') {
+          convertedItem['morph'] = morph;
+        }
+
+        const effects = TraitUtils.getEffects(item);
+        if (effects.length > 0) {
+          convertedItem['effects'] = [...effects];
         }
 
         return convertedItem;
       });
 
-      TraitRepository.#loadedGoodFromPack = allTraits.filter(item => item.type == 'good')
-      TraitRepository.#loadedBadFromPack = allTraits.filter(item => item.type == 'bad')
+      TraitRepository.#loadedGoodFromPack = allTraits.filter(item => item.type === TraitType.GOOD);
+      TraitRepository.#loadedBadFromPack = allTraits.filter(item => item.type === TraitType.BAD);
+      TraitRepository.#cachedGoodTraits = null;
+      TraitRepository.#cachedBadTraits = null;
     }
   }
 
+  static #cachedGoodTraits = null;
+  static #cachedBadTraits = null;
+
+  static #getGoodTraits() {
+    if (!this.#cachedGoodTraits) {
+      this.#cachedGoodTraits = [
+        ...TraitRepository.#goodTrait,
+        ...TraitRepository.#loadedGoodFromPack
+      ];
+    }
+    return this.#cachedGoodTraits;
+  }
+
+  static #getBadTraits() {
+    if (!this.#cachedBadTraits) {
+      this.#cachedBadTraits = [
+        ...TraitRepository.#badTrait,
+        ...TraitRepository.#loadedBadFromPack
+      ];
+    }
+    return this.#cachedBadTraits;
+  }
+
   static getGoodTraits() {
-    return [
-      ...TraitRepository.#goodTrait,
-      ...TraitRepository.#loadedGoodFromPack
-    ];
+    return FoundryApi.deepClone(this.#getGoodTraits());
   }
 
   static getBadTraits() {
-    return [
-      ...TraitRepository.#badTrait,
-      ...TraitRepository.#loadedBadFromPack
-    ];
+    return FoundryApi.deepClone(this.#getBadTraits());
   }
 
   static getItemsByType(type) {
-    const items = type === 'good' ? this.getGoodTraits() : this.getBadTraits();
-    return items.sort((a, b) => a.xp - b.xp || a.name.localeCompare(b.name));
+    const items = type === TraitType.GOOD ? this.#getGoodTraits() : this.#getBadTraits();
+    return FoundryApi.deepClone(items.sort((a, b) => a.xp - b.xp || a.name.localeCompare(b.name)));
   }
 
   static getItemByTypeAndId(type, traitId) {
-    return this.getItemsByType(type).find(element => element.id == traitId);
+    const items = type === TraitType.GOOD ? this.#getGoodTraits() : this.#getBadTraits();
+    const item = items.find(element => element.id == traitId);
+    return item ? FoundryApi.deepClone(item) : undefined;
+  }
+
+  static getBonusOptionsMap() {
+    if (TraitRepository.#traitEffectsOptionsMapCache)
+      return TraitRepository.#traitEffectsOptionsMapCache;
+
+    TraitRepository.#traitEffectsOptionsMapCache = {};
+    for (const characteristicCategoryKey in CharacteristicType.BONUS) {
+      const category = CharacteristicType.BONUS[characteristicCategoryKey];
+      if (typeof category !== 'object' || category === null) continue;
+
+      let hasSubCategories = false;
+      for (const characteristicSubCategoryKey in category) {
+        const subCategory = category[characteristicSubCategoryKey];
+        if (typeof subCategory === 'object' && subCategory !== null && subCategory.system) {
+          TraitRepository.#traitEffectsOptionsMapCache[subCategory.system] = localize(`${subCategory.label || subCategory.id}`);
+          hasSubCategories = true;
+        }
+      }
+
+      if (!hasSubCategories && category.system) {
+        TraitRepository.#traitEffectsOptionsMapCache[category.system] = localize(`${category.label || category.id}`);
+      }
+    }
+    return TraitRepository.#traitEffectsOptionsMapCache;
   }
 }

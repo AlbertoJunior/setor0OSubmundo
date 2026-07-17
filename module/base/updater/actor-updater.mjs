@@ -10,7 +10,7 @@ export class ActorUpdater {
     params.forEach(item => {
       const verifiedSystemCharacteristic = item.systemCharacteristic.system ? item.systemCharacteristic.system : item.systemCharacteristic;
 
-      if (getObject(actor, verifiedSystemCharacteristic) == undefined) {
+      if (getObject(actor, verifiedSystemCharacteristic) === undefined) {
         console.warn(`-> [${verifiedSystemCharacteristic}] não existe, impossível atualizar o Actor`);
       } else {
         keysToUpdate[verifiedSystemCharacteristic] = item.value;
@@ -25,11 +25,11 @@ export class ActorUpdater {
   }
 
   static async addDocuments(actor, itemsData = []) {
-    await actor.createEmbeddedDocuments("Item", itemsData);
+    return await actor.createEmbeddedDocuments("Item", itemsData);
   }
 
   static async removeDocuments(actor, itemsId = []) {
-    await actor.deleteEmbeddedDocuments("Item", itemsId);
+    return await actor.deleteEmbeddedDocuments("Item", itemsId);
   }
 
   static async updateDocuments(actor, itemUpdatedData = []) {

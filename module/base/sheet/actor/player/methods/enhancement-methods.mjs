@@ -1,6 +1,6 @@
 import { gameLocalize, getObject, localize, localizeFormat } from "../../../../../utils/utils.mjs";
 import { ChatCreator } from "../../../../../utils/chat-creator.mjs";
-import { ActorEnhancementField } from "../../../../../field/actor-fields.mjs";
+import { ActorEnhancementField } from "../../../../../data/field/actor-fields.mjs";
 import { EnhancementRepository } from "../../../../../repository/enhancement-repository.mjs";
 import { ActorUpdater } from "../../../../updater/actor-updater.mjs";
 import { EnhancementUtils } from "../../../../../core/enhancement/enhancement-utils.mjs";
@@ -56,9 +56,12 @@ async function updateActorEnhancement(currentTarget, actor) {
   const enhancementOnSlotKey = ActorUtils.getCharacteristicEnhancementSlot(currentTarget.dataset.itemId);
   const enhancementOnSlot = getObject(actor, enhancementOnSlotKey);
 
-  const enhancementsIds = ActorUtils.getAllEnhancements(actor).some(enhancement => enhancement.id === enhancementId);
-  if (enhancementId !== '' && enhancementsIds) {
-    NotificationsUtils.error(localizeFormat('Aprimoramento.Mensagens.Ja_Possui_Aprimoramento', { aprimoramento: enhancementText }));
+  const originalEnhancement = EnhancementRepository.getEnhancementById(enhancementId);
+  const maximumAllowed = originalEnhancement?.maximumAllowed ?? 1;
+
+  const enhancementsIds = ActorUtils.getAllEnhancements(actor).filter(enhancement => enhancement.id === enhancementId);
+  if (enhancementId !== '' && enhancementsIds.length >= maximumAllowed) {
+    NotificationsUtils.warning(localizeFormat('Aprimoramento.Mensagens.Ja_Possui_Aprimoramento', { aprimoramento: enhancementText }));
 
     const oldEnhancement = EnhancementRepository.getEnhancementById(enhancementOnSlot?.id);
     if (!oldEnhancement) {

@@ -55,7 +55,7 @@ export class EnhancementDialog {
           }
         },
       },
-      { width: 480 }
+      { width: 440 }
     );
   }
 

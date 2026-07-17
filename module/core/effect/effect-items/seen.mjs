@@ -1,3 +1,4 @@
+import { StandardEffectChangeField } from "../../../data/field/effect-fields.mjs";
 import { COLORS, ICONS_PATH } from "../../../constants.mjs";
 import { ActiveEffectsFlags, ActiveEffectsOriginTypes, ActiveEffectsTypes } from "../../../enums/active-effects-enums.mjs";
 import { EffectChangeValueType } from "../../../enums/enhancement-enums.mjs";
@@ -13,14 +14,14 @@ const seen = ActiveEffectsUtils.createEffectData({
   duration: { startRound: 0, rounds: 99 },
   tint: COLORS.BASE.yellow,
   changes: [
-    {
+    StandardEffectChangeField.toJson({
       key: ActiveEffectsUtils.KEYS.TINT_TOKEN,
       mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
       value: "#55C8FA",
       otherValue: "#55C8FA",
       typeOfValue: EffectChangeValueType.OTHER_VALUE,
       priority: 20
-    },
+    }),
   ],
   flags: {
     [ActiveEffectsFlags.ORIGIN_ID]: id,

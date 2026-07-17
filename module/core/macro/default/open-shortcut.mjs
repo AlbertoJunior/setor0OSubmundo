@@ -1,11 +1,12 @@
-import { SYSTEM_FLAGS, SYSTEM_ID } from "../../../constants.mjs";
+import { SYSTEM_ID } from "../../../constants.mjs";
+import { SystemFlags } from "../../../enums/flags-enums.mjs";
 import { verifyAndReturnActor, verifyAndReturnSelectedToken } from "../commands/macro-utils-commands.mjs";
 
 export const openShortcutMacroData = {
   flags: {
     [SYSTEM_ID]: {
-      [SYSTEM_FLAGS.SOURCE_ID]: '2',
-      [SYSTEM_FLAGS.ROLE]: 'user',
+      [SystemFlags.SOURCE.ID]: '2',
+      [SystemFlags.ROLE.ROLE]: SystemFlags.ROLE.USER,
     }
   },
   name: "Abrir Atalhos",
@@ -13,11 +14,12 @@ export const openShortcutMacroData = {
     default: CONST.USER_ROLES.PLAYER
   },
   command: `
-const targetPage = 7;
 ${verifyAndReturnSelectedToken}
 ${verifyAndReturnActor}
 actor.sheet.render(true);
 setTimeout(() => {
+  const coreLevel = setor0OSubmundo.Utils.getObject(actor, setor0OSubmundo.Enums.CharacteristicType.CORE) || 0;
+  const targetPage = coreLevel > 0 ? 7 : 6;
   if (actor.sheet.currentPage !== undefined) {
     actor.sheet.currentPage = targetPage;
     actor.sheet.render(false);

@@ -3,11 +3,13 @@ import { createApplication } from "./create-application.mjs";
 
 const ApplicationV1 = createApplication("v1");
 const ApplicationV2 = createApplication("v2", ["v1"]);
+const ApplicationV3 = createApplication("v3", ["v2", "v1"]);
 
 const Versions = {
   current: Object.freeze(ApplicationV2),
   v1: Object.freeze(ApplicationV1),
   v2: Object.freeze(ApplicationV2),
+  v3: Object.freeze(ApplicationV3),
 };
 
 const CurrentVersion = Object.freeze(Versions.current);
@@ -17,12 +19,12 @@ function convertToClass(BaseClass, application) {
     application = CurrentVersion;
   }
 
-  const cls = {
-    [BaseClass.name]: class extends BaseClass {
-      static VERSION = application.VersionName;
-    }
-  }[BaseClass.name];
-  return cls;
+  class DynamicClass extends BaseClass {
+    static VERSION = application.VersionName;
+  }
+  Object.defineProperty(DynamicClass, 'name', { value: BaseClass.name });
+
+  return DynamicClass;
 }
 
 export class FoundryApi {
@@ -34,13 +36,22 @@ export class FoundryApi {
   static Documents = CurrentVersion.Documents;
   static Apps = CurrentVersion.Apps;
   static SidebarTabs = CurrentVersion.SidebarTabs;
+  static Canvas = CurrentVersion.Canvas;
   static Placeables = CurrentVersion.Placeables;
   static Sheets = CurrentVersion.Sheets;
 
   static ChatMessage = Object.freeze({
     getWhisperRecipients: (recipient) => CurrentVersion.ChatMessage.getWhisperRecipients(recipient),
     getSpeaker: (actor) => {
-      const speaker = CurrentVersion.ChatMessage.getSpeaker({ actor: actor });
+      const alias = actor.isToken ? actor.token.name : actor.name;
+      const speakerOptions = { actor: actor, alias: alias };
+
+      if (actor.isToken) {
+        speakerOptions.token = actor.token;
+      }
+
+      const speaker = CurrentVersion.ChatMessage.getSpeaker(speakerOptions);
+
       if (!speaker.actor && actor._id) {
         speaker.actor = actor._id;
       }
@@ -57,15 +68,8 @@ export class FoundryApi {
   static ImagePopout = convertToClass(CurrentVersion.Apps.ImagePopout);
   static Tabs = convertToClass(CurrentVersion.Ux.Tabs);
 
-  //#region UPDATED 
-  // static ActorSheet = CurrentVersion.makeClass(this.Sheets.ActorSheet);
-  static ItemSheet = CurrentVersion.makeClass(this.Sheets.ItemSheet);
-  //#endregion
-
-  //#region NEED UPDATE to V2
-  static ActorSheet = ApplicationV1.makeClass(ApplicationV1.Sheets.ActorSheet);
-  // static ItemSheet = ApplicationV1.makeClass(ApplicationV1.Sheets.ItemSheet);
-  //#endregion
+  static ActorSheet = CurrentVersion.makeSheetClass(this.Sheets.ActorSheet);
+  static ItemSheet = CurrentVersion.makeSheetClass(this.Sheets.ItemSheet);
 
   static Actors = convertToClass(this.Collections.Actors);
   static Items = convertToClass(this.Collections.Items);
@@ -84,6 +88,16 @@ export class FoundryApi {
   static TokenCanvas = convertToClass(this.Placeables.Token);
 
   static FilePicker = convertToClass(this.Apps.FilePicker);
+
+  static TooltipManager = convertToClass(CurrentVersion.TooltipManager);
+
+  static formatActiveEffectData(data) {
+    const isV14 = game?.release?.generation >= 14 || (game?.version && this.Utils.isNewerVersion(game.version, "13.999"));
+    if (isV14) {
+      return Versions.v3.formatActiveEffectData(data);
+    }
+    return Versions.v2.formatActiveEffectData(data);
+  }
 
   static async renderTemplate(path, data) {
     return this.Handlebars.renderTemplate(path, data);
@@ -140,17 +154,34 @@ export class FoundryApi {
   }
 
   static async createDialog(
-    { title, header, content, buttons = [], minimizable = true, render = (html, renderedDialog, window) => { }, onClose = () => { } } = data,
+    data,
     options,
     forcedApplication,
   ) {
-    let application = forcedApplication ?? CurrentVersion;
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-    if (isSafari) {
-      application = ApplicationV1;
+    if (!data?.content) {
+      console.warn("[createDialog] 'content' is required");
+      return;
     }
 
-    return application.createDialog({ title, header, content, buttons, minimizable, render, onClose }, options);
+    const application = forcedApplication ?? CurrentVersion;
+
+    const {
+      icon = null,
+      classes = [],
+      title = "",
+      header,
+      content,
+      buttons = [],
+      minimizable = true,
+      resizable = false,
+      render = (html, renderedDialog, window) => { },
+      onClose = () => { }
+    } = data
+
+    return application.createDialog(
+      { icon, classes, title, header, content, buttons, minimizable, resizable, render, onClose },
+      options
+    );
   }
 
   static async deleteFoldersInWorld(folders) {
@@ -159,12 +190,30 @@ export class FoundryApi {
       for (const deletable of sorted) {
         try {
           await deletable.delete();
-        } catch (error) {
-
+        } catch (_) {
+          console.warn(`[deleteFoldersInWorld] Falha ao deletar pasta: ${deletable.name}`);
         }
       }
       return sorted.length;
     }
     return 0;
   }
+
+  /**
+   * Registra um TextEditor Enricher customizado no sistema.
+   * Na V12+, a callback deve retornar um HTMLElement (ex: um <a>).
+   * @param {RegExp} pattern A expressão regular para o matcher (ex: /@Traco\[(.*?)\]/g)
+   * @param {Function} enricherCallback A função que processa o RegExpMatchArray e retorna o elemento.
+   */
+  static registerCustomEnricher(pattern, enricherCallback) {
+    if (CONFIG.TextEditor && CONFIG.TextEditor.enrichers) {
+      CONFIG.TextEditor.enrichers.push({
+        pattern: pattern,
+        enricher: enricherCallback
+      });
+    } else {
+      console.warn("[FoundryApi] Não foi possível registrar Text Enrichers (API não suportada)");
+    }
+  }
+
 }

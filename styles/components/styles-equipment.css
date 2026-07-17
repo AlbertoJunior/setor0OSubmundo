@@ -1,0 +1,6 @@
+.S0-equipment-sheet {
+  overflow-y: scroll;
+  margin-left: 12px;
+  margin-right: 2px;
+  max-height: 80vh;
+}

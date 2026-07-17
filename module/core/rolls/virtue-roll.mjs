@@ -3,8 +3,9 @@ import { CoreRollMethods } from "./core-roll-methods.mjs";
 
 export class RollVirtue {
   static async roll(actor, params) {
-    const { virtue1, virtue2, bonus = 0, penalty = 0, automatic = 0 } = params;
+    const { virtue1, virtue2, bonus = 0, penalty = 0, automatic = 0, difficulty = 6 } = params;
 
+    const safeAutomatic = Number(automatic);
     const safeBonus = Number(bonus);
     const safePenalty = Number(penalty);
     const valueVirtue1 = ActorUtils.getVirtueValue(actor, virtue1);
@@ -13,6 +14,13 @@ export class RollVirtue {
     const diceAmount = valueVirtue1 + valueVirtue2 + safeBonus - safePenalty;
 
     const result = await CoreRollMethods.rollDice(diceAmount);
+
+    result.roll.options = {
+      difficulty: Number(difficulty),
+      automatic: safeAutomatic,
+      bonus: safeBonus,
+      penalty: safePenalty,
+    }
 
     const virtues = {
       virtue1: {
@@ -26,7 +34,7 @@ export class RollVirtue {
     }
 
     const modifiersInformations = {
-      automatic: Number(automatic),
+      automatic: safeAutomatic,
       bonus: safeBonus,
       penalty: safePenalty,
     }

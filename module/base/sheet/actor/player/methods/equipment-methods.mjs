@@ -89,6 +89,10 @@ class EquipmentHandleEvents {
         if (effects.length > 0) {
           ActiveEffectsUtils.addActorEffect(actor, effects);
         }
+
+        // Send substance properties to chat when used
+        const fakeEvent = { currentTarget: { dataset: { itemId: equipment.id } } };
+        this.handleChat(actor, fakeEvent);
       }
     });
   }

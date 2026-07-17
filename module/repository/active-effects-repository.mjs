@@ -69,9 +69,11 @@ export class ActiveEffectRepository {
   }
 
   static getItems() {
-    return [
-      ...this.#items,
-      ...this.#getFoundryDefaultEffects()
-    ].filter(Boolean);
+    return FoundryApi.deepClone(
+      [
+        ...this.#items,
+        ...this.#getFoundryDefaultEffects()
+      ].filter(Boolean)
+    );
   }
 }

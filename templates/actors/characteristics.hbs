@@ -2,21 +2,23 @@
   data-label="{{ localize 'S0.Caracteristicas' }}" data-icon="fas fa-person-dots-from-line">
   <ul>
     <li class="S0-container">
-      <h2> {{localize 'S0.Virtudes'}} </h2>
+      <h2> {{localize 'S0.Virtude.Virtudes'}} </h2>
       <div id="virtudesContainer" class="S0-container-3-fixed-column">
         {{#lett clickableClass=(operators 'ternary' editable 'S0-clickable' '')}}
         {{#each (fetchRepository 'virtue')}}
+        {{#lett level=(actorValues ../../actor 'virtue_level' id)}}
         <div class="S0-characteristic-container" id="{{id}}">
           <label>
             {{localize label}}
           </label>
 
           {{#forLoop 0 5}}
-          <div class="S0-characteristic {{../../clickableClass}}" data-action="characteristic" data-action-group="true"
+          <div class="S0-characteristic {{../../../clickableClass}} {{selectIfHave ../level indexPlus}}" data-action="characteristic" data-action-group="true"
             data-characteristic="virtudes">
           </div>
           {{/forLoop}}
         </div>
+        {{/lett}}
         {{/each}}
         {{/lett}}
       </div>
@@ -29,21 +31,23 @@
       <div id="fameContainer" class="S0-container-3-fixed-column">
         {{#lett clickableClass=(operators 'ternary' editable 'S0-clickable' '')}}
         {{#each (fetchRepository 'fame')}}
+        {{#lett level=(actorValues ../../actor 'raw_characteristic' ../../CharacteristicType.SIMPLE id)}}
         <div class="S0-characteristic-container" id="{{id}}">
           <label>
             {{localize label}}
           </label>
 
           {{#forLoop 1 maxLevel}}
-          <div class="S0-characteristic  {{../../clickableClass}}" data-action="characteristic" data-action-group="true"
-            data-characteristic="fama">
+          <div class="S0-characteristic  {{../../../clickableClass}} {{selectIfHave ../level index}}" data-action="characteristic"
+            data-action-group="true">
           </div>
           {{/forLoop}}
 
-          <div class="S0-characteristic S0-characteristic-6 {{../clickableClass}}" data-action="characteristic"
-            data-action-group="true" data-characteristic="fama">
+          <div class="S0-characteristic S0-characteristic-6 {{../../clickableClass}} {{selectIfHave level maxLevel}}" data-action="characteristic"
+            data-action-group="true">
           </div>
         </div>
+        {{/lett}}
         {{/each}}
         {{/lett}}
       </div>
@@ -51,26 +55,28 @@
 
     <li class="S0-container">
       <h2>
-        {{localize 'S0.Atributos'}}
+        {{localize 'S0.Atributos.Atributos'}}
       </h2>
       <div id="atributosContainer" class="S0-container-2-column">
         {{#lett clickableClass=(operators 'ternary' editable 'S0-clickable' '')}}
         {{#each (fetchRepository 'attribute')}}
+        {{#lett level=(actorValues ../../actor 'raw_characteristic' ../../CharacteristicType.ATTRIBUTES id)}}
         <div class="S0-characteristic-container" id="{{id}}">
           <label>
             {{localize label}}
           </label>
 
           {{#forLoop 0 5}}
-          <div class="S0-characteristic {{../../clickableClass}}" data-action="characteristic" data-action-group="true"
+          <div class="S0-characteristic {{../../../clickableClass}} {{selectIfHave ../level indexPlus}}" data-action="characteristic" data-action-group="true"
             data-characteristic="atributos">
           </div>
           {{/forLoop}}
 
-          <div class="S0-characteristic S0-characteristic-6 {{../clickableClass}}" data-action="characteristic"
+          <div class="S0-characteristic S0-characteristic-6 {{../../clickableClass}} {{selectIfHave level 6}}" data-action="characteristic"
             data-action-group="true" data-characteristic="atributos">
           </div>
         </div>
+        {{/lett}}
         {{/each}}
         {{/lett}}
       </div>
@@ -83,21 +89,23 @@
       <div id="skillsContainer" class="S0-container-2-column">
         {{#lett clickableClass=(operators 'ternary' editable 'S0-clickable' '')}}
         {{#each (fetchRepository 'ability')}}
+        {{#lett level=(actorValues ../../actor 'raw_characteristic' ../../CharacteristicType.SKILLS id)}}
         <div class="S0-characteristic-container" id="{{id}}">
           <label>
             {{localize label}}
           </label>
 
           {{#forLoop 0 5}}
-          <div class="S0-characteristic {{../../clickableClass}}" data-action="characteristic" data-action-group="true"
+          <div class="S0-characteristic {{../../../clickableClass}} {{selectIfHave ../level indexPlus}}" data-action="characteristic" data-action-group="true"
             data-characteristic="habilidades">
           </div>
           {{/forLoop}}
 
-          <div class="S0-characteristic S0-characteristic-6 {{../clickableClass}}" data-action="characteristic"
+          <div class="S0-characteristic S0-characteristic-6 {{../../clickableClass}} {{selectIfHave level 6}}" data-action="characteristic"
             data-action-group="true" data-characteristic="habilidades">
           </div>
         </div>
+        {{/lett}}
         {{/each}}
         {{/lett}}
       </div>
@@ -110,17 +118,19 @@
       <div id="repertorioContainer">
         {{#lett clickableClass=(operators 'ternary' editable 'S0-clickable' '')}}
         {{#each (fetchRepository 'repertory')}}
+        {{#lett level=(actorValues ../../actor 'raw_characteristic' ../../CharacteristicType.REPERTORY id)}}
         <div class="S0-characteristic-container" id="{{id}}">
           <label>
             {{localize label}}
           </label>
 
           {{#forLoop 0 5}}
-          <div class="S0-characteristic {{../../clickableClass}}" data-action="characteristic" data-action-group="true"
+          <div class="S0-characteristic {{../../../clickableClass}} {{selectIfHave ../level indexPlus}}" data-action="characteristic" data-action-group="true"
             data-characteristic="repertorio">
           </div>
           {{/forLoop}}
         </div>
+        {{/lett}}
         {{/each}}
         {{/lett}}
       </div>

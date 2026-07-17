@@ -12,6 +12,9 @@ import { menuHandleMethods } from "../../../../menu-default-methods.mjs";
 import { alliesHandleEvents, informantsHandleEvents } from "./network-methods.mjs"
 import { effectsHandleEvents } from "./effects-methods.mjs";
 import { characteristicOnClick } from "./characteristics-methods.mjs";
+import { handlerSpecialtyEvents } from "./specialty-methods.mjs";
+import { handlerNoteEvents } from "./note-methods.mjs";
+import { maneuverHandleEvents } from "./maneuver-methods.mjs";
 
 export class SheetMethods {
   static handleMethods = {
@@ -56,6 +59,9 @@ export class SheetMethods {
     equipment: handlerEquipmentEvents,
     allies: alliesHandleEvents,
     informants: informantsHandleEvents,
-    shortcuts: handlerShortcutEvents
+    specialties: handlerSpecialtyEvents,
+    notes: handlerNoteEvents,
+    shortcuts: handlerShortcutEvents,
+    maneuvers: maneuverHandleEvents
   }
 }

@@ -1,38 +1,37 @@
-<div class="S0-dialog">
-  <div class="S0-container">
-    <h4>{{name}}</h4>
-    <hr>
-
-    {{#if origin}}
-    <label style="display: block;"><strong>{{localize 'S0.Origem'}}:</strong> {{origin}}</label>
-    {{/if}}
-
-    {{#if originTypeLabel}}
-    <label style="display: block;"><strong>{{localize 'S0.Tipo'}}:</strong> {{originTypeLabel}}</label>
-    {{/if}}
-
+<div class="S0-dialog S0-container">
+  <h4>
     {{#if effectTypeLabel}}
-    <label style="display: block;"><strong>{{effectTypeLabel}}</strong></label>
+    <label>{{effectTypeLabel}}:</label>
     {{/if}}
+    <label class="S0-text-shadow-none">{{name}}</label>
+  </h4>
+  <hr>
 
-    {{#if disabled}}
-    <label style="display: block;"><strong>{{localize 'S0.Status'}}:</strong> {{localize 'S0.Inativo'}}</label>
-    {{/if}}
+  {{#if origin}}
+  <label class="S0-block"><strong>{{localize 'S0.Origem'}}:</strong> {{origin}}</label>
+  {{/if}}
 
-    {{#if description}}
-    <label style="display: block; font-weight: bold;">{{localize 'S0.Descricao'}}:</label>
-    <div class="S0-message-simple-text">
-      {{{description}}}
-    </div>
-    {{/if}}
+  {{#if originTypeLabel}}
+  <label class="S0-block"><strong>{{localize 'S0.Tipo'}}:</strong> {{originTypeLabel}}</label>
+  {{/if}}
 
-    {{#if hasChanges}}
-    <label style="display: block; font-weight: bold;">{{localize 'S0.Mudancas'}}:</label>
-    <ul style="margin: 2px 0; padding-left: 16px;">
-      {{#each changes}}
-      <li>{{this.label}}: {{this.value}}</li>
-      {{/each}}
-    </ul>
-    {{/if}}
+  {{#if disabled}}
+  <label class="S0-block"><strong>{{localize 'S0.Status'}}:</strong> {{localize 'S0.Inativo'}}</label>
+  {{/if}}
+
+  {{#if description}}
+  <label class="S0-block S0-font-bold">{{localize 'S0.Descricao'}}:</label>
+  <div class="S0-message-simple-text">
+    {{{description}}}
   </div>
+  {{/if}}
+
+  {{#if hasChanges}}
+  <label class="S0-block S0-font-bold">{{localize 'S0.Mudancas'}}:</label>
+  <ul class="S0-pl-16 S0-my-2 S0-mx-0">
+    {{#each changes}}
+    <li>{{this.label}}: {{this.value}}</li>
+    {{/each}}
+  </ul>
+  {{/if}}
 </div>

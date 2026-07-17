@@ -33,7 +33,15 @@ export class CombatUtils {
     if (existingCombatant) {
       await existingCombatant.update({ initiative: initiative });
     } else {
-      await this.#add(currentCombat, { token: token, actor: actor, hidden: hidden, initiative: initiative });
+      await this.#add(
+        currentCombat,
+        {
+          token: token,
+          actor: actor,
+          hidden: hidden,
+          initiative: initiative
+        }
+      );
     }
   }
 
