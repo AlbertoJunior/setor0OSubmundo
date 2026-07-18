@@ -21,10 +21,9 @@ export class TraitUpdater {
     const dataToUpdate = {};
     for (const { characteristic, value } of changes) {
       if (getObject(trait, characteristic) === undefined) {
-        console.warn(`-> [${characteristic}] não existe, impossível atualizar o Traço`);
-      } else {
-        dataToUpdate[characteristic] = value;
+        throw new Error(`Característica [${characteristic}] não existe no Traço, impossível atualizar.`);
       }
+      dataToUpdate[characteristic] = value;
     }
 
     if (Object.keys(dataToUpdate).length > 0) {

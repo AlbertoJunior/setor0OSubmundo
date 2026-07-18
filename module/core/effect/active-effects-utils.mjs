@@ -14,7 +14,6 @@ export class ActiveEffectsUtils {
   }
 
   static createEffectData(params) {
-    debugger
     const {
       id,
       name = "",

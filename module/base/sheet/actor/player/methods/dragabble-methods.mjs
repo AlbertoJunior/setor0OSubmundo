@@ -73,8 +73,7 @@ export class SheetActorDragabbleMethods {
 
     const item = await FoundryApi.Item.implementation.fromDropData(data);
     if (!item) {
-      console.warn("-> possível erro ao criar o Item");
-      return;
+      throw new Error("[DragabbleMethods] Falha ao resolver o Item a partir do evento de Drop.");
     }
 
     if (item.type !== ItemType.MANEUVER) {
@@ -172,14 +171,12 @@ export class SheetActorDragabbleMethods {
         const itemElement = evt.item.querySelector("[data-item-id]");
         const itemId = itemElement?.dataset?.itemId;
         if (!itemId) {
-          console.warn("-> possível erro ao pegar o id");
-          return;
+          throw new Error("[DragabbleMethods] Falha ao extrair ID do item no elemento HTML do drop.");
         }
 
         const equipment = ActorEquipmentUtils.getEquipmentById(actor, itemId);
         if (!equipment) {
-          console.warn("-> possível erro ao pegar o equipamento");
-          return
+          throw new Error(`[DragabbleMethods] Equipamento de ID [${itemId}] não encontrado no Ator durante o Sortable.`);
         }
 
         const origin = evt.from.id;
@@ -245,8 +242,7 @@ export class SheetActorDragabbleMethods {
       sourceItems = equipped;
       staticItems = unequipped;
     } else {
-      console.warn("-> possível erro ao pegar a fonte de onde saiu o item");
-      return;
+      throw new Error(`[DragabbleMethods] Origem do equipamento desconhecida durante a ordenação: [${originSource}]`);
     }
 
     const newOrder = Array.from(elementContainer.children)
@@ -277,7 +273,7 @@ export class SheetActorDragabbleMethods {
     } else if (originSource == 'equipped') {
       await ActorEquipmentUtils.unequip(actor, equipment);
     } else {
-      console.warn("-> possível erro ao pegar a fonte de onde saiu o item");
+      throw new Error(`[DragabbleMethods] Origem do equipamento desconhecida durante equipar/desequipar: [${originSource}]`);
     }
   }
 
@@ -311,8 +307,7 @@ export class SheetActorDragabbleMethods {
 
     const item = await FoundryApi.Item.implementation.fromDropData(data);
     if (!item) {
-      console.warn("-> possível erro ao criar o Item");
-      return;
+      throw new Error("[DragabbleMethods] Falha ao resolver o Equipamento a partir do evento de Drop.");
     }
 
     const itemData = ActorEquipmentUtils.createDataItem(item);
@@ -335,7 +330,6 @@ export class SheetActorDragabbleMethods {
 
     const actorCreated = await FoundryApi.Actor.implementation.fromDropData(data);
     if (!actorCreated || !characteristic) {
-      console.warn("-> possível erro ao criar o Actor ou na Characteristic");
       NotificationsUtils.warning(localize("Aviso.Erro.Nao_Pode_Adicionar_Personagem"));
       return;
     }

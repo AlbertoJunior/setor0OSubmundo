@@ -11,10 +11,9 @@ export class ActorUpdater {
       const verifiedSystemCharacteristic = item.systemCharacteristic.system ? item.systemCharacteristic.system : item.systemCharacteristic;
 
       if (getObject(actor, verifiedSystemCharacteristic) === undefined) {
-        console.warn(`-> [${verifiedSystemCharacteristic}] não existe, impossível atualizar o Actor`);
-      } else {
-        keysToUpdate[verifiedSystemCharacteristic] = item.value;
+        throw new Error(`Atributo ou característica [${verifiedSystemCharacteristic}] não existe no Ator, impossível atualizar.`);
       }
+      keysToUpdate[verifiedSystemCharacteristic] = item.value;
     });
 
     await actor.update(keysToUpdate);

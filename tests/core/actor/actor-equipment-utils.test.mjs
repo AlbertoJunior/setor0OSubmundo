@@ -4,7 +4,7 @@ import { EquipmentUpdater } from '../../../module/base/updater/equipment-updater
 import { EquipmentUtils } from '../../../module/core/equipment/equipment-utils.mjs';
 import { ActiveEffectsUtils } from '../../../module/core/effect/active-effects-utils.mjs';
 import * as utils from '../../../module/utils/utils.mjs';
-import { EquipmentCharacteristicType, EquipmentType } from '../../../module/enums/equipment-enums.mjs';
+import { EquipmentCharacteristicType } from '../../../module/enums/equipment-enums.mjs';
 
 vi.mock('../../../module/utils/utils.mjs', async (importOriginal) => {
   const actual = await importOriginal();
@@ -39,7 +39,7 @@ describe('ActorEquipmentUtils', () => {
   it('getEquippedItems', () => {
     vi.spyOn(ActorEquipmentUtils, 'getEquipments').mockReturnValue([{ id: 'i1' }, { id: 'i2' }]);
     utils.getObject.mockImplementation((item) => item.id === 'i1' ? true : false); // Apenas i1 está equipado
-    
+
     const items = ActorEquipmentUtils.getEquippedItems({});
     expect(items.length).toBe(1);
     expect(items[0].id).toBe('i1');

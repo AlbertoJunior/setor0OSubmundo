@@ -6,7 +6,6 @@ import { EnhancementRepository } from '../../../module/repository/enhancement-re
 import { CharacteristicType } from '../../../module/enums/characteristic-enums.mjs';
 
 // Usaremos spyOn em métodos isolados ao invés de mockar o arquivo de utils que possui dependências circulares.
-import * as utils from '../../../module/utils/utils.mjs';
 vi.mock('../../../module/utils/utils.mjs', async (importOriginal) => {
   const actual = await importOriginal();
   return {

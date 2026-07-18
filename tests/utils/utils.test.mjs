@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import * as utils from '../../module/utils/utils.mjs';
 
-
 describe('Utils', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -14,12 +13,12 @@ describe('Utils', () => {
     if (global.crypto) {
       vi.spyOn(global.crypto, 'randomUUID').mockReturnValue('12345678-1234-1234-1234-123456789abc');
     }
-    vi.spyOn(console, 'warn').mockImplementation(() => {});
-    vi.spyOn(console, 'table').mockImplementation(() => {});
-    vi.spyOn(console, 'log').mockImplementation(() => {});
-    vi.spyOn(console, 'error').mockImplementation(() => {});
-    vi.spyOn(console, 'groupCollapsed').mockImplementation(() => {});
-    vi.spyOn(console, 'groupEnd').mockImplementation(() => {});
+    vi.spyOn(console, 'warn').mockImplementation(() => { });
+    vi.spyOn(console, 'table').mockImplementation(() => { });
+    vi.spyOn(console, 'log').mockImplementation(() => { });
+    vi.spyOn(console, 'error').mockImplementation(() => { });
+    vi.spyOn(console, 'groupCollapsed').mockImplementation(() => { });
+    vi.spyOn(console, 'groupEnd').mockImplementation(() => { });
   });
 
   describe('String Formats', () => {
@@ -68,8 +67,8 @@ describe('Utils', () => {
 
     it('getObject', () => {
       const obj = { system: { hp: { value: 10 } }, name: 'Test' };
-      expect(utils.getObject(obj, { system: 'system.hp.value' })).toBe(10); 
-      
+      expect(utils.getObject(obj, { system: 'system.hp.value' })).toBe(10);
+
       const obj2 = { hp: { value: 5 } };
       expect(utils.getObject(obj2, 'hp.value')).toBe(5);
     });
@@ -97,7 +96,7 @@ describe('Utils', () => {
     it('randomId', () => {
       const id1 = utils.randomId();
       expect(id1).toBe('12345678123412341234123456789abc');
-      
+
       const id2 = utils.randomId(5);
       expect(id2).toBe('12345');
     });

@@ -22,10 +22,9 @@ export class EquipmentUpdater {
     const dataToUpdate = {};
     for (const { characteristic, value } of changes) {
       if (getObject(equipment, characteristic) === undefined) {
-        console.warn(`-> [${characteristic}] não existe, impossível atualizar o Equipamento`);
-      } else {
-        dataToUpdate[characteristic] = value;
+        throw new Error(`Característica [${characteristic}] não existe no Equipamento, impossível atualizar.`);
       }
+      dataToUpdate[characteristic] = value;
     }
 
     if (Object.keys(dataToUpdate).length > 0) {
@@ -39,8 +38,7 @@ export class EquipmentUpdater {
 
   static async updateOnActorEquipmentFlags(equipment, updates = []) {
     if (!equipment) {
-      console.warn(`[EquipmentUpdater] Equipamento não encontrado: ${equipment}`);
-      return;
+      throw new Error(`[EquipmentUpdater] Equipamento não fornecido ou inválido.`);
     }
 
     const flags = FoundryApi.deepClone(equipment.flags?.[SYSTEM_ID] || {});
@@ -62,8 +60,7 @@ export class EquipmentUpdater {
     for (const { equipmentId, flagsToUpdate } of equipmentsData) {
       const equipment = ActorEquipmentUtils.getEquipmentById(actor, equipmentId);
       if (!equipment) {
-        console.warn(`[EquipmentUpdater] Equipamento não encontrado: ${equipmentId}`);
-        continue;
+        throw new Error(`[EquipmentUpdater] Equipamento ID [${equipmentId}] não encontrado no Ator.`);
       }
 
       const existingFlags = FoundryApi.deepClone(equipment.flags?.[SYSTEM_ID] || {});

@@ -5,8 +5,6 @@ import { CombatUtils } from '../../module/core/combat/combat-utils.mjs';
 import { RollInitiative } from '../../module/core/rolls/initiative-roll.mjs';
 import { RollInitiativeMessageCreator } from '../../module/creators/message/initiative-roll.mjs';
 
-
-
 vi.mock('../../module/utils/chat-creator.mjs');
 vi.mock('../../module/core/combat/combat-utils.mjs');
 vi.mock('../../module/core/rolls/initiative-roll.mjs');
@@ -21,7 +19,7 @@ describe('DefaultActions', () => {
   it('processInitiativeRoll publico', async () => {
     const actor = {};
     const resultRoll = { total: 10, roll: {} };
-    
+
     RollInitiative.roll.mockResolvedValue(resultRoll);
     RollInitiativeMessageCreator.mountContent.mockResolvedValue('msgContent');
     ChatCreator.sendToChatTypeRoll.mockResolvedValue(true);
@@ -37,7 +35,7 @@ describe('DefaultActions', () => {
   it('processInitiativeRoll privado', async () => {
     const actor = {};
     const resultRoll = { total: 15, roll: {} };
-    
+
     RollInitiative.roll.mockResolvedValue(resultRoll);
     RollInitiativeMessageCreator.mountContent.mockResolvedValue('msgContent');
     ChatCreator.sendToChatTypeRoll.mockResolvedValue(true);

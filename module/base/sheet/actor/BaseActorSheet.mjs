@@ -1,4 +1,4 @@
-import { getObject, selectCharacteristic, TODO } from "../../../utils/utils.mjs";
+import { getObject, selectCharacteristic } from "../../../utils/utils.mjs";
 import { ActorEquipmentUtils } from "../../../core/actor/actor-equipment-utils.mjs";
 import { BaseActorCharacteristicType, CharacteristicType } from "../../../enums/characteristic-enums.mjs";
 import { EquipmentCharacteristicType } from "../../../enums/equipment-enums.mjs";
@@ -102,23 +102,17 @@ export class Setor0BaseActorSheet extends FoundryApi.ActorSheet {
     }
   }
 
-  static setupTabs(html, currentPage) {
-    TODO("esse método esta duplicado e existe apenas para fazer funcionar o dialog de PLAYER -> NPC, verificar forma de não precisar duplicar")
+  static setupTabs(html, currentPage, callback = null) {
     const group = "menu-tabs";
     const contentSelector = `.S0-nav-content`;
 
     HtmlJsUtils.setupTabs(html, group, contentSelector, currentPage - 1, (tab, index) => {
-      if (index !== -1) {
-        currentPage = index + 1;
-      }
+      if (callback) callback(tab, index);
     });
   }
 
   _setupAutoTabs(html) {
-    const group = "menu-tabs";
-    const contentSelector = `.S0-nav-content`;
-
-    HtmlJsUtils.setupTabs(html, group, contentSelector, this.currentPage - 1, (tab, index) => {
+    this.constructor.setupTabs(html, this.currentPage, (tab, index) => {
       if (index !== -1) {
         this.currentPage = index + 1;
       }
