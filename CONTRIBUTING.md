@@ -26,12 +26,13 @@ Isso significa que nem tudo pode ser modificado ou redistribuído livremente, ma
 
 ## ✅ Como contribuir (passo a passo)
 
-1. [Abra uma issue](https://github.com/AlbertoJunior/RPG-fvtt-sector-0/issues) com o que deseja relatar ou sugerir.
+1. [Abra uma issue](https://github.com/AlbertoJunior/setor0OSubmundo/issues) com o que deseja relatar ou sugerir.
 2. Aguarde o feedback. Se aprovado, você pode:
    - Enviar um pull request com a melhoria.
    - Ou continuar a discussão para alinhar melhor a proposta.
-3. Siga os padrões de código e mantenha o estilo do projeto.
-4. Sempre teste sua contribuição antes de enviar!
+3. Ao clonar o repositório, execute `npm install` na raiz para instalar as dependências necessárias (como o framework de testes).
+4. Siga os padrões de código e mantenha o estilo do projeto.
+5. Sempre teste sua contribuição (rodando os testes unitários locais com `npm test`) antes de enviar!
 
 ---
 
@@ -71,6 +72,12 @@ Se você pretende contribuir com o código, aqui estão alguns pontos importante
    * templates/ – Todos os elementos .hbs ou .html devem estar nessa pasta, separado em subpasta por tema.
 </details>
 
+<details>
+   <summary>tests</summary>
+
+   * tests/ – Contém os testes unitários do sistema e lógica de negócio.
+</details>
+
 ### Padrões e Boas Práticas (Arquitetura V13)
 O projeto segue as práticas de arquitetura `Clean Code` mantendo a separação de responsabilidades e, fundamentalmente, aderindo as seguintes regras **obrigatórias**, em função da transição contínua para o Foundry V13:
 
@@ -100,12 +107,17 @@ Priorizamos a performance e a arquitetura visual na migração para o Foundry V1
 - **ApplicationV2 e Prototype Pollution**: Componentes migrados para o Application V2 do v13 **nunca** devem utilizar propriedades iterativas nativas como `foundry.utils.mergeObject(super.DEFAULT_OPTIONS)` diretamente nos Object Filters ou getters se isso gerar mutação, pois isso causa poluição (prototype pollution) nas classes bases do Foundry. 
 
 #### 3. Registros de Conhecimento, Agentes e Histórico
+> **Nota:** A pasta `.agent` é **opcional** no desenvolvimento padrão e pode ser obtida de um repositório próprio. Para contribuições manuais (humanas) ela não é estritamente necessária, porém é **exigida** caso você esteja utilizando uma IA ou Agente para codificar no projeto.
+
 Toda IA colaborativa, agente automático ou engenheiro responsável por manter código nesse sistema deve participar do fluxo de **Gestão do Conhecimento**. Ao resolver problemas complexos ou estabelecer um novo padrão:
 1. Documente e crie um artigo técnico breve na pasta estrita `.agent/learnings/`.
 2. Adicione-o imediatamente ao índice em `.agent/learnings/_index.md`.
 3. Ao finalizar a rotina ou pull request, atualize e centralize suas referências operacionais em `.agent/history/`. 
 
 Com este padrão, toda e qualquer IA consultará previamente essas fontes de aprendizado, evitando assim aplicar metodologias que já fracassaram na nossa infraestrutura ou que conflitem com o Foundry V13.
+
+#### 4. Testes Unitários
+Agora o projeto conta com uma suíte de testes unitários na pasta `tests/`. Sempre que você criar uma nova regra de negócio, utilitário ou corrigir um bug complexo, é altamente recomendado adicionar ou atualizar os testes correspondentes para garantir que a funcionalidade continue operando como o esperado. Todo pull request de lógica core deve passar nos testes existentes.
 
 ---
 

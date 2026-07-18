@@ -1,12 +1,12 @@
 # Setor 0 RPG para o Foundry VTT
 [🌐 Site oficial do Setor 0](https://setor0rpg.com.br) | [📖 Manual do Sistema](./SYSTEM-MANUAL.md)
 
-![Status: Alpha](https://img.shields.io/badge/status-alpha-orange)
-![Foundry v13](https://img.shields.io/badge/foundry-v13-orange)
+![Status: Beta](https://img.shields.io/badge/status-beta-orange)
+![Foundry v13](https://img.shields.io/badge/foundry-v13-green)
 ![Foundry v12](https://img.shields.io/badge/foundry-v12-green)
 ![License: Custom](https://img.shields.io/badge/license-custom-blue)
 ![PT-BR](https://img.shields.io/badge/lang-pt--br-green)
-![EN](https://img.shields.io/badge/lang-en-orange)
+![EN](https://img.shields.io/badge/lang-en-green)
 
 ---
 
@@ -18,16 +18,25 @@ Este é o sistema oficial de RPG **Setor 0**, totalmente integrado ao **Foundry 
 
 ### Instalação
 
+**Opção 1: Pelo link do Manifesto (Recomendado)**
+1. Abra o Foundry VTT e vá na aba **Sistemas de Jogo** (Game Systems).
+2. Clique no botão **Instalar Sistema** (Install System).
+3. No campo "Manifest URL" (URL do Manifesto) na parte inferior da janela, cole o seguinte link:
+   ```text
+   https://github.com/AlbertoJunior/setor0OSubmundo/releases/latest/download/system.json
+   ```
+4. Clique em Instalar. O Foundry fará o download e a instalação automaticamente.
+5. Crie um novo mundo e selecione o sistema `Setor 0 - O Submundo`.
+
+**Opção 2: Instalação Manual**
 1. Baixe ou clone este repositório.
 2. Mova a pasta para o diretório `Data/systems` do seu Foundry VTT.
-3. A pasta deve ter o nome `setor0OSubmundo`, exatamente dessa forma.
+3. A pasta deve ter o nome `setor0OSubmundo`, exatamente dessa forma:
     ```text
     setor0OSubmundo
     ```
-4. Se não aparecer, reinicie o Foundry.
+4. Se não aparecer na lista, reinicie o Foundry.
 5. Crie um novo mundo com o sistema.
-
-> 🚧 Ainda será disponibilizado um manifesto para instalação direta via URL dentro do próprio Foundry VTT.
 
 ---
 

@@ -8,16 +8,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AlbertoJunior/RPG-fvtt-sector-0.git"
+    "url": "git+https://github.com/AlbertoJunior/setor0OSubmundo.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/AlbertoJunior/RPG-fvtt-sector-0/issues"
+    "url": "https://github.com/AlbertoJunior/setor0OSubmundo/issues"
   },
-  "homepage": "https://github.com/AlbertoJunior/RPG-fvtt-sector-0#readme",
+  "homepage": "https://github.com/AlbertoJunior/setor0OSubmundo#readme",
   "devDependencies": {
     "vitest": "^4.1.10"
   }
