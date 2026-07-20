@@ -71,6 +71,7 @@
   background-color: var(--secondary-color-alpha-50) !important;
   border: var(--border-medium) solid var(--primary-color) !important;
   box-shadow: 0px 0px 6px 0px var(--primary-color) !important;
+  outline: none;
 }
 
 .S0-enhancement .S0-characteristic {

@@ -141,6 +141,18 @@
   border: dashed var(--border-medium) var(--primary-color);
 }
 
+.S0-roll-result.S0-green {
+  color: var(--on-color-green);
+  background-color: var(--color-green-alpha-50);
+  border-color: var(--color-green-alpha);
+}
+
+.S0-roll-result:enabled.S0-green:hover {
+  color: var(--on-color-green);
+  background-color: var(--color-green-alpha);
+  border-color: var(--color-green);
+}
+
 .S0-roll-result.S0-blue {
   color: var(--on-color-blue);
   background-color: var(--color-blue-alpha-50);

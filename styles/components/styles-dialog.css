@@ -69,28 +69,30 @@
   max-width: 100%;
 }
 
-.S0-button-delete {
+.S0-button-delete:enabled {
   color: var(--on-color-red) !important;
   background-color: var(--color-red-alpha-50) !important;
   border-color: var(--color-red-alpha-50) !important;
 }
 
-.S0-button-delete:hover {
+.S0-button-delete:enabled:hover {
   background-color: var(--color-red-alpha) !important;
   box-shadow: 0px 0px 6px 0px var(--color-red-alpha-50) !important;
   border-color: var(--color-red) !important;
 }
 
-.S0-button-create {
+.S0-button-create:enabled {
   color: var(--on-color-green) !important;
   background-color: var(--color-green-alpha-50) !important;
   border-color: var(--color-green-alpha) !important;
 }
 
-.S0-button-create:hover {
+.S0-button-create:enabled:hover,
+.S0-button-create:enabled:focus {
   background-color: var(--color-green-alpha) !important;
   box-shadow: 0px 0px 6px 0px var(--color-green-alpha-50) !important;
   border-color: var(--color-green) !important;
+  outline: none;
 }
 
 .S0-button-confirm {

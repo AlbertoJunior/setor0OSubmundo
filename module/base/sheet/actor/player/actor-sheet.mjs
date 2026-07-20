@@ -61,10 +61,14 @@ class Setor0ActorSheet extends Setor0BaseActorSheet {
       ...Setor0BaseActorSheet.SHEET_CONFIG.actions,
       {
         id: "experienceCalculator",
-        enabled: (options) => OwnershipUtils.canEdit(options?.document),
+        enabled: function (options) {
+          return OwnershipUtils.canEdit(options?.document);
+        },
         icon: "fas fa-calculator",
         label: "CONTROL.EXPERIENCE_CALCULATOR_BUTTON.Title",
-        action: () => ExperienceCalculatorDialog.open(this.document)
+        action: function () {
+          ExperienceCalculatorDialog.open(this.document);
+        }
       }
     ]
   };
