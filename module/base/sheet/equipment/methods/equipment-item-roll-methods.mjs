@@ -9,7 +9,7 @@ import { EquipmentUpdater } from "../../../updater/equipment-updater.mjs";
 import { playerRollHandle } from "../../actor/player/methods/player-roll-methods.mjs";
 import { npcRollHandle } from "../../actor/npc/methods/npc-roll-methods.mjs";
 import { handlerEquipmentMenuRollEvents } from "./equipment-menu-roll-methods.mjs";
-import { CreateFormDialog } from "../../../../creators/dialog/create-dialog.mjs";
+import { ModifiersDialog } from "../../../../creators/dialog/modifiers-dialog.mjs";
 import { NpcUtils } from "../../../../core/npc/npc-utils.mjs";
 import { RollTestMessageCreator } from "../../../../creators/message/roll-test-message.mjs";
 import { ChatCreator } from "../../../../utils/chat-creator.mjs";
@@ -130,9 +130,7 @@ class EquipmentSheetItemRollHandle {
     const actor = item.actor;
     const isNpc = actor.type == ActorType.NPC;
 
-    CreateFormDialog.open(
-      localize("Modificadores"),
-      "rolls/modifiers",
+    ModifiersDialog.open(
       {
         presetForm: {
           canBeHalf: isNpc ? NpcUtils.canHalfTest(actor) : true,

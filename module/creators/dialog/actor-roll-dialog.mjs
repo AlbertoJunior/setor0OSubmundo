@@ -18,12 +18,12 @@ export class ActorRollDialog {
     3: ActorRollDialog.#confirmCustomRoll,
   };
 
-  static async open(actor) {
+  static async open(actor, defaultData = {}) {
     const uuid = `roll_dialog.${randomId(10)}`;
     const dataOptions = this.#mountDataOptions(actor);
-    const content = await this.#mountContent(uuid, dataOptions);
+    const content = await this.#mountContent(uuid, dataOptions, defaultData);
 
-    let currentPageDialog = 0;
+    let currentPageDialog = defaultData.page || 0;
     let pages = [];
 
     const buttons = [
@@ -184,9 +184,10 @@ export class ActorRollDialog {
     }
   }
 
-  static async #mountContent(uuid, dataOptions) {
+  static async #mountContent(uuid, dataOptions, defaultData = {}) {
     const data = {
       uuid: uuid,
+      defaultData,
       ...dataOptions
     }
     return await FoundryApi.renderTemplate(`${TEMPLATES_PATH}/rolls/roll-dialog.hbs`, data);

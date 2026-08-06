@@ -3,7 +3,7 @@ import { EnhancementRepository } from "../../repository/enhancement-repository.m
 import { EnhancementInfoParser } from "../../core/enhancement/enhancement-info.mjs";
 import { localize } from "../../utils/utils.mjs";
 import { OnEventType } from "../../enums/on-event-type.mjs";
-import { CreateFormDialog } from "./create-dialog.mjs";
+import { ModifiersDialog } from "./modifiers-dialog.mjs";
 import { ChatCreator } from "../../utils/chat-creator.mjs";
 import { EnhancementMessageCreator } from "../message/enhancement-message.mjs";
 import { ActiveEffectsUtils } from "../../core/effect/active-effects-utils.mjs";
@@ -78,15 +78,15 @@ export class EnhancementDialog {
       return;
     }
 
-    CreateFormDialog.open(
-      localize("Modificadores"),
-      "rolls/modifiers",
+    ModifiersDialog.open(
       {
         presetForm: {
           canBeHalf: true,
           canBeSpecialist: true,
-          defaultDifficulty: rollTest.difficulty,
-          defaultCritic: rollTest.critic,
+          values: {
+            difficulty: rollTest.difficulty,
+            critic: rollTest.critic,
+          }
         },
         onConfirm: async (data) => {
           const rollMessage = `${enhancementEffect.name}: ${rollTest.name}`;

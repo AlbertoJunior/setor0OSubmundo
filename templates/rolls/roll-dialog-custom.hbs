@@ -9,7 +9,7 @@
         {{#each allCharacteristic}}
         <optgroup class="S0-text-start" label="{{group_label}}">
           {{#each group_items}}
-          <option value="{{id}}">{{label}}</option>
+          <option value="{{id}}" {{selectIfEq id ../../defaultData.characteristic1}}>{{label}}</option>
           {{/each}}
         </optgroup>
         {{/each}}
@@ -23,7 +23,7 @@
         {{#each allCharacteristic}}
         <optgroup class="S0-text-start" label="{{group_label}}">
           {{#each group_items}}
-          <option value="{{id}}">{{label}}</option>
+          <option value="{{id}}" {{selectIfEq id ../../defaultData.characteristic2}}>{{label}}</option>
           {{/each}}
         </optgroup>
         {{/each}}

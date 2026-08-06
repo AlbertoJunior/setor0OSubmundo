@@ -2,7 +2,7 @@ import { ActorEquipmentUtils } from "./actor-equipment-utils.mjs";
 import { EquipmentUtils } from "../equipment/equipment-utils.mjs";
 import { NotificationsUtils } from "../../creators/message/notifications.mjs";
 import { localize, getObject } from "../../utils/utils.mjs";
-import { CreateFormDialog } from "../../creators/dialog/create-dialog.mjs";
+import { ModifiersDialog } from "../../creators/dialog/modifiers-dialog.mjs";
 import { playerRollHandle } from "../../base/sheet/actor/player/methods/player-roll-methods.mjs";
 import { ManeuverType } from "../../enums/maneuver-enums.mjs";
 import { EquipmentCharacteristicType } from "../../enums/equipment-enums.mjs";
@@ -39,9 +39,7 @@ export class RollManeuver {
     // Estado de seleção de arma (closure compartilhado com render e onConfirm)
     const state = { selectedWeaponId: null };
 
-    CreateFormDialog.open(
-      localize("Modificadores"),
-      "rolls/modifiers",
+    ModifiersDialog.open(
       {
         presetForm: {
           canBeHalf: true,

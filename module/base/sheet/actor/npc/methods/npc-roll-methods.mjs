@@ -3,7 +3,7 @@ import { ActorEquipmentUtils } from "../../../../../core/actor/actor-equipment-u
 import { ActorUtils } from "../../../../../core/actor/actor-utils.mjs";
 import { NpcUtils } from "../../../../../core/npc/npc-utils.mjs";
 import { RollSimplified } from "../../../../../core/rolls/simplified-roll.mjs";
-import { CreateFormDialog } from "../../../../../creators/dialog/create-dialog.mjs";
+import { ModifiersDialog } from "../../../../../creators/dialog/modifiers-dialog.mjs";
 import { NotificationsUtils } from "../../../../../creators/message/notifications.mjs";
 import { CharacteristicType, NpcCharacteristicType } from "../../../../../enums/characteristic-enums.mjs";
 import { OnEventType } from "../../../../../enums/on-event-type.mjs";
@@ -43,9 +43,7 @@ class NpcRollMethods {
   }
 
   static async #openDialogModifiers(actor, rollInformations) {
-    CreateFormDialog.open(
-      localize("Modificadores"),
-      "rolls/modifiers",
+    ModifiersDialog.open(
       {
         presetForm: {
           canBeHalf: NpcUtils.canHalfTest(actor),

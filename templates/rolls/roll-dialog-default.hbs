@@ -4,13 +4,13 @@
     <div class="form-group">
       <select class="S0-select S0-mx-4" id="{{uuid}}.attr1" name="attr1">
         {{#each attributes}}
-        <option value="{{id}}">{{label}}</option>
+        <option value="{{id}}" {{selectIfEq id ../defaultData.attr1}}>{{label}}</option>
         {{/each}}
       </select>
 
       <select class="S0-select S0-mx-4" id="{{uuid}}.attr2" name="attr2">
         {{#each attributes}}
-        <option value="{{id}}">{{label}}</option>
+        <option value="{{id}}" {{selectIfEq id ../defaultData.attr2}}>{{label}}</option>
         {{/each}}
       </select>
     </div>
@@ -19,7 +19,7 @@
     <div class="form-group">
       <select class="S0-select S0-flex-1" id="{{uuid}}.ability" name="ability">
         {{#each abilities}}
-        <option value="{{id}}">{{label}}</option>
+        <option value="{{id}}" {{selectIfEq id ../defaultData.ability}}>{{label}}</option>
         {{/each}}
       </select>
 
@@ -34,7 +34,7 @@
       <label class="S0-flex-1" for="{{uuid}}.difficulty">{{localize 'S0.Dificuldade'}}:</label>
       <select class="S0-select S0-flex-1" id="{{uuid}}.difficulty" name="difficulty">
         {{#forLoop 5 11}}
-        <option value="{{index}}" {{selectIfEq index 6}}>{{index}}</option>
+        <option value="{{index}}" {{#if ../defaultData.difficulty}}{{selectIfEq index ../defaultData.difficulty}}{{else}}{{selectIfEq index 6}}{{/if}}>{{index}}</option>
         {{/forLoop}}
       </select>
     </div>

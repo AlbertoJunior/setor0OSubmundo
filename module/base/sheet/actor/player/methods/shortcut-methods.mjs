@@ -1,5 +1,5 @@
 import { getObject, localize, onArrayRemove } from "../../../../../utils/utils.mjs";
-import { CreateFormDialog } from "../../../../../creators/dialog/create-dialog.mjs";
+import { ModifiersDialog } from "../../../../../creators/dialog/modifiers-dialog.mjs";
 import { CreateRollableTestDialog } from "../../../../../creators/dialog/create-roll-test-dialog.mjs";
 import { NotificationsUtils } from "../../../../../creators/message/notifications.mjs";
 import { CharacteristicType } from "../../../../../enums/characteristic-enums.mjs";
@@ -119,9 +119,7 @@ class ShortcutHandleEvents {
   }
 
   static async #rollDefaultShortcut(actor, type, subCharacteristic) {
-    CreateFormDialog.open(
-      localize("Modificadores"),
-      "rolls/modifiers",
+    ModifiersDialog.open(
       {
         presetForm: {
           canBeHalf: false,

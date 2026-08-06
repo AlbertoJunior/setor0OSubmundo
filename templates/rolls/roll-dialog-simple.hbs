@@ -3,7 +3,7 @@
     <h3>{{localize 'S0.Valores'}}</h3>
     <div class="form-group">
       <label class="S0-flex-1" for="{{uuid}}.simple_value">{{localize 'S0.Quantidade'}}:</label>
-      <input class="S0-flex-1" id="{{uuid}}.simple_value" name="value" type="number" value="0">
+      <input class="S0-flex-1" id="{{uuid}}.simple_value" name="value" type="number" value="{{#if defaultData.value}}{{defaultData.value}}{{else}}0{{/if}}">
     </div>
 
     <div class="form-group">
@@ -24,7 +24,11 @@
       <label class="S0-flex-1" for="{{uuid}}.simple_difficulty">{{localize 'S0.Dificuldade'}}:</label>
       <select class="S0-select S0-flex-1" id="{{uuid}}.simple_difficulty" name="difficulty">
         {{#forLoop 5 11}}
+        {{#if ../defaultData.difficulty}}
+        <option value="{{index}}" {{selectIfEq index ../defaultData.difficulty}}>{{index}}</option>
+        {{else}}
         <option value="{{index}}" {{selectIfEq index 6}}>{{index}}</option>
+        {{/if}}
         {{/forLoop}}
       </select>
     </div>
